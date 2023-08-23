@@ -1,0 +1,9 @@
+{
+    "files": [
+        "header_common.py",
+        "header_operations.py",
+        "main.py",
+        "test_mbscript.py",
+        "test_output.py"
+    ]
+}
