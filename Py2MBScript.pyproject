@@ -1,5 +1,6 @@
 {
     "files": [
+        "MBOptions.py",
         "MBPlayer.py",
         "header_common.py",
         "header_operations.py",

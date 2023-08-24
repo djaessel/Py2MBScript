@@ -1,4 +1,5 @@
 from MBPlayer import MBPlayer
+from MBOptions import MBOptions
 
 
 def script1(waterLevel, fishCount):
@@ -27,8 +28,10 @@ def script1(waterLevel, fishCount):
 
 
 def helloWorld():
-    ai_strength = options_get_campaign_ai()
+    optionx = MBOptions()
+    ai_strength = optionx.get_campaign_ai()
     print("Hello World!")
+    optionx.set_damage_to_friends(ai_strength)
     print(ai_strength)
 
 

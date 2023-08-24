@@ -47,6 +47,7 @@ scripts = [
 ("helloWorld", [
 (options_get_campaign_ai, ":ai_strength"),
 (display_message, "@Hello World!"),
+(options_set_damage_to_friends, ":ai_strength"),
 (assign, reg0, ":ai_strength"),
 (display_message, "@{reg0}"),
 ]),

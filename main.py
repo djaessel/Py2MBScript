@@ -35,13 +35,17 @@ def is_float(v):
 
 
 cur_players = dict()
+cur_options = dict()
 
 
 def transformCode(code):
     if len(code.strip()) == 0:
         return [""]
 
-    if "=" in code:
+    if code.strip().startswith('#'):
+        # return [code.strip()]
+        return [""]
+    elif "=" in code:
         tmp = code.split('=')
         varName = tmp[0].strip()
         funcCall = tmp[1].strip()
@@ -55,8 +59,15 @@ def transformCode(code):
                     liny = getFuncCodeLine(player_func_name)
                     liny = replaceVarWithPlaceholder(liny, "<destination>", varName)
                     liny = replaceVarWithPlaceholder(liny, "<player_id>", cur_players[curP])
+                elif curP in cur_options:
+                    player_func_name = "options_" + tmp[1].strip()
+                    liny = getFuncCodeLine(player_func_name)
+                    liny = replaceVarWithPlaceholder(liny, "<destination>", varName)
             elif funcCall.startswith("MBPlayer("):
                 cur_players[varName] = funcCall.split(')')[0].split('(')[1]
+                liny = ""
+            elif funcCall.startswith("MBOptions("):
+                cur_options[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
                 liny = ""
             else:
                 liny = "(assign,<var1>,<var2>)"
@@ -74,6 +85,10 @@ def transformCode(code):
             liny = getFuncCodeLine(player_func_name)
             liny = replaceVarWithPlaceholder(liny, "<player_id>", cur_players[curP])
             liny = replaceFuncParams(liny, player_func_name)
+        elif curP in cur_options:
+            player_func_name = "options_" + tmp[1].strip()
+            liny = getFuncCodeLine(player_func_name)
+            liny = replaceFuncParams(liny, player_func_name)
         return [liny]
     elif code.startswith("print("):
         if "print(\"" in code:
@@ -90,8 +105,6 @@ def transformCode(code):
     elif "(" in code and ")" in code:
         liny = getFuncCodeLine(code)
         return [liny]
-    elif code.strip().startswith('#'):
-        return [code.strip()]
 
     return [""] # ERROR 2 # ignored code
 
@@ -114,6 +127,7 @@ def replaceFuncParams(liny, funcCall):
     for i in range(len(params)):
         liny = replaceVarWithPlaceholder(liny, params[i], actParams[i])
     return liny
+
 
 def getFuncCodeLine(funcCall):
     funcName = funcCall.split('(')[0].strip()
@@ -234,6 +248,7 @@ def transformElseBlock(code):
     b = ["(else_try)"]
     return b
 
+
 def transformScriptBlock(codeBlock : list):
     lastIndentCount = 0
     lastScriptIdx = -1
@@ -286,7 +301,7 @@ def transformScriptBlock(codeBlock : list):
     return allCodes
 
 
-def writeOutputFile(codeLines):
+def writeScriptOutputFile(codeLines):
     with open("test_output.py", "w") as f:
         f.write("from header_operations import *\n")
         f.write("from header_common import *\n\n")
@@ -324,8 +339,9 @@ def readScriptTestCode():
 
 
 if __name__ == "__main__":
+    # Module Scripts
     lines = readScriptTestCode()
     codeLines = transformScriptBlock(lines)
-    writeOutputFile(codeLines)
+    writeScriptOutputFile(codeLines)
     # sys.exit()
 
