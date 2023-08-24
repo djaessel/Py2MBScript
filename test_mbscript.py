@@ -1,4 +1,3 @@
-# TEST SCRIPT
 def script1(waterLevel, fishCount):
     versionx = get_operation_set_version()
     if versionx > 0 and versionx <= 1101:
@@ -13,3 +12,17 @@ def script1(waterLevel, fishCount):
         print("TEST2")
 
     print("Hello World!")
+
+
+
+def helloWorld():
+    ai_strength = options_get_campaign_ai()
+    print("Hello World!")
+    print(ai_strength)
+
+
+
+def whoIsMyPlayerTeam(playerId):
+    team_no = player_get_team_no(playerId)
+    reg0 = team_no
+

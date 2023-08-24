@@ -1,29 +1,39 @@
-# TEST SCRIPT
 ("script1", [
-  (store_script_param, ":waterLevel", 1)
-  (store_script_param, ":fishCount", 2)
-  (get_operation_set_version, ":versionx")
-  (try_begin)
-    (gt,":versionx",0)
-    (le,":versionx",1101)
-    (profile_get_banner_id, ":banner_id")
-    (try_begin)
-        (this_or_next|gt,":banner_id",20)
-        (this_or_next|eq,":banner_id",0)
-        (eq,":banner_id",10)
-        (assign, reg0, ":versionx")
-        (display_message, "@{reg0}")
-    (try_end)
-  (try_end)
-  (try_begin)
-    (eq,":fishCount",1)
-    (is_edit_mode_enabled)
-    (display_message, "@Test1")
-  (try_end)
-  (try_begin)
-    (this_or_next|eq,":waterLevel",2)
-    (eq,":fishCount",1)
-    (display_message, "@TEST2")
-  (try_end)
-  (display_message, "@Hello World!")
-(try_end)
+(store_script_param, ":waterLevel", 1),
+(store_script_param, ":fishCount", 2),
+(get_operation_set_version, ":versionx"),
+(try_begin),
+(gt,":versionx",0),
+(le,":versionx",1101),
+(profile_get_banner_id, ":banner_id"),
+(try_begin),
+(this_or_next|gt,":banner_id",20),
+(this_or_next|eq,":banner_id",0),
+(eq,":banner_id",10),
+(assign, reg0, ":versionx"),
+(display_message, "@{reg0}"),
+(try_end),
+(try_end),
+(try_begin),
+(eq,":fishCount",1),
+(is_edit_mode_enabled),
+(display_message, "@Test1"),
+(try_end),
+(try_begin),
+(this_or_next|eq,":waterLevel",2),
+(eq,":fishCount",1),
+(display_message, "@TEST2"),
+(try_end),
+(display_message, "@Hello World!"),
+]),
+("helloWorld", [
+(options_get_campaign_ai, ":ai_strength"),
+(display_message, "@Hello World!"),
+(assign, reg0, ":ai_strength"),
+(display_message, "@{reg0}"),
+]),
+("whoIsMyPlayerTeam", [
+(store_script_param, ":playerId", 1),
+(player_get_team_no,  ":team_no", <player_id>),
+(assign,reg0,":team_no"),
+]),

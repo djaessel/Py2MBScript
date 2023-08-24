@@ -11,8 +11,6 @@ with open("header_operations.py") as f:
 # print(codex)
 
 
-scriptActive = False
-
 registers = []
 for i in range(66):
     registers.append("reg" + str(i))
@@ -45,7 +43,12 @@ def transformCode(code):
         varName = tmp[0].strip()
         funcCall = tmp[1].strip()
         liny = getFuncCodeLine(funcCall)
-        liny = replaceVarWithPlaceholder(liny, "<destination>", varName)
+        if liny.endswith("# ERROR 1"):
+            liny = "(assign,<var1>,<var2>)"
+            liny = replaceVarWithPlaceholder(liny, "<var1>", varName)
+            liny = replaceVarWithPlaceholder(liny, "<var2>", funcCall)
+        else:
+            liny = replaceVarWithPlaceholder(liny, "<destination>", varName)
         return [liny]
 
     if code.startswith("print("):
@@ -147,8 +150,9 @@ def transformScriptLine(scriptLine):
     scriptName = scriptLine.split('(')[0]
     scriptParams = scriptLine.split('(')[1].split(')')[0].split(',')
     b = ["(\"" + scriptName + "\", ["]
-    for i, param in enumerate(scriptParams):
-        b.append("(store_script_param, \":" + param.strip() + "\", " + str(i + 1) + ")")
+    if len(scriptParams[0].strip()) > 0:
+        for i, param in enumerate(scriptParams):
+            b.append("(store_script_param, \":" + param.strip() + "\", " + str(i + 1) + ")")
     return b
 
 
@@ -168,7 +172,7 @@ def transformIfBlock(ifCode):
     return b
 
 
-def transformCodeBlock(codeBlock : list):
+def transformScriptBlock(codeBlock : list):
     lastIndentCount = 0
 
     allCodes = []
@@ -183,16 +187,16 @@ def transformCodeBlock(codeBlock : list):
         if code.startswith("if "):
             coy = transformIfBlock(code)
         elif code.startswith("def "):
-            global scriptActive
-            scriptActive = True
+            lastIndentCount = 1
+            if len(allCodes) > 0:
+                allCodes.append("])")
             coy = transformScriptLine(code)
         else:
             coy = transformCode(code)
 
         if lastIndentCount > inlineIndentCount:
             xyz = inlineIndentCount
-            if scriptActive:
-                xyz += 1
+            xyz += 1
             while lastIndentCount > xyz:
                 xyz += 1
                 coy.append("(try_end)")
@@ -207,6 +211,8 @@ def transformCodeBlock(codeBlock : list):
             allCodes.append("(try_end)")
 
     allCodes = [x.rstrip(',') for x in allCodes if x]
+    allCodes.append("])")
+
     return allCodes
 
 
@@ -219,12 +225,14 @@ if __name__ == "__main__":
         for line in f:
             lines.append(line)
 
-
-    cody = transformCodeBlock(lines)
+    cody = transformScriptBlock(lines)
     print(cody)
 
     with open("test_output.py", "w") as f:
         for line in cody:
-            f.write(line + "\n")
+            f.write(line)
+            if not line.endswith("["):
+                f.write(",")
+            f.write("\n")
 
     sys.exit()
