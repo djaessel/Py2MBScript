@@ -1,4 +1,8 @@
-]),
+from header_operations import *
+from header_common import *
+
+scripts = [
+
 ("script1", [
 (store_script_param, ":waterLevel", 1),
 (store_script_param, ":fishCount", 2),
@@ -27,18 +31,21 @@
 (try_end),
 (display_message, "@Hello World!"),
 ]),
+
 ("helloWorld", [
 (options_get_campaign_ai, ":ai_strength"),
 (display_message, "@Hello World!"),
 (assign, reg0, ":ai_strength"),
 (display_message, "@{reg0}"),
 ]),
+
 ("whoIsMyPlayerTeam", [
 (store_script_param, ":playerId", 1),
 (player_get_team_no, ":team_no", ":playerId"),
 (assign,reg0,":team_no"),
 (display_message, "@{reg0}"),
 ]),
+
 ("itemx", [
 (store_script_param, ":playerId", 1),
 (store_script_param, ":item", 2),
@@ -49,6 +56,7 @@
 (assign, reg0, ":entry_point"),
 (display_message, "@{reg0}"),
 ]),
+
 ("setNewTeam", [
 (store_script_param, ":playerId", 1),
 (store_script_param, ":teamNo", 2),
@@ -57,3 +65,5 @@
 (assign,reg1,":teamNo"),
 (display_message, "@{reg0} has team {reg1}"),
 ]),
+
+]

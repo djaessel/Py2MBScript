@@ -217,11 +217,14 @@ def transformIfBlock(ifCode):
 
 def transformScriptBlock(codeBlock : list):
     lastIndentCount = 0
+    lastScriptIdx = -1
 
+    curIdx = -1
     allCodes = []
     for codeLine in codeBlock:
         code = codeLine
         inlineIndentCount = 0
+        curIdx += 1
 
         coy = []
         while code.startswith("    "):
@@ -231,9 +234,10 @@ def transformScriptBlock(codeBlock : list):
             coy = transformIfBlock(code)
         elif code.startswith("def "):
             lastIndentCount = 1
-            if len(allCodes) > 0:
+            if len(allCodes) > 0 and lastScriptIdx >= 0:
                 allCodes.append("])")
             coy = transformScriptLine(code)
+            lastScriptIdx = curIdx
         else:
             coy = transformCode(code)
 
@@ -271,10 +275,16 @@ if __name__ == "__main__":
     cody = transformScriptBlock(lines)
 
     with open("test_output.py", "w") as f:
+        f.write("from header_operations import *\n")
+        f.write("from header_common import *\n\n")
+        f.write("scripts = [\n\n")
         for line in cody:
             f.write(line)
             if not line.endswith("["):
                 f.write(",")
+            if line == "])":
+                f.write("\n")
             f.write("\n")
+        f.write("]\n")
 
     sys.exit()
