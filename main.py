@@ -215,6 +215,25 @@ def transformIfBlock(ifCode):
     return b
 
 
+def transformElseIfBlock(ifCode):
+    b = ["(else_try)"]
+    conditionsLine = ifCode.lstrip()[5:].replace(" and ", " & ").replace(" or ", " | ")
+    conditionsLine = conditionsLine.split(':')[0]
+
+    conditions = conditionsLine.split('&')
+    for cond in conditions:
+        if "|" in cond:
+            condx = resolveOr(cond)
+        else:
+            condx = resolveSimpleCondition(cond)
+        b.extend(condx)
+    return b
+
+
+def transformElseBlock(code):
+    b = ["(else_try)"]
+    return b
+
 def transformScriptBlock(codeBlock : list):
     lastIndentCount = 0
     lastScriptIdx = -1
@@ -232,6 +251,10 @@ def transformScriptBlock(codeBlock : list):
             inlineIndentCount += 1
         if code.startswith("if "):
             coy = transformIfBlock(code)
+        elif code.startswith("elif "):
+            coy = transformElseIfBlock(code)
+        elif code.startswith("else:"):
+            coy = transformElseBlock(code)
         elif code.startswith("def "):
             lastIndentCount = 1
             if len(allCodes) > 0 and lastScriptIdx >= 0:

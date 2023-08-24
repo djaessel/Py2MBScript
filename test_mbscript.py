@@ -9,9 +9,13 @@ def script1(waterLevel, fishCount):
 
     if fishCount == 1 and is_edit_mode_enabled():
         print("Test1")
+    elif is_edit_mode_enabled() or versionx > 1011:
+        print("Test4")
 
     if waterLevel == 2 or fishCount == 1:
         print("TEST2")
+    else:
+        print("TEST3")
 
     print("Hello World!")
 
