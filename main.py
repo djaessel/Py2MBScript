@@ -286,28 +286,46 @@ def transformScriptBlock(codeBlock : list):
     return allCodes
 
 
-
-
-if __name__ == "__main__":
-
-    lines = []
-    with open("test_mbscript.py") as f:
-        for line in f:
-            lines.append(line)
-
-    cody = transformScriptBlock(lines)
-
+def writeOutputFile(codeLines):
     with open("test_output.py", "w") as f:
         f.write("from header_operations import *\n")
         f.write("from header_common import *\n\n")
         f.write("scripts = [\n\n")
-        for line in cody:
+
+        curIndent = 0
+        for line in codeLines:
+            if "else_try" in line or "try_end" in line:
+                curIndent -= 1
+
+            for i in range(curIndent):
+                f.write("    ")
+
             f.write(line)
+
+            if "else_try" in line or "try_begin" in line:
+                curIndent += 1
+
             if not line.endswith("["):
                 f.write(",")
             if line == "])":
                 f.write("\n")
             f.write("\n")
+
         f.write("]\n")
 
-    sys.exit()
+
+def readScriptTestCode():
+    lines = []
+    with open("test_mbscript.py") as f:
+        for line in f:
+            lines.append(line)
+    return lines
+
+
+
+if __name__ == "__main__":
+    lines = readScriptTestCode()
+    codeLines = transformScriptBlock(lines)
+    writeOutputFile(codeLines)
+    # sys.exit()
+
