@@ -34,6 +34,9 @@ def is_float(v):
     return True
 
 
+cur_players = dict()
+
+
 def transformCode(code):
     if len(code.strip()) == 0:
         return [""]
@@ -44,14 +47,35 @@ def transformCode(code):
         funcCall = tmp[1].strip()
         liny = getFuncCodeLine(funcCall)
         if liny.endswith("# ERROR 1"):
-            liny = "(assign,<var1>,<var2>)"
-            liny = replaceVarWithPlaceholder(liny, "<var1>", varName)
-            liny = replaceVarWithPlaceholder(liny, "<var2>", funcCall)
+            if "." in liny:
+                tmp = funcCall.split('.')
+                curP = tmp[0].strip()
+                if curP in cur_players:
+                    player_func_name = "player_" + tmp[1].strip()
+                    liny = getFuncCodeLine(player_func_name)
+                    liny = replaceVarWithPlaceholder(liny, "<destination>", varName)
+                    liny = replaceVarWithPlaceholder(liny, "<player_id>", cur_players[curP])
+            elif funcCall.startswith("MBPlayer("):
+                cur_players[varName] = funcCall.split(')')[0].split('(')[1]
+                liny = ""
+            else:
+                liny = "(assign,<var1>,<var2>)"
+                liny = replaceVarWithPlaceholder(liny, "<var1>", varName)
+                liny = replaceVarWithPlaceholder(liny, "<var2>", funcCall)
         else:
             liny = replaceVarWithPlaceholder(liny, "<destination>", varName)
+            liny = replaceFuncParams(liny, funcCall)
         return [liny]
-
-    if code.startswith("print("):
+    elif "." in code:
+        tmp = code.split('.')
+        curP = tmp[0].strip()
+        if curP in cur_players:
+            player_func_name = "player_" + tmp[1].strip()
+            liny = getFuncCodeLine(player_func_name)
+            liny = replaceVarWithPlaceholder(liny, "<player_id>", cur_players[curP])
+            liny = replaceFuncParams(liny, player_func_name)
+        return [liny]
+    elif code.startswith("print("):
         if "print(\"" in code:
             text = code.split('"')[1]
             b = ["(display_message, \"@" + text + "\")"]
@@ -66,12 +90,30 @@ def transformCode(code):
     elif "(" in code and ")" in code:
         liny = getFuncCodeLine(code)
         return [liny]
-
-    if code.strip().startswith('#'):
+    elif code.strip().startswith('#'):
         return [code.strip()]
 
-    return ["# ERROR 2"]
+    return [""] # ERROR 2 # ignored code
 
+
+def findParams(funcCall, startIdx = 1):
+    params = funcCall.rstrip('),').split(',')[startIdx:]
+    idx = -1
+    for i, param in enumerate(params):
+        if ":" in param:
+            idx = i
+        params[i] = params[i].strip()
+    if idx >= 0:
+        del params[idx]
+    return params
+
+
+def replaceFuncParams(liny, funcCall):
+    params = findParams(liny)
+    actParams = findParams(funcCall.split('(')[1], 0)
+    for i in range(len(params)):
+        liny = replaceVarWithPlaceholder(liny, params[i], actParams[i])
+    return liny
 
 def getFuncCodeLine(funcCall):
     funcName = funcCall.split('(')[0].strip()
@@ -128,6 +170,8 @@ def resolveSimpleCondition(cond):
 def replaceVarWithPlaceholder(line, placeholder, varname):
     if varname in registers or varname in pos_registers or varname in str_registers or is_float(varname):
         line = line.replace(placeholder, varname)
+    elif '"' in varname and varname.startswith('"') and varname.endswith('"'):
+        line = line.replace(placeholder, varname)
     else:
         line = line.replace(placeholder, "\":" + varname + "\"")
     return line
@@ -162,7 +206,6 @@ def transformIfBlock(ifCode):
     conditionsLine = conditionsLine.split(':')[0]
 
     conditions = conditionsLine.split('&')
-    print(conditions)
     for cond in conditions:
         if "|" in cond:
             condx = resolveOr(cond)
@@ -226,7 +269,6 @@ if __name__ == "__main__":
             lines.append(line)
 
     cody = transformScriptBlock(lines)
-    print(cody)
 
     with open("test_output.py", "w") as f:
         for line in cody:

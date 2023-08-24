@@ -1,3 +1,5 @@
+from MBPlayer import MBPlayer
+
 def script1(waterLevel, fishCount):
     versionx = get_operation_set_version()
     if versionx > 0 and versionx <= 1101:
@@ -23,6 +25,25 @@ def helloWorld():
 
 
 def whoIsMyPlayerTeam(playerId):
-    team_no = player_get_team_no(playerId)
+    playerx = MBPlayer(playerId)
+    team_no = playerx.get_team_no()
     reg0 = team_no
+    print(reg0)
+
+
+def itemx(playerId, item):
+    playerx = MBPlayer(playerId)
+    playerx.add_spawn_item(0, item)
+    teamNo = playerx.get_team_no()
+    entry_point = multiplayer_find_spawn_point(teamNo, 1, 0)
+    print("Spawn point")
+    print(entry_point)
+
+
+def setNewTeam(playerId, teamNo):
+    playerx = MBPlayer(playerId)
+    playerx.set_team_no(teamNo)
+    reg0 = playerId
+    reg1 = teamNo
+    print("{reg0} has team {reg1}")
 

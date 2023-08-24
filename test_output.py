@@ -1,3 +1,4 @@
+]),
 ("script1", [
 (store_script_param, ":waterLevel", 1),
 (store_script_param, ":fishCount", 2),
@@ -34,6 +35,25 @@
 ]),
 ("whoIsMyPlayerTeam", [
 (store_script_param, ":playerId", 1),
-(player_get_team_no,  ":team_no", <player_id>),
+(player_get_team_no, ":team_no", ":playerId"),
 (assign,reg0,":team_no"),
+(display_message, "@{reg0}"),
+]),
+("itemx", [
+(store_script_param, ":playerId", 1),
+(store_script_param, ":item", 2),
+(player_add_spawn_item, ":playerId", 0, ":item"),
+(player_get_team_no, ":teamNo", ":playerId"),
+(multiplayer_find_spawn_point, ":entry_point", ":teamNo", 1, 0),
+(display_message, "@Spawn point"),
+(assign, reg0, ":entry_point"),
+(display_message, "@{reg0}"),
+]),
+("setNewTeam", [
+(store_script_param, ":playerId", 1),
+(store_script_param, ":teamNo", 2),
+(player_set_team_no, ":playerId", ":teamNo"),
+(assign,reg0,":playerId"),
+(assign,reg1,":teamNo"),
+(display_message, "@{reg0} has team {reg1}"),
 ]),
