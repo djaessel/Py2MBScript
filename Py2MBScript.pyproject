@@ -2,6 +2,7 @@
     "files": [
         "MBOptions.py",
         "MBPlayer.py",
+        "ScriptConverter.py",
         "header_common.py",
         "header_operations.py",
         "main.py",
