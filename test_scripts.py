@@ -46,6 +46,10 @@ def loopy():
         if ai_strength == 1:
             print("YES!")
 
+    for x in range(200, 0, -1):
+        reg0 = x
+        print("Backwards: {reg0}")
+
 
 def whoIsMyPlayerTeam(playerId):
     playerx = MBPlayer(playerId)

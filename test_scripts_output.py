@@ -64,6 +64,10 @@ scripts = [
         (display_message, "@YES!"),
     (try_end),
 (try_end),
+(try_for_range_backwards, ":x", 0, 200),
+    (assign,reg0,":x"),
+    (display_message, "@Backwards: {reg0}"),
+(try_end),
 ]),
 
 ("whoIsMyPlayerTeam", [

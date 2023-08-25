@@ -88,7 +88,11 @@ class ScriptConverter:
                 liny = self.replaceFuncParams(liny, player_func_name)
             return [liny]
         elif code.startswith("print("):
-            if "print(\"" in code:
+            if "print(" in code and "," in code:
+                print("Multiprint not supported yet! >", code)
+                pseudoCode = code.split('(')[1].split(')')[0]
+                b = ["(display_message, \"@"+pseudoCode+"\")"]
+            elif "print(\"" in code:
                 text = code.split('"')[1]
                 b = ["(display_message, \"@" + text + "\")"]
             else:
@@ -253,9 +257,13 @@ class ScriptConverter:
         b = ["(try_for_range, <var1>, <var2>, <var3>)"]
         b[0] = self.replaceVarWithPlaceholder(b[0], "<var1>", code[4:code.index(' in range(')])
         tmp = code.split('(')[1].split(')')[0].split(',')
-        if len(tmp) > 1:
+        if len(tmp) == 2:
             start = tmp[0].strip()
             end = tmp[1].strip()
+        elif len(tmp) == 3 and int(tmp[2]) < 0:
+            start = tmp[1].strip()
+            end = tmp[0].strip()
+            b[0] = b[0].replace("try_for_range", "try_for_range_backwards")
         else:
             start = 0
             end = tmp[0].strip()
