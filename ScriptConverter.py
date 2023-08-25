@@ -302,7 +302,7 @@ class ScriptConverter:
 
 
     def writeScriptOutputFile(self, codeData):
-        with open("test_output.py", "w") as f:
+        with open("test_scripts_output.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("scripts = [\n\n")
@@ -331,7 +331,7 @@ class ScriptConverter:
 
     def readScriptTestCode(self):
         lines = []
-        with open("test_mbscript.py") as f:
+        with open("test_scripts.py") as f:
             for line in f:
                 lines.append(line)
         return lines
