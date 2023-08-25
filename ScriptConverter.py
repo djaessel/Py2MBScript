@@ -249,6 +249,23 @@ class ScriptConverter:
         return b
 
 
+    def transformForBlock(self, code):
+        b = ["(try_for_range, <var1>, <var2>, <var3>)"]
+        b[0] = self.replaceVarWithPlaceholder(b[0], "<var1>", code[4:code.index(' in range(')])
+        tmp = code.split('(')[1].split(')')[0].split(',')
+        if len(tmp) > 1:
+            start = tmp[0].strip()
+            end = tmp[1].strip()
+        else:
+            start = 0
+            end = tmp[0].strip()
+
+        b[0] = self.replaceVarWithPlaceholder(b[0], "<var2>", str(start))
+        b[0] = self.replaceVarWithPlaceholder(b[0], "<var3>", str(end))
+
+        return b
+
+
     def transformScriptBlock(self, codeBlock : list):
         lastIndentCount = 0
         lastScriptIdx = -1
@@ -270,6 +287,8 @@ class ScriptConverter:
                 coy = self.transformElseIfBlock(code)
             elif code.startswith("else:"):
                 coy = self.transformElseBlock(code)
+            elif code.startswith("for "):
+                coy = self.transformForBlock(code)
             elif code.startswith("def "):
                 lastIndentCount = 1
                 if len(allCodes) > 0 and lastScriptIdx >= 0:
@@ -317,7 +336,7 @@ class ScriptConverter:
 
                 f.write(line)
 
-                if "else_try" in line or "try_begin" in line:
+                if "else_try" in line or "try_begin" in line or "try_for" in line:
                     curIndent += 1
 
                 if not line.endswith("["):

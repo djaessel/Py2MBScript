@@ -36,6 +36,17 @@ def helloWorld():
 
 
 
+def loopy():
+    for i in range(2, 10):
+        print(i)
+
+    for i in range(5):
+        optionx = MBOptions()
+        ai_strength = optionx.get_campaign_ai()
+        if ai_strength == 1:
+            print("YES!")
+
+
 def whoIsMyPlayerTeam(playerId):
     playerx = MBPlayer(playerId)
     team_no = playerx.get_team_no()

@@ -52,6 +52,20 @@ scripts = [
 (display_message, "@{reg0}"),
 ]),
 
+("loopy", [
+(try_for_range, ":i", 2, 10),
+    (assign, reg0, ":i"),
+    (display_message, "@{reg0}"),
+(try_end),
+(try_for_range, ":i", 0, 5),
+    (options_get_campaign_ai, ":ai_strength"),
+    (try_begin),
+        (eq,":ai_strength",1),
+        (display_message, "@YES!"),
+    (try_end),
+(try_end),
+]),
+
 ("whoIsMyPlayerTeam", [
 (store_script_param, ":playerId", 1),
 (player_get_team_no, ":team_no", ":playerId"),
