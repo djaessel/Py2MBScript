@@ -3,10 +3,14 @@
         "MBOptions.py",
         "MBPlayer.py",
         "ScriptConverter.py",
+        "SimpleTriggerConverter.py",
         "header_common.py",
         "header_operations.py",
         "main.py",
+        "simple_trigger.py",
         "test_mbscript.py",
-        "test_output.py"
+        "test_output.py",
+        "test_simple_trigger_output.py",
+        "test_simple_triggers.py"
     ]
 }

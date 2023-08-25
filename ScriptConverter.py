@@ -207,7 +207,10 @@ class ScriptConverter:
         b = ["(\"" + scriptName + "\", ["]
         if len(scriptParams[0].strip()) > 0:
             for i, param in enumerate(scriptParams):
-                b.append("(store_script_param, \":" + param.strip() + "\", " + str(i + 1) + ")")
+                if param.strip() != "self":
+                    if scriptParams[0].strip() == "self":
+                        i += 1
+                    b.append("(store_script_param, \":" + param.strip() + "\", " + str(i + 1) + ")")
         return b
 
 
@@ -298,14 +301,14 @@ class ScriptConverter:
         return allCodes
 
 
-    def writeScriptOutputFile(self, codeLines):
+    def writeScriptOutputFile(self, codeData):
         with open("test_output.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("scripts = [\n\n")
 
             curIndent = 0
-            for line in codeLines:
+            for line in codeData:
                 if "else_try" in line or "try_end" in line:
                     curIndent -= 1
 
