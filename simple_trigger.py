@@ -2,7 +2,7 @@
 
 
 class SimpleTrigger:
-    triggerInterval = 0
+    triggerInterval = 0.0
 
     def __init__(self, triggerInterval):
         self.triggerInterval = triggerInterval

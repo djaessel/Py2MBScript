@@ -6,12 +6,10 @@ import test_simple_triggers
 
 
 class SimpleTriggerConverter(ScriptConverter):
-    triggers = dict()
-
     def __init__(self):
         pass
 
-    def retrieveSimpleTriggers(self):
+    def retrieveTriggers(self):
         simpleTriggers = []
         for i in vars(test_simple_triggers):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
@@ -26,10 +24,10 @@ class SimpleTriggerConverter(ScriptConverter):
             f.write("simple_triggers = [\n\n")
 
             for trigger in codeData:
+                f.write("(" + str(trigger.triggerInterval) + ", [\n")
                 codeLines = inspect.getsourcelines(trigger.codeBlock)[0]
                 for i in range(len(codeLines)):
                     codeLines[i] = codeLines[i][4:]
-                f.write("(" + str(trigger.triggerInterval) + ", [\n")
                 codeLines.pop(0)
                 codeLines = self.transformScriptBlock(codeLines)
                 self.writeScriptCode(f, codeLines)

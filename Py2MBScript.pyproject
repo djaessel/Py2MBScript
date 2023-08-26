@@ -11,6 +11,10 @@
         "test_scripts.py",
         "test_scripts_output.py",
         "test_simple_triggers_output.py",
-        "test_simple_triggers.py"
+        "test_simple_triggers.py",
+        "TriggerConverter.py",
+        "trigger.py",
+        "test_triggers.py",
+        "test_triggers_output.py"
     ]
 }
