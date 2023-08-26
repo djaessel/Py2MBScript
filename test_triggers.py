@@ -8,12 +8,11 @@ class Trigger1(Trigger):
         water = 1
         if 1 == 1:
             water = 4
+
         print(water)
 
     def codeBlock(self):
         print("Hello World!")
-
-
 
 
 class Trigger2(Trigger):
@@ -21,8 +20,15 @@ class Trigger2(Trigger):
         fishCount = 1
         waterLevel = 1
         versionx = get_operation_set_version()
+
         if versionx > 0 and versionx <= 1101:
             print(versionx)
+
+        for waterLevel in range(waterLevel, 19):
+            print(waterLevel)
+            for fishCount in range(fishCount, 12):
+                print(fishCount)
+
 
 
 trigger1 = Trigger1(24, 0, 0)
