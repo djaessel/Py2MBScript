@@ -8,6 +8,7 @@ simple_triggers = [
     (is_edit_mode_enabled),
     (display_message, "@Hello World"),
 (try_end),
+(try_end),
 ]),
 
 (12, [
@@ -32,6 +33,7 @@ simple_triggers = [
             (display_message, "@DOPE"),
         (try_end),
     (try_end),
+(try_end),
 (try_end),
 ]),
 

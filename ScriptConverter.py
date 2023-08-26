@@ -328,31 +328,33 @@ class ScriptConverter:
         return allCodes
 
 
+    def writeScriptCode(self, f, codeData):
+        curIndent = 0
+        for line in codeData:
+            if "else_try" in line or "try_end" in line:
+                curIndent -= 1
+
+            for i in range(curIndent):
+                f.write("    ")
+
+            f.write(line)
+
+            if "else_try" in line or "try_begin" in line or "try_for" in line:
+                curIndent += 1
+
+            if not line.endswith("["):
+                f.write(",")
+            if line == "])":
+                f.write("\n")
+            f.write("\n")
+
+
     def writeScriptOutputFile(self, codeData):
         with open("test_scripts_output.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("scripts = [\n\n")
-
-            curIndent = 0
-            for line in codeData:
-                if "else_try" in line or "try_end" in line:
-                    curIndent -= 1
-
-                for i in range(curIndent):
-                    f.write("    ")
-
-                f.write(line)
-
-                if "else_try" in line or "try_begin" in line or "try_for" in line:
-                    curIndent += 1
-
-                if not line.endswith("["):
-                    f.write(",")
-                if line == "])":
-                    f.write("\n")
-                f.write("\n")
-
+            self.writeScriptCode(f, codeData)
             f.write("]\n")
 
 

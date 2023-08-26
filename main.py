@@ -15,8 +15,7 @@ if __name__ == "__main__":
 
     # Module Simple Triggers
     simpleTriggerer = SimpleTriggerConverter()
-    lines = simpleTriggerer.readScriptTestCode()
-    simpleTriggers = simpleTriggerer.transformSimpleTrigger(lines)
+    simpleTriggers = simpleTriggerer.retrieveSimpleTriggers()
     simpleTriggerer.writeScriptOutputFile(simpleTriggers)
 
     sys.exit()
