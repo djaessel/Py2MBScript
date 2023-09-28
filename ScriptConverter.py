@@ -36,6 +36,109 @@ class ScriptConverter:
         return True
 
 
+    def handleEqualsSign(self, code):
+        tmp = code.split('=')
+        varName = tmp[0].strip()
+        funcCall = tmp[1].strip()
+        liny = self.getFuncCodeLine(funcCall)
+        if liny.endswith("# ERROR 1"):
+            if "." in liny:
+                liny = self.handleDotSignInEqualLine(liny, funcCall, varName)
+            elif funcCall.startswith("MBParty("):
+                self.cur_parties[varName] = funcCall.split(')')[0].split('(')[1]
+                liny = ""
+            elif funcCall.startswith("MBPlayer("):
+                self.cur_players[varName] = funcCall.split(')')[0].split('(')[1]
+                liny = ""
+            elif funcCall.startswith("MBOptions("):
+                self.cur_options[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
+                liny = ""
+            else:
+                liny = "(assign,<var1>,<var2>)"
+                liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
+                liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
+        else:
+            liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+            liny = self.replaceFuncParams(liny, funcCall)
+        return [liny]
+
+
+    def handleDotSignInEqualLine(self, liny, funcCall, varName):
+        tmp = funcCall.split('.')
+        curP = tmp[0].strip()
+        if curP in self.cur_players:
+            p_func_name = "player_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+            liny = self.replaceVarWithPlaceholder(liny, "<player_id>", self.cur_players[curP])
+        elif curP in self.cur_parties:
+            p_func_name = "party_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+            liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
+        elif curP in self.cur_options:
+            p_func_name = "options_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+        return liny
+
+
+    def handleDotSign(self, code):
+        tmp = code.split('.')
+        curP = tmp[0].strip()
+        if curP in self.cur_players:
+            p_func_name = "player_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceVarWithPlaceholder(liny, "<player_id>", self.cur_players[curP])
+            liny = self.replaceFuncParams(liny, p_func_name)
+        elif curP in self.cur_parties:
+            p_func_name = "party_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
+            liny = self.replaceFuncParams(liny, p_func_name)
+        elif curP in self.cur_options:
+            p_func_name = "options_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceFuncParams(liny, p_func_name)
+        return [liny]
+
+
+    def handlePrint(self, code):
+        if "print(" in code and "," in code:
+            print("Multiprint not supported yet! >", code)
+            pseudoCode = code.split('(')[1].split(')')[0]
+            b = ["(display_message, \"@"+pseudoCode+"\")"]
+        elif "print(\"" in code:
+            text = code.split('"')[1]
+            b = ["(display_message, \"@" + text + "\")"]
+        else:
+            pseudoCode = code.split('(')[1].split(')')[0]
+            if pseudoCode in self.str_registers or pseudoCode in self.registers:
+                b = ["(display_message, \"@{" + pseudoCode + "}\")"]
+            else:
+                b = [self.replaceVarWithPlaceholder("(assign, reg0, <placeholder>)", "<placeholder>", pseudoCode)]
+                b.append("(display_message, \"@{reg0}\")")
+        return b
+
+
+    def handleValSub(self, code):
+        liny = "(val_sub, <val1>, <val2>)"
+        sx = code.split('-')[0].strip()
+        sy = code.split('=')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        return [liny]
+
+
+    def handleValAdd(self, code):
+        liny = "(val_add, <val1>, <val2>)"
+        sx = code.split('+')[0].strip()
+        sy = code.split('=')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        return [liny]
+
+
     def transformCode(self, code):
         if len(code.strip()) == 0:
             return [""]
@@ -43,80 +146,16 @@ class ScriptConverter:
         if code.strip().startswith('#'):
             # return [code.strip()]
             return [""]
+        elif "+=" in code:
+            return self.handleValAdd(code)
+        elif "-=" in code:
+            return self.handleValSub(code)
         elif "=" in code:
-            tmp = code.split('=')
-            varName = tmp[0].strip()
-            funcCall = tmp[1].strip()
-            liny = self.getFuncCodeLine(funcCall)
-            if liny.endswith("# ERROR 1"):
-                if "." in liny:
-                    tmp = funcCall.split('.')
-                    curP = tmp[0].strip()
-                    if curP in self.cur_players:
-                        p_func_name = "player_" + tmp[1].strip()
-                        liny = self.getFuncCodeLine(p_func_name)
-                        liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
-                        liny = self.replaceVarWithPlaceholder(liny, "<player_id>", self.cur_players[curP])
-                    elif curP in self.cur_parties:
-                        p_func_name = "party_" + tmp[1].strip()
-                        liny = self.getFuncCodeLine(p_func_name)
-                        liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
-                        liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
-                    elif curP in self.cur_options:
-                        p_func_name = "options_" + tmp[1].strip()
-                        liny = self.getFuncCodeLine(p_func_name)
-                        liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
-                elif funcCall.startswith("MBParty("):
-                    self.cur_parties[varName] = funcCall.split(')')[0].split('(')[1]
-                    liny = ""
-                elif funcCall.startswith("MBPlayer("):
-                    self.cur_players[varName] = funcCall.split(')')[0].split('(')[1]
-                    liny = ""
-                elif funcCall.startswith("MBOptions("):
-                    self.cur_options[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
-                    liny = ""
-                else:
-                    liny = "(assign,<var1>,<var2>)"
-                    liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
-                    liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
-            else:
-                liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
-                liny = self.replaceFuncParams(liny, funcCall)
-            return [liny]
+            return self.handleEqualsSign(code)
         elif "." in code:
-            tmp = code.split('.')
-            curP = tmp[0].strip()
-            if curP in self.cur_players:
-                p_func_name = "player_" + tmp[1].strip()
-                liny = self.getFuncCodeLine(p_func_name)
-                liny = self.replaceVarWithPlaceholder(liny, "<player_id>", self.cur_players[curP])
-                liny = self.replaceFuncParams(liny, p_func_name)
-            elif curP in self.cur_parties:
-                p_func_name = "party_" + tmp[1].strip()
-                liny = self.getFuncCodeLine(p_func_name)
-                liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
-                liny = self.replaceFuncParams(liny, p_func_name)
-            elif curP in self.cur_options:
-                p_func_name = "options_" + tmp[1].strip()
-                liny = self.getFuncCodeLine(p_func_name)
-                liny = self.replaceFuncParams(liny, p_func_name)
-            return [liny]
+            return self.handleDotSign(code)
         elif code.startswith("print("):
-            if "print(" in code and "," in code:
-                print("Multiprint not supported yet! >", code)
-                pseudoCode = code.split('(')[1].split(')')[0]
-                b = ["(display_message, \"@"+pseudoCode+"\")"]
-            elif "print(\"" in code:
-                text = code.split('"')[1]
-                b = ["(display_message, \"@" + text + "\")"]
-            else:
-                pseudoCode = code.split('(')[1].split(')')[0]
-                if pseudoCode in self.str_registers or pseudoCode in self.registers:
-                    b = ["(display_message, \"@{" + pseudoCode + "}\")"]
-                else:
-                    b = [self.replaceVarWithPlaceholder("(assign, reg0, <placeholder>)", "<placeholder>", pseudoCode)]
-                    b.append("(display_message, \"@{reg0}\")")
-            return b
+            return self.handlePrint(code)
         elif "(" in code and ")" in code:
             liny = self.getFuncCodeLine(code)
             return [liny]
@@ -235,7 +274,18 @@ class ScriptConverter:
                     b.append("(store_script_param, \":" + param.strip() + "\", " + str(i + 1) + ")")
         return b
 
+    # TODO: actually count these and correctly check
+    def transformTryBlock(self, tryCode):
+        b = ["(try_begin)"]
+        return b
 
+
+    def transformExceptBlock(self, tryCode):
+        b = ["(else_try)"]
+        return b
+
+
+    # TODO: actually count these and correctly check
     def transformIfBlock(self, ifCode):
         b = ["(try_begin)"]
         conditionsLine = ifCode.lstrip()[3:].replace(" and ", " & ").replace(" or ", " | ")
@@ -315,6 +365,12 @@ class ScriptConverter:
                 coy = self.transformElseBlock(code)
             elif code.startswith("for "):
                 coy = self.transformForBlock(code)
+            elif code.startswith("try:"):
+                coy = self.transformTryBlock(code)
+            elif code.startswith("except:"):
+                coy = self.transformExceptBlock(code)
+            elif code.startswith("while "):
+                print("while is not supported yet!")
             elif code.startswith("def "):
                 lastIndentCount = 1
                 if len(allCodes) > 0 and lastScriptIdx >= 0:

@@ -86,3 +86,17 @@ def changeFactionIfActive(partyId, newFactionNo):
         print("Party {reg0} is inactive")
 
 
+def tryAgain(randomVal):
+    try:
+        # has problems
+        waterLevel = 5
+        if randomVal == 3:
+            waterLevel-=2
+        else:
+            waterLevel += 1
+        print(waterLevel)
+    except:
+        print("There was an error!")
+
+
+

@@ -110,4 +110,20 @@ scripts = [
 (try_end),
 ]),
 
+("tryAgain", [
+(store_script_param, ":randomVal", 1),
+(try_begin),
+    (assign,":waterLevel",5),
+    (try_begin),
+        (eq,":randomVal",3),
+        (val_sub, ":waterLevel", 2),
+    (else_try),
+        (val_add, ":waterLevel", 1),
+        (assign, reg0, ":waterLevel"),
+        (display_message, "@{reg0}"),
+    (else_try),
+        (display_message, "@There was an error!"),
+    (try_end),
+    ]),
+
 ]
