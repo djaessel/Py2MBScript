@@ -30,7 +30,13 @@ class Trigger2(Trigger):
                 print(fishCount)
 
 
+class WaterPump(Trigger):
+    def codeBlock(self):
+        print("Pump water!")
+
 
 trigger1 = Trigger1(24, 0, 0)
 trigger2 = Trigger2(12, 0, 0)
+
+water_pump = WaterPump(0, 0, 128.0)
 

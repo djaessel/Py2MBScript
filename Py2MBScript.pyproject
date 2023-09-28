@@ -15,6 +15,7 @@
         "TriggerConverter.py",
         "trigger.py",
         "test_triggers.py",
-        "test_triggers_output.py"
+        "test_triggers_output.py",
+        "MBParty.py"
     ]
 }

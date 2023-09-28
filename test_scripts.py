@@ -1,5 +1,6 @@
 from MBPlayer import MBPlayer
 from MBOptions import MBOptions
+from MBParty import MBParty
 
 
 def script1(waterLevel, fishCount):
@@ -73,4 +74,14 @@ def setNewTeam(playerId, teamNo):
     reg0 = playerId
     reg1 = teamNo
     print("{reg0} has team {reg1}")
+
+
+def changeFactionIfActive(partyId, newFactionNo):
+    partaaay = MBParty(partyId)
+    if partaaay.is_active():
+        partaaay.set_faction(newFactionNo)
+    else:
+        reg0 = partaaay
+        print("Party {reg0} is inactive")
+
 

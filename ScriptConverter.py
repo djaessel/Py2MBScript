@@ -8,6 +8,7 @@ class ScriptConverter:
 
     codex = dict()
     cur_players = dict()
+    cur_parties = dict()
     cur_options = dict()
 
     def __init__(self):
@@ -52,14 +53,22 @@ class ScriptConverter:
                     tmp = funcCall.split('.')
                     curP = tmp[0].strip()
                     if curP in self.cur_players:
-                        player_func_name = "player_" + tmp[1].strip()
-                        liny = self.getFuncCodeLine(player_func_name)
+                        p_func_name = "player_" + tmp[1].strip()
+                        liny = self.getFuncCodeLine(p_func_name)
                         liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
                         liny = self.replaceVarWithPlaceholder(liny, "<player_id>", self.cur_players[curP])
-                    elif curP in self.cur_options:
-                        player_func_name = "options_" + tmp[1].strip()
-                        liny = self.getFuncCodeLine(player_func_name)
+                    elif curP in self.cur_parties:
+                        p_func_name = "party_" + tmp[1].strip()
+                        liny = self.getFuncCodeLine(p_func_name)
                         liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+                        liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
+                    elif curP in self.cur_options:
+                        p_func_name = "options_" + tmp[1].strip()
+                        liny = self.getFuncCodeLine(p_func_name)
+                        liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+                elif funcCall.startswith("MBParty("):
+                    self.cur_parties[varName] = funcCall.split(')')[0].split('(')[1]
+                    liny = ""
                 elif funcCall.startswith("MBPlayer("):
                     self.cur_players[varName] = funcCall.split(')')[0].split('(')[1]
                     liny = ""
@@ -78,14 +87,19 @@ class ScriptConverter:
             tmp = code.split('.')
             curP = tmp[0].strip()
             if curP in self.cur_players:
-                player_func_name = "player_" + tmp[1].strip()
-                liny = self.getFuncCodeLine(player_func_name)
+                p_func_name = "player_" + tmp[1].strip()
+                liny = self.getFuncCodeLine(p_func_name)
                 liny = self.replaceVarWithPlaceholder(liny, "<player_id>", self.cur_players[curP])
-                liny = self.replaceFuncParams(liny, player_func_name)
+                liny = self.replaceFuncParams(liny, p_func_name)
+            elif curP in self.cur_parties:
+                p_func_name = "party_" + tmp[1].strip()
+                liny = self.getFuncCodeLine(p_func_name)
+                liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
+                liny = self.replaceFuncParams(liny, p_func_name)
             elif curP in self.cur_options:
-                player_func_name = "options_" + tmp[1].strip()
-                liny = self.getFuncCodeLine(player_func_name)
-                liny = self.replaceFuncParams(liny, player_func_name)
+                p_func_name = "options_" + tmp[1].strip()
+                liny = self.getFuncCodeLine(p_func_name)
+                liny = self.replaceFuncParams(liny, p_func_name)
             return [liny]
         elif code.startswith("print("):
             if "print(" in code and "," in code:

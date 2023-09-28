@@ -97,4 +97,16 @@ scripts = [
 (display_message, "@{reg0} has team {reg1}"),
 ]),
 
+("changeFactionIfActive", [
+(store_script_param, ":partyId", 1),
+(store_script_param, ":newFactionNo", 2),
+(try_begin),
+    (party_is_active,":partyId"),
+    (party_set_faction,":partyId",":newFactionNo"),
+(else_try),
+    (assign,reg0,":partaaay"),
+    (display_message, "@Party {reg0} is inactive"),
+(try_end),
+]),
+
 ]

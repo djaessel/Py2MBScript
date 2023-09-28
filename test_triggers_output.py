@@ -41,4 +41,11 @@ triggers = [
 (try_end),
 ]),
 
+(0, 0, 128.0, [
+(try_end),
+], [
+(display_message, "@Pump water!"),
+(try_end),
+]),
+
 ]
