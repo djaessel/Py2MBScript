@@ -80,6 +80,7 @@ def changeFactionIfActive(partyId, newFactionNo):
     partaaay = MBParty(partyId)
     if partaaay.is_active():
         partaaay.set_faction(newFactionNo)
+        partaaay.add_template("pt_sea_raiders")
     else:
         reg0 = partaaay
         print("Party {reg0} is inactive")

@@ -140,7 +140,11 @@ class ScriptConverter:
         params = self.findParams(liny)
         actParams = self.findParams(funcCall.split('(')[1], 0)
         for i in range(len(params)):
-            liny = self.replaceVarWithPlaceholder(liny, params[i], actParams[i])
+            if (not "[" in params[i] and not "]" in params[i]) or ("[" in params[i] and "]" in params[i] and len(actParams) > i):
+                liny = self.replaceVarWithPlaceholder(liny, params[i], actParams[i])
+            else:
+                # print("Ignored optional parameter:", params[i], "|", funcCall, "|", liny)
+                liny = liny.replace(", " + params[i], "")
         return liny
 
 
