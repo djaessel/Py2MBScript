@@ -14,7 +14,8 @@ class GameMenuConverter(ScriptConverter):
         for i in vars(test_game_menus):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(test_game_menus,i)
-                gameMenus.append(attr)
+                if not "<function" in str(attr) and not "MenuOption" in str(attr):
+                    gameMenus.append(attr)
         return gameMenus
 
     def writeScriptOutputFile(self, codeData : dict[GameMenu]):

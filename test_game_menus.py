@@ -17,9 +17,18 @@ class GameStartContinue(MenuOption):
         s1 = "Current xp: {reg12}"
         jump_to_menu("mnu_start_game_1")
 
-class GameStartGoBack(MenuOption):
-    def consequenceBlock(self):
-        change_screen_quit()
+#class GameStartGoBack(MenuOption):
+#    def consequenceBlock(self):
+#        change_screen_quit()
+
+
 
 game_start_0.menuOptions.append(GameStartContinue("continue", "Continue..."))
-game_start_0.menuOptions.append(GameStartGoBack("go_back", "Go back..."))
+
+game_start_go_back = MenuOption("go_back", "Go back...")
+
+def game_start_go_back_conseq():
+    change_screen_quit()
+
+game_start_go_back.consequenceBlock = game_start_go_back_conseq
+game_start_0.menuOptions.append(game_start_go_back)
