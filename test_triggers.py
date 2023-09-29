@@ -8,7 +8,7 @@ class Trigger1(Trigger):
         water = 1
         if 1 == 1:
             water = 4
-
+        #t
         print(water)
 
     def codeBlock(self):

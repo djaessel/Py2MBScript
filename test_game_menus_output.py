@@ -6,21 +6,20 @@ game_menus = [
 ("start_game_0", 0, 
   "Welcome adventurer, hopefully you will enjoy this new adventure through another world.", 
   "none", [
-(try_end),
 ],
 [
 ("continue", [
-(try_end),
 ], "Continue...", [
+(assign,reg12,255),
+(assign,reg13,500),
+(assign,s0,"Current gold: {reg13}"),
+(assign,s1,"Current xp: {reg12}"),
 (jump_to_menu,"mnu_start_game_1"),
-(try_end),
 ]),
 
 ("go_back", [
-(try_end),
 ], "Go back...", [
-(jump_to_menu,"mnu_start_game_1"),
-(try_end),
+(change_screen_quit),
 ]),
 
 ]),

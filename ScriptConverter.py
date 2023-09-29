@@ -344,8 +344,10 @@ class ScriptConverter:
 
 
     def transformScriptBlock(self, codeBlock : list):
-        lastIndentCount = 0
+        #lastIndentCount = 0
         lastScriptIdx = -1
+
+        ifCl = []
 
         curIdx = -1
         allCodes = []
@@ -359,43 +361,90 @@ class ScriptConverter:
                 code = code[4:]
                 inlineIndentCount += 1
             if code.startswith("if "):
+                xyz = -1
+                for i, ifx in enumerate(ifCl):
+                    if inlineIndentCount <= ifx[0] and code.strip() != "":
+                        xyz = i
+                        break
+
+                if xyz >= 0:
+                    del ifCl[xyz]
+                    allCodes.append("(try_end)")
+
                 coy = self.transformIfBlock(code)
+                ifCl.append((inlineIndentCount, code))
             elif code.startswith("elif "):
                 coy = self.transformElseIfBlock(code)
             elif code.startswith("else:"):
                 coy = self.transformElseBlock(code)
             elif code.startswith("for "):
+                xyz = -1
+                for i, ifx in enumerate(ifCl):
+                    if inlineIndentCount <= ifx[0] and code.strip() != "":
+                        xyz = i
+                        break
+
+                if xyz >= 0:
+                    del ifCl[xyz]
+                    allCodes.append("(try_end)")
+
                 coy = self.transformForBlock(code)
+                ifCl.append((inlineIndentCount, code))
             elif code.startswith("try:"):
+                xyz = -1
+                for i, ifx in enumerate(ifCl):
+                    if inlineIndentCount <= ifx[0] and code.strip() != "":
+                        xyz = i
+                        break
+
+                if xyz >= 0:
+                    del ifCl[xyz]
+                    allCodes.append("(try_end)")
+
                 coy = self.transformTryBlock(code)
+                ifCl.append((inlineIndentCount, code))
             elif code.startswith("except:"):
                 coy = self.transformExceptBlock(code)
             elif code.startswith("while "):
                 print("while is not supported yet!")
+                # ifCl.append((inlineIndentCount, code))
             elif code.startswith("def "):
-                lastIndentCount = 1
+                #lastIndentCount = 1
                 if len(allCodes) > 0 and lastScriptIdx >= 0:
                     allCodes.append("])")
                 coy = self.transformScriptLine(code)
                 lastScriptIdx = curIdx
             else:
                 coy = self.transformCode(code)
+                xyz = -1
+                for i, ifx in enumerate(ifCl):
+                    if inlineIndentCount <= ifx[0] and code.strip() != "":
+                        xyz = i
+                        break
 
-            if lastIndentCount > inlineIndentCount:
-                xyz = inlineIndentCount
-                xyz += 1
-                while lastIndentCount > xyz:
-                    xyz += 1
+                if xyz >= 0:
+                    del ifCl[xyz]
                     coy.append("(try_end)")
 
-            lastIndentCount = inlineIndentCount
+            #if lastIndentCount > inlineIndentCount:
+            #    xyz = inlineIndentCount
+            #    xyz += 1
+            #    while lastIndentCount > xyz:
+            #        xyz += 1
+            #        coy.append("(try_end)")
+            #lastIndentCount = inlineIndentCount
+
             allCodes.extend(coy)
 
-        if lastIndentCount > 0:
-            xyz = 0
-            while lastIndentCount > xyz:
-                xyz += 1
-                allCodes.append("(try_end)")
+        #if lastIndentCount > 0:
+        #    xyz = 0
+        #    while lastIndentCount > xyz:
+        #        xyz += 1
+        #        allCodes.append("(try_end)")
+
+        for _ in ifCl:
+            allCodes.append("(try_end)")
+        ifCl.clear()
 
         allCodes = [x.rstrip(',') for x in allCodes if x]
         allCodes.append("])")

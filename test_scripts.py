@@ -13,6 +13,8 @@ def script1(waterLevel, fishCount):
                 print("YES!")
             else:
                 print("Nope")
+    #t
+    #t
 
     if fishCount == 1 and is_edit_mode_enabled():
         print("Test1")
@@ -40,16 +42,20 @@ def helloWorld():
 def loopy():
     for i in range(2, 10):
         print(i)
+    # t
 
     for i in range(5):
         optionx = MBOptions()
         ai_strength = optionx.get_campaign_ai()
         if ai_strength == 1:
             print("YES!")
+        # t
+    # t
 
     for x in range(200, 0, -1):
         reg0 = x
         print("Backwards: {reg0}")
+    # t
 
 
 def whoIsMyPlayerTeam(playerId):
@@ -84,6 +90,7 @@ def changeFactionIfActive(partyId, newFactionNo):
     else:
         reg0 = partaaay
         print("Party {reg0} is inactive")
+    # t
 
 
 def tryAgain(randomVal):

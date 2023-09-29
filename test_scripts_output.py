@@ -40,8 +40,8 @@ scripts = [
     (display_message, "@TEST2"),
 (else_try),
     (display_message, "@TEST3"),
+    (display_message, "@Hello World!"),
 (try_end),
-(display_message, "@Hello World!"),
 ]),
 
 ("helloWorld", [
@@ -121,9 +121,10 @@ scripts = [
         (val_add, ":waterLevel", 1),
         (assign, reg0, ":waterLevel"),
         (display_message, "@{reg0}"),
-    (else_try),
-        (display_message, "@There was an error!"),
     (try_end),
-    ]),
+(else_try),
+    (display_message, "@There was an error!"),
+(try_end),
+]),
 
 ]

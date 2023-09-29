@@ -12,14 +12,11 @@ triggers = [
 (try_end),
 (assign, reg0, ":water"),
 (display_message, "@{reg0}"),
-(try_end),
 ], [
 (display_message, "@Hello World!"),
-(try_end),
 ]),
 
 (12, 0, 0, [
-(try_end),
 ], [
 (assign,":fishCount",1),
 (assign,":waterLevel",1),
@@ -38,14 +35,11 @@ triggers = [
         (display_message, "@{reg0}"),
     (try_end),
 (try_end),
-(try_end),
 ]),
 
 (0, 0, 128.0, [
-(try_end),
 ], [
 (display_message, "@Pump water!"),
-(try_end),
 ]),
 
 ]
