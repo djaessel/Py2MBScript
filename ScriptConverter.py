@@ -436,6 +436,8 @@ class ScriptConverter:
 
             allCodes.extend(coy)
 
+        # TODO: check for try_ends more carefully
+
         #if lastIndentCount > 0:
         #    xyz = 0
         #    while lastIndentCount > xyz:

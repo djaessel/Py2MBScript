@@ -113,6 +113,7 @@ scripts = [
 ("tryAgain", [
 (store_script_param, ":randomVal", 1),
 (try_begin),
+    (is_edit_mode_enabled),
     (assign,":waterLevel",5),
     (try_begin),
         (eq,":randomVal",3),

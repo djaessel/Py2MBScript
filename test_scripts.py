@@ -95,6 +95,8 @@ def changeFactionIfActive(partyId, newFactionNo):
 
 def tryAgain(randomVal):
     try:
+        is_edit_mode_enabled()
+
         # has problems
         waterLevel = 5
         if randomVal == 3:
