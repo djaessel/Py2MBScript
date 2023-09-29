@@ -16,6 +16,10 @@
         "trigger.py",
         "test_triggers.py",
         "test_triggers_output.py",
-        "MBParty.py"
+        "MBParty.py",
+        "game_menu.py",
+        "test_game_menus.py",
+        "GameMenuConverter.py",
+        "test_game_menus_output.py"
     ]
 }

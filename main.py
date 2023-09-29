@@ -4,6 +4,7 @@ import sys
 from ScriptConverter import ScriptConverter
 from SimpleTriggerConverter import SimpleTriggerConverter
 from TriggerConverter import TriggerConverter
+from GameMenuConverter import GameMenuConverter
 
 
 if __name__ == "__main__":
@@ -23,6 +24,11 @@ if __name__ == "__main__":
     triggerer = TriggerConverter()
     triggerers = triggerer.retrieveTriggers()
     triggerer.writeScriptOutputFile(triggerers)
+
+    # Module Game Menus
+    gameMenuer = GameMenuConverter()
+    gameMenus = gameMenuer.retrieveGameMenus()
+    gameMenuer.writeScriptOutputFile(gameMenus)
 
     sys.exit()
 

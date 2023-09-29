@@ -158,6 +158,7 @@ class ScriptConverter:
             return self.handlePrint(code)
         elif "(" in code and ")" in code:
             liny = self.getFuncCodeLine(code)
+            liny = self.replaceFuncParams(liny, code.split(')')[0])
             return [liny]
 
         return [""] # ERROR 2 # ignored code
