@@ -361,16 +361,7 @@ class ScriptConverter:
                 code = code[4:]
                 inlineIndentCount += 1
             if code.startswith("if "):
-                xyz = -1
-                for i, ifx in enumerate(ifCl):
-                    if inlineIndentCount <= ifx[0] and code.strip() != "":
-                        xyz = i
-                        break
-
-                if xyz >= 0:
-                    del ifCl[xyz]
-                    allCodes.append("(try_end)")
-
+                self.fixIndentionProblem(allCodes, ifCl, inlineIndentCount, code)
                 coy = self.transformIfBlock(code)
                 ifCl.append((inlineIndentCount, code))
             elif code.startswith("elif "):
@@ -378,29 +369,11 @@ class ScriptConverter:
             elif code.startswith("else:"):
                 coy = self.transformElseBlock(code)
             elif code.startswith("for "):
-                xyz = -1
-                for i, ifx in enumerate(ifCl):
-                    if inlineIndentCount <= ifx[0] and code.strip() != "":
-                        xyz = i
-                        break
-
-                if xyz >= 0:
-                    del ifCl[xyz]
-                    allCodes.append("(try_end)")
-
+                self.fixIndentionProblem(allCodes, ifCl, inlineIndentCount, code)
                 coy = self.transformForBlock(code)
                 ifCl.append((inlineIndentCount, code))
             elif code.startswith("try:"):
-                xyz = -1
-                for i, ifx in enumerate(ifCl):
-                    if inlineIndentCount <= ifx[0] and code.strip() != "":
-                        xyz = i
-                        break
-
-                if xyz >= 0:
-                    del ifCl[xyz]
-                    allCodes.append("(try_end)")
-
+                self.fixIndentionProblem(allCodes, ifCl, inlineIndentCount, code)
                 coy = self.transformTryBlock(code)
                 ifCl.append((inlineIndentCount, code))
             elif code.startswith("except:"):
@@ -416,15 +389,7 @@ class ScriptConverter:
                 lastScriptIdx = curIdx
             else:
                 coy = self.transformCode(code)
-                xyz = -1
-                for i, ifx in enumerate(ifCl):
-                    if inlineIndentCount <= ifx[0] and code.strip() != "":
-                        xyz = i
-                        break
-
-                if xyz >= 0:
-                    del ifCl[xyz]
-                    coy.append("(try_end)")
+                self.fixIndentionProblem(coy, ifCl, inlineIndentCount, code)
 
             #if lastIndentCount > inlineIndentCount:
             #    xyz = inlineIndentCount
@@ -452,6 +417,18 @@ class ScriptConverter:
         allCodes.append("])")
 
         return allCodes
+
+
+    def fixIndentionProblem(self, c, ifCl, inlineIndentCount, code):
+        xyz = -1
+        for i, ifx in enumerate(ifCl):
+            if inlineIndentCount <= ifx[0] and code.strip() != "":
+                xyz = i
+                break
+
+        if xyz >= 0:
+            del ifCl[xyz]
+            c.append("(try_end)")
 
 
     def writeScriptCode(self, f, codeData):
