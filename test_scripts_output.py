@@ -116,7 +116,7 @@ scripts = [
     (is_edit_mode_enabled),
     (assign,":waterLevel",5),
     (try_begin),
-        (eq,":randomVal",3),
+        (neg|eq,":randomVal",3),
         (val_sub, ":waterLevel", 2),
     (else_try),
         (val_add, ":waterLevel", 1),

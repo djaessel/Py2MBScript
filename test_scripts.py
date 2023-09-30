@@ -92,7 +92,7 @@ def tryAgain(randomVal):
 
         # has problems
         waterLevel = 5
-        if randomVal == 3:
+        if not randomVal == 3:
             waterLevel-=2
         else:
             waterLevel += 1

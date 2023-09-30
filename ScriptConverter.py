@@ -244,6 +244,8 @@ class ScriptConverter:
         else:
             l = self.transformCode(cond)
             b.extend(l)
+        if "not" in b[0]:
+            b[0] = b[0].replace("(", "(neg|").replace(":not ", ":")
         return b
 
 
