@@ -18,13 +18,13 @@ class ScriptConverter:
                     code = line.split('=')[0].strip()
                     self.codex[code] = line.split('#')[1].strip()
 
-        for i in range(66):
+        for i in range(66):#128
             self.registers.append("reg" + str(i))
 
-        for i in range(68):
+        for i in range(68):#128
             self.str_registers.append("s" + str(i))
 
-        for i in range(64):
+        for i in range(64):#128
             self.pos_registers.append("pos" + str(i))
 
 
@@ -53,6 +53,13 @@ class ScriptConverter:
             elif funcCall.startswith("MBOptions("):
                 self.cur_options[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
                 liny = ""
+            elif varName in self.str_registers:
+                liny = "(str_store_string,<var1>,<var2>)"
+                liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
+                if '"' in funcCall and not funcCall.strip('"').startswith("str_"):
+                    liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall.replace('"', '"@').rstrip('@'))
+                else:
+                    liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
             else:
                 liny = "(assign,<var1>,<var2>)"
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
@@ -344,7 +351,6 @@ class ScriptConverter:
 
 
     def transformScriptBlock(self, codeBlock : list):
-        #lastIndentCount = 0
         lastScriptIdx = -1
 
         ifCl = []
@@ -382,7 +388,10 @@ class ScriptConverter:
                 print("while is not supported yet!")
                 # ifCl.append((inlineIndentCount, code))
             elif code.startswith("def "):
-                #lastIndentCount = 1
+                for _ in ifCl:
+                    allCodes.append("(try_end)")
+                ifCl.clear()
+
                 if len(allCodes) > 0 and lastScriptIdx >= 0:
                     allCodes.append("])")
                 coy = self.transformScriptLine(code)
@@ -391,23 +400,9 @@ class ScriptConverter:
                 coy = self.transformCode(code)
                 self.fixIndentionProblem(coy, ifCl, inlineIndentCount, code)
 
-            #if lastIndentCount > inlineIndentCount:
-            #    xyz = inlineIndentCount
-            #    xyz += 1
-            #    while lastIndentCount > xyz:
-            #        xyz += 1
-            #        coy.append("(try_end)")
-            #lastIndentCount = inlineIndentCount
-
             allCodes.extend(coy)
 
         # TODO: check for try_ends more carefully
-
-        #if lastIndentCount > 0:
-        #    xyz = 0
-        #    while lastIndentCount > xyz:
-        #        xyz += 1
-        #        allCodes.append("(try_end)")
 
         for _ in ifCl:
             allCodes.append("(try_end)")
@@ -420,15 +415,16 @@ class ScriptConverter:
 
 
     def fixIndentionProblem(self, c, ifCl, inlineIndentCount, code):
-        xyz = -1
+        xyz = []
         for i, ifx in enumerate(ifCl):
             if inlineIndentCount <= ifx[0] and code.strip() != "":
-                xyz = i
-                break
+                xyz.append(i)
 
-        if xyz >= 0:
-            del ifCl[xyz]
-            c.append("(try_end)")
+        if len(xyz) > 0:
+            xyz.reverse()
+            for x in xyz:
+                del ifCl[x]
+                c.append("(try_end)")
 
 
     def writeScriptCode(self, f, codeData):

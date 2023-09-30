@@ -15,6 +15,7 @@ class GameStartContinue(MenuOption):
         reg13 = 500
         s0 = "Current gold: {reg13}"
         s1 = "Current xp: {reg12}"
+        s2 = "str_yes"
         jump_to_menu("mnu_start_game_1")
 
 #class GameStartGoBack(MenuOption):
@@ -28,7 +29,11 @@ game_start_0.menuOptions.append(GameStartContinue("continue", "Continue..."))
 game_start_go_back = MenuOption("go_back", "Go back...")
 
 def game_start_go_back_conseq():
-    change_screen_quit()
+    if is_edit_mode_enabled():
+        # do nothing
+        pass
+    else:
+        change_screen_quit()
 
 game_start_go_back.consequenceBlock = game_start_go_back_conseq
 game_start_0.menuOptions.append(game_start_go_back)

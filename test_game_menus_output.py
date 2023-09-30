@@ -12,14 +12,19 @@ game_menus = [
 ], "Continue...", [
 (assign,reg12,255),
 (assign,reg13,500),
-(assign,s0,"Current gold: {reg13}"),
-(assign,s1,"Current xp: {reg12}"),
+(str_store_string,s0,"@Current gold: {reg13}"),
+(str_store_string,s1,"@Current xp: {reg12}"),
+(str_store_string,s2,"str_yes"),
 (jump_to_menu,"mnu_start_game_1"),
 ]),
 
 ("go_back", [
 ], "Go back...", [
-(change_screen_quit),
+(try_begin),
+    (is_edit_mode_enabled),
+(else_try),
+    (change_screen_quit),
+(try_end),
 ]),
 
 ]),
