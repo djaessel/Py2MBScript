@@ -31,10 +31,18 @@ def script1(waterLevel, fishCount):
 def helloWorld():
     optionx = MBOptions()
     ai_strength = optionx.get_campaign_ai()
-    print("Hello World!")
+    if is_edit_mode_enabled():
+        print("Hello World!")
+    #fi
+    ai_strength *= 5
+    sun = 10
+    water = sun + 2
+    ai_strength /= water
     optionx.set_damage_to_friends(ai_strength)
-    print(ai_strength)
-
+    sun = sun / 2
+    s0 = "LOL"
+    if is_edit_mode_enabled():
+        print("Strength:", ai_strength, "Water:", water, s0)
 
 
 def loopy():

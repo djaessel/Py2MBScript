@@ -112,9 +112,21 @@ class ScriptConverter:
 
     def handlePrint(self, code):
         if "print(" in code and "," in code:
-            print("Multiprint not supported yet! >", code)
+            sx = ""
+            b = []
             pseudoCode = code.split('(')[1].split(')')[0]
-            b = ["(display_message, \"@"+pseudoCode+"\")"]
+            data = [x.strip() for x in pseudoCode.split(',')]
+            for i, d in enumerate(data):
+                if d in self.str_registers or d in self.registers:
+                    sx += "{" + d + "} "
+                elif d.startswith('"') and d.endswith('"'):
+                    sx += d.strip('"') + " "
+                else:
+                    b.append(self.replaceVarWithPlaceholder("(assign, reg" + str(i)+ ", <placeholder>)", "<placeholder>", d))
+                    sx += "{reg" + str(i) + "} "
+
+            sx = sx.rstrip()
+            b.append("(display_message, \"@"+sx+"\")")
         elif "print(\"" in code:
             text = code.split('"')[1]
             b = ["(display_message, \"@" + text + "\")"]
@@ -146,6 +158,68 @@ class ScriptConverter:
         return [liny]
 
 
+    def handleValMul(self, code):
+        liny = "(val_mul, <val1>, <val2>)"
+        sx = code.split('*')[0].strip()
+        sy = code.split('=')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        return [liny]
+
+
+    def handleValDiv(self, code):
+        liny = "(val_div, <val1>, <val2>)"
+        sx = code.split('/')[0].strip()
+        sy = code.split('=')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        return [liny]
+
+
+    def handleStoreAdd(self, code):
+        liny = "(store_add, <val1>, <val2>, <val3>)"
+        sx = code.split('=')[0].strip()
+        sy = code.split('=')[1].strip().split('+')[0].strip()
+        sz = code.split('=')[1].strip().split('+')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
+        return [liny]
+
+
+    def handleStoreSub(self, code):
+        liny = "(store_mul, <val1>, <val2>, <val3>)"
+        sx = code.split('=')[0].strip()
+        sy = code.split('=')[1].strip().split('-')[0].strip()
+        sz = code.split('=')[1].strip().split('-')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
+        return [liny]
+
+
+    def handleStoreMul(self, code):
+        liny = "(store_mul, <val1>, <val2>, <val3>)"
+        sx = code.split('=')[0].strip()
+        sy = code.split('=')[1].strip().split('*')[0].strip()
+        sz = code.split('=')[1].strip().split('*')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
+        return [liny]
+
+
+    def handleStoreDiv(self, code):
+        liny = "(store_div, <val1>, <val2>, <val3>)"
+        sx = code.split('=')[0].strip()
+        sy = code.split('=')[1].strip().split('/')[0].strip()
+        sz = code.split('=')[1].strip().split('/')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
+        return [liny]
+
+
     def transformCode(self, code):
         if len(code.strip()) == 0:
             return [""]
@@ -157,6 +231,18 @@ class ScriptConverter:
             return self.handleValAdd(code)
         elif "-=" in code:
             return self.handleValSub(code)
+        elif "*=" in code:
+            return self.handleValMul(code)
+        elif "/=" in code:
+            return self.handleValDiv(code)
+        elif "+" in code and "=" in code and code.index("=") < code.index("+"):
+            return self.handleStoreAdd(code)
+        elif "-" in code and "=" in code and code.index("=") < code.index("-"):
+            return self.handleStoreSub(code)
+        elif "*" in code and "=" in code and code.index("=") < code.index("*"):
+            return self.handleStoreMul(code)
+        elif "/" in code and "=" in code and code.index("=") < code.index("/"):
+            return self.handleStoreDiv(code)
         elif "=" in code:
             return self.handleEqualsSign(code)
         elif "." in code:

@@ -46,10 +46,23 @@ scripts = [
 
 ("helloWorld", [
 (options_get_campaign_ai, ":ai_strength"),
-(display_message, "@Hello World!"),
+(try_begin),
+    (is_edit_mode_enabled),
+    (display_message, "@Hello World!"),
+(try_end),
+(val_mul, ":ai_strength", 5),
+(assign,":sun",10),
+(store_add, ":water", ":sun", 2),
+(val_div, ":ai_strength", ":water"),
 (options_set_damage_to_friends, ":ai_strength"),
-(assign, reg0, ":ai_strength"),
-(display_message, "@{reg0}"),
+(store_div, ":sun", ":sun", 2),
+(str_store_string,s0,"@LOL"),
+(try_begin),
+    (is_edit_mode_enabled),
+    (assign, reg1, ":ai_strength"),
+    (assign, reg3, ":water"),
+    (display_message, "@Strength: {reg1} Water: {reg3} {s0}"),
+(try_end),
 ]),
 
 ("loopy", [
