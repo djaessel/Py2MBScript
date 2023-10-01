@@ -109,4 +109,10 @@ def tryAgain(randomVal):
         print("There was an error!")
 
 
-
+def well(water):
+    if water > 10:
+        print("Well", "well!")
+    elif water > 3:
+        print("Well!")
+    else:
+        print("Well")

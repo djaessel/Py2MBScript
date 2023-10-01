@@ -12,7 +12,7 @@ class ScriptConverter:
     cur_options = dict()
 
     def __init__(self):
-        with open("header_operations.py") as f:
+        with open("./test_cases/header_operations.py") as f:
             for line in f:
                 if "=" in line and "#" in line:
                     code = line.split('=')[0].strip()
@@ -537,7 +537,7 @@ class ScriptConverter:
 
 
     def writeScriptOutputFile(self, codeData):
-        with open("test_scripts_output.py", "w") as f:
+        with open("./test_cases/test_scripts_output.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("scripts = [\n\n")
@@ -547,7 +547,7 @@ class ScriptConverter:
 
     def readScriptTestCode(self):
         lines = []
-        with open("test_scripts.py") as f:
+        with open("./test_cases/test_scripts.py") as f:
             for line in f:
                 lines.append(line)
         return lines

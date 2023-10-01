@@ -19,7 +19,7 @@ class GameMenuConverter(ScriptConverter):
         return gameMenus
 
     def writeScriptOutputFile(self, codeData : dict[GameMenu]):
-        with open("test_game_menus_output.py", "w") as f:
+        with open("./test_cases/test_game_menus_output.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("game_menus = [\n\n")

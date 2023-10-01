@@ -1,6 +1,10 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
+sys.path.append("./converter/")
+sys.path.append("./data_objects/")
+sys.path.append("./test_cases/")
+
 from ScriptConverter import ScriptConverter
 from SimpleTriggerConverter import SimpleTriggerConverter
 from TriggerConverter import TriggerConverter

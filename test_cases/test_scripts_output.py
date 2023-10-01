@@ -141,4 +141,17 @@ scripts = [
 (try_end),
 ]),
 
+("well", [
+(store_script_param, ":water", 1),
+(try_begin),
+    (gt,":water",10),
+    (display_message, "@Well well!"),
+(else_try),
+    (gt,":water",3),
+    (display_message, "@Well!"),
+(else_try),
+    (display_message, "@Well"),
+(try_end),
+]),
+
 ]

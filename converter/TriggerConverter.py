@@ -18,7 +18,7 @@ class TriggerConverter(ScriptConverter):
         return triggers
 
     def writeScriptOutputFile(self, codeData):
-        with open("test_triggers_output.py", "w") as f:
+        with open("./test_cases/test_triggers_output.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("triggers = [\n\n")
