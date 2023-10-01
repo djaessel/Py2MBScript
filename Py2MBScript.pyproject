@@ -1,6 +1,7 @@
 {
     "files": [
         "converter/GameMenuConverter.py",
+        "converter/ItemConverter.py",
         "converter/ScriptConverter.py",
         "converter/SimpleTriggerConverter.py",
         "converter/TriggerConverter.py",
@@ -8,6 +9,7 @@
         "data_objects/MBParty.py",
         "data_objects/MBPlayer.py",
         "data_objects/game_menu.py",
+        "data_objects/item.py",
         "data_objects/simple_trigger.py",
         "data_objects/trigger.py",
         "main.py",
@@ -15,6 +17,8 @@
         "test_cases/header_operations.py",
         "test_cases/test_game_menus.py",
         "test_cases/test_game_menus_output.py",
+        "test_cases/test_items.py",
+        "test_cases/test_items_output.py",
         "test_cases/test_scripts.py",
         "test_cases/test_scripts_output.py",
         "test_cases/test_simple_triggers.py",

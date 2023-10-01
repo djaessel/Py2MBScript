@@ -9,6 +9,7 @@ from ScriptConverter import ScriptConverter
 from SimpleTriggerConverter import SimpleTriggerConverter
 from TriggerConverter import TriggerConverter
 from GameMenuConverter import GameMenuConverter
+from ItemConverter import ItemConverter
 
 
 if __name__ == "__main__":
@@ -33,6 +34,11 @@ if __name__ == "__main__":
     gameMenuer = GameMenuConverter()
     gameMenus = gameMenuer.retrieveGameMenus()
     gameMenuer.writeScriptOutputFile(gameMenus)
+
+    # Items
+    itemer = ItemConverter()
+    items = itemer.retrieveItems()
+    itemer.writeScriptOutputFile(items)
 
     sys.exit()
 
