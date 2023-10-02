@@ -42,6 +42,8 @@ class TroopFlag(Enum):
     GUARANTEE_RANGED = "tf_guarantee_ranged"          # = 0x04000000
     GUARANTEE_POLEARM = "tf_guarantee_polearm"         # = 0x08000000
 
+    GUARANTEE_ALL = "tf_guarantee_all"
+
     UNMOVEABLE_IN_PARTY_WINDOW = "tf_unmoveable_in_party_window" # = 0x10000000
 
 
