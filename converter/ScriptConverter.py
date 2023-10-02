@@ -227,6 +227,8 @@ class ScriptConverter:
         if code.strip().startswith('#'):
             # return [code.strip()]
             return [""]
+        elif code.startswith("print("):
+            return self.handlePrint(code)
         elif "+=" in code:
             return self.handleValAdd(code)
         elif "-=" in code:
@@ -247,8 +249,6 @@ class ScriptConverter:
             return self.handleEqualsSign(code)
         elif "." in code:
             return self.handleDotSign(code)
-        elif code.startswith("print("):
-            return self.handlePrint(code)
         elif "(" in code and ")" in code:
             liny = self.getFuncCodeLine(code)
             liny = self.replaceFuncParams(liny, code.split(')')[0])

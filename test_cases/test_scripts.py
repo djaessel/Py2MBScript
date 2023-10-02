@@ -111,8 +111,8 @@ def tryAgain(randomVal):
 
 def well(water):
     if water > 10:
-        print("Well", "well!")
+        print("Well...", "well!")
     elif water > 3:
         print("Well!")
     else:
-        print("Well")
+        print("Well...")

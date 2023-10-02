@@ -53,12 +53,10 @@ class ItemConverter(ScriptConverter):
 
                 f.write(str(item.price) + ",\n")
 
-                for i, stat in enumerate(item.stats):
-                    f.write(stat)
-                    if i < len(item.stats) - 1:
-                        f.write("|")
-                if len(item.stats) == 0:
-                    f.write("0")
+
+                #if len(item.stats) == 0:
+                #    f.write("0")
+                f.write(item.get_stats_string())
                 f.write(",\n")
 
                 for i, modifier in enumerate(item.modifiers):
@@ -69,7 +67,7 @@ class ItemConverter(ScriptConverter):
                     f.write("imodbits_none")
 
                 if len(item.factions) > 0 or len(item.triggers) > 0:
-                    f.write(", [")
+                    f.write(",\n[")
 
                     if len(item.triggers) > 0:
                         f.write("\n")

@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 
 from simple_trigger import SimpleTrigger
-from enum import Enum
+from enum import Enum, IntEnum
 
 
 class ItemFlag(Enum):
@@ -87,6 +87,7 @@ class ItemType(Enum):
     BULLETS = "itp_type_bullets"         # = 0x0000000000000012
     ANIMAL = "itp_type_animal"          # = 0x0000000000000013
     BOOK = "itp_type_book"            # = 0x0000000000000014
+
 
 
 class ItemCapability(Enum):
@@ -181,6 +182,7 @@ class ItemCapability(Enum):
     FORCE_64_BITS = "itcf_force_64_bits"                                   #= 0x8000000000000000
 
 
+
 class IModBit(Enum):
     PLAIN = "imodbit_plain" # = 1
     CRACKED = "imodbit_cracked" # =2
@@ -232,6 +234,30 @@ class IModBit(Enum):
 
     LARGE_BAG = "imodbit_large_bag" # =4398046511104
 
+    # IMODBITS
+    NONE = "imodbits_none"  # = 0
+    HORSE_BASIC = "imodbits_horse_basic"  # = imodbit_swaybacked|imodbit_lame|imodbit_spirited|imodbit_heavy|imodbit_stubborn
+    CLOTH = "imodbits_cloth" # = imodbit_tattered | imodbit_ragged | imodbit_sturdy | imodbit_thick | imodbit_hardened
+    ARMOR = "imodbits_armor" # = imodbit_rusty | imodbit_battered | imodbit_crude | imodbit_thick | imodbit_reinforced |imodbit_lordly
+    PLATE = "imodbits_plate" # = imodbit_cracked | imodbit_rusty | imodbit_battered | imodbit_crude | imodbit_thick | imodbit_reinforced |imodbit_lordly
+    POLEARM = "imodbits_polearm"  # = imodbit_cracked | imodbit_bent | imodbit_balanced
+    SHIELD = "imodbits_shield" # = imodbit_cracked | imodbit_battered |imodbit_thick | imodbit_reinforced
+    SWORD = "imodbits_sword"  # = imodbit_rusty | imodbit_chipped | imodbit_balanced |imodbit_tempered
+    SWORD_HIGH = "imodbits_sword_high"  # = imodbit_rusty | imodbit_chipped | imodbit_balanced |imodbit_tempered|imodbit_masterwork
+    AXE = "imodbits_axe"  # = imodbit_rusty | imodbit_chipped | imodbit_heavy
+    MACE = "imodbits_mace"  # = imodbit_rusty | imodbit_chipped | imodbit_heavy
+    PICK = "imodbits_pick"  # = imodbit_rusty | imodbit_chipped | imodbit_balanced | imodbit_heavy
+    BOW = "imodbits_bow"  # = imodbit_cracked | imodbit_bent | imodbit_strong |imodbit_masterwork
+    CROSSBOW = "imodbits_crossbow" # = imodbit_cracked | imodbit_bent | imodbit_masterwork
+    MISSILE = "imodbits_missile"  # = imodbit_bent | imodbit_large_bag
+    THROWN = "imodbits_thrown"  # = imodbit_bent | imodbit_heavy| imodbit_balanced| imodbit_large_bag
+    THROWN_MINUS_HEAVY = "imodbits_thrown_minus_heavy"   # = imodbit_bent | imodbit_balanced| imodbit_large_bag
+    THROWN_HEAVY = THROWN
+    THROWN_LIGHT = THROWN_MINUS_HEAVY
+    HORSE_GOOD = "imodbits_horse_good"   # = imodbit_spirited|imodbit_heavy
+    GOOD = "imodbits_good"  # = imodbit_sturdy | imodbit_thick | imodbit_hardened | imodbit_reinforced
+    BAD = "imodbits_bad"   # = imodbit_rusty | imodbit_chipped | imodbit_tattered | imodbit_ragged | imodbit_cracked | imodbit_bent
+
 
 
 class ItemMesh:
@@ -244,25 +270,63 @@ class ItemMesh:
 
 
 
+
+
+class DamageType(IntEnum):
+    CUT = 0
+    PIERCE = 1
+    BLUNT = 2
+
+
 class Item:
-    id = "ID_NOT_SET"
-    name = ""
-    plural_name = ""
-    meshes = []
-    flags = []
-    capabilities = []
-    price = 0
-    stats = []
-    modifiers = []
-    triggers = []
-    factions = []
-
-
-    def __init__(self, id, name, price):
+    def __init__(self, id, name, price=0):
         self.id = id
         self.name = name
         self.plural_name = name
         self.price = price
+
+        self.meshes = []
+        self.flags = []
+        self.capabilities = []
+        self.modifiers = []
+        self.triggers = []
+        self.factions = []
+
+        # stats
+        self.weight = 0.0
+        self.head_armor = 0
+        self.body_armor = 0
+        self.leg_armor = 0
+        self.difficulty = 0
+        self.hit_points = 0
+        self.speed_rating = 0
+        self.missle_speed = 0
+        self.horse_scale = 0
+        self.weapon_length = 0
+        self.shield_width = 0
+        self.shield_height = 0
+        self.max_ammo = 0
+        self.swing_damage = (0, 0)
+        self.thrust_damage = (0, 0)
+        self.horse_speed = 0
+        self.horse_maneuver = 0
+        self.horse_charge = 0
+        self.food_quality = 0
+        self.abundance = 0
+        self.accuracy = 0
+        self.custom_kill_info = None
+
+
+    def set_weight(self, weight : float):
+        self.weight = weight
+
+
+    def set_abundance(self, abundance : int):
+        self.abundance = abundance
+
+
+    def set_difficulty(self, difficulty : int):
+        self.difficulty = difficulty
 
 
     def add_trigger(self, trigger : SimpleTrigger):
@@ -275,15 +339,136 @@ class Item:
             self.meshes.append(mesh)
 
 
+    def get_stats(self):
+        stats = []
+
+        if self.weight > 0.0:
+            stats.append("weight(" + str(self.weight) + ")")
+
+        if self.head_armor > 0:
+            stats.append("head_armor(" + str(self.head_armor) + ")")
+
+        if self.body_armor > 0:
+            stats.append("body_armor(" + str(self.body_armor) + ")")
+
+        if self.leg_armor > 0:
+            stats.append("leg_armor(" + str(self.leg_armor) + ")")
+
+        if self.difficulty > 0:
+            stats.append("difficulty(" + str(self.difficulty) + ")")
+
+        if self.hit_points > 0:
+            stats.append("hit_points(" + str(self.hit_points) + ")")
+
+        if self.speed_rating > 0:
+            stats.append("speed_rating(" + str(self.speed_rating) + ")")
+
+        if self.missle_speed > 0:
+            stats.append("missle_speed(" + str(self.missle_speed) + ")")
+
+        if self.horse_scale > 0:
+            stats.append("horse_scale(" + str(self.horse_scale) + ")")
+
+        if self.weapon_length > 0:
+            stats.append("weapon_length(" + str(self.weapon_length) + ")")
+
+        if self.shield_width > 0:
+            stats.append("shield_width(" + str(self.shield_width) + ")")
+
+        if self.shield_height > 0:
+            stats.append("shield_height(" + str(self.shield_height) + ")")
+
+        if self.max_ammo > 0:
+            stats.append("max_ammo(" + str(self.max_ammo) + ")")
+
+        if self.horse_speed > 0:
+            stats.append("horse_speed(" + str(self.horse_speed) + ")")
+
+        if self.horse_maneuver > 0:
+            stats.append("horse_maneuver(" + str(self.horse_maneuver) + ")")
+
+        if self.horse_charge > 0:
+            stats.append("horse_charge(" + str(self.horse_charge) + ")")
+
+        if self.food_quality > 0:
+            stats.append("food_quality(" + str(self.food_quality) + ")")
+
+        if self.abundance > 0:
+            stats.append("abundance(" + str(self.abundance) + ")")
+
+        if self.accuracy > 0:
+            stats.append("accuracy(" + str(self.accuracy) + ")")
+
+        if self.swing_damage[0] > 0:
+            typex = "cut"
+            if self.swing_damage[1] == 1:
+                typex = "pierce"
+            elif self.swing_damage[1] == 2:
+                typex = "blunt"
+            stats.append("swing_damage(" + str(self.swing_damage[0]) + ", " + typex + ")")
+
+        if self.thrust_damage[0] > 0:
+            typex = "cut"
+            if self.thrust_damage[1] == 1:
+                typex = "pierce"
+            elif self.thrust_damage[1] == 2:
+                typex = "blunt"
+            stats.append("thrust_damage(" + str(self.thrust_damage[0]) + ", " + typex + ")")
+
+        return stats
+
+    def get_stats_string(self, default_val=0):
+        stats = self.get_stats()
+        if len(stats) == 0:
+            statsTxt = str(default_val)
+        else:
+            statsTxt = "|".join(stats)
+        return statsTxt
+
+
     def set_type(self, type : ItemType):
         if not self.contains_flags(type.value):
             idx = -1
             for i, flag in enumerate(self.flags):
                 if flag.startswith("itp_type"):
                     idx = i
+                    break
             if idx >= 0:
                 del self.flags[idx]
             self.flags.append(type.value)
+
+
+    def remove_modifier(self, modifier : IModBit):
+        if self.contains_modifier(modifier.value):
+            remi = -1
+            for i, modx in enumerate(self.modifiers):
+                if modx == modifier.value:
+                    remi = i
+                    break
+            if remi >= 0:
+                del self.modifiers[remi]
+
+
+    def remove_flag(self, flag : ItemFlag):
+        if self.contains_flag(flag.value):
+            remi = -1
+            for i, f in enumerate(self.flags):
+                if f == flag.value:
+                    remi = i
+                    break
+            if remi >= 0:
+                del self.flags[remi]
+
+
+    def remove_capability(self, capability : ItemCapability):
+        if self.contains_capability(capability.value):
+            remi = -1
+            for i, c in enumerate(self.capabilities):
+                if c == capability.value:
+                    remi = i
+                    break
+            if remi >= 0:
+                del self.flags[remi]
 
 
     def add_flag(self, flag : ItemFlag|ItemType):
@@ -301,23 +486,9 @@ class Item:
             self.capabilities.append(capability.value)
 
 
-    def add_stat(self, stat : str):
-        if not self.contains_stat(stat):
-            self.stats.append(stat)
-
-
     def allow_in_faction(self, faction : str):
         if not self.contains_faction(faction):
             self.factions.append(faction)
-
-
-    def contains_stat(self, stat : str):
-        contains = False
-        for x in self.stats:
-            if x == stat:
-                contains = True
-                break
-        return contains
 
 
     def contains_flags(self, flag : str):
