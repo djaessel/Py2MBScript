@@ -10,6 +10,7 @@ from SimpleTriggerConverter import SimpleTriggerConverter
 from TriggerConverter import TriggerConverter
 from GameMenuConverter import GameMenuConverter
 from ItemConverter import ItemConverter
+from TroopConverter import TroopConverter
 
 
 if __name__ == "__main__":
@@ -39,6 +40,11 @@ if __name__ == "__main__":
     itemer = ItemConverter()
     items = itemer.retrieveItems()
     itemer.writeScriptOutputFile(items)
+
+    # Troops
+    trooper = TroopConverter()
+    troops = trooper.retrieveTroops()
+    trooper.writeScriptOutputFile(troops)
 
     sys.exit()
 

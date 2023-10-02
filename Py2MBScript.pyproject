@@ -5,6 +5,7 @@
         "converter/ScriptConverter.py",
         "converter/SimpleTriggerConverter.py",
         "converter/TriggerConverter.py",
+        "converter/TroopConverter.py",
         "data_objects/MBAxe.py",
         "data_objects/MBOptions.py",
         "data_objects/MBParty.py",
@@ -14,6 +15,7 @@
         "data_objects/item.py",
         "data_objects/simple_trigger.py",
         "data_objects/trigger.py",
+        "data_objects/troop.py",
         "main.py",
         "test_cases/header_common.py",
         "test_cases/header_operations.py",
@@ -26,6 +28,8 @@
         "test_cases/test_simple_triggers.py",
         "test_cases/test_simple_triggers_output.py",
         "test_cases/test_triggers.py",
-        "test_cases/test_triggers_output.py"
+        "test_cases/test_triggers_output.py",
+        "test_cases/test_troops.py",
+        "test_cases/test_troops_output.py"
     ]
 }
