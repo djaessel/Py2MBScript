@@ -1,5 +1,6 @@
 # This Python file uses the following encoding: utf-8
 from ScriptConverter import ScriptConverter
+from TriggerConverter import TriggerConverter
 
 import inspect
 import test_simple_triggers
@@ -17,6 +18,7 @@ class SimpleTriggerConverter(ScriptConverter):
                 simpleTriggers.append(attr)
         return simpleTriggers
 
+
     def writeScriptOutputFile(self, codeData):
         with open("./test_cases/test_simple_triggers_output.py", "w") as f:
             f.write("from header_operations import *\n")
@@ -24,7 +26,7 @@ class SimpleTriggerConverter(ScriptConverter):
             f.write("simple_triggers = [\n\n")
 
             for trigger in codeData:
-                f.write("(" + str(trigger.triggerInterval) + ", [\n")
+                f.write("(" + TriggerConverter.retrieveCorrectTrigger(trigger.triggerInterval) + ", [\n")
                 codeLines = inspect.getsourcelines(trigger.codeBlock)[0]
                 for i in range(len(codeLines)):
                     codeLines[i] = codeLines[i][4:]

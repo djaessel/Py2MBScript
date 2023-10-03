@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
 
 from ScriptConverter import ScriptConverter
+from TriggerConverter import TriggerConverter
 from presentation import Presentation
 
 import inspect
@@ -17,9 +18,10 @@ class PresentationConverter(ScriptConverter):
                 attr = getattr(test_presentations,i)
                 sx = str(attr)
                 if not "<function" in sx and not "<module" in sx and not "MB" in sx:
-                    if not "SimpleTrigger" in sx:
+                    if not "SimpleTrigger" in sx and not "Event" in sx:
                         presentations.append(attr)
         return presentations
+
 
     def writeScriptOutputFile(self, codeData : dict[Presentation]):
         with open("./test_cases/test_presentations_output.py", "w") as f:
@@ -45,7 +47,7 @@ class PresentationConverter(ScriptConverter):
                 if len(presentation.triggers) > 0:
                     f.write("\n")
                     for trigger in presentation.triggers:
-                        f.write("(" + str(trigger.triggerInterval) + ", [\n")
+                        f.write("(" + TriggerConverter.retrieveCorrectTrigger(trigger.triggerInterval) + ", [\n")
                         codeLines = inspect.getsourcelines(trigger.codeBlock)[0]
                         for i in range(len(codeLines)):
                             codeLines[i] = codeLines[i][4:]

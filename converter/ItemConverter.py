@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
 
 from ScriptConverter import ScriptConverter
+from TriggerConverter import TriggerConverter
 from item import Item
 
 import inspect
@@ -72,7 +73,7 @@ class ItemConverter(ScriptConverter):
                     if len(item.triggers) > 0:
                         f.write("\n")
                         for trigger in item.triggers:
-                            f.write("(" + str(trigger.triggerInterval) + ", [\n")
+                            f.write("(" + TriggerConverter.retrieveCorrectTrigger(trigger.triggerInterval) + ", [\n")
                             codeLines = inspect.getsourcelines(trigger.codeBlock)[0]
                             for i in range(len(codeLines)):
                                 codeLines[i] = codeLines[i][4:]

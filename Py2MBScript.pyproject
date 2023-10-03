@@ -23,6 +23,7 @@
         "main.py",
         "test_cases/header_common.py",
         "test_cases/header_operations.py",
+        "test_cases/header_triggers.py",
         "test_cases/test_game_menus.py",
         "test_cases/test_game_menus_output.py",
         "test_cases/test_items.py",

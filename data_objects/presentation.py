@@ -16,6 +16,34 @@ from simple_trigger import SimpleTrigger
 # Trigger Param 1: id of the object that mouse is pressed on
 # Trigger Param 2: 0: left mouse button, 1 right mouse button, 2 middle mouse button
 
+class PresentationEvent(SimpleTrigger):
+    pass
+
+
+class LoadEvent(PresentationEvent):
+    def __init__(self):
+        super().__init__(-60.0)
+
+
+class RunEvent(PresentationEvent):
+    def __init__(self):
+        super().__init__(-61.0)
+
+
+class StateChangedEvent(PresentationEvent):
+    def __init__(self):
+        super().__init__(-62.0)
+
+
+class MouseEnterLeaveEvent(PresentationEvent):
+    def __init__(self):
+        super().__init__(-63.0)
+
+
+class MousePressEvent(PresentationEvent):
+    def __init__(self):
+        super().__init__(-64.0)
+
 
 
 class Presentation:

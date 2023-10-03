@@ -4,12 +4,9 @@ from simple_trigger import SimpleTrigger
 
 
 class Trigger(SimpleTrigger):
-    triggerVal2 = 0.0
-    triggerPause = 0.0
-
-    def __init__(self, triggerInterval, triggerVal2, triggerPause):
+    def __init__(self, triggerInterval, delay, triggerPause):
         super().__init__(triggerInterval)
-        self.triggerVal2 = triggerVal2
+        self.delay = delay
         self.triggerPause = triggerPause
 
     def conditionBlock(self):

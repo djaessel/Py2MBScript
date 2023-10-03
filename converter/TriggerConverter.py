@@ -3,6 +3,7 @@ from ScriptConverter import ScriptConverter
 
 import inspect
 import test_triggers
+import header_triggers
 
 
 class TriggerConverter(ScriptConverter):
@@ -17,6 +18,15 @@ class TriggerConverter(ScriptConverter):
                 triggers.append(attr)
         return triggers
 
+    @staticmethod
+    def retrieveCorrectTrigger(interval : float) -> str:
+        for v in vars(header_triggers):
+            if v.startswith("ti_"):
+                attr = getattr(header_triggers,v)
+                if attr == interval:
+                    return v
+        return str(interval)
+
     def writeScriptOutputFile(self, codeData):
         with open("./test_cases/test_triggers_output.py", "w") as f:
             f.write("from header_operations import *\n")
@@ -24,7 +34,7 @@ class TriggerConverter(ScriptConverter):
             f.write("triggers = [\n\n")
 
             for trigger in codeData:
-                f.write("(" + str(trigger.triggerInterval) + ", " + str(trigger.triggerVal2) + ", " + str(trigger.triggerPause) + ", [\n")
+                f.write("(" + TriggerConverter.retrieveCorrectTrigger(trigger.triggerInterval) + ", " + str(trigger.delay) + ", " + TriggerConverter.retrieveCorrectTrigger(trigger.triggerPause) + ", [\n")
 
                 codeLines = inspect.getsourcelines(trigger.conditionBlock)[0]
                 for i in range(len(codeLines)):
