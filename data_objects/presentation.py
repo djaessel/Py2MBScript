@@ -35,26 +35,31 @@ class Presentation:
 
     def add_trigger(self, trigger : SimpleTrigger, remove_alt : bool = False):
         if trigger.triggerInterval == -60.0 and not self.has_load_event:
+            self.has_load_event = True
             self.triggers.append(trigger)
         elif trigger.triggerInterval == -60.0:
             print(self.id, "already has load event!")
 
         if trigger.triggerInterval == -61.0 and not self.has_run_event:
+            self.has_run_event = True
             self.triggers.append(trigger)
         elif trigger.triggerInterval == -61.0:
             print(self.id, "already has run event!")
 
         if trigger.triggerInterval == -62.0 and not self.has_change_event:
+            self.has_change_event = True
             self.triggers.append(trigger)
         elif trigger.triggerInterval == -62.0:
             print(self.id, "already has state changed event!")
 
         if trigger.triggerInterval == -63.0 and not self.has_mouse_enter_leave_event:
+            self.has_mouse_enter_leave_event = True
             self.triggers.append(trigger)
         elif trigger.triggerInterval == -63.0:
             print(self.id, "already has mouse enter leave event!")
 
         if trigger.triggerInterval == -64.0 and not self.has_mouse_press_event:
+            self.has_mouse_press_event = True
             self.triggers.append(trigger)
         elif trigger.triggerInterval == -64.0:
             print(self.id, "already has mouse press event!")

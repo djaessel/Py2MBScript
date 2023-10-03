@@ -10,6 +10,7 @@ from simple_trigger import SimpleTrigger
 
 presy1 = Presentation("test1")
 
+# TODO: create extra triggers here for events
 qualcom = SimpleTrigger(-60.0)
 
 def load_event():
@@ -18,5 +19,10 @@ def load_event():
 qualcom.codeBlock = load_event
 presy1.add_trigger(qualcom)
 
+qualcom2 = SimpleTrigger(-61.0)
 
+def load_event():
+    print("Hello World!!!")
 
+qualcom2.codeBlock = load_event
+presy1.add_trigger(qualcom2)
