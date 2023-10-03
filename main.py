@@ -11,6 +11,8 @@ from TriggerConverter import TriggerConverter
 from GameMenuConverter import GameMenuConverter
 from ItemConverter import ItemConverter
 from TroopConverter import TroopConverter
+from SkillConverter import SkillConverter
+from PresentationConverter import PresentationConverter
 
 
 if __name__ == "__main__":
@@ -36,15 +38,25 @@ if __name__ == "__main__":
     gameMenus = gameMenuer.retrieveGameMenus()
     gameMenuer.writeScriptOutputFile(gameMenus)
 
-    # Items
+    # Module Skills
+    skiller = SkillConverter()
+    skills = skiller.retrieveSkills()
+    skiller.writeScriptOutputFile(skills)
+
+    # Module Items
     itemer = ItemConverter()
     items = itemer.retrieveItems()
     itemer.writeScriptOutputFile(items)
 
-    # Troops
+    # Module Troops
     trooper = TroopConverter()
     troops = trooper.retrieveTroops()
     trooper.writeScriptOutputFile(troops)
+
+    # Module Presentations
+    presenter = PresentationConverter()
+    presentations = presenter.retrievePresentations()
+    presenter.writeScriptOutputFile(presentations)
 
     sys.exit()
 

@@ -1,7 +1,5 @@
 # This Python file uses the following encoding: utf-8
 
-
-
 from ScriptConverter import ScriptConverter
 from troop import Troop
 
@@ -14,13 +12,15 @@ class TroopConverter(ScriptConverter):
         pass
 
     def retrieveTroops(self):
-        items = []
+        troops = []
         for i in vars(test_troops):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(test_troops,i)
-                if not "<function" in str(attr) and not "<module" in str(attr):
-                    items.append(attr)
-        return items
+                sx = str(attr)
+                if not "<function" in sx and not "<module" in sx and not "Skill" in sx and not "MB" in sx and not "Item" in sx:
+                    if not "SimpleTrigger" in sx:
+                        troops.append(attr)
+        return troops
 
     def writeScriptOutputFile(self, codeData : dict[Troop]):
         with open("./test_cases/test_troops_output.py", "w") as f:
@@ -42,7 +42,7 @@ class TroopConverter(ScriptConverter):
                 f.write("[")
                 if len(troop.inventory) > 0:
                     for i, item in enumerate(troop.inventory):
-                        f.write(str(item))
+                        f.write("(itm_" + item[0]+ ", " + str(item[1]) + ")")
                         if i == len(troop.inventory) - 1:
                             f.write(",")
                 f.write("],\n")
@@ -51,7 +51,7 @@ class TroopConverter(ScriptConverter):
                 f.write(troop.get_weapon_proficies() + ",\n")
 
                 if len(troop.skills) > 0:
-                    f.write("|".join(troop.skills))
+                    f.write(("|".join(troop.skills)).replace("knowns_riding_1|knowns_trade_2|knowns_inventory_management_2|knowns_prisoner_management_1|knowns_leadership_1", "knows_common"))
                 else:
                     f.write("0")
                 f.write(",\n")

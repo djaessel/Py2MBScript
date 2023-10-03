@@ -1,6 +1,14 @@
 # This Python file uses the following encoding: utf-8
 
+import sys
+sys.path.append("./test_cases/")
+
 from enum import Enum
+from skill import Skill
+from item import Item, IModBit
+
+import test_skills as skl
+from test_items import *
 
 class TroopFlag(Enum):
     SKIN1 = "tf_male"          # = 0
@@ -45,6 +53,7 @@ class TroopFlag(Enum):
     GUARANTEE_ALL = "tf_guarantee_all"
 
     UNMOVEABLE_IN_PARTY_WINDOW = "tf_unmoveable_in_party_window" # = 0x10000000
+
 
 
 
@@ -107,6 +116,12 @@ class Troop:
         self.crossbow = 0
         self.throwing = 0
         self.firearm = 0
+
+        self.add_skill(skl.riding, 1)
+        self.add_skill(skl.trade, 2)
+        self.add_skill(skl.inventory_mgmt, 2)
+        self.add_skill(skl.prisoner_mgmt, 1)
+        self.add_skill(skl.leadership, 1)
 
 
     def get_attributes(self):
@@ -180,21 +195,21 @@ class Troop:
 
 
     def add_flag(self, flag : TroopFlag):
-        if not self.contains_flag(flag.value):
+        if not self.contains_flag(flag):
             self.flags.append(flag.value)
 
 
-    def contains_flag(self, flag : str):
+    def contains_flag(self, flag : TroopFlag):
         contains = False
         for x in self.flags:
-            if x == flag:
+            if x == flag.value:
                 contains = True
                 break
         return contains
 
 
     def remove_flag(self, flag : TroopFlag):
-        if self.contains_flag(flag.value):
+        if self.contains_flag(flag):
             remi = -1
             for i, f in enumerate(self.flags):
                 if f == flag.value:
@@ -204,9 +219,65 @@ class Troop:
                 del self.flags[remi]
 
 
-    #def add_skill(self, skill : Skill, val : int):
-    #    if not self.contains_skill(skill.value, val):
-    #        print("ADD SKILL")
+    def add_skill(self, skill : Skill, val : int = 1, remove_alt : bool = True):
+        if skill.max_level >= val and val > 0:
+            if remove_alt:
+                contains, found_idx = self.contains_skill(skill)
+                if contains:
+                    del self.skills[found_idx]
+            contains, _ = self.contains_skill(skill, val)
+            if not contains:
+                skill_knows = "knowns_" + skill.id + "_" + str(val)
+                self.skills.append(skill_knows)
+        else:
+            print("trp_" + self.id, ": Invalid skill level:", val, "-> Max Level:", skill.max_level)
 
 
+
+    def contains_skill(self, skill : Skill, val : int = -1):
+        contains = False
+        found_skill_idx = -1
+        skill_knows = "knowns_" + skill.id + "_"
+        if val > 0:
+            skill_knows += str(val)
+        for i, x in enumerate(self.skills):
+            if (val > 0 and x == skill_knows) or x.startswith(skill_knows):
+                contains = True
+                found_skill_idx = i
+                break
+        return contains, found_skill_idx
+
+
+    def remove_skill(self, skill : Skill):
+        contains, _ = self.contains_skill(skill)
+        if contains:
+            remi = -1
+            skill_knows = "knowns_" + skill.id + "_"
+            for i, s in enumerate(self.skills):
+                if s.startswith(skill_knows):
+                    remi = i
+                    break
+            if remi >= 0:
+                del self.skills[remi]
+
+
+    def add_item(self, item : Item, modbits : list[IModBit] = None):
+        wholex = "0"
+        if modbits != None:
+            if len(modbits) > 0:
+                wholex = ""
+                for modbit in modbits:
+                    wholex += modbit.value + "|"
+                wholex = wholex.rstrip('|')
+        self.inventory.append((item.id, wholex))
+
+
+    def remove_item(self, item : Item):
+        remi = -1
+        for i, itemx in enumerate(self.inventory):
+            if itemx[0] == item.id:
+                remi = i
+                break
+        if remi >= 0:
+            del self.inventory[remi]
 
