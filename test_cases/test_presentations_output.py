@@ -14,5 +14,35 @@ presentations = [
 ]),
 
 ]),
+("game_custom_battle_designer",prsntf_manual_end_only,mesh_cb_ui_main,[
+
+(ti_on_presentation_load, [
+(set_fixed_point_multiplier, 1000),
+(create_text_overlay, reg0, "@Press ESC to exit"),
+(overlay_set_color, reg0, ":0xFFFFFFFF"),
+(position_set_x,pos1,1500),
+(position_set_y,pos1,1500),
+(overlay_set_size, reg0, pos1),
+(position_set_x,pos1,175),
+(position_set_y,pos1,700),
+(overlay_set_position, reg0, pos1),
+(presentation_set_duration, 999999),
+]),
+
+(ti_on_presentation_mouse_enter_leave, [
+]),
+
+(ti_on_presentation_mouse_press, [
+]),
+
+(ti_on_presentation_run, [
+(try_begin),
+    (this_or_next|key_clicked, 0),
+    (key_clicked, ":key_x"),
+    (presentation_set_duration, 0),
+(try_end),
+]),
+
+]),
 
 ] # PRESENTATIONS END

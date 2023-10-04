@@ -68,7 +68,8 @@ set_camera_in_first_person      = 62  # (set_camera_in_first_person, <value>), #
 game_key_get_mapped_key_name    = 65  # (game_key_get_mapped_key_name, <string_register>, <game_key>),
 
 key_is_down                     = 70  # fails if the key is not currently down (key_is_down, <key_id>),
-key_clicked                     = 71  # fails if the key is not clicked on the specific frame (key_clicked, <key_id>),
+# fails if the key is not clicked on the specific frame (key_clicked, <key_id>),
+key_clicked                     = 71  # (key_clicked, <key_id>),
 game_key_is_down                = 72  # fails if the game key is not currently down (key_is_down, <game_key_id>),
 game_key_clicked                = 73  # fails if the game key is not clicked on the specific frame (game_key_clicked, <game_key_id>),
 mouse_get_position	            = 75  # (mouse_get_position, <position_no>), #x and y values of position are filled
