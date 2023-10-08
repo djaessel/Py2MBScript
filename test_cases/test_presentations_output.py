@@ -18,13 +18,13 @@ presentations = [
 
 (ti_on_presentation_load, [
 (set_fixed_point_multiplier, 1000),
-(create_text_overlay, reg0, "@Press ESC to exit"),
+(create_text_overlay, reg0, "@Press ESC to exit", tf_center_justify|tf_single_line|tf_with_outline),
 (overlay_set_color, reg0, ":0xFFFFFFFF"),
-(position_set_x,pos1,1500),
-(position_set_y,pos1,1500),
+(position_set_x, pos1, 1500),
+(position_set_y, pos1, 1500),
 (overlay_set_size, reg0, pos1),
-(position_set_x,pos1,175),
-(position_set_y,pos1,700),
+(position_set_x, pos1, 175),
+(position_set_y, pos1, 700),
 (overlay_set_position, reg0, pos1),
 (presentation_set_duration, 999999),
 ]),

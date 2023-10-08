@@ -10,6 +10,7 @@ class ScriptConverter:
     cur_players = dict()
     cur_parties = dict()
     cur_options = dict()
+    prsnt_text_overlays = dict()
 
     def __init__(self):
         with open("./test_cases/header_operations.py") as f:
@@ -53,6 +54,12 @@ class ScriptConverter:
             elif funcCall.startswith("MBOptions("):
                 self.cur_options[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
                 liny = ""
+            elif funcCall.startswith("MBTextOverlay("):
+                tmp = funcCall.split(')')[0].split('(')[1]
+                liny = "(create_text_overlay, <reg>, <str_text>, <text_flags>)"
+                tmp = tmp.split(',')
+                self.prsnt_text_overlays[varName] = tmp[0].strip()
+                liny = liny.replace("<reg>", tmp[0].strip()).replace('<str_text>', tmp[1].strip()).replace("<text_flags>", tmp[2].strip())
             elif varName in self.str_registers:
                 liny = "(str_store_string,<var1>,<var2>)"
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
@@ -107,6 +114,24 @@ class ScriptConverter:
             p_func_name = "options_" + tmp[1].strip()
             liny = self.getFuncCodeLine(p_func_name)
             liny = self.replaceFuncParams(liny, p_func_name)
+        elif curP in self.prsnt_text_overlays:
+            regi = self.prsnt_text_overlays[curP]
+            if "set_position" in tmp[1]:
+                pos = tmp[1].split(')')[0].split('(')[1].split(',')
+                return ["(position_set_x, pos1, <pos_x>)".replace("<pos_x>", pos[0].strip()),
+                        "(position_set_y, pos1, <pos_y>)".replace("<pos_y>", pos[1].strip()),
+                        "(overlay_set_position, <reg>, pos1)".replace("<reg>", regi)]
+            elif "set_size" in tmp[1]:
+                pos = tmp[1].split(')')[0].split('(')[1].split(',')
+                return ["(position_set_x, pos1, <pos_x>)".replace("<pos_x>", pos[0].strip()),
+                        "(position_set_y, pos1, <pos_y>)".replace("<pos_y>", pos[1].strip()),
+                        "(overlay_set_size, <reg>, pos1)".replace("<reg>", regi)]
+            else:
+                tmp[1] = tmp[1].replace("(", "(" + regi + ",")
+                p_func_name = "overlay_" + tmp[1].strip()
+                liny = self.getFuncCodeLine(p_func_name)
+                #liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
+                liny = self.replaceFuncParams(liny, p_func_name)
         return [liny]
 
 
