@@ -13,6 +13,7 @@ from ItemConverter import ItemConverter
 from TroopConverter import TroopConverter
 from SkillConverter import SkillConverter
 from PresentationConverter import PresentationConverter
+from PartyConverter import PartyConverter
 
 
 if __name__ == "__main__":
@@ -32,6 +33,11 @@ if __name__ == "__main__":
     triggerer = TriggerConverter()
     triggerers = triggerer.retrieveTriggers()
     triggerer.writeScriptOutputFile(triggerers)
+
+    # Module Parties
+    partier = PartyConverter()
+    parties = partier.retrieveParties()
+    partier.writeScriptOutputFile(parties)
 
     # Module Game Menus
     gameMenuer = GameMenuConverter()

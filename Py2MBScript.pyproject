@@ -2,6 +2,7 @@
     "files": [
         "converter/GameMenuConverter.py",
         "converter/ItemConverter.py",
+        "converter/PartyConverter.py",
         "converter/PresentationConverter.py",
         "converter/ScriptConverter.py",
         "converter/SimpleTriggerConverter.py",
@@ -28,6 +29,8 @@
         "test_cases/test_game_menus_output.py",
         "test_cases/test_items.py",
         "test_cases/test_items_output.py",
+        "test_cases/test_parties.py",
+        "test_cases/test_parties_output.py",
         "test_cases/test_presentations.py",
         "test_cases/test_presentations_output.py",
         "test_cases/test_scripts.py",
