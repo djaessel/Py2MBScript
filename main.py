@@ -17,6 +17,22 @@ from PartyConverter import PartyConverter
 
 
 if __name__ == "__main__":
+    # Module InfoPage
+    # Module Strings
+    # Module Music
+    # Module Animations
+    # Module Meshes
+    # Module Sounds
+    # Module Skins
+    # Module Map Icons
+    # Module Factions
+    # Module Scenes
+    # Module Particle System
+    # Module Scene Props
+    # Module Tableau Materials
+    # Module Quests
+    # Module Dialogs
+    # Module PostFX
 
     # Module Scripts
     scripter = ScriptConverter()
@@ -33,6 +49,8 @@ if __name__ == "__main__":
     triggerer = TriggerConverter()
     triggerers = triggerer.retrieveTriggers()
     triggerer.writeScriptOutputFile(triggerers)
+
+    # Module Party Templates
 
     # Module Parties
     partier = PartyConverter()
@@ -58,6 +76,8 @@ if __name__ == "__main__":
     trooper = TroopConverter()
     troops = trooper.retrieveTroops()
     trooper.writeScriptOutputFile(troops)
+
+    # Module Mission Template
 
     # Module Presentations
     presenter = PresentationConverter()
