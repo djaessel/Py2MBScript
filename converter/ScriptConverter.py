@@ -7,9 +7,13 @@ class ScriptConverter:
     pos_registers = []
 
     codex = dict()
+
     cur_players = dict()
     cur_parties = dict()
     cur_options = dict()
+    cur_items = dict()
+
+    # presentation overlays (maybe separate)
     prsnt_text_overlays = dict()
 
     def __init__(self):
@@ -54,6 +58,9 @@ class ScriptConverter:
             elif funcCall.startswith("MBOptions("):
                 self.cur_options[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
                 liny = ""
+            elif funcCall.startswith("Item("):
+                self.cur_items[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
+                liny = ""
             elif funcCall.startswith("MBTextOverlay("):
                 tmp = funcCall.split(')')[0].split('(')[1]
                 liny = "(create_text_overlay, <reg>, <str_text>, <text_flags>)"
@@ -90,6 +97,12 @@ class ScriptConverter:
             liny = self.getFuncCodeLine(p_func_name)
             liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
             liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
+        elif curP in self.cur_items:
+            p_func_name = "item_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+            liny = self.replaceVarWithPlaceholder(liny, "<item_id>", self.cur_items[curP])
+            liny = self.replaceVarWithPlaceholder(liny, "<item_kind_no>", self.cur_items[curP])
         elif curP in self.cur_options:
             p_func_name = "options_" + tmp[1].strip()
             liny = self.getFuncCodeLine(p_func_name)
@@ -109,6 +122,12 @@ class ScriptConverter:
             p_func_name = "party_" + tmp[1].strip()
             liny = self.getFuncCodeLine(p_func_name)
             liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
+            liny = self.replaceFuncParams(liny, p_func_name)
+        elif curP in self.cur_items:
+            p_func_name = "item_" + tmp[1].strip()
+            liny = self.getFuncCodeLine(p_func_name)
+            liny = self.replaceVarWithPlaceholder(liny, "<item_id>", self.cur_items[curP])
+            liny = self.replaceVarWithPlaceholder(liny, "<item_kind_no>", self.cur_items[curP])
             liny = self.replaceFuncParams(liny, p_func_name)
         elif curP in self.cur_options:
             p_func_name = "options_" + tmp[1].strip()

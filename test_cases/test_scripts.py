@@ -1,6 +1,7 @@
 from MBPlayer import MBPlayer
 from MBOptions import MBOptions
 from MBParty import MBParty
+from item import Item
 
 
 def script1(waterLevel, fishCount):
@@ -116,3 +117,14 @@ def well(water):
         print("Well!")
     else:
         print("Well...")
+
+
+def prepareItem(item_id):
+    my_item = Item(item_id)
+    diffy = my_item.get_difficulty()
+    if diffy < 10:
+        armor = my_item.get_body_armor()
+        print(armor, "armor!")
+    else:
+        print(diffy, " too high!")
+

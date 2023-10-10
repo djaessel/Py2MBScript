@@ -155,4 +155,18 @@ scripts = [
 (try_end),
 ]),
 
+("prepareItem", [
+(store_script_param, ":item_id", 1),
+(item_get_difficulty, ":diffy", ":item_id"),
+(try_begin),
+    (lt,":diffy",10),
+    (item_get_body_armor, ":armor", ":item_id"),
+    (assign, reg0, ":armor"),
+    (display_message, "@{reg0} armor!"),
+(else_try),
+    (assign, reg0, ":diffy"),
+    (display_message, "@{reg0}  too high!"),
+(try_end),
+]),
+
 ]
