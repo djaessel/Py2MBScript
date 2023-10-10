@@ -117,9 +117,10 @@ scripts = [
     (party_is_active,":partyId"),
     (party_set_faction,":partyId",":newFactionNo"),
     (party_add_template, ":partyId", "pt_sea_raiders"),
+    (party_add_members,":partyId","trp_looter",15),
 (else_try),
-    (assign,reg0,":partaaay"),
-    (display_message, "@Party {reg0} is inactive"),
+    (assign, reg1, ":partaaay"),
+    (display_message, "@Party {reg1} is inactive"),
 (try_end),
 ]),
 

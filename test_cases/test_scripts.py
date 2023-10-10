@@ -89,9 +89,9 @@ def changeFactionIfActive(partyId, newFactionNo):
     if partaaay.is_active():
         partaaay.set_faction(newFactionNo)
         partaaay.add_template("pt_sea_raiders")
+        partaaay.add_members("trp_looter", 15)
     else:
-        reg0 = partaaay
-        print("Party {reg0} is inactive")
+        print("Party", partaaay, "is inactive")
 
 
 def tryAgain(randomVal):

@@ -291,6 +291,7 @@ class Item:
         self.modifiers = []
         self.triggers = []
         self.factions = []
+        self.slots = []
 
         # stats
         self.weight = 0.0
@@ -337,6 +338,22 @@ class Item:
     def add_mesh(self, mesh : ItemMesh):
         if not self.contains_mesh(mesh):
             self.meshes.append(mesh)
+
+
+    def set_slot(self, slot, val : int):
+        self.slots[slot] = val
+
+
+    def get_slot(self, slot) -> int:
+        return self.slots[slot]
+
+
+    def slot_eq(self, slot, val) -> bool:
+        return self.slots[slot] == val
+
+
+    def slot_ge(self, slot, val) -> bool:
+        return self.slots[slot] >= val
 
 
     def get_stats(self):
@@ -427,7 +444,7 @@ class Item:
 
 
     def set_type(self, type : ItemType):
-        if not self.contains_flags(type.value):
+        if not self.has_property(type.value):
             idx = -1
             for i, flag in enumerate(self.flags):
                 if flag.startswith("itp_type"):
@@ -438,8 +455,17 @@ class Item:
             self.flags.append(type.value)
 
 
+    def get_type(self): # TODO: return ItemType
+        type = None
+        for flag in self.flags:
+            if flag.startswith("itp_type"):
+                type = flag
+                break
+        return type
+
+
     def remove_modifier(self, modifier : IModBit):
-        if self.contains_modifier(modifier.value):
+        if self.has_modifier(modifier.value):
             remi = -1
             for i, modx in enumerate(self.modifiers):
                 if modx == modifier.value:
@@ -450,7 +476,7 @@ class Item:
 
 
     def remove_flag(self, flag : ItemFlag):
-        if self.contains_flag(flag.value):
+        if self.has_property(flag.value):
             remi = -1
             for i, f in enumerate(self.flags):
                 if f == flag.value:
@@ -461,7 +487,7 @@ class Item:
 
 
     def remove_capability(self, capability : ItemCapability):
-        if self.contains_capability(capability.value):
+        if self.has_capability(capability.value):
             remi = -1
             for i, c in enumerate(self.capabilities):
                 if c == capability.value:
@@ -472,26 +498,26 @@ class Item:
 
 
     def add_flag(self, flag : ItemFlag|ItemType):
-        if not self.contains_flags(flag.value):
+        if not self.has_property(flag.value):
             self.flags.append(flag.value)
 
 
     def add_modifier(self, modifier : IModBit):
-        if not self.contains_modifier(modifier.value):
+        if not self.has_modifier(modifier.value):
             self.modifiers.append(modifier.value)
 
 
     def add_capability(self, capability : ItemCapability):
-        if not self.contains_capability(capability.value):
+        if not self.has_capability(capability.value):
             self.capabilities.append(capability.value)
 
 
     def allow_in_faction(self, faction : str):
-        if not self.contains_faction(faction):
+        if not self.has_faction(faction):
             self.factions.append(faction)
 
 
-    def contains_flags(self, flag : str):
+    def has_property(self, flag : str):
         contains = False
         for x in self.flags:
             if x == flag:
@@ -500,7 +526,7 @@ class Item:
         return contains
 
 
-    def contains_modifier(self, modifier : str):
+    def has_modifier(self, modifier : str):
         contains = False
         for x in self.modifiers:
             if x == modifier:
@@ -509,7 +535,7 @@ class Item:
         return contains
 
 
-    def contains_capability(self, capability : str):
+    def has_capability(self, capability : str):
         contains = False
         for x in self.capabilities:
             if x == capability:
@@ -527,11 +553,103 @@ class Item:
         return contains
 
 
-    def contains_faction(self, faction : str):
+    def has_faction(self, faction : str):
         contains = False
         for x in self.factions:
             if x == faction:
                 contains = True
                 break
         return contains
+
+
+    def get_weight(self):
+        return self.weight
+
+
+    def get_value(self):
+        return self.price
+
+
+    def get_difficulty(self):
+        return self.difficulty
+
+
+    def get_head_armor(self):
+        return self.head_armor
+
+
+    def get_body_armor(self):
+        return self.body_armor
+
+
+    def get_leg_armor(self):
+        return self.leg_armor
+
+
+    def get_hit_points(self):
+        return self.hit_points
+
+
+    def get_weapon_length(self):
+        return self.weapon_length
+
+
+    def get_speed_rating(self):
+        return self.speed_rating
+
+
+    def get_missile_speed(self):
+        return self.missle_speed
+
+
+    def get_max_ammo(self):
+        return self.max_ammo
+
+
+    def get_accuracy(self):
+        return self.accuracy
+
+
+    def get_shield_height(self):
+        return self.shield_height
+
+
+    def get_horse_scale(self):
+        return self.horse_scale
+
+
+    def get_horse_speed(self):
+        return self.horse_speed
+
+
+    def get_horse_maneuver(self):
+        return self.horse_maneuver
+
+
+    def get_horse_charge_damage(self):
+        return self.horse_charge
+
+
+    def get_food_quality(self):
+        return self.food_quality
+
+
+    def get_abundance(self):
+        return self.abundance
+
+
+    def get_thrust_damage(self):
+        return self.thrust_damage[0]
+
+
+    def get_thrust_damage_type(self):
+        return self.thrust_damage[1]
+
+
+    def get_swing_damage(self):
+        return self.swing_damage[0]
+
+
+    def get_swing_damage_type(self):
+        return self.swing_damage[1]
 

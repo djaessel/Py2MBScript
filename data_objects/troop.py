@@ -281,3 +281,73 @@ class Troop:
         if remi >= 0:
             del self.inventory[remi]
 
+
+
+
+#            troop_has_item_equipped         = 151 # (troop_has_item_equipped,<troop_id>,<item_id>),
+#            troop_is_mounted                = 152 # (troop_is_mounted,<troop_id>),
+#            troop_is_guarantee_ranged       = 153 # (troop_is_guarantee_ranged, <troop_id>),
+#            troop_is_guarantee_horse        = 154 # (troop_is_guarantee_horse, <troop_id>),
+
+#            troop_set_slot                  = 500 # (troop_set_slot,<troop_id>,<slot_no>,<value>),
+#            troop_get_slot                  = 520 # (troop_get_slot,<destination>,<troop_id>,<slot_no>),
+#            troop_slot_eq                   = 540 # (troop_slot_eq,<troop_id>,<slot_no>,<value>),
+#            troop_slot_ge                   = 560 # (troop_slot_ge,<troop_id>,<slot_no>,<value>),
+
+#            troop_set_note_available        = 1095 # (troop_set_note_available, <troop_id>, <value>), #1 = available, 0 = not available
+
+#            troop_join                      = 1203 # (troop_join,<troop_id>),
+#            troop_join_as_prisoner          = 1204 # (troop_join_as_prisoner,<troop_id>),
+
+
+#            troop_set_name                         = 1501   # (troop_set_name, <troop_id>, <string_no>),
+#            troop_set_plural_name                  = 1502   # (troop_set_plural_name, <troop_id>, <string_no>),
+#            troop_set_face_key_from_current_profile= 1503   # (troop_set_face_key_from_current_profile, <troop_id>),
+#            troop_set_type                         = 1505	# (troop_set_type,<troop_id>,<gender>),
+#            troop_get_type                         = 1506   # (troop_get_type,<destination>,<troop_id>),
+#            troop_is_hero                          = 1507   # (troop_is_hero,<troop_id>),
+#            troop_is_wounded                       = 1508   # (troop_is_wounded,<troop_id>), #only for heroes!
+#            troop_set_auto_equip                   = 1509   # (troop_set_auto_equip,<troop_id>,<value>),#disables otr enables auto-equipping
+#            troop_ensure_inventory_space           = 1510	# (troop_ensure_inventory_space,<troop_id>,<value>),
+#            troop_sort_inventory                   = 1511	# (troop_sort_inventory,<troop_id>),
+#            troop_add_merchandise                  = 1512	# (troop_add_merchandise,<troop_id>,<item_type_id>,<value>),
+#            troop_add_merchandise_with_faction     = 1513	# (troop_add_merchandise_with_faction,<troop_id>,<faction_id>,<item_type_id>,<value>), #faction_id is given to check if troop is eligible to produce that item
+#            troop_get_xp                           = 1515   # (troop_get_xp, <destination>, <troop_id>),
+#            troop_get_class                        = 1516   # (troop_get_class, <destination>, <troop_id>),
+#            troop_set_class                        = 1517 # (troop_set_class, <troop_id>, <value>),
+
+#            troop_raise_attribute                  = 1520	# (troop_raise_attribute,<troop_id>,<attribute_id>,<value>),
+#            troop_raise_skill                      = 1521	# (troop_raise_skill,<troop_id>,<skill_id>,<value>),
+#            troop_raise_proficiency                = 1522	# (troop_raise_proficiency,<troop_id>,<proficiency_no>,<value>),
+#            troop_raise_proficiency_linear         = 1523	# raises weapon proficiencies linearly without being limited by weapon master skill
+                                                            # (troop_raise_proficiency,<troop_id>,<proficiency_no>,<value>),
+
+#            troop_add_proficiency_points           = 1525   # (troop_add_proficiency_points,<troop_id>,<value>),
+#            troop_add_gold                         = 1528	# (troop_add_gold,<troop_id>,<value>),
+#            troop_remove_gold                      = 1529	# (troop_remove_gold,<troop_id>,<value>),
+#            troop_add_item                         = 1530	# (troop_add_item,<troop_id>,<item_id>,[modifier]),
+#            troop_remove_item                      = 1531	# (troop_remove_item,<troop_id>,<item_id>),
+#            troop_clear_inventory                  = 1532	# (troop_clear_inventory,<troop_id>),
+#            troop_equip_items                      = 1533   # (troop_equip_items,<troop_id>), #equips the items in the inventory automatically
+#            troop_inventory_slot_set_item_amount   = 1534   # (troop_inventory_slot_set_item_amount,<troop_id>,<inventory_slot_no>,<value>),
+#            troop_inventory_slot_get_item_amount   = 1537   # (troop_inventory_slot_get_item_amount,<destination>,<troop_id>,<inventory_slot_no>),
+#            troop_inventory_slot_get_item_max_amount = 1538  # (troop_inventory_slot_get_item_max_amount,<destination>,<troop_id>,<inventory_slot_no>),
+
+#            troop_add_items                        = 1535	# (troop_add_items,<troop_id>,<item_id>,<number>),
+#            troop_remove_items                     = 1536	# puts cost of items to reg0
+                                                            # (troop_remove_items,<troop_id>,<item_id>,<number>),
+#            troop_loot_troop                       = 1539	# (troop_loot_troop,<target_troop>,<source_troop_id>,<probability>),
+
+#            troop_get_inventory_capacity           = 1540	# (troop_get_inventory_capacity,<destination>,<troop_id>),
+#            troop_get_inventory_slot               = 1541	# (troop_get_inventory_slot,<destination>,<troop_id>,<inventory_slot_no>),
+#            troop_get_inventory_slot_modifier      = 1542	# (troop_get_inventory_slot_modifier,<destination>,<troop_id>,<inventory_slot_no>),
+#            troop_set_inventory_slot               = 1543	# (troop_set_inventory_slot,<troop_id>,<inventory_slot_no>,<value>),
+#            troop_set_inventory_slot_modifier      = 1544	# (troop_set_inventory_slot_modifier,<troop_id>,<inventory_slot_no>,<value>),
+#            troop_set_faction                      = 1550 # (troop_set_faction,<troop_id>,<faction_id>),
+#            troop_set_age                          = 1555 # (troop_set_age, <troop_id>, <age_slider_pos>),  #Enter a value between 0..100
+#            troop_set_health                       = 1560	# (troop_set_health,<troop_id>,<relative health (0-100)>),
+
+#            troop_get_upgrade_troop                = 1561   # (troop_get_upgrade_troop,<destination>,<troop_id>,<upgrade_path>), #upgrade_path can be: 0 = get first node, 1 = get second node (returns -1 if not available)
+
+#            troop_set_face_keys                   = 2751 # (troop_set_face_keys, <troop_no>, <string_no>, [<alt>]), #Sets <troop_no>'s face keys from string. if [<alt>] is non-zero the second pair of face keys is set.
+
