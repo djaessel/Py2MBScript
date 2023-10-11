@@ -2,9 +2,6 @@
 
 
 class MenuOption:
-    id = "NO_ID_SET"
-    text = ""
-
     def __init__(self, id, text):
         self.id = id
         self.text = text
@@ -17,17 +14,12 @@ class MenuOption:
 
 
 class GameMenu:
-    id = "NO_ID_SET"
-    flags = 0
-    text = ""
-    meshName = ""
-    menuOptions = []
-
     def __init__(self, id, flags, text, meshName="none"):
         self.id = id
         self.flags = flags
         self.text = text
         self.meshName = meshName
+        self.menuOptions = []
 
     def conditionBlock(self):
         pass

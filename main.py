@@ -14,12 +14,27 @@ from TroopConverter import TroopConverter
 from SkillConverter import SkillConverter
 from PresentationConverter import PresentationConverter
 from PartyConverter import PartyConverter
+from InfoPageConverter import InfoPageConverter
+from StringConverter import StringConverter
+from MusicConverter import MusicConverter
 
 
 if __name__ == "__main__":
     # Module InfoPage
+    infoPager = InfoPageConverter()
+    infoPages = infoPager.retrieveInfoPages()
+    infoPager.writeScriptOutputFile(infoPages)
+
     # Module Strings
+    stringer = StringConverter()
+    strings = stringer.retrieveStrings()
+    stringer.writeScriptOutputFile(strings)
+
     # Module Music
+    musicer = MusicConverter()
+    music = musicer.retrieveTracks()
+    musicer.writeScriptOutputFile(music)
+
     # Module Animations
     # Module Meshes
     # Module Sounds

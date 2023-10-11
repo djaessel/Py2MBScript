@@ -1,6 +1,7 @@
 {
     "files": [
         "converter/GameMenuConverter.py",
+        "converter/InfoPageConverter.py",
         "converter/ItemConverter.py",
         "converter/PartyConverter.py",
         "converter/PresentationConverter.py",
@@ -9,6 +10,7 @@
         "converter/SkillConverter.py",
         "converter/TriggerConverter.py",
         "converter/TroopConverter.py",
+        "data_objects/info_page.py",
         "data_objects/MBAxe.py",
         "data_objects/MBOptions.py",
         "data_objects/MBParty.py",
@@ -27,6 +29,7 @@
         "test_cases/header_triggers.py",
         "test_cases/test_game_menus.py",
         "test_cases/test_game_menus_output.py",
+        "test_cases/test_info_pages.py",
         "test_cases/test_items.py",
         "test_cases/test_items_output.py",
         "test_cases/test_parties.py",
@@ -42,6 +45,15 @@
         "test_cases/test_triggers.py",
         "test_cases/test_triggers_output.py",
         "test_cases/test_troops.py",
-        "test_cases/test_troops_output.py"
+        "test_cases/test_troops_output.py",
+        "test_cases/test_info_pages_output.py",
+        "test_cases/test_strings.py",
+        "converter/StringConverter.py",
+        "data_objects/MBString.py",
+        "test_cases/test_strings_output.py",
+        "data_objects/music.py",
+        "converter/MusicConverter.py",
+        "test_cases/test_music.py",
+        "test_cases/test_music_output.py"
     ]
 }
