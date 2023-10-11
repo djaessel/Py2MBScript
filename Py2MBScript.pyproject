@@ -54,6 +54,18 @@
         "data_objects/music.py",
         "converter/MusicConverter.py",
         "test_cases/test_music.py",
-        "test_cases/test_music_output.py"
+        "test_cases/test_music_output.py",
+        "data_objects/mesh.py",
+        "test_cases/test_meshes.py",
+        "converter/MeshConverter.py",
+        "test_cases/test_meshes_output.py",
+        "data_objects/sound.py",
+        "test_cases/test_sounds.py",
+        "converter/SoundConverter.py",
+        "test_cases/test_sounds_output.py",
+        "data_objects/faction.py",
+        "test_cases/test_factions.py",
+        "converter/FactionConverter.py",
+        "test_cases/test_factions_output.py"
     ]
 }

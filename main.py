@@ -17,6 +17,9 @@ from PartyConverter import PartyConverter
 from InfoPageConverter import InfoPageConverter
 from StringConverter import StringConverter
 from MusicConverter import MusicConverter
+from MeshConverter import MeshConverter
+from SoundConverter import SoundConverter
+from FactionConverter import FactionConverter
 
 
 if __name__ == "__main__":
@@ -35,18 +38,27 @@ if __name__ == "__main__":
     music = musicer.retrieveTracks()
     musicer.writeScriptOutputFile(music)
 
-    # Module Animations
     # Module Meshes
+    mesher = MeshConverter()
+    meshes = mesher.retrieveMeshes()
+    mesher.writeScriptOutputFile(meshes)
+
     # Module Sounds
+    sounder = SoundConverter()
+    sounds = sounder.retrieveSounds()
+    sounder.writeScriptOutputFile(sounds)
+
+    # Module Factions
+    factioner = FactionConverter()
+    factions = factioner.retrieveFactions()
+    factioner.writeScriptOutputFile(factions)
+
     # Module Skins
     # Module Map Icons
-    # Module Factions
     # Module Scenes
     # Module Particle System
-    # Module Scene Props
+    # Module Animations
     # Module Tableau Materials
-    # Module Quests
-    # Module Dialogs
     # Module PostFX
 
     # Module Scripts
@@ -93,6 +105,9 @@ if __name__ == "__main__":
     trooper.writeScriptOutputFile(troops)
 
     # Module Mission Template
+    # Module Quests
+    # Module Dialogs
+    # Module Scene Props
 
     # Module Presentations
     presenter = PresentationConverter()

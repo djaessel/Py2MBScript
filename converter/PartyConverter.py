@@ -22,7 +22,7 @@ class PartyConverter(ScriptConverter):
                     parties.append(attr)
         return parties
 
-    def writeScriptOutputFile(self, codeData : dict[MBParty]):
+    def writeScriptOutputFile(self, codeData : list[MBParty]):
         with open("./test_cases/test_parties_output.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
