@@ -66,6 +66,10 @@
         "data_objects/faction.py",
         "test_cases/test_factions.py",
         "converter/FactionConverter.py",
-        "test_cases/test_factions_output.py"
+        "test_cases/test_factions_output.py",
+        "data_objects/scene.py",
+        "converter/SceneConverter.py",
+        "test_cases/test_scenes.py",
+        "test_cases/test_scenes_output.py"
     ]
 }

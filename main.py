@@ -20,6 +20,7 @@ from MusicConverter import MusicConverter
 from MeshConverter import MeshConverter
 from SoundConverter import SoundConverter
 from FactionConverter import FactionConverter
+from SceneConverter import SceneConverter
 
 
 if __name__ == "__main__":
@@ -55,7 +56,12 @@ if __name__ == "__main__":
 
     # Module Skins
     # Module Map Icons
+
     # Module Scenes
+    scener = SceneConverter()
+    scenes = scener.retrieveScenes()
+    scener.writeScriptOutputFile(scenes)
+
     # Module Particle System
     # Module Animations
     # Module Tableau Materials
