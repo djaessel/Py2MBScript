@@ -70,6 +70,18 @@
         "data_objects/scene.py",
         "converter/SceneConverter.py",
         "test_cases/test_scenes.py",
-        "test_cases/test_scenes_output.py"
+        "test_cases/test_scenes_output.py",
+        "data_objects/mapicon.py",
+        "converter/MapIconConverter.py",
+        "test_cases/test_map_icons.py",
+        "test_cases/test_map_icons_output.py",
+        "data_objects/particle_system.py",
+        "converter/ParticleSystemConverter.py",
+        "test_cases/test_particle_systems.py",
+        "test_cases/test_particle_systems_output.py",
+        "data_objects/tableau_material.py",
+        "test_cases/test_tableau_materials.py",
+        "converter/TableauMaterialConverter.py",
+        "test_cases/test_tableau_materials_output.py"
     ]
 }

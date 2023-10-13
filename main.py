@@ -21,6 +21,9 @@ from MeshConverter import MeshConverter
 from SoundConverter import SoundConverter
 from FactionConverter import FactionConverter
 from SceneConverter import SceneConverter
+from MapIconConverter import MapIconConverter
+from ParticleSystemConverter import ParticleSystemConverter
+from TableauMaterialConverter import TableauMaterialConverter
 
 
 if __name__ == "__main__":
@@ -54,18 +57,24 @@ if __name__ == "__main__":
     factions = factioner.retrieveFactions()
     factioner.writeScriptOutputFile(factions)
 
-    # Module Skins
-    # Module Map Icons
-
     # Module Scenes
     scener = SceneConverter()
     scenes = scener.retrieveScenes()
     scener.writeScriptOutputFile(scenes)
 
     # Module Particle System
+    psyser = ParticleSystemConverter()
+    psys = psyser.retrieveParticleSystems()
+    psyser.writeScriptOutputFile(psys)
+
+    # Module Skins
     # Module Animations
-    # Module Tableau Materials
     # Module PostFX
+
+    # Module Tableau Materials
+    tabMater = TableauMaterialConverter()
+    tabMats = tabMater.retrieveTableauMaterials()
+    tabMater.writeScriptOutputFile(tabMats)
 
     # Module Scripts
     scripter = ScriptConverter()
@@ -84,6 +93,11 @@ if __name__ == "__main__":
     triggerer.writeScriptOutputFile(triggerers)
 
     # Module Party Templates
+
+    # Module Map Icons
+    mapIconer = MapIconConverter()
+    mapIcons = mapIconer.retrieveMapIcons()
+    mapIconer.writeScriptOutputFile(mapIcons)
 
     # Module Parties
     partier = PartyConverter()
