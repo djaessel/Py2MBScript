@@ -380,7 +380,7 @@ class ScriptConverter:
 
 
     def replaceVarWithPlaceholder(self, line, placeholder, varname):
-        if varname in self.registers or varname in self.pos_registers or varname in self.str_registers or self.is_float(varname):
+        if varname in self.registers or varname in self.pos_registers or varname in self.str_registers or self.is_float(varname) or varname.startswith("0x"):
             line = line.replace(placeholder, varname)
         elif '"' in varname and varname.startswith('"') and varname.endswith('"'):
             line = line.replace(placeholder, varname)

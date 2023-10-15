@@ -8,8 +8,6 @@ import inspect
 import test_tableau_materials
 
 class TableauMaterialConverter(ScriptConverter):
-    def __init__(self):
-        pass
 
     def retrieveTableauMaterials(self):
         tabMats = []
@@ -45,10 +43,11 @@ class TableauMaterialConverter(ScriptConverter):
                 f.write("[\n")
 
                 codeLines = inspect.getsourcelines(tabMat.codeBlock)[0]
-                for i in range(len(codeLines)):
-                    codeLines[i] = codeLines[i][4:]
-                codeLines.pop(0)
+                #for i in range(len(codeLines)):
+                #    codeLines[i] = codeLines[i][4:]
+                #codeLines.pop(0)
                 codeLines = self.transformScriptBlock(codeLines)
+                codeLines.pop(0)
                 self.writeScriptCode(f, codeLines)
 
             f.write("\n] # TABLEAU MATERIALS END\n")
