@@ -82,6 +82,16 @@
         "data_objects/tableau_material.py",
         "test_cases/test_tableau_materials.py",
         "converter/TableauMaterialConverter.py",
-        "test_cases/test_tableau_materials_output.py"
+        "test_cases/test_tableau_materials_output.py",
+        "data_objects/quest.py",
+        "data_objects/scene_prop.py",
+        "data_objects/animation.py",
+        "data_objects/postfx.py",
+        "converter/QuestConverter.py",
+        "test_cases/test_quests.py",
+        "test_cases/test_quests_output.py",
+        "converter/PostFXConverter.py",
+        "test_cases/test_postfx.py",
+        "test_cases/test_postfx_output.py"
     ]
 }

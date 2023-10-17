@@ -24,9 +24,12 @@ from SceneConverter import SceneConverter
 from MapIconConverter import MapIconConverter
 from ParticleSystemConverter import ParticleSystemConverter
 from TableauMaterialConverter import TableauMaterialConverter
+from QuestConverter import QuestConverter
+from PostFXConverter import PostFXConverter
 
 
 if __name__ == "__main__":
+
     # Module InfoPage
     infoPager = InfoPageConverter()
     infoPages = infoPager.retrieveInfoPages()
@@ -68,8 +71,18 @@ if __name__ == "__main__":
     psyser.writeScriptOutputFile(psys)
 
     # Module Skins
+
     # Module Animations
+
     # Module PostFX
+    postfxer = PostFXConverter()
+    postfx = postfxer.retrievePostFX()
+    postfxer.writeScriptOutputFile(postfx)
+
+    # Module Quests
+    quester = QuestConverter()
+    quests = quester.retrieveQuests()
+    quester.writeScriptOutputFile(quests)
 
     # Module Tableau Materials
     tabMater = TableauMaterialConverter()
@@ -92,12 +105,12 @@ if __name__ == "__main__":
     triggerers = triggerer.retrieveTriggers()
     triggerer.writeScriptOutputFile(triggerers)
 
-    # Module Party Templates
-
     # Module Map Icons
     mapIconer = MapIconConverter()
     mapIcons = mapIconer.retrieveMapIcons()
     mapIconer.writeScriptOutputFile(mapIcons)
+
+    # Module Party Templates
 
     # Module Parties
     partier = PartyConverter()
@@ -125,8 +138,9 @@ if __name__ == "__main__":
     trooper.writeScriptOutputFile(troops)
 
     # Module Mission Template
-    # Module Quests
+
     # Module Dialogs
+
     # Module Scene Props
 
     # Module Presentations
