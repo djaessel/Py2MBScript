@@ -26,6 +26,8 @@ from ParticleSystemConverter import ParticleSystemConverter
 from TableauMaterialConverter import TableauMaterialConverter
 from QuestConverter import QuestConverter
 from PostFXConverter import PostFXConverter
+from PartyTemplateConverter import PartyTemplateConverter
+from MissionTemplateConverter import MissionTemplateConverter
 
 
 if __name__ == "__main__":
@@ -111,6 +113,9 @@ if __name__ == "__main__":
     mapIconer.writeScriptOutputFile(mapIcons)
 
     # Module Party Templates
+    partierTemp = PartyTemplateConverter()
+    partyTemps = partierTemp.retrievePartyTemplates()
+    partierTemp.writeScriptOutputFile(partyTemps)
 
     # Module Parties
     partier = PartyConverter()
@@ -138,6 +143,9 @@ if __name__ == "__main__":
     trooper.writeScriptOutputFile(troops)
 
     # Module Mission Template
+    missioner = MissionTemplateConverter()
+    missionTemps = missioner.retrieveMissionTemplates()
+    missioner.writeScriptOutputFile(missionTemps)
 
     # Module Dialogs
 

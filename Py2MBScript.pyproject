@@ -92,6 +92,14 @@
         "test_cases/test_quests_output.py",
         "converter/PostFXConverter.py",
         "test_cases/test_postfx.py",
-        "test_cases/test_postfx_output.py"
+        "test_cases/test_postfx_output.py",
+        "data_objects/party_template.py",
+        "test_cases/test_party_templates.py",
+        "converter/PartyTemplateConverter.py",
+        "test_cases/test_party_templates_output.py",
+        "data_objects/mission_template.py",
+        "test_cases/test_mission_templates.py",
+        "converter/MissionTemplateConverter.py",
+        "test_cases/test_mission_templates_output.py"
     ]
 }
