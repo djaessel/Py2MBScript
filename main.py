@@ -28,6 +28,7 @@ from QuestConverter import QuestConverter
 from PostFXConverter import PostFXConverter
 from PartyTemplateConverter import PartyTemplateConverter
 from MissionTemplateConverter import MissionTemplateConverter
+from AnimationConverter import AnimationConverter
 
 
 if __name__ == "__main__":
@@ -75,6 +76,9 @@ if __name__ == "__main__":
     # Module Skins
 
     # Module Animations
+    animator = AnimationConverter()
+    anims = animator.retrieveAnimations()
+    animator.writeScriptOutputFile(anims)
 
     # Module PostFX
     postfxer = PostFXConverter()

@@ -100,6 +100,9 @@
         "data_objects/mission_template.py",
         "test_cases/test_mission_templates.py",
         "converter/MissionTemplateConverter.py",
-        "test_cases/test_mission_templates_output.py"
+        "test_cases/test_mission_templates_output.py",
+        "converter/AnimationConverter.py",
+        "test_cases/test_animations.py",
+        "test_cases/test_animations_output.py"
     ]
 }
