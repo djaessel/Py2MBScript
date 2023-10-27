@@ -29,6 +29,8 @@ class AnimationConverter(ScriptConverter):
             for anim in codeData:
                 f.write("[\"" + anim.id + "\", ")
 
+                if anim.animation_length > 0:
+                    f.write("acf_anim_length(" + anim.animation_length + ")|")
                 if len(anim.flags) > 0:
                     f.write("|".join(anim.flags) + ", ")
                 else:
