@@ -29,6 +29,7 @@ from PostFXConverter import PostFXConverter
 from PartyTemplateConverter import PartyTemplateConverter
 from MissionTemplateConverter import MissionTemplateConverter
 from AnimationConverter import AnimationConverter
+from ScenePropConverter import ScenePropConverter
 
 
 if __name__ == "__main__":
@@ -154,6 +155,9 @@ if __name__ == "__main__":
     # Module Dialogs
 
     # Module Scene Props
+    sceneProper = ScenePropConverter()
+    sceneProps = sceneProper.retrieveSceneProps()
+    sceneProper.writeScriptOutputFile(sceneProps)
 
     # Module Presentations
     presenter = PresentationConverter()

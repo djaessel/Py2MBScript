@@ -103,6 +103,11 @@
         "test_cases/test_mission_templates_output.py",
         "converter/AnimationConverter.py",
         "test_cases/test_animations.py",
-        "test_cases/test_animations_output.py"
+        "test_cases/test_animations_output.py",
+        "converter/ScenePropConverter.py",
+        "test_cases/test_scene_props.py",
+        "test_cases/test_scene_props_output.py",
+        "data_objects/dialog.py",
+        "data_objects/skin.py"
     ]
 }
