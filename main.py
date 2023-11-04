@@ -31,6 +31,7 @@ from MissionTemplateConverter import MissionTemplateConverter
 from AnimationConverter import AnimationConverter
 from ScenePropConverter import ScenePropConverter
 from DialogConverter import DialogConverter
+from SkinConverter import SkinConverter
 
 
 if __name__ == "__main__":
@@ -76,6 +77,9 @@ if __name__ == "__main__":
     psyser.writeScriptOutputFile(psys)
 
     # Module Skins
+    skinner = SkinConverter()
+    skins = skinner.retrieveSkins()
+    skinner.writeScriptOutputFile(skins)
 
     # Module Animations
     animator = AnimationConverter()

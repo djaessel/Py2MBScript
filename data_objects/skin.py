@@ -1,7 +1,21 @@
 # This Python file uses the following encoding: utf-8
 
+from enum import Enum
+
 from particle_system import ParticleSystem
 from sound import Sound
+
+
+class Voice(Enum):
+    DIE = "voice_die"       # = 0
+    HIT = "voice_hit"       # = 1
+    GRUNT = "voice_grunt"     # = 2
+    GRUNT_LONG = "voice_grunt_long" # = 3
+    YELL = "voice_yell"      # = 4
+    WARCRY = "voice_warcry"    # = 5
+    VICTORY = "voice_victory"   # = 6
+    STUN = "voice_stun"      # = 7
+
 
 
 class Skin:
@@ -81,6 +95,50 @@ class Skin:
             print("SKIN:", self.id, ">",  "Face texture already set! >", face_texture)
 
 
+    def removeVoice(self, voice : Voice):
+        remi = -1
+        for i, v in enumerate(self.voices):
+            if v[0] == voice:
+                remi = i
+                break
+        if remi >= 0:
+            self.voices.pop(remi)
+
+
+    def setVoice(self, voice : Voice, sound : Sound):
+        self.removeVoice(voice)
+        voicex = (voice, sound.id)
+        self.voices.append(voicex)
+
+
     def setVoiceDie(self, sound : Sound):
-        pass
+        self.setVoice(Voice.DIE, sound)
+
+
+    def setVoiceHit(self, sound : Sound):
+        self.setVoice(Voice.HIT, sound)
+
+
+    def setVoiceGrunt(self, sound : Sound):
+        self.setVoice(Voice.GRUNT, sound)
+
+
+    def setVoiceGruntLong(self, sound : Sound):
+        self.setVoice(Voice.GRUNT_LONG, sound)
+
+
+    def setVoiceYell(self, sound : Sound):
+        self.setVoice(Voice.YELL, sound)
+
+
+    def setVoiceWarCry(self, sound : Sound):
+        self.setVoice(Voice.WARCRY, sound)
+
+
+    def setVoiceVictory(self, sound : Sound):
+        self.setVoice(Voice.VICTORY, sound)
+
+
+    def setVoiceStun(self, sound : Sound):
+        self.setVoice(Voice.STUN, sound)
 

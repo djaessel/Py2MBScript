@@ -111,6 +111,9 @@
         "data_objects/skin.py",
         "test_cases/test_dialogs.py",
         "converter/DialogConverter.py",
-        "test_cases/test_dialogs_output.py"
+        "test_cases/test_dialogs_output.py",
+        "test_cases/test_skins.py",
+        "converter/SkinConverter.py",
+        "test_cases/test_skins_output.py"
     ]
 }
