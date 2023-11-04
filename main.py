@@ -30,6 +30,7 @@ from PartyTemplateConverter import PartyTemplateConverter
 from MissionTemplateConverter import MissionTemplateConverter
 from AnimationConverter import AnimationConverter
 from ScenePropConverter import ScenePropConverter
+from DialogConverter import DialogConverter
 
 
 if __name__ == "__main__":
@@ -153,6 +154,9 @@ if __name__ == "__main__":
     missioner.writeScriptOutputFile(missionTemps)
 
     # Module Dialogs
+    dialoger = DialogConverter()
+    dialogs = dialoger.retrieveDialogs()
+    dialoger.writeScriptOutputFile(dialogs)
 
     # Module Scene Props
     sceneProper = ScenePropConverter()

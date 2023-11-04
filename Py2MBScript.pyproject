@@ -108,6 +108,9 @@
         "test_cases/test_scene_props.py",
         "test_cases/test_scene_props_output.py",
         "data_objects/dialog.py",
-        "data_objects/skin.py"
+        "data_objects/skin.py",
+        "test_cases/test_dialogs.py",
+        "converter/DialogConverter.py",
+        "test_cases/test_dialogs_output.py"
     ]
 }

@@ -1,5 +1,8 @@
 # This Python file uses the following encoding: utf-8
 
+from troop import Troop
+from party_template import PartyTemplate
+
 
 class Dialog:
     # During a dialog, the dialog lines are scanned from top to bottom.
@@ -31,7 +34,15 @@ class Dialog:
     # 6) Consequences block (list): This must be a valid operation block. See header_operations.py for reference.
     # 7) Voice-over (string): sound filename for the voice over. Leave here empty for no voice over
 
-    def __init__(self, dialog_partner : str, text : str, starting_state : str = "start", ending_state : str = "close_window", voice_over : str = ""):
+    def __init__(self, dialog_partner : str|PartyTemplate|Troop, text : str, other_troop : Troop = None, is_player_text : bool = False, auto_proceed : bool = False, starting_state : str = "start", ending_state : str = "close_window", voice_over : str = ""):
+        if isinstance(dialog_partner, Troop):
+            dialog_partner = dialog_partner.id
+        elif isinstance(dialog_partner, PartyTemplate):
+            dialog_partner = "party_tpl|" + dialog_partner.id
+
+        self.is_player_text = is_player_text
+        self.auto_proceed = auto_proceed
+        self.other_troop = other_troop
         self.dialog_partner = dialog_partner
         self.text = text
         self.starting_state = starting_state
@@ -43,6 +54,6 @@ class Dialog:
         pass
 
 
-    def consequenceBlock(self):
+    def codeBlock(self):
         pass
 
