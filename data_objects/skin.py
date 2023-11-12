@@ -37,6 +37,15 @@ class FaceTexture:
 
 
 
+class FaceKey:
+    def __init__(self, name : str, idVal : int, start : float, end : float, reserved : int = 0):
+        self.name = name
+        self.idVal = idVal
+        self.start = start
+        self.end = end
+        self.reserved = reserved
+
+
 
 class Skin:
     #  Each skin record contains the following fields:
@@ -78,6 +87,11 @@ class Skin:
         self.face_textures = []
         self.voices = []
         self.face_key_constraints = []
+
+
+    def addFaceKey(self, faceKey : FaceKey):
+        if not faceKey in self.face_keys:
+            self.face_keys.append(faceKey)
 
 
     def addHairMesh(self, hair_mesh : str):

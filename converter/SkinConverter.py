@@ -36,7 +36,10 @@ class SkinConverter(ScriptConverter):
                 f.write("\"" + skin.body_mesh + "\", \"" + skin.calf_mesh + "\", ")
                 f.write("\"" + skin.hand_mesh + "\", \"" + skin.head_mesh + "\",\n")
 
-                f.write("[], # face keys\n")
+                f.write("[\n")
+                for faceKey in skin.face_keys:
+                    f.write("  (" + str(faceKey.idVal) + "," + str(faceKey.reserved) + "," + str(faceKey.start) + "," + str(faceKey.end) + ", \"" + faceKey.name + "\"),\n")
+                f.write("],\n")
 
                 f.write("[")
                 for hair in skin.hair_meshes:
