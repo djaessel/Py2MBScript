@@ -37,3 +37,13 @@ def game_start_go_back_conseq():
 
 game_start_go_back.consequenceBlock = game_start_go_back_conseq
 game_start_0.menuOptions.append(game_start_go_back)
+
+
+game_start_hack = MenuOption("hack", "I hacked it!")
+
+def condition():
+    if is_edit_mode_enabled():
+        pass
+
+game_start_hack.conditionBlock = condition
+game_start_0.menuOptions.append(game_start_hack)

@@ -31,6 +31,10 @@ class Trigger2(Trigger):
 
 
 class WaterPump(Trigger):
+    def conditionBlock(self):
+        if 1 == 0:
+            print("DISABLED!")
+
     def codeBlock(self):
         print("Pump water!")
 

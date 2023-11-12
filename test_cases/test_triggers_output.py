@@ -4,14 +4,12 @@ from header_common import *
 triggers = [
 
 (24, 0, 0, [
-(is_edit_mode_enabled),
 (assign,":water",1),
 (try_begin),
     (eq,1,1),
     (assign,":water",4),
 (try_end),
 (assign, reg0, ":water"),
-(display_message, "@{reg0}"),
 ], [
 (display_message, "@Hello World!"),
 ]),
@@ -38,6 +36,8 @@ triggers = [
 ]),
 
 (0, 0, 128.0, [
+(eq,1,0),
+(display_message, "@DISABLED!"),
 ], [
 (display_message, "@Pump water!"),
 ]),

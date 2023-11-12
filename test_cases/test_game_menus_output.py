@@ -27,5 +27,10 @@ game_menus = [
 (try_end),
 ]),
 
+("hack", [
+(is_edit_mode_enabled),
+], "I hacked it!", [
+]),
+
 ]),
 ]

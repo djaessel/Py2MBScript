@@ -48,6 +48,9 @@ class GameMenuConverter(ScriptConverter):
                     codeLines.pop(0)
                     codeLines = self.transformScriptBlock(codeLines)
                     codeLines.pop()
+                    if len(codeLines) > 2:
+                        codeLines.pop(0)
+                        codeLines.pop()
                     self.writeScriptCode(f, codeLines)
 
                     f.write("], \"" + menuOption.text + "\", [\n")

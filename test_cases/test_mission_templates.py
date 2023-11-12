@@ -23,9 +23,15 @@ sr.add_spawn_flag(SpawnFlag.ATTACKERS)
 mission1.addSpawnRecord(sr)
 
 triggyx = Trigger(-20.0, 0, 0)
+def condition():
+    if reg1 == 0 or reg1 == 2:
+        if reg0 == 0:
+            print("EXTRA SAFE!")
+
 def code():
     reg0 = 30
     print(reg0)
 
+triggyx.conditionBlock = condition
 triggyx.codeBlock = code
 mission1.add_trigger(triggyx)

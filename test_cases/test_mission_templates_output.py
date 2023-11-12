@@ -10,6 +10,12 @@ mission_templates = [
 ],
 [
 (ti_after_mission_start, 0, 0, [
+(this_or_next|eq,reg1,0),
+(eq,reg1,2),
+(try_begin),
+    (eq,reg0,0),
+    (display_message, "@EXTRA SAFE!"),
+(try_end),
 ], [
 (assign,reg0,30),
 (display_message, "@{reg0}"),
