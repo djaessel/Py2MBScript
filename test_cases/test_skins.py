@@ -1,9 +1,9 @@
 # This Python file uses the following encoding: utf-8
 
-#import sys
-#sys.path.append("../data_objects/")
+import sys
+sys.path.append("../data_objects/")
 
-from skin import Skin
+from skin import Skin, FaceTexture
 from test_particle_systems import *
 from test_sounds import *
 
@@ -26,6 +26,14 @@ woman.addHairTexture("hair_red")
 woman.addHairTexture("hair_brunette")
 woman.addHairTexture("hair_black")
 woman.addHairTexture("hair_white")
+# Woman - Face Textures
+woman_young = FaceTexture("womanface_young", 0xffe3e8ef)
+woman_young.addHairMaterial("hair_blonde")
+woman_young.addHairColors(0xffffffff)
+woman_young.addHairColors(0xffb04717)
+woman_young.addHairColors(0xff502a19)
+woman_young.addHairColors(0xff19100c)
+woman.addFaceTexture(woman_young)
 # Woman - Voices
 woman.setVoiceDie(sound1)
 woman.setVoiceHit(sound1)

@@ -18,6 +18,26 @@ class Voice(Enum):
 
 
 
+class FaceTexture:
+    def __init__(self, name : str, color : int):
+        self.name = name
+        self.color = color
+        self.hair_materials = []
+        self.hair_colors = []
+
+
+    def addHairMaterial(self, hairMaterial : str):
+        if not hairMaterial in self.hair_materials:
+            self.hair_materials.append(hairMaterial)
+
+
+    def addHairColors(self, hairColor : int):
+        if not hairColor in self.hair_colors:
+            self.hair_colors.append(hairColor)
+
+
+
+
 class Skin:
     #  Each skin record contains the following fields:
     #  1) Skin id: used for referencing skins.
@@ -88,7 +108,7 @@ class Skin:
             print("SKIN:", self.id, ">",  "Beard texture already set! >", beard_texture)
 
 
-    def addFaceTexture(self, face_texture : str):
+    def addFaceTexture(self, face_texture : FaceTexture):
         if not face_texture in self.face_textures:
             self.face_textures.append(face_texture)
         else:

@@ -15,7 +15,8 @@ class SkinConverter(ScriptConverter):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(test_skins,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "ParticleSystem" in str(attr) and not "Sound" in str(attr):
-                    skins.append(attr)
+                    if not "FaceTexture" in str(attr):
+                        skins.append(attr)
         return skins
 
     def writeScriptOutputFile(self, codeData : list[Skin]):
@@ -35,8 +36,7 @@ class SkinConverter(ScriptConverter):
                 f.write("\"" + skin.body_mesh + "\", \"" + skin.calf_mesh + "\", ")
                 f.write("\"" + skin.hand_mesh + "\", \"" + skin.head_mesh + "\",\n")
 
-                # TODO: face keys
-                f.write("[], # face_keys\n")
+                f.write("[], # face keys\n")
 
                 f.write("[")
                 for hair in skin.hair_meshes:
@@ -58,8 +58,16 @@ class SkinConverter(ScriptConverter):
                     f.write("\"" + beard + "\",")
                 f.write("],\n")
 
-                # TODO: face textures
-                f.write("[], # face textures\n")
+                f.write("[\n")
+                for face_texture in skin.face_textures:
+                    f.write("(\"" + face_texture.name + "\", " + hex(face_texture.color) + ", [")
+                    for mat in face_texture.hair_materials:
+                        f.write("\"" + mat + "\",")
+                    f.write("], [")
+                    for c in face_texture.hair_colors:
+                        f.write(hex(c) + ",")
+                    f.write("]),\n")
+                f.write("],\n")
 
                 f.write("[")
                 for voice in skin.voices:
