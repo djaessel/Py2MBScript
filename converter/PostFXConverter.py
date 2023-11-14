@@ -20,7 +20,7 @@ class PostFXConverter(ScriptConverter):
         return post_fx
 
     def writeScriptOutputFile(self, codeData : dict[PostFX]):
-        with open("./test_cases/test_postfx_output.py", "w") as f:
+        with open("./build_system/module_postfx.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("post_fx = [\n\n")

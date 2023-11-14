@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from animation import Animation
 
-import inspect
 import test_animations
 
 
@@ -21,7 +20,7 @@ class AnimationConverter(ScriptConverter):
         return anims
 
     def writeScriptOutputFile(self, codeData : dict[Animation]):
-        with open("./test_cases/test_animations_output.py", "w") as f:
+        with open("./build_system/module_animations.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("animations = [\n\n")

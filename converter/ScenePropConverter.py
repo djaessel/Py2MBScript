@@ -19,7 +19,7 @@ class ScenePropConverter(ScriptConverter):
         return sceneProps
 
     def writeScriptOutputFile(self, codeData : dict[SceneProp]):
-        with open("./test_cases/test_scene_props_output.py", "w") as f:
+        with open("./build_system/module_scene_props.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("scene_props = [\n\n")

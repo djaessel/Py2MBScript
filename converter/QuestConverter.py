@@ -20,7 +20,7 @@ class QuestConverter(ScriptConverter):
         return quests
 
     def writeScriptOutputFile(self, codeData : dict[Quest]):
-        with open("./test_cases/test_quests_output.py", "w") as f:
+        with open("./build_system/module_quests.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("quests = [\n\n")

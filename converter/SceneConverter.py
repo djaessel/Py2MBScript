@@ -19,7 +19,7 @@ class SceneConverter(ScriptConverter):
         return scenes
 
     def writeScriptOutputFile(self, codeData : list[Scene]):
-        with open("./test_cases/test_scenes_output.py", "w") as f:
+        with open("./build_system/module_scenes.py", "w") as f:
             f.write("scenes = [\n\n")
 
             for scene in codeData:

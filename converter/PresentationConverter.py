@@ -24,7 +24,7 @@ class PresentationConverter(ScriptConverter):
 
 
     def writeScriptOutputFile(self, codeData : dict[Presentation]):
-        with open("./test_cases/test_presentations_output.py", "w") as f:
+        with open("./build_system/module_presentations.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("presentations = [\n\n")

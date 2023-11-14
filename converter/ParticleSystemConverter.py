@@ -20,7 +20,7 @@ class ParticleSystemConverter(ScriptConverter):
         return psys
 
     def writeScriptOutputFile(self, codeData : dict[ParticleSystem]):
-        with open("./test_cases/test_particle_systems_output.py", "w") as f:
+        with open("./build_system/module_particle_systems.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("particle_systems = [\n\n")

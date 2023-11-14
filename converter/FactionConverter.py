@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from faction import Faction
 
-import inspect
 import test_factions
 
 class FactionConverter(ScriptConverter):
@@ -19,7 +18,7 @@ class FactionConverter(ScriptConverter):
         return factions
 
     def writeScriptOutputFile(self, codeData : list[Faction]):
-        with open("./test_cases/test_factions_output.py", "w") as f:
+        with open("./build_system/module_factions.py", "w") as f:
             f.write("factions = [\n\n")
 
             for faction in codeData:

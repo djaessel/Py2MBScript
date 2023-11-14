@@ -19,7 +19,7 @@ class TableauMaterialConverter(ScriptConverter):
         return tabMats
 
     def writeScriptOutputFile(self, codeData : List[TableauMaterial]):
-        with open("./test_cases/test_tableau_materials_output.py", "w") as f:
+        with open("./build_system/module_tableau_materials.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("tableau_materials = [\n\n")

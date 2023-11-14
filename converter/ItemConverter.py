@@ -22,7 +22,7 @@ class ItemConverter(ScriptConverter):
         return items
 
     def writeScriptOutputFile(self, codeData : dict[Item]):
-        with open("./test_cases/test_items_output.py", "w") as f:
+        with open("./build_system/module_items.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("items = [\n\n")

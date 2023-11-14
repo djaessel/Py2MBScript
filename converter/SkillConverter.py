@@ -20,7 +20,7 @@ class SkillConverter(ScriptConverter):
         return triggers
 
     def writeScriptOutputFile(self, codeData):
-        with open("./test_cases/test_skills_output.py", "w") as f:
+        with open("./build_system/module_skills.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("skills = [\n\n")

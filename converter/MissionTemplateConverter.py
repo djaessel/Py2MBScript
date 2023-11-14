@@ -22,7 +22,7 @@ class MissionTemplateConverter(ScriptConverter):
         return mts
 
     def writeScriptOutputFile(self, codeData):
-        with open("./test_cases/test_mission_templates_output.py", "w") as f:
+        with open("./build_system/module_mission_templates.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("mission_templates = [\n\n")

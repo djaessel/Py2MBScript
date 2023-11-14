@@ -19,7 +19,7 @@ class SoundConverter(ScriptConverter):
         return sounds
 
     def writeScriptOutputFile(self, codeData : list[Sound]):
-        with open("./test_cases/test_sounds_output.py", "w") as f:
+        with open("./build_system/module_sounds.py", "w") as f:
             f.write("from header_sounds import *\n")
             f.write("sounds = [\n\n")
 

@@ -23,7 +23,7 @@ class TroopConverter(ScriptConverter):
         return troops
 
     def writeScriptOutputFile(self, codeData : dict[Troop]):
-        with open("./test_cases/test_troops_output.py", "w") as f:
+        with open("./build_system/module_troops.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
             f.write("troops = [\n\n")
