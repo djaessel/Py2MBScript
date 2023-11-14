@@ -1,0 +1,32 @@
+qst_deliver_message = 0
+qst_deliver_message_to_enemy_lord = 1
+qst_follow_army = 2
+qst_deliver_message_to_prisoner_lord = 3
+qst_move_cattle_herd = 4
+qst_escort_merchant_caravan = 5
+qst_deliver_wine = 6
+qst_troublesome_bandits = 7
+qst_kidnapped_girl = 8
+qst_persuade_lords_to_make_peace = 9
+qst_deliver_grain = 10
+qst_deliver_cattle = 11
+qst_train_peasants_against_bandits = 12
+qst_eliminate_bandits_infesting_village = 13
+qst_quests_end = 14
+qsttag_deliver_message = 504403158265495552
+qsttag_deliver_message_to_enemy_lord = 504403158265495553
+qsttag_follow_army = 504403158265495554
+qsttag_deliver_message_to_prisoner_lord = 504403158265495555
+qsttag_move_cattle_herd = 504403158265495556
+qsttag_escort_merchant_caravan = 504403158265495557
+qsttag_deliver_wine = 504403158265495558
+qsttag_troublesome_bandits = 504403158265495559
+qsttag_kidnapped_girl = 504403158265495560
+qsttag_persuade_lords_to_make_peace = 504403158265495561
+qsttag_deliver_grain = 504403158265495562
+qsttag_deliver_cattle = 504403158265495563
+qsttag_train_peasants_against_bandits = 504403158265495564
+qsttag_eliminate_bandits_infesting_village = 504403158265495565
+qsttag_quests_end = 504403158265495566
+
+

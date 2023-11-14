@@ -58,4 +58,6 @@ class MapIconConverter(ScriptConverter):
 
                 f.write("),\n")
 
+            f.write("] # MAP ICONS END\n")
+
 

@@ -23,7 +23,7 @@ class PostFXConverter(ScriptConverter):
         with open("./build_system/module_postfx.py", "w") as f:
             f.write("from header_operations import *\n")
             f.write("from header_common import *\n\n")
-            f.write("post_fx = [\n\n")
+            f.write("postfx_params = [\n\n")
 
             for post_fx in codeData:
                 f.write("(\"" + post_fx.id + "\", ")
