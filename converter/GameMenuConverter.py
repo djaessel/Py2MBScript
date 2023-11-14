@@ -20,8 +20,15 @@ class GameMenuConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : dict[GameMenu]):
         with open("./build_system/module_game_menus.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_game_menus import *\n")
+            f.write("from header_parties import *\n")
+            f.write("from header_items import *\n")
+            f.write("from header_mission_templates import *\n")
+            f.write("from header_music import *\n")
+            f.write("from header_terrain_types import *\n")
+            f.write("\n")
+            f.write("from module_constants import *\n\n")
+
             f.write("game_menus = [\n\n")
 
             for gameMenu in codeData:

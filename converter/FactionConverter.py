@@ -19,6 +19,7 @@ class FactionConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : list[Faction]):
         with open("./build_system/module_factions.py", "w") as f:
+            f.write("from header_factions import *\n\n")
             f.write("factions = [\n\n")
 
             for faction in codeData:

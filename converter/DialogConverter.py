@@ -17,8 +17,18 @@ class DialogConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : list[Dialog]):
         with open("./build_system/module_dialogs.py", "w") as f:
+            f.write("# -*- coding: cp1254 -*-\n")
+            f.write("from header_common import *\n")
+            f.write("from header_dialogs import *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_parties import *\n")
+            f.write("from header_item_modifiers import *\n")
+            f.write("from header_skills import *\n")
+            f.write("from header_triggers import *\n")
+            f.write("from ID_troops import *\n")
+            f.write("from ID_party_templates import *\n\n")
+            f.write("from module_constants import *\n\n")
+
             f.write("triggers = [\n\n")
 
             for dialog in codeData:

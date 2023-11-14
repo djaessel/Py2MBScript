@@ -21,8 +21,8 @@ class AnimationConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : dict[Animation]):
         with open("./build_system/module_animations.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_common import *\n")
+            f.write("from header_animations import *\n\n")
             f.write("animations = [\n\n")
 
             for anim in codeData:
