@@ -20,8 +20,13 @@ class TableauMaterialConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : List[TableauMaterial]):
         with open("./build_system/module_tableau_materials.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_common import *\n")
+            f.write("from ID_animations import *\n")
+            f.write("from header_mission_templates import *\n")
+            f.write("from header_tableau_materials import *\n")
+            f.write("from header_items import *\n")
+            f.write("from module_constants import *\n\n")
+
             f.write("tableau_materials = [\n\n")
 
             # ("game_character_sheet", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532,

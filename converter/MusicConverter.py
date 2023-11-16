@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from music import MusicTrack
 
-import inspect
 import test_music
 
 
@@ -19,10 +18,9 @@ class MusicConverter(ScriptConverter):
                 tracks.append(attr)
         return tracks
 
-    def writeScriptOutputFile(self, codeData):
+    def writeScriptOutputFile(self, codeData : list[MusicTrack]):
         with open("./build_system/module_music.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_music import *\n\n")
             f.write("tracks = [\n\n")
 
             for track in codeData:

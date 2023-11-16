@@ -21,10 +21,17 @@ class MissionTemplateConverter(ScriptConverter):
                     mts.append(attr)
         return mts
 
-    def writeScriptOutputFile(self, codeData):
+    def writeScriptOutputFile(self, codeData : list[MissionTemplate]):
         with open("./build_system/module_mission_templates.py", "w") as f:
+            f.write("from header_common import *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_mission_templates import *\n")
+            f.write("from header_animations import *\n")
+            f.write("from header_sounds import *\n")
+            f.write("from header_music import *\n")
+            f.write("from header_items import *\n")
+            f.write("from module_constants import *\n\n")
+
             f.write("mission_templates = [\n\n")
 
             for mt in codeData:

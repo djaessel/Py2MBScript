@@ -1,5 +1,6 @@
 # This Python file uses the following encoding: utf-8
 from ScriptConverter import ScriptConverter
+from trigger import Trigger
 
 import inspect
 import test_triggers
@@ -27,10 +28,18 @@ class TriggerConverter(ScriptConverter):
                     return v
         return str(interval)
 
-    def writeScriptOutputFile(self, codeData):
+    def writeScriptOutputFile(self, codeData : list[Trigger]):
         with open("./build_system/module_triggers.py", "w") as f:
+            f.write("from header_common import *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_parties import *\n")
+            f.write("from header_items import *\n")
+            f.write("from header_skills import *\n")
+            f.write("from header_triggers import *\n")
+            f.write("from header_troops import *\n\n")
+
+            f.write("from module_constants import *\n\n")
+
             f.write("triggers = [\n\n")
 
             for trigger in codeData:

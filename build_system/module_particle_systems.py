@@ -1,5 +1,4 @@
-from header_operations import *
-from header_common import *
+from header_particle_systems import *
 
 particle_systems = [
 

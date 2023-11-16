@@ -23,10 +23,17 @@ class PresentationConverter(ScriptConverter):
         return presentations
 
 
-    def writeScriptOutputFile(self, codeData : dict[Presentation]):
+    def writeScriptOutputFile(self, codeData : list[Presentation]):
         with open("./build_system/module_presentations.py", "w") as f:
+            f.write("from header_common import *\n")
+            f.write("from header_presentations import *\n")
+            f.write("from header_mission_templates import *\n")
+            f.write("from ID_meshes import *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_triggers import *\n")
+            f.write("from module_constants import *\n")
+            f.write("import string\n\n")
+
             f.write("presentations = [\n\n")
 
             for presentation in codeData:

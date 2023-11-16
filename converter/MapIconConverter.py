@@ -20,10 +20,14 @@ class MapIconConverter(ScriptConverter):
                     mapIcons.append(attr)
         return mapIcons
 
-    def writeScriptOutputFile(self, codeData : dict[MapIcon]):
+    def writeScriptOutputFile(self, codeData : list[MapIcon]):
         with open("./build_system/module_map_icons.py", "w") as f:
+            f.write("from header_map_icons import *\n")
+            f.write("from module_constants import *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_triggers import *\n")
+            f.write("from ID_sounds import *\n\n")
+
             f.write("map_icons = [\n\n")
 
             for mapIcon in codeData:

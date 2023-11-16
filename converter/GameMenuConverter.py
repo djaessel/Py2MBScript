@@ -18,7 +18,7 @@ class GameMenuConverter(ScriptConverter):
                     gameMenus.append(attr)
         return gameMenus
 
-    def writeScriptOutputFile(self, codeData : dict[GameMenu]):
+    def writeScriptOutputFile(self, codeData : list[GameMenu]):
         with open("./build_system/module_game_menus.py", "w") as f:
             f.write("from header_game_menus import *\n")
             f.write("from header_parties import *\n")

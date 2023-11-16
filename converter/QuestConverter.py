@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from quest import Quest
 
-import inspect
 import test_quests
 
 class QuestConverter(ScriptConverter):
@@ -19,10 +18,9 @@ class QuestConverter(ScriptConverter):
                     quests.append(attr)
         return quests
 
-    def writeScriptOutputFile(self, codeData : dict[Quest]):
+    def writeScriptOutputFile(self, codeData : list[Quest]):
         with open("./build_system/module_quests.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_quests import *\n\n")
             f.write("quests = [\n\n")
 
             for quest in codeData:

@@ -18,10 +18,17 @@ class ScenePropConverter(ScriptConverter):
                     sceneProps.append(attr)
         return sceneProps
 
-    def writeScriptOutputFile(self, codeData : dict[SceneProp]):
+    def writeScriptOutputFile(self, codeData : list[SceneProp]):
         with open("./build_system/module_scene_props.py", "w") as f:
+            f.write("# -*- coding: cp1252 -*-\n")
+            f.write("from header_common import *\n")
+            f.write("from header_scene_props import *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_triggers import *\n")
+            f.write("from header_sounds import *\n")
+            f.write("from module_constants import *\n")
+            f.write("import string\n\n")
+
             f.write("scene_props = [\n\n")
 
             for sceneProp in codeData:

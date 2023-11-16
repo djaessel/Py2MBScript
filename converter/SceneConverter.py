@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from scene import Scene
 
-import inspect
 import test_scenes
 
 class SceneConverter(ScriptConverter):
@@ -20,6 +19,12 @@ class SceneConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : list[Scene]):
         with open("./build_system/module_scenes.py", "w") as f:
+            f.write("from header_common import *\n")
+            f.write("from header_operations import *\n")
+            f.write("from header_triggers import *\n")
+            f.write("from header_scenes import *\n")
+            f.write("from module_constants import *\n\n")
+
             f.write("scenes = [\n\n")
 
             for scene in codeData:

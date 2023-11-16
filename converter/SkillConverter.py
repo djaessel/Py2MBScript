@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from skill import Skill
 
-import inspect
 import test_skills
 
 
@@ -19,10 +18,10 @@ class SkillConverter(ScriptConverter):
                 triggers.append(attr)
         return triggers
 
-    def writeScriptOutputFile(self, codeData):
+    def writeScriptOutputFile(self, codeData : list[Skill]):
         with open("./build_system/module_skills.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_common import *\n")
+            f.write("from header_skills import *\n\n")
             f.write("skills = [\n\n")
 
             for skill in codeData:

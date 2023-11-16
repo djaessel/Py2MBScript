@@ -1,5 +1,11 @@
-from header_operations import *
 from header_common import *
+from header_operations import *
+from header_mission_templates import *
+from header_animations import *
+from header_sounds import *
+from header_music import *
+from header_items import *
+from module_constants import *
 
 mission_templates = [
 

@@ -21,10 +21,14 @@ class ItemConverter(ScriptConverter):
                     items.append(attr)
         return items
 
-    def writeScriptOutputFile(self, codeData : dict[Item]):
+    def writeScriptOutputFile(self, codeData : list[Item]):
         with open("./build_system/module_items.py", "w") as f:
+            f.write("from module_constants import *\n")
+            f.write("from ID_factions import *\n")
+            f.write("from header_items import  *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_triggers import *\n\n")
+
             f.write("items = [\n\n")
 
             for item in codeData:

@@ -582,8 +582,22 @@ class ScriptConverter:
 
     def writeScriptOutputFile(self, codeData):
         with open("./build_system/module_scripts.py", "w") as f:
+            f.write("# -*- coding: cp1254 -*-\n")
+            f.write("from header_common import *\n")
             f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from module_constants import *\n")
+            f.write("from module_constants import *\n")
+            f.write("from header_parties import *\n")
+            f.write("from header_skills import *\n")
+            f.write("from header_mission_templates import *\n")
+            f.write("from header_items import *\n")
+            f.write("from header_triggers import *\n")
+            f.write("from header_terrain_types import *\n")
+            f.write("from header_music import *\n")
+            f.write("from header_map_icons import *\n")
+            f.write("from header_presentations import *\n")
+            f.write("from ID_animations import *\n\n")
+
             f.write("scripts = [\n\n")
             self.writeScriptCode(f, codeData)
             f.write("]\n")

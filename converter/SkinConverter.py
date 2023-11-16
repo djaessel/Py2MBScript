@@ -2,7 +2,6 @@
 from ScriptConverter import ScriptConverter
 from skin import Skin
 
-import inspect
 import test_skins
 
 class SkinConverter(ScriptConverter):
@@ -20,9 +19,9 @@ class SkinConverter(ScriptConverter):
         return skins
 
     def writeScriptOutputFile(self, codeData : list[Skin]):
-        with open("./build_system/module_skins.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+        with open("./build_system/module_skins.py", "w") as f:            
+            f.write("from header_skins import *\n")
+            f.write("from ID_particle_systems import *\n\n")
             f.write("strings = [\n\n")
 
             for skin in codeData:

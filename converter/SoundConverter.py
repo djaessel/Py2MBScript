@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from sound import Sound
 
-import inspect
 import test_sounds
 
 class SoundConverter(ScriptConverter):

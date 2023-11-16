@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from particle_system import ParticleSystem
 
-import inspect
 import test_particle_systems
 
 class ParticleSystemConverter(ScriptConverter):
@@ -19,10 +18,9 @@ class ParticleSystemConverter(ScriptConverter):
                     psys.append(attr)
         return psys
 
-    def writeScriptOutputFile(self, codeData : dict[ParticleSystem]):
+    def writeScriptOutputFile(self, codeData : list[ParticleSystem]):
         with open("./build_system/module_particle_systems.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_particle_systems import *\n\n")
             f.write("particle_systems = [\n\n")
 
             for psys in codeData:

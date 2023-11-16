@@ -4,7 +4,6 @@ from ScriptConverter import ScriptConverter
 
 from MBParty import MBParty
 
-import inspect
 import test_parties
 
 
@@ -24,8 +23,13 @@ class PartyConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : list[MBParty]):
         with open("./build_system/module_parties.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_common import *\n")
+            f.write("from header_parties import *\n")
+            f.write("from ID_troops import *\n")
+            f.write("from ID_factions import *\n")
+            f.write("from ID_party_templates import *\n")
+            f.write("from ID_map_icons import *\n\n")
+
             f.write("parties = [\n\n")
 
             for party in codeData:

@@ -4,7 +4,6 @@ from ScriptConverter import ScriptConverter
 from typing import List
 from mesh import Mesh
 
-import inspect
 import test_meshes
 
 class MeshConverter(ScriptConverter):
@@ -21,8 +20,7 @@ class MeshConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : List[Mesh]):
         with open("./build_system/module_meshes.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_meshes import *\n\n")
             f.write("meshes = [\n\n")
 
             for mesh in codeData:

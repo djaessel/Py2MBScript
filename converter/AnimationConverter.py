@@ -19,7 +19,7 @@ class AnimationConverter(ScriptConverter):
                     anims.append(attr)
         return anims
 
-    def writeScriptOutputFile(self, codeData : dict[Animation]):
+    def writeScriptOutputFile(self, codeData : list[Animation]):
         with open("./build_system/module_animations.py", "w") as f:
             f.write("from header_common import *\n")
             f.write("from header_animations import *\n\n")

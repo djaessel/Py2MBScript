@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from troop import Troop
 
-import inspect
 import test_troops
 
 
@@ -22,10 +21,20 @@ class TroopConverter(ScriptConverter):
                         troops.append(attr)
         return troops
 
-    def writeScriptOutputFile(self, codeData : dict[Troop]):
+    def writeScriptOutputFile(self, codeData : list[Troop]):
         with open("./build_system/module_troops.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from __future__ import division\n")
+            f.write("from past.utils import old_div\n")
+            f.write("import random\n\n")
+
+            f.write("from header_common import *\n")
+            f.write("from header_items import *\n")
+            f.write("from header_troops import *\n")
+            f.write("from header_skills import *\n")
+            f.write("from ID_factions import *\n")
+            f.write("from ID_items import *\n")
+            f.write("from ID_scenes import *\n\n")
+
             f.write("troops = [\n\n")
 
             for troop in codeData:

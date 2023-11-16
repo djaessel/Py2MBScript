@@ -1,5 +1,8 @@
+from header_map_icons import *
+from module_constants import *
 from header_operations import *
-from header_common import *
+from header_triggers import *
+from ID_sounds import *
 
 map_icons = [
 

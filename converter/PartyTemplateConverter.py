@@ -23,8 +23,14 @@ class PartyTemplateConverter(ScriptConverter):
 
     def writeScriptOutputFile(self, codeData : list[PartyTemplate]):
         with open("./build_system/module_party_templates.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_common import *\n")
+            f.write("from header_parties import *\n")
+            f.write("from ID_troops import *\n")
+            f.write("from ID_factions import *\n")
+            f.write("from ID_map_icons import *\n\n")
+
+            f.write("pmf_is_prisoner = 0x0001\n\n")
+
             f.write("parties = [\n\n")
 
             for partyTemp in codeData:

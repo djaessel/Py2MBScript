@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from MBString import MBString
 
-import inspect
 import test_strings
 
 
@@ -19,10 +18,9 @@ class StringConverter(ScriptConverter):
                 strings.append(attr)
         return strings
 
-    def writeScriptOutputFile(self, codeData):
+    def writeScriptOutputFile(self, codeData : list[MBString]):
         with open("./build_system/module_strings.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("# -*- coding: cp1254 -*-\n\n")
             f.write("strings = [\n\n")
 
             for string in codeData:

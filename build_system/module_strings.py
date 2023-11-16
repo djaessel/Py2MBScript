@@ -1,5 +1,4 @@
-from header_operations import *
-from header_common import *
+# -*- coding: cp1254 -*-
 
 strings = [
 

@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from postfx import PostFX
 
-import inspect
 import test_postfx
 
 class PostFXConverter(ScriptConverter):
@@ -19,10 +18,9 @@ class PostFXConverter(ScriptConverter):
                     post_fx.append(attr)
         return post_fx
 
-    def writeScriptOutputFile(self, codeData : dict[PostFX]):
+    def writeScriptOutputFile(self, codeData : list[PostFX]):
         with open("./build_system/module_postfx.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
+            f.write("from header_postfx import *\n\n")
             f.write("postfx_params = [\n\n")
 
             for post_fx in codeData:

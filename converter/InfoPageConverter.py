@@ -3,7 +3,6 @@
 from ScriptConverter import ScriptConverter
 from info_page import InfoPage
 
-import inspect
 import test_info_pages
 
 
@@ -19,10 +18,8 @@ class InfoPageConverter(ScriptConverter):
                 infoPages.append(attr)
         return infoPages
 
-    def writeScriptOutputFile(self, codeData):
+    def writeScriptOutputFile(self, codeData : list[InfoPage]):
         with open("./build_system/module_info_pages.py", "w") as f:
-            f.write("from header_operations import *\n")
-            f.write("from header_common import *\n\n")
             f.write("info_pages = [\n\n")
 
             for infoPage in codeData:
