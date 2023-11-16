@@ -227,7 +227,7 @@ class Troop:
                     del self.skills[found_idx]
             contains, _ = self.contains_skill(skill, val)
             if not contains:
-                skill_knows = "knowns_" + skill.id + "_" + str(val)
+                skill_knows = "knows_" + skill.id + "_" + str(val)
                 self.skills.append(skill_knows)
         else:
             print("trp_" + self.id, ": Invalid skill level:", val, "-> Max Level:", skill.max_level)

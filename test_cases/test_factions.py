@@ -5,6 +5,7 @@ from faction import Faction
 
 no_faction = Faction("no_faction", "No Faction", 0.9)
 commoners = Faction("commoners", "Commoners", 0.1)
+commoners = Faction("player_faction", "Player Faction", 0.9)
 # commoners.add_relation(no_faction, 0.5)
 
 
