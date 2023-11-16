@@ -11,7 +11,7 @@ from MBShield import MBShield
 
 axe = MBAxe("my_axe", "My Axe", 315)
 axe.add_mesh(ItemMesh("simple_axe"))
-axe.add_mesh(ItemMesh("simple_axe_extra", "extra_thing"))
+#axe.add_mesh(ItemMesh("simple_axe_extra", "extra_thing"))
 axe.add_flag(ItemFlag.HAS_CRUSH_THROUGH)
 axe.add_flag(ItemFlag.FORCE_ATTACH_LEFT_HAND)
 axe.add_flag(ItemFlag.FORCE_ATTACH_RIGHT_HAND)
@@ -33,6 +33,8 @@ def coolCode():
 triggy1.codeBlock = coolCode
 #axe.add_trigger(triggy1)
 
+
+siege_supply = Item("siege_supply", "Siege Supply")
 
 
 master_shield = MBShield("master_shield", "Master Shield", 831)

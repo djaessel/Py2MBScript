@@ -10,6 +10,9 @@ from ID_factions import *
 from ID_items import *
 from ID_scenes import *
 
+tf_guarantee_all = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield|tf_guarantee_ranged
+tf_guarantee_all_wo_ranged = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield
+
 troops = [
 
 ["npc1","Peter","Peter",

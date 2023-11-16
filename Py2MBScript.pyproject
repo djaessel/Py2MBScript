@@ -152,6 +152,7 @@
         "build_system/process_tableau_materials.py",
         "build_system/process_tags_unused.py",
         "build_system/process_troops.py",
-        "build_system/module_info.py"
+        "build_system/module_info.py",
+        "build_system/module_constants.py"
     ]
 }

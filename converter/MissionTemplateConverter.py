@@ -17,7 +17,7 @@ class MissionTemplateConverter(ScriptConverter):
         for i in vars(test_mission_templates):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(test_mission_templates,i)
-                if not "<function" in str(attr) and not "<module" in str(attr) and not "MB" in str(attr) and not "SpawnRecord" in str(attr) and not "Trigger" in str(attr):
+                if not "<function" in str(attr) and not "<module" in str(attr) and not "MB" in str(attr)  and not "Item" in str(attr) and not "SpawnRecord" in str(attr) and not "Trigger" in str(attr):
                     mts.append(attr)
         return mts
 

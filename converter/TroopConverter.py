@@ -35,6 +35,9 @@ class TroopConverter(ScriptConverter):
             f.write("from ID_items import *\n")
             f.write("from ID_scenes import *\n\n")
 
+            f.write("tf_guarantee_all = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield|tf_guarantee_ranged\n")
+            f.write("tf_guarantee_all_wo_ranged = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield\n\n")
+
             f.write("troops = [\n\n")
 
             for troop in codeData:
