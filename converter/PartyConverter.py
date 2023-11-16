@@ -30,6 +30,12 @@ class PartyConverter(ScriptConverter):
             f.write("from ID_party_templates import *\n")
             f.write("from ID_map_icons import *\n\n")
 
+            f.write("no_menu = 0\n")
+            f.write("pt_none = 0\n")
+            f.write("pf_town = pf_is_static|pf_always_visible|pf_show_faction|pf_label_large\n")
+            f.write("pf_castle = pf_is_static|pf_always_visible|pf_show_faction|pf_label_medium\n")
+            f.write("pf_village = pf_is_static|pf_always_visible|pf_hide_defenders|pf_label_small\n\n")
+
             f.write("parties = [\n\n")
 
             for party in codeData:

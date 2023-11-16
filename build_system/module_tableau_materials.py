@@ -5,7 +5,7 @@ from header_tableau_materials import *
 from header_items import *
 from module_constants import *
 
-tableau_materials = [
+tableaus = [
 
 ("game_character_sheet", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532, [
 (store_script_param, ":troop_no", 1),

@@ -29,9 +29,10 @@ class PartyTemplateConverter(ScriptConverter):
             f.write("from ID_factions import *\n")
             f.write("from ID_map_icons import *\n\n")
 
+            f.write("no_menu = 0\n")
             f.write("pmf_is_prisoner = 0x0001\n\n")
 
-            f.write("parties = [\n\n")
+            f.write("party_templates = [\n\n")
 
             for partyTemp in codeData:
                 f.write("(\"" + partyTemp.id + "\", \"" + partyTemp.name + "\", ")
@@ -48,7 +49,7 @@ class PartyTemplateConverter(ScriptConverter):
 
                 f.write("[")
                 for stack in partyTemp.stacks:
-                    f.write("(" + stack[0] + "," + str(stack[1]) + "," + str(stack[2]) + ",")
+                    f.write("(trp_" + stack[0] + "," + str(stack[1]) + "," + str(stack[2]) + ",")
                     if stack[3]:
                         f.write("pmf_is_prisoner")
                     else:

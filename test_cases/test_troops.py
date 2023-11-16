@@ -37,3 +37,6 @@ npc2.add_flag(TroopFlag.GUARANTEE_ALL)
 # items
 npc2.add_item(itm.master_shield, [IModBit.CHAMPION, IModBit.GOOD])
 
+
+looter = Troop("looter", "Looter", faction="fac_commoners")
+

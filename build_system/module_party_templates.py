@@ -4,10 +4,11 @@ from ID_troops import *
 from ID_factions import *
 from ID_map_icons import *
 
+no_menu = 0
 pmf_is_prisoner = 0x0001
 
-parties = [
+party_templates = [
 
-("hunters", "Hunters", 0, no_menu, fac_neutral, 0, [(npc1,1,1,0),(npc2,1,2,0),]),
+("hunters", "Hunters", 0, no_menu, fac_neutral, 0, [(trp_npc1,1,1,0),(trp_npc2,1,2,0),]),
 
 ] # PARTY TEMPLATES END

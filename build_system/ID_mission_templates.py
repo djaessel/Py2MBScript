@@ -1,13 +1,1 @@
-mst_town_default = 0
-mst_conversation_encounter = 1
-mst_town_center = 2
-mst_village_center = 3
-mst_bandits_at_night = 4
-mst_village_training = 5
-mst_visit_town_castle = 6
-mst_lead_charge = 7
-mst_village_attack_bandits = 8
-mst_castle_visit = 9
-mst_sneak_caught_fight = 10
-mst_ai_training = 11
-mst_camera_test = 12
+mst_my_mission = 0

@@ -29,7 +29,7 @@ class DialogConverter(ScriptConverter):
             f.write("from ID_party_templates import *\n\n")
             f.write("from module_constants import *\n\n")
 
-            f.write("triggers = [\n\n")
+            f.write("dialogs = [\n\n")
 
             for dialog in codeData:
                 f.write("[" + dialog.dialog_partner + ", \"" + dialog.starting_state + "\", [")

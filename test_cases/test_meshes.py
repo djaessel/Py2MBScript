@@ -5,3 +5,5 @@ from mesh import Mesh
 
 mesh1 = Mesh("test_mesh", "test_mesh")
 
+mesh2 = Mesh("cb_ui_main", "cb_ui_main")
+

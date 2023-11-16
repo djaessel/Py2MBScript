@@ -1,7 +1,7 @@
 from header_skins import *
 from ID_particle_systems import *
 
-strings = [
+skins = [
 
 ("woman", 0,
 "woman_body", "woman_calf_l", "f_handL", "female_head",

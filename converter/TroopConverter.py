@@ -31,6 +31,7 @@ class TroopConverter(ScriptConverter):
             f.write("from header_items import *\n")
             f.write("from header_troops import *\n")
             f.write("from header_skills import *\n")
+            f.write("from module_items import *\n")
             f.write("from ID_factions import *\n")
             f.write("from ID_items import *\n")
             f.write("from ID_scenes import *\n\n")

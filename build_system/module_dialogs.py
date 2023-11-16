@@ -11,7 +11,7 @@ from ID_party_templates import *
 
 from module_constants import *
 
-triggers = [
+dialogs = [
 
 [anyone, "lord_pretalk", [], "Anything else?", "lord_talk", []],
 [anyone, "lord_talk", [

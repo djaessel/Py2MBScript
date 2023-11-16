@@ -6,6 +6,7 @@ from header_common import *
 from header_items import *
 from header_troops import *
 from header_skills import *
+from module_items import *
 from ID_factions import *
 from ID_items import *
 from ID_scenes import *
@@ -77,6 +78,14 @@ tf_female|tf_hero|tf_guarantee_all,
 no_scene,reserved,fac_player_faction,
 [(itm_master_shield, imodbit_champion|imodbits_good),],
 str_7|agi_5|int_4|cha_4|level(3),wpe(30,52,55,100),
+knows_common,
+man_face_middle_1,man_face_middle_1],
+
+["looter","Looter","Looter",
+0,
+no_scene,reserved,fac_commoners,
+[],
+str_7|agi_5|int_4|cha_4|level(1),wp(0),
 knows_common,
 man_face_middle_1,man_face_middle_1],
 

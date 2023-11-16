@@ -27,7 +27,7 @@ class TableauMaterialConverter(ScriptConverter):
             f.write("from header_items import *\n")
             f.write("from module_constants import *\n\n")
 
-            f.write("tableau_materials = [\n\n")
+            f.write("tableaus = [\n\n")
 
             # ("game_character_sheet", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532,
 

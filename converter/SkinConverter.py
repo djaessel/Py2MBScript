@@ -22,7 +22,7 @@ class SkinConverter(ScriptConverter):
         with open("./build_system/module_skins.py", "w") as f:            
             f.write("from header_skins import *\n")
             f.write("from ID_particle_systems import *\n\n")
-            f.write("strings = [\n\n")
+            f.write("skins = [\n\n")
 
             for skin in codeData:
                 f.write("(\"" + skin.id + "\", ")
