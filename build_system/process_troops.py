@@ -40,7 +40,8 @@ def save_troops():
 #    inventory_list.append(itm_bolts)
     for inventory_item in inventory_list:
 #      add_tag_use(tag_uses,tag_item,inventory_item)
-      file.write("%d 0 "%inventory_item)
+      file.write("%d "%inventory_item[0])
+      file.write("%d "%inventory_item[1])
     for i in range(64 - len(inventory_list)):
       file.write("-1 0 ")
     file.write("\n ")

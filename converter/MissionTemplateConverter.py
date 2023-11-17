@@ -69,6 +69,8 @@ class MissionTemplateConverter(ScriptConverter):
                         f.write("0")
                     f.write(", ")
 
+                    f.write(str(sr.number_of_troops) + ", ")
+
                     f.write("[")
                     if len(sr.equipment) > 0:
                         for item in sr.equipment:
