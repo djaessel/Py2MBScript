@@ -43,8 +43,7 @@ presentations = [
 
 (ti_on_presentation_run, [
 (try_begin),
-    (this_or_next|key_clicked, 0),
-    (key_clicked, ":key_x"),
+    (key_clicked, 0),
     (presentation_set_duration, 0),
 (try_end),
 ]),

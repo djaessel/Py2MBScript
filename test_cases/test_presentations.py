@@ -50,7 +50,7 @@ gameo.add_event(event)
 
 event = RunEvent()
 def event_code():
-    if key_clicked(0) or key_clicked(key_x):
+    if key_clicked(0): #or key_clicked(key_x):
         presentation_set_duration(0)
 event.codeBlock = event_code
 gameo.add_event(event)

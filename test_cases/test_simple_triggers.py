@@ -20,9 +20,11 @@ class Trigger2(SimpleTrigger):
                 print(versionx)
                 if versionx == 1011:
                     print("YES!")
+                    print(fishCount)
                 else:
                     print("Nope")
                     print("DOPE")
+                    print(waterLevel)
 
 
 

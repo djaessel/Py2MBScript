@@ -6,6 +6,9 @@
 from tableau_material import TableauMaterial
 
 
+tabMatT1 = TableauMaterial("troop_character_color", "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532)
+tabMatT2 = TableauMaterial("troop_character_alpha_mask", "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532)
+
 tabMat1 = TableauMaterial("game_character_sheet", "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532)
 
 def code(troop_no):

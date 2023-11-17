@@ -7,6 +7,12 @@ from module_constants import *
 
 tableaus = [
 
+("troop_character_color", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532, [
+]),
+
+("troop_character_alpha_mask", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532, [
+]),
+
 ("game_character_sheet", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 266, 532, [
 (store_script_param, ":troop_no", 1),
 (cur_tableau_set_background_color, 0xFF888888),

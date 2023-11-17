@@ -53,6 +53,8 @@ class TableauMaterialConverter(ScriptConverter):
                 #codeLines.pop(0)
                 codeLines = self.transformScriptBlock(codeLines)
                 codeLines.pop(0)
+                if len(codeLines) == 2:
+                    codeLines.pop(0)
                 self.writeScriptCode(f, codeLines)
 
             f.write("\n] # TABLEAU MATERIALS END\n")

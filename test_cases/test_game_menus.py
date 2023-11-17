@@ -16,7 +16,7 @@ class GameStartContinue(MenuOption):
         s0 = "Current gold: {reg13}"
         s1 = "Current xp: {reg12}"
         s2 = "str_yes"
-        jump_to_menu("mnu_start_game_1")
+        #jump_to_menu("mnu_start_game_1")
 
 #class GameStartGoBack(MenuOption):
 #    def consequenceBlock(self):
@@ -47,3 +47,6 @@ def condition():
 
 game_start_hack.conditionBlock = condition
 game_start_0.menuOptions.append(game_start_hack)
+
+
+
