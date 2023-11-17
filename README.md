@@ -8,7 +8,7 @@ For example the presentation module holds buttons, labels, etc. and, in the old 
 there are several lines and different, sometimes confusing codes to implement these.  
 
 For now this is only a test and kind of prove of concept trial.  
-In the "test-cases" folder you can write the python versions of the otherwise MBScript versions of the thing.  
+In the "test_cases" folder you can write the python versions of the otherwise MBScript versions of the thing.  
 Later on, once you run:
 
 ```
