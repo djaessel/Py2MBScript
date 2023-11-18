@@ -21,6 +21,8 @@ game_menus = [
 (str_store_string,s0,"@Current gold: {reg13}"),
 (str_store_string,s1,"@Current xp: {reg12}"),
 (str_store_string,s2,"str_yes"),
+(change_screen_return),
+(set_show_messages,1),
 ]),
 
 ("go_back", [

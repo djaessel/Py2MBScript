@@ -16,6 +16,8 @@ class GameStartContinue(MenuOption):
         s0 = "Current gold: {reg13}"
         s1 = "Current xp: {reg12}"
         s2 = "str_yes"
+        change_screen_return(0)
+        set_show_messages(1)
         #jump_to_menu("mnu_start_game_1")
 
 #class GameStartGoBack(MenuOption):
