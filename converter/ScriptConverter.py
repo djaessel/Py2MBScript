@@ -12,6 +12,7 @@ class ScriptConverter:
     cur_parties = dict()
     cur_options = dict()
     cur_items = dict()
+    cur_scripts = []
 
     # presentation overlays (maybe separate)
     prsnt_text_overlays = dict()
@@ -294,8 +295,19 @@ class ScriptConverter:
         elif "." in code:
             return self.handleDotSign(code)
         elif "(" in code and ")" in code:
-            liny = self.getFuncCodeLine(code)
-            liny = self.replaceFuncParams(liny, code.split(')')[0])
+            fName = code.split('(')[0]
+            fVars = code.split('(')[1].split(')')[0]
+            if fName in self.cur_scripts:
+                print(fName, fVars, "in scripts found!")
+                liny = "(call_script, \"script_" + fName + "\""
+                if len(fVars) > 0:
+                    for f in fVars.split(','):
+                        liny += ", " + f.strip()
+                liny += "),"
+                liny = self.replaceScriptParams(liny, fVars)
+            else:
+                liny = self.getFuncCodeLine(code)
+                liny = self.replaceFuncParams(liny, code.split(')')[0])
             return [liny]
 
         return [""] # ERROR 2 # ignored code
@@ -311,6 +323,15 @@ class ScriptConverter:
         if idx >= 0:
             del params[idx]
         return params
+
+
+    def replaceScriptParams(self, liny, vars):
+        actParams = self.findParams(vars, 0)
+        print(actParams)
+        for p in actParams:
+            liny = self.replaceVarWithPlaceholder(liny, p, p)
+            print(liny)
+        return liny
 
 
     def replaceFuncParams(self, liny, funcCall):
@@ -404,6 +425,8 @@ class ScriptConverter:
     def transformScriptLine(self, scriptLine):
         scriptLine = scriptLine.strip()[4:]
         scriptName = scriptLine.split('(')[0]
+        if not scriptName in self.cur_scripts:
+            self.cur_scripts.append(scriptName)
         scriptParams = scriptLine.split('(')[1].split(')')[0].split(',')
         b = ["(\"" + scriptName + "\", ["]
         if len(scriptParams[0].strip()) > 0:

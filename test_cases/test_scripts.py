@@ -28,7 +28,6 @@ def script1(waterLevel, fishCount):
     print("Hello World!")
 
 
-
 def helloWorld():
     optionx = MBOptions()
     ai_strength = optionx.get_campaign_ai()
@@ -44,6 +43,8 @@ def helloWorld():
     s0 = "LOL"
     if is_edit_mode_enabled():
         print("Strength:", ai_strength, "Water:", water, s0)
+    else:
+        script1(water, ai_strength)
 
 
 def loopy():

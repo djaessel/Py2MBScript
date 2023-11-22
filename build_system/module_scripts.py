@@ -75,6 +75,8 @@ scripts = [
     (assign, reg1, ":ai_strength"),
     (assign, reg3, ":water"),
     (display_message, "@Strength: {reg1} Water: {reg3} {s0}"),
+(else_try),
+    (call_script, "script_script1", ":water", ":ai_strength"),
 (try_end),
 ]),
 
