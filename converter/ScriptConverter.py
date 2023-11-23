@@ -298,7 +298,6 @@ class ScriptConverter:
             fName = code.split('(')[0]
             fVars = code.split('(')[1].split(')')[0]
             if fName in self.cur_scripts:
-                print(fName, fVars, "in scripts found!")
                 liny = "(call_script, \"script_" + fName + "\""
                 if len(fVars) > 0:
                     for f in fVars.split(','):
@@ -327,10 +326,8 @@ class ScriptConverter:
 
     def replaceScriptParams(self, liny, vars):
         actParams = self.findParams(vars, 0)
-        print(actParams)
         for p in actParams:
             liny = self.replaceVarWithPlaceholder(liny, p, p)
-            print(liny)
         return liny
 
 
