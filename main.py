@@ -4,6 +4,7 @@ import sys
 sys.path.append("./converter/")
 sys.path.append("./data_objects/")
 sys.path.append("./test_cases/")
+sys.path.append("./modules/")
 
 from ScriptConverter import ScriptConverter
 from SimpleTriggerConverter import SimpleTriggerConverter

@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from info_page import InfoPage
 
-import test_info_pages
+import info_pages
 
 
 class InfoPageConverter(ScriptConverter):
@@ -12,9 +12,9 @@ class InfoPageConverter(ScriptConverter):
 
     def retrieveInfoPages(self):
         infoPages = []
-        for i in vars(test_info_pages):
+        for i in vars(info_pages):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_info_pages,i)
+                attr = getattr(info_pages,i)
                 infoPages.append(attr)
         return infoPages
 

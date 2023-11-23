@@ -206,6 +206,7 @@
         "build_system/ID_strings.py",
         "build_system/ID_tableau_materials.py",
         "build_system/ID_troops.py",
-        "build_system/module.ini"
+        "build_system/module.ini",
+        "modules/info_pages.py"
     ]
 }
