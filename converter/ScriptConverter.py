@@ -317,7 +317,6 @@ class ScriptConverter:
                 liny += "),"
                 if len(fVars) > 0:
                     liny = self.replaceScriptParams(liny, fVars)
-                print(liny)
             else:
                 liny = self.getFuncCodeLine(code)
                 liny = self.replaceFuncParams(liny, code.split(')')[0])

@@ -4,6 +4,8 @@ from MBOptions import MBOptions
 from MBParty import MBParty
 from game_menu import GameMenu, MenuOption
 
+from test_scripts import *
+
 
 game_start_0 = GameMenu("start_game_0", 0,
 "Welcome adventurer, hopefully you will enjoy this new adventure through another world."
@@ -16,6 +18,7 @@ class GameStartContinue(MenuOption):
         s0 = "Current gold: {reg13}"
         s1 = "Current xp: {reg12}"
         s2 = "str_yes"
+        print(s0, s1, s2)
         helloWorld()
         change_screen_return(0)
         set_show_messages(1)

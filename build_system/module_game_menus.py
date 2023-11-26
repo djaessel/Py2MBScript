@@ -21,6 +21,7 @@ game_menus = [
 (str_store_string,s0,"@Current gold: {reg13}"),
 (str_store_string,s1,"@Current xp: {reg12}"),
 (str_store_string,s2,"str_yes"),
+(display_message, "@{s0} {s1} {s2}"),
 (call_script, "script_helloWorld"),
 (change_screen_return),
 (set_show_messages,1),
