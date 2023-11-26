@@ -8,8 +8,6 @@ import inspect
 import test_map_icons
 
 class MapIconConverter(ScriptConverter):
-    def __init__(self):
-        pass
 
     def retrieveMapIcons(self):
         mapIcons = []

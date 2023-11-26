@@ -1,5 +1,6 @@
 # This Python file uses the following encoding: utf-8
 
+import test_scripts
 
 class ScriptConverter:
     registers = []
@@ -32,6 +33,17 @@ class ScriptConverter:
 
         for i in range(64):#128
             self.pos_registers.append("pos" + str(i))
+
+        self.cur_scripts = self.retrieveScriptNames()
+
+
+    def retrieveScriptNames(self):
+        scriptNames = []
+        for i in vars(test_scripts):
+            if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
+                attr = getattr(test_scripts,i)
+                scriptNames.append(attr.__name__)
+        return scriptNames
 
 
     def is_float(self, v):
@@ -303,7 +315,9 @@ class ScriptConverter:
                     for f in fVars.split(','):
                         liny += ", " + f.strip()
                 liny += "),"
-                liny = self.replaceScriptParams(liny, fVars)
+                if len(fVars) > 0:
+                    liny = self.replaceScriptParams(liny, fVars)
+                print(liny)
             else:
                 liny = self.getFuncCodeLine(code)
                 liny = self.replaceFuncParams(liny, code.split(')')[0])
@@ -422,8 +436,6 @@ class ScriptConverter:
     def transformScriptLine(self, scriptLine):
         scriptLine = scriptLine.strip()[4:]
         scriptName = scriptLine.split('(')[0]
-        if not scriptName in self.cur_scripts:
-            self.cur_scripts.append(scriptName)
         scriptParams = scriptLine.split('(')[1].split(')')[0].split(',')
         b = ["(\"" + scriptName + "\", ["]
         if len(scriptParams[0].strip()) > 0:

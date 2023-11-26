@@ -21,6 +21,7 @@ game_menus = [
 (str_store_string,s0,"@Current gold: {reg13}"),
 (str_store_string,s1,"@Current xp: {reg12}"),
 (str_store_string,s2,"str_yes"),
+(call_script, "script_helloWorld"),
 (change_screen_return),
 (set_show_messages,1),
 ]),
@@ -37,6 +38,7 @@ game_menus = [
 ("hack", [
 (is_edit_mode_enabled),
 ], "I hacked it!", [
+(display_message, "@LOL"),
 ]),
 
 ]),

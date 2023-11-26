@@ -9,8 +9,6 @@ import test_items
 
 
 class ItemConverter(ScriptConverter):
-    def __init__(self):
-        pass
 
     def retrieveItems(self):
         items = []

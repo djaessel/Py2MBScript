@@ -6,8 +6,6 @@ import inspect
 import test_game_menus
 
 class GameMenuConverter(ScriptConverter):
-    def __init__(self):
-        pass
 
     def retrieveGameMenus(self):
         gameMenus = []
