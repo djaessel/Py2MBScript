@@ -16,6 +16,23 @@ from ID_animations import *
 
 scripts = [
 
+("game_get_use_string", [
+(store_script_param, ":instance_id", 1),
+(prop_instance_get_scene_prop_type, ":scene_prop_id", ":instance_id"),
+(try_begin),
+    (this_or_next|eq,":scene_prop_id","spr_winch_b"),
+    (eq,":scene_prop_id","spr_winch"),
+    (assign,":effected_object","spr_portcullis"),
+(else_try),
+    (this_or_next|eq,":scene_prop_id","spr_door_destructible"),
+    (this_or_next|eq,":scene_prop_id","spr_castle_f_door_b"),
+    (eq,":scene_prop_id","spr_siege_ladder_move_14m"),
+    (assign,":effected_object",":scene_prop_id"),
+(try_end),
+(assign, reg1, ":effected_object"),
+(display_message, "@Effected object: {reg1}"),
+]),
+
 ("script1", [
 (store_script_param, ":waterLevel", 1),
 (store_script_param, ":fishCount", 2),

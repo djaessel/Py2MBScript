@@ -4,6 +4,20 @@ from MBParty import MBParty
 from item import Item
 
 
+
+def game_get_use_string(instance_id):
+    scene_prop_id = prop_instance_get_scene_prop_kind(instance_id)
+
+    winches_list = ["spr_winch_b", "spr_winch"]
+    door_ladder_list = ["spr_door_destructible", "spr_castle_f_door_b", "spr_siege_ladder_move_14m"]
+    if scene_prop_id in winches_list:
+        effected_object = "spr_portcullis"
+    elif scene_prop_id in door_ladder_list:
+        effected_object = scene_prop_id
+    #end
+    print("Effected object:", effected_object)
+
+
 def script1(waterLevel, fishCount):
     versionx = get_operation_set_version()
     if versionx > 0 and versionx <= 1101:

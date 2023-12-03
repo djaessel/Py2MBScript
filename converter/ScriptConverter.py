@@ -8,6 +8,7 @@ class ScriptConverter:
     pos_registers = []
 
     codex = dict()
+    cur_lists = dict()
 
     cur_players = dict()
     cur_parties = dict()
@@ -73,6 +74,12 @@ class ScriptConverter:
                 liny = ""
             elif funcCall.startswith("Item("):
                 self.cur_items[varName] = funcCall.split(')')[0].split('(')[1] # should be string empty here
+                liny = ""
+            elif funcCall.startswith("[") and funcCall.endswith("]"):
+                lll = funcCall.split(']')[0].split('[')[1].split(',')
+                for i in range(len(lll)):
+                    lll[i] = lll[i].strip()
+                self.cur_lists[varName] = lll
                 liny = ""
             elif funcCall.startswith("MBTextOverlay("):
                 tmp = funcCall.split(')')[0].split('(')[1]
@@ -456,34 +463,47 @@ class ScriptConverter:
         return b
 
 
-    # TODO: actually count these and correctly check
-    def transformIfBlock(self, ifCode):
-        b = ["(try_begin)"]
-        conditionsLine = ifCode.lstrip()[3:].replace(" and ", " & ").replace(" or ", " | ")
+    def conditionalBlockHead(self, ifCode, b, startIndex=3):
+        conditionsLine = ifCode.lstrip()[startIndex:].replace(" and ", " & ").replace(" or ", " | ")
         conditionsLine = conditionsLine.split(':')[0]
 
         conditions = conditionsLine.split('&')
+
+        extra_conditions = []
+        for cond in conditions:
+            if " in " in cond:
+                tmp = cond.split(' in ')
+                varx = tmp[0].strip()
+                varName = tmp[1].strip()
+                vals = self.cur_lists[varName]
+                resx = ""
+                for v in vals:
+                    resx += varx + " == " + v + " |"
+                resx = resx.rstrip('|').rstrip()
+                extra_conditions.append(resx)
+
+        conditions.extend(extra_conditions)
+
         for cond in conditions:
             if "|" in cond:
                 condx = self.resolveOr(cond)
             else:
                 condx = self.resolveSimpleCondition(cond)
             b.extend(condx)
+
+        return b
+
+
+    # TODO: actually count these and correctly check
+    def transformIfBlock(self, ifCode):
+        b = ["(try_begin)"]
+        b = self.conditionalBlockHead(ifCode, b)
         return b
 
 
     def transformElseIfBlock(self, ifCode):
         b = ["(else_try)"]
-        conditionsLine = ifCode.lstrip()[5:].replace(" and ", " & ").replace(" or ", " | ")
-        conditionsLine = conditionsLine.split(':')[0]
-
-        conditions = conditionsLine.split('&')
-        for cond in conditions:
-            if "|" in cond:
-                condx = self.resolveOr(cond)
-            else:
-                condx = self.resolveSimpleCondition(cond)
-            b.extend(condx)
+        b = self.conditionalBlockHead(ifCode, b, 5)
         return b
 
 
