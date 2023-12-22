@@ -16,7 +16,7 @@ camp_bandits = MBParty("camp_bandits", "{!}camp_bandits", faction="fac_outlaws",
 camp_bandits.add_flag(PartyFlag.IS_DISABLED)
 #camp_bandits.add_members("trp_temp_troop", 3)
 
-test1 = MBParty("test_town", "Test Town", initial_cords=(120.4,57.3))
+test1 = MBParty("test_town", "Test Town", initial_cords=(12,20))
 test1.set_icon(icon.town)
 test1.add_flag(PartyFlag.IS_TOWN)
 test1.add_members("trp_looter", 20)
