@@ -43,9 +43,9 @@ if __name__ == "__main__":
     infoPager.writeScriptOutputFile(infoPages)
 
     # Module Strings
-    stringer = StringConverter()
-    strings = stringer.retrieveStrings()
-    stringer.writeScriptOutputFile(strings)
+    #stringer = StringConverter()
+    #strings = stringer.retrieveStrings()
+    #stringer.writeScriptOutputFile(strings)
 
     # Module Music
     musicer = MusicConverter()
@@ -53,9 +53,9 @@ if __name__ == "__main__":
     musicer.writeScriptOutputFile(music)
 
     # Module Meshes
-    mesher = MeshConverter()
-    meshes = mesher.retrieveMeshes()
-    mesher.writeScriptOutputFile(meshes)
+    #mesher = MeshConverter()
+    #meshes = mesher.retrieveMeshes()
+    #mesher.writeScriptOutputFile(meshes)
 
     # Module Sounds
     sounder = SoundConverter()
@@ -73,24 +73,24 @@ if __name__ == "__main__":
     scener.writeScriptOutputFile(scenes)
 
     # Module Particle System
-    psyser = ParticleSystemConverter()
-    psys = psyser.retrieveParticleSystems()
-    psyser.writeScriptOutputFile(psys)
+    #psyser = ParticleSystemConverter()
+    #psys = psyser.retrieveParticleSystems()
+    #psyser.writeScriptOutputFile(psys)
 
     # Module Skins
-    skinner = SkinConverter()
-    skins = skinner.retrieveSkins()
-    skinner.writeScriptOutputFile(skins)
+    #skinner = SkinConverter()
+    #skins = skinner.retrieveSkins()
+    #skinner.writeScriptOutputFile(skins)
 
     # Module Animations
-    animator = AnimationConverter()
-    anims = animator.retrieveAnimations()
-    animator.writeScriptOutputFile(anims)
+    #animator = AnimationConverter()
+    #anims = animator.retrieveAnimations()
+    #animator.writeScriptOutputFile(anims)
 
     # Module PostFX
-    postfxer = PostFXConverter()
-    postfx = postfxer.retrievePostFX()
-    postfxer.writeScriptOutputFile(postfx)
+    #postfxer = PostFXConverter()
+    #postfx = postfxer.retrievePostFX()
+    #postfxer.writeScriptOutputFile(postfx)
 
     # Module Quests
     quester = QuestConverter()
@@ -98,9 +98,9 @@ if __name__ == "__main__":
     quester.writeScriptOutputFile(quests)
 
     # Module Tableau Materials
-    tabMater = TableauMaterialConverter()
-    tabMats = tabMater.retrieveTableauMaterials()
-    tabMater.writeScriptOutputFile(tabMats)
+    #tabMater = TableauMaterialConverter()
+    #tabMats = tabMater.retrieveTableauMaterials()
+    #tabMater.writeScriptOutputFile(tabMats)
 
     # Module Scripts
     scripter = ScriptConverter()
@@ -134,14 +134,14 @@ if __name__ == "__main__":
     partier.writeScriptOutputFile(parties)
 
     # Module Game Menus
-    gameMenuer = GameMenuConverter()
-    gameMenus = gameMenuer.retrieveGameMenus()
-    gameMenuer.writeScriptOutputFile(gameMenus)
+    #gameMenuer = GameMenuConverter()
+    #gameMenus = gameMenuer.retrieveGameMenus()
+    #gameMenuer.writeScriptOutputFile(gameMenus)
 
     # Module Skills
-    skiller = SkillConverter()
-    skills = skiller.retrieveSkills()
-    skiller.writeScriptOutputFile(skills)
+    #skiller = SkillConverter()
+    #skills = skiller.retrieveSkills()
+    #skiller.writeScriptOutputFile(skills)
 
     # Module Items
     itemer = ItemConverter()

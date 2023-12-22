@@ -65,6 +65,30 @@ man_face_middle_1  = 0x0000000800000001124000000020000000000000001c0080000000000
 
 troops = [
 
+["player","Player","Player",
+tf_hero|tf_unmoveable_in_party_window,
+no_scene,reserved,fac_player_faction,
+[],
+str_4|agi_4|int_4|cha_4|level(1),wp(15),
+knows_common,
+0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000,],
+
+["multiplayer_profile_troop_female","multiplayer_profile_troop_female","multiplayer_profile_troop_female",
+tf_hero|tf_female|tf_guarantee_all,
+no_scene,reserved,fac_commoners,
+[],
+str_7|agi_5|int_4|cha_4|level(1),wp(15),
+knows_common,
+0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000,],
+
+["temp_troop","Temp Troop","Temp Troop",
+tf_hero,
+no_scene,reserved,fac_commoners,
+[],
+str_7|agi_5|int_4|cha_4|level(1),wp(0),
+knows_common|knows_inventory_management_10,
+0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000,],
+
 ["npc1","Peter","Peter",
 tf_male|tf_hero|tf_unkillable|tf_guarantee_all,
 no_scene,reserved,fac_player_faction,

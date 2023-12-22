@@ -1,1 +1,4 @@
-p_test_town = 0
+p_main_party = 0
+p_temp_party = 1
+p_camp_bandits = 2
+p_test_town = 3

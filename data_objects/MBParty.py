@@ -9,9 +9,6 @@ class MBParty:
     template_id = ""
     active = True
     slots = []
-    members = []
-    companions = []
-    prisoners = []
     flags = []
     marshall = ""
     leader = ""
@@ -35,6 +32,9 @@ class MBParty:
         self.target_party = "0"
         self.initial_cords = initial_cords
         self.direction = direction
+        self.members = []
+        self.companions = []
+        self.prisoners = []
 
 
     def can_join_party(self, host_party_id, flip_prisoners=False): # party_id_2
