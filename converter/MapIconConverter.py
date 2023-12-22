@@ -32,7 +32,7 @@ class MapIconConverter(ScriptConverter):
                 f.write("(\"" + mapIcon.id + "\", ")
 
                 if mapIcon.no_shadow:
-                    f.write("\"mcn_no_shadow\", ")
+                    f.write("mcn_no_shadow, ")
                 else:
                     f.write("0, ")
 

@@ -3,6 +3,7 @@
 from ScriptConverter import ScriptConverter
 
 from MBParty import MBParty
+from mapicon import MapIcon
 
 import test_parties
 
@@ -41,9 +42,11 @@ class PartyConverter(ScriptConverter):
             for party in codeData:
                 f.write("(\"" + party.id + "\", \"" + party.name + "\", ")
 
+                if party.icon != None and isinstance(party.icon, MapIcon):
+                    f.write("icon_" + party.icon.id + "|")
+
                 if len(party.flags) > 0:
-                    pass
-                    # TODO: write flags
+                    f.write("|".join(party.flags) + ", ")
                 else:
                     f.write("0, ")
 

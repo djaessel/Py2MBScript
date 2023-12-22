@@ -11,5 +11,7 @@ __banner_scale__ = 0.3
 __avatar_scale__ = 0.15
 
 
-mapicon1 = MapIcon("player", mesh_name="player", scale=0.15, sound=snd.sound1)
+player = MapIcon("player", mesh_name="player", scale=__avatar_scale__, sound=snd.sound2)
+town = MapIcon("town", mesh_name="map_town_a", no_shadow=True, scale=0.35)
+village = MapIcon("village", mesh_name="map_village_a", no_shadow=True, scale=0.45)
 
