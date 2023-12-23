@@ -70,4 +70,11 @@ reports_continue.consequenceBlock = conseq
 reports.menuOptions.append(reports_continue)
 
 
+town_menu = GameMenu("town", 0, "Town Test")
+
+town_leave = MenuOption("town_leave", "Leave...")
+town_leave.consequenceBlock = conseq
+town_menu.menuOptions.append(town_leave)
+
+
 

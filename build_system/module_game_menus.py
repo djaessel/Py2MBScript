@@ -54,4 +54,15 @@ game_menus = [
 ]),
 
 ]),
+("town", 0, 
+  "Town Test", 
+  "none", [
+],
+[
+("town_leave", [
+], "Leave...", [
+(change_screen_return),
+]),
+
+]),
 ]
