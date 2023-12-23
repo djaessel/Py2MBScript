@@ -134,14 +134,14 @@ if __name__ == "__main__":
     partier.writeScriptOutputFile(parties)
 
     # Module Game Menus
-    #gameMenuer = GameMenuConverter()
-    #gameMenus = gameMenuer.retrieveGameMenus()
-    #gameMenuer.writeScriptOutputFile(gameMenus)
+    gameMenuer = GameMenuConverter()
+    gameMenus = gameMenuer.retrieveGameMenus()
+    gameMenuer.writeScriptOutputFile(gameMenus)
 
     # Module Skills
-    #skiller = SkillConverter()
-    #skills = skiller.retrieveSkills()
-    #skiller.writeScriptOutputFile(skills)
+    skiller = SkillConverter()
+    skills = skiller.retrieveSkills()
+    skiller.writeScriptOutputFile(skills)
 
     # Module Items
     itemer = ItemConverter()

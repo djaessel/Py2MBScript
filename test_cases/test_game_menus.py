@@ -59,4 +59,15 @@ game_start_hack.consequenceBlock = consequence
 game_start_0.menuOptions.append(game_start_hack)
 
 
+reports = GameMenu("reports", 0, "Reports test")
+
+reports_continue = MenuOption("continue", "Continue...")
+
+def conseq():
+    change_screen_return()
+
+reports_continue.consequenceBlock = conseq
+reports.menuOptions.append(reports_continue)
+
+
 

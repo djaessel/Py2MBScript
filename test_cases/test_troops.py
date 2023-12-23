@@ -2,9 +2,10 @@
 
 import sys
 sys.path.append("../data_objects/")
+sys.path.append("../modules/")
 
 from troop import Troop, TroopFlag
-import test_skills as skl
+import skills as skl
 import test_items as itm
 from test_items import IModBit
 
@@ -27,7 +28,7 @@ multiplayer_profile_troop_male.add_flag(TroopFlag.GUARANTEE_ALL)
 
 temp_troop = Troop("temp_troop", "Temp Troop", faction="fac_commoners", face_code_1="0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000", face_code_2="")
 temp_troop.add_flag(TroopFlag.IS_HERO)
-temp_troop.add_skill(skl.inventory_mgmt, 10)
+temp_troop.add_skill(skl.inventory_management, 10)
 
 
 
@@ -55,7 +56,7 @@ npc2.add_flag(TroopFlag.IS_FEMALE)
 npc2.add_flag(TroopFlag.IS_HERO)
 npc2.add_flag(TroopFlag.GUARANTEE_ALL)
 # skills
-#npc2.add_skill(skl.inventory_mgmt, 8)
+#npc2.add_skill(skl.inventory_management, 8)
 # items
 npc2.add_item(itm.master_shield, [IModBit.CHAMPION, IModBit.GOOD])
 

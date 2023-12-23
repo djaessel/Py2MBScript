@@ -28,7 +28,7 @@ class SkinConverter(ScriptConverter):
                 f.write("(\"" + skin.id + "\", ")
 
                 if len(skin.flags) > 0:
-                    print(skin.flags)
+                    f.write("|".join(skin.flags) + ",\n")
                 else:
                     f.write("0,\n")
 

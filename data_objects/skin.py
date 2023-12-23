@@ -6,6 +6,17 @@ from particle_system import ParticleSystem
 from sound import Sound
 
 
+class SkinFlag(Enum):
+    USE_MORPH_KEY_10 = "skf_use_morph_key_10"
+    USE_MORPH_KEY_20 = "skf_use_morph_key_20"
+    USE_MORPH_KEY_30 = "skf_use_morph_key_30"
+    USE_MORPH_KEY_40 = "skf_use_morph_key_40"
+    USE_MORPH_KEY_50 = "skf_use_morph_key_50"
+    USE_MORPH_KEY_60 = "skf_use_morph_key_60"
+    USE_MORPH_KEY_70 = "skf_use_morph_key_70"
+
+
+
 class Voice(Enum):
     DIE = "voice_die"       # = 0
     HIT = "voice_hit"       # = 1
@@ -87,6 +98,31 @@ class Skin:
         self.face_textures = []
         self.voices = []
         self.face_key_constraints = []
+
+
+    def add_flag(self, flag : SkinFlag):
+        if not self.contains_flag(flag):
+            self.flags.append(flag.value)
+
+
+    def contains_flag(self, flag : SkinFlag):
+        contains = False
+        for x in self.flags:
+            if x == flag.value:
+                contains = True
+                break
+        return contains
+
+
+    def remove_flag(self, flag : SkinFlag):
+        if self.contains_flag(flag):
+            remi = -1
+            for i, f in enumerate(self.flags):
+                if f == flag.value:
+                    remi = i
+                    break
+            if remi >= 0:
+                del self.flags[remi]
 
 
     def addFaceKey(self, faceKey : FaceKey):

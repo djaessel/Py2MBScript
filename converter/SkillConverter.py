@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from skill import Skill
 
-import test_skills
+import skills
 
 
 class SkillConverter(ScriptConverter):
@@ -12,9 +12,9 @@ class SkillConverter(ScriptConverter):
 
     def retrieveSkills(self):
         triggers = []
-        for i in vars(test_skills):
+        for i in vars(skills):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_skills,i)
+                attr = getattr(skills,i)
                 triggers.append(attr)
         return triggers
 
@@ -33,6 +33,6 @@ class SkillConverter(ScriptConverter):
                     f.write("0")
                 f.write(",")
 
-                f.write(str(skill.max_level) + ",\"" + skill.description + "\"),\n\n")
+                f.write(str(skill.max_level) + ",\"" + skill.description + "\"),\n")
 
             f.write("]\n")

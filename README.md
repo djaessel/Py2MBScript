@@ -30,8 +30,6 @@ The following modules are currently not active:
 * Animations
 * PostFX
 * Tableau Materials
-* Game Menus
-* Skills
   
 The reason for this is, that otherwise they would only have test values for now.   
 And without actual correct values the Mod won't even start in a correct way.  
