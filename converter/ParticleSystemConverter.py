@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from particle_system import ParticleSystem
 
-import test_particle_systems
+import particle_systems
 
 class ParticleSystemConverter(ScriptConverter):
     def __init__(self):
@@ -11,9 +11,9 @@ class ParticleSystemConverter(ScriptConverter):
 
     def retrieveParticleSystems(self):
         psys = []
-        for i in vars(test_particle_systems):
+        for i in vars(particle_systems):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_particle_systems,i)
+                attr = getattr(particle_systems,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "SimpleTrigger" in str(attr):
                     psys.append(attr)
         return psys

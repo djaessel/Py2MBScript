@@ -43,7 +43,7 @@ presentations = [
 
 (ti_on_presentation_run, [
 (try_begin),
-    (key_clicked, 0),
+    (key_clicked, 0x01),
     (presentation_set_duration, 0),
 (try_end),
 ]),

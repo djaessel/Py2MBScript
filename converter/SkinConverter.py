@@ -2,21 +2,21 @@
 from ScriptConverter import ScriptConverter
 from skin import Skin
 
-import test_skins
+import skins
 
 class SkinConverter(ScriptConverter):
     def __init__(self):
         pass
 
     def retrieveSkins(self):
-        skins = []
-        for i in vars(test_skins):
+        skinsx = []
+        for i in vars(skins):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_skins,i)
+                attr = getattr(skins,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "ParticleSystem" in str(attr) and not "Sound" in str(attr):
                     if not "FaceTexture" in str(attr):
-                        skins.append(attr)
-        return skins
+                        skinsx.append(attr)
+        return skinsx
 
     def writeScriptOutputFile(self, codeData : list[Skin]):
         with open("./build_system/module_skins.py", "w") as f:            

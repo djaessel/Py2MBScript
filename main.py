@@ -43,9 +43,9 @@ if __name__ == "__main__":
     infoPager.writeScriptOutputFile(infoPages)
 
     # Module Strings
-    #stringer = StringConverter()
-    #strings = stringer.retrieveStrings()
-    #stringer.writeScriptOutputFile(strings)
+    stringer = StringConverter()
+    strings = stringer.retrieveStrings()
+    stringer.writeScriptOutputFile(strings)
 
     # Module Music
     musicer = MusicConverter()
@@ -73,14 +73,14 @@ if __name__ == "__main__":
     scener.writeScriptOutputFile(scenes)
 
     # Module Particle System
-    #psyser = ParticleSystemConverter()
-    #psys = psyser.retrieveParticleSystems()
-    #psyser.writeScriptOutputFile(psys)
+    psyser = ParticleSystemConverter()
+    psys = psyser.retrieveParticleSystems()
+    psyser.writeScriptOutputFile(psys)
 
     # Module Skins
-    #skinner = SkinConverter()
-    #skins = skinner.retrieveSkins()
-    #skinner.writeScriptOutputFile(skins)
+    skinner = SkinConverter()
+    skins = skinner.retrieveSkins()
+    skinner.writeScriptOutputFile(skins)
 
     # Module Animations
     #animator = AnimationConverter()

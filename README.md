@@ -22,11 +22,9 @@ Then you can simply run the build bat or python3 version of it (yes Python3) and
     
   
 # Info  
-The following modules are currently not active:  
-* Strings
+The following modules are currently not active and have preset code:  
 * Meshes
-* Partice System
-* Skins
+* Particle System
 * Animations
 * PostFX
 * Tableau Materials
