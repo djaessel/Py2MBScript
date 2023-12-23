@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # This Python file uses the following encoding: utf-8
 import sys
 
@@ -53,9 +54,9 @@ if __name__ == "__main__":
     musicer.writeScriptOutputFile(music)
 
     # Module Meshes
-    #mesher = MeshConverter()
-    #meshes = mesher.retrieveMeshes()
-    #mesher.writeScriptOutputFile(meshes)
+    mesher = MeshConverter()
+    meshes = mesher.retrieveMeshes()
+    mesher.writeScriptOutputFile(meshes)
 
     # Module Sounds
     sounder = SoundConverter()
@@ -88,9 +89,9 @@ if __name__ == "__main__":
     #animator.writeScriptOutputFile(anims)
 
     # Module PostFX
-    #postfxer = PostFXConverter()
-    #postfx = postfxer.retrievePostFX()
-    #postfxer.writeScriptOutputFile(postfx)
+    postfxer = PostFXConverter()
+    postfx = postfxer.retrievePostFX()
+    postfxer.writeScriptOutputFile(postfx)
 
     # Module Quests
     quester = QuestConverter()
@@ -98,9 +99,9 @@ if __name__ == "__main__":
     quester.writeScriptOutputFile(quests)
 
     # Module Tableau Materials
-    #tabMater = TableauMaterialConverter()
-    #tabMats = tabMater.retrieveTableauMaterials()
-    #tabMater.writeScriptOutputFile(tabMats)
+    tabMater = TableauMaterialConverter()
+    tabMats = tabMater.retrieveTableauMaterials()
+    tabMater.writeScriptOutputFile(tabMats)
 
     # Module Scripts
     scripter = ScriptConverter()

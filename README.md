@@ -23,11 +23,7 @@ Then you can simply run the build bat or python3 version of it (yes Python3) and
   
 # Info  
 The following modules are currently not active and have preset code:  
-* Meshes
-* Particle System
 * Animations
-* PostFX
-* Tableau Materials
   
 The reason for this is, that otherwise they would only have test values for now.   
 And without actual correct values the Mod won't even start in a correct way.  
