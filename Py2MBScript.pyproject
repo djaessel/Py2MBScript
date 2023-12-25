@@ -213,6 +213,17 @@
         "modules/skins.py",
         "modules/skills.py",
         "modules/scripts.py",
-        "modules/game_menus.py"
+        "modules/game_menus.py",
+        "modules/factions.py",
+        "modules/dialogs.py",
+        "modules/map_icons.py",
+        "modules/meshes.py",
+        "modules/musics.py",
+        "modules/parties.py",
+        "modules/postfxs.py",
+        "modules/simple_triggers.py",
+        "modules/strings.py",
+        "modules/triggers.py",
+        "modules/troops.py"
     ]
 }

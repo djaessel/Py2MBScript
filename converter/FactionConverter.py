@@ -3,23 +3,23 @@
 from ScriptConverter import ScriptConverter
 from faction import Faction
 
-import test_factions
+import factions
 
 class FactionConverter(ScriptConverter):
     def __init__(self):
         pass
 
     def createCode(self):
-        factions = self.retrieveFactions()
-        self.writeScriptOutputFile(factions)
+        factionsx = self.retrieveFactions()
+        self.writeScriptOutputFile(factionsx)
 
     def retrieveFactions(self):
-        factions = []
-        for i in vars(test_factions):
+        factionsx = []
+        for i in vars(factions):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_factions,i)
-                factions.append(attr)
-        return factions
+                attr = getattr(factions,i)
+                factionsx.append(attr)
+        return factionsx
 
     def writeScriptOutputFile(self, codeData : list[Faction]):
         with open("./build_system/module_factions.py", "w") as f:

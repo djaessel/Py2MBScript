@@ -4,12 +4,10 @@ from TriggerConverter import TriggerConverter
 from simple_trigger import SimpleTrigger
 
 import inspect
-import test_simple_triggers
+import simple_triggers
 
 
 class SimpleTriggerConverter(ScriptConverter):
-    def __init__(self):
-        pass
 
     def createCode(self):
         simpleTriggers = self.retrieveTriggers()
@@ -17,9 +15,9 @@ class SimpleTriggerConverter(ScriptConverter):
 
     def retrieveTriggers(self):
         simpleTriggers = []
-        for i in vars(test_simple_triggers):
+        for i in vars(simple_triggers):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_simple_triggers,i)
+                attr = getattr(simple_triggers,i)
                 simpleTriggers.append(attr)
         return simpleTriggers
 

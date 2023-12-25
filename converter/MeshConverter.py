@@ -4,23 +4,23 @@ from ScriptConverter import ScriptConverter
 from typing import List
 from mesh import Mesh
 
-import test_meshes
+import meshes
 
 class MeshConverter(ScriptConverter):
     def __init__(self):
         pass
 
     def createCode(self):
-        meshes = self.retrieveMeshes()
-        self.writeScriptOutputFile(meshes)
+        meshesx = self.retrieveMeshes()
+        self.writeScriptOutputFile(meshesx)
 
     def retrieveMeshes(self):
-        meshes = []
-        for i in vars(test_meshes):
+        meshesx = []
+        for i in vars(meshes):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_meshes,i)
-                meshes.append(attr)
-        return meshes
+                attr = getattr(meshes,i)
+                meshesx.append(attr)
+        return meshesx
 
     def writeScriptOutputFile(self, codeData : List[Mesh]):
         with open("./build_system/module_meshes.py", "w") as f:

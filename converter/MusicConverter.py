@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from music import MusicTrack
 
-import test_music
+import musics
 
 
 class MusicConverter(ScriptConverter):
@@ -11,14 +11,14 @@ class MusicConverter(ScriptConverter):
         pass
 
     def createCode(self):
-        music = self.retrieveTracks()
-        self.writeScriptOutputFile(music)
+        tracks = self.retrieveTracks()
+        self.writeScriptOutputFile(tracks)
 
     def retrieveTracks(self):
         tracks = []
-        for i in vars(test_music):
+        for i in vars(musics):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_music,i)
+                attr = getattr(musics,i)
                 tracks.append(attr)
         return tracks
 

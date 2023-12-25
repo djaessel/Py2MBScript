@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from troop import Troop
 
-import test_troops
+import troops
 
 
 class TroopConverter(ScriptConverter):
@@ -11,19 +11,19 @@ class TroopConverter(ScriptConverter):
         pass
 
     def createCode(self):
-        troops = self.retrieveTroops()
-        self.writeScriptOutputFile(troops)
+        troopsx = self.retrieveTroops()
+        self.writeScriptOutputFile(troopsx)
 
     def retrieveTroops(self):
-        troops = []
-        for i in vars(test_troops):
+        troopsx = []
+        for i in vars(troops):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_troops,i)
+                attr = getattr(troops,i)
                 sx = str(attr)
                 if not "<function" in sx and not "<module" in sx and not "Skill" in sx and not "MB" in sx and not "Item" in sx:
                     if not "SimpleTrigger" in sx:
-                        troops.append(attr)
-        return troops
+                        troopsx.append(attr)
+        return troopsx
 
     def writeScriptOutputFile(self, codeData : list[Troop]):
         with open("./build_system/module_troops.py", "w") as f:

@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from MBString import MBString
 
-import test_strings
+import strings
 
 
 class StringConverter(ScriptConverter):
@@ -11,16 +11,16 @@ class StringConverter(ScriptConverter):
         pass
 
     def createCode(self):
-        strings = self.retrieveStrings()
-        self.writeScriptOutputFile(strings)
+        stringsx = self.retrieveStrings()
+        self.writeScriptOutputFile(stringsx)
 
     def retrieveStrings(self):
-        strings = []
-        for i in vars(test_strings):
+        stringsx = []
+        for i in vars(strings):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_strings,i)
-                strings.append(attr)
-        return strings
+                attr = getattr(strings,i)
+                stringsx.append(attr)
+        return stringsx
 
     def writeScriptOutputFile(self, codeData : list[MBString]):
         with open("./build_system/module_strings.py", "w") as f:

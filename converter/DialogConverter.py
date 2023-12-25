@@ -3,22 +3,22 @@ from ScriptConverter import ScriptConverter
 from dialog import Dialog
 
 import inspect
-import test_dialogs
+import dialogs
 
 class DialogConverter(ScriptConverter):
 
     def createCode(self):
-        dialogs = self.retrieveDialogs()
-        self.writeScriptOutputFile(dialogs)
+        dialogsx = self.retrieveDialogs()
+        self.writeScriptOutputFile(dialogsx)
 
     def retrieveDialogs(self):
-        dialogs = []
-        for i in vars(test_dialogs):
+        dialogsx = []
+        for i in vars(dialogs):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_dialogs,i)
+                attr = getattr(dialogs,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "ItemMesh" in str(attr) and not "SimpleTrigger" in str(attr):
-                    dialogs.append(attr)
-        return dialogs
+                    dialogsx.append(attr)
+        return dialogsx
 
     def writeScriptOutputFile(self, codeData : list[Dialog]):
         with open("./build_system/module_dialogs.py", "w") as f:

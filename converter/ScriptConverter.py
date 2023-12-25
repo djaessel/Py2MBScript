@@ -443,6 +443,8 @@ class ScriptConverter:
             if len(varname) > 1:
                 if varname[1] != "_":
                     line = line.replace(placeholder, "\":::" + varname[1:] + "\"")
+            else:
+                line = line.replace(placeholder, "\":unused\"")
         else:
             line = line.replace(placeholder, "\":" + varname + "\"")
         return line

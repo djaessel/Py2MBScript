@@ -5,7 +5,7 @@ from TriggerConverter import TriggerConverter
 from mapicon import MapIcon
 
 import inspect
-import test_map_icons
+import map_icons
 
 class MapIconConverter(ScriptConverter):
 
@@ -15,9 +15,9 @@ class MapIconConverter(ScriptConverter):
 
     def retrieveMapIcons(self):
         mapIcons = []
-        for i in vars(test_map_icons):
+        for i in vars(map_icons):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_map_icons,i)
+                attr = getattr(map_icons,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "SimpleTrigger" in str(attr):
                     mapIcons.append(attr)
         return mapIcons

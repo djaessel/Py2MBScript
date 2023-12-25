@@ -13,10 +13,6 @@ from module_constants import *
 
 dialogs = [
 
-[anyone, "start", [], "Hi there!", "lord_pretalk", []],
-[anyone, "lord_pretalk", [], "Anything else?", "lord_talk", []],
-[anyone, "lord_talk", [
-(eq,"$g_talk_troop_faction","fac_player_supporters_faction"),
-], "I want to give some troops to you.", "lord_give_troops", []],
-[anyone, "lord_give_troops", [], "Here, have these troops!", "close_window", []],
+[anyone, "start", [], "Hi there!", "hello_world", []],
+[anyone, "hello_world", [], "Hi!", "close_window", []],
 ] # DIALOGS END

@@ -3,25 +3,23 @@ from ScriptConverter import ScriptConverter
 from trigger import Trigger
 
 import inspect
-import test_triggers
+import triggers
 import header_triggers
 
 
 class TriggerConverter(ScriptConverter):
-    def __init__(self):
-        pass
 
     def createCode(self):
-        triggerers = self.retrieveTriggers()
-        self.writeScriptOutputFile(triggerers)
+        triggersx = self.retrieveTriggers()
+        self.writeScriptOutputFile(triggersx)
 
     def retrieveTriggers(self):
-        triggers = []
-        for i in vars(test_triggers):
+        triggersx = []
+        for i in vars(triggers):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_triggers,i)
-                triggers.append(attr)
-        return triggers
+                attr = getattr(triggers,i)
+                triggersx.append(attr)
+        return triggersx
 
     @staticmethod
     def retrieveCorrectTrigger(interval : float) -> str:

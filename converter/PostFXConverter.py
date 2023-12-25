@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from postfx import PostFX
 
-import test_postfx
+import postfxs
 
 class PostFXConverter(ScriptConverter):
     def __init__(self):
@@ -15,9 +15,9 @@ class PostFXConverter(ScriptConverter):
 
     def retrievePostFX(self):
         post_fx = []
-        for i in vars(test_postfx):
+        for i in vars(postfxs):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_postfx,i)
+                attr = getattr(postfxs,i)
                 if not "<function" in str(attr) and not "<module" in str(attr):
                     post_fx.append(attr)
         return post_fx
