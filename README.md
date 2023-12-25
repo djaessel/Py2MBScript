@@ -13,7 +13,7 @@ In the "test_cases" folder you can write the python versions of the otherwise MB
   
 Later on, once you run:
 
-```
+```bash
 python -B main.py
 ```  
 your python code will be translated into good ol' MBScript style of code (if all goes well for now).  
@@ -30,7 +30,7 @@ And without actual correct values the Mod won't even start in a correct way.
   
 If you still want to activate it, you can uncomment the line in **main.py**:
 
-```
+```python
     # AnimationConverter().createCode()
 ```
   
@@ -55,7 +55,7 @@ Otherwise it might take ages for me to translate all code into python(-like)-cod
 
 ## Quick Start
 If you want to directly compile the MBScript code when you run "main.py", simply run the following code:  
-```
+```bash
 python -B main.py --build
 ```
 
@@ -75,7 +75,7 @@ When in MBScript you would have to put them as the first argument of a function 
 you can simply put them like you might be used to from python functions.  
   
 Example:
-```
+```python
 # ...
  
 def myScript():
@@ -88,7 +88,7 @@ def myScript():
 You can also use local variables as function parameters and they will automatically be transformed internally.
 
 Example:
-```
+```python
 # ...
  
 def version_handling(game_version):
@@ -115,7 +115,7 @@ Some of this is not fully working at the moment, but might already make things b
 
 ### FYI
 The above scripts are currently translated into the following MBScript code that will run later on:
-```
+```python
 # ...
  
 ("version_handling", [
@@ -145,7 +145,7 @@ But be warned, as soon as you execute **main.py** again, all will be overwritten
 So make sure, to comment out the modules inside **main.py** you dont want to be changed.  
   
 Here you can see how to comment out the scripts section:
-```
+```python
 # ...
  
 # Module Scripts
