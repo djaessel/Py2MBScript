@@ -32,6 +32,15 @@ And without actual correct values the Mod won't even start in a correct way.
   
 If you still want to activate them, you can go into main.py and uncomment the three lines below the # Module xyz line.  
 In the future these will be activated again, once the code is equal to the necessary code for the Mod to run.  
+  
+### Important
+This is early access and many things might change over time.  
+It is also worth noting, that this module system is completely empty.  
+Which means, that besides that current test and minimal support codes all is up to you!  
+You could write a complete new game with this, but maybe not a good one at the current state.  
+If you want to add upon the native module system, you might want to check out something else for now.  
+Or you could add the native codes yourself, if you want and help me translate it.  
+Otherwise it might take ages for me to translate all code into python(-like)-code.
 
 
 ## How it works  
