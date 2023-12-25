@@ -26,6 +26,17 @@ game_menus = [
 ]),
 
 ]),
+("welcome_menu", 0, 
+  "Welcome on the map!", 
+  "none", [
+],
+[
+("continue", [
+], "Continue...", [
+(change_screen_return),
+]),
+
+]),
 ("start_game_1", 0, 
   "Select your skin.", 
   "none", [

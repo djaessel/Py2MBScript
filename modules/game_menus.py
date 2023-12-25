@@ -32,6 +32,17 @@ game_start_go_back.consequenceBlock = game_start_go_back_conseq
 game_start_0.menuOptions.append(game_start_go_back)
 
 
+
+# the second menu will always be used for display on the map after all is done, for some reason
+welcome_menu = GameMenu("welcome_menu", 0, "Welcome on the map!")
+welcome_menu_continue = MenuOption("continue", "Continue...")
+def conseq():
+    change_screen_return()
+welcome_menu_continue.consequenceBlock = conseq
+welcome_menu.menuOptions.append(welcome_menu_continue)
+
+
+
 #("start_game_1",menu_text_color(0xFF000000)|mnf_disable_all_keys,
 game_start_1 = GameMenu("start_game_1", 0, "Select your skin.")
 game_start_1_male = MenuOption("start_male", "Skin1 | Male")
