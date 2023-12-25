@@ -18,6 +18,9 @@ scripts = [
 
 ("game_start", [
 (display_message, "@Hello world!"),
+(set_spawn_radius,1),
+(spawn_around_party,"p_main_party","pt_hunters"),
+(party_set_ai_behavior,reg0,0),
 ]),
 
 ("game_event_party_encounter", [

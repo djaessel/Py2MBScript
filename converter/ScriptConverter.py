@@ -185,6 +185,12 @@ class ScriptConverter:
                     sx += "{" + d + "} "
                 elif d.startswith('"') and d.endswith('"'):
                     sx += d.strip('"') + " "
+                elif d in self.pos_registers:
+                    b.append(self.replaceVarWithPlaceholder("(position_get_x, reg" + str(68+i) + ", <placeholder>)", "<placeholder>", d))
+                    b.append(self.replaceVarWithPlaceholder("(position_get_y, reg" + str(68+i+1) + ", <placeholder>)", "<placeholder>", d))
+                    b.append(self.replaceVarWithPlaceholder("(position_get_z, reg" + str(68+i+2) + ", <placeholder>)", "<placeholder>", d))
+                    idx = self.pos_registers.index(d)
+                    sx += "Pos" + str(idx) + " :[{reg"+str(68+i)+"}, {reg"+str(68+i+1)+"}, {reg"+str(68+i+2)+"}] "
                 else:
                     b.append(self.replaceVarWithPlaceholder("(assign, reg" + str(i)+ ", <placeholder>)", "<placeholder>", d))
                     sx += "{reg" + str(i) + "} "
@@ -198,6 +204,13 @@ class ScriptConverter:
             pseudoCode = code.split('(')[1].split(')')[0]
             if pseudoCode in self.str_registers or pseudoCode in self.registers:
                 b = ["(display_message, \"@{" + pseudoCode + "}\")"]
+            elif pseudoCode in self.pos_registers:
+                b = []
+                b.append(self.replaceVarWithPlaceholder("(position_get_x, reg66, <placeholder>)", "<placeholder>", pseudoCode))
+                b.append(self.replaceVarWithPlaceholder("(position_get_y, reg67, <placeholder>)", "<placeholder>", pseudoCode))
+                b.append(self.replaceVarWithPlaceholder("(position_get_z, reg68, <placeholder>)", "<placeholder>", pseudoCode))
+                idx = self.pos_registers.index(pseudoCode)
+                b.append("(display_message, \"@Pos" + str(idx) + " :[{reg60}, {reg61}, {reg62}]\")")
             else:
                 b = [self.replaceVarWithPlaceholder("(assign, reg0, <placeholder>)", "<placeholder>", pseudoCode)]
                 b.append("(display_message, \"@{reg0}\")")
@@ -358,6 +371,7 @@ class ScriptConverter:
         actParams = self.findParams(funcCall.split('(')[1], 0)
         for i in range(len(params)):
             if (not "[" in params[i] and not "]" in params[i]) or ("[" in params[i] and "]" in params[i] and len(actParams) > i):
+                # print(liny, params, len(params), len(actParams), actParams)
                 liny = self.replaceVarWithPlaceholder(liny, params[i], actParams[i])
             else:
                 # print("Ignored optional parameter:", params[i], "|", funcCall, "|", liny)
@@ -544,6 +558,12 @@ class ScriptConverter:
         return b
 
 
+    def transformForPartiesBlock(self, code):
+        b = ["(try_for_parties, <var1>)"]
+        b[0] = self.replaceVarWithPlaceholder(b[0], "<var1>", code[4:code.index(' in ')])
+        return b
+
+
     def transformScriptBlock(self, codeBlock : list):
         lastScriptIdx = -1
 
@@ -570,7 +590,10 @@ class ScriptConverter:
                 coy = self.transformElseBlock(code)
             elif code.startswith("for "):
                 self.fixIndentionProblem(allCodes, ifCl, inlineIndentCount, code)
-                coy = self.transformForBlock(code)
+                if " in __all_parties__:" in code:
+                    coy = self.transformForPartiesBlock(code)
+                else:
+                    coy = self.transformForBlock(code)
                 ifCl.append((inlineIndentCount, code))
             elif code.startswith("try:"):
                 self.fixIndentionProblem(allCodes, ifCl, inlineIndentCount, code)
