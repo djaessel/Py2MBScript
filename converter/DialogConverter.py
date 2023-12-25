@@ -6,6 +6,11 @@ import inspect
 import test_dialogs
 
 class DialogConverter(ScriptConverter):
+
+    def createCode(self):
+        dialogs = self.retrieveDialogs()
+        self.writeScriptOutputFile(dialogs)
+
     def retrieveDialogs(self):
         dialogs = []
         for i in vars(test_dialogs):

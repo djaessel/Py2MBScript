@@ -10,6 +10,10 @@ class InfoPageConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        infoPages = self.retrieveInfoPages()
+        self.writeScriptOutputFile(infoPages)
+
     def retrieveInfoPages(self):
         infoPages = []
         for i in vars(info_pages):

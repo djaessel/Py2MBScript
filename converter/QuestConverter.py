@@ -9,6 +9,10 @@ class QuestConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        quests = self.retrieveQuests()
+        self.writeScriptOutputFile(quests)
+
     def retrieveQuests(self):
         quests = []
         for i in vars(test_quests):

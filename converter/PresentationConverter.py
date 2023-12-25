@@ -8,8 +8,10 @@ import inspect
 import test_presentations
 
 class PresentationConverter(ScriptConverter):
-    def __init__(self):
-        pass
+
+    def createCode(self):
+        presentations = self.retrievePresentations()
+        self.writeScriptOutputFile(presentations)
 
     def retrievePresentations(self):
         presentations = []

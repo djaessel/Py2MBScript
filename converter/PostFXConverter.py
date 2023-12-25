@@ -9,6 +9,10 @@ class PostFXConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        postfx = self.retrievePostFX()
+        self.writeScriptOutputFile(postfx)
+
     def retrievePostFX(self):
         post_fx = []
         for i in vars(test_postfx):

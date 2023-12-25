@@ -9,6 +9,10 @@ class SceneConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        scenes = self.retrieveScenes()
+        self.writeScriptOutputFile(scenes)
+
     def retrieveScenes(self):
         scenes = []
         for i in vars(test_scenes):

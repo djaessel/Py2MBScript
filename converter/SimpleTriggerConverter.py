@@ -11,6 +11,10 @@ class SimpleTriggerConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        simpleTriggers = self.retrieveTriggers()
+        self.writeScriptOutputFile(simpleTriggers)
+
     def retrieveTriggers(self):
         simpleTriggers = []
         for i in vars(test_simple_triggers):

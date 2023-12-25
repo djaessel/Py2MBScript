@@ -10,6 +10,10 @@ class SkillConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        skills = self.retrieveSkills()
+        self.writeScriptOutputFile(skills)
+
     def retrieveSkills(self):
         triggers = []
         for i in vars(skills):

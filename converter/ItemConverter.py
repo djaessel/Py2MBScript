@@ -10,6 +10,10 @@ import test_items
 
 class ItemConverter(ScriptConverter):
 
+    def createCode(self):
+        items = self.retrieveItems()
+        self.writeScriptOutputFile(items)
+
     def retrieveItems(self):
         items = []
         for i in vars(test_items):

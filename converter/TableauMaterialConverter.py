@@ -9,6 +9,10 @@ import test_tableau_materials
 
 class TableauMaterialConverter(ScriptConverter):
 
+    def createCode(self):
+        tabMats = self.retrieveTableauMaterials()
+        self.writeScriptOutputFile(tabMats)
+
     def retrieveTableauMaterials(self):
         tabMats = []
         for i in vars(test_tableau_materials):

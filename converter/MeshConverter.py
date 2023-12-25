@@ -10,6 +10,10 @@ class MeshConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        meshes = self.retrieveMeshes()
+        self.writeScriptOutputFile(meshes)
+
     def retrieveMeshes(self):
         meshes = []
         for i in vars(test_meshes):

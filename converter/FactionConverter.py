@@ -9,6 +9,10 @@ class FactionConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        factions = self.retrieveFactions()
+        self.writeScriptOutputFile(factions)
+
     def retrieveFactions(self):
         factions = []
         for i in vars(test_factions):

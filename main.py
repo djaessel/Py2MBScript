@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 # This Python file uses the following encoding: utf-8
+
 import sys
 import os
 
+
+# Import all directories
 sys.path.append("./converter/")
 sys.path.append("./data_objects/")
 sys.path.append("./test_cases/")
 sys.path.append("./modules/")
+
 
 from ScriptConverter import ScriptConverter
 from SimpleTriggerConverter import SimpleTriggerConverter
@@ -37,151 +41,112 @@ from DialogConverter import DialogConverter
 from SkinConverter import SkinConverter
 
 
-if __name__ == "__main__":
 
-    # Module InfoPage
-    infoPager = InfoPageConverter()
-    infoPages = infoPager.retrieveInfoPages()
-    infoPager.writeScriptOutputFile(infoPages)
-
-    # Module Strings
-    stringer = StringConverter()
-    strings = stringer.retrieveStrings()
-    stringer.writeScriptOutputFile(strings)
-
-    # Module Music
-    musicer = MusicConverter()
-    music = musicer.retrieveTracks()
-    musicer.writeScriptOutputFile(music)
-
-    # Module Meshes
-    mesher = MeshConverter()
-    meshes = mesher.retrieveMeshes()
-    mesher.writeScriptOutputFile(meshes)
-
-    # Module Sounds
-    sounder = SoundConverter()
-    sounds = sounder.retrieveSounds()
-    sounder.writeScriptOutputFile(sounds)
-
-    # Module Factions
-    factioner = FactionConverter()
-    factions = factioner.retrieveFactions()
-    factioner.writeScriptOutputFile(factions)
-
-    # Module Scenes
-    scener = SceneConverter()
-    scenes = scener.retrieveScenes()
-    scener.writeScriptOutputFile(scenes)
-
-    # Module Particle System
-    psyser = ParticleSystemConverter()
-    psys = psyser.retrieveParticleSystems()
-    psyser.writeScriptOutputFile(psys)
-
-    # Module Skins
-    skinner = SkinConverter()
-    skins = skinner.retrieveSkins()
-    skinner.writeScriptOutputFile(skins)
-
-    # Module Animations
-    #animator = AnimationConverter()
-    #anims = animator.retrieveAnimations()
-    #animator.writeScriptOutputFile(anims)
-
-    # Module PostFX
-    postfxer = PostFXConverter()
-    postfx = postfxer.retrievePostFX()
-    postfxer.writeScriptOutputFile(postfx)
-
-    # Module Quests
-    quester = QuestConverter()
-    quests = quester.retrieveQuests()
-    quester.writeScriptOutputFile(quests)
-
-    # Module Tableau Materials
-    tabMater = TableauMaterialConverter()
-    tabMats = tabMater.retrieveTableauMaterials()
-    tabMater.writeScriptOutputFile(tabMats)
-
-    # Module Scripts
-    scripter = ScriptConverter()
-    lines = scripter.readScriptTestCode()
-    codeLines = scripter.transformScriptBlock(lines)
-    scripter.writeScriptOutputFile(codeLines)
-
-    # Module Simple Triggers
-    simpleTriggerer = SimpleTriggerConverter()
-    simpleTriggers = simpleTriggerer.retrieveTriggers()
-    simpleTriggerer.writeScriptOutputFile(simpleTriggers)
-
-    # Module Triggers
-    triggerer = TriggerConverter()
-    triggerers = triggerer.retrieveTriggers()
-    triggerer.writeScriptOutputFile(triggerers)
-
-    # Module Map Icons
-    mapIconer = MapIconConverter()
-    mapIcons = mapIconer.retrieveMapIcons()
-    mapIconer.writeScriptOutputFile(mapIcons)
-
-    # Module Party Templates
-    partierTemp = PartyTemplateConverter()
-    partyTemps = partierTemp.retrievePartyTemplates()
-    partierTemp.writeScriptOutputFile(partyTemps)
-
-    # Module Parties
-    partier = PartyConverter()
-    parties = partier.retrieveParties()
-    partier.writeScriptOutputFile(parties)
-
-    # Module Game Menus
-    gameMenuer = GameMenuConverter()
-    gameMenus = gameMenuer.retrieveGameMenus()
-    gameMenuer.writeScriptOutputFile(gameMenus)
-
-    # Module Skills
-    skiller = SkillConverter()
-    skills = skiller.retrieveSkills()
-    skiller.writeScriptOutputFile(skills)
-
-    # Module Items
-    itemer = ItemConverter()
-    items = itemer.retrieveItems()
-    itemer.writeScriptOutputFile(items)
-
-    # Module Troops
-    trooper = TroopConverter()
-    troops = trooper.retrieveTroops()
-    trooper.writeScriptOutputFile(troops)
-
-    # Module Mission Template
-    missioner = MissionTemplateConverter()
-    missionTemps = missioner.retrieveMissionTemplates()
-    missioner.writeScriptOutputFile(missionTemps)
-
-    # Module Dialogs
-    dialoger = DialogConverter()
-    dialogs = dialoger.retrieveDialogs()
-    dialoger.writeScriptOutputFile(dialogs)
-
-    # Module Scene Props
-    sceneProper = ScenePropConverter()
-    sceneProps = sceneProper.retrieveSceneProps()
-    sceneProper.writeScriptOutputFile(sceneProps)
-
-    # Module Presentations
-    presenter = PresentationConverter()
-    presentations = presenter.retrievePresentations()
-    presenter.writeScriptOutputFile(presentations)
-
-    if len(sys.argv) > 1:
-        if sys.argv[1] == "-b" or sys.argv[1] == "--build":
+def handle_arguments(args):
+    if len(args) > 1:
+        if args[1] == "-b" or args[1] == "--build":
             cwd = os.getcwd()
-            os.chdir(cwd + "/build_system")
+            os.chdir(os.path.join(cwd, "build_system"))
             cwd = os.getcwd()
             print("Starting build process! >", cwd)
-            os.system("bash build_module_py3.sh")
 
+            is_windows = sys.platform.startswith('win')
+            is_linux = sys.platform.startswith('linux')
+            if is_windows:
+                os.system("start build_module.bat")
+            elif is_linux:
+                os.system("bash build_module_py3.sh")
+            else:
+                print("OS not supported for auto-build!")
+
+
+
+def create_modules():
+    # Module InfoPage
+    InfoPageConverter().createCode()
+
+    # Module Strings
+    StringConverter().createCode()
+
+    # Module Music
+    MusicConverter().createCode()
+
+    # Module Meshes
+    MeshConverter().createCode()
+
+    # Module Sounds
+    SoundConverter().createCode()
+
+    # Module Factions
+    FactionConverter().createCode()
+
+    # Module Scenes
+    SceneConverter().createCode()
+
+    # Module Particle System
+    ParticleSystemConverter().createCode()
+
+    # Module Skins
+    SkinConverter().createCode()
+
+    # Module Animations
+    # AnimationConverter().createCode()
+
+    # Module PostFX
+    PostFXConverter().createCode()
+
+    # Module Quests
+    QuestConverter().createCode()
+
+    # Module Tableau Materials
+    TableauMaterialConverter().createCode()
+
+    # Module Scripts
+    ScriptConverter().createCode()
+
+    # Module Simple Triggers
+    SimpleTriggerConverter().createCode()
+
+    # Module Triggers
+    TriggerConverter().createCode()
+
+    # Module Map Icons
+    MapIconConverter().createCode()
+
+    # Module Party Templates
+    PartyTemplateConverter().createCode()
+
+    # Module Parties
+    PartyConverter().createCode()
+
+    # Module Game Menus
+    GameMenuConverter().createCode()
+
+    # Module Skills
+    SkillConverter().createCode()
+
+    # Module Items
+    ItemConverter().createCode()
+
+    # Module Troops
+    TroopConverter().createCode()
+
+    # Module Mission Template
+    MissionTemplateConverter().createCode()
+
+    # Module Dialogs
+    DialogConverter().createCode()
+
+    # Module Scene Props
+    ScenePropConverter().createCode()
+
+    # Module Presentations
+    PresentationConverter().createCode()
+
+
+
+if __name__ == "__main__":
+    create_modules()
+    handle_arguments(sys.argv)
     sys.exit()
 

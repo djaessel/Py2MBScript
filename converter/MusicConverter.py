@@ -10,6 +10,10 @@ class MusicConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        music = self.retrieveTracks()
+        self.writeScriptOutputFile(music)
+
     def retrieveTracks(self):
         tracks = []
         for i in vars(test_music):

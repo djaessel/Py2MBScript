@@ -10,6 +10,10 @@ class StringConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        strings = self.retrieveStrings()
+        self.writeScriptOutputFile(strings)
+
     def retrieveStrings(self):
         strings = []
         for i in vars(test_strings):

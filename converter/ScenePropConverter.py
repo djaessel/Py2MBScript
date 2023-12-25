@@ -9,6 +9,10 @@ import test_scene_props
 
 class ScenePropConverter(ScriptConverter):
 
+    def createCode(self):
+        sceneProps = self.retrieveSceneProps()
+        self.writeScriptOutputFile(sceneProps)
+
     def retrieveSceneProps(self):
         sceneProps = []
         for i in vars(test_scene_props):

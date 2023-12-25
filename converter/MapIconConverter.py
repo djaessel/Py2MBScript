@@ -9,6 +9,10 @@ import test_map_icons
 
 class MapIconConverter(ScriptConverter):
 
+    def createCode(self):
+        mapIcons = self.retrieveMapIcons()
+        self.writeScriptOutputFile(mapIcons)
+
     def retrieveMapIcons(self):
         mapIcons = []
         for i in vars(test_map_icons):

@@ -10,6 +10,10 @@ class AnimationConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        anims = self.retrieveAnimations()
+        self.writeScriptOutputFile(anims)
+
     def retrieveAnimations(self):
         anims = []
         for i in vars(test_animations):

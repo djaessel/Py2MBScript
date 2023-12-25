@@ -665,6 +665,13 @@ class ScriptConverter:
             f.write("]\n")
 
 
+    # make this base later for all and create reusable code
+    def createCode(self):
+        lines = self.readScriptTestCode()
+        codeLines = self.transformScriptBlock(lines)
+        self.writeScriptOutputFile(codeLines)
+
+
     def readScriptTestCode(self):
         lines = []
         with open("./test_cases/test_scripts.py") as f:

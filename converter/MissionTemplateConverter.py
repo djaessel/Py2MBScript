@@ -9,8 +9,10 @@ import test_mission_templates
 
 
 class MissionTemplateConverter(ScriptConverter):
-    def __init__(self):
-        pass
+
+    def createCode(self):
+        missionTemps = self.retrieveMissionTemplates()
+        self.writeScriptOutputFile(missionTemps)
 
     def retrieveMissionTemplates(self):
         mts = []

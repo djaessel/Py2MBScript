@@ -10,6 +10,10 @@ class TroopConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        troops = self.retrieveTroops()
+        self.writeScriptOutputFile(troops)
+
     def retrieveTroops(self):
         troops = []
         for i in vars(test_troops):

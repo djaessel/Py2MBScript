@@ -9,6 +9,10 @@ class ParticleSystemConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        psys = self.retrieveParticleSystems()
+        self.writeScriptOutputFile(psys)
+
     def retrieveParticleSystems(self):
         psys = []
         for i in vars(particle_systems):

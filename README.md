@@ -75,15 +75,21 @@ you can simply put them like you might be used to from python functions.
   
 Example:
 ```
+# ...
+ 
 def myScript():
     versionx = get_operation_set_version()
     #...
+    
+# ...
 ```
 
 You can also use local variables as function parameters and they will automatically be transformed internally.
 
 Example:
 ```
+# ...
+ 
 def version_handling(game_version):
     if game_version == 1530:
         print("Version 1.5.3 detected! - Success")
@@ -94,7 +100,8 @@ def version_handling(game_version):
 def myScript():
     versionx = get_operation_set_version()
     version_handling(versionx)
-  
+    
+# ...  
 ```
 
 In the upper example you can also see that *print* is used, just like you know it from Python3.  
@@ -108,6 +115,8 @@ Some of this is not fully working at the moment, but might already make things b
 ### FYI
 The above scripts are currently translated into the following MBScript code that will run later on:
 ```
+# ...
+ 
 ("version_handling", [
 (store_script_param, ":game_version", 1),
 (try_begin),
@@ -123,25 +132,24 @@ The above scripts are currently translated into the following MBScript code that
 (get_operation_set_version, ":versionx"),
 (call_script, "script_version_handling", ":versionx"),
 ]),
+ 
+# ...
 ```
 
 After you coded your stuff in Python and generated the MBScript Code, 
 you maybe want to add some code from another old school written Module System.  
 You can do that inside the build_system folder, since it is the actual MS.  
-But be warned, as soon as you execute "main.py" again, all will be overwritten!  
+But be warned, as soon as you execute **main.py** again, all will be overwritten!  
   
-So make sure, to comment out the modules inside main.py you dont want to be changed.  
+So make sure, to comment out the modules inside **main.py** you dont want to be changed.  
   
 Here you can see how to comment out the scripts section:
 ```
 # ...
+ 
 # Module Scripts
-# scripter = ScriptConverter()
-# lines = scripter.readScriptTestCode()
-# codeLines = scripter.transformScriptBlock(lines)
-# scripter.writeScriptOutputFile(codeLines)
+# ScriptConverter().createCode()
+ 
 # ...
 ```
-Basically all code below the "# Module XYZ" line.  
-In the Future this will only be one or two lines per module!  
 

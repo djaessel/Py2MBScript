@@ -11,6 +11,10 @@ class PartyTemplateConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        partyTemps = self.retrievePartyTemplates()
+        self.writeScriptOutputFile(partyTemps)
+
     def retrievePartyTemplates(self):
         parties = []
         for i in vars(test_party_templates):

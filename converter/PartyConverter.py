@@ -12,6 +12,10 @@ class PartyConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        parties = self.retrieveParties()
+        self.writeScriptOutputFile(parties)
+
     def retrieveParties(self):
         parties = []
         for i in vars(test_parties):

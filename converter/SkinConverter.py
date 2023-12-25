@@ -8,6 +8,10 @@ class SkinConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        skins = self.retrieveSkins()
+        self.writeScriptOutputFile(skins)
+
     def retrieveSkins(self):
         skinsx = []
         for i in vars(skins):

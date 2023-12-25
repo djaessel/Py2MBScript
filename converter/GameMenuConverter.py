@@ -7,6 +7,10 @@ import test_game_menus
 
 class GameMenuConverter(ScriptConverter):
 
+    def createCode(self):
+        gameMenus = self.retrieveGameMenus()
+        self.writeScriptOutputFile(gameMenus)
+
     def retrieveGameMenus(self):
         gameMenus = []
         for i in vars(test_game_menus):

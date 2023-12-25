@@ -9,6 +9,10 @@ class SoundConverter(ScriptConverter):
     def __init__(self):
         pass
 
+    def createCode(self):
+        sounds = self.retrieveSounds()
+        self.writeScriptOutputFile(sounds)
+
     def retrieveSounds(self):
         sounds = []
         for i in vars(test_sounds):
