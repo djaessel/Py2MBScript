@@ -24,14 +24,15 @@ Then you can simply run the build bat or python3 version of it (yes Python3) and
 
 
 ## Info  
-The following modules are currently not active and have preset code:  
-* Animations
-  
-The reason for this is, that otherwise they would only have test values for now.   
+The Animations Module is currently not active!   
+The reason for this is, that otherwise it would only have test values for now.   
 And without actual correct values the Mod won't even start in a correct way.  
   
-If you still want to activate them, you can go into main.py and uncomment the three lines below the # Module xyz line.  
-In the future these will be activated again, once the code is equal to the necessary code for the Mod to run.  
+If you still want to activate it, you can uncomment the line in **main.py**:
+
+```
+    # AnimationConverter().createCode()
+```
   
 ### Important
 This is early access and many things might change over time.  
