@@ -16,13 +16,31 @@ game_menus = [
 [
 ("continue", [
 ], "Continue...", [
-(change_screen_return),
 (set_show_messages,1),
+(jump_to_menu,"mnu_start_game_1"),
 ]),
 
 ("go_back", [
 ], "Go back...", [
 (change_screen_quit),
+]),
+
+]),
+("start_game_1", 0, 
+  "Select your skin.", 
+  "none", [
+],
+[
+("start_male", [
+], "Skin1 | Male", [
+(troop_set_type,"trp_player",0),
+(change_screen_return),
+]),
+
+("start_female", [
+], "Skin2 | Female", [
+(troop_set_type,"trp_player",1),
+(change_screen_return),
 ]),
 
 ]),

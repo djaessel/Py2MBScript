@@ -17,8 +17,9 @@ game_start_0 = GameMenu("start_game_0", 0,
 
 class GameStartContinue(MenuOption):
     def consequenceBlock(self):
-        change_screen_return()
+        #change_screen_return()
         set_show_messages(1)
+        jump_to_menu("mnu_start_game_1")
 
 game_start_0.menuOptions.append(GameStartContinue("continue", "Continue..."))
 
@@ -29,6 +30,23 @@ def game_start_go_back_conseq():
 
 game_start_go_back.consequenceBlock = game_start_go_back_conseq
 game_start_0.menuOptions.append(game_start_go_back)
+
+
+#("start_game_1",menu_text_color(0xFF000000)|mnf_disable_all_keys,
+game_start_1 = GameMenu("start_game_1", 0, "Select your skin.")
+game_start_1_male = MenuOption("start_male", "Skin1 | Male")
+def setSkinMale():
+    troop_set_type("trp_player", 0)
+    change_screen_return()
+game_start_1_male.consequenceBlock = setSkinMale
+game_start_1.menuOptions.append(game_start_1_male)
+game_start_1_female = MenuOption("start_female", "Skin2 | Female")
+def setSkinFemale():
+    troop_set_type("trp_player", 1)
+    change_screen_return()
+game_start_1_female.consequenceBlock = setSkinFemale
+game_start_1.menuOptions.append(game_start_1_female)
+
 
 
 reports = GameMenu("reports", 0, "Reports test {reg1}")
