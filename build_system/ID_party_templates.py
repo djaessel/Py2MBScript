@@ -1,1 +1,2 @@
-pt_hunters = 0
+pt_dummy = 0
+pt_hunters = 1

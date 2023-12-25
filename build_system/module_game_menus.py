@@ -49,13 +49,13 @@ game_menus = [
 ]),
 
 ("test_position", [
-], "TEST_POSITION", [
+], "TEST POSITION", [
 (try_for_parties, ":partyx"),
     (try_begin),
         (party_is_active,":partyx"),
         (party_get_template_id,":template_idx",":partyx"),
         (try_begin),
-            (eq,":template_idx","pt_hunters"),
+            (eq,":template_idx",1),
             (party_get_position,pos1,":partyx"),
             (position_get_x,":x",pos1),
             (val_add,":x",100),
@@ -64,7 +64,7 @@ game_menus = [
             (position_get_x, reg69, pos1),
             (position_get_y, reg70, pos1),
             (position_get_z, reg71, pos1),
-            (display_message, "@DEBUG: Pos1 :[{reg69}, {reg70}, {reg71}]"),
+            (display_message, "@DEBUG - Pos1 :[{reg69}, {reg70}, {reg71}]"),
         (try_end),
     (try_end),
 (try_end),
