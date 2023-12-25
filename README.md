@@ -40,5 +40,5 @@ In the future these will be activated again, once the code is equal to the neces
 * After that your python code is translated into MBScript  
 * You can find the output in the "build_system" folder (old module_system style)
 * Now check module_info.py in there for the correct path
-* And run the build script (Linux/Windows)
+* And run the build script (Linux/Windows) [build_module_py3.sh / build_module.bat]
 
