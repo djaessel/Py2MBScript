@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # This Python file uses the following encoding: utf-8
 import sys
+import os
 
 sys.path.append("./converter/")
 sys.path.append("./data_objects/")
@@ -173,6 +174,14 @@ if __name__ == "__main__":
     presenter = PresentationConverter()
     presentations = presenter.retrievePresentations()
     presenter.writeScriptOutputFile(presentations)
+
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "-b" or sys.argv[1] == "--build":
+            cwd = os.getcwd()
+            os.chdir(cwd + "/build_system")
+            cwd = os.getcwd()
+            print("Starting build process! >", cwd)
+            os.system("bash build_module_py3.sh")
 
     sys.exit()
 

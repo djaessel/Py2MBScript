@@ -20,6 +20,14 @@ scripts = [
 (call_script, "script_script1", 25, 50),
 ]),
 
+("game_event_party_encounter", [
+(store_script_param, "$g_encountered_party", 1),
+(store_script_param, "$g_encountered_party_2", 2),
+(store_faction_of_party, "$g_encountered_party_faction", "$g_encountered_party"),
+(store_relation,"$g_encountered_party_relation","$g_encountered_party_faction","fac_player_faction"),
+(jump_to_menu,"mnu_town"),
+]),
+
 ("script1", [
 (store_script_param, ":waterLevel", 1),
 (store_script_param, ":fishCount", 2),

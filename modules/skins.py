@@ -67,6 +67,7 @@ woman_young.addHairColors(0xffffffff)
 woman_young.addHairColors(0xffb04717)
 woman_young.addHairColors(0xff502a19)
 woman_young.addHairColors(0xff19100c)
+woman_young.addHairColors(0xff88cc22)
 woman.addFaceTexture(woman_young)
 # Woman - Voices
 woman.setVoiceDie(snd.sound1)

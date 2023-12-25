@@ -284,6 +284,7 @@ class ScriptConverter:
         return [liny]
 
 
+
     def transformCode(self, code):
         if len(code.strip()) == 0:
             return [""]
@@ -348,6 +349,7 @@ class ScriptConverter:
         actParams = self.findParams(vars, 0)
         for p in actParams:
             liny = self.replaceVarWithPlaceholder(liny, p, p)
+        liny = liny.replace(":::", "$")
         return liny
 
 
@@ -360,6 +362,7 @@ class ScriptConverter:
             else:
                 # print("Ignored optional parameter:", params[i], "|", funcCall, "|", liny)
                 liny = liny.replace(", " + params[i], "")
+        liny = liny.replace(":::", "$")
         return liny
 
 
@@ -422,6 +425,10 @@ class ScriptConverter:
             line = line.replace(placeholder, varname)
         elif '"' in varname and varname.startswith('"') and varname.endswith('"'):
             line = line.replace(placeholder, varname)
+        elif varname.startswith("_"):
+            if len(varname) > 1:
+                if varname[1] != "_":
+                    line = line.replace(placeholder, "\":::" + varname[1:] + "\"")
         else:
             line = line.replace(placeholder, "\":" + varname + "\"")
         return line
@@ -446,10 +453,14 @@ class ScriptConverter:
         b = ["(\"" + scriptName + "\", ["]
         if len(scriptParams[0].strip()) > 0:
             for i, param in enumerate(scriptParams):
-                if param.strip() != "self":
+                pss = param.strip()
+                if pss != "self":
                     if scriptParams[0].strip() == "self":
                         i += 1
-                    b.append("(store_script_param, \":" + param.strip() + "\", " + str(i + 1) + ")")
+                    if pss.startswith("_") and len(pss) > 1:
+                        b.append("(store_script_param, \"$" + pss[1:] + "\", " + str(i + 1) + ")")
+                    else:
+                        b.append("(store_script_param, \":" + pss + "\", " + str(i + 1) + ")")
         return b
 
     # TODO: actually count these and correctly check

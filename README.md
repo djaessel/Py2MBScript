@@ -14,7 +14,7 @@ In the "test_cases" folder you can write the python versions of the otherwise MB
 Later on, once you run:
 
 ```
-python main.py
+python -B main.py
 ```  
 your python code will be translated into good ol' MBScript style of code (if all goes well for now).  
 
@@ -41,4 +41,11 @@ In the future these will be activated again, once the code is equal to the neces
 * You can find the output in the "build_system" folder (old module_system style)
 * Now check module_info.py in there for the correct path
 * And run the build script (Linux/Windows) [build_module_py3.sh / build_module.bat]
+
+
+## Quick Start
+If you want to directly compile the MBScript code when you run "main.py", simply run the following code:  
+```
+python -B main.py --build
+```
 

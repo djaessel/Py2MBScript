@@ -40,7 +40,7 @@ skins = [
 ["hair_blonde","hair_red","hair_brunette","hair_black","hair_white",],
 [],
 [
-("womanface_young", 0xffe3e8ef, ["hair_blonde",], [0xffffffff,0xffb04717,0xff502a19,0xff19100c,]),
+("womanface_young", 0xffe3e8ef, ["hair_blonde",], [0xffffffff,0xffb04717,0xff502a19,0xff19100c,0xff88cc22,]),
 ],
 [(voice_die, "snd_click"),(voice_hit, "snd_click"),(voice_yell, "snd_click"),],
 "skel_human", 1.0,
