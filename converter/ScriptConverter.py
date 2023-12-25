@@ -315,7 +315,7 @@ class ScriptConverter:
         elif "." in code:
             return self.handleDotSign(code)
         elif "(" in code and ")" in code:
-            fName = code.split('(')[0]
+            fName = code.split('(')[0].strip()
             fVars = code.split('(')[1].split(')')[0]
             if fName in self.cur_scripts:
                 liny = "(call_script, \"script_" + fName + "\""

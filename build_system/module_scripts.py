@@ -28,6 +28,22 @@ scripts = [
 (jump_to_menu,"mnu_town"),
 ]),
 
+("version_handling", [
+(store_script_param, ":game_version", 1),
+(try_begin),
+    (eq,":game_version",1530),
+    (display_message, "@Version 1.5.3 detected! - Success"),
+(else_try),
+    (assign, reg1, ":game_version"),
+    (display_message, "@Version {reg1} detected! - Failure"),
+(try_end),
+]),
+
+("myScript", [
+(get_operation_set_version, ":versionx"),
+(call_script, "script_version_handling", ":versionx"),
+]),
+
 ("script1", [
 (store_script_param, ":waterLevel", 1),
 (store_script_param, ":fishCount", 2),

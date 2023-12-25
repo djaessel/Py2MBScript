@@ -49,3 +49,90 @@ If you want to directly compile the MBScript code when you run "main.py", simply
 python -B main.py --build
 ```
 
+### Global Variables
+These kind of variables are marked with '$' at the beginning of MBScript and are global as the name says.
+In Py2MBScript these are also possible to use in direct python code, but currently are not fully supported.  
+
+To mark a variable as global you add an underscore as prefix. (e.g. "_tax_code" > "$tax_code").  
+This will be transformed into the MBScript global variable with dollar sign later on.
+  
+In later stages there might be a track of the global variables and more advanced usage possible.  
+For now the act inside Python like local variables, but in MBScript as global.  
+
+### Local Variables & Script Parameters
+Local variables work like typical local python variables.
+When in MBScript you would have to put them as the first argument of a function to store something, here 
+you can simply put them like you might be used to from python functions.  
+  
+Example:
+```
+def myScript():
+    versionx = get_operation_set_version()
+    #...
+```
+
+You can also use local variables as function parameters and they will automatically be transformed internally.
+
+Example:
+```
+def version_handling(game_version):
+    if game_version == 1530:
+        print("Version 1.5.3 detected! - Success")
+    else:
+        print("Version", game_version, "detected! - Failure")
+  
+  
+def myScript():
+    versionx = get_operation_set_version()
+    version_handling(versionx)
+  
+```
+
+In the upper example you can also see that *print* is used, just like you know it from Python3.  
+Ofcourse the example scripts are kinda useless right now, but give you an idea of what might be possible.  
+At least I hope so. :)  
+
+
+You can use if, try/catch, for and also create small lists with for loops to make your life easier.  
+Some of this is not fully working at the moment, but might already make things better readable for you.  
+
+### FYI
+The above scripts are currently translated into the following MBScript code that will run later on:
+```
+("version_handling", [
+(store_script_param, ":game_version", 1),
+(try_begin),
+    (eq,":game_version",1530),
+    (display_message, "@Version 1.5.3 detected! - Success"),
+(else_try),
+    (assign, reg1, ":game_version"),
+    (display_message, "@Version {reg1} detected! - Failure"),
+(try_end),
+]),
+  
+("myScript", [
+(get_operation_set_version, ":versionx"),
+(call_script, "script_version_handling", ":versionx"),
+]),
+```
+
+After you coded your stuff in Python and generated the MBScript Code, 
+you maybe want to add some code from another old school written Module System.  
+You can do that inside the build_system folder, since it is the actual MS.  
+But be warned, as soon as you execute "main.py" again, all will be overwritten!  
+  
+So make sure, to comment out the modules inside main.py you dont want to be changed.  
+  
+Here you can see how to comment out the scripts section:
+```
+# ...
+# Module Scripts
+# scripter = ScriptConverter()
+# lines = scripter.readScriptTestCode()
+# codeLines = scripter.transformScriptBlock(lines)
+# scripter.writeScriptOutputFile(codeLines)
+# ...
+```
+Basically all code below the "# Module XYZ" line.  
+In the Future this will only be one or two lines per module!  
+

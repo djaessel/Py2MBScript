@@ -94,6 +94,17 @@ def game_event_party_encounter(_g_encountered_party, _g_encountered_party_2):
 
 
 
+def version_handling(game_version):
+    if game_version == 1530:
+        print("Version 1.5.3 detected! - Success")
+    else:
+        print("Version", game_version, "detected! - Failure")
+
+
+def myScript():
+    versionx = get_operation_set_version()
+    version_handling(versionx)
+
 
 def script1(waterLevel, fishCount):
     versionx = get_operation_set_version()
