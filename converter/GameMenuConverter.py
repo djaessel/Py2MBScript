@@ -3,7 +3,7 @@ from ScriptConverter import ScriptConverter
 from game_menu import GameMenu
 
 import inspect
-import test_game_menus
+import game_menus
 
 class GameMenuConverter(ScriptConverter):
 
@@ -13,9 +13,9 @@ class GameMenuConverter(ScriptConverter):
 
     def retrieveGameMenus(self):
         gameMenus = []
-        for i in vars(test_game_menus):
+        for i in vars(game_menus):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_game_menus,i)
+                attr = getattr(game_menus,i)
                 if not "<function" in str(attr) and not "MenuOption" in str(attr):
                     gameMenus.append(attr)
         return gameMenus

@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 
-import test_scripts
+import scripts
 
 class ScriptConverter:
     registers = []
@@ -40,9 +40,9 @@ class ScriptConverter:
 
     def retrieveScriptNames(self):
         scriptNames = []
-        for i in vars(test_scripts):
+        for i in vars(scripts):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_scripts,i)
+                attr = getattr(scripts,i)
                 scriptNames.append(attr.__name__)
         return scriptNames
 
@@ -667,9 +667,18 @@ class ScriptConverter:
 
     # make this base later for all and create reusable code
     def createCode(self):
-        lines = self.readScriptTestCode()
+        #lines = self.readScriptTestCode()
+        lines = self.readScriptCode()
         codeLines = self.transformScriptBlock(lines)
         self.writeScriptOutputFile(codeLines)
+
+
+    def readScriptCode(self):
+        lines = []
+        with open("./modules/scripts.py") as f:
+            for line in f:
+                lines.append(line)
+        return lines
 
 
     def readScriptTestCode(self):

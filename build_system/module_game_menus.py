@@ -16,36 +16,20 @@ game_menus = [
 [
 ("continue", [
 ], "Continue...", [
-(assign,reg12,255),
-(assign,reg13,500),
-(str_store_string,s0,"@Current gold: {reg13}"),
-(str_store_string,s1,"@Current xp: {reg12}"),
-(str_store_string,s2,"str_yes"),
-(display_message, "@{s0} {s1} {s2}"),
-(call_script, "script_helloWorld"),
 (change_screen_return),
 (set_show_messages,1),
 ]),
 
 ("go_back", [
 ], "Go back...", [
-(try_begin),
-    (is_edit_mode_enabled),
-(else_try),
-    (change_screen_quit),
-(try_end),
-]),
-
-("hack", [
-(is_edit_mode_enabled),
-], "I hacked it!", [
-(display_message, "@LOL"),
+(change_screen_quit),
 ]),
 
 ]),
 ("reports", 0, 
-  "Reports test", 
+  "Reports test {reg1}", 
   "none", [
+(assign,reg1,123456),
 ],
 [
 ("continue", [
@@ -55,7 +39,7 @@ game_menus = [
 
 ]),
 ("town", 0, 
-  "Town Test", 
+  "Test Town", 
   "none", [
 ],
 [

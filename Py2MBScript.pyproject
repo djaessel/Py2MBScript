@@ -211,6 +211,8 @@
         "README.md",
         "modules/particle_systems.py",
         "modules/skins.py",
-        "modules/skills.py"
+        "modules/skills.py",
+        "modules/scripts.py",
+        "modules/game_menus.py"
     ]
 }

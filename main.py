@@ -44,11 +44,11 @@ from SkinConverter import SkinConverter
 
 def handle_arguments(args):
     if len(args) > 1:
-        if args[1] == "-b" or args[1] == "--build":
+        if args[1] == "-b" or args[1] == "--build" or args[1] == "--build-and-run":
             cwd = os.getcwd()
             os.chdir(os.path.join(cwd, "build_system"))
             cwd = os.getcwd()
-            print("Starting build process! >", cwd)
+            print("Starting build process! ->", cwd)
 
             is_windows = sys.platform.startswith('win')
             is_linux = sys.platform.startswith('linux')
@@ -56,8 +56,26 @@ def handle_arguments(args):
                 os.system("start build_module.bat")
             elif is_linux:
                 os.system("bash build_module_py3.sh")
+                if args[1] == "--build-and-run":
+                    modPath = ""
+                    with open("module_info.py") as f:
+                        for line in f:
+                            if line.startswith("export_dir"):
+                                modPath = line.split('=')[1].strip().strip('"').strip("'")
+                    if len(modPath.strip()) > 0:
+                        pathxs = modPath.split('/')
+                        gamePath = ""
+                        for i in range(len(pathxs)-3):
+                            gamePath += pathxs[i] + "/"
+                        gamePath += "mb_warband.sh"
+                        print("Running Warband now! ->", gamePath)
+                        os.system('"' + gamePath + '"')
+                    else:
+                        print("Warband not found!")
+
             else:
                 print("OS not supported for auto-build!")
+
 
 
 
