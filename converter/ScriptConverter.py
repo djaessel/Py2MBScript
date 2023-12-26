@@ -393,9 +393,11 @@ class ScriptConverter:
         notTrue = False
         b = []
 
+        cond = cond.strip()
+
         if "not True" == cond:
             cond = "False"
-        elif"not False" == cond:
+        elif "not False" == cond:
             cond = "True"
 
         if "> " in cond:
@@ -413,15 +415,35 @@ class ScriptConverter:
         elif "==" in cond:
             l = "(eq,<var1>,<var2>)"
             tmp = cond.split('==')
-            l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip().replace("True","1").replace("False","0"))
-            l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip().replace("True","1").replace("False","0"))
-            b.append(l)
+            if "(" in tmp[0] and ")" in tmp[0] and "True" == tmp[1].strip():
+                l = self.transformCode(tmp[0])
+                codeFunc = True
+                b.extend(l)
+            elif "(" in tmp[0] and ")" in tmp[0] and "False" == tmp[1].strip():
+                l = self.transformCode(tmp[0])
+                codeFunc = True
+                notTrue = True
+                b.extend(l)
+            else:
+                l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip().replace("True","1").replace("False","0"))
+                l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip().replace("True","1").replace("False","0"))
+                b.append(l)
         elif "!=" in cond or "<>" in cond:
             l = "(neq,<var1>,<var2>)"
             tmp = cond.split('!=')
-            l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip().replace("True","1").replace("False","0"))
-            l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip().replace("True","1").replace("False","0"))
-            b.append(l)
+            if "(" in tmp[0] and ")" in tmp[0] and "False" == tmp[1].strip():
+                l = self.transformCode(tmp[0])
+                codeFunc = True
+                b.extend(l)
+            elif "(" in tmp[0] and ")" in tmp[0] and "True" == tmp[1].strip():
+                l = self.transformCode(tmp[0])
+                codeFunc = True
+                notTrue = True
+                b.extend(l)
+            else:
+                l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip().replace("True","1").replace("False","0"))
+                l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip().replace("True","1").replace("False","0"))
+                b.append(l)
         elif "<=" in cond:
             l = "(le,<var1>,<var2>)"
             tmp = cond.split('<=')
@@ -589,6 +611,24 @@ class ScriptConverter:
         return b
 
 
+    def transformForAgentsBlock(self, code):
+        b = ["(try_for_agents, <var1>)"]
+        b[0] = self.replaceVarWithPlaceholder(b[0], "<var1>", code[4:code.index(' in ')])
+        return b
+
+
+    def transformForPlayersBlock(self, code):
+        b = ["(try_for_players, <var1>)"]
+        b[0] = self.replaceVarWithPlaceholder(b[0], "<var1>", code[4:code.index(' in ')])
+        return b
+
+
+    def transformForPropInstancesBlock(self, code):
+        b = ["(try_for_prop_instances, <var1>)"]
+        b[0] = self.replaceVarWithPlaceholder(b[0], "<var1>", code[4:code.index(' in ')])
+        return b
+
+
     def transformScriptBlock(self, codeBlock : list):
         lastScriptIdx = -1
 
@@ -617,6 +657,12 @@ class ScriptConverter:
                 self.fixIndentionProblem(allCodes, ifCl, inlineIndentCount, code)
                 if " in __all_parties__:" in code:
                     coy = self.transformForPartiesBlock(code)
+                elif " in __all_agents__:" in code:
+                    coy = self.transformForAgentsBlock(code)
+                elif " in __all_players__:" in code:
+                    coy = self.transformForPlayersBlock(code)
+                elif " in __all_prop_instances__:" in code:
+                    coy = self.transformForPropInstancesBlock(code)
                 else:
                     coy = self.transformForBlock(code)
                 ifCl.append((inlineIndentCount, code))
