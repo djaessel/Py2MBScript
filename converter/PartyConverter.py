@@ -5,7 +5,7 @@ from ScriptConverter import ScriptConverter
 from MBParty import MBParty
 from mapicon import MapIcon
 
-import test_parties
+import parties
 
 
 class PartyConverter(ScriptConverter):
@@ -13,18 +13,18 @@ class PartyConverter(ScriptConverter):
         pass
 
     def createCode(self):
-        parties = self.retrieveParties()
-        self.writeScriptOutputFile(parties)
+        partiesx = self.retrieveParties()
+        self.writeScriptOutputFile(partiesx)
 
     def retrieveParties(self):
-        parties = []
-        for i in vars(test_parties):
+        partiesx = []
+        for i in vars(parties):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_parties,i)
+                attr = getattr(parties,i)
                 sx = str(attr)
                 if not "<function" in sx and not "<module" in sx:
-                    parties.append(attr)
-        return parties
+                    partiesx.append(attr)
+        return partiesx
 
     def writeScriptOutputFile(self, codeData : list[MBParty]):
         with open("./build_system/module_parties.py", "w") as f:
