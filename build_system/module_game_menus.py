@@ -82,7 +82,6 @@ game_menus = [
 (try_for_parties, ":partyx"),
     (try_begin),
         (party_is_active,":partyx"),
-        (party_get_template_id,":template_idx",":partyx"),
         (try_begin),
             (eq,1,1),
             (party_get_position,pos1,":partyx"),
