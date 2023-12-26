@@ -361,7 +361,12 @@ class ScriptConverter:
     def replaceScriptParams(self, liny, vars):
         actParams = self.findParams(vars, 0)
         for p in actParams:
-            liny = self.replaceVarWithPlaceholder(liny, p, p)
+            px = p
+            if p == "True":
+                px = "1"
+            elif p == "False":
+                px = "0"
+            liny = self.replaceVarWithPlaceholder(liny, p, px)
         liny = liny.replace(":::", "$")
         return liny
 
@@ -372,7 +377,12 @@ class ScriptConverter:
         for i in range(len(params)):
             if (not "[" in params[i] and not "]" in params[i]) or ("[" in params[i] and "]" in params[i] and len(actParams) > i):
                 # print(liny, params, len(params), len(actParams), actParams)
-                liny = self.replaceVarWithPlaceholder(liny, params[i], actParams[i])
+                actParamx = actParams[i]
+                if actParamx == "True":
+                    actParamx = "1"
+                elif actParamx == "False":
+                    actParamx = "0"
+                liny = self.replaceVarWithPlaceholder(liny, params[i], actParamx)
             else:
                 # print("Ignored optional parameter:", params[i], "|", funcCall, "|", liny)
                 liny = liny.replace(", " + params[i], "")
