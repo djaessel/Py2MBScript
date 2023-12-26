@@ -88,7 +88,8 @@ def conseq():
     for partyx in __all_parties__:
         if party_is_active(partyx):
             template_idx = party_get_template_id(partyx)
-            if template_idx == 1: # 1 is pt_hunters atm
+            #if template_idx == 1: # 1 is pt_hunters atm
+            if True:
                 party_get_position(pos1, partyx)
                 position_get_x(x, pos1)
                 val_add(x, 100)

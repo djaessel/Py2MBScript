@@ -389,7 +389,15 @@ class ScriptConverter:
 
 
     def resolveSimpleCondition(self, cond):
+        codeFunc = False
+        notTrue = False
         b = []
+
+        if "not True" == cond:
+            cond = "False"
+        elif"not False" == cond:
+            cond = "True"
+
         if "> " in cond:
             l = "(gt,<var1>,<var2>)"
             tmp = cond.split('>')
@@ -405,14 +413,14 @@ class ScriptConverter:
         elif "==" in cond:
             l = "(eq,<var1>,<var2>)"
             tmp = cond.split('==')
-            l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip())
-            l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip())
+            l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip().replace("True","1").replace("False","0"))
+            l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip().replace("True","1").replace("False","0"))
             b.append(l)
         elif "!=" in cond or "<>" in cond:
             l = "(neq,<var1>,<var2>)"
             tmp = cond.split('!=')
-            l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip())
-            l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip())
+            l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip().replace("True","1").replace("False","0"))
+            l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip().replace("True","1").replace("False","0"))
             b.append(l)
         elif "<=" in cond:
             l = "(le,<var1>,<var2>)"
@@ -426,11 +434,26 @@ class ScriptConverter:
             l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip())
             l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip())
             b.append(l)
+        elif "True" == cond or "False" == cond:
+            if "True" == cond:
+                l = "(eq,1,1)"
+            else:
+                l = "(eq,1,0)"
+            b.append(l)
         else:
+            if cond.startswith("not "):
+                notTrue = True
+                cond = cond[4:]
             l = self.transformCode(cond)
             b.extend(l)
-        if "not" in b[0]:
-            b[0] = b[0].replace("(", "(neg|").replace(":not ", ":")
+            codeFunc = True
+
+        if "not" in b[0] or notTrue:
+            if codeFunc:
+                b[0] = b[0].replace("(", "(neg|")
+            else:
+                b[0] = b[0].replace("(", "(neg|").replace(":not ", ":")
+
         return b
 
 
