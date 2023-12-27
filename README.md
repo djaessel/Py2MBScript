@@ -33,16 +33,16 @@ Or you could add the native codes yourself, if you want and help me translate it
 Otherwise it might take ages for me to translate all code into python(-like)-code.
 
 
-## How it works  
+## Quick Start
+### How it works  
 * First you write your code inside "modules" folder
 * Then you run "main.py"
 * After that your python code is translated into MBScript  
 * You can find the output in the "build_system" folder (old module_system style)
 * Now check module_info.py in there for the correct path
-* And run the build script (Linux/Windows) [build_module_py3.sh / build_module.bat]
+* And run the build script (Linux/Windows) [build_module_py3.sh / build_module.bat]  
 
-
-## Quick Start
+### Hint
 If you want to directly compile the MBScript code when you run "main.py", simply run the following code:  
 ```bash
 python -B main.py --build
@@ -58,6 +58,9 @@ You can also directly build and run.
 python -B main.py --build-and-run
 ```
 As the title says, this only works for Linux at the current state.
+
+## Documentation
+Here I will tell you what might be different or going on in Py2MBScript, so you know how to use it.
 
 ### Global Variables
 These kind of variables are marked with '$' at the beginning of MBScript and are global as the name says.
@@ -113,7 +116,7 @@ At least I hope so. :)
 You can use if, try/catch, for and also create small lists with for loops to make your life easier.  
 Some of this is not fully working at the moment, but might already make things better readable for you.  
 
-### FYI
+#### FYI
 The above scripts are currently translated into the following MBScript code that will run later on:
 ```python
 # ...
@@ -153,4 +156,172 @@ Here you can see how to comment out the scripts section:
  
 # ...
 ```
+
+
+### Conditional Code [if/else]
+In Python we use **if**, **elif** (else if) and **else**.  
+
+#### Example1:
+(Python Code)
+```python
+if agent_id == 0:
+    print("Server agent found!")
+else:
+    print("Not server agent.")
+```
+(MBScript)
+```python
+(try_begin),
+    (eq, ":agent_id", 0),
+    (display_message, "@Server_agent_found!"),
+(else_try),
+    (display_message, "@Not server agent."),    
+(try_end),
+```
+
+#### Example2:
+(Python Code)
+```python
+if not is_edit_mode_enabled() and multiplayer_is_server() == False or agent_id >= 0:
+    print("Player Code! >", agent_id)
+    if True: # always true example
+        print("Success!")
+else:
+    pass
+    # server code
+```
+(MBScript)
+```python
+(try_begin),
+    (neg|is_edit_mode_enabled),
+    (this_or_next|neg|multiplayer_is_server),
+    (ge,":agent_id",0),
+    (assign, reg1, ":agent_id"),
+    (display_message, "@Player Code! > {reg1}"),
+    (try_begin),
+        (eq,1,1),
+        (display_message, "@Success!"),
+    (try_end),
+(else_try),
+(try_end),
+```
+
+As you can see in Example2, there are multiple ways to express a condition now and boolean support.  
+You can either negate with **not** *or* **compare to False**.  
+It is also possible, for the sake of debugging and code activation, to make a condition always **True** or **False**.  
+
+Multiple conditions will be checked in the given order.  
+As the name says *this_or_next* is checks the first condition and if that is not true, it checks the next.  
+The checking order is the same, but it is "this or next".  
+For multiple OR in a row, it will make as many *this_or_next* as given conditions.  
+
+#### Important
+Sometimes it is possible that at the current state, an *if* is not closed correctly after conversion into MBScript.  
+When this happens, you can simply add the following line where the *if* should add in Python:
+```python
+#end
+```
+It is not so much important what stands after the '#', but this makes it easier to read and remember.  
+
+
+### For Loops
+In Python we all have used for loops quite a lot, I am sure.  
+In MBScript there are a few differences tho and special for loops.  
+
+Later on there also will be support for the **break** command.  
+Currently it does not work.  
+
+#### Example1:
+(Python Code)
+```python
+for x in range(1, 10):
+    print(x)
+```
+(MBScript)
+```python
+(try_for_range, ":x", 1, 10),
+    (assign, reg0, ":x"),
+    (display_message, "@{reg0}"),
+(try_end),
+```
+
+#### Example2:
+(Python Code)
+```python
+for x in range(0, 10, -1):
+    print(x)
+```
+(MBScript)
+```python
+(try_for_range_backwards, ":x", 10, 0),
+    (assign, reg0, ":x"),
+    (display_message, "@{reg0}"),
+(try_end),
+```
+
+### Special For Loops
+In MBScript there are a few special for loops:
+* try_for_parties
+* try_for_agents
+* try_for_prop_instances
+* try_for_players
+
+For the Python code I chose to implement them as following:
+```python
+for partyx in __all_parties__:
+    print(partyx)
+for playerx in __all_players__:
+    print(playerx)
+for propix in __all_prop_instances__:
+    print(propix)
+for agentx in __all_agents__:
+    print(agentx)
+```
+(MBScript)
+```python
+(try_for_parties, ":partyx"),
+    (assign, reg0, ":partyx"),
+    (display_message, "@{reg0}"),
+(try_end),
+(try_for_players, ":playerx"),
+    (assign, reg0, ":playerx"),
+    (display_message, "@{reg0}"),
+(try_end),
+(try_for_prop_instances, ":propix"),
+    (assign, reg0, ":propix"),
+    (display_message, "@{reg0}"),
+(try_end),
+(try_for_agents, ":agentx"),
+    (assign, reg0, ":agentx"),
+    (display_message, "@{reg0}"),
+(try_end),
+```
+
+### try/catch
+We also have a primitive version of try/catch.  
+But it actually is working similar to if/else.  
+The main difference is, that it looks more like the actual MBScript code.  
+Exceptions are not really handled, since the game does not provide that inside MBScript.  
+So don't get confused, it just exists.  
+
+(Python Code)
+```python
+try:
+    is_edit_mode_enabled()
+except:
+    print("EDIT MODE NOT ACTIVE!")
+```
+(MBScript)
+```python
+(try_begin),
+    (is_edit_mode_enabled),
+(else_try),
+    (display_message, "@EDIT MODE NOT ACTIVE!"),
+(try_end),
+```
+
+
+### while
+This is currently not supported.  
+
 
