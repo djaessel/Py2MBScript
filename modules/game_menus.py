@@ -61,17 +61,13 @@ game_start_1.menuOptions.append(game_start_1_female)
 
 
 reports = GameMenu("reports", 0, "Reports test {reg1}")
-
 def condition():
     reg1 = 123456
-
 reports.conditionBlock = condition
 
 reports_continue = MenuOption("continue", "Continue...")
-
 def conseq():
     change_screen_return()
-
 reports_continue.consequenceBlock = conseq
 reports.menuOptions.append(reports_continue)
 
@@ -83,7 +79,6 @@ town_leave.consequenceBlock = conseq
 town_menu.menuOptions.append(town_leave)
 
 town_leave = MenuOption("test_position", "TEST POSITION")
-
 def conseq():
     for partyx in __all_parties__:
         if party_is_active(partyx):
@@ -96,8 +91,6 @@ def conseq():
                 position_set_x(pos1, x)
                 party_set_position(partyx, pos1)
                 print("DEBUG -", pos1)
-
-
 town_leave.consequenceBlock = conseq
 town_menu.menuOptions.append(town_leave)
 
