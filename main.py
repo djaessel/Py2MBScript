@@ -108,7 +108,7 @@ def create_modules():
     SkinConverter().createCode()
 
     # Module Animations
-    # AnimationConverter().createCode()
+    AnimationConverter().createCode()
 
     # Module PostFX
     PostFXConverter().createCode()

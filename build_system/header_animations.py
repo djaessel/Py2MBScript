@@ -71,6 +71,25 @@ arf_use_inv_walk_progress    = 0x80000000
 #-----------------------------------------
 
 amf_priority_mask                          = 0x00000fff
+amf_priority_jump           = 2
+amf_priority_ride           = 2
+amf_priority_continue       = 1
+amf_priority_attack         = 10
+amf_priority_cancel         = 12
+amf_priority_defend         = 14
+amf_priority_defend_parry   = amf_priority_defend + 1
+amf_priority_throw          = amf_priority_defend + 1
+amf_priority_blocked        = amf_priority_defend_parry
+amf_priority_parried        = amf_priority_defend_parry
+amf_priority_kick           = 33
+amf_priority_jump_end       = 33
+amf_priority_reload         = 60
+amf_priority_mount          = 64
+amf_priority_equip          = 70
+amf_priority_rear           = 74
+amf_priority_striked        = 80
+amf_priority_fall_from_horse= 81
+amf_priority_die            = 95
 
 amf_rider_rot_bow                          = 0x00001000
 amf_rider_rot_throw                        = 0x00002000

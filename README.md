@@ -23,21 +23,10 @@ Then you can simply run the build bat or python3 version of it (yes Python3) and
 (Before you run it, please check module_info.py and correct the path to your output folder!)  
 
 
-## Info  
-The Animations Module is currently not active!   
-The reason for this is, that otherwise it would only have test values for now.   
-And without actual correct values the Mod won't even start in a correct way.  
-  
-If you still want to activate it, you can uncomment the line in **main.py**:
-
-```python
-    # AnimationConverter().createCode()
-```
-  
-### Important
+## Important Info
 This is early access and many things might change over time.  
 It is also worth noting, that this module system is completely empty.  
-Which means, that besides that current test and minimal support codes all is up to you!  
+Which means, that besides the current test and minimal support codes all is up to you!  
 You could write a complete new game with this, but maybe not a good one at the current state.  
 If you want to add upon the native module system, you might want to check out something else for now.  
 Or you could add the native codes yourself, if you want and help me translate it.  
@@ -45,7 +34,7 @@ Otherwise it might take ages for me to translate all code into python(-like)-cod
 
 
 ## How it works  
-* First you write your code (inside "test_cases" or "modules" folder)
+* First you write your code inside "modules" folder
 * Then you run "main.py"
 * After that your python code is translated into MBScript  
 * You can find the output in the "build_system" folder (old module_system style)
@@ -58,6 +47,17 @@ If you want to directly compile the MBScript code when you run "main.py", simply
 ```bash
 python -B main.py --build
 ```
+or
+```bash
+python -B main.py -b
+```
+
+### Linux only
+You can also directly build and run.  
+```bash
+python -B main.py --build-and-run
+```
+As the title says, this only works for Linux at the current state.
 
 ### Global Variables
 These kind of variables are marked with '$' at the beginning of MBScript and are global as the name says.

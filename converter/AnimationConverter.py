@@ -3,7 +3,7 @@
 from ScriptConverter import ScriptConverter
 from animation import Animation
 
-import test_animations
+import animations
 
 
 class AnimationConverter(ScriptConverter):
@@ -16,9 +16,9 @@ class AnimationConverter(ScriptConverter):
 
     def retrieveAnimations(self):
         anims = []
-        for i in vars(test_animations):
+        for i in vars(animations):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_animations,i)
+                attr = getattr(animations,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "Sequence" in str(attr):
                     anims.append(attr)
         return anims

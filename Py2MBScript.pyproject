@@ -224,6 +224,7 @@
         "modules/simple_triggers.py",
         "modules/strings.py",
         "modules/triggers.py",
-        "modules/troops.py"
+        "modules/troops.py",
+        "modules/animations.py"
     ]
 }
