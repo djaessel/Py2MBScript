@@ -70,7 +70,7 @@ To mark a variable as global you add an underscore as prefix. (e.g. "_tax_code" 
 This will be transformed into the MBScript global variable with dollar sign later on.
   
 In later stages there might be a track of the global variables and more advanced usage possible.  
-For now the act inside Python like local variables, but in MBScript as global.  
+For now they act inside Python like local variables, but in MBScript as global.  
 
 ### Local Variables & Script Parameters
 Local variables work like typical local python variables.
@@ -211,13 +211,13 @@ You can either negate with **not** *or* **compare to False**.
 It is also possible, for the sake of debugging and code activation, to make a condition always **True** or **False**.  
 
 Multiple conditions will be checked in the given order.  
-As the name says *this_or_next* is checks the first condition and if that is not true, it checks the next.  
+As the name says *this_or_next* checks the first condition and if that is not true, it checks the next.  
 The checking order is the same, but it is "this or next".  
 For multiple OR in a row, it will make as many *this_or_next* as given conditions.  
 
 #### Important
 Sometimes it is possible that at the current state, an *if* is not closed correctly after conversion into MBScript.  
-When this happens, you can simply add the following line where the *if* should add in Python:
+When this happens, you can simply add the following line where the *if* should end in Python:
 ```python
 #end
 ```
