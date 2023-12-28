@@ -993,10 +993,10 @@ mission_tpl_entry_clear_override_items = 1941   # (mission_tpl_entry_clear_overr
 mission_tpl_entry_add_override_item    = 1942   # (mission_tpl_entry_add_override_item, <mission_template_id>, <entry_no>, <item_kind_id>),
 mission_tpl_are_all_agents_spawned     = 1943   # (mission_tpl_are_all_agents_spawned), #agents >300 may keep spawning after ti_after_mission_start (still fires .1 second too early)
 
-set_current_color                      = 1950	# red, green, blue: a value of 255 means 100%
-					          # (set_current_color,<value>,<value>,<value>),
-set_position_delta                     = 1955	# x, y, z
-                                                  # (set_position_delta,<value>,<value>,<value>),
+set_current_color                      = 1950	# (set_current_color,<value>,<value>,<value>), # red, green, blue: a value of 255 means 100%
+
+set_position_delta                     = 1955	# (set_position_delta,<value>,<value>,<value>), # x, y, z
+
 add_point_light                        = 1960	# (add_point_light,[flicker_magnitude],[flicker_interval]), #flicker_magnitude between 0 and 100, flicker_interval is in 1/100 seconds
 add_point_light_to_entity              = 1961	# (add_point_light_to_entity,[flicker_magnitude],[flicker_interval]), #flicker_magnitude between 0 and 100, flicker_interval is in 1/100 seconds
 particle_system_add_new                = 1965	# (particle_system_add_new,<par_sys_id>,[position_no]),
@@ -1153,31 +1153,31 @@ val_mod                = 2109	# (val_mod,<destination>,<value>),
 val_min                = 2110	# (val_min,<destination>,<value>),
 #dest, operand ::       dest = min(dest, operand)
 
-val_max                = 2111	#dest, operand ::       dest = max(dest, operand)
-				# (val_max,<destination>,<value>),
-val_clamp              = 2112	#dest, operand ::       dest = max(min(dest,<upper_bound> - 1),<lower_bound>)
-				# (val_clamp,<destination>,<lower_bound>, <upper_bound>),
-val_abs                = 2113  #dest          ::       dest = abs(dest)
-                                # (val_abs,<destination>),
-val_or                 = 2114   #dest, operand ::       dest = dest | operand
-				# (val_or,<destination>,<value>),
-val_and                = 2115   #dest, operand ::       dest = dest & operand
-				# (val_and,<destination>,<value>),
-store_or               = 2116   #dest, op1, op2 :      dest = op1 | op2
-                                # (store_or,<destination>,<value>,<value>),
-store_and              = 2117   #dest, op1, op2 :      dest = op1 & op2
-                                # (store_and,<destination>,<value>,<value>),
+val_max                = 2111	# (val_max,<destination>,<value>), #dest, operand ::       dest = max(dest, operand)
 
-store_mod              = 2119	#dest, op1, op2 :      dest = op1 % op2
-				# (store_mod,<destination>,<value>,<value>),
-store_add              = 2120	#dest, op1, op2 :      dest = op1 + op2
-				# (store_add,<destination>,<value>,<value>),
-store_sub              = 2121	#dest, op1, op2 :      dest = op1 - op2
-				# (store_sub,<destination>,<value>,<value>),
-store_mul              = 2122	#dest, op1, op2 :      dest = op1 * op2
-				# (store_mul,<destination>,<value>,<value>),
-store_div              = 2123	#dest, op1, op2 :      dest = op1 / op2
-				# (store_div,<destination>,<value>,<value>),
+val_clamp              = 2112	# (val_clamp,<destination>,<lower_bound>, <upper_bound>), #dest, operand ::       dest = max(min(dest,<upper_bound> - 1),<lower_bound>)
+
+val_abs                = 2113  # (val_abs,<destination>), #dest          ::       dest = abs(dest)
+
+val_or                 = 2114   # (val_or,<destination>,<value>), #dest, operand ::       dest = dest | operand
+
+val_and                = 2115   # (val_and,<destination>,<value>), #dest, operand ::       dest = dest & operand
+
+store_or               = 2116   # (store_or,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 | op2
+
+store_and              = 2117   # (store_and,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 & op2
+
+
+store_mod              = 2119	# (store_mod,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 % op2
+
+store_add              = 2120	# (store_add,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 + op2
+
+store_sub              = 2121	# (store_sub,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 - op2
+
+store_mul              = 2122	# (store_mul,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 * op2
+
+store_div              = 2123	# (store_div,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 / op2
+
 
 set_fixed_point_multiplier      = 2124 # (set_fixed_point_multiplier, <value>),
                                         # sets the precision of the values that are named as value_fixed_point or destination_fixed_point.
@@ -1198,8 +1198,8 @@ assign                 = 2133	# had to put this here so that it can be called fr
 shuffle_range          = 2134	# (shuffle_range,<reg_no>,<reg_no>),
 
 store_random           = 2135	# deprecated, use store_random_in_range instead.
-store_random_in_range  = 2136	# gets random number in range [range_low,range_high] excluding range_high 
-				# (store_random_in_range,<destination>,<range_low>,<range_high>),
+store_random_in_range  = 2136	# (store_random_in_range,<destination>,<range_low>,<range_high>), # gets random number in range [range_low,range_high] excluding range_high
+
 
 store_asin             = 2140  # (store_asin, <destination_fixed_point>, <value_fixed_point>),
 store_acos             = 2141  # (store_acos, <destination_fixed_point>, <value_fixed_point>),
@@ -1266,8 +1266,8 @@ store_random_quest_in_range     = 2250 # (store_random_quest_in_range,<destinati
 store_random_troop_to_raise     = 2251 # (store_random_troop_to_raise,<destination>,<lower_bound>,<upper_bound>),
 store_random_troop_to_capture   = 2252	# (store_random_troop_to_capture,<destination>,<lower_bound>,<upper_bound>),
 store_random_party_in_range     = 2254	# (store_random_party_in_range,<destination>,<lower_bound>,<upper_bound>),
-store01_random_parties_in_range = 2255 # stores two random, different parties in a range to reg0 and reg1.
-					# (store01_random_parties_in_range,<lower_bound>,<upper_bound>),
+store01_random_parties_in_range = 2255 # (store01_random_parties_in_range,<lower_bound>,<upper_bound>), # stores two random, different parties in a range to reg0 and reg1.
+
 store_random_horse              = 2257	# (store_random_horse,<destination>)
 store_random_equipment          = 2258	# (store_random_equipment,<destination>)
 store_random_armor              = 2259	# (store_random_armor,<destination>)
@@ -1352,8 +1352,8 @@ store_defender_count  = 2383 # (store_defender_count,<destination>),
 store_attacker_count  = 2384 # (store_attacker_count,<destination>),
 store_normalized_team_count = 2385 #(store_normalized_team_count,<destination>, <team_no>), #Counts the number of agents belonging to a team
                                                                                             # and normalizes the result regarding battle_size and advantage.
-set_postfx                  = 2386
-set_river_shader_to_mud     = 2387 #changes river material for muddy env
+set_postfx                  = 2386 # (set_postfx, <post_fx>)
+set_river_shader_to_mud     = 2387 # (set_river_shader_to_mud) #changes river material for muddy env
 show_troop_details          = 2388 # (show_troop_details, <troop_id>, <position>, <troop_price>)
 set_skybox                  = 2389 # (set_skybox, <non_hdr_skybox_index>, <hdr_skybox_index>)	#forces selected skybox for a scene, use -1 to disable 
 set_startup_sun_light       = 2390 # (set_startup_sun_light, <r>, <g>, <b>)	#changes the sun light color
