@@ -20,7 +20,7 @@ scripts = [
 (display_message, "@Hello world!"),
 (set_spawn_radius,1),
 (try_for_range, ":unused", 0, 3),
-    ID of spawned party is put into reg(0),
+    (spawn_around_party,"p_main_party","pt_hunters"),
     (party_set_ai_behavior,reg0,0),
 (try_end),
 ]),

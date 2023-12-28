@@ -67,12 +67,12 @@ set_camera_in_first_person      = 62  # (set_camera_in_first_person, <value>), #
  
 game_key_get_mapped_key_name    = 65  # (game_key_get_mapped_key_name, <string_register>, <game_key>),
 
-key_is_down                     = 70  # fails if the key is not currently down (key_is_down, <key_id>),
-key_clicked                     = 71  # fails if the key is not clicked on the specific frame (key_clicked, <key_id>),
-game_key_is_down                = 72  # fails if the game key is not currently down (key_is_down, <game_key_id>),
-game_key_clicked                = 73  # fails if the game key is not clicked on the specific frame (game_key_clicked, <game_key_id>),
+key_is_down                     = 70  # (key_is_down, <key_id>), #fails if the key is not currently down
+key_clicked                     = 71  # (key_clicked, <key_id>), #fails if the key is not clicked on the specific frame
+game_key_is_down                = 72  # (game_key_is_down, <game_key_id>), # fails if the game key is not currently down
+game_key_clicked                = 73  # (game_key_clicked, <game_key_id>), # fails if the game key is not clicked on the specific frame
 mouse_get_position	            = 75  # (mouse_get_position, <position_no>), #x and y values of position are filled
-omit_key_once                   = 77  # game omits any bound action for the key once (omit_key_once, <key_id>),
+omit_key_once                   = 77  # (omit_key_once, <key_id>), # game omits any bound action for the key once
 clear_omitted_keys              = 78  # (clear_omitted_keys),
 
 get_global_cloud_amount         = 90  # (get_global_cloud_amount, <destination>), #returns a value between 0-100
@@ -304,20 +304,21 @@ get_trigger_object_position     = 702 # (get_trigger_object_position,<position_n
 
 get_angle_between_positions                 = 705 # (get_angle_between_positions, <destination_fixed_point>, <position_no_1>, <position_no_2>),
 position_has_line_of_sight_to_position      = 707 # (position_has_line_of_sight_to_position, <position_no_1>, <position_no_2>),
-get_distance_between_positions              = 710 # gets distance in centimeters. # (get_distance_between_positions,<destination>,<position_no_1>,<position_no_2>),
-get_distance_between_positions_in_meters    = 711 # gets distance in meters. # (get_distance_between_positions_in_meters,<destination>,<position_no_1>,<position_no_2>),
-get_sq_distance_between_positions           = 712 # gets squared distance in centimeters # (get_sq_distance_between_positions,<destination>,<position_no_1>,<position_no_2>),
-get_sq_distance_between_positions_in_meters = 713 # gets squared distance in meters # (get_sq_distance_between_positions_in_meters,<destination>,<position_no_1>,<position_no_2>),
+get_distance_between_positions              = 710 # (get_distance_between_positions,<destination>,<position_no_1>,<position_no_2>), # gets distance in centimeters.
+get_distance_between_positions_in_meters    = 711 # (get_distance_between_positions_in_meters,<destination>,<position_no_1>,<position_no_2>), # gets distance in meters.
+get_sq_distance_between_positions           = 712 # (get_sq_distance_between_positions,<destination>,<position_no_1>,<position_no_2>), # gets squared distance in centimeters
+get_sq_distance_between_positions_in_meters = 713 # (get_sq_distance_between_positions_in_meters,<destination>,<position_no_1>,<position_no_2>), # gets squared distance in meters
 position_is_behind_position                 = 714 # (position_is_behind_position,<position_no_1>,<position_no_2>),
-get_sq_distance_between_position_heights    = 715 # gets squared distance in centimeters # (get_sq_distance_between_position_heights,<destination>,<position_no_1>,<position_no_2>),
+get_sq_distance_between_position_heights    = 715 # (get_sq_distance_between_position_heights,<destination>,<position_no_1>,<position_no_2>), # gets squared distance in centimeters
 
 position_transform_position_to_parent       = 716 # (position_transform_position_to_parent,<dest_position_no>,<position_no>,<position_no_to_be_transformed>),
 position_transform_position_to_local        = 717 # (position_transform_position_to_local, <dest_position_no>,<position_no>,<position_no_to_be_transformed>),
 
 position_copy_rotation          = 718 # (position_copy_rotation,<position_no_1>,<position_no_2>), copies rotation of position_no_2 to position_no_1
 position_copy_origin            = 719 # (position_copy_origin,<position_no_1>,<position_no_2>), copies origin of position_no_2 to position_no_1
-position_move_x                 = 720 # movement is in cms, [0 = local; 1=global]
-				      # (position_move_x,<position_no>,<movement>,[value]),
+position_move_x                 = 720 # (position_move_x,<position_no>,<movement>,[value]),
+                                      # movement is in cms, [0 = local; 1=global]
+
 position_move_y                 = 721 # (position_move_y,<position_no>,<movement>,[value]),
 position_move_z                 = 722 # (position_move_z,<position_no>,<movement>,[value]),
 
@@ -460,8 +461,8 @@ add_xp_to_troop                 = 1062 # (add_xp_to_troop,<value>,[troop_id]),
 add_gold_as_xp                  = 1063 # (add_gold_as_xp,<value>,[troop_id]),
 add_xp_as_reward                = 1064 # (add_xp_as_reward,<value>),
 
-add_gold_to_party               = 1070 # party_id should be different from 0
-			       # (add_gold_to_party,<value>,<party_id>),
+add_gold_to_party               = 1070 # (add_gold_to_party,<value>,<party_id>), # party_id should be different from 0
+
 
 set_party_creation_random_limits= 1080 # (set_party_creation_random_limits, <min_value>, <max_value>), (values should be between 0, 100)
 
@@ -473,8 +474,7 @@ quest_set_note_available        = 1098 # (quest_set_note_available, <quest_id>, 
 
 
 #1090-1091-1092 is taken, see below (info_page)
-spawn_around_party              = 1100 # ID of spawned party is put into reg(0)
-			       # (spawn_around_party,<party_id>,<party_template_id>),
+spawn_around_party              = 1100 # (spawn_around_party,<party_id>,<party_template_id>), # ID of spawned party is put into reg(0)
 set_spawn_radius                = 1103 # (set_spawn_radius,<value>),
 
 display_debug_message           = 1104 # (display_debug_message,<string_id>,[hex_colour_code]), #displays message only in debug mode, but writes to rgl_log.txt in both release and debug modes when edit mode is enabled
@@ -573,12 +573,11 @@ end_current_battle         = 1307 # (end_current_battle),
 
 
 
-set_mercenary_source_party = 1320 # selects party from which to buy mercenaries
-				   # (set_mercenary_source_party,<party_id>),
+set_mercenary_source_party = 1320 # (set_mercenary_source_party,<party_id>), # selects party from which to buy mercenaries
 
 
-set_merchandise_modifier_quality = 1490	        # Quality rate in percentage (average quality = 100),
-						# (set_merchandise_modifier_quality,<value>),
+set_merchandise_modifier_quality = 1490	        # (set_merchandise_modifier_quality,<value>), # Quality rate in percentage (average quality = 100),
+
 set_merchandise_max_value = 1491		# (set_merchandise_max_value,<value>),
 reset_item_probabilities = 1492		        # (reset_item_probabilities),
 set_item_probability_in_merchandise = 1493	# (set_item_probability_in_merchandise,<itm_id>,<value>),
@@ -654,14 +653,14 @@ party_add_leader                       = 1612	# (party_add_leader,<party_id>,<tr
 party_force_add_members                = 1613	# (party_force_add_members,<party_id>,<troop_id>,<number>),
 party_force_add_prisoners              = 1614	# (party_force_add_prisoners,<party_id>,<troop_id>,<number>),
 
-party_remove_members                   = 1615	# stores number removed to reg0
-						# (party_remove_members,<party_id>,<troop_id>,<number>),
-party_remove_prisoners                 = 1616	# stores number removed to reg0
-						# (party_remove_members,<party_id>,<troop_id>,<number>),
+party_remove_members                   = 1615	# (party_remove_members,<party_id>,<troop_id>,<number>), # stores number removed to reg0
+
+party_remove_prisoners                 = 1616	# (party_remove_members,<party_id>,<troop_id>,<number>), # stores number removed to reg0
+
 party_clear                            = 1617	# (party_clear,<party_id>),
 party_wound_members                    = 1618	# (party_wound_members,<party_id>,<troop_id>,<number>),
-party_remove_members_wounded_first     = 1619	# stores number removed to reg0
-						# (party_remove_members_wounded_first,<party_id>,<troop_id>,<number>),
+party_remove_members_wounded_first     = 1619	# (party_remove_members_wounded_first,<party_id>,<troop_id>,<number>), # stores number removed to reg0
+
 
 party_set_faction                      = 1620	# (party_set_faction,<party_id>,<faction_id>),
 party_relocate_near_party              = 1623	# (party_relocate_near_party,<party_id>,<target_party_id>,<value_spawn_radius>),
@@ -1136,18 +1135,24 @@ agent_set_ranged_damage_modifier       = 2099   # (agent_set_ranged_damage_modif
 val_lshift             = 2100 # (val_lshift, <destination>, <value>), # shifts the bits of destination to left by value amount.
 val_rshift             = 2101 # (val_rshift, <destination>, <value>), # shifts the bits of destination to right by value amount.
 
-val_add                = 2105	#dest, operand ::       dest = dest + operand
-				# (val_add,<destination>,<value>),
-val_sub                = 2106	#dest, operand ::       dest = dest + operand
-				# (val_sub,<destination>,<value>),
-val_mul                = 2107	#dest, operand ::       dest = dest * operand
-				# (val_mul,<destination>,<value>),
-val_div                = 2108	#dest, operand ::       dest = dest / operand
-				# (val_div,<destination>,<value>),
-val_mod                = 2109	#dest, operand ::       dest = dest mod operand
-				# (val_mod,<destination>,<value>),
-val_min                = 2110	#dest, operand ::       dest = min(dest, operand)
-				# (val_min,<destination>,<value>),
+val_add                = 2105	# (val_add,<destination>,<value>),
+#dest, operand ::       dest = dest + operand
+
+val_sub                = 2106	# (val_sub,<destination>,<value>),
+#dest, operand ::       dest = dest + operand
+
+val_mul                = 2107	# (val_mul,<destination>,<value>),
+#dest, operand ::       dest = dest * operand
+
+val_div                = 2108	# (val_div,<destination>,<value>),
+#dest, operand ::       dest = dest / operand
+
+val_mod                = 2109	# (val_mod,<destination>,<value>),
+#dest, operand ::       dest = dest mod operand
+
+val_min                = 2110	# (val_min,<destination>,<value>),
+#dest, operand ::       dest = min(dest, operand)
+
 val_max                = 2111	#dest, operand ::       dest = max(dest, operand)
 				# (val_max,<destination>,<value>),
 val_clamp              = 2112	#dest, operand ::       dest = max(min(dest,<upper_bound> - 1),<lower_bound>)
