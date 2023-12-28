@@ -86,7 +86,7 @@ game_menus = [
             (eq,1,1),
             (party_get_position,pos1,":partyx"),
             (position_get_x,":x",pos1),
-            (val_add,":x",100),
+            dest, operand ::       dest = dest + operand,
             (position_set_x,pos1,":x"),
             (party_set_position,":partyx",pos1),
             (position_get_x, reg69, pos1),

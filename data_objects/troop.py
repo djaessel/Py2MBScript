@@ -7,7 +7,7 @@ from enum import Enum
 from skill import Skill
 from item import Item, IModBit
 
-import test_skills as skl
+import skills as skl
 from test_items import *
 
 class TroopFlag(Enum):
@@ -119,7 +119,7 @@ class Troop:
 
         self.add_skill(skl.riding, 1)
         self.add_skill(skl.trade, 2)
-        self.add_skill(skl.inventory_mgmt, 2)
+        self.add_skill(skl.inventory_management, 2)
         self.add_skill(skl.prisoner_mgmt, 1)
         self.add_skill(skl.leadership, 1)
 

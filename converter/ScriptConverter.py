@@ -20,7 +20,7 @@ class ScriptConverter:
     prsnt_text_overlays = dict()
 
     def __init__(self):
-        with open("./test_cases/header_operations.py") as f:
+        with open("./build_system/header_operations.py") as f:
             for line in f:
                 if "=" in line and "#" in line:
                     code = line.split('=')[0].strip()
@@ -785,10 +785,10 @@ class ScriptConverter:
         return lines
 
 
-    def readScriptTestCode(self):
-        lines = []
-        with open("./test_cases/test_scripts.py") as f:
-            for line in f:
-                lines.append(line)
-        return lines
+#    def readScriptTestCode(self):
+#        lines = []
+#        with open("./test_cases/test_scripts.py") as f:
+#            for line in f:
+#                lines.append(line)
+#        return lines
 

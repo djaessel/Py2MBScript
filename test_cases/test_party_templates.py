@@ -5,7 +5,7 @@
 
 from party_template import PartyTemplate
 
-from test_troops import *
+from troops import *
 
 
 partyTempDummy = PartyTemplate("dummy", "Dummy")

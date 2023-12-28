@@ -10,6 +10,7 @@ sys.path.append("./converter/")
 sys.path.append("./data_objects/")
 sys.path.append("./test_cases/")
 sys.path.append("./modules/")
+sys.path.append("./build_system/")
 
 
 from ScriptConverter import ScriptConverter
