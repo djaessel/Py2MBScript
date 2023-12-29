@@ -18,7 +18,9 @@ class TriggerConverter(ScriptConverter):
         for i in vars(triggers):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(triggers,i)
-                triggersx.append(attr)
+                sAttr = str(attr)
+                if not "function" in sAttr:
+                    triggersx.append(attr)
         return triggersx
 
     @staticmethod

@@ -18,7 +18,9 @@ class SimpleTriggerConverter(ScriptConverter):
         for i in vars(simple_triggers):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(simple_triggers,i)
-                simpleTriggers.append(attr)
+                sAttr = str(attr)
+                if not "function" in sAttr:
+                    simpleTriggers.append(attr)
         return simpleTriggers
 
 

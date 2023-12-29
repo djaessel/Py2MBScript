@@ -98,5 +98,28 @@ game_menus = [
 (try_end),
 ]),
 
+("test_break", [
+], "TEST BREAK", [
+(assign,":x1",200),
+(assign,":x2",100),
+(try_for_range_backwards, ":x", ":x2", ":x1"),
+    (assign, reg0, ":x"),
+    (display_message, "@{reg0}"),
+    (try_begin),
+        (eq,":x",150),
+        (assign, ":x2", ":x1"),
+        (assign,":end",30),
+    (try_end),
+(try_end),
+(try_for_range, ":x", 0, ":end"),
+    (assign, reg0, ":x"),
+    (display_message, "@{reg0}"),
+    (try_begin),
+        (eq,":x",10),
+        (assign, ":end", 0),
+    (try_end),
+(try_end),
+]),
+
 ]),
 ]

@@ -639,6 +639,21 @@ class ScriptConverter:
         return b
 
 
+    def transformWhileBlock(self, code):
+        #(display_message, "@Started special while!"),
+        #(assign,":found", 2147483646),
+        #(store_add,":range_end",0,1), # ":range_end" = towns_begin+1
+        #(try_for_range, reg60,0,":range_end"), # try for towns_begin to towns_begin+1
+        #    (eq,reg60,":found"), # if condition is true . . .
+        #    (display_message, "@Found END! -> {reg60}"),
+        #(else_try),
+        #    #(neq,":town",":found"), # if condition is not true . . .
+        #    (val_add,":range_end",1), # ":range_end" = ":range_end"+1, i.e. continue the try_for_range
+        #(try_end),
+        #(display_message, "@Last output: {reg60}"),
+        pass
+
+
     def transformScriptBlock(self, codeBlock : list):
         lastScriptIdx = -1
 
@@ -683,8 +698,32 @@ class ScriptConverter:
             elif code.startswith("except:"):
                 coy = self.transformExceptBlock(code)
             elif code.startswith("while "):
-                print("while is not supported yet!")
+                print("'while' is not supported yet!")
+                # coy = self.transformWhileBlock(code)
                 # ifCl.append((inlineIndentCount, code))
+            elif code.strip() == "break":
+                print("WARNING: 'break' is not fully supported yet!")
+                idxB = -1
+                for_range = False
+                for i in range(len(allCodes)-1,-1,-1):
+                    if "try_for_" in allCodes[i]:
+                        idxB = i
+                        if "try_for_range" in allCodes[i]:
+                            for_range = True
+                        break
+                if not for_range:
+                    allCodes.insert(idxB+1, "(eq, \":__break__\", 0)")
+                    allCodes.insert(idxB, "(assign, \":__break__\", 0)")
+                    coy.append("(assign, \":__break__\", 1)")
+                else:
+                    last_two = allCodes[idxB].split(',')
+                    last_two = [last_two[-1].strip().strip(")"), last_two[-2].strip().strip(")")]
+                    if "backwards" in allCodes[idxB]:
+                        coy.append("(assign, " + last_two[1] + ", " + last_two[0] + ")")
+                    else:
+                        coy.append("(assign, " + last_two[0] + ", " + last_two[1] + ")")
+            elif code == "continue":
+                print("'continue' is not supported!")
             elif code.startswith("def "):
                 for _ in ifCl:
                     allCodes.append("(try_end)")

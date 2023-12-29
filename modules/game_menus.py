@@ -95,6 +95,20 @@ def conseq():
 town_leave.consequenceBlock = conseq
 town_menu.menuOptions.append(town_leave)
 
-
+town_break_test = MenuOption("test_break", "TEST BREAK")
+def conseq():
+    x1 = 200
+    x2 = 100
+    for x in range(x1,x2,-1):
+        print(x)
+        if x == 150:
+            break
+    end = 30
+    for x in range(end):
+        print(x)
+        if x == 10:
+            break
+town_break_test.consequenceBlock = conseq
+town_menu.menuOptions.append(town_break_test)
 
 
