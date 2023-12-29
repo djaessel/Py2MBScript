@@ -15,10 +15,10 @@ event = LoadEvent()
 def event_code():
     set_fixed_point_multiplier(1000)
 
-    esc_info_text = MBTextOverlay(reg0, "@Press ESC to exit", tf_center_justify|tf_single_line|tf_with_outline)
-    esc_info_text.set_color(0xFFFFFFFF)
-    esc_info_text.set_size(1500, 1500)
-    esc_info_text.set_position(175, 700)
+    esc_info_text = MBTextOverlay(reg0, "@Press ESC to exit", tf_single_line)
+    esc_info_text.set_color(0xFF000000)
+    esc_info_text.set_size(2500, 2500)
+    esc_info_text.set_position(100, 100)
 
     presentation_set_duration(999999)
 
