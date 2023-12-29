@@ -97,18 +97,31 @@ town_menu.menuOptions.append(town_leave)
 
 town_break_test = MenuOption("test_break", "TEST BREAK")
 def conseq():
-    x1 = 200
-    x2 = 100
-    for x in range(x1,x2,-1):
+    start = 200
+    end = 100
+    for x in range(start,end,-1):
         print(x)
         if x == 150:
             break
+    #endfor
     end = 30
     for x in range(end):
         print(x)
         if x == 10:
             break
+    for p in __all_parties__:
+        print("Party:", p)
+        if p == "p_test_town":
+            break
 town_break_test.consequenceBlock = conseq
 town_menu.menuOptions.append(town_break_test)
 
+town_list_test = MenuOption("test_break", "TEST LIST")
+def conseq():
+    bits = [0, 1, 2, 4, 8, 16, 32, 64, 128]
+    x = 8
+    if x in bits:
+        print(x, "is in the list!")
 
+town_list_test.consequenceBlock = conseq
+town_menu.menuOptions.append(town_list_test)

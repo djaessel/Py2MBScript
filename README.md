@@ -228,9 +228,6 @@ It is not so much important what stands after the '#', but this makes it easier 
 In Python we all have used for loops quite a lot, I am sure.  
 In MBScript there are a few differences tho and special for loops.  
 
-Later on there also will be support for the **break** command.  
-Currently it does not work.  
-
 #### Example1:
 (Python Code)
 ```python
@@ -258,6 +255,7 @@ for x in range(0, 10, -1):
     (display_message, "@{reg0}"),
 (try_end),
 ```
+
 
 ### Special For Loops
 In MBScript there are a few special for loops:
@@ -297,6 +295,71 @@ for agentx in __all_agents__:
 (try_end),
 ```
 
+### break
+In Python for loops you sometimes might want to break out of it.  
+Now it is possible to do the same here.  
+
+#### Example:
+(Python Code)
+```python
+# backwards range
+start = 200
+end = 100
+for x in range(start,end,-1):
+    print(x)
+    if x == 150:
+        break
+# forward range
+end = 30
+for x in range(end):
+    print(x)
+    if x == 10:
+        break
+# other try blocks
+for p in __all_parties__:
+    print("Party:", p)
+    if p == "p_test_town":
+        break
+```
+(MBScript)
+```python
+(assign,":start",200),
+(assign,":end",100),
+(try_for_range_backwards, ":x", ":end", ":start"),
+    (assign, reg0, ":x"),
+    (display_message, "@{reg0}"),
+    (try_begin),
+        (eq,":x",150),
+        (assign, ":end", ":start"),
+    (try_end),
+(try_end),
+(assign,":end",30),
+(try_for_range, ":x", 0, ":end"),
+    (assign, reg0, ":x"),
+    (display_message, "@{reg0}"),
+    (try_begin),
+        (eq,":x",10),
+        (assign, ":end", 0),
+    (try_end),
+(try_end),
+(assign, ":__break__", 0),
+(try_for_parties, ":p"),
+    (eq, ":__break__", 0),
+    (assign, reg1, ":p"),
+    (display_message, "@Party: {reg1}"),
+    (try_begin),
+        (eq,":p","p_test_town"),
+        (assign, ":__break__", 1),
+    (try_end),
+(try_end),
+```
+Technically the break will be translated into other possible commands.  
+In the forward and backwards for loop, the end condition will be set equal to the start.  
+
+For the other try loops there will be a trick using a local variable, to skip all the code for the remaining calls. 
+So it does not really break, but skip here, while for the ranged for loops it does break out completey.  
+
+
 ### try/catch
 We also have a primitive version of try/catch.  
 But it actually is working similar to if/else.  
@@ -304,6 +367,7 @@ The main difference is, that it looks more like the actual MBScript code.
 Exceptions are not really handled, since the game does not provide that inside MBScript.  
 So don't get confused, it just exists.  
 
+#### Example:
 (Python Code)
 ```python
 try:
@@ -321,7 +385,40 @@ except:
 ```
 
 
-### while
-This is currently not supported.  
+### Currently not supported commands
+* while
+* continue
+* return
+
+
+### Working with python lists
+It is possible to use python like lists to create the same code with them, while not having to write the line each time.  
+
+#### Example:
+(Python Code)
+```python
+bits = [0, 1, 2, 4, 8, 16, 32, 64, 128]
+x = 8
+if x in bits:
+    print(x, "is in the list!")
+```
+(MBScript)
+```python
+(assign,":x",8),
+(try_begin),
+    (this_or_next|eq,":x",0),
+    (this_or_next|eq,":x",1),
+    (this_or_next|eq,":x",2),
+    (this_or_next|eq,":x",4),
+    (this_or_next|eq,":x",8),
+    (this_or_next|eq,":x",16),
+    (this_or_next|eq,":x",32),
+    (this_or_next|eq,":x",64),
+    (eq,":x",128),
+    (assign, reg0, ":x"),
+    (display_message, "@{reg0} is in the list!"),
+(try_end),
+```
+As you see, the whole list gets transformed into multiple *this_or_next* and *eq* statements.  
 
 
