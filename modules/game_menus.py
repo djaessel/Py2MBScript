@@ -103,7 +103,6 @@ def conseq():
         print(x)
         if x == 150:
             break
-    #endfor
     end = 30
     for x in range(end):
         print(x)

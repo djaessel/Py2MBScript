@@ -735,7 +735,7 @@ class ScriptConverter:
                 lastScriptIdx = curIdx
             else:
                 coy = self.transformCode(code)
-                self.fixIndentionProblem(coy, ifCl, inlineIndentCount, code)
+                self.fixIndentionProblem(coy, ifCl, inlineIndentCount, code, True)
 
             allCodes.extend(coy)
 
@@ -751,7 +751,7 @@ class ScriptConverter:
         return allCodes
 
 
-    def fixIndentionProblem(self, c, ifCl, inlineIndentCount, code):
+    def fixIndentionProblem(self, c, ifCl, inlineIndentCount, code, spec=False):
         xyz = []
         for i, ifx in enumerate(ifCl):
             if inlineIndentCount <= ifx[0] and code.strip() != "":
@@ -761,7 +761,10 @@ class ScriptConverter:
             xyz.reverse()
             for x in xyz:
                 del ifCl[x]
-                c.append("(try_end)")
+                if spec:
+                    c.insert(len(c)-1, "(try_end)")
+                else:
+                    c.append("(try_end)")
 
 
     def writeScriptCode(self, f, codeData):
