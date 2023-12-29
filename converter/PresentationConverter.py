@@ -5,24 +5,24 @@ from TriggerConverter import TriggerConverter
 from presentation import Presentation
 
 import inspect
-import test_presentations
+import presentations
 
 class PresentationConverter(ScriptConverter):
 
     def createCode(self):
-        presentations = self.retrievePresentations()
-        self.writeScriptOutputFile(presentations)
+        presentationsx = self.retrievePresentations()
+        self.writeScriptOutputFile(presentationsx)
 
     def retrievePresentations(self):
-        presentations = []
-        for i in vars(test_presentations):
+        presentationsx = []
+        for i in vars(presentations):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_presentations,i)
+                attr = getattr(presentations,i)
                 sx = str(attr)
                 if not "<function" in sx and not "<module" in sx and not "MB" in sx:
                     if not "SimpleTrigger" in sx and not "Event" in sx:
-                        presentations.append(attr)
-        return presentations
+                        presentationsx.append(attr)
+        return presentationsx
 
 
     def writeScriptOutputFile(self, codeData : list[Presentation]):

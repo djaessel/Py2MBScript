@@ -5,14 +5,14 @@
 
 from party_template import PartyTemplate
 
-from troops import *
+import troops as trp
 
 
 partyTempDummy = PartyTemplate("dummy", "Dummy")
 
 
 partyTemp1 = PartyTemplate("hunters", "Hunters")
-partyTemp1.addStack(npc1, 1)
-partyTemp1.addStack(npc2, 1, 2)
+partyTemp1.addStack(trp.npc1, 1)
+partyTemp1.addStack(trp.looter, 1, 2)
 
 

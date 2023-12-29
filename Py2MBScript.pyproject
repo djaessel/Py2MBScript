@@ -199,11 +199,11 @@
         "test_cases/test_items.py",
         "test_cases/test_mission_templates.py",
         "test_cases/test_party_templates.py",
-        "test_cases/test_presentations.py",
         "test_cases/test_quests.py",
         "test_cases/test_scene_props.py",
         "test_cases/test_scenes.py",
         "test_cases/test_sounds.py",
-        "test_cases/test_tableau_materials.py"
+        "test_cases/test_tableau_materials.py",
+        "modules/presentations.py"
     ]
 }

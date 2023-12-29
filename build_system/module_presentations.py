@@ -9,17 +9,6 @@ import string
 
 presentations = [
 
-("test1",0,0,[
-
-(ti_on_presentation_load, [
-(display_message, "@Hello World! - {s0}"),
-]),
-
-(ti_on_presentation_event_state_change, [
-(display_message, "@Hello World!!!"),
-]),
-
-]),
 ("game_custom_battle_designer",prsntf_manual_end_only,mesh_cb_ui_main,[
 
 (ti_on_presentation_load, [
