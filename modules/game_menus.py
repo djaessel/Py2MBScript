@@ -129,7 +129,7 @@ town_menu.menuOptions.append(town_list_test)
 town_list_test = MenuOption("test_mission", "TEST MISSION")
 def conseq():
     set_jump_mission("mt_my_mission")
-    jump_to_scene("scn_castle_1_interior",0)
+    jump_to_scene("scn_random_scene",0)
     change_screen_mission()
 town_list_test.consequenceBlock = conseq
 town_menu.menuOptions.append(town_list_test)

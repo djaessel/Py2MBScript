@@ -152,7 +152,7 @@ game_menus = [
 ("test_mission", [
 ], "TEST MISSION", [
 (set_jump_mission,"mt_my_mission"),
-(jump_to_scene,"scn_castle_1_interior",0),
+(jump_to_scene,"scn_random_scene",0),
 (change_screen_mission),
 ]),
 
