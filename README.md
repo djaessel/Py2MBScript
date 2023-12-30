@@ -385,8 +385,51 @@ except:
 ```
 
 
+### while
+This is a tricky one, since the actual logic of MBScript does not really need nor use while like checks.  
+Nonetheless I implemented a test *while* loop.  
+It works like a while on the outside, but is actually a for range loop on the inside, with conditions.  
+Let's check it out.  
+
+#### Example:
+(Python Code)
+```python
+found = False
+x = 0
+while not found:
+    print("Hello World", ">", x)
+    x += 1
+    if x == 10:
+        found = True
+```
+(MBScript)
+```python
+(assign,":found",0),
+(assign,":x",0),
+(assign,":__while_range_end_0__",1),
+(try_for_range,":unused",0,":__while_range_end_0__"),
+    (neg|eq,":found",1),
+    (assign, reg2, ":x"),
+    (display_message, "@Hello World > {reg2}"),
+    (val_add, ":x", 1),
+    (val_add,":__while_range_end_0__",1),
+    (try_begin),
+        (eq,":x",10),
+        (assign,":found",1),
+    (try_end),
+(try_end),
+```
+As you see it checks for a boolean 'found' and some counting code below.  
+In Python it looks rather simple to exectue and you understand the logic in a way.  
+Although this code might be not that useful, especially as a 'while', it shows how it kinda works.  
+It uses a try_for_range and always counts the end condtion one up, until the condition is not met anymore.  
+
+#### Warning!!!
+Messing with while might crash the game!  
+There also is a limit to which it can count up! -> Int32.MaxValue = 2147483647  
+
+
 ### Currently not supported commands
-* while
 * continue
 * return
 

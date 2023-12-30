@@ -16,6 +16,8 @@ class ScriptConverter:
     cur_items = dict()
     cur_scripts = []
 
+    while_active = False
+
     # presentation overlays (maybe separate)
     prsnt_text_overlays = dict()
 
@@ -477,6 +479,10 @@ class ScriptConverter:
                 notTrue = True
                 cond = cond[4:]
             l = self.transformCode(cond)
+            if len(l[0].strip()) == 0:
+                cond = cond.strip()
+                if len(cond.split()) == 1:
+                    l = ['(eq,\":'+cond+"\",1)"]
             b.extend(l)
             codeFunc = True
 
@@ -500,6 +506,10 @@ class ScriptConverter:
                     line = line.replace(placeholder, "\":::" + varname[1:] + "\"")
             else:
                 line = line.replace(placeholder, "\":unused\"")
+        elif varname == "True":
+            line = line.replace(placeholder, "1")
+        elif varname == "False":
+            line = line.replace(placeholder, "0")
         else:
             line = line.replace(placeholder, "\":" + varname + "\"")
         return line
@@ -639,19 +649,19 @@ class ScriptConverter:
         return b
 
 
-    def transformWhileBlock(self, code):
-        #(display_message, "@Started special while!"),
-        #(assign,":found", 2147483646),
-        #(store_add,":range_end",0,1), # ":range_end" = towns_begin+1
-        #(try_for_range, reg60,0,":range_end"), # try for towns_begin to towns_begin+1
-        #    (eq,reg60,":found"), # if condition is true . . .
-        #    (display_message, "@Found END! -> {reg60}"),
-        #(else_try),
-        #    #(neq,":town",":found"), # if condition is not true . . .
-        #    (val_add,":range_end",1), # ":range_end" = ":range_end"+1, i.e. continue the try_for_range
-        #(try_end),
-        #(display_message, "@Last output: {reg60}"),
-        pass
+    def transformWhileBlock(self, whileCode):
+        self.while_active = True
+        b = [
+            "(assign,\":__while_range_end_0__\",1)",
+            "(try_for_range,\":unused\",0,\":__while_range_end_0__\")",
+        ]
+        b = self.conditionalBlockHead(whileCode, b, 6)
+        b.append("#while_code_ptr")
+        b.append("(val_add,\":__while_range_end_0__\",1)")
+        b.append("#(else_try)")
+        b.append("# stop while here")
+        #b.append("(try_end)")
+        return b
 
 
     def transformScriptBlock(self, codeBlock : list):
@@ -698,9 +708,9 @@ class ScriptConverter:
             elif code.startswith("except:"):
                 coy = self.transformExceptBlock(code)
             elif code.startswith("while "):
-                print("'while' is not supported yet!")
-                # coy = self.transformWhileBlock(code)
-                # ifCl.append((inlineIndentCount, code))
+                print("'while' is not fully supported yet!", "\n", "And should only be used with caution!")
+                coy = self.transformWhileBlock(code)
+                ifCl.append((inlineIndentCount, code))
             elif code.strip() == "break":
                 print("WARNING: 'break' is not fully supported yet!")
                 idxB = -1
@@ -733,6 +743,18 @@ class ScriptConverter:
                     allCodes.append("])")
                 coy = self.transformScriptLine(code)
                 lastScriptIdx = curIdx
+            elif self.while_active:
+                code_ptr = -1
+                for i in range(len(allCodes)-1,0,-1):
+                    if "#while_code_ptr" == allCodes[i].strip():
+                        code_ptr = i
+                        break
+                if code_ptr >= 0:
+                    coy = self.transformCode(code)
+                    coy.reverse()
+                    for co in coy:
+                        allCodes.insert(code_ptr, co)
+                coy=[]
             else:
                 coy = self.transformCode(code)
                 self.fixIndentionProblem(coy, ifCl, inlineIndentCount, code, True)
@@ -753,6 +775,7 @@ class ScriptConverter:
 
     def fixIndentionProblem(self, c, ifCl, inlineIndentCount, code, spec=False):
         xyz = []
+        self.while_active = False
         for i, ifx in enumerate(ifCl):
             if inlineIndentCount <= ifx[0] and code.strip() != "":
                 xyz.append(i)
