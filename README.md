@@ -465,3 +465,36 @@ if x in bits:
 As you see, the whole list gets transformed into multiple *this_or_next* and *eq* statements.  
 
 
+### Working with Triggers
+There are triggers in Missions and also for the general game.  
+They have condtional code too.  
+
+In Py2MBScript the first **if** will be transformed and the condition directly used.
+If there is not secondary condition (another if inside the first one), you have to write *pass* as code.  
+
+#### Example:
+(Python Code)
+```python
+triggyx = Trigger(1,0,0)
+ 
+def condition():
+    if key_is_down(0x0f):
+        pass
+triggyx.conditionBlock = condition
+ 
+def code():
+    finish_mission(0)
+    change_screen_return()
+triggyx.codeBlock = code
+```
+(MBScript)
+```python
+(1, 0, 0, [
+(key_is_down, 0x0f),
+], [
+(finish_mission, 0),
+(change_screen_return),
+]),
+```
+
+
