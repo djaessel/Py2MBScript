@@ -72,12 +72,30 @@ This will be transformed into the MBScript global variable with dollar sign late
 In later stages there might be a track of the global variables and more advanced usage possible.  
 For now they act inside Python like local variables, but in MBScript as global.  
 
+#### Example:
+(Python Code)
+```python
+def game_event_party_encounter(_g_encountered_party, _g_encountered_party_2):
+    _g_encountered_party_faction = store_faction_of_party(_g_encountered_party)
+    _g_encountered_party_relation = store_relation(_g_encountered_party_faction, "fac_player_faction")
+```
+(MBScript)
+```python
+("game_event_party_encounter", [
+(store_script_param, "$g_encountered_party", 1),
+(store_script_param, "$g_encountered_party_2", 2),
+(store_faction_of_party, "$g_encountered_party_faction", "$g_encountered_party"),
+(store_relation,"$g_encountered_party_relation","$g_encountered_party_faction","fac_player_faction"),
+]),
+```
+
+
 ### Local Variables & Script Parameters
 Local variables work like typical local python variables.
 When in MBScript you would have to put them as the first argument of a function to store something, here 
 you can simply put them like you might be used to from python functions.  
   
-Example:
+#### Example:
 ```python
 # ...
  
@@ -90,7 +108,7 @@ def myScript():
 
 You can also use local variables as function parameters and they will automatically be transformed internally.
 
-Example:
+#### Example:
 ```python
 # ...
  
