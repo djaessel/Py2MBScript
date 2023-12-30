@@ -181,6 +181,34 @@ class ItemCapability(Enum):
 
     FORCE_64_BITS = "itcf_force_64_bits"                                   #= 0x8000000000000000
 
+    # COMBINED
+
+    CLEAVER = "itc_cleaver" # = itcf_force_64_bits | (itcf_overswing_onehanded|itcf_slashright_onehanded|itcf_slashleft_onehanded | itcf_horseback_slashright_onehanded|itcf_horseback_slashleft_onehanded)
+    DAGGER = "itc_dagger" # = itc_cleaver | itcf_thrust_onehanded
+
+    PARRY_ONE_HANDED = "itc_parry_onehanded" # = itcf_force_64_bits | itcf_parry_forward_onehanded| itcf_parry_up_onehanded | itcf_parry_right_onehanded |itcf_parry_left_onehanded
+    LONGSWORD = "itc_longsword" # = itc_dagger | itc_parry_onehanded
+    SCIMITAR = "itc_scimitar" # = itc_cleaver | itc_parry_onehanded
+
+    PARRY_TWO_HANDED = "itc_parry_two_handed" # = itcf_force_64_bits | itcf_parry_forward_twohanded | itcf_parry_up_twohanded | itcf_parry_right_twohanded | itcf_parry_left_twohanded
+    CUT_TWO_HANDED = "itc_cut_two_handed" # = itcf_force_64_bits | (itcf_slashright_twohanded | itcf_slashleft_twohanded | itcf_overswing_twohanded | itcf_horseback_slashright_onehanded|itcf_horseback_slashleft_onehanded)
+    GREATSWORD = "itc_greatsword" # = itc_cut_two_handed |  itcf_thrust_twohanded | itc_parry_two_handed |itcf_thrust_onehanded_lance
+    NODACHI = "itc_nodachi" # = itc_cut_two_handed | itc_parry_two_handed
+
+    BASTARDSWORD = "itc_bastardsword" # = itc_cut_two_handed |  itcf_thrust_twohanded | itc_parry_two_handed |itc_dagger
+    MORNINGSTAR = "itc_morningstar" # = itc_cut_two_handed |  itc_parry_two_handed |itc_cleaver
+
+    PARRY_POLEARM = "itc_parry_polearm" # = itcf_parry_forward_polearm | itcf_parry_up_polearm | itcf_parry_right_polearm | itcf_parry_left_polearm
+    POLEAXE = "itc_poleaxe" # = itc_parry_polearm| itcf_overswing_polearm |itcf_thrust_polearm|itcf_slashright_polearm|itcf_slashleft_polearm
+    STAFF = "itc_staff" # = itc_parry_polearm| itcf_thrust_onehanded_lance |itcf_thrust_onehanded_lance_horseback| itcf_overswing_polearm |itcf_thrust_polearm|itcf_slashright_polearm|itcf_slashleft_polearm
+    SPEAR = "itc_spear" # = itc_parry_polearm| itcf_thrust_onehanded_lance |itcf_thrust_onehanded_lance_horseback | itcf_thrust_polearm
+    CUTTING_SPEAR = "itc_cutting_spear" # = itc_spear|itcf_overswing_polearm
+    PIKE = "itc_pike" # = itcf_thrust_onehanded_lance |itcf_thrust_onehanded_lance_horseback | itcf_thrust_polearm
+    GUANDAO = "itc_guandao" # = itc_parry_polearm|itcf_overswing_polearm|itcf_thrust_polearm|itcf_slashright_polearm|itcf_slashleft_polearm|itcf_horseback_slashright_onehanded|itcf_horseback_slashleft_onehanded|itcf_horseback_slash_polearm
+
+    GREATLANCE = "itc_greatlance" # = itcf_thrust_onehanded_lance |itcf_thrust_onehanded_lance_horseback| itcf_thrust_polearm
+    MUSKET_MELEE = "itc_musket_melee" # = itc_parry_polearm|itcf_overswing_musket|itcf_thrust_musket|itcf_slashright_twohanded|itcf_slashleft_twohanded
+
 
 
 class IModBit(Enum):

@@ -27,6 +27,13 @@ mission_templates = [
 (display_message, "@{reg0}"),
 ]),
 
+(1, 0, 0, [
+(key_is_down, 0x0f),
+], [
+(finish_mission, 0),
+(change_screen_return),
+]),
+
 ]),
 
 ] # MISSION TEMPLATES END

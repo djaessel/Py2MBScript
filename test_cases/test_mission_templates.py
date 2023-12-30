@@ -35,3 +35,16 @@ def code():
 triggyx.conditionBlock = condition
 triggyx.codeBlock = code
 mission1.add_trigger(triggyx)
+
+triggyx = Trigger(1,0,0)
+def condition():
+    if key_is_down(0x0f):
+        pass
+
+def code():
+    finish_mission(0)
+    change_screen_return()
+
+triggyx.conditionBlock = condition
+triggyx.codeBlock = code
+mission1.add_trigger(triggyx)

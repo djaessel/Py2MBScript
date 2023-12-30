@@ -131,7 +131,7 @@ game_menus = [
 (try_end),
 ]),
 
-("test_break", [
+("test_list", [
 ], "TEST LIST", [
 (assign,":x",8),
 (try_begin),
@@ -147,6 +147,13 @@ game_menus = [
     (assign, reg0, ":x"),
     (display_message, "@{reg0} is in the list!"),
 (try_end),
+]),
+
+("test_mission", [
+], "TEST MISSION", [
+(set_jump_mission,"mt_my_mission"),
+(jump_to_scene,"scn_castle_1_interior",0),
+(change_screen_mission),
 ]),
 
 ]),
