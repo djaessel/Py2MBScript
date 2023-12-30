@@ -129,6 +129,7 @@ class ScriptConverter:
             p_func_name = "options_" + tmp[1].strip()
             liny = self.getFuncCodeLine(p_func_name)
             liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+        liny = liny.replace(":::","$")
         return liny
 
 
@@ -173,6 +174,9 @@ class ScriptConverter:
                 liny = self.getFuncCodeLine(p_func_name)
                 #liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
                 liny = self.replaceFuncParams(liny, p_func_name)
+        else:
+            print("UNHANDLED CODE:", code)
+        liny = liny.replace(":::","$")
         return [liny]
 
 
@@ -194,7 +198,7 @@ class ScriptConverter:
                     idx = self.pos_registers.index(d)
                     sx += "Pos" + str(idx) + " :[{reg"+str(68+i)+"}, {reg"+str(68+i+1)+"}, {reg"+str(68+i+2)+"}] "
                 else:
-                    b.append(self.replaceVarWithPlaceholder("(assign, reg" + str(i)+ ", <placeholder>)", "<placeholder>", d))
+                    b.append(self.replaceVarWithPlaceholder("(assign, reg" + str(i)+ ", <placeholder>)", "<placeholder>", d).replace(":::", "$"))
                     sx += "{reg" + str(i) + "} "
 
             sx = sx.rstrip()
@@ -214,7 +218,7 @@ class ScriptConverter:
                 idx = self.pos_registers.index(pseudoCode)
                 b.append("(display_message, \"@Pos" + str(idx) + " :[{reg60}, {reg61}, {reg62}]\")")
             else:
-                b = [self.replaceVarWithPlaceholder("(assign, reg0, <placeholder>)", "<placeholder>", pseudoCode)]
+                b = [self.replaceVarWithPlaceholder("(assign, reg0, <placeholder>)", "<placeholder>", pseudoCode).replace(":::", "$")]
                 b.append("(display_message, \"@{reg0}\")")
         return b
 

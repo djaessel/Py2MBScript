@@ -133,3 +133,13 @@ def conseq():
     change_screen_mission()
 town_list_test.consequenceBlock = conseq
 town_menu.menuOptions.append(town_list_test)
+
+
+simple_encounter = GameMenu("simple_encounter", 0, "Simple Encounter here.")
+leave_m = MenuOption("leave", "Leave...")
+def conseq():
+    change_screen_return()
+leave_m.consequenceBlock = conseq
+simple_encounter.menuOptions.append(leave_m)
+
+

@@ -157,4 +157,15 @@ game_menus = [
 ]),
 
 ]),
+("simple_encounter", 0, 
+  "Simple Encounter here.", 
+  "none", [
+],
+[
+("leave", [
+], "Leave...", [
+(change_screen_return),
+]),
+
+]),
 ]

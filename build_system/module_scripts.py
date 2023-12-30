@@ -30,7 +30,13 @@ scripts = [
 (store_script_param, "$g_encountered_party_2", 2),
 (store_faction_of_party, "$g_encountered_party_faction", "$g_encountered_party"),
 (store_relation,"$g_encountered_party_relation","$g_encountered_party_faction","fac_player_faction"),
-(jump_to_menu,"mnu_town"),
+(party_get_template_id,":template_idx","$g_encountered_party"),
+(try_begin),
+    (eq,":template_idx",0),
+    (jump_to_menu,"mnu_town"),
+(else_try),
+    (jump_to_menu,"mnu_simple_encounter"),
+(try_end),
 ]),
 
 ]
