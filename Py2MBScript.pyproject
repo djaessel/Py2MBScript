@@ -202,8 +202,8 @@
         "test_cases/test_quests.py",
         "test_cases/test_scene_props.py",
         "test_cases/test_scenes.py",
-        "test_cases/test_sounds.py",
         "test_cases/test_tableau_materials.py",
-        "modules/presentations.py"
+        "modules/presentations.py",
+        "modules/sounds.py"
     ]
 }

@@ -3,23 +3,23 @@
 from ScriptConverter import ScriptConverter
 from sound import Sound
 
-import test_sounds
+import sounds
 
 class SoundConverter(ScriptConverter):
     def __init__(self):
         pass
 
     def createCode(self):
-        sounds = self.retrieveSounds()
-        self.writeScriptOutputFile(sounds)
+        soundsx = self.retrieveSounds()
+        self.writeScriptOutputFile(soundsx)
 
     def retrieveSounds(self):
-        sounds = []
-        for i in vars(test_sounds):
+        soundsx = []
+        for i in vars(sounds):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_sounds,i)
-                sounds.append(attr)
-        return sounds
+                attr = getattr(sounds,i)
+                soundsx.append(attr)
+        return soundsx
 
     def writeScriptOutputFile(self, codeData : list[Sound]):
         with open("./build_system/module_sounds.py", "w") as f:

@@ -62,7 +62,7 @@ class Sound:
 
     def set_priority(self, priority : int):
         if priority >= 0 or priority < 16:
-            self.volume = priority
+            self.priority = priority
         else:
             print(self.id, "invalid priority", priority, "using", self.priority)
 

@@ -5,8 +5,7 @@ sys.path.append("../data_objects/")
 
 from skin import Skin, FaceTexture, FaceKey, SkinFlag
 import particle_systems as psys
-import test_sounds as snd
-
+import sounds as snd
 
 
 # Man - Skin 1
@@ -106,16 +105,27 @@ man.addBeardTexture("beard_brunette")
 man.addBeardTexture("beard_black")
 man.addBeardTexture("beard_white")
 # man - Face Textures
-man_young = FaceTexture("manface_young_2", 0xffcbe0e0)
-man_young.addHairMaterial("hair_blonde")
-man_young.addHairColors(0xffffffff) # blonde
-man_young.addHairColors(0xffb04717) # red
-man_young.addHairColors(0xff502a19) # brunette
-man.addFaceTexture(man_young)
+# man_young_2
+man_young_2 = FaceTexture("manface_young_2", 0xffcbe0e0)
+man_young_2.addHairMaterial("hair_blonde")
+man_young_2.addHairColors(0xffffffff) # blonde
+man_young_2.addHairColors(0xffb04717) # red
+man_young_2.addHairColors(0xff502a19) # brunette
+man.addFaceTexture(man_young_2)
+# man_midage
+man_midage = FaceTexture("manface_young_2", 0xffdfefe1)
+man_midage.addHairMaterial("hair_blonde")
+man_midage.addHairColors(0xffffffff) # blonde
+man_midage.addHairColors(0xffb04717) # red
+man_midage.addHairColors(0xff632e18) #
+man_midage.addHairColors(0xff502a19) # brunette
+man_midage.addHairColors(0xff19100c) # black
+man.addFaceTexture(man_midage)
+# manface_young
 # man - Voices
-man.setVoiceDie(snd.sound1)
-man.setVoiceHit(snd.sound1)
-man.setVoiceYell(snd.sound1)
+man.setVoiceDie(snd.money_paid)
+man.setVoiceHit(snd.money_received)
+man.setVoiceYell(snd.sword_swing)
 #  [("manface_young_2",0xffcbe0e0,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff502a19]),
 #   ("manface_midage",0xffdfefe1,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff632e18, 0xff502a19, 0xff19100c]),
 #   ("manface_young",0xffd0e0e0,["hair_blonde"],[0xff83301a, 0xff502a19, 0xff19100c, 0xff0c0d19]),
@@ -202,6 +212,6 @@ woman_young.addHairColors(0xff502a19) # brunette
 woman_young.addHairColors(0xff19100c) # black
 woman.addFaceTexture(woman_young)
 # Woman - Voices
-woman.setVoiceDie(snd.sound1)
-woman.setVoiceHit(snd.sound1)
-woman.setVoiceYell(snd.sound1)
+woman.setVoiceDie(snd.money_paid)
+woman.setVoiceHit(snd.money_received)
+woman.setVoiceYell(snd.sword_swing)
