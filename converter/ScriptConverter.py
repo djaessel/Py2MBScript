@@ -1,5 +1,6 @@
 # This Python file uses the following encoding: utf-8
 
+import random
 import scripts
 
 class ScriptConverter:
@@ -726,9 +727,15 @@ class ScriptConverter:
                             for_range = True
                         break
                 if not for_range:
-                    allCodes.insert(idxB+1, "(eq, \":__break__\", 0)")
-                    allCodes.insert(idxB, "(assign, \":__break__\", 0)")
-                    coy.append("(assign, \":__break__\", 1)")
+                    adder = ""
+                    for c in allCodes:
+                        if "__break" in c and "__\", 1)" in c:
+                            while "__break" + adder + "__" in c:
+                                adder = str(random.randint(10,100))
+
+                    allCodes.insert(idxB+1, "(eq, \":__break"+adder+"__\", 0)")
+                    allCodes.insert(idxB, "(assign, \":__break"+adder+"__\", 0)")
+                    coy.append("(assign, \":__break"+adder+"__\", 1)")
                 else:
                     last_two = allCodes[idxB].split(',')
                     last_two = [last_two[-1].strip().strip(")"), last_two[-2].strip().strip(")")]
