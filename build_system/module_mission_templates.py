@@ -11,8 +11,8 @@ mission_templates = [
 
 ("my_mission", mtf_battle_mode, -1,
 "My super mission!",
-[(0, mtef_team_0|mtef_defenders, 0, 0, 24, [itm_my_axe,itm_master_shield,]),
-(1, mtef_team_1|mtef_attackers, 0, 0, 24, [itm_my_axe,]),
+[(0, mtef_team_0|mtef_defenders, af_override_all, 0, 1, [itm_my_axe,itm_master_shield,]),
+(1, mtef_team_1|mtef_attackers, af_override_all, 0, 4, [itm_my_axe,itm_master_shield,]),
 ],
 [
 (ti_after_mission_start, 0, 0, [
@@ -27,11 +27,9 @@ mission_templates = [
 (display_message, "@{reg0}"),
 ]),
 
-(1, 0, 0, [
-(key_is_down, 0x0f),
+(ti_tab_pressed, 0, 0, [
 ], [
-(finish_mission, 0),
-(change_screen_return),
+(set_trigger_result, 1),
 ]),
 
 ]),

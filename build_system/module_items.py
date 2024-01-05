@@ -26,7 +26,7 @@ imodbits_good   = imodbit_sturdy | imodbit_thick | imodbit_hardened | imodbit_re
 imodbits_bad    = imodbit_rusty | imodbit_chipped | imodbit_tattered | imodbit_ragged | imodbit_cracked | imodbit_bent
 items = [
 
-["my_axe","My Axe",[("simple_axe",0)],
+["my_axe","My Axe",[("battle_ax",0)],
 itp_type_one_handed_wpn|itp_crush_through|itp_force_attach_left_hand|itp_force_attach_right_hand,
 itcf_horseback_overswing_left_onehanded|itcf_horseback_overswing_right_onehanded|itcf_horseback_thrust_onehanded|itcf_overswing_onehanded|itcf_thrust_onehanded|itcf_parry_up_onehanded|itcf_parry_forward_onehanded|itcf_parry_left_onehanded|itcf_parry_right_onehanded|itcf_carry_axe_left_hip|itcf_throw_axe,
 315,
@@ -38,7 +38,7 @@ imodbits_axe|imodbit_champion],
 0,
 0,
 imodbits_none],
-["master_shield","Master Shield",[("master_shield",0)],
+["master_shield","Master Shield",[("arena_shield_green",0)],
 itp_type_shield|itp_unique,
 0,
 831,

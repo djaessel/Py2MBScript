@@ -12,14 +12,18 @@ from trigger import Trigger
 mission1 = MissionTemplate("my_mission", description="My super mission!")
 mission1.add_flag(MissionTemplateFlag.BATTLE_MODE)
 
-sr = SpawnRecord(0, 24, [axe, master_shield])
+sr = SpawnRecord(0, 1, [axe, master_shield])
 sr.add_spawn_flag(SpawnFlag.TEAM_0)
 sr.add_spawn_flag(SpawnFlag.DEFENDERS)
+#sr.add_spawn_flag(SpawnFlag.SCENE_SOURCE)
+sr.add_alter_flag(AlterFlag.OVERRIDE_ALL)
 mission1.addSpawnRecord(sr)
 
-sr = SpawnRecord(1, 24, [axe])
+sr = SpawnRecord(1, 4, [axe, master_shield])
 sr.add_spawn_flag(SpawnFlag.TEAM_1)
 sr.add_spawn_flag(SpawnFlag.ATTACKERS)
+#sr.add_spawn_flag(SpawnFlag.SCENE_SOURCE)
+sr.add_alter_flag(AlterFlag.OVERRIDE_ALL)
 mission1.addSpawnRecord(sr)
 
 triggyx = Trigger(-20.0, 0, 0)
@@ -36,15 +40,11 @@ triggyx.conditionBlock = condition
 triggyx.codeBlock = code
 mission1.add_trigger(triggyx)
 
-triggyx = Trigger(1,0,0)
-def condition():
-    if key_is_down(0x0f):
-        pass
-
+triggyx = Trigger(-21.0,0,0)
 def code():
-    finish_mission(0)
-    change_screen_return()
+    #finish_mission(0)
+    #change_screen_return()
+    set_trigger_result(1)
 
-triggyx.conditionBlock = condition
 triggyx.codeBlock = code
 mission1.add_trigger(triggyx)

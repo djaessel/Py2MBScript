@@ -9,8 +9,12 @@ from MBAxe import MBAxe
 from MBShield import MBShield
 
 
+
+
+
+
 axe = MBAxe("my_axe", "My Axe", 315)
-axe.add_mesh(ItemMesh("simple_axe"))
+axe.add_mesh(ItemMesh("battle_ax"))
 #axe.add_mesh(ItemMesh("simple_axe_extra", "extra_thing"))
 axe.add_flag(ItemFlag.HAS_CRUSH_THROUGH)
 axe.add_flag(ItemFlag.FORCE_ATTACH_LEFT_HAND)
@@ -40,7 +44,7 @@ siege_supply = Item("siege_supply", "Siege Supply")
 master_shield = MBShield("master_shield", "Master Shield", 831)
 master_shield.set_abundance(9)
 master_shield.add_flag(ItemFlag.IS_UNIQUE)
-master_shield.add_mesh(ItemMesh("master_shield"))
+master_shield.add_mesh(ItemMesh("arena_shield_green"))
 master_shield.set_hit_points(399)
 master_shield.set_body_armor(10)
 master_shield.set_difficulty(10)
