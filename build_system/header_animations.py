@@ -36,6 +36,14 @@ arf_blend_in_64              = 0x00000041
 arf_blend_in_128             = 0x00000081
 arf_blend_in_254             = 0x000000ff
 
+blend_in_defense = arf_blend_in_3
+blend_in_ready = arf_blend_in_6
+blend_in_release = arf_blend_in_5
+blend_in_parry = arf_blend_in_5
+blend_in_parried = arf_blend_in_3
+blend_in_walk = arf_blend_in_3
+blend_in_continue = arf_blend_in_1
+
 arf_make_walk_sound          = 0x00000100
 arf_make_custom_sound        = 0x00000200
 

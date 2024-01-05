@@ -42,6 +42,16 @@ class AnimationSequenceFlag(Enum):
     BLEND_IN_128 = "arf_blend_in_128"            # = 0x00000081
     BLEND_IN_254 = "arf_blend_in_254"            # = 0x000000ff
 
+    BLEND_IN_DEFENSE = "blend_in_defense" # = arf_blend_in_3
+    BLEND_IN_READY = "blend_in_ready"  # = arf_blend_in_6
+    BLEND_IN_RELEASE = "blend_in_release" # = arf_blend_in_5
+    BLEND_IN_PARRY = "blend_in_parry" # = arf_blend_in_5
+    BLEND_IN_PARRIED = "blend_in_parried" # = arf_blend_in_3
+
+    BLEND_IN_WALK = "blend_in_walk" # = arf_blend_in_3
+    BLEND_IN_CONTINUE = "blend_in_continue" # = arf_blend_in_1
+
+
     MAKE_WALK_SOUND = "arf_make_walk_sound"         # = 0x00000100
     MAKE_CUSTOM_SOUND = "arf_make_custom_sound"       # = 0x00000200
 

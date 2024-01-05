@@ -10,5 +10,27 @@ anim_stand_single = 8
 anim_stand_greatsword = 9
 anim_stand_staff = 10
 anim_stand_crossbow = 11
+anim_turn_right = 12
+anim_turn_left = 13
+anim_turn_right_single = 14
+anim_turn_left_single = 15
+anim_turn_right_staff = 16
+anim_turn_left_staff = 17
+anim_turn_right_greatsword = 18
+anim_turn_left_greatsword = 19
+anim_prepare_kick_0 = 20
+anim_prepare_kick_1 = 21
+anim_prepare_kick_2 = 22
+anim_prepare_kick_3 = 23
+anim_kick_right_leg = 24
+anim_kick_left_leg = 25
+anim_run_forward = 26
+anim_run_forward_onehanded = 27
+anim_run_forward_staff = 28
+anim_run_forward_greatsword = 29
+anim_run_forward_hips_right = 30
+anim_run_forward_hips_left = 31
+anim_run_forward_right = 32
+anim_run_forward_right_onehanded = 33
 
 
