@@ -14,9 +14,9 @@ pf_village = pf_is_static|pf_always_visible|pf_hide_defenders|pf_label_small
 
 parties = [
 
-("main_party", "Main Party", icon_player|pf_limit_members, menu_none, pt_none, fac_player_faction, 0, ai_bhvr_hold, 0, (17,20), [(trp_player,1,0),]),
-("temp_party", "{!}temp_party", pf_disabled, menu_none, pt_none, fac_commoners, 0, ai_bhvr_hold, 0, (0.0,0.0), []),
-("camp_bandits", "{!}camp_bandits", pf_disabled, menu_none, pt_none, fac_outlaws, 0, ai_bhvr_hold, 0, (1,1), []),
-("test_town", "Test Town", icon_town|pf_town, menu_none, pt_none, fac_neutral, 0, ai_bhvr_hold, 0, (12,20), [(trp_looter,20,0),]),
+("main_party", "Main Party", icon_player|pf_limit_members, no_menu, pt_none, fac_player_faction, 0, ai_bhvr_hold, 0, (17,20), [(trp_player,1,0),]),
+("temp_party", "{!}temp_party", pf_disabled, no_menu, pt_none, fac_commoners, 0, ai_bhvr_hold, 0, (0.0,0.0), []),
+("camp_bandits", "{!}camp_bandits", pf_disabled, no_menu, pt_none, fac_outlaws, 0, ai_bhvr_hold, 0, (1,1), []),
+("test_town", "Test Town", icon_town|pf_town, no_menu, pt_none, fac_neutral, 0, ai_bhvr_hold, 0, (12,20), [(trp_looter,20,0),]),
 
 ] # PARTIES END

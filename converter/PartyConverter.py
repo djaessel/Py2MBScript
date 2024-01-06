@@ -55,7 +55,10 @@ class PartyConverter(ScriptConverter):
                 else:
                     f.write("0, ")
 
-                f.write("menu_" + party.menu.id + ", ")
+                if party.menu == None:
+                    f.write("no_menu, ")
+                else:
+                    f.write("menu_" + party.menu.id + ", ")
                 f.write("pt_" + party.template.id + ", ")
                 f.write("fac_" + party.faction.id + ", ")
 

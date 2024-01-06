@@ -3,7 +3,6 @@
 from enum import Enum
 
 import factions as fac
-import game_menus as menu
 import test_party_templates as pt
 
 
@@ -48,7 +47,7 @@ class MBParty:
     icon = ""
 
 
-    def __init__(self, id, name="", menu=menu.none, template=pt.none, faction=fac.neutral, personality="0", initial_cords=(0.0,0.0), direction=0.0):
+    def __init__(self, id, name="", menu=None, template=pt.none, faction=fac.neutral, personality="0", initial_cords=(0.0,0.0), direction=0.0):
         self.id = id
         self.name = name
         self.flags = []

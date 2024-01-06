@@ -11,16 +11,12 @@ from game_menu import GameMenu, MenuOption
 from scripts import *
 
 
-none = GameMenu("none", 0, "None")
-
-
 game_start_0 = GameMenu("start_game_0", 0,
 "Welcome adventurer, hopefully you will enjoy this new adventure through another world."
 )
 
 class GameStartContinue(MenuOption):
     def consequenceBlock(self):
-        #change_screen_return()
         set_show_messages(1)
         jump_to_menu("mnu_start_game_1")
 

@@ -48,7 +48,10 @@ class PartyTemplateConverter(ScriptConverter):
                 else:
                     f.write("0, ")
 
-                f.write("menu_" + partyTemp.menu.id + ", ")
+                if partyTemp.menu == None:
+                    f.write("no_menu, ")
+                else:
+                    f.write("menu_" + partyTemp.menu.id + ", ")
                 f.write("fac_" + partyTemp.faction.id + ", ")
                 f.write(partyTemp.personality + ", ")
 
