@@ -36,6 +36,16 @@ snd_horse_jump_end = 34
 snd_horse_jump_begin_water = 35
 snd_horse_jump_end_water = 36
 snd_man_hit = 37
-snd_sounds_end = 38
+snd_man_die = 38
+snd_woman_hit = 39
+snd_woman_die = 40
+snd_woman_yell = 41
+snd_hide = 42
+snd_unhide = 43
+snd_neigh = 44
+snd_gallop = 45
+snd_battle = 46
+snd_man_yell = 47
+snd_sounds_end = 48
 
 

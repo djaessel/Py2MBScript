@@ -123,9 +123,9 @@ man_midage.addHairColors(0xff19100c) # black
 man.addFaceTexture(man_midage)
 # manface_young
 # man - Voices
-man.setVoiceDie(snd.money_paid)
+man.setVoiceDie(snd.man_die)
 man.setVoiceHit(snd.man_hit)
-man.setVoiceYell(snd.sword_swing)
+man.setVoiceYell(snd.man_yell)
 #  [("manface_young_2",0xffcbe0e0,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff502a19]),
 #   ("manface_midage",0xffdfefe1,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff632e18, 0xff502a19, 0xff19100c]),
 #   ("manface_young",0xffd0e0e0,["hair_blonde"],[0xff83301a, 0xff502a19, 0xff19100c, 0xff0c0d19]),
@@ -212,6 +212,6 @@ woman_young.addHairColors(0xff502a19) # brunette
 woman_young.addHairColors(0xff19100c) # black
 woman.addFaceTexture(woman_young)
 # Woman - Voices
-woman.setVoiceDie(snd.money_paid)
-woman.setVoiceHit(snd.money_received)
-woman.setVoiceYell(snd.sword_swing)
+woman.setVoiceDie(snd.woman_die)
+woman.setVoiceHit(snd.woman_hit)
+woman.setVoiceYell(snd.woman_yell)

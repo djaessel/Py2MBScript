@@ -300,30 +300,52 @@ horse_jump_end_water.add_file("jump_end_water.ogg")
 
 
 
-
+# Skin Sounds 1
 man_hit = Sound("man_hit")
 man_hit.set_priority(7)
 man_hit.set_volume(7)
 man_hit.add_files(["man_hit_5.ogg","man_hit_6.ogg","man_hit_7.ogg","man_hit_8.ogg","man_hit_9.ogg","man_hit_10.ogg","man_hit_11.ogg","man_hit_12.ogg","man_hit_13.ogg","man_hit_14.ogg","man_hit_15.ogg","man_hit_17.ogg","man_hit_18.ogg","man_hit_19.ogg","man_hit_22.ogg","man_hit_29.ogg","man_hit_32.ogg","man_hit_47.ogg","man_hit_57.ogg","man_hit_59.ogg"])
 
+man_die = Sound("man_die")
+man_die.set_priority(10)
+man_die.set_volume(8)
+man_die.add_files(["man_death_1.ogg","man_death_8.ogg","man_death_8b.ogg","man_death_11.ogg","man_death_14.ogg","man_death_16.ogg","man_death_18.ogg","man_death_21.ogg","man_death_29.ogg","man_death_40.ogg","man_death_44.ogg","man_death_46.ogg","man_death_48.ogg","man_death_64.ogg"]),# ["man_fall_1.ogg","man_fall_2.ogg","man_fall_3.ogg","man_fall_4.ogg"])
+
+woman_hit = Sound("woman_hit")
+woman_hit.set_priority(7)
+woman_hit.add_files(["woman_hit_2.ogg","woman_hit_3.ogg", "woman_hit_b_2.ogg","woman_hit_b_4.ogg","woman_hit_b_6.ogg","woman_hit_b_7.ogg","woman_hit_b_8.ogg", "woman_hit_b_11.ogg","woman_hit_b_14.ogg","woman_hit_b_16.ogg"])
+
+woman_die = Sound("woman_die")
+woman_die.set_priority(10)
+woman_die.set_volume(9)
+woman_die.add_files(["woman_fall_1.ogg","woman_hit_b_5.ogg"])
+
+woman_yell = Sound("woman_yell")
+woman_yell.set_priority(8)
+woman_yell.set_volume(9)
+woman_yell.add_files(["woman_yell_1.ogg","woman_yell_2.ogg"])
+
+
+
+# Misc
+hide = Sound("hide")
+hide.add_file("s_hide.wav")
+
+unhide = Sound("unhide")
+unhide.add_file("s_unhide.wav")
+
+neigh = Sound("neigh")
+neigh.add_files(["horse_exterior_whinny_01.ogg","horse_exterior_whinny_02.ogg","horse_exterior_whinny_03.ogg","horse_exterior_whinny_04.ogg","horse_exterior_whinny_05.ogg","horse_whinny.ogg"])
+
+gallop = Sound("gallop")
+gallop.set_volume(4)
+gallop.add_files(["horse_gallop_3.ogg","horse_gallop_4.ogg","horse_gallop_5.ogg"])
+
+battle = Sound("battle")
+battle.set_volume(4)
+battle.add_file("battle.ogg")
 
 '''
- ("man_hit",sf_priority_7|sf_vol_7, ["man_hit_5.ogg","man_hit_6.ogg","man_hit_7.ogg","man_hit_8.ogg","man_hit_9.ogg","man_hit_10.ogg","man_hit_11.ogg","man_hit_12.ogg","man_hit_13.ogg","man_hit_14.ogg","man_hit_15.ogg",
-                                      "man_hit_17.ogg","man_hit_18.ogg","man_hit_19.ogg","man_hit_22.ogg","man_hit_29.ogg","man_hit_32.ogg","man_hit_47.ogg","man_hit_57.ogg","man_hit_59.ogg"]),
- ("man_die",sf_priority_10|sf_vol_8,  ["man_death_1.ogg","man_death_8.ogg","man_death_8b.ogg","man_death_11.ogg","man_death_14.ogg","man_death_16.ogg","man_death_18.ogg","man_death_21.ogg","man_death_29.ogg","man_death_40.ogg","man_death_44.ogg","man_death_46.ogg","man_death_48.ogg","man_death_64.ogg"]),# ["man_fall_1.ogg","man_fall_2.ogg","man_fall_3.ogg","man_fall_4.ogg"]),
- ("woman_hit",sf_priority_7, ["woman_hit_2.ogg","woman_hit_3.ogg",
-                              "woman_hit_b_2.ogg","woman_hit_b_4.ogg","woman_hit_b_6.ogg","woman_hit_b_7.ogg","woman_hit_b_8.ogg",
-                              "woman_hit_b_11.ogg","woman_hit_b_14.ogg","woman_hit_b_16.ogg"]),
- ("woman_die",sf_priority_10|sf_vol_9, ["woman_fall_1.ogg","woman_hit_b_5.ogg"]),
- ("woman_yell",sf_priority_8|sf_vol_9, ["woman_yell_1.ogg","woman_yell_2.ogg"]),
- ("hide",0, ["s_hide.wav"]),
- ("unhide",0, ["s_unhide.wav"]),
- ("neigh",0, ["horse_exterior_whinny_01.ogg","horse_exterior_whinny_02.ogg","horse_exterior_whinny_03.ogg","horse_exterior_whinny_04.ogg","horse_exterior_whinny_05.ogg","horse_whinny.ogg"]),
- ("gallop",sf_vol_4, ["horse_gallop_3.ogg","horse_gallop_4.ogg","horse_gallop_5.ogg"]),
- ("battle",sf_vol_4, ["battle.ogg"]),
-# ("bow_shoot_player",sf_priority_10|sf_vol_10, ["bow_shoot_4.ogg"]),
-# ("bow_shoot",sf_priority_4, ["bow_shoot_4.ogg"]),
-# ("crossbow_shoot",sf_priority_4, ["bow_shoot_2.ogg"]),
  ("arrow_hit_body",sf_priority_4, ["arrow_hit_body_1.ogg","arrow_hit_body_2.ogg","arrow_hit_body_3.ogg"]),
  ("metal_hit_low_armor_low_damage",sf_priority_5|sf_vol_9, ["sword_hit_lo_armor_lo_dmg_1.ogg","sword_hit_lo_armor_lo_dmg_2.ogg","sword_hit_lo_armor_lo_dmg_3.ogg"]),
  ("metal_hit_low_armor_high_damage",sf_priority_5|sf_vol_9, ["sword_hit_lo_armor_hi_dmg_1.ogg","sword_hit_lo_armor_hi_dmg_2.ogg","sword_hit_lo_armor_hi_dmg_3.ogg"]),
@@ -337,15 +359,22 @@ man_hit.add_files(["man_hit_5.ogg","man_hit_6.ogg","man_hit_7.ogg","man_hit_8.og
  ("blunt_hit",sf_priority_5|sf_vol_9, ["punch_1.ogg","punch_4.ogg","punch_4.ogg","punch_5.ogg"]),
  ("player_hit_by_arrow",sf_priority_10|sf_vol_10, ["player_hit_by_arrow.ogg"]),
  ("pistol_shot",sf_priority_10|sf_vol_10, ["fl_pistol.wav"]),
+''' and None
+
+
+
+# Skin Sounds 2
+'''
  ("man_grunt",sf_priority_6|sf_vol_4, ["man_excercise_1.ogg","man_excercise_2.ogg","man_excercise_4.ogg"]),
  ("man_breath_hard",sf_priority_3|sf_vol_8, ["man_ugh_1.ogg","man_ugh_2.ogg","man_ugh_4.ogg","man_ugh_7.ogg","man_ugh_12.ogg","man_ugh_13.ogg","man_ugh_17.ogg"]),
  ("man_stun",sf_priority_3|sf_vol_8, ["man_stun_1.ogg"]),
  ("man_grunt_long",sf_priority_6|sf_vol_7, ["man_grunt_1.ogg","man_grunt_2.ogg","man_grunt_3.ogg","man_grunt_5.ogg","man_grunt_13.ogg","man_grunt_14.ogg"]),
- ("man_yell",sf_priority_5|sf_vol_8, ["man_yell_4.ogg","man_yell_4_2.ogg","man_yell_7.ogg","man_yell_9.ogg","man_yell_11.ogg","man_yell_13.ogg","man_yell_15.ogg","man_yell_16.ogg","man_yell_17.ogg","man_yell_20.ogg","man_shortyell_4.ogg","man_shortyell_5.ogg","man_shortyell_6.ogg","man_shortyell_9.ogg","man_shortyell_11.ogg","man_shortyell_11b.ogg",
-                        "man_yell_b_18.ogg","man_yell_22.ogg", "man_yell_c_20.ogg"]),
 ''' and None
 
-
+man_yell = Sound("man_yell")
+man_yell.set_priority(5)
+man_yell.set_volume(8)
+man_yell.add_files(["man_yell_4.ogg","man_yell_4_2.ogg","man_yell_7.ogg","man_yell_9.ogg","man_yell_11.ogg","man_yell_13.ogg","man_yell_15.ogg","man_yell_16.ogg","man_yell_17.ogg","man_yell_20.ogg","man_shortyell_4.ogg","man_shortyell_5.ogg","man_shortyell_6.ogg","man_shortyell_9.ogg","man_shortyell_11.ogg","man_shortyell_11b.ogg","man_yell_b_18.ogg","man_yell_22.ogg", "man_yell_c_20.ogg"])
 
 
 

@@ -39,6 +39,16 @@ sounds = [
 ("horse_jump_begin_water", 0|sf_vol_6|sf_priority_9, ["jump_begin_water.ogg"]),
 ("horse_jump_end_water", 0|sf_vol_6|sf_priority_9, ["jump_end_water.ogg"]),
 ("man_hit", 0|sf_vol_7|sf_priority_7, ["man_hit_5.ogg","man_hit_6.ogg","man_hit_7.ogg","man_hit_8.ogg","man_hit_9.ogg","man_hit_10.ogg","man_hit_11.ogg","man_hit_12.ogg","man_hit_13.ogg","man_hit_14.ogg","man_hit_15.ogg","man_hit_17.ogg","man_hit_18.ogg","man_hit_19.ogg","man_hit_22.ogg","man_hit_29.ogg","man_hit_32.ogg","man_hit_47.ogg","man_hit_57.ogg","man_hit_59.ogg"]),
+("man_die", 0|sf_vol_8|sf_priority_10, ["man_death_1.ogg","man_death_8.ogg","man_death_8b.ogg","man_death_11.ogg","man_death_14.ogg","man_death_16.ogg","man_death_18.ogg","man_death_21.ogg","man_death_29.ogg","man_death_40.ogg","man_death_44.ogg","man_death_46.ogg","man_death_48.ogg","man_death_64.ogg"]),
+("woman_hit", 0|sf_priority_7, ["woman_hit_2.ogg","woman_hit_3.ogg","woman_hit_b_2.ogg","woman_hit_b_4.ogg","woman_hit_b_6.ogg","woman_hit_b_7.ogg","woman_hit_b_8.ogg","woman_hit_b_11.ogg","woman_hit_b_14.ogg","woman_hit_b_16.ogg"]),
+("woman_die", 0|sf_vol_9|sf_priority_10, ["woman_fall_1.ogg","woman_hit_b_5.ogg"]),
+("woman_yell", 0|sf_vol_9|sf_priority_8, ["woman_yell_1.ogg","woman_yell_2.ogg"]),
+("hide", 0, ["s_hide.wav"]),
+("unhide", 0, ["s_unhide.wav"]),
+("neigh", 0, ["horse_exterior_whinny_01.ogg","horse_exterior_whinny_02.ogg","horse_exterior_whinny_03.ogg","horse_exterior_whinny_04.ogg","horse_exterior_whinny_05.ogg","horse_whinny.ogg"]),
+("gallop", 0|sf_vol_4, ["horse_gallop_3.ogg","horse_gallop_4.ogg","horse_gallop_5.ogg"]),
+("battle", 0|sf_vol_4, ["battle.ogg"]),
+("man_yell", 0|sf_vol_8|sf_priority_5, ["man_yell_4.ogg","man_yell_4_2.ogg","man_yell_7.ogg","man_yell_9.ogg","man_yell_11.ogg","man_yell_13.ogg","man_yell_15.ogg","man_yell_16.ogg","man_yell_17.ogg","man_yell_20.ogg","man_shortyell_4.ogg","man_shortyell_5.ogg","man_shortyell_6.ogg","man_shortyell_9.ogg","man_shortyell_11.ogg","man_shortyell_11b.ogg","man_yell_b_18.ogg","man_yell_22.ogg","man_yell_c_20.ogg"]),
 ("sounds_end", sf_2d|sf_vol_10|sf_priority_10, ["enemy_scored_a_point.ogg"]),
 
 ] # SOUNDS END
