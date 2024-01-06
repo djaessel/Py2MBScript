@@ -5,7 +5,7 @@
 
 from MBPlayer import MBPlayer
 from MBOptions import MBOptions
-#from MBParty import MBParty
+from MBParty import MBParty
 from game_menu import GameMenu, MenuOption
 
 from scripts import *
