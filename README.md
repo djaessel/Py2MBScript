@@ -338,6 +338,10 @@ for p in __all_parties__:
     print("Party:", p)
     if p == "p_test_town":
         break
+# while block (experimental)
+while True:
+    if True:
+        break
 ```
 (MBScript)
 ```python
@@ -370,12 +374,25 @@ for p in __all_parties__:
         (assign, ":__break__", 1),
     (try_end),
 (try_end),
+(assign,":__while_range_end_0__",1),
+(try_for_range,":unused",0,":__while_range_end_0__"),
+    (eq,1,1),
+    (val_add,":__while_range_end_0__",1),
+    (try_begin),
+        (eq,1,1),
+        (assign, ":__while_range_end_0__", 0),
+    (try_end),
+(try_end),
 ```
 Technically the break will be translated into other possible commands.  
 In the forward and backwards for loop, the end condition will be set equal to the start.  
 
 For the other try loops there will be a trick using a local variable, to skip all the code for the remaining calls. 
 So it does not really break, but skip here, while for the ranged for loops it does break out completey.  
+
+#### Warning
+Use this feature with caution, since it is not fully tested and implemented yet.  
+So always check wether the code was generated properly and works as expected.  
 
 
 ### try/catch
