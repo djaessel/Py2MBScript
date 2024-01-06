@@ -65,4 +65,5 @@ npc2.add_item(itm.master_shield, [IModBit.CHAMPION, IModBit.GOOD])
 
 
 looter = Troop("looter", "Looter", faction=fac.commoners)
+looter.set_face2("0x0000000400000001124000000020000000000000001c00800000000000000000")
 

@@ -111,6 +111,6 @@ no_scene,reserved,fac_commoners,
 [],
 str_7|agi_5|int_4|cha_4|level(1),wp(0),
 knows_common,
-man_face_middle_1],
+man_face_middle_1,0x0000000400000001124000000020000000000000001c00800000000000000000],
 
 ] # TROOPS END
