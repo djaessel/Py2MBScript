@@ -123,8 +123,9 @@ class TroopConverter(ScriptConverter):
                     f.write("0")
                 f.write(",\n")
 
-                f.write(troop.face1 + ",")
-                f.write(troop.face2)
+                f.write(troop.face1)
+                if len(troop.face2) > 0:
+                    f.write("," + troop.face2)
 
                 if len(troop.image) > 0:
                     f.write("," + troop.image)

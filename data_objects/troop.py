@@ -81,7 +81,7 @@ class Troop:
     #     The game will create random faces between Face code 1 and face code 2 for generated troops
     # 14) Troop image (string): If this variable is set, the troop will use an image rather than its 3D visual during the conversations
 
-    def __init__(self, id, name, plural_name="", faction="", strength=7, agility=5, intelligence=4, charisma=4, level=1, face_code_1="man_face_middle_1", face_code_2="man_face_middle_1", troop_image=""):
+    def __init__(self, id, name, plural_name="", faction="", strength=7, agility=5, intelligence=4, charisma=4, level=1, face_code_1="man_face_middle_1", face_code_2="", troop_image=""):
         self.id = id
         self.name = name
 
