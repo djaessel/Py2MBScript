@@ -8,7 +8,7 @@ from party_template import PartyTemplate
 import troops as trp
 
 
-partyTempDummy = PartyTemplate("dummy", "Dummy")
+none = PartyTemplate("none", "None")
 
 
 partyTemp1 = PartyTemplate("hunters", "Hunters")

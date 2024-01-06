@@ -5,10 +5,13 @@
 
 from MBPlayer import MBPlayer
 from MBOptions import MBOptions
-from MBParty import MBParty
+#from MBParty import MBParty
 from game_menu import GameMenu, MenuOption
 
 from scripts import *
+
+
+none = GameMenu("none", 0, "None")
 
 
 game_start_0 = GameMenu("start_game_0", 0,

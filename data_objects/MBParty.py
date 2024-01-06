@@ -2,6 +2,10 @@
 
 from enum import Enum
 
+import factions as fac
+import game_menus as menu
+import test_party_templates as pt
+
 
 class PartyFlag(Enum):
     #ICON_MASK = "pf_icon_mask"                # = 0x000000ff
@@ -33,7 +37,7 @@ class PartyFlag(Enum):
 class MBParty:
     extra_text = ""
     current_town = ""
-    template_id = ""
+    template = None
     active = True
     marshall = ""
     leader = ""
@@ -44,12 +48,12 @@ class MBParty:
     icon = ""
 
 
-    def __init__(self, id, name="", menu="no_menu", template_id="pt_none", faction="fac_neutral", personality="0", initial_cords=(0.0,0.0), direction=0.0):
+    def __init__(self, id, name="", menu=menu.none, template=pt.none, faction=fac.neutral, personality="0", initial_cords=(0.0,0.0), direction=0.0):
         self.id = id
         self.name = name
         self.flags = []
         self.menu = menu
-        self.template_id = template_id
+        self.template = template
         self.faction = faction
         self.personality = personality
         self.ai_bhvr = "ai_bhvr_hold"
@@ -146,7 +150,7 @@ class MBParty:
         return "0x12345678901234567890"
 
     def get_template_id(self):
-        return self.template_id
+        return self.template.id
 
 
     def add_members(self, troop_id, number):

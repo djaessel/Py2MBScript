@@ -9,6 +9,12 @@ from module_constants import *
 
 game_menus = [
 
+("none", 0, 
+  "None", 
+  "none", [
+],
+[
+]),
 ("start_game_0", 0, 
   "Welcome adventurer, hopefully you will enjoy this new adventure through another world.", 
   "none", [

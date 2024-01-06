@@ -31,6 +31,7 @@ class PartyTemplateConverter(ScriptConverter):
             f.write("from header_parties import *\n")
             f.write("from ID_troops import *\n")
             f.write("from ID_factions import *\n")
+            f.write("from ID_menus import *\n")
             f.write("from ID_map_icons import *\n\n")
 
             f.write("no_menu = 0\n")
@@ -47,8 +48,8 @@ class PartyTemplateConverter(ScriptConverter):
                 else:
                     f.write("0, ")
 
-                f.write(partyTemp.menu + ", ")
-                f.write(partyTemp.faction + ", ")
+                f.write("menu_" + partyTemp.menu.id + ", ")
+                f.write("fac_" + partyTemp.faction.id + ", ")
                 f.write(partyTemp.personality + ", ")
 
                 f.write("[")

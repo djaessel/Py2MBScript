@@ -2,6 +2,11 @@
 
 from enum import Enum
 from troop import Troop
+from faction import Faction
+from game_menu import GameMenu
+
+import factions as fac
+import game_menus as menu
 
 
 class PartyPersonality(Enum):
@@ -12,8 +17,7 @@ class PartyPersonality(Enum):
 
 
 class PartyTemplate:
-    # TODO: later use actual menu and faction ids!!!
-    def __init__(self, id : str, name : str, faction : str = "fac_neutral", menu : str = "no_menu", personality = "0"):
+    def __init__(self, id : str, name : str, faction : Faction = fac.no_faction, menu : GameMenu = menu.none, personality = "0"):
         self.id = id
         self.flags = []
         self.name = name
