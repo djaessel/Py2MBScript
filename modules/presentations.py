@@ -8,6 +8,8 @@ from presentation import Presentation, LoadEvent, MouseEnterLeaveEvent, RunEvent
 from simple_trigger import SimpleTrigger
 
 
+
+# CUSTOM BATTLE MANAGER
 game_custom_battle_designer = Presentation("game_custom_battle_designer", "mesh_cb_ui_main")
 game_custom_battle_designer.set_manual_end_only()
 
@@ -39,3 +41,5 @@ event.codeBlock = event_code
 game_custom_battle_designer.add_event(event)
 
 
+
+# TODO: add more from original game

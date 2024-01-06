@@ -126,4 +126,4 @@ game_hoof_dust_mud.set_emit_direction_randomness(6)
 game_hoof_dust_mud.set_rotation(200, 0.5)
 
 
-
+# TODO: add more from original game

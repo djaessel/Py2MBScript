@@ -30,7 +30,9 @@ temp_troop = Troop("temp_troop", "Temp Troop", faction="fac_commoners", face_cod
 temp_troop.add_flag(TroopFlag.IS_HERO)
 temp_troop.add_skill(skl.inventory_management, 10)
 
-
+##################################################################
+# Troops above this point are hardwired/hardcoded into the game! #
+##################################################################
 
 npc1 = Troop("npc1", "Peter", faction="fac_player_faction", strength=10, level=7)
 # weapon proficies
