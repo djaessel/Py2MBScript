@@ -7,6 +7,7 @@ from animation import Animation, AnimationFlag, AnimationMasterFlag, AnimationSe
 
 
 
+# STAND ANIMATIONS 1
 
 # stand Animation
 stand = Animation("stand")
@@ -68,6 +69,8 @@ stand_player_first_person.add_sequence(seq1)
 
 
 
+# JUMP ANIMATIONS
+
 # jump Animation
 jump = Animation("jump")
 jump.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
@@ -119,6 +122,8 @@ jump_end_hard.add_sequence(seq0)
 
 
 
+
+# STAND ANIMATIONS 2
 
 # stand_unarmed Animation
 stand_unarmed = Animation("stand_unarmed")
@@ -174,6 +179,8 @@ stand_crossbow.add_sequence(seq0)
 
 
 
+
+# TURN LEFT, TURN RIGHT ANIMATIONS
 
 # turn_right Animation # TODO
 turn_right = Animation("turn_right")
@@ -291,6 +298,8 @@ turn_left_greatsword.add_sequence(seq0)
 
 
 
+# KICK ANIMATIONS
+
 # prepare_kick_0 Animation
 prepare_kick_0 = Animation("prepare_kick_0")
 prepare_kick_0.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
@@ -368,6 +377,8 @@ kick_left_leg.add_sequence(seq0)
 
 
 
+
+# RUN FORWARD ANIMATIONS
 
 # run_forward Animation
 run_forward = Animation("run_forward")
@@ -496,6 +507,763 @@ seq0.setExtraVals(0, 0.4)
 seq0.setExtraVals(1, 0.9)
 seq0.setExtraVals(7, 0.4)
 run_forward_right_onehanded.add_sequence(seq0)
+
+
+# run_forward_right_staff Animation
+run_forward_right_staff = Animation("run_forward_right_staff")
+run_forward_right_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_right_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_right_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_forward_right_stuff", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_right_staff.add_sequence(seq0)
+
+
+# run_forward_right_greatsword Animation
+run_forward_right_greatsword = Animation("run_forward_right_greatsword")
+run_forward_right_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_right_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_right_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_forward_right_greatsword", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_right_greatsword.add_sequence(seq0)
+
+
+# run_forward_right_hips_right Animation
+run_forward_right_hips_right = Animation("run_forward_right_hips_right")
+run_forward_right_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_right_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_right_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_forward_right_hips_right", 0, 22)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_right_hips_right.add_sequence(seq0)
+
+
+# run_forward_right_hips_left Animation
+run_forward_right_hips_left = Animation("run_forward_right_hips_left")
+run_forward_right_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_right_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_right_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_forward_right_hips_left", 0, 19)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_right_hips_left.add_sequence(seq0)
+
+
+# run_forward_left Animation
+run_forward_left = Animation("run_forward_left")
+run_forward_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_forward_left", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_left.add_sequence(seq0)
+
+
+# run_forward_left_onehanded Animation
+run_forward_left_onehanded = Animation("run_forward_left_onehanded")
+run_forward_left_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_left_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_left_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_forward_left_onehanded", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_left_onehanded.add_sequence(seq0)
+
+
+# run_forward_left_staff Animation
+run_forward_left_staff = Animation("run_forward_left_staff")
+run_forward_left_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_left_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_left_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_forward_left_stuff", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_left_staff.add_sequence(seq0)
+
+
+# run_forward_left_greatsword Animation
+run_forward_left_greatsword = Animation("run_forward_left_greatsword")
+run_forward_left_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_left_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_left_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_forward_left_greatsword", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_left_greatsword.add_sequence(seq0)
+
+
+# run_forward_left_hips_right Animation
+run_forward_left_hips_right = Animation("run_forward_left_hips_right")
+run_forward_left_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_left_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_left_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.6, "run_forward_left_hips_right", 0, 19)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_left_hips_right.add_sequence(seq0)
+
+
+# run_forward_left_hips_left Animation
+run_forward_left_hips_left = Animation("run_forward_left_hips_left")
+run_forward_left_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_forward_left_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_forward_left_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_forward_left_hips_left", 0, 22)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_forward_left_hips_left.add_sequence(seq0)
+
+
+
+
+# RUN BACKWARDS ANIMATIONS
+
+# run_backward Animation
+run_backward = Animation("run_backward")
+run_backward.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward.add_sequence(seq0)
+
+
+# run_backward_onehanded Animation
+run_backward_onehanded = Animation("run_backward_onehanded")
+run_backward_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_onehanded.add_sequence(seq0)
+
+
+# run_backward_staff Animation
+run_backward_staff = Animation("run_backward_staff")
+run_backward_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_staff", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_staff.add_sequence(seq0)
+
+
+# run_backward_greatsword Animation
+run_backward_greatsword = Animation("run_backward_staff")
+run_backward_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_twohanded", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_greatsword.add_sequence(seq0)
+
+
+# run_backward_hips_right Animation
+run_backward_hips_right = Animation("run_backward_hips_right")
+run_backward_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_hips_right", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_hips_right.add_sequence(seq0)
+
+
+# run_backward_hips_left Animation
+run_backward_hips_left = Animation("run_backward_hips_left")
+run_backward_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_hips_left", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_hips_left.add_sequence(seq0)
+
+
+# run_backward_right Animation
+run_backward_right = Animation("run_backward_right")
+run_backward_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_right", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_right.add_sequence(seq0)
+
+
+# run_backward_right_onehanded Animation
+run_backward_right_onehanded = Animation("run_backward_right_onehanded")
+run_backward_right_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_right_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_right_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_right", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_right_onehanded.add_sequence(seq0)
+
+
+# run_backward_right_staff Animation
+run_backward_right_staff = Animation("run_backward_right_staff")
+run_backward_right_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_right_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_right_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_staff_right", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_right_staff.add_sequence(seq0)
+
+
+# run_backward_right_staff Animation
+run_backward_right_staff = Animation("run_backward_right_staff")
+run_backward_right_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_right_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_right_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_staff_right", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_right_staff.add_sequence(seq0)
+
+
+# run_backward_right_greatsword Animation
+run_backward_right_greatsword = Animation("run_backward_right_greatsword")
+run_backward_right_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_right_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_right_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_twohanded_right", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_right_greatsword.add_sequence(seq0)
+
+
+# run_backward_right_hips_right Animation
+run_backward_right_hips_right = Animation("run_backward_right_hips_right")
+run_backward_right_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_right_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_right_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_right_hips_right", 0, 19)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_right_hips_right.add_sequence(seq0)
+
+
+# run_backward_right_hips_left Animation
+run_backward_right_hips_left = Animation("run_backward_right_hips_left")
+run_backward_right_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_right_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_right_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_right_hips_left", 0, 22)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_right_hips_left.add_sequence(seq0)
+
+
+# run_backward_left Animation
+run_backward_left = Animation("run_backward_left")
+run_backward_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_left", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_left.add_sequence(seq0)
+
+
+# run_backward_left_onehanded Animation
+run_backward_left_onehanded = Animation("run_backward_left_onehanded")
+run_backward_left_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_left_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_left_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_left", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_left_onehanded.add_sequence(seq0)
+
+
+# run_backward_left_staff Animation
+run_backward_left_staff = Animation("run_backward_left_staff")
+run_backward_left_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_left_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_left_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_staff_left", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_left_staff.add_sequence(seq0)
+
+
+# run_backward_left_greatsword Animation
+run_backward_left_greatsword = Animation("run_backward_left_greatsword")
+run_backward_left_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_left_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_left_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_twohanded_left", 0, 21)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_left_greatsword.add_sequence(seq0)
+
+
+# run_backward_left_hips_right Animation
+run_backward_left_hips_right = Animation("run_backward_left_hips_right")
+run_backward_left_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_left_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_left_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_left_hips_right", 0, 22)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_left_hips_right.add_sequence(seq0)
+
+
+# run_backward_left_hips_left Animation
+run_backward_left_hips_left = Animation("run_backward_left_hips_left")
+run_backward_left_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_backward_left_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_backward_left_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.7, "run_backward_left_hips_left", 0, 19)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+seq0.setExtraVals(7, 0.4)
+run_backward_left_hips_left.add_sequence(seq0)
+
+
+
+
+# RUN RIGHT ANIMATIONS
+
+# run_right Animation
+run_right = Animation("run_right")
+run_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_right", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_right.add_sequence(seq0)
+
+
+# run_right_onehanded Animation
+run_right_onehanded = Animation("run_right_onehanded")
+run_right_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_right_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_right_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_right_onehanded", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_right_onehanded.add_sequence(seq0)
+
+
+# run_right_twohanded Animation
+run_right_twohanded = Animation("run_right_twohanded")
+run_right_twohanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_right_twohanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_right_twohanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_right_greatsword", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_right_twohanded.add_sequence(seq0)
+
+
+# run_right_polearm Animation
+run_right_polearm = Animation("run_right_polearm")
+run_right_polearm.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_right_polearm.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_right_polearm.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_right_stuff", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_right_polearm.add_sequence(seq0)
+
+
+# run_right_hips_right Animation
+run_right_hips_right = Animation("run_right_hips_right")
+run_right_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_right_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_right_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_right_stuff", 0, 24) # TODO: Check if correct!
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_right_hips_right.add_sequence(seq0)
+
+
+# run_right_hips_left Animation
+run_right_hips_left = Animation("run_right_hips_left")
+run_right_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_right_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_right_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_right_hips_left", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_right_hips_left.add_sequence(seq0)
+
+
+
+
+# RUN LEFT ANIMATIONS
+
+# run_left Animation
+run_left = Animation("run_left")
+run_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_left", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_left.add_sequence(seq0)
+
+
+# run_left_onehanded Animation
+run_left_onehanded = Animation("run_left_onehanded")
+run_left_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_left_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_left_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_left_onehanded", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_left_onehanded.add_sequence(seq0)
+
+
+# run_left_twohanded Animation
+run_left_twohanded = Animation("run_left_twohanded")
+run_left_twohanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_left_twohanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_left_twohanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_left_greatsword", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_left_twohanded.add_sequence(seq0)
+
+
+# run_left_polearm Animation
+run_left_polearm = Animation("run_left_polearm")
+run_left_polearm.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_left_polearm.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_left_polearm.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_left_stuff", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_left_polearm.add_sequence(seq0)
+
+
+# run_left_hips_right Animation
+run_left_hips_right = Animation("run_left_hips_right")
+run_left_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_left_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_left_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_left_hips_right", 0, 24)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_left_hips_right.add_sequence(seq0)
+
+
+# run_left_hips_left Animation
+run_left_hips_left = Animation("run_left_hips_left")
+run_left_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+run_left_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+run_left_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(0.8, "run_man_left_stuff", 0, 24) # TODO: Check correct!
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+run_left_hips_left.add_sequence(seq0)
+
+'''
+["walk_forward", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+#   [1.0, "anim_human", 6000, 6020, arf_walk,pack2f(0.4,0.9)],
+ [1.0, "man_walk", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_forward_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+#   [1.0, "anim_human", 6000, 6020, arf_walk,pack2f(0.4,0.9)],
+ [1.0, "man_walk", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_forward_staff", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+##   [1.0, "anim_human", 6100, 6120, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ [1.0, "man_walk_staff", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_forward_greatsword", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+##   [1.0, "anim_human", 6200, 6220, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ [1.0, "man_walk_greatsword", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_forward_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+ [1.0, "walk_forward_hips_right", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_forward_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+ [1.0, "walk_forward_hips_left", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+''' and None
+
+'''
+["walk_backward", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+##   [1.0, "anim_human", 6020, 6000, arf_phase_odd|arf_walk,pack2f(0.4,0.9)],
+##   [1.0, "anim_human", 6020, 6000, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+##   [1.0, "man_walk", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ [1.0, "walk_backward", 0, 30, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_backward_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+#   [1.0, "anim_human", 6000, 6020, arf_walk,pack2f(0.4,0.9)],
+ [1.0, "man_walk", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_backward_staff", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+##   [1.0, "anim_human", 6120, 6100, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ [1.0, "man_walk_staff", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_backward_greatsword", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+##   [1.0, "anim_human", 6220, 6200, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ [1.0, "man_walk_greatsword", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_backward_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+ [1.0, "walk_backward_hips_right", 0, 30, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+["walk_backward_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+ [1.0, "walk_backward_hips_left", 0, 30, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+],
+''' and None
+
+
+
+
+
+
+
+
 
 
 
