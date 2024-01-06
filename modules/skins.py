@@ -126,6 +126,11 @@ man.addFaceTexture(man_midage)
 man.setVoiceDie(snd.man_die)
 man.setVoiceHit(snd.man_hit)
 man.setVoiceYell(snd.man_yell)
+man.setVoiceGrunt(snd.man_grunt)
+man.setVoiceGruntLong(snd.man_grunt_long)
+man.setVoiceWarCry(snd.man_warcry)
+man.setVoiceStun(snd.man_stun)
+man.setVoiceVictory(snd.man_victory)
 #  [("manface_young_2",0xffcbe0e0,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff502a19]),
 #   ("manface_midage",0xffdfefe1,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff632e18, 0xff502a19, 0xff19100c]),
 #   ("manface_young",0xffd0e0e0,["hair_blonde"],[0xff83301a, 0xff502a19, 0xff19100c, 0xff0c0d19]),

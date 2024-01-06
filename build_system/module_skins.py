@@ -43,7 +43,7 @@ skins = [
 ("manface_young_2", 0xffcbe0e0, ["hair_blonde",], [0xffffffff,0xffb04717,0xff502a19,]),
 ("manface_young_2", 0xffdfefe1, ["hair_blonde",], [0xffffffff,0xffb04717,0xff632e18,0xff502a19,0xff19100c,]),
 ],
-[(voice_die, "snd_man_die"),(voice_hit, "snd_man_hit"),(voice_yell, "snd_man_yell"),],
+[(voice_die, "snd_man_die"),(voice_hit, "snd_man_hit"),(voice_yell, "snd_man_yell"),(voice_grunt, "snd_man_grunt"),(voice_grunt_long, "snd_man_grunt_long"),(voice_warcry, "snd_man_warcry"),(voice_stun, "snd_man_stun"),(voice_victory, "snd_man_victory"),],
 "skel_human", 1.0,
 psys_game_blood, psys_game_blood_2,
 ),
