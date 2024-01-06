@@ -151,8 +151,6 @@ game_menus = [
 
 ("test_mission", [
 ], "TEST MISSION", [
-(modify_visitors_at_site,"scn_random_scene"),
-(reset_visitors),
 (set_jump_mission,"mt_my_mission"),
 (jump_to_scene,"scn_random_scene",0),
 (change_screen_mission),

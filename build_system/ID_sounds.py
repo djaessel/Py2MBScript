@@ -16,6 +16,26 @@ snd_sword_swing = 14
 snd_footstep_grass = 15
 snd_footstep_wood = 16
 snd_footstep_water = 17
-snd_sounds_end = 18
+snd_footstep_horse = 18
+snd_footstep_horse_1b = 19
+snd_footstep_horse_1f = 20
+snd_footstep_horse_2b = 21
+snd_footstep_horse_2f = 22
+snd_footstep_horse_3b = 23
+snd_footstep_horse_3f = 24
+snd_footstep_horse_4b = 25
+snd_footstep_horse_4f = 26
+snd_footstep_horse_5b = 27
+snd_footstep_horse_5f = 28
+snd_jump_begin = 29
+snd_jump_end = 30
+snd_jump_begin_water = 31
+snd_jump_end_water = 32
+snd_horse_jump_begin = 33
+snd_horse_jump_end = 34
+snd_horse_jump_begin_water = 35
+snd_horse_jump_end_water = 36
+snd_man_hit = 37
+snd_sounds_end = 38
 
 

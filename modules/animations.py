@@ -6,6 +6,20 @@ sys.path.append("../data_objects/")
 from animation import Animation, AnimationFlag, AnimationMasterFlag, AnimationSequence, AnimationSequenceFlag
 
 
+__attack_parried_duration__ = 0.6
+__attack_blocked_duration__ = 0.3
+__attack_blocked_duration_thrust__ = __attack_blocked_duration__ + 0.3
+__attack_parried_duration_thrust__ = __attack_parried_duration__ + 0.1
+__defend_parry_duration_1__ = 0.6
+__defend_parry_duration_2__ = 0.6
+__defend_parry_duration_3__ = 0.8
+__ready_durn__     = 0.35
+__defend_duration__ = 0.75
+__defend_keep_duration__ = 2.0
+__cancel_duration__ = 0.25
+
+
+
 
 # STAND ANIMATIONS 1
 
@@ -1205,56 +1219,295 @@ seq0.setExtraVals(0, 0.4)
 seq0.setExtraVals(1, 0.9)
 run_left_hips_left.add_sequence(seq0)
 
-'''
-["walk_forward", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-#   [1.0, "anim_human", 6000, 6020, arf_walk,pack2f(0.4,0.9)],
- [1.0, "man_walk", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_forward_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-#   [1.0, "anim_human", 6000, 6020, arf_walk,pack2f(0.4,0.9)],
- [1.0, "man_walk", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_forward_staff", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-##   [1.0, "anim_human", 6100, 6120, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
- [1.0, "man_walk_staff", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_forward_greatsword", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-##   [1.0, "anim_human", 6200, 6220, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
- [1.0, "man_walk_greatsword", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_forward_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
- [1.0, "walk_forward_hips_right", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_forward_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
- [1.0, "walk_forward_hips_left", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-''' and None
+
+
+
+# WALK FORWARD ANIMATIONS
+
+# walk_forward Animation
+walk_forward = Animation("walk_forward")
+walk_forward.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_forward.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_forward.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "man_walk", 0, 32)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_forward.add_sequence(seq0)
+
+
+# walk_forward_onehanded Animation
+walk_forward_onehanded = Animation("walk_forward_onehanded")
+walk_forward_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_forward_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_forward_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "man_walk", 0, 32)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_forward_onehanded.add_sequence(seq0)
+
+
+# walk_forward_staff Animation
+walk_forward_staff = Animation("walk_forward_staff")
+walk_forward_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_forward_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_forward_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "man_walk_staff", 0, 32)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_forward_staff.add_sequence(seq0)
+
+
+# walk_forward_greatsword Animation
+walk_forward_greatsword = Animation("walk_forward_greatsword")
+walk_forward_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_forward_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_forward_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "man_walk_greatsword", 0, 32)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_forward_greatsword.add_sequence(seq0)
+
+
+# walk_forward_hips_right Animation
+walk_forward_hips_right = Animation("walk_forward_hips_right")
+walk_forward_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_forward_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_forward_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "walk_forward_hips_right", 0, 32)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_forward_hips_right.add_sequence(seq0)
+
+
+# walk_forward_hips_left Animation
+walk_forward_hips_left = Animation("walk_forward_hips_left")
+walk_forward_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_forward_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_forward_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "walk_forward_hips_left", 0, 32)
+seq0.add_flag(AnimationSequenceFlag.USE_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_forward_hips_left.add_sequence(seq0)
+
+
+
+
+# WALK BACKWARD ANIMATIONS
+
+# walk_backward Animation
+walk_backward = Animation("walk_backward")
+walk_backward.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_backward.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_backward.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "walk_backward", 0, 30)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_backward.add_sequence(seq0)
+
+
+# walk_backward_onehanded Animation
+walk_backward_onehanded = Animation("walk_backward_onehanded")
+walk_backward_onehanded.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_backward_onehanded.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_backward_onehanded.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "man_walk", 32, 0)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_backward_onehanded.add_sequence(seq0)
+
+
+# walk_backward_staff Animation
+walk_backward_staff = Animation("walk_backward_staff")
+walk_backward_staff.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_backward_staff.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_backward_staff.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "man_walk_staff", 32, 0)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_backward_staff.add_sequence(seq0)
+
+
+# walk_backward_greatsword Animation
+walk_backward_greatsword = Animation("walk_backward_greatsword")
+walk_backward_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_backward_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_backward_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "man_walk_greatsword", 32, 0)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_backward_greatsword.add_sequence(seq0)
+
+
+# walk_backward_hips_right Animation
+walk_backward_hips_right = Animation("walk_backward_hips_right")
+walk_backward_hips_right.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_backward_hips_right.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_backward_hips_right.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "walk_backward_hips_right", 0, 30)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_backward_hips_right.add_sequence(seq0)
+
+
+# walk_backward_hips_left Animation
+walk_backward_hips_left = Animation("walk_backward_hips_left")
+walk_backward_hips_left.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
+walk_backward_hips_left.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
+walk_backward_hips_left.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
+# sequence 0
+seq0 = AnimationSequence(1.0, "walk_backward_hips_left", 0, 30)
+seq0.add_flag(AnimationSequenceFlag.USE_INV_WALK_PROGRESS)
+seq0.add_flag(AnimationSequenceFlag.CYCLIC)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_WALK)
+seq0.add_flag(AnimationSequenceFlag.MAKE_WALK_SOUND)
+seq0.setExtraVals(0, 0.4)
+seq0.setExtraVals(1, 0.9)
+walk_backward_hips_left.add_sequence(seq0)
+
+
+
+
 
 '''
-["walk_backward", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-##   [1.0, "anim_human", 6020, 6000, arf_phase_odd|arf_walk,pack2f(0.4,0.9)],
-##   [1.0, "anim_human", 6020, 6000, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-##   [1.0, "man_walk", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
- [1.0, "walk_backward", 0, 30, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_backward_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-#   [1.0, "anim_human", 6000, 6020, arf_walk,pack2f(0.4,0.9)],
- [1.0, "man_walk", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_backward_staff", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-##   [1.0, "anim_human", 6120, 6100, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
- [1.0, "man_walk_staff", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_backward_greatsword", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
-##   [1.0, "anim_human", 6220, 6200, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
- [1.0, "man_walk_greatsword", 32, 0, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_backward_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
- [1.0, "walk_backward_hips_right", 0, 30, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
-["walk_backward_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
- [1.0, "walk_backward_hips_left", 0, 30, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
-],
+["walk_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_right_normal", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_right_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_right_onehanded_r", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_right_twohanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_right_greatsword_r", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_right_polearm", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_right_staff_r", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_right_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_right_staff_r", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_right_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_right_hips_left", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_left_normal", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_left_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_left_onehanded_r", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_left_twohanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_left_greatsword", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_left_polearm", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_left_staff", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_left_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_left_hips_right", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_left_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+   [1.0, "walk_left_staff", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+ ],
+ ["walk_forward_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_normal", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_right_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_onehanded", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_right_twohanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_greatsword", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_right_polearm", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_staff", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_right_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_forward_right_hips_right", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_right_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_forward_right_hips_left", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossleft_normal", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_left_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossleft_onehanded", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_left_twohanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossleft_greatsword", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_left_polearm", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossleft_staff", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_left_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_forward_left_hips_right", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_forward_left_hips_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_forward_left_hips_left", 0, 32, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_backward_left", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_normal", 32, 0, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_backward_left_onehanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_onehanded", 32, 0, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_backward_left_twohanded", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_greatsword", 32, 0, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
+  ["walk_backward_left_polearm", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+    [1.0, "walk_crossright_staff", 32, 0, arf_use_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound,pack2f(0.4,0.9), (0, 0, 0), 0.0],
+  ],
 ''' and None
 
 

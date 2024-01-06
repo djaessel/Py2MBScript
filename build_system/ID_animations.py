@@ -71,5 +71,17 @@ anim_run_left_twohanded = 69
 anim_run_left_polearm = 70
 anim_run_left_hips_right = 71
 anim_run_left_hips_left = 72
+anim_walk_forward = 73
+anim_walk_forward_onehanded = 74
+anim_walk_forward_staff = 75
+anim_walk_forward_greatsword = 76
+anim_walk_forward_hips_right = 77
+anim_walk_forward_hips_left = 78
+anim_walk_backward = 79
+anim_walk_backward_onehanded = 80
+anim_walk_backward_staff = 81
+anim_walk_backward_greatsword = 82
+anim_walk_backward_hips_right = 83
+anim_walk_backward_hips_left = 84
 
 

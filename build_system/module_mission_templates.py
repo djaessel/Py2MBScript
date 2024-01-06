@@ -32,6 +32,11 @@ mission_templates = [
 (set_trigger_result, 1),
 ]),
 
+(ti_on_agent_killed_or_wounded, 0, 0, [
+], [
+(display_message, "@One down!"),
+]),
+
 ]),
 
 ] # MISSION TEMPLATES END

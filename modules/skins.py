@@ -124,7 +124,7 @@ man.addFaceTexture(man_midage)
 # manface_young
 # man - Voices
 man.setVoiceDie(snd.money_paid)
-man.setVoiceHit(snd.money_received)
+man.setVoiceHit(snd.man_hit)
 man.setVoiceYell(snd.sword_swing)
 #  [("manface_young_2",0xffcbe0e0,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff502a19]),
 #   ("manface_midage",0xffdfefe1,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff632e18, 0xff502a19, 0xff19100c]),
