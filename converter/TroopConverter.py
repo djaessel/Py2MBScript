@@ -104,7 +104,7 @@ class TroopConverter(ScriptConverter):
                     f.write("0")
                 f.write(",\n")
 
-                f.write(troop.scene + "," + troop.reserved + "," + troop.faction + ",\n")
+                f.write(troop.scene + "," + troop.reserved + ",fac_" + troop.faction.id + ",\n")
 
                 f.write("[")
                 if len(troop.inventory) > 0:
