@@ -88,8 +88,12 @@ class Skin:
         self.head_mesh = head_mesh
         self.skeleton_name = skeleton_name
         self.scale = scale
-        self.blood_particles_1 = blood_particles_1.id
-        self.blood_particles_2 = blood_particles_2.id
+        self.blood_particles_1 = ""
+        self.blood_particles_2 = ""
+        if blood_particles_1 != None:
+            self.blood_particles_1 = blood_particles_1.id
+        if blood_particles_2 != None:
+            self.blood_particles_2 = blood_particles_2.id
         self.face_keys = []
         self.hair_meshes = []
         self.beard_meshes = []

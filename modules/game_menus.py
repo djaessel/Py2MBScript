@@ -56,6 +56,12 @@ def setSkinFemale():
     change_screen_return()
 game_start_1_female.consequenceBlock = setSkinFemale
 game_start_1.menuOptions.append(game_start_1_female)
+#game_start_1_undead = MenuOption("start_undead", "Skin3 | Undead")
+#def setSkin3():
+#    troop_set_type("trp_player", 2)
+#    change_screen_return()
+#game_start_1_undead.consequenceBlock = setSkin3
+#game_start_1.menuOptions.append(game_start_1_undead)
 
 
 

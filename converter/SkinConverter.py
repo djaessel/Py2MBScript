@@ -81,7 +81,8 @@ class SkinConverter(ScriptConverter):
                 f.write("],\n")
 
                 f.write("\"" + skin.skeleton_name + "\", " + str(skin.scale) + ",\n")
-                f.write("psys_" + skin.blood_particles_1 + ", psys_" + skin.blood_particles_2 + ",\n")
+                if skin.blood_particles_1 != "" and skin.blood_particles_2 != "":
+                    f.write("psys_" + skin.blood_particles_1 + ", psys_" + skin.blood_particles_2 + ",\n")
 
                 #TODO:
                 #if face_key_constrains:

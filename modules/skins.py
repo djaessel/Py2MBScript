@@ -105,15 +105,15 @@ man.addBeardTexture("beard_brunette")
 man.addBeardTexture("beard_black")
 man.addBeardTexture("beard_white")
 # man - Face Textures
-# man_young_2
+# manface_young_2
 man_young_2 = FaceTexture("manface_young_2", 0xffcbe0e0)
 man_young_2.addHairMaterial("hair_blonde")
 man_young_2.addHairColors(0xffffffff) # blonde
 man_young_2.addHairColors(0xffb04717) # red
 man_young_2.addHairColors(0xff502a19) # brunette
 man.addFaceTexture(man_young_2)
-# man_midage
-man_midage = FaceTexture("manface_young_2", 0xffdfefe1)
+# manface_midage
+man_midage = FaceTexture("manface_midage", 0xffdfefe1)
 man_midage.addHairMaterial("hair_blonde")
 man_midage.addHairColors(0xffffffff) # blonde
 man_midage.addHairColors(0xffb04717) # red
@@ -122,6 +122,45 @@ man_midage.addHairColors(0xff502a19) # brunette
 man_midage.addHairColors(0xff19100c) # black
 man.addFaceTexture(man_midage)
 # manface_young
+manface_young = FaceTexture("manface_young", 0xffd0e0e0)
+manface_young.addHairMaterial("hair_blonde")
+manface_young.addHairColors(0xff83301a) #
+manface_young.addHairColors(0xff502a19) # brunette
+manface_young.addHairColors(0xff19100c) # black
+manface_young.addHairColors(0xff0c0d19) #
+man.addFaceTexture(manface_young)
+# manface_young_3
+manface_young_3 = FaceTexture("manface_young_3", 0xffdceded)
+manface_young_3.addHairMaterial("hair_blonde")
+manface_young_3.addHairColors(0xff2f180e) #
+manface_young_3.addHairColors(0xff171313) #
+manface_young_3.addHairColors(0xff007080c) # c
+man.addFaceTexture(manface_young_3)
+# manface_7
+manface_7 = FaceTexture("manface_7", 0xffc0c8c8)
+manface_7.addHairMaterial("hair_blonde")
+manface_7.addHairColors(0xff171313) #
+manface_7.addHairColors(0xff007080c) # c
+man.addFaceTexture(manface_7)
+# manface_midage_2
+manface_midage_2 = FaceTexture("manface_midage_2", 0xfde4c8d8)
+manface_midage_2.addHairMaterial("hair_blonde")
+manface_midage_2.addHairColors(0xff502a19) #
+manface_midage_2.addHairColors(0xff19100c) #
+manface_midage_2.addHairColors(0xff0c0d19) #
+man.addFaceTexture(manface_midage_2)
+# manface_rugged
+manface_rugged = FaceTexture("manface_rugged", 0xfde4c8d8)
+manface_rugged.addHairMaterial("hair_blonde")
+manface_rugged.addHairColors(0xff171313) #
+manface_rugged.addHairColors(0xff007080c) # c
+man.addFaceTexture(manface_rugged)
+# manface_african
+manface_african = FaceTexture("manface_african", 0xff807c8a)
+manface_african.addHairMaterial("hair_blonde")
+manface_african.addHairColors(0xff120808) #
+manface_african.addHairColors(0xff007080c) # c
+man.addFaceTexture(manface_african)
 # man - Voices
 man.setVoiceDie(snd.man_die)
 man.setVoiceHit(snd.man_hit)
@@ -131,16 +170,7 @@ man.setVoiceGruntLong(snd.man_grunt_long)
 man.setVoiceWarCry(snd.man_warcry)
 man.setVoiceStun(snd.man_stun)
 man.setVoiceVictory(snd.man_victory)
-#  [("manface_young_2",0xffcbe0e0,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff502a19]),
-#   ("manface_midage",0xffdfefe1,["hair_blonde"],[0xffffffff, 0xffb04717, 0xff632e18, 0xff502a19, 0xff19100c]),
-#   ("manface_young",0xffd0e0e0,["hair_blonde"],[0xff83301a, 0xff502a19, 0xff19100c, 0xff0c0d19]),
-#   ("manface_young_3",0xffdceded,["hair_blonde"],[0xff2f180e, 0xff171313, 0xff007080c]),
-#   ("manface_7",0xffc0c8c8,["hair_blonde"],[0xff171313, 0xff007080c]),
-#   ("manface_midage_2",0xfde4c8d8,["hair_blonde"],[0xff502a19, 0xff19100c, 0xff0c0d19]),
-#   ("manface_rugged",0xffb0aab5,["hair_blonde"],[0xff171313, 0xff007080c]),
-#   ("manface_african",0xff807c8a,["hair_blonde"],[0xff120808, 0xff007080c]),
-#   ], #man_face_textures,
-#  [(voice_die,"snd_man_die"),(voice_hit,"snd_man_hit"),(voice_grunt,"snd_man_grunt"),(voice_grunt_long,"snd_man_grunt_long"),(voice_yell,"snd_man_yell"),(voice_stun,"snd_man_stun"),(voice_victory,"snd_man_victory")], #voice sounds
+# man - Constraints
 #  [[1.7, comp_greater_than, (1.0,face_width), (1.0,temple_width)], #constraints: ex: 1.7 > (face_width + temple_width)
 #   [0.3, comp_less_than, (1.0,face_width), (1.0,temple_width)],
 #   [1.7, comp_greater_than, (1.0,face_width), (1.0,face_depth)],
@@ -151,7 +181,6 @@ man.setVoiceVictory(snd.man_victory)
 #   [2.7, comp_greater_than, (1.0,chin_size), (1.0,mouth_nose_distance), (1.0,nose_height), (-1.0,face_width)],
 #   ]
 #),
-
 
 
 
@@ -220,3 +249,16 @@ woman.addFaceTexture(woman_young)
 woman.setVoiceDie(snd.woman_die)
 woman.setVoiceHit(snd.woman_hit)
 woman.setVoiceYell(snd.woman_yell)
+
+
+
+
+## undead - Skin 3
+#undead = Skin("undead", "undead_body", "undead_calf_l", "undead_handL", "undead_head", "skel_human", 1.0)
+## undead - Face Textures
+#undeadface_a = FaceTexture("undeadface_a", 0xffffffff)
+#undead.addFaceTexture(undeadface_a)
+#undeadface_b = FaceTexture("undeadface_b", 0xffcaffc0)
+#undead.addFaceTexture(undeadface_b)
+
+
