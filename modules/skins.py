@@ -3,7 +3,7 @@
 import sys
 sys.path.append("../data_objects/")
 
-from skin import Skin, FaceTexture, FaceKey, SkinFlag
+from skin import Skin, FaceTexture, FaceKey, SkinFlag, FaceKeyConstraint, FaceField
 import particle_systems as psys
 import sounds as snd
 
@@ -171,17 +171,16 @@ man.setVoiceWarCry(snd.man_warcry)
 man.setVoiceStun(snd.man_stun)
 man.setVoiceVictory(snd.man_victory)
 # man - Constraints
-#  [[1.7, comp_greater_than, (1.0,face_width), (1.0,temple_width)], #constraints: ex: 1.7 > (face_width + temple_width)
-#   [0.3, comp_less_than, (1.0,face_width), (1.0,temple_width)],
-#   [1.7, comp_greater_than, (1.0,face_width), (1.0,face_depth)],
-#   [0.3, comp_less_than, (1.0,eyebrow_height), (1.0,eyebrow_position)],
-#   [1.7, comp_greater_than, (1.0,eyebrow_height), (1.0,eyebrow_position)],
-#   [-0.7, comp_less_than, (1.0,nose_size), (-1.0,nose_shape)],
-#   [0.7, comp_greater_than, (1.0,nose_size), (-1.0,nose_shape)],
+man.addFaceKeyConstraint(FaceKeyConstraint(1.7, False, FaceField.face_width, 1.0, FaceField.temple_width, 1.0))
+man.addFaceKeyConstraint(FaceKeyConstraint(0.3, True, FaceField.face_width, 1.0, FaceField.temple_width, 1.0))
+man.addFaceKeyConstraint(FaceKeyConstraint(1.7, False, FaceField.face_width, 1.0, FaceField.face_depth, 1.0))
+man.addFaceKeyConstraint(FaceKeyConstraint(0.3, True, FaceField.eyebrow_height, 1.0, FaceField.eyebrow_position, 1.0))
+man.addFaceKeyConstraint(FaceKeyConstraint(1.7, False, FaceField.eyebrow_height, 1.0, FaceField.eyebrow_position, 1.0))
+man.addFaceKeyConstraint(FaceKeyConstraint(-0.7, True, FaceField.nose_size, 1.0, FaceField.nose_shape, -1.0))
+man.addFaceKeyConstraint(FaceKeyConstraint(0.7, False, FaceField.nose_size, 1.0, FaceField.nose_shape, -1.0))
+#man.addFaceKeyConstraint(FaceKeyConstraint(2.7, False, FaceField.chin_size, 1.0, FaceField.mouth_nose_distance, 1.0))
 #   [2.7, comp_greater_than, (1.0,chin_size), (1.0,mouth_nose_distance), (1.0,nose_height), (-1.0,face_width)],
-#   ]
-#),
-
+# TODO: make FaceFields optional/multiples of FaceKeyConstraint not fixed like now
 
 
 
@@ -238,13 +237,42 @@ woman.addHairTexture("hair_brunette")
 woman.addHairTexture("hair_black")
 woman.addHairTexture("hair_white")
 # Woman - Face Textures
-woman_young = FaceTexture("womanface_young", 0xffe3e8ef)
-woman_young.addHairMaterial("hair_blonde")
-woman_young.addHairColors(0xffffffff) # blonde
-woman_young.addHairColors(0xffb04717) # red
-woman_young.addHairColors(0xff502a19) # brunette
-woman_young.addHairColors(0xff19100c) # black
-woman.addFaceTexture(woman_young)
+# womanface_young
+womanface_young = FaceTexture("womanface_young", 0xffe3e8ef)
+womanface_young.addHairMaterial("hair_blonde")
+womanface_young.addHairColors(0xffffffff) # blonde
+womanface_young.addHairColors(0xffb04717) # red
+womanface_young.addHairColors(0xff502a19) # brunette
+womanface_young.addHairColors(0xff19100c) # black
+woman.addFaceTexture(womanface_young)
+# womanface_b
+womanface_b = FaceTexture("womanface_b", 0xffdfdfdf)
+womanface_b.addHairMaterial("hair_blonde")
+womanface_b.addHairColors(0xffa5481f) #
+womanface_b.addHairColors(0xff502a19) #
+womanface_b.addHairColors(0xff19100c) #
+womanface_b.addHairColors(0xff0c0d19) #
+woman.addFaceTexture(womanface_b)
+# womanface_a
+womanface_a = FaceTexture("womanface_a", 0xffe8dfe5)
+womanface_a.addHairMaterial("hair_blonde")
+womanface_a.addHairColors(0xffffffff) #
+womanface_a.addHairColors(0xffb04717) #
+womanface_a.addHairColors(0xff502a19) #
+woman.addFaceTexture(womanface_a)
+# womanface_brown
+womanface_brown = FaceTexture("womanface_brown", 0xffaf9f7e)
+womanface_brown.addHairMaterial("hair_blonde")
+womanface_brown.addHairColors(0xff19100c) #
+womanface_brown.addHairColors(0xff0c0d19) #
+womanface_brown.addHairColors(0xff007080c) #
+woman.addFaceTexture(womanface_brown)
+# womanface_african
+womanface_african = FaceTexture("womanface_african", 0xff808080)
+womanface_african.addHairMaterial("hair_blonde")
+womanface_african.addHairColors(0xff120808) #
+womanface_african.addHairColors(0xff007080c) #
+woman.addFaceTexture(womanface_african)
 # Woman - Voices
 woman.setVoiceDie(snd.woman_die)
 woman.setVoiceHit(snd.woman_hit)

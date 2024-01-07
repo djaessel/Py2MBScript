@@ -84,9 +84,17 @@ class SkinConverter(ScriptConverter):
                 if skin.blood_particles_1 != "" and skin.blood_particles_2 != "":
                     f.write("psys_" + skin.blood_particles_1 + ", psys_" + skin.blood_particles_2 + ",\n")
 
-                #TODO:
-                #if face_key_constrains:
-                #    bla bla
+                    if len(skin.face_key_constraints) > 0:
+                        f.write("[")
+                        for fkc in skin.face_key_constraints:
+                            f.write("(" + str(fkc.val) + ", ")
+                            if fkc.lowerThan:
+                                f.write("comp_less_than, ")
+                            else:
+                                f.write("comp_greater_than, ")
+                            f.write("(" + str(fkc.faceField1Val) + ","  + str(fkc.faceField1) + "),")
+                            f.write("(" + str(fkc.faceField2Val) + ","  + str(fkc.faceField2) + ")),\n")
+                        f.write("]")
 
                 f.write("),\n")
 

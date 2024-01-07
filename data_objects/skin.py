@@ -58,6 +58,48 @@ class FaceKey:
 
 
 
+class FaceField(Enum):
+    chin_size = 0
+    chin_shape = 1
+    chin_forward = 2
+    jaw_width = 3
+    jaw_position = 4
+    mouth_nose_distance = 5
+    mouth_width = 6
+    cheeks = 7
+    nose_height = 8
+    nose_width = 9
+    nose_size = 10
+    nose_shape = 11
+    nose_bridge = 12
+    cheek_bones = 13
+    eye_width = 14
+    eye_to_eye_dist = 15
+    eye_shape = 16
+    eye_depth = 17
+    eyelids = 18
+    eyebrow_position = 19
+    eyebrow_height = 20
+    eyebrow_depth = 21
+    eyebrow_shape = 22
+    temple_width = 23
+    face_depth = 24
+    face_ratio = 25
+    face_width = 26
+
+
+
+class FaceKeyConstraint:
+    def __init__(self, val : float, lowerThan : bool, faceField1 : FaceField, faceField1Val : float, faceField2 : FaceField, faceField2Val : float):
+        self.val = val
+        self.lowerThan = lowerThan
+        self.faceField1 = faceField1.value
+        self.faceField1Val = faceField1Val
+        self.faceField2 = faceField2.value
+        self.faceField2Val = faceField2Val
+
+
+
 class Skin:
     #  Each skin record contains the following fields:
     #  1) Skin id: used for referencing skins.
@@ -215,4 +257,8 @@ class Skin:
 
     def setVoiceStun(self, sound : Sound):
         self.setVoice(Voice.STUN, sound)
+
+
+    def addFaceKeyConstraint(self, faceKeyConstraint : FaceKeyConstraint):
+        self.face_key_constraints.append(faceKeyConstraint)
 
