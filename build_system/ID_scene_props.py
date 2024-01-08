@@ -1,1 +1,10 @@
-spr_my_first = 0
+spr_invalid_object = 0
+spr_inventory = 1
+spr_empty = 2
+spr_chest_a = 3
+spr_container_small_chest = 4
+spr_container_chest_b = 5
+spr_container_chest_c = 6
+spr_player_chest = 7
+spr_locked_player_chest = 8
+spr_light_sun = 9

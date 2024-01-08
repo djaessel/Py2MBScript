@@ -5,7 +5,7 @@ from TriggerConverter import TriggerConverter
 from scene_prop import SceneProp
 
 import inspect
-import test_scene_props
+import scene_props
 
 class ScenePropConverter(ScriptConverter):
 
@@ -15,9 +15,9 @@ class ScenePropConverter(ScriptConverter):
 
     def retrieveSceneProps(self):
         sceneProps = []
-        for i in vars(test_scene_props):
+        for i in vars(scene_props):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_scene_props,i)
+                attr = getattr(scene_props,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "SimpleTrigger" in str(attr):
                     sceneProps.append(attr)
         return sceneProps
@@ -61,8 +61,9 @@ class ScenePropConverter(ScriptConverter):
                         self.writeScriptCode(f, codeLines)
 
                     f.write("]")
-
+                else:
+                    f.write(", []")
                 f.write("),\n")
 
-                f.write("\n] # SCENE PROPS END\n")
+            f.write("\n] # SCENE PROPS END\n")
 
