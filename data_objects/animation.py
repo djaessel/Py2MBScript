@@ -123,7 +123,7 @@ class AnimationFlag(Enum):
     ENFORCE_ALL = "acf_enforce_all"             # = 0x00000400
     PARALLELS_FOR_LOOK_SLOPE = "acf_parallels_for_look_slope" # = 0x00001000
     LOCK_CAMERA = "acf_lock_camera"             # = 0x00002000
-    DISPLAE_POSITION = "acf_displace_position"       # = 0x00004000
+    DISPLACE_POSITION = "acf_displace_position"       # = 0x00004000
     IGNORE_SLOPE = "acf_ignore_slope"            # = 0x00008000
     THRUST = "acf_thrust"                  # = 0x00010000
     RIGHT_CUT = "acf_right_cut"               # = 0x00020000

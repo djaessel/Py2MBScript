@@ -61,7 +61,7 @@ class AnimationConverter(ScriptConverter):
                         else:
                             f.write("pack2f(" + str(seq.extra_vals[0]) + "," + str(seq.extra_vals[1]))
                         f.write("), ")
-                    elif seq.extra_vals[7] != 0:
+                    elif seq.extra_vals[7] != 0 or seq.extra_vals[6] != 0 or seq.extra_vals[5] != 0 or seq.extra_vals[4] != 0:
                         f.write("0, ")
 
                     if seq.extra_vals[7] != 0 or seq.extra_vals[6] != 0 or seq.extra_vals[5] != 0 or seq.extra_vals[4] != 0:
