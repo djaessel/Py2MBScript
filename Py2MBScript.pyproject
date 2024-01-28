@@ -198,12 +198,12 @@
         "modules/animations.py",
         "test_cases/test_items.py",
         "test_cases/test_mission_templates.py",
-        "test_cases/test_party_templates.py",
-        "test_cases/test_quests.py",
-        "test_cases/test_scenes.py",
         "test_cases/test_tableau_materials.py",
         "modules/presentations.py",
         "modules/sounds.py",
-        "modules/scene_props.py"
+        "modules/scene_props.py",
+        "modules/party_templates.py",
+        "modules/quests.py",
+        "modules/scenes.py"
     ]
 }

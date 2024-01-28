@@ -4,7 +4,7 @@ from ScriptConverter import ScriptConverter
 from party_template import PartyTemplate
 
 
-import test_party_templates
+import party_templates
 
 
 class PartyTemplateConverter(ScriptConverter):
@@ -17,9 +17,9 @@ class PartyTemplateConverter(ScriptConverter):
 
     def retrievePartyTemplates(self):
         parties = []
-        for i in vars(test_party_templates):
+        for i in vars(party_templates):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_party_templates,i)
+                attr = getattr(party_templates,i)
                 sx = str(attr)
                 if not "<function" in sx and not "<module" in sx and not "Troop" in sx:
                     parties.append(attr)

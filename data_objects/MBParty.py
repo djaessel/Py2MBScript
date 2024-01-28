@@ -3,7 +3,7 @@
 from enum import Enum
 
 import factions as fac
-import test_party_templates as pt
+import party_templates as pt
 
 
 class PartyFlag(Enum):

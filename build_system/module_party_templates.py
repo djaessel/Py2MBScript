@@ -11,6 +11,5 @@ pmf_is_prisoner = 0x0001
 party_templates = [
 
 ("none", "None", 0, no_menu, fac_no_faction, 0, []),
-("hunters", "Hunters", 0, no_menu, fac_no_faction, 0, [(trp_npc1,1,1,0),(trp_looter,1,2,0),]),
 
 ] # PARTY TEMPLATES END

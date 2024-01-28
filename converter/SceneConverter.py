@@ -3,23 +3,23 @@
 from ScriptConverter import ScriptConverter
 from scene import Scene
 
-import test_scenes
+import scenes
 
 class SceneConverter(ScriptConverter):
     def __init__(self):
         pass
 
     def createCode(self):
-        scenes = self.retrieveScenes()
-        self.writeScriptOutputFile(scenes)
+        scenesx = self.retrieveScenes()
+        self.writeScriptOutputFile(scenesx)
 
     def retrieveScenes(self):
-        scenes = []
-        for i in vars(test_scenes):
+        scenesx = []
+        for i in vars(scenes):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_scenes,i)
-                scenes.append(attr)
-        return scenes
+                attr = getattr(scenes,i)
+                scenesx.append(attr)
+        return scenesx
 
     def writeScriptOutputFile(self, codeData : list[Scene]):
         with open("./build_system/module_scenes.py", "w") as f:

@@ -3,24 +3,24 @@
 from ScriptConverter import ScriptConverter
 from quest import Quest
 
-import test_quests
+import quests
 
 class QuestConverter(ScriptConverter):
     def __init__(self):
         pass
 
     def createCode(self):
-        quests = self.retrieveQuests()
-        self.writeScriptOutputFile(quests)
+        questsx = self.retrieveQuests()
+        self.writeScriptOutputFile(questsx)
 
     def retrieveQuests(self):
-        quests = []
-        for i in vars(test_quests):
+        questsx = []
+        for i in vars(quests):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_quests,i)
+                attr = getattr(quests,i)
                 if not "<function" in str(attr) and not "<module" in str(attr):
-                    quests.append(attr)
-        return quests
+                    questsx.append(attr)
+        return questsx
 
     def writeScriptOutputFile(self, codeData : list[Quest]):
         with open("./build_system/module_quests.py", "w") as f:

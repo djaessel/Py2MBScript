@@ -11,8 +11,3 @@ import troops as trp
 none = PartyTemplate("none", "None")
 
 
-partyTemp1 = PartyTemplate("hunters", "Hunters")
-partyTemp1.addStack(trp.npc1, 1)
-partyTemp1.addStack(trp.looter, 1, 2)
-
-
