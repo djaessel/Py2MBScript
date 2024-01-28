@@ -15,10 +15,9 @@ from MBShield import MBShield
 
 axe = MBAxe("my_axe", "My Axe", 315)
 axe.add_mesh(ItemMesh("battle_ax"))
-#axe.add_mesh(ItemMesh("simple_axe_extra", "extra_thing"))
 axe.add_flag(ItemFlag.HAS_CRUSH_THROUGH)
-#axe.add_flag(ItemFlag.FORCE_ATTACH_RIGHT_HAND)
-axe.add_capability(ItemCapability.THROW_AXE)
+axe.add_flag(ItemFlag.FORCE_ATTACH_RIGHT_HAND)
+#axe.add_capability(ItemCapability.THROW_AXE)
 axe.add_modifier(IModBit.CHAMPION)
 axe.set_abundance(100)
 axe.set_difficulty(0)

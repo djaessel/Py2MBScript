@@ -33,7 +33,7 @@ class AnimationConverter(ScriptConverter):
                 f.write("[\"" + anim.id + "\", ")
 
                 if anim.animation_length > 0:
-                    f.write("acf_anim_length(" + anim.animation_length + ")|")
+                    f.write("acf_anim_length(" + str(anim.animation_length) + ")|")
                 if len(anim.flags) > 0:
                     f.write("|".join(anim.flags) + ", ")
                 else:
