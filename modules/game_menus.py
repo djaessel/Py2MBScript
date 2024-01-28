@@ -88,53 +88,18 @@ def conseq():
     for partyx in __all_parties__:
         partyx = MBParty(partyx)
         if partyx.is_active():
-            # template_idx = party_get_template_id(partyx)
-            # if template_idx == 1: # 1 is pt_hunters atm
-            if True:
-                partyx.get_position(pos1)
-                position_get_x(x, pos1)
-                x += 100
-                position_set_x(pos1, x)
-                partyx.set_position(pos1)
-                print("DEBUG -", pos1)
+            partyx.get_position(pos1)
+            position_get_x(x, pos1)
+            x += 100
+            position_set_x(pos1, x)
+            partyx.set_position(pos1)
+            print("DEBUG -", pos1)
 town_leave.consequenceBlock = conseq
 town_menu.menuOptions.append(town_leave)
-
-town_break_test = MenuOption("test_break", "TEST BREAK")
-def conseq():
-    start = 200
-    end = 100
-    for x in range(start,end,-1):
-        print(x)
-        if x == 150:
-            break
-    end = 30
-    for x in range(end):
-        print(x)
-        if x == 10:
-            break
-    for p in __all_parties__:
-        print("Party:", p)
-        if p == "p_test_town":
-            break
-town_break_test.consequenceBlock = conseq
-town_menu.menuOptions.append(town_break_test)
-
-town_list_test = MenuOption("test_list", "TEST LIST")
-def conseq():
-    bits = [0, 1, 2, 4, 8, 16, 32, 64, 128]
-    x = 8
-    if x in bits:
-        print(x, "is in the list!")
-
-town_list_test.consequenceBlock = conseq
-town_menu.menuOptions.append(town_list_test)
 
 
 town_list_test = MenuOption("test_mission", "TEST MISSION")
 def conseq():
-    # modify_visitors_at_site("scn_random_scene")
-    # reset_visitors()
     set_jump_mission("mt_my_mission")
     jump_to_scene("scn_random_scene",0)
     change_screen_mission()

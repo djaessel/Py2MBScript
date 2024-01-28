@@ -9,10 +9,6 @@ from MBParty import MBParty
 
 def game_start():
     print("Hello world!")
-    set_spawn_radius(1)
-    for _ in range(3):
-        spawn_around_party("p_main_party", "pt_hunters")
-        party_set_ai_behavior(reg0, 0) # hold
 
 
 
