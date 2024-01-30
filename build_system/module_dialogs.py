@@ -14,5 +14,5 @@ from module_constants import *
 dialogs = [
 
 [anyone, "start", [], "Hi there!", "hello_world", []],
-[anyone, "hello_world", [], "Hi!", "close_window", []],
+[anyone|plyr, "hello_world", [], "Hi!", "close_window", []],
 ] # DIALOGS END

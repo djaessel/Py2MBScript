@@ -40,6 +40,9 @@ class Dialog:
         elif isinstance(dialog_partner, PartyTemplate):
             dialog_partner = "party_tpl|" + dialog_partner.id
 
+        if is_player_text:
+            dialog_partner += "|plyr"
+
         self.is_player_text = is_player_text
         self.auto_proceed = auto_proceed
         self.other_troop = other_troop
