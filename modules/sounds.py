@@ -366,6 +366,10 @@ battle = Sound("battle")
 battle.set_volume(4)
 battle.add_file("battle.ogg")
 
+
+
+
+# Hit Sounds
 '''
  ("arrow_hit_body",sf_priority_4, ["arrow_hit_body_1.ogg","arrow_hit_body_2.ogg","arrow_hit_body_3.ogg"]),
  ("metal_hit_low_armor_low_damage",sf_priority_5|sf_vol_9, ["sword_hit_lo_armor_lo_dmg_1.ogg","sword_hit_lo_armor_lo_dmg_2.ogg","sword_hit_lo_armor_lo_dmg_3.ogg"]),
@@ -377,11 +381,22 @@ battle.add_file("battle.ogg")
  ("wooden_hit_high_armor_low_damage",sf_priority_5|sf_vol_9, ["wooden_hit_high_armor_low_damage.ogg","wooden_hit_high_armor_low_damage_2.ogg"]),
  ("wooden_hit_high_armor_high_damage",sf_priority_5|sf_vol_9, ["blunt_hit_high_1.ogg","blunt_hit_high_2.ogg","blunt_hit_high_3.ogg"]),
  ("mp_arrow_hit_target",sf_2d|sf_priority_15|sf_vol_9, ["mp_arrow_hit_target.ogg"]),
- ("blunt_hit",sf_priority_5|sf_vol_9, ["punch_1.ogg","punch_4.ogg","punch_4.ogg","punch_5.ogg"]),
- ("player_hit_by_arrow",sf_priority_10|sf_vol_10, ["player_hit_by_arrow.ogg"]),
- ("pistol_shot",sf_priority_10|sf_vol_10, ["fl_pistol.wav"]),
 ''' and None
 
+blunt_hit = Sound("blunt_hit")
+blunt_hit.set_priority(5)
+blunt_hit.set_volume(9)
+blunt_hit.add_files(["punch_1.ogg","punch_4.ogg","punch_4.ogg","punch_5.ogg"])
+
+player_hit_by_arrow = Sound("player_hit_by_arrow")
+player_hit_by_arrow.set_priority(10)
+player_hit_by_arrow.set_volume(10)
+player_hit_by_arrow.add_file("player_hit_by_arrow.ogg")
+
+pistol_shot = Sound("pistol_shot")
+pistol_shot.set_priority(10)
+pistol_shot.set_volume(10)
+pistol_shot.add_file("fl_pistol.wav")
 
 
 # Skin Sounds 2

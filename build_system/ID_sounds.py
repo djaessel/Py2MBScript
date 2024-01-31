@@ -49,13 +49,16 @@ snd_unhide = 47
 snd_neigh = 48
 snd_gallop = 49
 snd_battle = 50
-snd_man_grunt = 51
-snd_man_breath_hard = 52
-snd_man_stun = 53
-snd_man_grunt_long = 54
-snd_man_yell = 55
-snd_man_warcry = 56
-snd_man_victory = 57
-snd_sounds_end = 58
+snd_blunt_hit = 51
+snd_player_hit_by_arrow = 52
+snd_pistol_shot = 53
+snd_man_grunt = 54
+snd_man_breath_hard = 55
+snd_man_stun = 56
+snd_man_grunt_long = 57
+snd_man_yell = 58
+snd_man_warcry = 59
+snd_man_victory = 60
+snd_sounds_end = 61
 
 
