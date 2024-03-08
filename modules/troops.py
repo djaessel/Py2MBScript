@@ -7,8 +7,8 @@ sys.path.append("../modules/")
 from troop import Troop, TroopFlag
 import skills as skl
 import factions as fac
-import test_items as itm
-from test_items import IModBit
+import items as itm
+from items import IModBit
 
 
 player = Troop("player", "Player", faction=fac.player_faction, strength=4, agility=4, face_code_1="0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000")
@@ -47,7 +47,7 @@ npc1.add_flag(TroopFlag.GUARANTEE_ALL)
 # skills
 npc1.add_skill(skl.trade, 10)
 # items
-npc1.add_item(itm.axe)
+#npc1.add_item(itm.axe)
 
 
 npc2 = Troop("npc2", "Sarah", faction=fac.player_faction, level=3)
@@ -61,7 +61,7 @@ npc2.add_flag(TroopFlag.GUARANTEE_ALL)
 # skills
 npc2.add_skill(skl.inventory_management, 8)
 # items
-npc2.add_item(itm.master_shield, [IModBit.CHAMPION, IModBit.GOOD])
+#npc2.add_item(itm.master_shield, [IModBit.CHAMPION, IModBit.GOOD])
 
 
 looter = Troop("looter", "Looter", faction=fac.commoners)

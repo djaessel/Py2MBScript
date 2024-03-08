@@ -5,23 +5,23 @@ from TriggerConverter import TriggerConverter
 from item import Item
 
 import inspect
-import test_items
+import items
 
 
 class ItemConverter(ScriptConverter):
 
     def createCode(self):
-        items = self.retrieveItems()
-        self.writeScriptOutputFile(items)
+        itemsx = self.retrieveItems()
+        self.writeScriptOutputFile(itemsx)
 
     def retrieveItems(self):
-        items = []
-        for i in vars(test_items):
+        itemsx = []
+        for i in vars(items):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_items,i)
+                attr = getattr(items,i)
                 if not "<function" in str(attr) and not "<module" in str(attr) and not "ItemMesh" in str(attr) and not "SimpleTrigger" in str(attr):
-                    items.append(attr)
-        return items
+                    itemsx.append(attr)
+        return itemsx
 
     def writeScriptOutputFile(self, codeData : list[Item]):
         with open("./build_system/module_items.py", "w") as f:

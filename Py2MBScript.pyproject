@@ -196,7 +196,6 @@
         "modules/triggers.py",
         "modules/troops.py",
         "modules/animations.py",
-        "test_cases/test_items.py",
         "test_cases/test_mission_templates.py",
         "test_cases/test_tableau_materials.py",
         "modules/presentations.py",
@@ -204,6 +203,7 @@
         "modules/scene_props.py",
         "modules/party_templates.py",
         "modules/quests.py",
-        "modules/scenes.py"
+        "modules/scenes.py",
+        "modules/items.py"
     ]
 }

@@ -9,7 +9,7 @@ from item import Item, IModBit
 
 import skills as skl
 import factions as fac
-import test_items as itm
+import items as itm
 
 class TroopFlag(Enum):
     SKIN1 = "tf_male"          # = 0
