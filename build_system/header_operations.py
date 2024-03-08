@@ -297,8 +297,8 @@ stop_all_sounds                 = 609 # (stop_all_sounds, [options]), # 0 = stop
 store_last_sound_channel        = 615 # (store_last_sound_channel, <destination>),
 stop_sound_channel              = 616 # (stop_sound_channel, <sound_channel_no>),
 
-copy_position                   = 700 # copies position_no_2 to position_no_1
-				      # (copy_position,<position_no_1>,<position_no_2>),
+copy_position                   = 700 # (copy_position,<position_no_1>,<position_no_2>),
+                                      # copies position_no_2 to position_no_1
 init_position                   = 701 # (init_position,<position_no>),
 get_trigger_object_position     = 702 # (get_trigger_object_position,<position_no>),
 

@@ -20,9 +20,9 @@ mission_templates = [
 (set_trigger_result, 1),
 ]),
 
-(ti_on_agent_knocked_down, 0, 0, [
+(ti_on_agent_hit, 0, 0, [
 ], [
-(display_message, "@One down!"),
+(display_message, "@One hit!"),
 ]),
 
 ]),

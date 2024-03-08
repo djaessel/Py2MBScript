@@ -36,8 +36,8 @@ triggyx.codeBlock = code
 mission1.add_trigger(triggyx)
 #---
 # trigger 2
-triggyx = Trigger(tri.ti_on_agent_knocked_down,0,0)
+triggyx = Trigger(tri.ti_on_agent_hit,0,0)
 def code():
-    print("One down!")
+    print("One hit!")
 triggyx.codeBlock = code
 mission1.add_trigger(triggyx)

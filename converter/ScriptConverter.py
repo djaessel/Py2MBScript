@@ -260,6 +260,15 @@ class ScriptConverter:
         return [liny]
 
 
+    def handleValMod(self, code):
+        liny = "(val_mod, <val1>, <val2>)"
+        sx = code.split('%')[0].strip()
+        sy = code.split('=')[1].strip()
+        liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
+        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        return [liny]
+
+
     def handleStoreAdd(self, code):
         liny = "(store_add, <val1>, <val2>, <val3>)"
         sx = code.split('=')[0].strip()
@@ -272,7 +281,7 @@ class ScriptConverter:
 
 
     def handleStoreSub(self, code):
-        liny = "(store_mul, <val1>, <val2>, <val3>)"
+        liny = "(store_sub, <val1>, <val2>, <val3>)"
         sx = code.split('=')[0].strip()
         sy = code.split('=')[1].strip().split('-')[0].strip()
         sz = code.split('=')[1].strip().split('-')[1].strip()
@@ -322,9 +331,11 @@ class ScriptConverter:
             return self.handleValMul(code)
         elif "/=" in code:
             return self.handleValDiv(code)
+        elif "%=" in code:
+            return self.handleValMod(code)
         elif "+" in code and "=" in code and code.index("=") < code.index("+"):
             return self.handleStoreAdd(code)
-        elif "-" in code and "=" in code and code.index("=") < code.index("-"):
+        elif "-" in code and "=" in code and code.index("=") < code.index("-") and not "= -" in code:
             return self.handleStoreSub(code)
         elif "*" in code and "=" in code and code.index("=") < code.index("*"):
             return self.handleStoreMul(code)
