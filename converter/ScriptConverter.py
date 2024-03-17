@@ -318,6 +318,9 @@ class ScriptConverter:
         if len(code.strip()) == 0:
             return [""]
 
+        if "#" in code:
+            code = code.split('#')[0].rstrip()
+
         if code.strip().startswith('#'):
             # return [code.strip()]
             return [""]

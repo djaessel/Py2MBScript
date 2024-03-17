@@ -43,8 +43,7 @@ def add_troop_to_cur_tableau_for_character(troop_no):
     camera_distance = 360
     camera_yaw = -15
     camera_pitch = -18
-    #animation = animID.anim_stand_man
-    animation = 1
+    animation = 1 # animID.anim_stand_man
 
     position_set_z(pos5, cam_height)
 
