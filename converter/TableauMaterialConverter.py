@@ -5,7 +5,7 @@ from typing import List
 from tableau_material import TableauMaterial
 
 import inspect
-import test_tableau_materials
+import tableau_materials
 
 class TableauMaterialConverter(ScriptConverter):
 
@@ -15,9 +15,9 @@ class TableauMaterialConverter(ScriptConverter):
 
     def retrieveTableauMaterials(self):
         tabMats = []
-        for i in vars(test_tableau_materials):
+        for i in vars(tableau_materials):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
-                attr = getattr(test_tableau_materials,i)
+                attr = getattr(tableau_materials,i)
                 if not "<function" in str(attr) and not "<module" in str(attr):
                     tabMats.append(attr)
         return tabMats

@@ -197,13 +197,13 @@
         "modules/troops.py",
         "modules/animations.py",
         "test_cases/test_mission_templates.py",
-        "test_cases/test_tableau_materials.py",
         "modules/presentations.py",
         "modules/sounds.py",
         "modules/scene_props.py",
         "modules/party_templates.py",
         "modules/quests.py",
         "modules/scenes.py",
-        "modules/items.py"
+        "modules/items.py",
+        "modules/tableau_materials.py"
     ]
 }

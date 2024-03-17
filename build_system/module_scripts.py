@@ -45,7 +45,7 @@ scripts = [
 (assign,":camera_distance",360),
 (assign,":camera_yaw",-15),
 (assign,":camera_pitch",-18),
-(assign,":animation",55),
+(assign,":animation",1),
 (position_set_z,pos5,":cam_height"),
 (position_rotate_x,pos5,-90),
 (position_rotate_z,pos5,180,0),
