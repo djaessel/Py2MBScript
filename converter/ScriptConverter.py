@@ -3,6 +3,9 @@
 import random
 import scripts
 
+# TODO: add all relevant imports with same naming!
+import ID_animations as animID
+
 class ScriptConverter:
     registers = []
     str_registers = []
@@ -130,6 +133,9 @@ class ScriptConverter:
             p_func_name = "options_" + tmp[1].strip()
             liny = self.getFuncCodeLine(p_func_name)
             liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+        else:
+            liny = varName + " = " + str(eval(funcCall)) # check imports if something goes wrong
+            liny = self.handleEqualsSign(liny)[0]
         liny = liny.replace(":::","$")
         return liny
 
