@@ -73,7 +73,6 @@ def handle_arguments(args):
                         os.system('"' + gamePath + '"')
                     else:
                         print("Warband not found!")
-
             else:
                 print("OS not supported for auto-build!")
 
@@ -164,7 +163,14 @@ def create_modules():
 
 
 
+def handle_pre_module_arguments(args):
+    # TODO: create pre module creation console arguments
+    pass
+
+
+
 if __name__ == "__main__":
+    handle_pre_module_arguments(sys.argv)
     create_modules()
     handle_arguments(sys.argv)
     sys.exit()
