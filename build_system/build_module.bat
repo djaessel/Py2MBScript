@@ -28,10 +28,15 @@ python3 -B process_simple_triggers.py
 python3 -B process_dialogs.py
 python3 -B process_global_variables_unused.py
 python3 -B process_postfx.py
+
+python3 -B process_module_ini.py
+
+python3 -B process_languages.py
+
 REM @del *.pyc
 echo.
 echo ______________________________
 echo.
 echo Script processing has ended.
-echo Press any key to exit. . .
-pause>nul
+REM echo Press any key to exit. . .
+REM pause>nul
