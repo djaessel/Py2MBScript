@@ -196,7 +196,6 @@
         "modules/triggers.py",
         "modules/troops.py",
         "modules/animations.py",
-        "test_cases/test_mission_templates.py",
         "modules/presentations.py",
         "modules/sounds.py",
         "modules/scene_props.py",
