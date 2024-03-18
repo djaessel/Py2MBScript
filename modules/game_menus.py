@@ -100,7 +100,11 @@ town_menu.menuOptions.append(town_leave)
 
 town_list_test = MenuOption("test_mission", "TEST MISSION")
 def conseq():
-    set_jump_mission("mt_my_mission")
+    set_jump_mission("mt_village_training")
+    modify_visitors_at_site("scn_random_scene")
+    reset_visitors(),
+    set_visitor(0, "trp_player", 1)
+    set_visitors(1, "trp_looter", 2)
     jump_to_scene("scn_random_scene",0)
     change_screen_mission()
 town_list_test.consequenceBlock = conseq

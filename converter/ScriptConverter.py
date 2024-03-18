@@ -210,6 +210,9 @@ class ScriptConverter:
 
             sx = sx.rstrip()
             b.append("(display_message, \"@"+sx+"\")")
+        elif "print(\"str_" in code:
+            text_id = code.split('"')[1]
+            b = ["(display_message, \"" + text_id + "\")"]
         elif "print(\"" in code:
             text = code.split('"')[1]
             b = ["(display_message, \"@" + text + "\")"]

@@ -1,1 +1,1 @@
-mst_my_mission = 0
+mst_village_training = 0

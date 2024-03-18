@@ -204,6 +204,7 @@
         "modules/quests.py",
         "modules/scenes.py",
         "modules/items.py",
-        "modules/tableau_materials.py"
+        "modules/tableau_materials.py",
+        "modules/mission_templates.py"
     ]
 }
