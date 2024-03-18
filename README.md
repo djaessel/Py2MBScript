@@ -548,11 +548,13 @@ def createTranslations():
     locale["cz"].translate(itm.no_item.id, "NEPLATNÁ POLOŽKA")
     locale["cz"].translate(itm.no_item.id + "_pl", "NEPLATNÁ POLOŽKA")
     locale["es"].translate(itm.no_item.id, "OBJETO INVALIDO")
-    locale["es"].translate(itm.no_item.id + "_pl", "OBJETO INVALIDO")
+    locale["es"].translate(itm.no_item.id + "_pl", "OBJETOS INVALIDOS")
     locale["fr"].translate(itm.no_item.id, "OBJET INVALIDE")
-    locale["fr"].translate(itm.no_item.id + "_pl", "OBJET INVALIDE")
+    locale["fr"].translate(itm.no_item.id + "_pl", "OBJETS INVALIDES")
     locale["hu"].translate(itm.no_item.id, "NEM MEGFELELŐ TÁRGY")
     locale["hu"].translate(itm.no_item.id + "_pl", "NEM MEGFELELŐ TÁRGY")
+    locale["pl"].translate(itm.no_item.id, "NIEPRAWIDŁOWY PRZEDMIOT")
+    locale["pl"].translate(itm.no_item.id + "_pl", "NIEPRAWIDŁOWY PRZEDMIOT")
     # -------------------------------------------------------------------------
     #
     # ...
