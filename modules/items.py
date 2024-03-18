@@ -23,3 +23,7 @@ no_item.set_weight(1.5)
 
 
 
+
+
+items_end = Item("items_end", "Items End")
+

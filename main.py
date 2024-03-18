@@ -11,6 +11,7 @@ sys.path.append("./data_objects/")
 sys.path.append("./test_cases/")
 sys.path.append("./modules/")
 sys.path.append("./build_system/")
+sys.path.append("./translation/")
 
 
 from ScriptConverter import ScriptConverter
@@ -43,7 +44,13 @@ from SkinConverter import SkinConverter
 
 
 
-def handle_arguments(args):
+def handle_pre_module_arguments(args):
+    # TODO: create pre module creation console arguments
+    pass
+
+
+
+def handle_post_module_arguments(args):
     if len(args) > 1:
         if args[1] == "-b" or args[1] == "--build" or args[1] == "--build-and-run":
             cwd = os.getcwd()
@@ -163,15 +170,18 @@ def create_modules():
 
 
 
-def handle_pre_module_arguments(args):
-    # TODO: create pre module creation console arguments
-    pass
+import trans_items as transItems
+def create_translations():
+    transItems.createTranslations()
 
 
 
 if __name__ == "__main__":
     handle_pre_module_arguments(sys.argv)
+
+    create_translations()
     create_modules()
-    handle_arguments(sys.argv)
+
+    handle_post_module_arguments(sys.argv)
     sys.exit()
 

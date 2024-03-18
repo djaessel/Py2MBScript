@@ -531,4 +531,33 @@ triggyx.codeBlock = code
 ]),
 ```
 
+### Translations
+
+In the folder **translation** you can find all the translation files.  
+(**WARNING**: Currently there only is **trans_items.py** for *items*)
+  
+#### Example:
+```python
+def createTranslations():
+    # ...
+    #
+    # no_item - INVALID ITEM
+    # -------------------------------------------------------------------------
+    locale["de"].translate(itm.no_item.id, "UNGÜLTIGER GEGENSTAND")
+    locale["de"].translate(itm.no_item.id + "_pl", "UNGÜLTIGER GEGENSTAND")
+    locale["cz"].translate(itm.no_item.id, "NEPLATNÁ POLOŽKA")
+    locale["cz"].translate(itm.no_item.id + "_pl", "NEPLATNÁ POLOŽKA")
+    locale["es"].translate(itm.no_item.id, "OBJETO INVALIDO")
+    locale["es"].translate(itm.no_item.id + "_pl", "OBJETO INVALIDO")
+    locale["fr"].translate(itm.no_item.id, "OBJET INVALIDE")
+    locale["fr"].translate(itm.no_item.id + "_pl", "OBJET INVALIDE")
+    locale["hu"].translate(itm.no_item.id, "NEM MEGFELELŐ TÁRGY")
+    locale["hu"].translate(itm.no_item.id + "_pl", "NEM MEGFELELŐ TÁRGY")
+    # -------------------------------------------------------------------------
+    #
+    # ...
+```
+
+This will add translations for **no_item**. The "_pl" is for plural translation, in case it is used.  
+
 

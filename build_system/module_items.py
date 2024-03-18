@@ -32,5 +32,11 @@ itc_longsword,
 3,
 weight(1.5),
 imodbits_none],
+["items_end","Items End",[],
+0,
+0,
+0,
+0,
+imodbits_none],
 
 ] # ITEMS END
