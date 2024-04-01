@@ -3,6 +3,9 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts
 
+import "."
+
+
 Rectangle {
   id: root
   color: "#223344"
@@ -159,6 +162,12 @@ Rectangle {
 		tcpSender.send(x)
 	    }
 	    model: []
+	}
+
+	ItemManager {
+		id: itemManager
+		y: coolcombo.height + coolcombo.y + 16
+		x: 8
 	}
     }
 
