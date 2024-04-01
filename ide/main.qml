@@ -3,8 +3,10 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts
 
+//import com.djaessel.io 1.0
+//import TCPSender 1.0
+
 Rectangle {
-  //anchors.fill: parent
   color: "#223344"
 
 TabBar {
@@ -52,8 +54,7 @@ StackLayout {
             background: null
             anchors.fill: parent
             
-
-	    text: "TEST 123.\nTEST 123?\nTEST 123!\n"
+	    text: "TEST 123"
 
 	    property bool processing: true
 
@@ -113,23 +114,41 @@ StackLayout {
         property int count: 0
 
         Component.onCompleted: {
-		createButton(0)
-		createButton(1)
+                for (var itm in xitems) {
+                    console.log(xitems[itm])
+                }
+                for (var itm in xitemmeshes) {
+                    console.log(xitemmeshes[itm])
+                }
+		var iii = 0
+                for (var itm in coolio) {
+                    console.log(JSON.stringify(coolio[itm]))
+                    createButton(iii, coolio[itm].id, coolio[itm].mesh1)
+		    iii += 1
+                }
         }
 
-	function createButton(xEx) {
-            wonderButton.createObject(controlRoot, { width: 200, x: xEx * 208 + 16, text: "Count" + (xEx+1) })
+	function createButton(xEx, textx, meshNamex) {
+            wonderButton.createObject(controlRoot, { width: 200, x: xEx * 208 + 16, text: textx, meshName: meshNamex })
             count += 1
         }
-
     }
 
     Component {
         id: wonderButton
         Button {
+            property var meshName: "Nothing"
             text: "TEST"
+	    onClicked: funcy(meshName)
+
+	    function funcy(m) {
+		var x = "select:mesh:" + m
+		console.log(x)
+		tcpSender.send(x)
+	    }
+
         }
     }
   }
-}
+ }
 }

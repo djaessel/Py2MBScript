@@ -4,6 +4,7 @@ import time
 import threading
 from openbrf import OpenBrf
 from signal import signal, SIGINT, SIGTERM
+from multiprocessing.connection import Listener
 
 
 openbrf = None
@@ -34,7 +35,7 @@ def check_commands(openBrf):
     running = True
     file = "piper.txt"
     while running:
-        time.sleep(2)
+        time.sleep(5)
         changed = False
        
         if os.access(file, os.R_OK):
@@ -56,13 +57,37 @@ def check_commands(openBrf):
     os.remove(file)
 
 
+def listenAndCommands(openBrf):
+    address = ('localhost', 6000)     # family is deduced to be 'AF_INET'
+    listener = Listener(address, authkey=b'secret password')
+    conn = listener.accept()
+    print('connection accepted from', listener.last_accepted)
+    
+    msg = "ERROR"
+    while True:
+        msg = conn.recv()
+        # do something with msg
+        if msg == 'close' or msg == 'exit':
+            with open("test2.txt", "w") as f:
+                f.write("CHOLERA:" + msg)
+            openBrf.closeApp()
+            conn.close()
+            break
+        elif msg.startswith("select:mesh:"):
+            openBrf.selectItemMesh(msg.split(':')[2].encode('ascii'))
+            with open("test.txt", "w") as f:
+                f.write(msg.split(':')[2])
+
+    listener.close()
+    with open("test3.txt", "w") as f:
+        f.write(msg)
+
+
 if __name__ == '__main__':
     signal(SIGINT, handlerContrlC)
     signal(SIGTERM, handlerTerminate)
 
     openbrf = OpenBrf()
-    
-
     openbrf.setModPath(b"/home/djaessel/.steam/debian-installation/steamapps/common/MountBlade Warband/Modules/Native/")
     
     wid = openbrf.getCurWindowPtr()
@@ -70,7 +95,10 @@ if __name__ == '__main__':
     with open("piper.txt", "w") as f:
         f.write(str(wid))
 
-    x = threading.Thread(target=check_commands, args=(openbrf,))
-    x.start()
-    x.join()
+    #x = threading.Thread(target=check_commands, args=(openbrf,))
+    #x.start()
+    #x.join()
+    
+    listenAndCommands(openbrf)
+
 

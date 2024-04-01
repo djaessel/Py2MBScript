@@ -26,4 +26,5 @@ no_item.set_weight(1.5)
 
 
 items_end = Item("items_end", "Items End")
+items_end.add_mesh(ItemMesh("invalid_item"))
 

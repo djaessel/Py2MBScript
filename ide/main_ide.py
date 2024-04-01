@@ -1,10 +1,18 @@
 #!/usr/bin/python3
 
 import os
+import sys
 import time
 import signal
 
+sys.path.append('../modules/')
+
+import items
+
+
 process = None
+tcpSender = None
+
 
 def get_window_id(name):
     import Xlib.display
@@ -23,23 +31,33 @@ def get_window_id(name):
 
 def close_openbrf():
     print("Close openBrf")
+    tcpSender.close("close")
     if process != None:
         process.send_signal(signal.SIGINT)
-        #process.wait()
-    with open("piper.txt", "w") as f:
-        f.write("exit")
+        process.wait()
 
 
 def select_club():
-    with open("piper.txt", "w") as f:
-        f.write("select:mesh:club")
+    tcpSender.send("select:mesh:club")
+
+
+def retrieveItems():
+    itemsx = []
+    for i in vars(items):
+        if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
+            attr = getattr(items,i)
+            if not "<function" in str(attr) and not "<module" in str(attr) and not "ItemMesh" in str(attr) and not "SimpleTrigger" in str(attr):
+                itemsx.append(attr)
+    return itemsx
 
 
 def run_app(window_id):
-    from PySide6.QtCore import Qt, QUrl
+    from PySide6.QtCore import Qt, QUrl, Slot, QObject
+    from PySide6.QtQml import QmlElement, qmlRegisterType
     from PySide6.QtGui import QWindow, QColor, QSurfaceFormat
     from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QApplication, QPushButton
     from PySide6.QtQuickWidgets import QQuickWidget
+    from tcp_connector import TCPSender
 
     app = QApplication([])
     main_widget = QWidget()
@@ -55,15 +73,35 @@ def run_app(window_id):
     widget.setWindowFlags(Qt.FramelessWindowHint)
     layout.addWidget(widget)
 
-    format = QSurfaceFormat()
-    format.setAlphaBufferSize(8)
+    formatx = QSurfaceFormat()
+    formatx.setAlphaBufferSize(8)
     qmlWindow = QQuickWidget()
-    qmlWindow.setFormat(format)
+    qmlWindow.setFormat(formatx)
     qmlWindow.setWindowFlags(Qt.FramelessWindowHint)
     qmlWindow.setAttribute(Qt.WA_AlwaysStackOnTop);
     qmlWindow.setAttribute(Qt.WA_TranslucentBackground)
     qmlWindow.setClearColor(QColor(Qt.transparent))
     qmlWindow.setResizeMode(QQuickWidget.SizeRootObjectToView)
+
+    xitems = []
+    for i in retrieveItems():
+        xitems.append(i.id)
+    qmlWindow.engine().rootContext().setContextProperty('xitems', xitems)
+    xitemmeshes = []
+    for i in retrieveItems():
+        xitemmeshes.append(i.meshes[0].id)
+    qmlWindow.engine().rootContext().setContextProperty('xitemmeshes', xitemmeshes)
+    coolio = []
+    xitms = retrieveItems()
+    for xy in xitms:
+        coolio.append({'id': xy.id, 'mesh1': xy.meshes[0].id})
+    qmlWindow.engine().rootContext().setContextProperty('coolio', coolio)
+
+    global tcpSender
+    tcpSender = TCPSender()
+    qmlWindow.engine().rootContext().setContextProperty('tcpSender', tcpSender)
+    #qmlRegisterType(TCPSender, 'TCPSender', 1, 0, 'TCPSender')
+    
     qmlWindow.setSource(QUrl.fromLocalFile("main.qml"))
 
 
@@ -115,6 +153,7 @@ if __name__ == '__main__':
         window_id = None
 
     if window_id:
+        os.remove("piper.txt")
         run_app(window_id)
     else:
         print("Error: WINDOW_ID NOT SET!")
