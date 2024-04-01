@@ -60,41 +60,51 @@ Rectangle {
             background: null
             anchors.fill: parent
             
-	    text: "TEST 123"
+	    text: itemsCode
 
-	    property bool processing: true
+	    property bool processing: false
+
+	    property var keywordsx: ["from", "import"]
 
             onTextChanged: {
                 if (!processing) {
                     processing = true;
                     let p = cursorPosition;
-                    let markUp = getText(0, length).replace(
-                      /([A-Z][A-Za-z]*|[a-z][A-Za-z]*|[0-9]+|[ \t\n]|['][^']*[']|[^A-Za-z0-9\t\n ])/g,
+		    let markUp = getText(0, length)
+                    markUp = markUp.replace(
+                      /(#.*|[.][a-zA-Z_]+[(]|[A-Z][A-Za-z_\-]*|[a-z][A-Za-z_\-]*|[0-9.]+|["'][A-Za-z _\-]*["']|[^A-Za-z0-9\t\n ])/g,
                         function (f) {
                             //console.log("f: ", JSON.stringify(f));
-
                             //if (commnds.includes(f)){
                             //    popper.x = textArea.cursorRectangle.x;
                             //    popper.y = textArea.cursorRectangle.y;
                             //    popper.visible = true;
                             //    return "<span style='color:#2288dd'>" + f + "</span>";
                             //}
-                            /*else */if (f.match(/^[A-Z][A-Za-z]*$/))
-                                return "<span style='color:#dd00aa'>" + f + "</span>";
-                            else if (f.match(/^[a-z][A-Za-z]*$/))
-                                return "<span style='color:#dd0000'>" + f + "</span>";
-                            else if (f.match(/^[0-9]+$/))
+			    if (keywordsx.includes(f)){
+				return "<span style='color:#2288dd'>" + f + "</span>";
+			    }
+			    else if (f.match(/^#.*/))
+                                return "<span style='color:#008000'>" + f + "</span>";
+                            else if (f.match(/^['"][A-Za-z _\-]+['"]$/))
+                                return "<span style='color:#00a000'>" + f + "</span>";
+                            else if (f.match(/^[A-Z][A-Za-z _\-]*$/))
+                                return "<span style='color:#ddaabb'>" + f + "</span>";
+                            else if (f.match(/^[a-z][A-Za-z _\-]*$/))
+                                return "<span style='color:#ddeedd'>" + f + "</span>";
+			    else if (f.match(/^[.][a-zA-Z_]+[(]/))
+				return "<span style='color:#ddaa44'>" + f.replace("(","") + "</span>(";
+                            else if (f.match(/^[0-9.]+$/))
                                 return "<span style='color:#00bbff'>" + f + "</span>";
                             else if (f.match(/^[ ]/))
                                 return "&nbsp;"
                             //else if (f.match(/^[\t\n]/))
                             //    return f;
-                            else if (f.match(/^[']/))
-                                return "<span style='color:#008000'>" + f + "</span>";
                             else
                                 return f;
                         }
                     );
+		    
                     text = markUp;
                     cursorPosition = p;
                     processing = false;

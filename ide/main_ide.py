@@ -14,6 +14,17 @@ process = None
 tcpSender = None
 
 
+def get_items_code():
+    with open("../modules/items.py") as f:
+        x = ""
+        for line in f:
+            if len(line.strip()) == 0:
+                x += "<br>"
+            else:
+                x += "<p>" + line.rstrip('\n') + "</p>"
+    return x
+
+
 def get_window_id(name):
     import Xlib.display
 
@@ -92,6 +103,8 @@ def run_app(window_id):
     tcpSender = TCPSender()
     qmlWindow.engine().rootContext().setContextProperty('tcpSender', tcpSender)
     #qmlRegisterType(TCPSender, 'TCPSender', 1, 0, 'TCPSender')
+
+    qmlWindow.engine().rootContext().setContextProperty('itemsCode', get_items_code())
     
     qmlWindow.setSource(QUrl.fromLocalFile("main.qml"))
 
