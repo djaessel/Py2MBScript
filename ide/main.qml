@@ -3,26 +3,32 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts
 
-//import com.djaessel.io 1.0
-//import TCPSender 1.0
-
 Rectangle {
+  id: root
   color: "#223344"
 
-TabBar {
+ TabBar {
   id: bar
   width: parent.width
   
   TabButton {
     text: "Source Code"
+
+    onClicked: {
+       root.color = "#223344"
+    }
   }
   TabButton {
     text: "Module Items"
-  }
-}
 
-StackLayout {
-  id: root
+    onClicked: {
+       root.color = "grey"
+    }
+  }
+ }
+
+ StackLayout {
+  id: stackRoot
   width: parent.width
   anchors.top: parent.top
   anchors.topMargin: 28
@@ -115,16 +121,35 @@ StackLayout {
 
         Component.onCompleted: {
 		var iii = 0
+		var newModel = []
                 for (var itm in xitems) {
-                    createButton(iii, xitems[itm].id, xitems[itm].mesh1)
+                    //createButton(iii, xitems[itm].id, xitems[itm].mesh1)
 		    iii += 1
+		    newModel.push({value: xitems[itm].mesh1, text: xitems[itm].id})
                 }
+		coolcombo.model = newModel
         }
 
 	function createButton(xEx, textx, meshNamex) {
             wonderButton.createObject(controlRoot, { width: 200, x: xEx * 208 + 16, text: textx, meshName: meshNamex })
             count += 1
         }
+
+	ComboBox {
+	    id: coolcombo
+	    x: 16
+	    y: 8
+            width: 200
+            textRole: "text"
+            valueRole: "value"
+	    editText: "Search items..."
+	    editable: true
+	    onActivated: {
+                var x = "select:mesh:" + currentValue
+		tcpSender.send(x)
+	    }
+	    model: []
+	}
     }
 
     Component {
