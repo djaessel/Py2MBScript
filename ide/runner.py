@@ -58,7 +58,7 @@ def check_commands(openBrf):
 
 
 def listenAndCommands(openBrf):
-    address = ('localhost', 6000)     # family is deduced to be 'AF_INET'
+    address = ('localhost', 16987)     # family is deduced to be 'AF_INET'
     listener = Listener(address, authkey=b'secret password')
     conn = listener.accept()
     print('connection accepted from', listener.last_accepted)
@@ -68,19 +68,13 @@ def listenAndCommands(openBrf):
         msg = conn.recv()
         # do something with msg
         if msg == 'close' or msg == 'exit':
-            with open("test2.txt", "w") as f:
-                f.write("CHOLERA:" + msg)
             openBrf.closeApp()
             conn.close()
             break
         elif msg.startswith("select:mesh:"):
             openBrf.selectItemMesh(msg.split(':')[2].encode('ascii'))
-            with open("test.txt", "w") as f:
-                f.write(msg.split(':')[2])
 
     listener.close()
-    with open("test3.txt", "w") as f:
-        f.write(msg)
 
 
 if __name__ == '__main__':

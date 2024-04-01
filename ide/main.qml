@@ -114,16 +114,9 @@ StackLayout {
         property int count: 0
 
         Component.onCompleted: {
-                for (var itm in xitems) {
-                    console.log(xitems[itm])
-                }
-                for (var itm in xitemmeshes) {
-                    console.log(xitemmeshes[itm])
-                }
 		var iii = 0
-                for (var itm in coolio) {
-                    console.log(JSON.stringify(coolio[itm]))
-                    createButton(iii, coolio[itm].id, coolio[itm].mesh1)
+                for (var itm in xitems) {
+                    createButton(iii, xitems[itm].id, xitems[itm].mesh1)
 		    iii += 1
                 }
         }
@@ -143,7 +136,6 @@ StackLayout {
 
 	    function funcy(m) {
 		var x = "select:mesh:" + m
-		console.log(x)
 		tcpSender.send(x)
 	    }
 

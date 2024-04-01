@@ -31,7 +31,7 @@ def get_window_id(name):
 
 def close_openbrf():
     print("Close openBrf")
-    tcpSender.close("close")
+    tcpSender.close()
     if process != None:
         process.send_signal(signal.SIGINT)
         process.wait()
@@ -84,18 +84,9 @@ def run_app(window_id):
     qmlWindow.setResizeMode(QQuickWidget.SizeRootObjectToView)
 
     xitems = []
-    for i in retrieveItems():
-        xitems.append(i.id)
+    for x in retrieveItems():
+        xitems.append({'id': x.id, 'mesh1': x.meshes[0].id})
     qmlWindow.engine().rootContext().setContextProperty('xitems', xitems)
-    xitemmeshes = []
-    for i in retrieveItems():
-        xitemmeshes.append(i.meshes[0].id)
-    qmlWindow.engine().rootContext().setContextProperty('xitemmeshes', xitemmeshes)
-    coolio = []
-    xitms = retrieveItems()
-    for xy in xitms:
-        coolio.append({'id': xy.id, 'mesh1': xy.meshes[0].id})
-    qmlWindow.engine().rootContext().setContextProperty('coolio', coolio)
 
     global tcpSender
     tcpSender = TCPSender()
@@ -105,15 +96,15 @@ def run_app(window_id):
     qmlWindow.setSource(QUrl.fromLocalFile("main.qml"))
 
 
-    button1 = QPushButton('Select club')
-    button1.clicked.connect(select_club)
+    #button1 = QPushButton('Select club')
+    #button1.clicked.connect(select_club)
 
     button2 = QPushButton('Close')
     button2.clicked.connect(close_openbrf)
     button2.clicked.connect(main_widget.close)
     layout2.addWidget(button2)
 
-    layout2.addWidget(button1)
+    #layout2.addWidget(button1)
     layout2.addWidget(qmlWindow)
 
     layout3.addLayout(layout)

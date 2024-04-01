@@ -14,7 +14,7 @@ class TCPSender(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.connected = True
-        self.address = ('localhost', 6000)
+        self.address = ('localhost', 16987)
         self.conn = Client(self.address, authkey=b'secret password')
 
     @Slot(str, result=bool)
@@ -24,10 +24,14 @@ class TCPSender(QObject):
             return True
         return False
 
-    @Slot(str, result=bool)
-    def close(self, s="exit"):
-        self.send(s)
-        self.conn.close()
-        self.connected = False
+    @Slot(result=bool)
+    def close(self):
+        try:
+            self.send("close")
+            self.conn.close()
+            self.connected = False
+        except:
+            self.connected = False
+            return False
         return True
 
