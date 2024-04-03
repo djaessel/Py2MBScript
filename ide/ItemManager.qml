@@ -4,25 +4,78 @@ import QtQuick.Layouts
 
 
 Rectangle {
-    id: itemMangerRoot
-    //title: "Property Flags"
 
     RowLayout {
 	id: typesx
-    
+
+
+        Label {
+                text: "Type:"
+        }
+
     	ComboBox {
 		id: type_cbb
-		model: []
+		Layout.minimumWidth: 200
+		model: [
+		"none",
+		"horse",
+		"one_handed_wpn",
+		"two_handed_wpn",
+		"polearm",
+		"arrows",
+		"bolts",
+		"shield",
+		"bow",
+		"crossbow",
+		"thrown",
+		"goods",
+		"head_armor",
+		"body_armor",
+		"foot_armor",
+		"hand_armor",
+		"pistol",
+		"musket",
+		"bullets",
+		"animal",
+		"book",
+		]
     	}
+
+
+        Label {
+                text: "Attach:"
+        }
 
 	ComboBox {
 		id: attach_cbb
-		model: []
+		Layout.minimumWidth: 200
+		model: [
+		"none",
+		"force_attach_left_hand",
+		"force_attach_right_hand",
+		"force_attach_left_forearm",
+		"attach_armature",
+		]
 	}
+
+
+        Label {
+                text: "Custom Kill Info:"
+        }
 
 	ComboBox {
 		id: custom_kill_info_cbb
-		model: []
+		Layout.minimumWidth: 200
+		model: [
+		"none",
+		"ico_custom_1",
+		"ico_custom_2",
+		"ico_custom_3",
+		"ico_custom_4",
+		"ico_custom_5",
+		"ico_custom_6",
+		"ico_custom_7",
+		]
 	}
 
     }
@@ -32,6 +85,7 @@ Rectangle {
 	id: force_show_gb
 	title: "Force Show"
 	anchors.top: typesx.bottom
+	anchors.topMargin: 8
 
      RowLayout {
 
@@ -56,6 +110,7 @@ Rectangle {
 
     GridLayout {
 	anchors.top: force_show_gb.bottom
+	anchors.topMargin: 8
 	columns: 4
 
 	CheckBox {

@@ -130,22 +130,12 @@ Rectangle {
     Rectangle {
         id: controlRoot
 
-        property int count: 0
-
         Component.onCompleted: {
-		var iii = 0
 		var newModel = []
                 for (var itm in xitems) {
-                    //createButton(iii, xitems[itm].id, xitems[itm].mesh1)
-		    iii += 1
 		    newModel.push({value: xitems[itm].mesh1, text: xitems[itm].id})
                 }
 		coolcombo.model = newModel
-        }
-
-	function createButton(xEx, textx, meshNamex) {
-            wonderButton.createObject(controlRoot, { width: 200, x: xEx * 208 + 16, text: textx, meshName: meshNamex })
-            count += 1
         }
 
 	ComboBox {
@@ -155,8 +145,7 @@ Rectangle {
             width: 200
             textRole: "text"
             valueRole: "value"
-	    editText: "Search items..."
-	    editable: true
+	    //editable: true
 	    onActivated: {
                 var x = "select:mesh:" + currentValue
 		tcpSender.send(x)
@@ -169,21 +158,6 @@ Rectangle {
 		y: coolcombo.height + coolcombo.y + 16
 		x: 8
 	}
-    }
-
-    Component {
-        id: wonderButton
-        Button {
-            property var meshName: "Nothing"
-            text: "TEST"
-	    onClicked: funcy(meshName)
-
-	    function funcy(m) {
-		var x = "select:mesh:" + m
-		tcpSender.send(x)
-	    }
-
-        }
     }
   }
  }
