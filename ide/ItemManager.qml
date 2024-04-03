@@ -7,6 +7,44 @@ ColumnLayout {
   id: itemManagerRoot
   spacing: 0
 
+  property var curItem: null
+
+  onCurItemChanged: {
+        for (var kchild in flagsGridLayout.children) {
+		flagsGridLayout.children[kchild].checked = false
+	}
+
+	for (var kchild in force_show_row.children) {
+		force_show_row.children[kchild].checked = false
+	}
+
+	type_cbb.currentIndex = 0
+	attach_cbb.currentIndex = 0
+	custom_kill_info_cbb.currentIndex = 0
+
+	for (var kflag in curItem.flags) {
+		var flag = curItem.flags[kflag]
+		for (var kchild in flagsGridLayout.children) {
+			var checkx = "itp_" + flagsGridLayout.children[kchild].text.replace(' ', '_').toLowerCase()
+			if (checkx == flag) {
+				flagsGridLayout.children[kchild].checked = true
+			}
+		}
+
+                for (var kchild in force_show_row.children) {
+                        var checkx = "itp_" + force_show_row.children[kchild].text.replace(' ', '_').toLowerCase()
+                        if (checkx == flag) {
+                                force_show_row.children[kchild].checked = true
+                        }
+                }
+
+		var typeFlag = flag.replace("itp_type_", "")
+		if (type_cbb.model.includes(typeFlag)) {
+			type_cbb.currentIndex = type_cbb.model.indexOf(typeFlag)
+		}
+	}
+  }
+
   RowLayout {
         id: tabxs
         spacing: 0
@@ -28,9 +66,11 @@ ColumnLayout {
             		}
     		}
                 onClicked: {
-                        property_flags_gb.visible = true
+                	for (var kchild in tabxs.children) {
+                		tabxs.children[kchild].enabled = true
+	                }
 			propertyFlagsBtn.enabled = false
-			capabilityFlagsBtn.enabled = true
+                        property_flags_gb.visible = true
                 }
 	}
 	Button {
@@ -51,11 +91,13 @@ ColumnLayout {
                 }
 
 		text: "Capability Flags"
-		onClicked: {
-			property_flags_gb.visible = false
-                        propertyFlagsBtn.enabled = true
+                onClicked: {
+                        for (var kchild in tabxs.children) {
+                                tabxs.children[kchild].enabled = true
+                        }
                         capabilityFlagsBtn.enabled = false
-		}
+                        property_flags_gb.visible = false
+                }
 	}
   }
 
@@ -144,7 +186,7 @@ ColumnLayout {
 	title: "Force Show"
 
      RowLayout {
-
+	id: force_show_row
 	CheckBox {
 		id: force_show_left_hand_cb
 		text: "Left Hand"
@@ -165,6 +207,7 @@ ColumnLayout {
 
 
     GridLayout {
+        id: flagsGridLayout
 	columns: 4
 
 	CheckBox {

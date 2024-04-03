@@ -82,13 +82,17 @@ def dumpDict(obj):
         if not attr.startswith("__"):
             cc = getattr(obj, attr)
             a = str(cc)
-            if not "<" in a and not ">" in a:
-                dd[attr] = a
-            elif type(cc) == type([]):
+            if type(cc) == type([]):
                 aa = []
-                for c in cc:
-                    aa.append(dumpDict(c))
+                if "<" in a and ">" in a:
+                    for c in cc:
+                        aa.append(dumpDict(c))
+                else:
+                    for c in cc:
+                        aa.append(c)
                 dd[attr] = aa
+            elif not "<" in a and not ">" in a:
+                dd[attr] = a
     return dd
 
 

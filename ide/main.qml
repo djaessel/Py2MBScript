@@ -75,7 +75,7 @@ Rectangle {
                     let p = cursorPosition;
 		    let markUp = getText(0, length)
                     markUp = markUp.replace(
-                      /(#.*|[.][a-zA-Z_]+[(]|[A-Z][A-Za-z_\-]*|[a-z][A-Za-z_\-]*|[0-9.]+|["'][A-Za-z _\-]*["']|[^A-Za-z0-9\t\n ])/g,
+                      /(#.*|[.][a-zA-Z_]+[(]|[A-Z][A-Za-z_\-]*|[a-z][A-Za-z_\-]*|[0-9.]+|["'][A-Za-z ./_\-]*["']|[^A-Za-z0-9\t\n ])/g,
                         function (f) {
                             //console.log("f: ", JSON.stringify(f));
                             //if (commnds.includes(f)){
@@ -89,7 +89,7 @@ Rectangle {
 			    }
 			    else if (f.match(/^#.*/))
                                 return "<span style='color:#008000'>" + f + "</span>";
-                            else if (f.match(/^['"][A-Za-z _\-]+['"]$/))
+                            else if (f.match(/^['"][A-Za-z ./_\-]+['"]$/))
                                 return "<span style='color:#00a000'>" + f + "</span>";
                             else if (f.match(/^[A-Z][A-Za-z _\-]*$/))
                                 return "<span style='color:#ddaabb'>" + f + "</span>";
@@ -140,7 +140,7 @@ Rectangle {
 
 	ComboBox {
 	    id: coolcombo
-	    x: 16
+	    x: 8
 	    y: 8
             width: 200
             textRole: "text"
@@ -151,6 +151,16 @@ Rectangle {
 		tcpSender.send(x)
 	    }
 	    model: []
+	    onCurrentIndexChanged: {
+                        var curIdx = 0
+                        for (var x in xitems) {
+                                if (curIdx == coolcombo.currentIndex) {
+                                        itemManager.curItem = xitems[x]
+                                        break
+                                }
+                                curIdx += 1
+                        }
+	    }
 	}
 
 	ItemManager {
@@ -158,6 +168,7 @@ Rectangle {
 		y: coolcombo.height + coolcombo.y + 16
 		x: 8
 	}
+
     }
   }
  }
