@@ -3,11 +3,40 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts
 
 
-Rectangle {
+ColumnLayout {
+  id: itemManagerRoot
+  spacing: 0
+
+  RowLayout {
+        id: tabxs
+        spacing: 0
+	Button {
+                id: propertyFlagsBtn
+		text: "Property Flags"
+                onClicked: {
+                        property_flags_gb.visible = true
+			propertyFlagsBtn.enabled = false
+			capabilityFlagsBtn.enabled = true
+                }
+	}
+	Button {
+		id: capabilityFlagsBtn
+		text: "Capability Flags"
+		onClicked: {
+			property_flags_gb.visible = false
+                        propertyFlagsBtn.enabled = true
+                        capabilityFlagsBtn.enabled = false
+		}
+	}
+  }
+
+  GroupBox {
+    id: property_flags_gb
+
+   ColumnLayout {
 
     RowLayout {
 	id: typesx
-
 
         Label {
                 text: "Type:"
@@ -84,8 +113,6 @@ Rectangle {
     GroupBox {
 	id: force_show_gb
 	title: "Force Show"
-	anchors.top: typesx.bottom
-	anchors.topMargin: 8
 
      RowLayout {
 
@@ -109,8 +136,6 @@ Rectangle {
 
 
     GridLayout {
-	anchors.top: force_show_gb.bottom
-	anchors.topMargin: 8
 	columns: 4
 
 	CheckBox {
@@ -339,4 +364,6 @@ Rectangle {
 	}
 
     }
+  }
+ }
 }
