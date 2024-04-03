@@ -18,6 +18,8 @@ ColumnLayout {
 		force_show_row.children[kchild].checked = false
 	}
 
+	propertyFlagsBtn.clicked()
+
 	type_cbb.currentIndex = 0
 	attach_cbb.currentIndex = 0
 	custom_kill_info_cbb.currentIndex = 0
@@ -71,6 +73,7 @@ ColumnLayout {
 	                }
 			propertyFlagsBtn.enabled = false
                         property_flags_gb.visible = true
+			capability_flags_gb.visible = false
                 }
 	}
 	Button {
@@ -97,6 +100,7 @@ ColumnLayout {
                         }
                         capabilityFlagsBtn.enabled = false
                         property_flags_gb.visible = false
+			capability_flags_gb.visible = true
                 }
 	}
   }
@@ -437,5 +441,24 @@ ColumnLayout {
 
     }
   }
+ }
+
+ GroupBox {
+   id: capability_flags_gb
+	
+   ColumnLayout {
+   
+	GroupBox {
+	    	GridLayout {
+			Button {
+				text: "Test1"
+			}
+			Button {
+				text: "Test2"
+			}
+		}
+	}	
+
+   }
  }
 }
