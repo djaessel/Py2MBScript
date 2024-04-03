@@ -133,7 +133,7 @@ Rectangle {
         Component.onCompleted: {
 		var newModel = []
                 for (var itm in xitems) {
-		    newModel.push({value: xitems[itm].mesh1, text: xitems[itm].id})
+		    newModel.push({value: xitems[itm].meshes[0].id, text: xitems[itm].id})
                 }
 		coolcombo.model = newModel
         }

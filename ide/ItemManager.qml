@@ -12,7 +12,21 @@ ColumnLayout {
         spacing: 0
 	Button {
                 id: propertyFlagsBtn
+		flat: true
+		palette.buttonText: "black"
+		palette.button: "darkgrey"
 		text: "Property Flags"
+        	background: Rectangle {
+            		implicitWidth: 100
+            		implicitHeight: 25
+            		border.width: propertyFlagsBtn.activeFocus ? 3 : 2
+            		border.color: "black"
+            		radius: 2
+            		gradient: Gradient {
+                		GradientStop { position: 0 ; color: propertyFlagsBtn.pressed ? "#ccc" : "#eee" }
+                		GradientStop { position: 1 ; color: propertyFlagsBtn.pressed ? "#aaa" : "#ccc" }
+            		}
+    		}
                 onClicked: {
                         property_flags_gb.visible = true
 			propertyFlagsBtn.enabled = false
@@ -21,6 +35,21 @@ ColumnLayout {
 	}
 	Button {
 		id: capabilityFlagsBtn
+		flat: true
+		palette.buttonText: "black"
+		palette.button: "darkgrey"
+                background: Rectangle {
+                        implicitWidth: 100
+                        implicitHeight: 25
+                        border.width: capabilityFlagsBtn.activeFocus ? 3 : 2
+                        border.color: "black"
+                        radius: 2
+                        gradient: Gradient {
+                                GradientStop { position: 0 ; color: capabilityFlagsBtn.pressed ? "#ccc" : "#eee" }
+                                GradientStop { position: 1 ; color: capabilityFlagsBtn.pressed ? "#aaa" : "#ccc" }
+                        }
+                }
+
 		text: "Capability Flags"
 		onClicked: {
 			property_flags_gb.visible = false

@@ -62,6 +62,36 @@ def retrieveItems():
     return itemsx
 
 
+def dump(obj, objName="ITEM"):
+    print(objName + " {")
+    for attr in dir(obj):
+        if not attr.startswith("__"):
+            cc = getattr(obj, attr)
+            a = str(cc)
+            if not "<" in a and not ">" in a:
+                print(" - %s = %r" % (attr, a))
+            elif type(cc) == type([]):
+                for c in cc:
+                    dump(c, "CHILD")
+    print("}")
+
+
+def dumpDict(obj):
+    dd = dict()
+    for attr in dir(obj):
+        if not attr.startswith("__"):
+            cc = getattr(obj, attr)
+            a = str(cc)
+            if not "<" in a and not ">" in a:
+                dd[attr] = a
+            elif type(cc) == type([]):
+                aa = []
+                for c in cc:
+                    aa.append(dumpDict(c))
+                dd[attr] = aa
+    return dd
+
+
 def run_app(window_id):
     from PySide6.QtCore import Qt, QUrl, Slot, QObject
     from PySide6.QtQml import QmlElement, qmlRegisterType
@@ -96,28 +126,26 @@ def run_app(window_id):
 
     xitems = []
     for x in retrieveItems():
-        xitems.append({'id': x.id, 'mesh1': x.meshes[0].id})
+        #xitems.append({'id': x.id, 'mesh1': x.meshes[0].id})
+        #print(x.id, "|", x.__dict__)
+        d = dumpDict(x)
+        xitems.append(d)
     qmlWindow.engine().rootContext().setContextProperty('xitems', xitems)
 
     global tcpSender
     tcpSender = TCPSender()
     qmlWindow.engine().rootContext().setContextProperty('tcpSender', tcpSender)
-    #qmlRegisterType(TCPSender, 'TCPSender', 1, 0, 'TCPSender')
 
     qmlWindow.engine().rootContext().setContextProperty('itemsCode', get_items_code())
     
     qmlWindow.setSource(QUrl.fromLocalFile("main.qml"))
 
 
-    #button1 = QPushButton('Select club')
-    #button1.clicked.connect(select_club)
-
     button2 = QPushButton('Close')
     button2.clicked.connect(close_openbrf)
     button2.clicked.connect(main_widget.close)
     layout2.addWidget(button2)
 
-    #layout2.addWidget(button1)
     layout2.addWidget(qmlWindow)
 
     layout3.addLayout(layout)
