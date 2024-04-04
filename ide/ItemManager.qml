@@ -24,6 +24,11 @@ ColumnLayout {
 	attach_cbb.currentIndex = 0
 	custom_kill_info_cbb.currentIndex = 0
 
+	var idx = custom_kill_info_cbb.model.indexOf(curItem.custom_kill_info)
+	if (idx > 0){
+		custom_kill_info_cbb.currentIndex = idx
+	}
+
 	for (var kflag in curItem.flags) {
 		var flag = curItem.flags[kflag]
 		for (var kchild in flagsGridLayout.children) {
@@ -44,6 +49,11 @@ ColumnLayout {
 		if (type_cbb.model.includes(typeFlag)) {
 			type_cbb.currentIndex = type_cbb.model.indexOf(typeFlag)
 		}
+
+                var attachFlag = flag.replace("itp_", "")
+                if (attach_cbb.model.includes(attachFlag)) {
+                        attach_cbb.currentIndex = attach_cbb.model.indexOf(attachFlag)
+                }
 	}
   }
 
