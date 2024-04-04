@@ -71,6 +71,8 @@ def listenAndCommands(openBrf):
             openBrf.closeApp()
             conn.close()
             break
+        elif msg == "clear":
+            openBrf.clear3DView()
         elif msg.startswith("select:mesh:"):
             openBrf.selectItemMesh(msg.split(':')[2].encode('ascii'))
 

@@ -19,6 +19,13 @@ def SetModPath(lib, argv):
     lib.SetModPath(argv[0])
 
 
+def Clear3DView(lib, argv):
+    time.sleep(1)
+    print("Clearing 3D View...")
+    res = lib.Clear3DView()
+    return res
+
+
 # unused?
 def SelectItemMesh(lib, argv) -> bool:
     time.sleep(2)
@@ -120,6 +127,11 @@ class OpenBrf():
     def selectCurKindMany(self, startIndex : int, endIndex : int):
         if OpenBrf.opened:
             openBrfLib.callFunc(SelectCurKindMany, startIndex, endIndex)
+
+
+    def clear3DView(self):
+        if OpenBrf.opened:
+            openBrfLib.callFunc(Clear3DView)
 
 
     def closeApp(self):
