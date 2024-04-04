@@ -48,12 +48,8 @@ def close_openbrf():
         process.wait()
 
 
-def select_club():
-    tcpSender.send("select:mesh:club")
-
-
-def clear_test():
-    tcpSender.send("clear")
+def test_button():
+    pass
 
 
 def retrieveItems():
@@ -154,9 +150,9 @@ def run_app(window_id):
     button2.clicked.connect(main_widget.close)
     layout2.addWidget(button2)
 
-    buttonTest = QPushButton('Clear Test')
-    buttonTest.clicked.connect(clear_test)
-    layout2.addWidget(buttonTest)
+    #buttonTest = QPushButton('Test')
+    #buttonTest.clicked.connect(test_button)
+    #layout2.addWidget(buttonTest)
 
     layout2.addWidget(qmlWindow)
 

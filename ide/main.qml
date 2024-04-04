@@ -148,7 +148,11 @@ Rectangle {
 	    //editable: true
 	    onActivated: {
                 var x = "select:mesh:" + currentValue
-		tcpSender.send(x)
+		if (currentValue != "invalid_item"){
+			tcpSender.send(x)
+		} else {
+			tcpSender.send("clear")
+		}
 	    }
 	    model: []
 	    onCurrentIndexChanged: {
