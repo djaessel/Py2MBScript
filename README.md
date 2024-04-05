@@ -52,11 +52,29 @@ python -B main.py -b
 ```
 
 ### Linux only
+Or run the following:
+```bash
+./build.sh
+```
+
 You can also directly build and run.  
 ```bash
 python -B main.py --build-and-run
 ```
 As the title says, this only works for Linux at the current state.
+
+
+#### IDE
+Now there is an IDE in the making, currently also just for Linux.  
+It integrates openBRF as 3D View.  
+  
+**WARNING: Please dont use the openBRF window unless you know what you are doing!!!**
+  
+To start the IDE run the following:
+```bash
+./run_ide.sh
+```
+
 
 ## Documentation
 Here I will tell you what might be different or going on in Py2MBScript, so you know how to use it.
