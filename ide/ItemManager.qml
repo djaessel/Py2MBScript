@@ -113,6 +113,32 @@ ColumnLayout {
 			capability_flags_gb.visible = true
                 }
 	}
+	Button {
+		id: saveBtn
+		onClicked: {
+//			for (var kchild in flagsGridLayout.children) {
+//                              if (flagsGridLayout.children[kchild].checked){
+//					console.log(flagsGridLayout.children[kchild].text.toUpperCase())
+//				}
+//                	}
+
+			var xxxxx = itemsCode
+			var idxs = itemsCode.indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + " = ") + 3
+                        var xs = itemsCode.substring(idxs)
+                        xs = xs.substring(0, xs.indexOf("</p>"))
+			xxxxx = xxxxx.replace(xs, "")
+			var xs2 = itemsCode.substring(idxs)
+			while (idxs > 2) {
+				idxs = xs2.indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + ".") + 3
+				if (idxs > 2) {
+					xs2 = xs2.substring(idxs)
+					xs = xs2.substring(0, xs2.indexOf("</p>"))
+					xxxxx = xxxxx.replace(xs, "")
+				}
+			}
+			textArea.text = xxxxx
+		}
+	}
   }
 
   GroupBox {
