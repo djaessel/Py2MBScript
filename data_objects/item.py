@@ -69,7 +69,9 @@ class ItemFlag(Enum):
 class ItemType(Enum):
     HORSE = "itp_type_horse"           # = 0x0000000000000001
     ONE_HANDED_WEAPON = "itp_type_one_handed_wpn"  # = 0x0000000000000002
+    ONE_HANDED_WPN = ONE_HANDED_WEAPON
     TWO_HANDED_WEAPON = "itp_type_two_handed_wpn"  # = 0x0000000000000003
+    TWO_HANDED_WPN = TWO_HANDED_WEAPON
     POLEARM = "itp_type_polearm"         # = 0x0000000000000004
     ARROWS = "itp_type_arrows"          # = 0x0000000000000005
     BOLTS = "itp_type_bolts"           # = 0x0000000000000006
