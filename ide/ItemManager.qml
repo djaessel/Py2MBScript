@@ -115,28 +115,81 @@ ColumnLayout {
 	}
 	Button {
 		id: saveBtn
+                flat: true
+                palette.buttonText: "black"
+                palette.button: "darkgrey"
+                background: Rectangle {
+                        implicitWidth: 100
+                        implicitHeight: 25
+                        border.width: capabilityFlagsBtn.activeFocus ? 3 : 2
+                        border.color: "black"
+                        radius: 2
+                        gradient: Gradient {
+                                GradientStop { position: 0 ; color: capabilityFlagsBtn.pressed ? "#ccc" : "#eee" }
+                                GradientStop { position: 1 ; color: capabilityFlagsBtn.pressed ? "#aaa" : "#ccc" }
+                        }
+                }
+                text: "Save"
 		onClicked: {
-//			for (var kchild in flagsGridLayout.children) {
-//                              if (flagsGridLayout.children[kchild].checked){
-//					console.log(flagsGridLayout.children[kchild].text.toUpperCase())
-//				}
-//                	}
+			var xxxxx = textHandler.getText()
+			var idxs = textHandler.getText().indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + " = ") + 3
+			var idxFirst = idxs
 
-			var xxxxx = itemsCode
-			var idxs = itemsCode.indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + " = ") + 3
-                        var xs = itemsCode.substring(idxs)
+			xxxxx = savePropertyFlags(xxxxx, idxs, idxFirst)
+
+			textHandler.setText(xxxxx)
+			textArea.text = textHandler.getText()
+		}
+
+		function savePropertyFlags(xxxxx, idxs, idxFirst) {
+                        var xs = textHandler.getText().substring(idxs)
                         xs = xs.substring(0, xs.indexOf("</p>"))
-			xxxxx = xxxxx.replace(xs, "")
-			var xs2 = itemsCode.substring(idxs)
-			while (idxs > 2) {
-				idxs = xs2.indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + ".") + 3
-				if (idxs > 2) {
-					xs2 = xs2.substring(idxs)
-					xs = xs2.substring(0, xs2.indexOf("</p>"))
-					xxxxx = xxxxx.replace(xs, "")
+                        xxxxx = xxxxx.replace(xs, "")
+                        var xs2 = textHandler.getText().substring(idxs)
+                        while (idxs > 2) {
+                                idxs = xs2.indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + ".") + 3
+                                if (idxs > 2) {
+                                        xs2 = xs2.substring(idxs)
+                                        xs = xs2.substring(0, xs2.indexOf("</p>"))
+                                        xxxxx = xxxxx.replace(xs, "")
+                                }
+                        }
+			xxxxx = xxxxx.replace("<p></p>", "")
+
+
+                        var newText = "<p>" + curItem.id + " = Item(\"" + curItem.id + "\", \"" + curItem.name + "\", " + curItem.price + ")</p>"
+
+			for (var kmesh in curItem.meshes) {
+				newText += "<p>" + curItem.id + ".add_mesh(ItemMesh(\"" + curItem.meshes[kmesh].id + "\""
+				if (curItem.meshes[kmesh].modifier != "0") {
+					newText += "," + curItem.meshes[kmesh].modifier
 				}
+				newText += "))</p>"
 			}
-			textArea.text = xxxxx
+
+			if (type_cbb.currentIndex > 0) {
+				newText += "<p>" + curItem.id + ".set_type(ItemType." + type_cbb.model[type_cbb.currentIndex].toUpperCase() + ")</p>"
+			}
+
+                        if (custom_kill_info_cbb.currentIndex > 0) {
+                                newText += "<p>" + curItem.id + ".custom_kill_info = \"" + custom_kill_info_cbb.model[custom_kill_info_cbb.currentIndex] + "\"</p>"
+                        }
+
+                        for (var kchild in force_show_row.children) {
+                            if (force_show_row.children[kchild].checked){
+                                newText += "<p>" + curItem.id + ".add_flag(ItemFlag." + force_show_row.children[kchild].flagValue + ")</p>"
+                            }
+                        }
+
+                        for (var kchild in flagsGridLayout.children) {
+                            if (flagsGridLayout.children[kchild].checked){
+                                newText += "<p>" + curItem.id + ".add_flag(ItemFlag." + flagsGridLayout.children[kchild].flagValue + ")</p>"
+                            }
+                        }
+
+
+                        xxxxx = xxxxx.slice(0, idxFirst) + newText + xxxxx.slice(idxFirst)
+			return xxxxx
 		}
 	}
   }
@@ -230,16 +283,19 @@ ColumnLayout {
 	CheckBox {
 		id: force_show_left_hand_cb
 		text: "Left Hand"
+		property var flagValue: "FORCE_SHOW_LEFT_HAND"
 	}
 
 	CheckBox {
 		id: force_show_right_hand_cb
 		text: "Right Hand"
+		property var flagValue: "FORCE_SHOW_RIGHT_HAND"
 	}
 
 	CheckBox {
 		id: force_show_body_cb
 		text: "Body"
+		property var flagValue: "FORCE_SHOW_BODY"
 	}
 
       }
@@ -253,226 +309,271 @@ ColumnLayout {
 	CheckBox {
 		id: unique_cb
 		text: "Unique"
+		property var flagValue: "IS_UNIQUE"
 	}
 
 	CheckBox {
 		id: always_loot_cb
 		text: "Always Loot"
+		property var flagValue: "ALWAYS_LOOT"
 	}
 
 	CheckBox {
 		id: no_parry_cb
 		text: "No Parry"
+		property var flagValue: "NO_PARRY"
 	}
 
         CheckBox {
                 id: default_ammo
                 text: "Default Ammo"
+		property var flagValue: "IS_DEFAULT_AMMO"
         }
 
         CheckBox {
                 id: merchandise_cb
                 text: "Merchandise"
+		property var flagValue: "IS_MERCHANDISE"
         }
 
         CheckBox {
                 id: wooden_attack_cb
                 text: "Wooden Attack"
+		property var flagValue: "WOODEN_ATTACK"
         }
 
         CheckBox {
                 id: wooden_parry_cb
                 text: "Wooden Parry"
+		property var flagValue: "WOODEN_PARRY"
         }
 
         CheckBox {
                 id: food_cb
                 text: "Food"
+		property var flagValue: "IS_FOOD"
         }
 
         CheckBox {
                 id: cant_reload_on_horseback_cb
                 text: "Cant Reload On Horseback"
+		property var flagValue: "IS_CANT_RELOAD_ON_HORSEBACK"
         }
 
         CheckBox {
                 id: two_handed_cb
                 text: "Two Handed"
+		property var flagValue: "IS_TWO_HANDED"
         }
 
         CheckBox {
                 id: primary_cb
                 text: "Primary"
+		property var flagValue: "IS_PRIMARY"
         }
 
         CheckBox {
                 id: secondary_cb
                 text: "Secondary"
+		property var flagValue: "IS_SECONDARY"
         }
 
         CheckBox {
                 id: covers_legs_cb
                 text: "Covers Legs"
+		property var flagValue: "COVERS_LEGS"
         }
 
         CheckBox {
                 id: civilian_cb
                 text: "Civilian"
+		property var flagValue: "IS_CIVILIAN"
         }
 
         CheckBox {
                 id: doesnt_cover_hair_cb
                 text: "Doesnt Cover Hair"
+		property var flagValue: "DOESNT_COVER_HAIR"
         }
 
         CheckBox {
                 id: can_penetrate_shield_cb
                 text: "Can Penetrate Shield"
+		property var flagValue: "CAN_PENETRATE_SHIELD"
         }
 
         CheckBox {
                 id: consumable_cb
                 text: "Consumable"
+		property var flagValue: "IS_CONSUMABLE"
         }
 
         CheckBox {
                 id: bonus_against_shield_cb
                 text: "Bonus Against Shield"
+		property var flagValue: "HAS_BONUS_AGAINST_SHIELD"
         }
 
         CheckBox {
                 id: penalty_with_shield_cb
                 text: "Penalty With Shield"
+		property var flagValue: "PENALTY_WITH_SHIELD"
         }
 
         CheckBox {
                 id: cant_use_on_horseback_cb
                 text: "Cant Use On Horseback"
+		property var flagValue: "CANT_USE_ON_HORSEBACK"
         }
 
         CheckBox {
                 id: next_item_as_melee_cb
                 text: "Next Item As Melee"
+		property var flagValue: "NEXT_ITEM_AS_MELEE"
         }
 
         CheckBox {
                 id: fit_to_head_cb
                 text: "Fit To Head"
+		property var flagValue: "FIT_TO_HEAD"
         }
 
         CheckBox {
                 id: offset_lance_cb
                 text: "Offset Lance"
+		property var flagValue: "OFFSET_LANCE"
         }
 
         CheckBox {
                 id: covers_head_cb
                 text: "Covers Head"
+		property var flagValue: "COVERS_HEAD"
         }
 
         CheckBox {
                 id: couchable_cb
                 text: "Couchable"
+		property var flagValue: "IS_COUCHABLE"
         }
 
         CheckBox {
                 id: crush_through_cb
                 text: "Crush Through"
+		property var flagValue: "HAS_CRUSH_THROUGH"
         }
 
         CheckBox {
                 id: knock_back_cb
                 text: "Knock Back"
+		property var flagValue: "HAS_KNOCK_BACK"
         }
 
         CheckBox {
                 id: remove_item_on_use_cb
                 text: "Remove Item On Use"
+		property var flagValue: "REMOVE_ITEM_ON_USE"
         }
 
         CheckBox {
                 id: unbalanced_cb
                 text: "Unbalanced"
+		property var flagValue: "IS_UNBALANCED"
         }
 
         CheckBox {
                 id: covers_beard_cb
                 text: "Covers Beard"
+		property var flagValue: "COVERS_BEARD"
         }
 
         CheckBox {
                 id: has_bayonet_cb
                 text: "Has Bayonet"
+		property var flagValue: "HAS_BAYONET"
         }
 
         CheckBox {
                 id: no_pickup_from_ground_cb
                 text: "No Pickup From Ground"
+		property var flagValue: "NO_PICKUP_FROM_GROUND"
         }
 
         CheckBox {
                 id: can_knock_back_cb
                 text: "Can Knock Back"
+		property var flagValue: "CAN_KNOCK_BACK"
         }
 
         CheckBox {
                 id: covers_hair_cb
                 text: "Covers Hair"
+		property var flagValue: "COVERS_HAIR"
         }
 
         CheckBox {
                 id: covers_hair_partially_cb
                 text: "Covers Hair Partially"
+		property var flagValue: "COVERS_HAIR_PARTIALLY"
         }
 
         CheckBox {
                 id: extra_penetration_cb
                 text: "Extra Penetration"
+		property var flagValue: "HAS_EXTRA_PENETRATION"
         }
 
         CheckBox {
                 id: no_blur_cb
                 text: "No Blur"
+		property var flagValue: "HAS_NO_BLUR"
         }
 
         CheckBox {
                 id: cant_reload_while_moving_cb
                 text: "Cant Reload While Moving"
+		property var flagValue: "CANT_RELOAD_WHILE_MOVING"
         }
 
 	CheckBox {
 		id: ignore_gravity_cb
 		text: "Ignore Gravity"
+		property var flagValue: "IGNORE_GRAVITY"
 	}
 
 	CheckBox {
 		id: ignore_friction_cb
 		text: "Ignore Friction"
+		property var flagValue: "IGNORE_FRICTION"
 	}
 
 	CheckBox {
 		id: is_pike_cb
 		text: "Is Pike"
+		property var flagValue: "IS_PIKE"
 	}
 
 	CheckBox {
 		id: offset_musket_cb
 		text: "Offset Musket"
+		property var flagValue: "OFFSET_MUSKET"
 	}
 
 	CheckBox {
 		id: cant_reload_while_moving_mounted_cb
 		text: "Cant Reload While Moving Mounted"
+		property var flagValue: "CANT_RELOAD_WHILE_MOVING_MOUNTED"
 	}
 
 	CheckBox {
 		id: has_upper_stab_cb
 		text: "Has Upper Stab"
+		property var flagValue: "HAS_UPPER_STAB"
 	}
 
 	CheckBox {
 		id: disable_agent_sounds_cb
 		text: "Disable Agent Sounds"
+		property var flagValue: "DISABLE_AGENT_SOUNDS"
 	}
 
     }

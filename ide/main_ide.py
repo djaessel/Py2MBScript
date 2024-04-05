@@ -103,6 +103,7 @@ def run_app(window_id):
     from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QApplication, QPushButton
     from PySide6.QtQuickWidgets import QQuickWidget
     from tcp_connector import TCPSender
+    from text_handler import TextHandler
 
     app = QApplication([])
     main_widget = QWidget()
@@ -140,7 +141,10 @@ def run_app(window_id):
     tcpSender = TCPSender()
     qmlWindow.engine().rootContext().setContextProperty('tcpSender', tcpSender)
 
-    qmlWindow.engine().rootContext().setContextProperty('itemsCode', get_items_code())
+    textHandler = TextHandler()
+    textHandler.setText(get_items_code())
+    qmlWindow.engine().rootContext().setContextProperty('textHandler', textHandler)
+    #qmlWindow.engine().rootContext().setContextProperty('itemsCode', get_items_code())
     
     qmlWindow.setSource(QUrl.fromLocalFile("main.qml"))
 

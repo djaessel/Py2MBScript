@@ -63,7 +63,7 @@ Rectangle {
             background: null
             anchors.fill: parent
             
-	    text: itemsCode
+	    text: textHandler.getText()
 
 	    property bool processing: false
 
