@@ -585,17 +585,97 @@ ColumnLayout {
 	
    ColumnLayout {
    
+      ScrollView {
 	GroupBox {
-	    	GridLayout {
-			Button {
-				text: "Test1"
+                title: "Onehanded"
+	    	ColumnLayout {
+		    RowLayout {
+			CheckBox {
+				text: "Thrust"
+				property var flagValue: ""
 			}
-			Button {
-				text: "Test2"
+                        CheckBox {
+                                text: "Overswing"
+                                property var flagValue: ""
+                        }
+
+                        CheckBox {
+                                text: "Slashright"
+                                property var flagValue: ""
+                        }
+                        CheckBox {
+                                text: "Slashleft"
+                                property var flagValue: ""
+                        }
+                        CheckBox {
+                                text: "Thrust Lance"
+                                property var flagValue: ""
+                        }
+                    }
+		    RowLayout {
+			GroupBox {
+			    title: "Horse Back"
+			    GridLayout {
+				columns: 4
+				CheckBox {
+                                	text: "Thrust"
+                                	property var flagValue: ""
+                        	}
+                        	CheckBox {
+                                	text: "Overswing Left"
+                                	property var flagValue: ""
+                        	}
+                                CheckBox {
+                                        text: "Overswing Right"
+                                        property var flagValue: ""
+                                }
+	                        CheckBox {
+        	                        text: "Slashright"
+                	                property var flagValue: ""
+                        	}
+                        	CheckBox {
+                        	        text: "Slashleft"
+                                	property var flagValue: ""
+                        	}
+                        	CheckBox {
+                                	text: "Thrust Lance"
+                                	property var flagValue: ""
+                       		}
+			    }
 			}
+                    }
+
+                    RowLayout {
+                        GroupBox {
+                            title: "Parry"
+                            GridLayout {
+                                columns: 4
+                                CheckBox {
+                                        text: "Forward"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Up"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Right"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Left"
+                                        property var flagValue: ""
+                                }
+                            }
+                        }
+                    }
 		}
 	}	
 
+	//GroupBox {
+	//	title: "TEST123"
+	//}
+      }
    }
  }
 }

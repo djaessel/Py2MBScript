@@ -100,7 +100,7 @@ def run_app(window_id):
     from PySide6.QtCore import Qt, QUrl, Slot, QObject
     from PySide6.QtQml import QmlElement, qmlRegisterType
     from PySide6.QtGui import QWindow, QColor, QSurfaceFormat
-    from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QApplication, QPushButton
+    from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QApplication, QPushButton, QGridLayout
     from PySide6.QtQuickWidgets import QQuickWidget
     from tcp_connector import TCPSender
     from text_handler import TextHandler
@@ -111,7 +111,7 @@ def run_app(window_id):
     main_widget.setStyleSheet("background-color: 'darkgrey'")
     layout = QVBoxLayout()
     layout2 = QVBoxLayout()
-    layout3 = QHBoxLayout(main_widget)
+    layout3 = QGridLayout(main_widget)
 
     window = QWindow.fromWinId(window_id)
     window.setFlag(Qt.FramelessWindowHint, True)
@@ -160,8 +160,10 @@ def run_app(window_id):
 
     layout2.addWidget(qmlWindow)
 
-    layout3.addLayout(layout)
-    layout3.addLayout(layout2)
+    layout3.addLayout(layout,0,0)
+    layout3.addLayout(layout2,0,1)
+    layout3.setColumnStretch(0, 1)
+    layout3.setColumnStretch(1, 2)
 
     main_widget.show()
 
