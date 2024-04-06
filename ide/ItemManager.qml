@@ -586,6 +586,8 @@ ColumnLayout {
    ColumnLayout {
    
       ScrollView {
+       GridLayout {
+        columns: 2
 	GroupBox {
                 title: "Onehanded"
 	    	ColumnLayout {
@@ -671,11 +673,113 @@ ColumnLayout {
                     }
 		}
 	}	
+	ColumnLayout {
+	    GroupBox {
+		title: "Twohanded"
+		ColumnLayout {
+                    RowLayout {
+                        CheckBox {
+                                text: "Thrust"
+                                property var flagValue: ""
+                        }
+                        CheckBox {
+                                text: "Overswing"
+                                property var flagValue: ""
+                        }
 
-	//GroupBox {
-	//	title: "TEST123"
-	//}
-      }
+                        CheckBox {
+                                text: "Slashright"
+                                property var flagValue: ""
+                        }
+                        CheckBox {
+                                text: "Slashleft"
+                                property var flagValue: ""
+                        }
+                    }
+
+                    RowLayout {
+                        GroupBox {
+                            title: "Parry"
+                            GridLayout {
+                                columns: 4
+                                CheckBox {
+                                        text: "Forward"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Up"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Right"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Left"
+                                        property var flagValue: ""
+                                }
+                            }
+                        }
+                    }
+
+		}
+	    }
+
+            GroupBox {
+                title: "Polearm"
+                ColumnLayout {
+                    RowLayout {
+                        CheckBox {
+                                text: "Thrust"
+                                property var flagValue: ""
+                        }
+                        CheckBox {
+                                text: "Overswing"
+                                property var flagValue: ""
+                        }
+
+                        CheckBox {
+                                text: "Slashright"
+                                property var flagValue: ""
+                        }
+                        CheckBox {
+                                text: "Slashleft"
+                                property var flagValue: ""
+                        }
+                    }
+
+                    RowLayout {
+                        GroupBox {
+                            title: "Parry"
+                            GridLayout {
+                                columns: 4
+                                CheckBox {
+                                        text: "Forward"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Up"
+                                        property var flagValue: ""
+                                }
+                                CheckBox {
+                                        text: "Right"
+                                        property var flagValue: ""
+                                }
+
+                              CheckBox {
+                                        text: "Left"
+                                        property var flagValue: ""
+                              }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+	}
+       }
+     }
    }
  }
 }
