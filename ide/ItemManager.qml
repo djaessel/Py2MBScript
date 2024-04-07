@@ -255,9 +255,20 @@ ColumnLayout {
             addIfNotIncluded("itcf_horseback_slashleft_onehanded")
         }
 
-        //---
-
+        //- onehanded -
         for (var k in onehanded1.children) {
+            onehanded1.children[k].checked = false
+        }
+        for (k in onehanded2.children) {
+            onehanded2.children[k].checked = false
+        }
+        for (k in onehanded_horseback.children) {
+            onehanded_horseback.children[k].checked = false
+        }
+        for (k in onehanded_parry.children) {
+            onehanded_parry.children[k].checked = false
+        }
+        for (k in onehanded1.children) {
             if (curItem.capabilities.includes(onehanded1.children[k].flagRValue)) {
                 onehanded1.children[k].checked = true
             }
@@ -279,6 +290,12 @@ ColumnLayout {
         }
 
         for (k in twohanded.children) {
+            twohanded.children[k].checked = false
+        }
+        for (k in twohanded_parry.children) {
+            twohanded_parry.children[k].checked = false
+        }
+        for (k in twohanded.children) {
             if (curItem.capabilities.includes(twohanded.children[k].flagRValue)) {
                 twohanded.children[k].checked = true
             }
@@ -289,6 +306,13 @@ ColumnLayout {
             }
         }
 
+
+        for (k in polearm.children) {
+            polearm.children[k].checked = false
+        }
+        for (k in polearm_parry.children) {
+            polearm_parry.children[k].checked = false
+        }
         for (k in polearm.children) {
             if (curItem.capabilities.includes(polearm.children[k].flagRValue)) {
                 polearm.children[k].checked = true
@@ -301,11 +325,18 @@ ColumnLayout {
         }
 
         for (k in radioGroup.buttons) {
+            radioGroup.buttons[k].checked = false
+        }
+        for (k in radioGroup.buttons) {
             if (curItem.capabilities.includes(radioGroup.buttons[k].flagRValue)) {
                 radioGroup.buttons[k].checked = true
             }
         }
 
+
+        for (k in throwx.children) {
+            throwx.children[k].checked = false
+        }
         for (k in throwx.children) {
             if (curItem.capabilities.includes(throwx.children[k].flagRValue)) {
                 throwx.children[k].checked = true
@@ -313,11 +344,17 @@ ColumnLayout {
         }
 
         for (k in shoot.children) {
+            shoot.children[k].checked = false
+        }
+        for (k in shoot.children) {
             if (curItem.capabilities.includes(shoot.children[k].flagRValue)) {
                 shoot.children[k].checked = true
             }
         }
 
+        for (k in musket.children) {
+            musket.children[k].checked = false
+        }
         for (k in musket.children) {
             if (curItem.capabilities.includes(musket.children[k].flagRValue)) {
                 musket.children[k].checked = true
@@ -325,13 +362,34 @@ ColumnLayout {
         }
 
         for (k in others.children) {
+            others.children[k].checked = false
+        }
+        for (k in others.children) {
             if (curItem.capabilities.includes(others.children[k].flagRValue)) {
                 others.children[k].checked = true
             }
         }
     }
 
+    function createNewMesh(index, resourceName, modifier, meshKind) {
+        var component = Qt.createComponent("MeshX.qml");
+        if (component.status == Component.Ready) {
+            var meshx = component.createObject(meshesLayout);
+            meshx.modifiers = modifier
+            meshx.resourceName = resourceName
+            meshx.meshKind = meshKind
+            meshx.idText = "" + (index+1)
+        }
+    }
+
     function prepareMeshes() {
+        for (var i = meshesLayout.children.length - 1; i >= 0; i--) {
+            meshesLayout.children[i].destroy()
+        }
+
+        for (i = 0; i < curItem.meshes.length; i++) {
+            createNewMesh(i, curItem.meshes[i].id, curItem.meshes[i].modifier, 0) // FIXME: add mesh kind to mesh
+        }
     }
 
     onCurItemChanged: {
@@ -947,28 +1005,28 @@ ColumnLayout {
                                     }
                                     CheckBox {
                                         text: "Overswing Left"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "HORSEBACK_ONEHANDED_OVERSWING_LEFT"
+                                        property string flagRValue: "itcf_horseback_overswing_left_onehanded"
                                     }
                                     CheckBox {
                                         text: "Overswing Right"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "HORSEBACK_ONEHANDED_OVERSWING_RIGHT"
+                                        property string flagRValue: "itcf_horseback_overswing_right_onehanded"
                                     }
                                     CheckBox {
                                         text: "Slashright"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "HORSEBACK_ONEHANDED_SLASHRIGHT"
+                                        property string flagRValue: "itcf_horseback_slashright_onehanded"
                                     }
                                     CheckBox {
                                         text: "Slashleft"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "HORSEBACK_ONEHANDED_SLASHLEFT"
+                                        property string flagRValue: "itcf_horseback_slashleft_onehanded"
                                     }
                                     CheckBox {
                                         text: "Thrust Lance"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "HORSEBACK_ONEHANDED_LANCE_THRUST"
+                                        property string flagRValue: "itcf_thrust_onehanded_lance_horseback"
                                     }
                                 }
                             }
@@ -982,23 +1040,23 @@ ColumnLayout {
                                     columns: 4
                                     CheckBox {
                                         text: "Forward"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "ONEHANDED_PARRY_FORWARD"
+                                        property string flagRValue: "itcf_parry_forward_onehanded"
                                     }
                                     CheckBox {
                                         text: "Up"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "ONEHANDED_PARRY_UP"
+                                        property string flagRValue: "itcf_parry_up_onehanded"
                                     }
                                     CheckBox {
                                         text: "Right"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "ONEHANDED_PARRY_RIGHT"
+                                        property string flagRValue: "itcf_parry_right_onehanded"
                                     }
                                     CheckBox {
                                         text: "Left"
-                                        property string flagValue: ""
-                                        property string flagRValue: ""
+                                        property string flagValue: "ONEHANDED_PARRY_LEFT"
+                                        property string flagRValue: "itcf_parry_left_onehanded"
                                     }
                                 }
                             }
@@ -1014,24 +1072,24 @@ ColumnLayout {
                                 id: twohanded
                                 CheckBox {
                                     text: "Thrust"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "TWOHANDED_THRUST"
+                                    property string flagRValue: "itcf_thrust_twohanded"
                                 }
                                 CheckBox {
                                     text: "Overswing"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "TWOHANDED_OVERSWING"
+                                    property string flagRValue: "itcf_overswing_twohanded"
                                 }
 
                                 CheckBox {
                                     text: "Slashright"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "TWOHANDED_SLASHRIGHT"
+                                    property string flagRValue: "itcf_slashright_twohanded"
                                 }
                                 CheckBox {
                                     text: "Slashleft"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "TWOHANDED_SLASHLEFT"
+                                    property string flagRValue: "itcf_slashleft_twohanded"
                                 }
                             }
 
@@ -1043,23 +1101,23 @@ ColumnLayout {
                                         columns: 4
                                         CheckBox {
                                             text: "Forward"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "TWOHANDED_PARRY_FORWARD"
+                                            property string flagRValue: "itcf_parry_forward_twohanded"
                                         }
                                         CheckBox {
                                             text: "Up"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "TWOHANDED_PARRY_UP"
+                                            property string flagRValue: "itcf_parry_up_twohanded"
                                         }
                                         CheckBox {
                                             text: "Right"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "TWOHANDED_PARRY_RIGHT"
+                                            property string flagRValue: "itcf_parry_right_twohanded"
                                         }
                                         CheckBox {
                                             text: "Left"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "TWOHANDED_PARRY_LEFT"
+                                            property string flagRValue: "itcf_parry_left_twohanded"
                                         }
                                     }
                                 }
@@ -1075,23 +1133,38 @@ ColumnLayout {
                                 id: polearm
                                 CheckBox {
                                     text: "Thrust"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "POLEARM_THRUST"
+                                    property string flagRValue: "itcf_thrust_polearm"
                                 }
                                 CheckBox {
                                     text: "Overswing"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "POLEARM_OVERSWING"
+                                    property string flagRValue: "itcf_overswing_polearm"
                                 }
                                 CheckBox {
                                     text: "Slashright"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "POLEARM_SLASHRIGHT"
+                                    property string flagRValue: "itcf_slashright_polearm"
                                 }
                                 CheckBox {
                                     text: "Slashleft"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "POLEARM_SLASHLEFT"
+                                    property string flagRValue: "itcf_slashleft_polearm"
+                                }
+                            }
+
+                            RowLayout {
+                                GroupBox {
+                                    title: "Horse Back"
+                                    GridLayout {
+                                        id: polearm_horseback
+                                        columns: 3
+                                        CheckBox {
+                                            text: "Thrust"
+                                            property string flagValue: "HORSEBACK_POLEARM_SLASH"
+                                            property string flagRValue: "itcf_horseback_slash_polearm"
+                                        }
+                                    }
                                 }
                             }
 
@@ -1103,24 +1176,24 @@ ColumnLayout {
                                         columns: 4
                                         CheckBox {
                                             text: "Forward"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "POLEARM_PARRY_FORWARD"
+                                            property string flagRValue: "itcf_parry_forward_polearm"
                                         }
                                         CheckBox {
                                             text: "Up"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "POLEARM_PARRY_UP"
+                                            property string flagRValue: "itcf_parry_up_polearm"
                                         }
                                         CheckBox {
                                             text: "Right"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "POLEARM_PARRY_RIGHT"
+                                            property string flagRValue: "itcf_parry_right_polearm"
                                         }
 
                                         CheckBox {
                                             text: "Left"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "POLEARM_PARRY_LEFT"
+                                            property string flagRValue: "itcf_parry_left_polearm"
                                         }
                                     }
                                 }
@@ -1141,28 +1214,28 @@ ColumnLayout {
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Sword Left Hip"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_SWORD_LEFT_HIP"
+                                property string flagRValue: "itcf_carry_sword_left_hip"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Sword Back"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_SWORD_BACK"
+                                property string flagRValue: "itcf_carry_sword_back"
                             }
                         }
                         RowLayout {
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Dagger Fron Left"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_DAGGER_FRONT_LEFT"
+                                property string flagRValue: "itcf_carry_dagger_front_left"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Dagger Fron Right"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_DAGGER_FRONT_RIGHT"
+                                property string flagRValue: "itcf_carry_dagger_front_right"
                             }
                         }
                         RowLayout {
@@ -1173,28 +1246,28 @@ ColumnLayout {
                                         RadioButton {
                                             ButtonGroup.group: radioGroup
                                             text: "Front Right"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "CARRY_QUIVER_FRONT_RIGHT"
+                                            property string flagRValue: "itcf_carry_quiver_front_right"
                                         }
                                         RadioButton {
                                             ButtonGroup.group: radioGroup
                                             text: "Back Right"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "CARRY_QUIVER_BACK_RIGHT"
+                                            property string flagRValue: "itcf_carry_quiver_back_right"
                                         }
                                     }
                                     RowLayout {
                                         RadioButton {
                                             ButtonGroup.group: radioGroup
                                             text: "Back"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "CARRY_QUIVER_BACK"
+                                            property string flagRValue: "itcf_carry_quiver_back"
                                         }
                                         RadioButton {
                                             ButtonGroup.group: radioGroup
                                             text: "Right Vertical"
-                                            property string flagValue: ""
-                                            property string flagRValue: ""
+                                            property string flagValue: "CARRY_QUIVER_RIGHT_VERTICAL"
+                                            property string flagRValue: "itcf_carry_quiver_right_vertical"
                                         }
                                     }
                                 }
@@ -1203,20 +1276,20 @@ ColumnLayout {
                                 RadioButton {
                                     ButtonGroup.group: radioGroup
                                     text: "Bow Back"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "CARRY_BOW_BACK"
+                                    property string flagRValue: "itcf_carry_bow_back"
                                 }
                                 RadioButton {
                                     ButtonGroup.group: radioGroup
                                     text: "Bowcase Left"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "CARRY_BOWCASE_LEFT"
+                                    property string flagRValue: "itcf_carry_bowcase_left"
                                 }
                                 RadioButton {
                                     ButtonGroup.group: radioGroup
                                     text: "Crossbow Back"
-                                    property string flagValue: ""
-                                    property string flagRValue: ""
+                                    property string flagValue: "CARRY_CROSSBOW_BACK"
+                                    property string flagRValue: "itcf_carry_crossbow_back"
                                 }
                             }
                         }
@@ -1224,80 +1297,80 @@ ColumnLayout {
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Revolver Right"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_REVOLVER_RIGHT"
+                                property string flagRValue: "itcf_carry_revolver_right"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Pistol Front Left"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_PISTOL_FRONT_LEFT"
+                                property string flagRValue: "itcf_carry_pistol_front_left"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Spear"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_SPEAR"
+                                property string flagRValue: "itcf_carry_spear"
                             }
                         }
                         RowLayout {
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Axe Back"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_AXE_BACK"
+                                property string flagRValue: "itcf_carry_axe_back"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Axe Left Hip"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_AXE_LEFT_HIP"
+                                property string flagRValue: "itcf_carry_axe_left_hip"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Mace Left Hip"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_MACE_LEFT_HIP"
+                                property string flagRValue: "itcf_carry_mace_left_hip"
                             }
                         }
                         RowLayout {
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Kite Shield"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_KITE_SHIELD"
+                                property string flagRValue: "itcf_carry_kite_shield"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Round Shield"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_ROUND_SHIELD"
+                                property string flagRValue: "itcf_carry_round_shield"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Board Shield"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_BOARD_SHIELD"
+                                property string flagRValue: "itcf_carry_board_shield"
                             }
                         }
                         RowLayout {
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Buckler Left"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_BUCKLER_LEFT"
+                                property string flagRValue: "itcf_carry_buckler_left"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Katana"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_KATANA"
+                                property string flagRValue: "itcf_carry_katana"
                             }
                             RadioButton {
                                 ButtonGroup.group: radioGroup
                                 text: "Wakizashi"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "CARRY_WAKIZASHI"
+                                property string flagRValue: "itcf_carry_wakizashi"
                             }
                         }
 
@@ -1312,23 +1385,23 @@ ColumnLayout {
                             id: throwx
                             RadioButton {
                                 text: "Knife"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "THROW_KNIFE"
+                                property string flagRValue: "itcf_throw_knife"
                             }
                             RadioButton {
                                 text: "Stone"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "THROW_STONE"
+                                property string flagRValue: "itcf_throw_stone"
                             }
                             RadioButton {
                                 text: "Javelin"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "THROW_JAVELIN"
+                                property string flagRValue: "itcf_throw_javelin"
                             }
                             RadioButton {
                                 text: "Axe"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "THROW_AXE"
+                                property string flagRValue: "itcf_throw_axe"
                             }
                         }
                     }
@@ -1339,28 +1412,28 @@ ColumnLayout {
                             id: shoot
                             RadioButton {
                                 text: "Bow"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "SHOOT_BOW"
+                                property string flagRValue: "itcf_shoot_bow"
                             }
                             RadioButton {
                                 text: "Crossbow"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "SHOOT_CROSSBOW"
+                                property string flagRValue: "itcf_shoot_crossbow"
                             }
                             RadioButton {
                                 text: "Javelin"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "SHOOT_JAVELIN"
+                                property string flagRValue: "itcf_shoot_javelin"
                             }
                             RadioButton {
                                 text: "Pistol"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "SHOOT_PISTOL"
+                                property string flagRValue: "itcf_shoot_pistol"
                             }
                             RadioButton {
                                 text: "Musket"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "SHOOT_MUSKET"
+                                property string flagRValue: "itcf_shoot_musket"
                             }
                         }
                     }
@@ -1371,18 +1444,18 @@ ColumnLayout {
                             id: musket
                             CheckBox {
                                 text: "Thrust"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "MUSTKET_THRUST"
+                                property string flagRValue: "itcf_thrust_musket"
                             }
                             CheckBox {
                                 text: "Overswing"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "MUSTKET_OVERSWING"
+                                property string flagRValue: "itcf_overswing_musket"
                             }
                             CheckBox {
                                 text: "Reload"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "RELOAD_MUSTKET"
+                                property string flagRValue: "itcf_reload_musket"
                             }
                         }
                     }
@@ -1394,23 +1467,23 @@ ColumnLayout {
                             columns: 2
                             CheckBox {
                                 text: "Show Holster When Drawn"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "SHOW_HOLSTER_WHEN_DRAWN"
+                                property string flagRValue: "itcf_show_holster_when_drawn"
                             }
                             CheckBox {
                                 text: "Reload Pistol"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "RELOAD_PISTOL"
+                                property string flagRValue: "itcf_reload_pistol"
                             }
                             CheckBox {
                                 text: "Overswing Spear"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "SPEAR_OVERSWING"
+                                property string flagRValue: "itcf_overswing_spear"
                             }
                             CheckBox {
                                 text: "Force 64 Bit"
-                                property string flagValue: ""
-                                property string flagRValue: ""
+                                property string flagValue: "FORCE_64_BITS"
+                                property string flagRValue: "itcf_force_64_bits"
                             }
                         }
                     }
@@ -1490,7 +1563,7 @@ ColumnLayout {
                 }
                 Label {
                     text: "Delete"
-                    Layout.minimumWidth: 64
+                    Layout.minimumWidth: 80
                     horizontalAlignment: Text.AlignHCenter
                     background: Rectangle {
                         border.color: "black"
@@ -1504,6 +1577,16 @@ ColumnLayout {
 
             ColumnLayout {
                 id: meshesLayout
+            }
+
+            Button {
+                id: createNewMeshBtn
+                Layout.minimumWidth: parent.width
+                flat: true
+                text: "+"
+                onClicked: {
+                    createNewMesh(meshesLayout.children.length, "<resource_name>", "0", 0)
+                }
             }
         }
     }

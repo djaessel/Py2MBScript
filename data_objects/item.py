@@ -132,9 +132,9 @@ class ItemCapability(Enum):
     CARRY_AXE_LEFT_HIP = "itcf_carry_axe_left_hip"                              #= 0x0000000020000000
     CARRY_DAGGER_FRONT_LEFT = "itcf_carry_dagger_front_left"                         #= 0x0000000030000000
     CARRY_DAGGER_FRONT_RIGHT = "itcf_carry_dagger_front_right"                        #= 0x0000000040000000
-    CARRAY_QUIVER_FRONT_RIGHT = "itcf_carry_quiver_front_right"                        #= 0x0000000050000000
-    CARRAY_QUIVER_BACK_RIGHT = "itcf_carry_quiver_back_right"                         #= 0x0000000060000000
-    CARRAY_QUIVER_RIGHT_VERTICAL = "itcf_carry_quiver_right_vertical"                     #= 0x0000000070000000
+    CARRY_QUIVER_FRONT_RIGHT = "itcf_carry_quiver_front_right"                        #= 0x0000000050000000
+    CARRY_QUIVER_BACK_RIGHT = "itcf_carry_quiver_back_right"                         #= 0x0000000060000000
+    CARRY_QUIVER_RIGHT_VERTICAL = "itcf_carry_quiver_right_vertical"                     #= 0x0000000070000000
     CARRY_QUIVER_BACK = "itcf_carry_quiver_back"                               #= 0x0000000080000000
     CARRY_REVOLVER_RIGHT = "itcf_carry_revolver_right"                            #= 0x0000000090000000
     CARRY_PISTOL_FRONT_LEFT = "itcf_carry_pistol_front_left"                         #= 0x00000000a0000000
