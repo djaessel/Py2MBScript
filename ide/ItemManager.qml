@@ -361,11 +361,11 @@ ColumnLayout {
         setCheckedCapabilities()
     }
 
-    function createNewMesh(index, resourceName, modifier, meshKind) {
+    function createNewMesh(index, resourceName, modifierx, meshKind) {
         var component = Qt.createComponent("MeshX.qml");
         if (component.status == Component.Ready) {
             var meshx = component.createObject(meshesLayout);
-            meshx.modifiers = modifier
+            meshx.modifiers = modifierx
             meshx.resourceName = resourceName
             meshx.meshKind = meshKind
             meshx.idText = "" + (index+1)
@@ -1693,7 +1693,9 @@ ColumnLayout {
                 flat: true
                 text: "+"
                 onClicked: {
-                    createNewMesh(meshesLayout.children.length, "<resource_name>", "0", 0)
+                    let resName = "<resource_name_" + meshesLayout.children.length + ">"
+                    createNewMesh(meshesLayout.children.length, resName, "0", 0)
+                    curItem.meshes.push({id: resName, modifier: "0"})
                 }
             }
         }

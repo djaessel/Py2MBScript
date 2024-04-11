@@ -50,9 +50,14 @@ RowLayout {
         flat: true
         text: "X"
         onClicked: {
-            console.log(JSON.stringify(curItem.meshes))
-            curItem.meshes.splice(parseInt(idText)-1, 1)
-            console.log(JSON.stringify(curItem.meshes))
+            let idx = 0
+            for (var k in curItem.meshes) {
+                if (curItem.meshes[k].id == meshRoot.resourceName) {
+                    curItem.meshes.splice(idx, 1)
+                    break
+                }
+                idx += 1
+            }
             meshRoot.destroy()
         }
     }
