@@ -82,7 +82,7 @@ ColumnLayout {
         return removeCapability(name)
     }
 
-    function prepareCapabilityFlags() {
+    function unfoldCapabilities() {
         if (containsAndRemoveCapability("itc_musket_melee")) {
             addIfNotIncluded("itc_parry_polearm")
             addIfNotIncluded("itcf_overswing_musket")
@@ -224,7 +224,9 @@ ColumnLayout {
             addIfNotIncluded("itcf_horseback_slashright_onehanded")
             addIfNotIncluded("itcf_horseback_slashleft_onehanded")
         }
+    }
 
+    function setCheckedCapabilities() {
         //- onehanded -
         for (var k in onehanded1.children) {
             onehanded1.children[k].checked = false
@@ -344,6 +346,11 @@ ColumnLayout {
                 others.children[k].checked = true
             }
         }
+    }
+
+    function prepareCapabilityFlags() {
+        unfoldCapabilities()
+        setCheckedCapabilities()
     }
 
     function createNewMesh(index, resourceName, modifier, meshKind) {
