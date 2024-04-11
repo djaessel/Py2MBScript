@@ -60,10 +60,10 @@ def add_troop_to_cur_tableau_for_character(troop_no):
     if troop_is_hero(troop_no):
         cur_tableau_add_troop(troop_no, pos2, animation, -1)
     else:
-      random_seed = troop_no * 126233
-      random_seed %= 1000
-      random_seed += 1
-      cur_tableau_add_troop(troop_no, pos2, animation, random_seed)
+        random_seed = troop_no * 126233
+        random_seed %= 1000
+        random_seed += 1
+        cur_tableau_add_troop(troop_no, pos2, animation, random_seed)
 
     cur_tableau_set_camera_position(pos5)
 
