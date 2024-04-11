@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts
+import QtQuick.Layouts 1.15
 
 
 ColumnLayout {
@@ -30,40 +30,46 @@ ColumnLayout {
         }
 
         for (var kflag in curItem.flags) {
-            var flag = curItem.flags[kflag]
-            for (kchild in flagsGridLayout.children) {
-                var checkx = "itp_" + flagsGridLayout.children[kchild].text.replace(' ', '_').toLowerCase()
-                if (checkx == flag) {
-                    flagsGridLayout.children[kchild].checked = true
-                }
-            }
+            checkFlag(curItem.flags[kflag])
+        }
+    }
 
-            for (kchild in force_show_row.children) {
-                checkx = "itp_" + force_show_row.children[kchild].text.replace(' ', '_').toLowerCase()
-                if (checkx == flag) {
-                    force_show_row.children[kchild].checked = true
-                }
+    function checkFlag(flag) {
+        for (var kchild in flagsGridLayout.children) {
+            var checkx = "itp_" + flagsGridLayout.children[kchild].text.replace(' ', '_').toLowerCase()
+            if (checkx == flag) {
+                flagsGridLayout.children[kchild].checked = true
             }
+        }
 
-            var typeFlag = flag.replace("itp_type_", "")
-            if (type_cbb.model.includes(typeFlag)) {
-                type_cbb.currentIndex = type_cbb.model.indexOf(typeFlag)
+        for (kchild in force_show_row.children) {
+            checkx = "itp_" + force_show_row.children[kchild].text.replace(' ', '_').toLowerCase()
+            if (checkx == flag) {
+                force_show_row.children[kchild].checked = true
             }
+        }
 
-            var attachFlag = flag.replace("itp_", "")
-            if (attach_cbb.model.includes(attachFlag)) {
-                attach_cbb.currentIndex = attach_cbb.model.indexOf(attachFlag)
-            }
+        var typeFlag = flag.replace("itp_type_", "")
+        if (type_cbb.model.includes(typeFlag)) {
+            type_cbb.currentIndex = type_cbb.model.indexOf(typeFlag)
+        }
+
+        var attachFlag = flag.replace("itp_", "")
+        if (attach_cbb.model.includes(attachFlag)) {
+            attach_cbb.currentIndex = attach_cbb.model.indexOf(attachFlag)
         }
     }
 
     function removeCapability(name) {
+        let entered = false
         while (curItem.capabilities.includes(name)) {
             let index = curItem.capabilities.indexOf(name);
             if (index > -1) {
                 curItem.capabilities.splice(index, 1);
+                entered = true
             }
         }
+        return entered
     }
 
     function addIfNotIncluded(name) {
@@ -72,10 +78,12 @@ ColumnLayout {
         }
     }
 
-    function prepareCapabilityFlags() {
-        if (curItem.capabilities.includes("itc_musket_melee")) {
-            removeCapability("itc_musket_melee")
+    function containsAndRemoveCapability(name) {
+        return removeCapability(name)
+    }
 
+    function prepareCapabilityFlags() {
+        if (containsAndRemoveCapability("itc_musket_melee")) {
             addIfNotIncluded("itc_parry_polearm")
             addIfNotIncluded("itcf_overswing_musket")
             addIfNotIncluded("itcf_thrust_musket")
@@ -83,17 +91,13 @@ ColumnLayout {
             addIfNotIncluded("itcf_slashleft_twohanded")
         }
 
-        if (curItem.capabilities.includes("itc_greatlance")) {
-            removeCapability("itc_greatlance")
-
+        if (containsAndRemoveCapability("itc_greatlance")) {
             addIfNotIncluded("itcf_thrust_onehanded_lance")
             addIfNotIncluded("itcf_thrust_onehanded_lance_horseback")
             addIfNotIncluded("itcf_thrust_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_guandao")) {
-            removeCapability("itc_guandao")
-
+        if (containsAndRemoveCapability("itc_guandao")) {
             addIfNotIncluded("itc_parry_polearm")
             addIfNotIncluded("itcf_overswing_polearm")
             addIfNotIncluded("itcf_thrust_polearm")
@@ -104,33 +108,25 @@ ColumnLayout {
             addIfNotIncluded("itcf_horseback_slash_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_pike")) {
-            removeCapability("itc_pike")
-
+        if (containsAndRemoveCapability("itc_pike")) {
             addIfNotIncluded("itcf_thrust_onehanded_lance")
             addIfNotIncluded("itcf_thrust_onehanded_lance_horseback")
             addIfNotIncluded("itcf_thrust_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_cutting_spear")) {
-            removeCapability("itc_cutting_spear")
-
+        if (containsAndRemoveCapability("itc_cutting_spear")) {
             addIfNotIncluded("itc_spear")
             addIfNotIncluded("itcf_overswing_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_spear")) {
-            removeCapability("itc_spear")
-
+        if (containsAndRemoveCapability("itc_spear")) {
             addIfNotIncluded("itc_parry_polearm")
             addIfNotIncluded("itcf_thrust_onehanded_lance")
             addIfNotIncluded("itcf_thrust_onehanded_lance_horseback")
             addIfNotIncluded("itcf_thrust_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_staff")) {
-            removeCapability("itc_staff")
-
+        if (containsAndRemoveCapability("itc_staff")) {
             addIfNotIncluded("itc_parry_polearm")
             addIfNotIncluded("itcf_thrust_onehanded_lance")
             addIfNotIncluded("itcf_thrust_onehanded_lance_horseback")
@@ -140,9 +136,7 @@ ColumnLayout {
             addIfNotIncluded("itcf_slashleft_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_poleaxe")) {
-            removeCapability("itc_poleaxe")
-
+        if (containsAndRemoveCapability("itc_poleaxe")) {
             addIfNotIncluded("itc_parry_polearm")
             addIfNotIncluded("itcf_overswing_polearm")
             addIfNotIncluded("itcf_thrust_polearm")
@@ -150,51 +144,39 @@ ColumnLayout {
             addIfNotIncluded("itcf_slashleft_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_parry_polearm")) {
-            removeCapability("itc_parry_polearm")
-
+        if (containsAndRemoveCapability("itc_parry_polearm")) {
             addIfNotIncluded("itcf_parry_forward_polearm")
             addIfNotIncluded("itcf_parry_up_polearm")
             addIfNotIncluded("itcf_parry_right_polearm")
             addIfNotIncluded("itcf_parry_left_polearm")
         }
 
-        if (curItem.capabilities.includes("itc_morningstar")) {
-            removeCapability("itc_morningstar")
-
+        if (containsAndRemoveCapability("itc_morningstar")) {
             addIfNotIncluded("itc_cut_two_handed")
             addIfNotIncluded("itc_parry_two_handed")
             addIfNotIncluded("itc_cleaver")
         }
 
-        if (curItem.capabilities.includes("itc_bastardsword")) {
-            removeCapability("itc_bastardsword")
-
+        if (containsAndRemoveCapability("itc_bastardsword")) {
             addIfNotIncluded("itc_cut_two_handed")
             addIfNotIncluded("itcf_thrust_twohanded")
             addIfNotIncluded("itc_parry_two_handed")
             addIfNotIncluded("itc_dagger")
         }
 
-        if (curItem.capabilities.includes("itc_nodachi")) {
-            removeCapability("itc_nodachi")
-
+        if (containsAndRemoveCapability("itc_nodachi")) {
             addIfNotIncluded("itc_cut_two_handed")
             addIfNotIncluded("itc_parry_two_handed")
         }
 
-        if (curItem.capabilities.includes("itc_greatsword")) {
-            removeCapability("itc_greatsword")
-
+        if (containsAndRemoveCapability("itc_greatsword")) {
             addIfNotIncluded("itc_cut_two_handed")
             addIfNotIncluded("itcf_thrust_twohanded")
             addIfNotIncluded("itc_parry_two_handed")
             addIfNotIncluded("itcf_thrust_onehanded_lance")
         }
 
-        if (curItem.capabilities.includes("itc_cut_two_handed")) {
-            removeCapability("itc_cut_two_handed")
-
+        if (containsAndRemoveCapability("itc_cut_two_handed")) {
             addIfNotIncluded("itcf_force_64_bits")
             addIfNotIncluded("itcf_slashright_twohanded")
             addIfNotIncluded("itcf_slashleft_twohanded")
@@ -203,9 +185,7 @@ ColumnLayout {
             addIfNotIncluded("itcf_horseback_slashleft_onehanded")
         }
 
-        if (curItem.capabilities.includes("itc_parry_two_handed")) {
-            removeCapability("itc_parry_two_handed")
-
+        if (containsAndRemoveCapability("itc_parry_two_handed")) {
             addIfNotIncluded("itcf_force_64_bits")
             addIfNotIncluded("itcf_parry_forward_twohanded")
             addIfNotIncluded("itcf_parry_up_twohanded")
@@ -213,23 +193,17 @@ ColumnLayout {
             addIfNotIncluded("itcf_parry_left_twohanded")
         }
 
-        if (curItem.capabilities.includes("itc_scimitar")) {
-            removeCapability("itc_scimitar")
-
+        if (containsAndRemoveCapability("itc_scimitar")) {
             addIfNotIncluded("itc_cleaver")
             addIfNotIncluded("itc_parry_onehanded")
         }
 
-        if (curItem.capabilities.includes("itc_longsword")) {
-            removeCapability("itc_longsword")
-
+        if (containsAndRemoveCapability("itc_longsword")) {
             addIfNotIncluded("itc_dagger")
             addIfNotIncluded("itc_parry_onehanded")
         }
 
-        if (curItem.capabilities.includes("itc_parry_onehanded")) {
-            removeCapability("itc_parry_onehanded")
-
+        if (containsAndRemoveCapability("itc_parry_onehanded")) {
             addIfNotIncluded("itcf_force_64_bits")
             addIfNotIncluded("itcf_parry_forward_onehanded")
             addIfNotIncluded("itcf_parry_up_onehanded")
@@ -237,16 +211,12 @@ ColumnLayout {
             addIfNotIncluded("itcf_parry_left_onehanded")
         }
 
-        if (curItem.capabilities.includes("itc_dagger")) {
-            removeCapability("itc_dagger")
-
+        if (containsAndRemoveCapability("itc_dagger")) {
             addIfNotIncluded("itc_cleaver")
             addIfNotIncluded("itcf_thrust_onehanded")
         }
 
-        if (curItem.capabilities.includes("itc_cleaver")) {
-            removeCapability("itc_cleaver")
-
+        if (containsAndRemoveCapability("itc_cleaver")) {
             addIfNotIncluded("itcf_force_64_bits")
             addIfNotIncluded("itcf_overswing_onehanded")
             addIfNotIncluded("itcf_slashright_onehanded")
@@ -289,6 +259,7 @@ ColumnLayout {
             }
         }
 
+        //- twohanded -
         for (k in twohanded.children) {
             twohanded.children[k].checked = false
         }
@@ -306,7 +277,7 @@ ColumnLayout {
             }
         }
 
-
+        //- polearm -
         for (k in polearm.children) {
             polearm.children[k].checked = false
         }
@@ -324,6 +295,7 @@ ColumnLayout {
             }
         }
 
+        //- carry -
         for (k in radioGroup.buttons) {
             radioGroup.buttons[k].checked = false
         }
@@ -333,7 +305,7 @@ ColumnLayout {
             }
         }
 
-
+        //- throw -
         for (k in throwx.children) {
             throwx.children[k].checked = false
         }
@@ -343,6 +315,7 @@ ColumnLayout {
             }
         }
 
+        //- shoot -
         for (k in shoot.children) {
             shoot.children[k].checked = false
         }
@@ -352,6 +325,7 @@ ColumnLayout {
             }
         }
 
+        //- musket -
         for (k in musket.children) {
             musket.children[k].checked = false
         }
@@ -361,6 +335,7 @@ ColumnLayout {
             }
         }
 
+        //- others -
         for (k in others.children) {
             others.children[k].checked = false
         }
