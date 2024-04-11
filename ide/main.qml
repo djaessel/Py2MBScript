@@ -75,7 +75,7 @@ Rectangle {
                         let p = cursorPosition;
                         let markUp = getText(0, length)
                         markUp = markUp.replace(
-                            /(#.*|[.][a-zA-Z_]+[(]|[A-Z][A-Za-z_\-]*|[a-z][A-Za-z_\-]*|[0-9.]+|["'][A-Za-z ./_\-]*["']|[^A-Za-z0-9\t\n ])/g,
+                            /(#.*|[.][a-zA-Z_]+[(]|[A-Z][A-Za-z0-9_\-]*|[a-z][A-Za-z_\-]*|[0-9.]+|["'][A-Za-z ./_\-]*["']|[^A-Za-z0-9\t\n ])/g,
                             function (f) {
                                 //console.log("f: ", JSON.stringify(f));
                                 //if (commnds.includes(f)){
@@ -91,9 +91,9 @@ Rectangle {
                                     return "<span style='color:#008000'>" + f + "</span>";
                                 else if (f.match(/^['"][A-Za-z ./_\-]+['"]$/))
                                     return "<span style='color:#00a000'>" + f + "</span>";
-                                else if (f.match(/^[A-Z][A-Za-z _\-]*$/))
+                                else if (f.match(/^[A-Z][A-Za-z0-9_\-]*$/))
                                     return "<span style='color:#ddaabb'>" + f + "</span>";
-                                else if (f.match(/^[a-z][A-Za-z _\-]*$/))
+                                else if (f.match(/^[a-z][A-Za-z_\-]*$/))
                                     return "<span style='color:#ddeedd'>" + f + "</span>";
                                 else if (f.match(/^[.][a-zA-Z_]+[(]/))
                                     return "<span style='color:#ddaa44'>" + f.replace("(","") + "</span>(";

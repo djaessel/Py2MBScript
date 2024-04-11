@@ -283,12 +283,20 @@ ColumnLayout {
         for (k in polearm.children) {
             polearm.children[k].checked = false
         }
+        for (k in polearm_horseback.children) {
+            polearm_horseback.children[k].checked = false
+        }
         for (k in polearm_parry.children) {
             polearm_parry.children[k].checked = false
         }
         for (k in polearm.children) {
             if (curItem.capabilities.includes(polearm.children[k].flagRValue)) {
                 polearm.children[k].checked = true
+            }
+        }
+        for (k in polearm_horseback.children) {
+            if (curItem.capabilities.includes(polearm_horseback.children[k].flagRValue)) {
+                polearm_horseback.children[k].checked = true
             }
         }
         for (k in polearm_parry.children) {
@@ -488,30 +496,24 @@ ColumnLayout {
                 var idxs = textHandler.getText().indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + " = ") + 3
                 var idxFirst = idxs
 
-                xxxxx = savePropertyFlags(xxxxx, idxs, idxFirst)
+                xxxxx = saveData(xxxxx, idxs, idxFirst)
 
                 textHandler.setText(xxxxx)
                 textArea.text = textHandler.getText()
             }
 
-            function savePropertyFlags(xxxxx, idxs, idxFirst) {
-                var xs = textHandler.getText().substring(idxs)
-                xs = xs.substring(0, xs.indexOf("</p>"))
-                xxxxx = xxxxx.replace(xs, "")
-                var xs2 = textHandler.getText().substring(idxs)
-                while (idxs > 2) {
-                    idxs = xs2.indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + ".") + 3
-                    if (idxs > 2) {
-                        xs2 = xs2.substring(idxs)
-                        xs = xs2.substring(0, xs2.indexOf("</p>"))
-                        xxxxx = xxxxx.replace(xs, "")
-                    }
-                }
-                xxxxx = xxxxx.replace("<p></p>", "")
+            function saveItem() {
+                let newText = "<p>" + curItem.id + " = Item(\"" + curItem.id + "\", \"" + curItem.name + "\", " + curItem.price + ")</p>"
 
+                newText += saveMeshes()
+                newText += savePropertyFlags()
+                newText += saveCapabilityFlags()
 
-                var newText = "<p>" + curItem.id + " = Item(\"" + curItem.id + "\", \"" + curItem.name + "\", " + curItem.price + ")</p>"
+                return newText
+            }
 
+            function saveMeshes() {
+                let newText = ""
                 for (var kmesh in curItem.meshes) {
                     newText += "<p>" + curItem.id + ".add_mesh(ItemMesh(\"" + curItem.meshes[kmesh].id + "\""
                     if (curItem.meshes[kmesh].modifier != "0") {
@@ -519,6 +521,11 @@ ColumnLayout {
                     }
                     newText += "))</p>"
                 }
+                return newText
+            }
+
+            function savePropertyFlags() {
+                let newText = ""
 
                 if (type_cbb.currentIndex > 0) {
                     newText += "<p>" + curItem.id + ".set_type(ItemType." + type_cbb.model[type_cbb.currentIndex].toUpperCase() + ")</p>"
@@ -540,8 +547,127 @@ ColumnLayout {
                     }
                 }
 
+                return newText
+            }
 
-                xxxxx = xxxxx.slice(0, idxFirst) + newText + xxxxx.slice(idxFirst)
+            function saveCapabilityFlags() {
+                var newText = ""
+
+                //- onehanded -
+                for (var k in onehanded1.children) {
+                    if (onehanded1.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + onehanded1.children[k].flagValue + ")</p>"
+                    }
+                }
+                for (k in onehanded2.children) {
+                    if (onehanded2.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + onehanded2.children[k].flagValue + ")</p>"
+                    }
+                }
+                for (k in onehanded_horseback.children) {
+                    if (onehanded_horseback.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + onehanded_horseback.children[k].flagValue + ")</p>"
+                    }
+                }
+                for (k in onehanded_parry.children) {
+                    if (onehanded_parry.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + onehanded_parry.children[k].flagValue + ")</p>"
+                    }
+                }
+
+                //- twohanded -
+                for (k in twohanded.children) {
+                    if (twohanded.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + twohanded.children[k].flagValue + ")</p>"
+                    }
+                }
+                for (k in twohanded_parry.children) {
+                    if (twohanded_parry.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + twohanded_parry.children[k].flagValue + ")</p>"
+                    }
+                }
+
+                //- polearm -
+                for (k in polearm.children) {
+                    if (polearm.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + polearm.children[k].flagValue + ")</p>"
+                    }
+                }
+                for (k in polearm_horseback.children) {
+                    if (polearm_horseback.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + polearm_horseback.children[k].flagValue + ")</p>"
+                    }
+                }
+                for (k in polearm_parry.children) {
+                    if (polearm_parry.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + polearm_parry.children[k].flagValue + ")</p>"
+                    }
+                }
+
+                //- carry -
+                for (k in radioGroup.buttons) {
+                    if (radioGroup.buttons[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + radioGroup.buttons[k].flagValue + ")</p>"
+                    }
+                }
+
+                //- throw -
+                for (k in throwx.children) {
+                    if (throwx.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + throwx.children[k].flagValue + ")</p>"
+                    }
+                }
+
+                //- shoot -
+                for (k in shoot.children) {
+                    if (shoot.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + shoot.children[k].flagValue + ")</p>"
+                    }
+                }
+
+                //- musket -
+                for (k in musket.children) {
+                    if (musket.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + musket.children[k].flagValue + ")</p>"
+                    }
+                }
+
+                //- others -
+                for (k in others.children) {
+                    if (others.children[k].checked) {
+                        newText += "<p>" + curItem.id + ".add_capability(ItemCapability." + others.children[k].flagValue + ")</p>"
+                    }
+                }
+
+                return newText
+            }
+
+            function saveData(xxxxx, idxs, idxFirst) {
+                var xs = textHandler.getText().substring(idxs)
+                xs = xs.substring(0, xs.indexOf("</p>"))
+                xxxxx = xxxxx.replace(xs, "")
+                var xs2 = textHandler.getText().substring(idxs)
+                while (idxs > 2) {
+                    idxs = xs2.indexOf("<p>" + coolcombo.model[coolcombo.currentIndex].text + ".") + 3
+                    if (idxs > 2) {
+                        xs2 = xs2.substring(idxs)
+                        xs = xs2.substring(0, xs2.indexOf("</p>"))
+                        xxxxx = xxxxx.replace(xs, "")
+                    }
+                }
+
+                // remove altered code parts
+                let result = xxxxx.replace("<p></p>", "");
+                while (xxxxx != result) {
+                    xxxxx = result;
+                    result = xxxxx.replace("<p></p>", "");
+                }
+
+                let newText = saveItem()
+
+                // idxFirst - 3 --> <p> gets removed!!!
+                xxxxx = xxxxx.slice(0, idxFirst - 3) + newText + xxxxx.slice(idxFirst - 3)
+
                 return xxxxx
             }
         }
