@@ -935,7 +935,7 @@ prop_instance_get_variation_id_2       = 1841	# (prop_instance_get_variation_id_
 prop_instance_get_position             = 1850	# (prop_instance_get_position, <position_no>, <scene_prop_id>),
 prop_instance_get_starting_position    = 1851	# (prop_instance_get_starting_position, <position_no>, <scene_prop_id>),
 prop_instance_get_scale                = 1852	# (prop_instance_get_scale, <position_no>, <scene_prop_id>),
-prop_instance_get_scene_prop_kind      = 1853   # (prop_instance_get_scene_prop_type, <destination>, <scene_prop_id>)
+prop_instance_get_scene_prop_kind      = 1853   # (prop_instance_get_scene_prop_kind, <destination>, <scene_prop_id>)
 prop_instance_set_scale                = 1854 # (prop_instance_set_scale, <scene_prop_id>, <value_x_fixed_point>, <value_y_fixed_point>, <value_z_fixed_point>),
 prop_instance_set_position             = 1855	# (prop_instance_set_position, <scene_prop_id>, <position_no>, [dont_send_to_clients]),
 #dont_send_to_clients default is 0, therefore it is sent to clients. if you are just doing some physics checks with scene props, then don't send them to clients

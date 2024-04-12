@@ -8,3 +8,5 @@ spr_container_chest_c = 6
 spr_player_chest = 7
 spr_locked_player_chest = 8
 spr_light_sun = 9
+spr_winch = 10
+spr_winch_b = 11

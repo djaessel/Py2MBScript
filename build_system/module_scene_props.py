@@ -47,5 +47,11 @@ scene_props = [
 ]),
 
 ]),
+("winch", sokf_moveable, "winch", "bo_winch", []),
+("winch_b", spr_use_time(5)|sokf_moveable, "winch_b", "bo_winch", [
+(ti_on_scene_prop_use, [
+]),
+
+]),
 
 ] # SCENE PROPS END

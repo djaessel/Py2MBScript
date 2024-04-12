@@ -16,7 +16,7 @@ class GameMenuConverter(ScriptConverter):
         for i in vars(game_menus):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(game_menus,i)
-                if not "<function" in str(attr) and not "MenuOption" in str(attr) and not "animations" in str(attr):
+                if not "<function" in str(attr) and not "module" in str(attr) and not "MenuOption" in str(attr) and not "animations" in str(attr):
                     gameMenus.append(attr)
         return gameMenus
 

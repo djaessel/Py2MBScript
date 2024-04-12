@@ -5,6 +5,8 @@ import scripts
 
 # TODO: add all relevant imports with same naming!
 import ID_animations as animID
+import module_constants as mconst
+import header_common as mcom
 
 class ScriptConverter:
     registers = []
@@ -21,6 +23,8 @@ class ScriptConverter:
     cur_scripts = []
 
     while_active = False
+    list_active = False
+    list_active_name = ""
 
     # presentation overlays (maybe separate)
     prsnt_text_overlays = dict()
@@ -87,6 +91,16 @@ class ScriptConverter:
                     lll[i] = lll[i].strip()
                 self.cur_lists[varName] = lll
                 liny = ""
+            elif funcCall.startswith("["):
+                ScriptConverter.list_active = True
+                lll = funcCall.split('[')[1].split(',')
+                for i in range(len(lll)):
+                    lll[i] = lll[i].strip()
+                if lll[-1] == "":
+                    del lll[-1]
+                self.cur_lists[varName] = lll
+                ScriptConverter.list_active_name = varName
+                liny = ""
             elif funcCall.startswith("MBTextOverlay("):
                 tmp = funcCall.split(')')[0].split('(')[1]
                 liny = "(create_text_overlay, <reg>, <str_text>, <text_flags>)"
@@ -107,6 +121,7 @@ class ScriptConverter:
         else:
             liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
             liny = self.replaceFuncParams(liny, funcCall)
+        liny = liny.replace(":::","$")
         return [liny]
 
 
@@ -335,6 +350,17 @@ class ScriptConverter:
             return [""]
         elif code.startswith("print("):
             return self.handlePrint(code)
+        elif ScriptConverter.list_active:
+            lll = code.split(']')[0].split(',')
+            for i in range(len(lll)):
+                lll[i] = lll[i].strip()
+            if lll[-1] == "":
+                del lll[-1]
+            self.cur_lists[ScriptConverter.list_active_name].extend(lll)
+            if "]" in code:
+                ScriptConverter.list_active = False
+                ScriptConverter.list_active_name = ""
+            return [""]
         elif "+=" in code:
             return self.handleValAdd(code)
         elif "-=" in code:
@@ -583,6 +609,19 @@ class ScriptConverter:
         return b
 
 
+    def conditionListSplit(self, cond, idx):
+        tmp = cond.split(' in ')
+        varx = tmp[0].strip()
+        varName = tmp[1].strip()
+        vals = self.cur_lists[varName]
+        resx = ""
+        for v in vals:
+            resx += varx + " == " + v + " |"
+        if idx <= 0:
+            resx = resx.rstrip('|').rstrip()
+        return resx
+
+
     def conditionalBlockHead(self, ifCode, b, startIndex=3):
         conditionsLine = ifCode.lstrip()[startIndex:].replace(" and ", " & ").replace(" or ", " | ")
         conditionsLine = conditionsLine.split(':')[0]
@@ -592,15 +631,12 @@ class ScriptConverter:
         extra_conditions = []
         for cond in conditions:
             if " in " in cond:
-                tmp = cond.split(' in ')
-                varx = tmp[0].strip()
-                varName = tmp[1].strip()
-                vals = self.cur_lists[varName]
-                resx = ""
-                for v in vals:
-                    resx += varx + " == " + v + " |"
-                resx = resx.rstrip('|').rstrip()
-                extra_conditions.append(resx)
+                condes = cond.split('|')
+                x = len(condes)
+                for c in condes:
+                    x -= 1
+                    resx = self.conditionListSplit(c, x)
+                    extra_conditions.append(resx)
 
         conditions.extend(extra_conditions)
 
