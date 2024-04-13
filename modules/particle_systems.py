@@ -126,4 +126,9 @@ game_hoof_dust_mud.set_emit_direction_randomness(6)
 game_hoof_dust_mud.set_rotation(200, 0.5)
 
 
+# TODO: make these
+dummy_smoke = ParticleSystem("dummy_smoke", "prt_mesh_mud_1", 5, .7,  10, 3, 0, 0)
+dummy_straw = ParticleSystem("dummy_straw", "prt_mesh_mud_1", 5, .7,  10, 3, 0, 0)
+
+
 # TODO: add more from original game

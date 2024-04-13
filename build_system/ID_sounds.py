@@ -59,6 +59,10 @@ snd_man_grunt_long = 57
 snd_man_yell = 58
 snd_man_warcry = 59
 snd_man_victory = 60
-snd_sounds_end = 61
+snd_fire_loop = 61
+snd_torch_loop = 62
+snd_dummy_hit = 63
+snd_dummy_destroyed = 64
+snd_sounds_end = 65
 
 

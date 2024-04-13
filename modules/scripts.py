@@ -186,7 +186,7 @@ def game_get_item_buy_price_factor(item_kind_id):
 
     price_factor /= 100
 
-    reg0 = price_factor
+    reg0 = price_factor + item_kind_id
     set_trigger_result(reg0)
 
 
@@ -202,7 +202,7 @@ def game_get_item_sell_price_factor(item_kind_id):
 
     price_factor /= 100
 
-    reg0 = price_factor
+    reg0 = price_factor + item_kind_id
     set_trigger_result(reg0)
 
 
@@ -212,6 +212,7 @@ def game_get_item_sell_price_factor(item_kind_id):
 
 # INPUT: arg1 = agent_id, arg2 = instance_id
 def use_item(agent_id, user_id):
+    print("USE_ITEM:", agent_id, user_id)
     pass # todo add code
 
 

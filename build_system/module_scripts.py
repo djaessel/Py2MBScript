@@ -200,7 +200,7 @@ scripts = [
 (store_script_param, ":item_kind_id", 1),
 (assign,":price_factor",100),
 (val_div, ":price_factor", 100),
-(assign,reg0,":price_factor"),
+(store_add, reg0, ":price_factor", ":item_kind_id"),
 (set_trigger_result, reg0),
 ]),
 
@@ -208,13 +208,16 @@ scripts = [
 (store_script_param, ":item_kind_id", 1),
 (assign,":price_factor",100),
 (val_div, ":price_factor", 100),
-(assign,reg0,":price_factor"),
+(store_add, reg0, ":price_factor", ":item_kind_id"),
 (set_trigger_result, reg0),
 ]),
 
 ("use_item", [
 (store_script_param, ":agent_id", 1),
 (store_script_param, ":user_id", 2),
+(assign, reg1, ":agent_id"),
+(assign, reg2, ":user_id"),
+(display_message, "@USE_ITEM: {reg1} {reg2}"),
 ]),
 
 ("add_troop_to_cur_tableau_for_character", [

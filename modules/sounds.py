@@ -466,11 +466,30 @@ man_victory.add_files(["man_victory_3.ogg","man_victory_4.ogg","man_victory_5.og
 # man_victory was placed here before
 
 
+
+fire_loop = Sound("fire_loop")
+fire_loop.set_priority(9)
+fire_loop.set_volume(4)
+fire_loop.add_flag(SoundFlag.LOOPING)
+fire_loop.add_flag(SoundFlag.START_AT_RANDOM_POS)
+fire_loop.add_file("Fire_Torch_Loop3.ogg")
+
+torch_loop = Sound("torch_loop")
+torch_loop.set_priority(9)
+torch_loop.set_volume(4)
+torch_loop.add_flag(SoundFlag.LOOPING)
+torch_loop.add_flag(SoundFlag.START_AT_RANDOM_POS)
+torch_loop.add_file("Fire_Torch_Loop3.ogg")
+
+dummy_hit = Sound("dummy_hit")
+dummy_hit.set_priority(9)
+dummy_hit.add_files(["shield_hit_cut_3.ogg","shield_hit_cut_5.ogg"])
+
+dummy_destroyed = Sound("dummy_destroyed")
+dummy_destroyed.set_priority(9)
+dummy_destroyed.add_file("shield_broken.ogg")
+
 '''
-("fire_loop",sf_priority_9|sf_vol_4|sf_looping|sf_start_at_random_pos, ["Fire_Torch_Loop3.ogg"]),
-("torch_loop",sf_priority_9|sf_vol_4|sf_looping|sf_start_at_random_pos, ["Fire_Torch_Loop3.ogg"]),
-("dummy_hit",sf_priority_9, ["shield_hit_cut_3.ogg","shield_hit_cut_5.ogg"]),
-("dummy_destroyed",sf_priority_9, ["shield_broken.ogg"]),
 ("gourd_destroyed",sf_priority_9, ["shield_broken.ogg"]),#TODO
 ("cow_moo", sf_2d|sf_priority_9|sf_vol_8, ["cow_moo_1.ogg"]),
 ("cow_slaughter", sf_2d|sf_priority_9|sf_vol_8, ["cow_slaughter.ogg"]),

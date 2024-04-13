@@ -134,6 +134,19 @@ scene_props = [
 ]),
 
 ]),
+("portcullis", 0, "0", "0", []),
+("castle_e_sally_door_a", 0, "0", "0", []),
+("castle_f_sally_door_a", 0, "0", "0", []),
+("earth_sally_gate_left", 0, "0", "0", []),
+("earth_sally_gate_right", 0, "0", "0", []),
+("viking_keep_destroy_sally_door_left", 0, "0", "0", []),
+("viking_keep_destroy_sally_door_right", 0, "0", "0", []),
+("castle_f_door_a", 0, "0", "0", []),
+("siege_ladder_move_6m", 0, "0", "0", []),
+("siege_ladder_move_8m", 0, "0", "0", []),
+("siege_ladder_move_10m", 0, "0", "0", []),
+("siege_ladder_move_12m", 0, "0", "0", []),
+("siege_ladder_move_14m", 0, "0", "0", []),
 ("castle_f_door_b", sokf_moveable|sokf_show_hit_point_bar|sokf_destructible, "castle_e_sally_door_a", "bo_castle_e_sally_door_a", [
 (ti_on_scene_prop_init, [
 (store_script_param, ":instance_no", 1),

@@ -5,3 +5,5 @@ psys_game_blood_2 = 3
 psys_game_hoof_dust = 4
 psys_game_hoof_dust_snow = 5
 psys_game_hoof_dust_mud = 6
+psys_dummy_smoke = 7
+psys_dummy_straw = 8

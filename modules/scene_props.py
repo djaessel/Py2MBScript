@@ -188,6 +188,25 @@ triggy.codeBlock = code
 door_destructible.add_trigger(triggy)
 
 
+# TODO: doors
+portcullis = SceneProp("portcullis")
+castle_e_sally_door_a = SceneProp("castle_e_sally_door_a")
+castle_f_sally_door_a = SceneProp("castle_f_sally_door_a")
+earth_sally_gate_left = SceneProp("earth_sally_gate_left")
+earth_sally_gate_right = SceneProp("earth_sally_gate_right")
+viking_keep_destroy_sally_door_left = SceneProp("viking_keep_destroy_sally_door_left")
+viking_keep_destroy_sally_door_right = SceneProp("viking_keep_destroy_sally_door_right")
+castle_f_door_a = SceneProp("castle_f_door_a")
+
+
+# TODO: ladders
+siege_ladder_move_6m = SceneProp("siege_ladder_move_6m")
+siege_ladder_move_8m = SceneProp("siege_ladder_move_8m")
+siege_ladder_move_10m = SceneProp("siege_ladder_move_10m")
+siege_ladder_move_12m = SceneProp("siege_ladder_move_12m")
+siege_ladder_move_14m = SceneProp("siege_ladder_move_14m")
+
+
 castle_f_door_b = SceneProp("castle_f_door_b", "castle_e_sally_door_a", "bo_castle_e_sally_door_a")
 castle_f_door_b.add_flag(ScenePropFlag.MOVEABLE)
 castle_f_door_b.add_flag(ScenePropFlag.SHOW_HIT_POINT_BAR)

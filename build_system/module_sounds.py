@@ -62,6 +62,10 @@ sounds = [
 ("man_yell", 0|sf_vol_8|sf_priority_5, ["man_yell_4.ogg","man_yell_4_2.ogg","man_yell_7.ogg","man_yell_9.ogg","man_yell_11.ogg","man_yell_13.ogg","man_yell_15.ogg","man_yell_16.ogg","man_yell_17.ogg","man_yell_20.ogg","man_shortyell_4.ogg","man_shortyell_5.ogg","man_shortyell_6.ogg","man_shortyell_9.ogg","man_shortyell_11.ogg","man_shortyell_11b.ogg","man_yell_b_18.ogg","man_yell_22.ogg","man_yell_c_20.ogg"]),
 ("man_warcry", 0|sf_priority_5, ["man_insult_2.ogg","man_insult_3.ogg","man_insult_7.ogg","man_insult_9.ogg","man_insult_13.ogg","man_insult_15.ogg","man_insult_16.ogg"]),
 ("man_victory", 0|sf_vol_10|sf_priority_5, ["man_victory_3.ogg","man_victory_4.ogg","man_victory_5.ogg","man_victory_8.ogg","man_victory_15.ogg","man_victory_49.ogg","man_victory_52.ogg","man_victory_54.ogg","man_victory_57.ogg","man_victory_71.ogg"]),
+("fire_loop", sf_looping|sf_start_at_random_pos|sf_vol_4|sf_priority_9, ["Fire_Torch_Loop3.ogg"]),
+("torch_loop", sf_looping|sf_start_at_random_pos|sf_vol_4|sf_priority_9, ["Fire_Torch_Loop3.ogg"]),
+("dummy_hit", 0|sf_priority_9, ["shield_hit_cut_3.ogg","shield_hit_cut_5.ogg"]),
+("dummy_destroyed", 0|sf_priority_9, ["shield_broken.ogg"]),
 ("sounds_end", sf_2d|sf_vol_10|sf_priority_10, ["enemy_scored_a_point.ogg"]),
 
 ] # SOUNDS END
