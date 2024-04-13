@@ -416,6 +416,7 @@ ColumnLayout {
                 property_flags_gb.visible = true
                 capability_flags_gb.visible = false
                 meshes_gb.visible = false
+                stats_and_price_gb.visible = false
             }
         }
         Button {
@@ -444,6 +445,7 @@ ColumnLayout {
                 property_flags_gb.visible = false
                 capability_flags_gb.visible = true
                 meshes_gb.visible = false
+                stats_and_price_gb.visible = false
             }
         }
         Button {
@@ -472,6 +474,36 @@ ColumnLayout {
                 property_flags_gb.visible = false
                 capability_flags_gb.visible = false
                 meshes_gb.visible = true
+                stats_and_price_gb.visible = false
+            }
+        }
+        Button {
+            id: statsAndPriceBtn
+            flat: true
+            palette.buttonText: "black"
+            palette.button: "darkgrey"
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 25
+                border.width: statsAndPriceBtn.activeFocus ? 3 : 2
+                border.color: "black"
+                radius: 2
+                gradient: Gradient {
+                    GradientStop { position: 0 ; color: statsAndPriceBtn.pressed ? "#ccc" : "#eee" }
+                    GradientStop { position: 1 ; color: statsAndPriceBtn.pressed ? "#aaa" : "#ccc" }
+                }
+            }
+
+            text: "Stats"
+            onClicked: {
+                for (var kchild in tabxs.children) {
+                    tabxs.children[kchild].enabled = true
+                }
+                statsAndPriceBtn.enabled = false
+                property_flags_gb.visible = false
+                capability_flags_gb.visible = false
+                meshes_gb.visible = false
+                stats_and_price_gb.visible = true
             }
         }
         Button {
@@ -1698,6 +1730,64 @@ ColumnLayout {
                     curItem.meshes.push({id: resName, modifier: "0"})
                 }
             }
+        }
+    } // GroupBox Meshes
+
+    GroupBox {
+        id: stats_and_price_gb
+
+        GridLayout {
+            columns: 4
+
+            RowLayout {
+                Label {
+                    text: "Price:"
+                }
+
+                SpinBox {
+                    id: priceBox
+                    Layout.minimumWidth: 48
+                    value: 1
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            RowLayout {
+                Label {
+                    text: "Bla Bla Bla:"
+                }
+
+                SpinBox {
+                    Layout.minimumWidth: 48
+                    value: 1
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            RowLayout {
+                Label {
+                    text: "Weapon Length:"
+                }
+
+                SpinBox {
+                    Layout.minimumWidth: 48
+                    value: 1
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
         }
     }
 

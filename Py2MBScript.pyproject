@@ -206,6 +206,15 @@
         "modules/tableau_materials.py",
         "modules/mission_templates.py",
         "translation/translator.py",
-        "translation/trans_items.py"
+        "translation/trans_items.py",
+        "ide/text_handler.py",
+        "ide/tcp_connector.py",
+        "ide/runner.py",
+        "ide/openbrf.py",
+        "ide/MeshX.qml",
+        "ide/main_ide.py",
+        "ide/main.qml",
+        "ide/load_openbrf_lib.py",
+        "ide/ItemManager.qml"
     ]
 }
