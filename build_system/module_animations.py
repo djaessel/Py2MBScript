@@ -634,7 +634,7 @@ animations = [
 ["blocked_swingleft_fist", 0, amf_priority_blocked|amf_use_weapon_speed|amf_play|amf_rider_rot_swing_left,
   [0.3, "anim_human", 24313, 24308, blend_in_parry, ],
 ],
-["parried_swingleft_fist", 0, amf_priority_attack|amf_use_weapon_speed|amf_play|amf_rider_rot_swing_left,
+["parried_swingleft_fist", 0, amf_priority_parried|amf_use_weapon_speed|amf_play|amf_rider_rot_swing_left,
   [0.6, "anim_human", 24313, 24308, blend_in_parry, ],
 ],
 ["ready_direct_fist", 0, amf_priority_attack|amf_use_weapon_speed|amf_keep|amf_client_owner_prediction|amf_rider_rot_thrust,

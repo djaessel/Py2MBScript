@@ -3175,7 +3175,7 @@ blocked_swingleft_fist.add_sequence(seq0)
 
 # parried_swingleft_fist Animation
 parried_swingleft_fist = Animation("parried_swingleft_fist")
-parried_swingleft_fist.add_master_flag(AnimationMasterFlag.PRIORITY_ATTACK)
+parried_swingleft_fist.add_master_flag(AnimationMasterFlag.PRIORITY_PARRIED)
 parried_swingleft_fist.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
 parried_swingleft_fist.add_master_flag(AnimationMasterFlag.PLAY)
 parried_swingleft_fist.add_master_flag(AnimationMasterFlag.RIDER_ROT_SWING_LEFT)
