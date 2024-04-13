@@ -10,3 +10,5 @@ spr_locked_player_chest = 8
 spr_light_sun = 9
 spr_winch = 10
 spr_winch_b = 11
+spr_door_destructible = 12
+spr_castle_f_door_b = 13

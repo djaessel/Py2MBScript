@@ -210,6 +210,11 @@ def game_get_item_sell_price_factor(item_kind_id):
 # TODO: add more game events
 
 
+# INPUT: arg1 = agent_id, arg2 = instance_id
+def use_item(agent_id, user_id):
+    pass # todo add code
+
+
 def add_troop_to_cur_tableau_for_character(troop_no):
     set_fixed_point_multiplier(100)
 

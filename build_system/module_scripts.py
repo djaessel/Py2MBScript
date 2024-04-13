@@ -212,6 +212,11 @@ scripts = [
 (set_trigger_result, reg0),
 ]),
 
+("use_item", [
+(store_script_param, ":agent_id", 1),
+(store_script_param, ":user_id", 2),
+]),
+
 ("add_troop_to_cur_tableau_for_character", [
 (store_script_param, ":troop_no", 1),
 (set_fixed_point_multiplier, 100),

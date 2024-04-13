@@ -441,7 +441,7 @@ class ScriptConverter:
                 liny = self.replaceVarWithPlaceholder(liny, params[i], actParamx)
             else:
                 # print("Ignored optional parameter:", params[i], "|", funcCall, "|", liny)
-                liny = liny.replace(", " + params[i], "")
+                liny = liny.replace(", " + params[i], "").replace("," + params[i], "")
         liny = liny.replace(":::", "$")
         return liny
 
