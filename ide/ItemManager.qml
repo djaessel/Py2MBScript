@@ -540,8 +540,55 @@ ColumnLayout {
                 newText += saveMeshes()
                 newText += savePropertyFlags()
                 newText += saveCapabilityFlags()
+                newText += saveStats()
 
                 return newText
+            }
+
+            function textForSetStat(name, val, val2=0) {
+                let txt = ""
+                if (val > 0 && val2 === 0) {
+                    txt = "<p>" + curItem.id + ".set_" + name + "(" + val + ")</p>"
+                } else if (val > 0 && val2 > 0) {
+                    txt = "<p>" + curItem.id + ".set_" + name + "(" + val + ", " + val2 + ")</p>"
+                }
+
+                return txt
+            }
+
+            function saveStats() {
+                let txt = ""
+
+                var weightx = "" + wx(weightVal.value, null)
+                weightx = weightx.trim('0')
+                weightx = Number.parseFloat(weightx)
+
+                // TODO: overwrite curItem and use that instead!!!
+
+                //txt += textForSetStat("price", priceVal.value) // TODO: overwrite curItem.price before saveItem()
+                txt += textForSetStat("weight", weightx)
+                txt += textForSetStat("difficulty", difficultyVal.value)
+                txt += textForSetStat("head_armor", headArmorVal.value)
+                txt += textForSetStat("body_armor", bodyArmorVal.value)
+                txt += textForSetStat("leg_armor", legArmorVal.value)
+                txt += textForSetStat("hit_points", hitPointsVal.value)
+                txt += textForSetStat("speed_rating", speedRatingVal.value)
+                txt += textForSetStat("missle_speed", missileSpeedVal.value)
+                txt += textForSetStat("horse_scale", horseScaleVal.value)
+                txt += textForSetStat("weapon_length", weaponLengthVal.value)
+                txt += textForSetStat("shield_width", shieldWidthVal.value)
+                txt += textForSetStat("shield_height", shieldHeightVal.value)
+                txt += textForSetStat("max_ammo", maxAmmoVal.value)
+                txt += textForSetStat("swing_damage", swingDamageVal.value, swingDamageType.currentIndex)
+                txt += textForSetStat("thrust_damage", thrustDamageVal.value, thrustDamageType.currentIndex)
+                txt += textForSetStat("horse_speed", horseSpeedVal.value)
+                txt += textForSetStat("horse_maneuver", horseManeuverVal.value)
+                txt += textForSetStat("horse_charge", horseChargeVal.value)
+                txt += textForSetStat("food_quality", foodQualityVal.value)
+                txt += textForSetStat("abundance", abundanceVal.value)
+                txt += textForSetStat("accuracy", accuracyVal.value)
+
+                return txt
             }
 
             function saveMeshes() {
@@ -1733,21 +1780,134 @@ ColumnLayout {
         }
     } // GroupBox Meshes
 
+    function wx(value, locale) {
+        let num = Number(value / Math.pow(10, weightVal.decimals))
+        return Number.parseFloat(num).toFixed(weightVal.decimals)
+    }
+
     GroupBox {
         id: stats_and_price_gb
 
-        GridLayout {
-            columns: 4
+        onVisibleChanged: {
+            if (!stats_and_price_gb.visible) return
 
-            RowLayout {
+            for (var k in stats_and_price_grid.children) {
+                stats_and_price_grid.children[k].visible = false
+            }
+
+            difficultyCol.visible = true
+            weightCol.visible = true
+            priceCol.visible = true
+
+            switch (type_cbb.currentIndex) {
+            case 1: // horse
+            case 18: // animal
+                horseChargeCol.visible = true
+                horseManeuverCol.visible = true
+                horseScaleCol.visible = true
+                horseSpeedCol.visible = true
+                hitPointsCol.visible = true
+                break
+            case 2: // one_handed_wpn
+            case 3: // two_handed_wpn
+            case 4: // polearm
+                weaponLengthCol.visible = true
+                speedRatingCol.visible = true
+                swingDamageCol.visible = true
+                thrustDamageCol.visible = true
+                break
+            case 4: // arrows
+            case 5: // bolts
+            case 17: // bullets
+                weaponLengthCol.visible = true
+                missileSpeedCol.visible = true
+                maxAmmoCol.visible = true
+                abundanceCol.visible = true
+                thrustDamageCol.visible = true
+                break
+            case 6: // shield
+                shieldHeightCol.visible = true
+                shieldWidthCol.visible = true
+                speedRatingCol.visible = true
+                hitPointsCol.visible = true
+                bodyArmorCol.visible = true
+                legArmorCol.visible = true
+                headArmorCol.visible = true
+                break
+            case 7: // bow
+            case 8: // crossbow
+            case 15: // pistol
+            case 16: // musket
+                accuracyCol.visible = true
+                speedRatingCol.visible = true
+                weaponLengthCol.visible = true // ?
+                thrustDamageCol.visible = true
+                maxAmmoCol.visible = true
+                missileSpeedCol.visible = true
+                maxAmmoCol.visible = true
+                break
+            case 9: // thrown
+                weaponLengthCol.visible = true
+                speedRatingCol.visible = true
+                accuracyCol.visible = true
+                missileSpeedCol.visible = true
+                maxAmmoCol.visible = true
+                thrustDamageCol.visible = true
+                break
+            case 10: // goods
+                abundanceCol.visible = true
+                maxAmmoCol.visible = true
+                foodQualityCol.visible = true
+                break
+            case 11: // head_armor
+                headArmorCol.visible = true
+                bodyArmorCol.visible = true
+                abundanceCol.visible = true
+                break
+            case 12: // body_armor
+                headArmorCol.visible = true
+                bodyArmorCol.visible = true
+                legArmorCol.visible = true
+                abundanceCol.visible= true
+                break
+            case 13: // leg_armor
+                bodyArmorCol.visible = true
+                legArmorCol.visible = true
+                abundanceCol.visible= true
+                break
+            case 14: // hand_armor
+                bodyArmorCol.visible = true
+                abundanceCol.visible = true
+                break
+            case 19: // book
+                abundanceCol.visible = true
+                break
+            case 0: // none
+            default:
+                for (k in stats_and_price_grid.children) {
+                    stats_and_price_grid.children[k].visible = true
+                }
+                break
+            }
+        }
+
+        GridLayout {
+            id: stats_and_price_grid
+
+            columns: 4
+            columnSpacing: 4
+
+            ColumnLayout {
+                id: priceCol
+
                 Label {
                     text: "Price:"
                 }
 
                 SpinBox {
-                    id: priceBox
+                    id: priceVal
                     Layout.minimumWidth: 48
-                    value: 1
+                    value: 0
                     from: 0
                     to: 999999
                     stepSize: 1
@@ -1756,14 +1916,49 @@ ColumnLayout {
                 }
             }
 
-            RowLayout {
+            ColumnLayout {
+                id: weightCol
+
                 Label {
-                    text: "Bla Bla Bla:"
+                    text: "Weight:"
                 }
 
                 SpinBox {
+                    id: weightVal
                     Layout.minimumWidth: 48
+                    stepSize: 100
+                    editable: true
                     value: 1
+                    property int decimals :6;
+                    property int min: 0
+                    property int max: 99999999
+                    from:min*Math.pow(10, decimals)
+                    to:max*Math.pow(10, decimals)
+
+                    validator: DoubleValidator {
+                        bottom: Math.min(weightVal.from, weightVal.to)
+                        top: Math.max(weightVal.from, weightVal.to)
+                    }
+
+                    textFromValue: wx
+
+                    valueFromText: function(text, locale) {
+                        return Number.parseFloat(text) * Math.pow(10, decimals)
+                    }
+                }
+            }
+
+            ColumnLayout {
+                id: headArmorCol
+
+                Label {
+                    text: "Head Armor:"
+                }
+
+                SpinBox {
+                    id: headArmorVal
+                    Layout.minimumWidth: 48
+                    value: 0
                     from: 0
                     to: 999999
                     stepSize: 1
@@ -1772,19 +1967,384 @@ ColumnLayout {
                 }
             }
 
-            RowLayout {
+            ColumnLayout {
+                id: bodyArmorCol
+
+                Label {
+                    text: "Body Armor:"
+                }
+
+                SpinBox {
+                    id: bodyArmorVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: legArmorCol
+
+                Label {
+                    text: "Leg Armor:"
+                }
+
+                SpinBox {
+                    id: legArmorVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: difficultyCol
+
+                Label {
+                    text: "Difficulty:"
+                }
+
+                SpinBox {
+                    id: difficultyVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: hitPointsCol
+
+                Label {
+                    text: "Hit Points:"
+                }
+
+                SpinBox {
+                    id: hitPointsVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id : speedRatingCol
+
+                Label {
+                    text: "Speed Rating:"
+                }
+
+                SpinBox {
+                    id: speedRatingVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: missileSpeedCol
+
+                Label {
+                    text: "Missile Speed:"
+                }
+
+                SpinBox {
+                    id: missileSpeedVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: weaponLengthCol
+
                 Label {
                     text: "Weapon Length:"
                 }
 
                 SpinBox {
+                    id: weaponLengthVal
                     Layout.minimumWidth: 48
-                    value: 1
+                    value: 0
                     from: 0
                     to: 999999
                     stepSize: 1
                     editable: true
 
+                }
+            }
+
+            ColumnLayout {
+                id: shieldWidthCol
+
+                Label {
+                    text: "Shield Width:"
+                }
+
+                SpinBox {
+                    id: shieldWidthVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: shieldHeightCol
+
+                Label {
+                    text: "Shield Height:"
+                }
+
+                SpinBox {
+                    id: shieldHeightVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: maxAmmoCol
+
+                Label {
+                    text: "Max Ammo:"
+                }
+
+                SpinBox {
+                    id: maxAmmoVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: horseScaleCol
+
+                Label {
+                    text: "Horse Scale:"
+                }
+
+                SpinBox {
+                    id: horseScaleVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: horseSpeedCol
+
+                Label {
+                    text: "Horse Speed:"
+                }
+
+                SpinBox {
+                    id: horseSpeedVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: horseManeuverCol
+
+                Label {
+                    text: "Horse Maneuver:"
+                }
+
+                SpinBox {
+                    id: horseManeuverVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: horseChargeCol
+
+                Label {
+                    text: "Horse Charge:"
+                }
+
+                SpinBox {
+                    id: horseChargeVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: foodQualityCol
+
+                Label {
+                    text: "Food Quality:"
+                }
+
+                SpinBox {
+                    id: foodQualityVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: abundanceCol
+
+                Label {
+                    text: "Abundance:"
+                }
+
+                SpinBox {
+                    id: abundanceVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: accuracyCol
+
+                Label {
+                    text: "Accuracy:"
+                }
+
+                SpinBox {
+                    id: accuracyVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+            }
+
+            ColumnLayout {
+                id: swingDamageCol
+
+                Label {
+                    text: "Swing Damage:"
+                }
+
+                SpinBox {
+                    id: swingDamageVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+
+                ComboBox {
+                    id: swingDamageType
+
+                    model: [
+                        "CUT",
+                        "PIERCE",
+                        "BLUNT"
+                    ]
+                }
+            }
+
+            ColumnLayout {
+                id: thrustDamageCol
+
+                Label {
+                    text: "Thrust Damage:"
+                }
+
+                SpinBox {
+                    id: thrustDamageVal
+                    Layout.minimumWidth: 48
+                    value: 0
+                    from: 0
+                    to: 999999
+                    stepSize: 1
+                    editable: true
+
+                }
+
+                ComboBox {
+                    id: thrustDamageType
+
+                    model: [
+                        "CUT",
+                        "PIERCE",
+                        "BLUNT"
+                    ]
                 }
             }
 

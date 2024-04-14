@@ -291,9 +291,6 @@ class IModBit(Enum):
 
 
 class ItemMesh:
-    id = "ID_NOT_SET"
-    modifier = ""
-
     def __init__(self, id, modifier="0"):
         self.id = id
         self.modifier = modifier
