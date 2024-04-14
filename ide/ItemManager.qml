@@ -545,11 +545,11 @@ ColumnLayout {
                 return newText
             }
 
-            function textForSetStat(name, val, val2=0) {
+            function textForSetStat(name, val, val2=-1) {
                 let txt = ""
-                if (val > 0 && val2 === 0) {
+                if (val > 0 && val2 === -1) {
                     txt = "<p>" + curItem.id + ".set_" + name + "(" + val + ")</p>"
-                } else if (val > 0 && val2 > 0) {
+                } else if (val > 0 && val2 >= 0) {
                     txt = "<p>" + curItem.id + ".set_" + name + "(" + val + ", " + val2 + ")</p>"
                 }
 
