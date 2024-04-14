@@ -148,7 +148,7 @@ animations = [
 ["run_backward_staff", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
   [0.7, "run_backward_staff", 0, 21, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound, pack2f(0.4,0.9), (0,0,0), 0.4],
 ],
-["run_backward_staff", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
+["run_backward_greatsword", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,
   [0.7, "run_backward_twohanded", 0, 21, arf_use_inv_walk_progress|arf_cyclic|blend_in_walk|arf_make_walk_sound, pack2f(0.4,0.9), (0,0,0), 0.4],
 ],
 ["run_backward_hips_right", acf_enforce_lowerbody, amf_use_cycle_period|amf_client_prediction,

@@ -756,7 +756,7 @@ run_backward_staff.add_sequence(seq0)
 
 
 # run_backward_greatsword Animation
-run_backward_greatsword = Animation("run_backward_staff")
+run_backward_greatsword = Animation("run_backward_greatsword")
 run_backward_greatsword.add_flag(AnimationFlag.ENFORCE_LOWERBODY)
 run_backward_greatsword.add_master_flag(AnimationMasterFlag.USE_CYCLE_PERIOD)
 run_backward_greatsword.add_master_flag(AnimationMasterFlag.CLIENT_PREDICTION)
