@@ -169,7 +169,9 @@ def run_app(window_id):
 
     # glitch fix
     time.sleep(1)
-    main_widget.setGeometry(0, 0, 1100, 900)
+    screen_rect = app.primaryScreen().availableGeometry()
+    width, height = screen_rect.width(), screen_rect.height()
+    main_widget.setGeometry(0, 0, width, height)
 
     app.exec()
 

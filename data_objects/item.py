@@ -357,6 +357,22 @@ class Item:
         self.difficulty = difficulty
 
 
+    def set_weapon_length(self, weapon_length : int):
+        self.weapon_length = weapon_length
+
+
+    def set_speed_rating(self, speed_rating : int):
+        self.speed_rating = speed_rating
+
+
+    def set_swing_damage(self, swing_damage : int, damage_type : int|DamageType):
+        self.swing_damage = (swing_damage, int(damage_type))
+
+
+    def set_thrust_damage(self, thrust_damage : int, damage_type : int|DamageType):
+        self.thrust_damage = (thrust_damage, int(damage_type))
+
+
     def add_trigger(self, trigger : SimpleTrigger):
         if not trigger in self.triggers:
             self.triggers.append(trigger)
@@ -405,7 +421,7 @@ class Item:
             stats.append("hit_points(" + str(self.hit_points) + ")")
 
         if self.speed_rating > 0:
-            stats.append("speed_rating(" + str(self.speed_rating) + ")")
+            stats.append("spd_rtng(" + str(self.speed_rating) + ")")
 
         if self.missle_speed > 0:
             stats.append("missle_speed(" + str(self.missle_speed) + ")")

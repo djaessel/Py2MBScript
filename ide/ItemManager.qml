@@ -382,10 +382,73 @@ ColumnLayout {
         }
     }
 
+    /*function resetStats() {
+        //priceVal.value = 0
+
+        weightVal.value = 0
+
+        difficultyVal.value = 0
+        headArmorVal.value = 0
+        bodyArmorVal.value = 0
+        legArmorVal.value = 0
+        hitPointsVal.value = 0
+        speedRatingVal.value = 0
+        missileSpeedVal.value = 0
+        horseScaleVal.value = 0
+        weaponLengthVal.value = 0
+        shieldWidthVal.value = 0
+        shieldHeightVal.value = 0
+        maxAmmoVal.value = 0
+        swingDamageVal.value = 0
+        swingDamageType.currentIndex = 0
+        thrustDamageVal.value = 0
+        thrustDamageType.currentIndex = 0
+        horseSpeedVal.value = 0
+        horseManeuverVal.value = 0
+        horseChargeVal.value = 0
+        foodQualityVal.value = 0
+        abundanceVal.value = 0
+        accuracyVal.value = 0
+    }*/
+
+    function prepareStats() {
+        //resetStats()
+
+        priceVal.value = curItem.price
+
+        weightVal.value = wy(curItem.weight)
+
+        difficultyVal.value = curItem.difficulty
+        headArmorVal.value = curItem.head_armor
+        bodyArmorVal.value = curItem.body_armor
+        legArmorVal.value = curItem.leg_armor
+        hitPointsVal.value = curItem.hit_points
+        speedRatingVal.value = curItem.speed_rating
+        missileSpeedVal.value = curItem.missle_speed
+        horseScaleVal.value = curItem.horse_scale
+        weaponLengthVal.value = curItem.weapon_length
+        shieldWidthVal.value = curItem.shield_width
+        shieldHeightVal.value = curItem.shield_height
+        maxAmmoVal.value = curItem.max_ammo
+
+        swingDamageVal.value = parseInt(curItem.swing_damage.split(',')[0].replace("(", ""))
+        swingDamageType.currentIndex = parseInt(curItem.swing_damage.split(',')[1].replace(")", ""))
+        thrustDamageVal.value = parseInt(curItem.thrust_damage.split(',')[0].replace("(", ""))
+        thrustDamageType.currentIndex = parseInt(curItem.thrust_damage.split(',')[1].replace(")", ""))
+
+        horseSpeedVal.value = curItem.horse_speed
+        horseManeuverVal.value = curItem.horse_maneuver
+        horseChargeVal.value = curItem.horse_charge
+        foodQualityVal.value = curItem.food_quality
+        abundanceVal.value = curItem.abundance
+        accuracyVal.value = curItem.accuracy
+    }
+
     onCurItemChanged: {
         preparePropertyFlags()
         prepareCapabilityFlags()
         prepareMeshes()
+        prepareStats()
     }
 
     RowLayout {
@@ -1784,6 +1847,10 @@ ColumnLayout {
         return Number.parseFloat(num).toFixed(weightVal.decimals)
     }
 
+    function wy(text, locale) {
+        return Number.parseFloat(text) * Math.pow(10, weightVal.decimals)
+    }
+
     GroupBox {
         id: stats_and_price_gb
 
@@ -1944,9 +2011,7 @@ ColumnLayout {
 
                     textFromValue: wx
 
-                    valueFromText: function(text, locale) {
-                        return Number.parseFloat(text) * Math.pow(10, decimals)
-                    }
+                    valueFromText: wy
                 }
             }
 

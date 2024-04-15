@@ -28,7 +28,7 @@ items = [
 
 ["no_item","INVALID ITEM",[("invalid_item",0)],
 itp_type_one_handed_wpn|itp_primary|itp_secondary,
-itc_longsword,
+itcf_thrust_onehanded|itcf_overswing_onehanded|itcf_slashright_onehanded|itcf_slashleft_onehanded|itcf_horseback_slashright_onehanded|itcf_horseback_slashleft_onehanded|itcf_parry_forward_onehanded|itcf_parry_up_onehanded|itcf_parry_right_onehanded|itcf_parry_left_onehanded|itcf_force_64_bits,
 3,
 weight(1.5),
 imodbits_none],
