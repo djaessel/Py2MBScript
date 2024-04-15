@@ -565,7 +565,6 @@ ColumnLayout {
 
                 // TODO: overwrite curItem and use that instead!!!
 
-                //txt += textForSetStat("price", priceVal.value) // TODO: overwrite curItem.price before saveItem()
                 txt += textForSetStat("weight", weightx)
                 txt += textForSetStat("difficulty", difficultyVal.value)
                 txt += textForSetStat("head_armor", headArmorVal.value)
@@ -1913,6 +1912,9 @@ ColumnLayout {
                     stepSize: 1
                     editable: true
 
+                    onValueChanged: {
+                        curItem.price = priceVal.value
+                    }
                 }
             }
 
