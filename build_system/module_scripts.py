@@ -212,6 +212,24 @@ scripts = [
 (set_trigger_result, reg0),
 ]),
 
+("multiAdder", [
+(store_mul, ":var___x1", 3, 5),
+(store_mul, ":var___x2", 2, 7),
+(store_mul, ":var___x3", 5, 2),
+(store_add, ":x", 1, ":var___x1"),
+(val_add, ":x", ":var___x2"),
+(val_add, ":x", ":var___x3"),
+(store_div, ":var___y1", ":x", 4),
+(store_div, ":var___y2", 3, 3),
+(store_mul, ":var___x1", ":var___y1", ":var___y2"),
+(store_add, ":y", 1, 3),
+(val_add, ":y", ":var___x1"),
+(assign, reg0, ":x"),
+(display_message, "@{reg0}"),
+(assign, reg0, ":y"),
+(display_message, "@{reg0}"),
+]),
+
 ("use_item", [
 (store_script_param, ":agent_id", 1),
 (store_script_param, ":user_id", 2),

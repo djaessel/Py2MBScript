@@ -8,7 +8,8 @@ script_game_event_simulate_battle = 6
 script_game_event_battle_end = 7
 script_game_get_item_buy_price_factor = 8
 script_game_get_item_sell_price_factor = 9
-script_use_item = 10
-script_add_troop_to_cur_tableau_for_character = 11
+script_multiadder = 10
+script_use_item = 11
+script_add_troop_to_cur_tableau_for_character = 12
 
 

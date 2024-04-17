@@ -1,5 +1,6 @@
 # This Python file uses the following encoding: utf-8
 
+import re
 import random
 import scripts
 
@@ -114,6 +115,10 @@ class ScriptConverter:
                     liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall.replace('"', '"@').rstrip('@'))
                 else:
                     liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
+            elif "+" in funcCall or "*" in funcCall or "/" in funcCall:
+                liny = self.handleBasicMath(funcCall)
+                print(funcCall)
+                print(liny)
             else:
                 liny = "(assign,<var1>,<var2>)"
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
@@ -248,6 +253,46 @@ class ScriptConverter:
         return b
 
 
+    def handleBasicMath(self, code):
+        linyx = []
+        ccy = code.split('=')[1].strip().split('+')
+        #print(code, ccy)
+        countx = 1
+        idx = 0
+        for cy in ccy:
+            xy = cy.split('*')
+            if len(xy) > 1:
+                idx2 = 0
+                county = 1
+                #print("XY:", xy)
+                for yd in xy:
+                    if "/" in yd:
+                        los = "var___y" + str(county)
+                        hhh = self.handleStoreDiv(los + " = " + yd)
+                        linyx.extend(hhh)
+                        xy[idx2] = los
+                        county += 1
+                    idx2 += 1
+                los = "var___x" + str(countx)
+                cy = " * ".join(xy)
+                #print("CY:", cy)
+                xyz = self.handleStoreMul(los + " = " + cy)
+                linyx.extend(xyz)
+                ccy[idx] = los
+                countx += 1
+            idx += 1
+        #print("CCY:", ccy)
+        if len(ccy) > 2:
+            lll = code.split('=')[0].strip()
+            ooo = lll + " = " + ccy[0].strip() + " + " + ccy[1].strip()
+            #print("OOO:", ooo)
+            linyx.extend(self.handleStoreAdd(ooo))
+            for ix in range(2, len(ccy)):
+                linyx.extend(self.handleValAdd(lll + " += " + ccy[ix].strip()))
+        #print("LINYX:", linyx)
+        return linyx
+
+
     def handleValSub(self, code):
         liny = "(val_sub, <val1>, <val2>)"
         sx = code.split('-')[0].strip()
@@ -296,12 +341,18 @@ class ScriptConverter:
     def handleStoreAdd(self, code):
         liny = "(store_add, <val1>, <val2>, <val3>)"
         sx = code.split('=')[0].strip()
-        sy = code.split('=')[1].strip().split('+')[0].strip()
-        sz = code.split('=')[1].strip().split('+')[1].strip()
+        poi = code.split('=')[1].strip()
+        ccy = poi.split('+')
+        sy = ccy[0].strip()
+        sz = ccy[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
         liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
         liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
-        return [liny]
+        if len(ccy) > 2:
+            rigx = self.handleBasicMath(code)
+        else:
+            rigx = [liny]
+        return rigx
 
 
     def handleStoreSub(self, code):
@@ -318,11 +369,18 @@ class ScriptConverter:
     def handleStoreMul(self, code):
         liny = "(store_mul, <val1>, <val2>, <val3>)"
         sx = code.split('=')[0].strip()
-        sy = code.split('=')[1].strip().split('*')[0].strip()
-        sz = code.split('=')[1].strip().split('*')[1].strip()
+        poi = code.split('=')[1].strip().split('*')
+        sy = poi[0].strip()
+        sz = poi[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
         liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
         liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
+        if len(poi) > 2:
+            rigx = self.handleBasicMath(code)
+            print("rigx:", rigx)
+        else:
+            rigx = [liny]
+        return rigx
         return [liny]
 
 

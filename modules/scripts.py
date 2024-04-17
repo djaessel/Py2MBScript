@@ -210,6 +210,13 @@ def game_get_item_sell_price_factor(item_kind_id):
 # TODO: add more game events
 
 
+def multiAdder():
+    x = 1 + 3 * 5 + 2 * 7 + 5 * 2
+    y = 1 + 3 + x / 4 * 3 / 3
+    print(x)
+    print(y)
+
+
 # INPUT: arg1 = agent_id, arg2 = instance_id
 def use_item(agent_id, user_id):
     print("USE_ITEM:", agent_id, user_id)
