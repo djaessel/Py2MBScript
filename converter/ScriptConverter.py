@@ -255,8 +255,21 @@ class ScriptConverter:
 
     def handleBasicMath(self, code):
         linyx = []
+
+        countz = 1
+        while "(" in code and ")" in code:
+            lh = code.split('(')[1]
+            lh = lh.split(')')[0]
+            codex = "(" + lh + ")"
+            va = "var___z" + str(countz)
+            code = code.replace(codex, va, 1)
+            lh = va + " = " + lh
+            va = self.handleBasicMath(lh)
+            linyx.extend(va)
+            countz += 1
+
         ccy = code.split('=')[1].strip().split('+')
-        #print(code, ccy)
+
         countx = 1
         idx = 0
         for cy in ccy:
@@ -264,7 +277,6 @@ class ScriptConverter:
             if len(xy) > 1:
                 idx2 = 0
                 county = 1
-                #print("XY:", xy)
                 for yd in xy:
                     if "/" in yd:
                         los = "var___y" + str(county)
@@ -275,20 +287,22 @@ class ScriptConverter:
                     idx2 += 1
                 los = "var___x" + str(countx)
                 cy = " * ".join(xy)
-                #print("CY:", cy)
                 xyz = self.handleStoreMul(los + " = " + cy)
                 linyx.extend(xyz)
                 ccy[idx] = los
                 countx += 1
             idx += 1
-        #print("CCY:", ccy)
-        if len(ccy) > 2:
+
+        if len(ccy) >= 2:
             lll = code.split('=')[0].strip()
             ooo = lll + " = " + ccy[0].strip() + " + " + ccy[1].strip()
-            #print("OOO:", ooo)
             linyx.extend(self.handleStoreAdd(ooo))
-            for ix in range(2, len(ccy)):
-                linyx.extend(self.handleValAdd(lll + " += " + ccy[ix].strip()))
+            if len(ccy) > 2:
+                for ix in range(2, len(ccy)):
+                    linyx.extend(self.handleValAdd(lll + " += " + ccy[ix].strip()))
+        else:
+            ccy = self.handleEqualsSign(code.split('=')[0] + " = " + ccy[0])
+            linyx.extend(ccy)
         #print("LINYX:", linyx)
         return linyx
 

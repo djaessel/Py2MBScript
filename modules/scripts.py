@@ -11,6 +11,7 @@ import header_common as mcom
 
 
 def game_start():
+    multiAdder()
     pass
 
 
@@ -213,8 +214,14 @@ def game_get_item_sell_price_factor(item_kind_id):
 def multiAdder():
     x = 1 + 3 * 5 + 2 * 7 + 5 * 2
     y = 1 + 3 + x / 4 * 3 / 3
+    z = 1 + 3 + (x + y) * 4
+    z2 = (1+3) * (4+8)
+    #z3 = (3-1) * (8-4)
     print(x)
     print(y)
+    print(z)
+    print(z2)
+    #print(z3)
 
 
 # INPUT: arg1 = agent_id, arg2 = instance_id

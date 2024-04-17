@@ -17,6 +17,7 @@ from ID_animations import *
 scripts = [
 
 ("game_start", [
+(call_script, "script_multiAdder"),
 ]),
 
 ("game_get_use_string", [
@@ -224,9 +225,21 @@ scripts = [
 (store_mul, ":var___x1", ":var___y1", ":var___y2"),
 (store_add, ":y", 1, 3),
 (val_add, ":y", ":var___x1"),
+(store_add, ":var___z1", ":x", ":y"),
+(store_mul, ":var___x1", ":var___z1", 4),
+(store_add, ":z", 1, 3),
+(val_add, ":z", ":var___x1"),
+(store_add, ":var___z1", 1, 3),
+(store_add, ":var___z2", 4, 8),
+(store_mul, ":var___x1", ":var___z1", ":var___z2"),
+(assign,":z2",":var___x1"),
 (assign, reg0, ":x"),
 (display_message, "@{reg0}"),
 (assign, reg0, ":y"),
+(display_message, "@{reg0}"),
+(assign, reg0, ":z"),
+(display_message, "@{reg0}"),
+(assign, reg0, ":z2"),
 (display_message, "@{reg0}"),
 ]),
 
