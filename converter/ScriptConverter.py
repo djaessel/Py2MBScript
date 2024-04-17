@@ -303,7 +303,7 @@ class ScriptConverter:
         else:
             ccy = self.handleEqualsSign(code.split('=')[0] + " = " + ccy[0])
             linyx.extend(ccy)
-        #print("LINYX:", linyx)
+
         return linyx
 
 

@@ -217,11 +217,13 @@ def multiAdder():
     z = 1 + 3 + (x + y) * 4
     z2 = (1+3) * (4+8)
     #z3 = (3-1) * (8-4)
+    z4 = 0 + 0 + z / (x + y) * z2
     print(x)
     print(y)
     print(z)
     print(z2)
     #print(z3)
+    print(z4)
 
 
 # INPUT: arg1 = agent_id, arg2 = instance_id
