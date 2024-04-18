@@ -253,9 +253,7 @@ class ScriptConverter:
         return b
 
 
-    def handleBasicMath(self, code):
-        linyx = []
-
+    def handleBasicMathHelper1(self, linyx, code):
         countz = 1
         while "(" in code and ")" in code:
             lh = code.split('(')[1]
@@ -267,9 +265,10 @@ class ScriptConverter:
             va = self.handleBasicMath(lh)
             linyx.extend(va)
             countz += 1
+        return code, linyx
 
-        ccy = code.split('=')[1].strip().split('+')
 
+    def handleBasicMathHelper2(self, linyx, ccy):
         countx = 1
         idx = 0
         for cy in ccy:
@@ -292,17 +291,48 @@ class ScriptConverter:
                 ccy[idx] = los
                 countx += 1
             idx += 1
+        return ccy, linyx
 
+
+    def handleBasicMathHelper3(self, code, ccy, linyx):
         if len(ccy) >= 2:
             lll = code.split('=')[0].strip()
-            ooo = lll + " = " + ccy[0].strip() + " + " + ccy[1].strip()
+            ccy0 = ccy[0].strip()
+            ccy1 = ccy[1].strip()
+            if "-" in ccy0:
+                ll = self.handleStoreSub("var___a1 = " + ccy0)
+                linyx.extend(ll)
+                ccy0 = "var___a1"
+            if "-" in ccy1:
+                ll = self.handleStoreSub("var___a2 = " + ccy1)
+                linyx.extend(ll)
+                ccy1 = "var___a2"
+            ooo = lll + " = " + ccy0 + " + " + ccy1
             linyx.extend(self.handleStoreAdd(ooo))
             if len(ccy) > 2:
                 for ix in range(2, len(ccy)):
                     linyx.extend(self.handleValAdd(lll + " += " + ccy[ix].strip()))
+        elif "-" in ccy[0]:
+            lll = code.split('=')[0].strip()
+            selx = ccy[0].split('-')
+            if len(selx[0].strip()) > 0:
+                ll = self.handleStoreSub(lll + " = " + selx[0].strip() + " - " + selx[1].strip())
+                linyx.extend(ll)
         else:
             ccy = self.handleEqualsSign(code.split('=')[0] + " = " + ccy[0])
             linyx.extend(ccy)
+        return linyx
+
+
+    def handleBasicMath(self, code):
+        linyx = []
+
+        code, linyx = self.handleBasicMathHelper1(linyx, code)
+
+        ccy = code.split('=')[1].strip().split('+')
+        ccy, linyx = self.handleBasicMathHelper2(linyx, ccy)
+
+        linyx = self.handleBasicMathHelper3(code, ccy, linyx)
 
         return linyx
 
@@ -372,12 +402,21 @@ class ScriptConverter:
     def handleStoreSub(self, code):
         liny = "(store_sub, <val1>, <val2>, <val3>)"
         sx = code.split('=')[0].strip()
-        sy = code.split('=')[1].strip().split('-')[0].strip()
-        sz = code.split('=')[1].strip().split('-')[1].strip()
+        poi = code.split('=')[1].strip()
+        ccy = poi.split('-')
+        sy = ccy[0].strip()
+        sz = ccy[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
         liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
         liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
-        return [liny]
+        if len(ccy) > 2:
+            rigx = [liny]
+            lll = code.split('=')[0].strip()
+            for ix in range(2, len(ccy)):
+                rigx.extend(self.handleValSub(lll + " -= " + ccy[ix].strip()))
+        else:
+            rigx = [liny]
+        return rigx
 
 
     def handleStoreMul(self, code):
