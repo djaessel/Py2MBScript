@@ -115,10 +115,8 @@ class ScriptConverter:
                     liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall.replace('"', '"@').rstrip('@'))
                 else:
                     liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
-            elif "+" in funcCall or "*" in funcCall or "/" in funcCall:
-                liny = self.handleBasicMath(funcCall)
-                print(funcCall)
-                print(liny)
+            elif "+" in funcCall or "*" in funcCall or "/" in funcCall or ("-" in funcCall and not "=-" in code.replace(" ", "")):
+                liny = self.handleBasicMath(code)
             else:
                 liny = "(assign,<var1>,<var2>)"
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
@@ -126,8 +124,11 @@ class ScriptConverter:
         else:
             liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
             liny = self.replaceFuncParams(liny, funcCall)
-        liny = liny.replace(":::","$")
-        return [liny]
+        if not isinstance(liny, list):
+            liny = [liny]
+        for i in range(len(liny)):
+            liny[i] = liny[i].replace(":::","$")
+        return liny
 
 
     def handleDotSignInEqualLine(self, liny, funcCall, varName):
@@ -312,12 +313,14 @@ class ScriptConverter:
             if len(ccy) > 2:
                 for ix in range(2, len(ccy)):
                     linyx.extend(self.handleValAdd(lll + " += " + ccy[ix].strip()))
-        elif "-" in ccy[0]:
+        elif "-" in ccy[0] and not "=-" in ccy[0].replace(" ",""):
             lll = code.split('=')[0].strip()
             selx = ccy[0].split('-')
             if len(selx[0].strip()) > 0:
                 ll = self.handleStoreSub(lll + " = " + selx[0].strip() + " - " + selx[1].strip())
                 linyx.extend(ll)
+        elif "var___x1" in ccy[0] and len(linyx) == 1 and linyx[0].startswith("(store_mul, \":var___x1\","): # special case multiplication!
+            linyx[0] = linyx[0].replace("(store_mul, \":var___x1\",", "(store_mul, \":" + code.split('=')[0].strip() + "\",")
         else:
             ccy = self.handleEqualsSign(code.split('=')[0] + " = " + ccy[0])
             linyx.extend(ccy)
@@ -430,7 +433,6 @@ class ScriptConverter:
         liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
         if len(poi) > 2:
             rigx = self.handleBasicMath(code)
-            print("rigx:", rigx)
         else:
             rigx = [liny]
         return rigx
@@ -440,12 +442,17 @@ class ScriptConverter:
     def handleStoreDiv(self, code):
         liny = "(store_div, <val1>, <val2>, <val3>)"
         sx = code.split('=')[0].strip()
-        sy = code.split('=')[1].strip().split('/')[0].strip()
-        sz = code.split('=')[1].strip().split('/')[1].strip()
+        poi = code.split('=')[1].strip().split('/')
+        sy = poi[0].strip()
+        sz = poi[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
         liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
         liny = self.replaceVarWithPlaceholder(liny, "<val3>", sz)
-        return [liny]
+        if len(poi) > 2:
+            rigx = self.handleBasicMath(code)
+        else:
+            rigx = [liny]
+        return rigx
 
 
 
@@ -482,14 +489,14 @@ class ScriptConverter:
             return self.handleValDiv(code)
         elif "%=" in code:
             return self.handleValMod(code)
-        elif "+" in code and "=" in code and code.index("=") < code.index("+"):
-            return self.handleStoreAdd(code)
-        elif "-" in code and "=" in code and code.index("=") < code.index("-") and not "= -" in code:
-            return self.handleStoreSub(code)
-        elif "*" in code and "=" in code and code.index("=") < code.index("*"):
-            return self.handleStoreMul(code)
-        elif "/" in code and "=" in code and code.index("=") < code.index("/"):
-            return self.handleStoreDiv(code)
+        #elif "+" in code and "=" in code and code.index("=") < code.index("+"):
+        #    return self.handleStoreAdd(code)
+        #elif "-" in code and "=" in code and code.index("=") < code.index("-") and not "= -" in code:
+        #    return self.handleStoreSub(code)
+        #elif "*" in code and "=" in code and code.index("=") < code.index("*"):
+        #    return self.handleStoreMul(code)
+        #elif "/" in code and "=" in code and code.index("=") < code.index("/"):
+        #    return self.handleStoreDiv(code)
         elif "=" in code:
             return self.handleEqualsSign(code)
         elif "." in code:
