@@ -364,13 +364,13 @@ class ScriptConverter:
         ccy = codex.split('+')
         ccc = codex.split(" - ")
 
-        #if len(ccy) == 1 and len(ccc) > 1:
-        #    print("CCC:", ccc, "CCY:", ccy)
-        #    ll = self.handleStoreSub(code)
-        #    print(ll)
-        #else:
-        ccy, linyx = self.handleBasicMathHelper2(code, linyx, ccy)
-        linyx = self.handleBasicMathHelper3(code, ccy, linyx)
+        if len(ccy) == 1 and len(ccc) > 1:
+            #print("CCC:", ccc, "CCY:", ccy)
+            ll = self.handleStoreSub(code)
+            linyx.extend(ll)
+        else:
+            ccy, linyx = self.handleBasicMathHelper2(code, linyx, ccy)
+            linyx = self.handleBasicMathHelper3(code, ccy, linyx)
 
         return linyx
 

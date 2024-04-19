@@ -275,6 +275,7 @@ scripts = [
 (assign,":var___z2",":var___x1"),
 (store_sub, ":var___z3", 3, 1),
 (store_sub, ":y2", ":var___z1", ":var___z2"),
+(val_sub, ":y2", ":var___z3"),
 (assign, reg0, ":y2"),
 (display_message, "@{reg0}"),
 ]),
