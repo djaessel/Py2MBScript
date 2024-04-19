@@ -254,6 +254,9 @@ def superMaths(bul, bal, bil):
     oo *= 18 - (2 * 6) # 12
     print(oo)
 
+    oo %= 1 * 6 + 2
+    print(oo) # 4
+
 
 # INPUT: arg1 = agent_id, arg2 = instance_id
 def use_item(agent_id, user_id):

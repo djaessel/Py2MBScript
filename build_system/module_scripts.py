@@ -304,6 +304,11 @@ scripts = [
 (val_mul, ":oo", ":var___m1"),
 (assign, reg0, ":oo"),
 (display_message, "@{reg0}"),
+(store_mul, ":var___x1", 1, 6),
+(store_add, ":var___p1", ":var___x1", 2),
+(val_mod, ":oo", ":var___p1"),
+(assign, reg0, ":oo"),
+(display_message, "@{reg0}"),
 ]),
 
 ("use_item", [
