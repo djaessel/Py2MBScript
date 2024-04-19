@@ -380,8 +380,14 @@ class ScriptConverter:
         sx = code.split('-')[0].strip()
         sy = code.split('=')[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
-        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
-        return [liny]
+        rigx = []
+        if "+" in sy or "*" in sy or "/" in sy or ("-" in sy and not sy.replace(" ","").startswith("-")):
+            rigx = self.handleBasicMath("var___s1 = " + sy)
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", "var___s1")
+        else:
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        rigx.append(liny)
+        return rigx
 
 
     def handleValAdd(self, code):
@@ -389,8 +395,14 @@ class ScriptConverter:
         sx = code.split('+')[0].strip()
         sy = code.split('=')[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
-        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
-        return [liny]
+        rigx = []
+        if "+" in sy or "*" in sy or "/" in sy or ("-" in sy and not sy.replace(" ","").startswith("-")):
+            rigx = self.handleBasicMath("var___add1 = " + sy)
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", "var___add1")
+        else:
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        rigx.append(liny)
+        return rigx
 
 
     def handleValMul(self, code):
@@ -398,8 +410,14 @@ class ScriptConverter:
         sx = code.split('*')[0].strip()
         sy = code.split('=')[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
-        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
-        return [liny]
+        rigx = []
+        if "+" in sy or "*" in sy or "/" in sy or ("-" in sy and not sy.replace(" ","").startswith("-")):
+            rigx = self.handleBasicMath("var___m1 = " + sy)
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", "var___m1")
+        else:
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        rigx.append(liny)
+        return rigx
 
 
     def handleValDiv(self, code):
@@ -407,8 +425,14 @@ class ScriptConverter:
         sx = code.split('/')[0].strip()
         sy = code.split('=')[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
-        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
-        return [liny]
+        rigx = []
+        if "+" in sy or "*" in sy or "/" in sy or ("-" in sy and not sy.replace(" ","").startswith("-")):
+            rigx = self.handleBasicMath("var___d1 = " + sy)
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", "var___d1")
+        else:
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        rigx.append(liny)
+        return rigx
 
 
     def handleValMod(self, code):
@@ -416,8 +440,14 @@ class ScriptConverter:
         sx = code.split('%')[0].strip()
         sy = code.split('=')[1].strip()
         liny = self.replaceVarWithPlaceholder(liny, "<val1>", sx)
-        liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
-        return [liny]
+        rigx = []
+        if "+" in sy or "*" in sy or "/" in sy or ("-" in sy and not sy.replace(" ","").startswith("-")):
+            rigx = self.handleBasicMath("var___p1 = " + sy)
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", "var___p1")
+        else:
+            liny = self.replaceVarWithPlaceholder(liny, "<val2>", sy)
+        rigx.append(liny)
+        return rigx
 
 
     def handleStoreAdd(self, code):

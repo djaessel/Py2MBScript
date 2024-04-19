@@ -238,8 +238,21 @@ def superMaths(bul, bal, bil):
     y2 = (9 + 6 * 2) - (8 / 2) - (3 - 1) # 15
     print(y2)
 
-    qq = (bul * bal) / bil + bil # buggy
+    qq = (bul * bal) / bil + bil
     print(qq)
+
+    oo = 555 + 2 # 557
+    oo /= 4 * 55 + 6 * 2 # 2,400862069 --> 2
+    print(oo)
+
+    oo += 6 / 2 + 4 # 9
+    print(oo)
+
+    oo -= 5 + 2 # 2
+    print(oo)
+
+    oo *= 18 - (2 * 6) # 12
+    print(oo)
 
 
 # INPUT: arg1 = agent_id, arg2 = instance_id
