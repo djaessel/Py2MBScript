@@ -269,11 +269,12 @@ class ScriptConverter:
         return code, linyx
 
 
-    def handleBasicMathHelper2(self, linyx, ccy):
+    def handleBasicMathHelper2(self, code, linyx, ccy):
         countx = 1
         idx = 0
         for cy in ccy:
             xy = cy.split('*')
+            yx = cy.split('/')
             if len(xy) > 1:
                 idx2 = 0
                 county = 1
@@ -286,8 +287,35 @@ class ScriptConverter:
                         county += 1
                     idx2 += 1
                 los = "var___x" + str(countx)
+
+                if ("-" in xy[0] and not xy[0].strip().startswith("-")) or ("-" in xy[1] and not xy[1].strip().startswith("-")):
+                    ll = self.handleBasicMathHelper3(code, xy, linyx)
+                    print("LL:", ll)
+
                 cy = " * ".join(xy)
                 xyz = self.handleStoreMul(los + " = " + cy)
+                linyx.extend(xyz)
+                ccy[idx] = los
+                countx += 1
+            elif len(yx) > 1:
+                idx2 = 0
+                county = 1
+                for yd in yx:
+                    if "*" in yd:
+                        los = "var___y" + str(county)
+                        hhh = self.handleStoreMul(los + " = " + yd)
+                        linyx.extend(hhh)
+                        yx[idx2] = los
+                        county += 1
+                    idx2 += 1
+                los = "var___x" + str(countx)
+
+                if ("-" in yx[0] and not yx[0].strip().startswith("-")) or ("-" in yx[1] and not yx[1].strip().startswith("-")):
+                    ll = self.handleBasicMathHelper3(code, yx, linyx)
+                    print("LL:", ll)
+
+                cy = " / ".join(yx)
+                xyz = self.handleStoreDiv(los + " = " + cy)
                 linyx.extend(xyz)
                 ccy[idx] = los
                 countx += 1
@@ -332,9 +360,16 @@ class ScriptConverter:
 
         code, linyx = self.handleBasicMathHelper1(linyx, code)
 
-        ccy = code.split('=')[1].strip().split('+')
-        ccy, linyx = self.handleBasicMathHelper2(linyx, ccy)
+        codex = code.split('=')[1].strip()
+        ccy = codex.split('+')
+        ccc = codex.split(" - ")
 
+        #if len(ccy) == 1 and len(ccc) > 1:
+        #    print("CCC:", ccc, "CCY:", ccy)
+        #    ll = self.handleStoreSub(code)
+        #    print(ll)
+        #else:
+        ccy, linyx = self.handleBasicMathHelper2(code, linyx, ccy)
         linyx = self.handleBasicMathHelper3(code, ccy, linyx)
 
         return linyx

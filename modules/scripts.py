@@ -233,6 +233,12 @@ def multiAdder():
     z5 = 0 + x - 4 - 5 + z3 # 39
     print(z5)
 
+    x2 = (9 + 3 * 2) - (5 * 2) + (3 - 1) # 7
+    print(x2)
+
+    y2 = (9 + 6 * 2) - (8 / 2) - (3 - 1) # 15
+    print(y2)
+
 
 # INPUT: arg1 = agent_id, arg2 = instance_id
 def use_item(agent_id, user_id):
