@@ -11,8 +11,7 @@ import header_common as mcom
 
 
 def game_start():
-    multiAdder()
-    pass
+    superMaths(4, 26, 7)
 
 
 # TODO: add comment
@@ -211,7 +210,7 @@ def game_get_item_sell_price_factor(item_kind_id):
 # TODO: add more game events
 
 
-def multiAdder():
+def superMaths(bul, bal, bil):
     x = 1 + 3 * 5 + 2 * 7 + 5 * 2 # 40
     print(x)
 
@@ -238,6 +237,9 @@ def multiAdder():
 
     y2 = (9 + 6 * 2) - (8 / 2) - (3 - 1) # 15
     print(y2)
+
+    qq = (bul * bal) / bil + bil # buggy
+    print(qq)
 
 
 # INPUT: arg1 = agent_id, arg2 = instance_id

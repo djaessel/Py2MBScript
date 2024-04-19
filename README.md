@@ -549,6 +549,119 @@ triggyx.codeBlock = code
 ]),
 ```
 
+### Advanced Math
+Now it is possible to have some more advanced math logic in one line!  
+Use with caution!  
+  
+(Python Code)
+```python
+def superMaths(bul, bal, bil):
+    x = 1 + 3 * 5 + 2 * 7 + 5 * 2 # 40
+    print(x)
+    
+    y = 1 + 3 + x / 4 * 3 / 3 # 14
+    print(y)
+    
+    z = 1 + 3 + (x + y) * 4 # 220
+    print(z)
+    
+    z2 = (1+3) * (4+8) # 48
+    print(z2)
+    
+    z3 = (3-1) * (8-4) # 8
+    print(z3)
+    
+    z4 = z / (x + y) * z2 # 195,555555556 --> 192 (integer rounding after division!)
+    print(z4)
+    
+    z5 = x - 4 - 5 + z3 # 39
+    print(z5)
+    
+    x2 = (9 + 3 * 2) - (5 * 2) + (3 - 1) # 7
+    print(x2)
+    
+    y2 = (9 + 6 * 2) - (8 / 2) - (3 - 1) # 15
+    print(y2)
+    
+    qq = (bul * bal) / bil + bil # use ( ... ) even tho it should work because it sometimes does not
+    print(qq)
+```
+
+(MBScript)
+```python
+("superMaths", [
+(store_script_param, ":bul", 1),
+(store_script_param, ":bal", 2),
+(store_script_param, ":bil", 3),
+(store_mul, ":var___x1", 3, 5),
+(store_mul, ":var___x2", 2, 7),
+(store_mul, ":var___x3", 5, 2),
+(store_add, ":x", 1, ":var___x1"),
+(val_add, ":x", ":var___x2"),
+(val_add, ":x", ":var___x3"),
+(assign, reg0, ":x"),
+(display_message, "@{reg0}"),
+(store_div, ":var___y1", ":x", 4),
+(store_div, ":var___y2", 3, 3),
+(store_mul, ":var___x1", ":var___y1", ":var___y2"),
+(store_add, ":y", 1, 3),
+(val_add, ":y", ":var___x1"),
+(assign, reg0, ":y"),
+(display_message, "@{reg0}"),
+(store_add, ":var___z1", ":x", ":y"),
+(store_mul, ":var___x1", ":var___z1", 4),
+(store_add, ":z", 1, 3),
+(val_add, ":z", ":var___x1"),
+(assign, reg0, ":z"),
+(display_message, "@{reg0}"),
+(store_add, ":var___z1", 1, 3),
+(store_add, ":var___z2", 4, 8),
+(store_mul, ":var___x1", ":var___z1", ":var___z2"),
+(assign,":z2",":var___x1"),
+(assign, reg0, ":z2"),
+(display_message, "@{reg0}"),
+(store_sub, ":var___z1", 3, 1),
+(store_sub, ":var___z2", 8, 4),
+(store_mul, ":var___x1", ":var___z1", ":var___z2"),
+(assign,":z3",":var___x1"),
+(assign, reg0, ":z3"),
+(display_message, "@{reg0}"),
+(store_add, ":var___z1", ":x", ":y"),
+(store_div, ":var___y1", ":z", ":var___z1"),
+(store_mul, ":var___x1", ":var___y1", ":z2"),
+(assign,":z4",":var___x1"),
+(assign, reg0, ":z4"),
+(display_message, "@{reg0}"),
+(store_sub, ":var___a1", ":x", 4),
+(val_sub, ":var___a1", 5),
+(store_add, ":z5", ":var___a1", ":z3"),
+(assign, reg0, ":z5"),
+(display_message, "@{reg0}"),
+(store_mul, ":var___x1", 3, 2),
+(store_add, ":var___z1", 9, ":var___x1"),
+(store_mul, ":var___z2", 5, 2),
+(store_sub, ":var___z3", 3, 1),
+(store_sub, ":var___a1", ":var___z1", ":var___z2"),
+(store_add, ":x2", ":var___a1", ":var___z3"),
+(assign, reg0, ":x2"),
+(display_message, "@{reg0}"),
+(store_mul, ":var___x1", 6, 2),
+(store_add, ":var___z1", 9, ":var___x1"),
+(store_div, ":var___x1", 8, 2),
+(assign,":var___z2",":var___x1"),
+(store_sub, ":var___z3", 3, 1),
+(store_sub, ":y2", ":var___z1", ":var___z2"),
+(val_sub, ":y2", ":var___z3"),
+(assign, reg0, ":y2"),
+(display_message, "@{reg0}"),
+(store_mul, ":var___z1", ":bul", ":bal"),
+(store_div, ":var___x1", ":var___z1", ":bil"),
+(store_add, ":qq", ":var___x1", ":bil"),
+(assign, reg0, ":qq"),
+(display_message, "@{reg0}"),
+]),
+```
+
 ### Translations
 
 In the folder **translation** you can find all the translation files.  
