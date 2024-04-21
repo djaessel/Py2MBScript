@@ -218,5 +218,20 @@ anim_release_uppercut_fist = 216
 anim_release_uppercut_fist_continue = 217
 anim_blocked_uppercut_fist = 218
 anim_parried_uppercut_fist = 219
+anim_ready_slashright_twohanded = 220
+anim_release_slashright_twohanded = 221
+anim_release_slashright_twohanded_continue = 222
+anim_blocked_slashright_twohanded = 223
+anim_parried_slashright_twohanded = 224
+anim_ready_slashleft_twohanded = 225
+anim_release_slashleft_twohanded = 226
+anim_release_slashleft_twohanded_continue = 227
+anim_blocked_slashleft_twohanded = 228
+anim_parried_slashleft_twohanded = 229
+anim_ready_thrust_twohanded = 230
+anim_release_thrust_twohanded = 231
+anim_release_thrust_twohanded_continue = 232
+anim_blocked_thrust_twohanded = 233
+anim_parried_thrust_twohanded = 234
 
 

@@ -959,13 +959,13 @@ ColumnLayout {
                 CheckBox {
                     id: wooden_attack_cb
                     text: "Wooden Attack"
-                    property string flagValue: "WOODEN_ATTACK"
+                    property string flagValue: "WOODEN_ATTACK_SOUND"
                 }
 
                 CheckBox {
                     id: wooden_parry_cb
                     text: "Wooden Parry"
-                    property string flagValue: "WOODEN_PARRY"
+                    property string flagValue: "WOODEN_PARRY_SOUND"
                 }
 
                 CheckBox {
@@ -1119,9 +1119,9 @@ ColumnLayout {
                 }
 
                 CheckBox {
-                    id: can_knock_back_cb
-                    text: "Can Knock Back"
-                    property string flagValue: "CAN_KNOCK_BACK"
+                    id: can_knock_down_cb
+                    text: "Can Knock Down"
+                    property string flagValue: "CAN_KNOCK_DOWN"
                 }
 
                 CheckBox {

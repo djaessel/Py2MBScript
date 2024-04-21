@@ -3319,69 +3319,205 @@ parried_uppercut_fist.add_sequence(seq0)
 
 # SLASH RIGHT TWOHANDED ANIMATIONS
 
-'''
-["ready_slashright_twohanded", acf_right_cut|acf_rot_vertical_bow|acf_anim_length(100), amf_priority_attack|amf_use_weapon_speed|amf_use_inertia|amf_keep|amf_client_owner_prediction,
-  [ready_durn, "slashright_twohanded", 10, 18, blend_in_ready],
-],
-["release_slashright_twohanded", acf_right_cut|acf_rot_vertical_bow|acf_anim_length(100), amf_priority_attack|amf_use_weapon_speed|amf_play|amf_continue_to_next,
-  [0.61, "slashright_twohanded", 18, 38, blend_in_release],
-],
-["release_slashright_twohanded_continue", 0, amf_priority_continue|amf_use_weapon_speed|amf_play|amf_client_owner_prediction,
-  [0.5, "slashright_twohanded", 38, 61, blend_in_continue],
-],
-["blocked_slashright_twohanded",acf_rot_vertical_bow|acf_anim_length(100), amf_priority_blocked|amf_use_weapon_speed|amf_play,
-  [attack_blocked_duration, "anim_human", combat+5725, combat+5720, blend_in_parry],
-],
-["parried_slashright_twohanded",acf_rot_vertical_bow|acf_anim_length(100), amf_priority_parried|amf_use_weapon_speed|amf_play,
-  [attack_parried_duration, "anim_human", combat+5725, combat+5720, blend_in_parry],
-],
-''' and None
+# ready_slashright_twohanded Animation
+ready_slashright_twohanded = Animation("ready_slashright_twohanded", 100)
+ready_slashright_twohanded.add_flag(AnimationFlag.RIGHT_CUT)
+ready_slashright_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+ready_slashright_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_ATTACK)
+ready_slashright_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+ready_slashright_twohanded.add_master_flag(AnimationMasterFlag.USE_INERTIA)
+ready_slashright_twohanded.add_master_flag(AnimationMasterFlag.KEEP)
+ready_slashright_twohanded.add_master_flag(AnimationMasterFlag.CLIENT_OWNER_PREDICTION)
+# seq 0
+seq0 = AnimationSequence(__ready_durn__, "slashright_twohanded", 10, 18)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_READY)
+ready_slashright_twohanded.add_sequence(seq0)
+
+
+# release_slashright_twohanded Animation
+release_slashright_twohanded = Animation("release_slashright_twohanded", 100)
+release_slashright_twohanded.add_flag(AnimationFlag.RIGHT_CUT)
+release_slashright_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+release_slashright_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_ATTACK)
+release_slashright_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+release_slashright_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+release_slashright_twohanded.add_master_flag(AnimationMasterFlag.CONTINUE_TO_NEXT)
+# seq 0
+seq0 = AnimationSequence(0.61, "slashright_twohanded", 18, 38)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_RELEASE)
+release_slashright_twohanded.add_sequence(seq0)
+
+
+# release_slashright_twohanded_continue Animation
+release_slashright_twohanded_continue = Animation("release_slashright_twohanded_continue", 100)
+release_slashright_twohanded_continue.add_master_flag(AnimationMasterFlag.PRIORITY_CONTINUE)
+release_slashright_twohanded_continue.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+release_slashright_twohanded_continue.add_master_flag(AnimationMasterFlag.PLAY)
+release_slashright_twohanded_continue.add_master_flag(AnimationMasterFlag.CLIENT_OWNER_PREDICTION)
+# seq 0
+seq0 = AnimationSequence(0.5, "slashright_twohanded", 38, 61)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_CONTINUE)
+release_slashright_twohanded_continue.add_sequence(seq0)
+
+
+# blocked_slashright_twohanded Animation
+blocked_slashright_twohanded = Animation("blocked_slashright_twohanded", 100)
+blocked_slashright_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+blocked_slashright_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_BLOCKED)
+blocked_slashright_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+blocked_slashright_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+# seq 0
+seq0 = AnimationSequence(__attack_blocked_duration__, "anim_human", __combat__+5725, __combat__+5720)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_PARRY)
+blocked_slashright_twohanded.add_sequence(seq0)
+
+
+# parried_slashright_twohanded Animation
+parried_slashright_twohanded = Animation("parried_slashright_twohanded", 100)
+parried_slashright_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+parried_slashright_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_PARRIED)
+parried_slashright_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+parried_slashright_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+# seq 0
+seq0 = AnimationSequence(__attack_parried_duration__, "anim_human", __combat__+5725, __combat__+5720)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_PARRY)
+parried_slashright_twohanded.add_sequence(seq0)
 
 
 
 
 # SLASH LEFT TWOHANDED ANIMATIONS
 
-'''
-["ready_slashleft_twohanded", acf_right_cut|acf_rot_vertical_bow|acf_anim_length(100), amf_priority_attack|amf_use_weapon_speed|amf_use_inertia|amf_keep|amf_client_owner_prediction,
-  [ready_durn, "slashleft_twohanded", 12, 16, blend_in_ready],
-],
-["release_slashleft_twohanded", acf_right_cut|acf_rot_vertical_bow|acf_anim_length(100), amf_priority_attack|amf_use_weapon_speed|amf_play|amf_continue_to_next,
-  [0.61, "slashleft_twohanded", 16, 38, blend_in_release],
-],
-["release_slashleft_twohanded_continue", 0, amf_priority_continue|amf_use_weapon_speed|amf_play|amf_client_owner_prediction,
-  [0.5, "slashleft_twohanded", 38, 52, blend_in_continue],
-],
-["blocked_slashleft_twohanded",acf_rot_vertical_bow|acf_anim_length(100), amf_priority_blocked|amf_use_weapon_speed|amf_play,
-  [attack_blocked_duration, "anim_human", combat+6425, combat+6420, blend_in_parry],
-],
-["parried_slashleft_twohanded",acf_rot_vertical_bow|acf_anim_length(100), amf_priority_parried|amf_use_weapon_speed|amf_play,
-  [attack_parried_duration, "anim_human", combat+6425, combat+6420, blend_in_parry],
-],
-''' and None
+# ready_slashleft_twohanded Animation
+ready_slashleft_twohanded = Animation("ready_slashleft_twohanded", 100)
+ready_slashleft_twohanded.add_flag(AnimationFlag.RIGHT_CUT)
+ready_slashleft_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+ready_slashleft_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_ATTACK)
+ready_slashleft_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+ready_slashleft_twohanded.add_master_flag(AnimationMasterFlag.USE_INERTIA)
+ready_slashleft_twohanded.add_master_flag(AnimationMasterFlag.KEEP)
+ready_slashleft_twohanded.add_master_flag(AnimationMasterFlag.CLIENT_OWNER_PREDICTION)
+# seq 0
+seq0 = AnimationSequence(__ready_durn__, "slashleft_twohanded", 12, 16)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_READY)
+ready_slashleft_twohanded.add_sequence(seq0)
+
+
+# release_slashleft_twohanded Animation
+release_slashleft_twohanded = Animation("release_slashleft_twohanded", 100)
+release_slashleft_twohanded.add_flag(AnimationFlag.RIGHT_CUT)
+release_slashleft_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+release_slashleft_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_ATTACK)
+release_slashleft_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+release_slashleft_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+release_slashleft_twohanded.add_master_flag(AnimationMasterFlag.CONTINUE_TO_NEXT)
+# seq 0
+seq0 = AnimationSequence(0.61, "slashleft_twohanded", 16, 38)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_RELEASE)
+release_slashleft_twohanded.add_sequence(seq0)
+
+
+# release_slashleft_twohanded_continue Animation
+release_slashleft_twohanded_continue = Animation("release_slashleft_twohanded_continue", 100)
+release_slashleft_twohanded_continue.add_master_flag(AnimationMasterFlag.PRIORITY_CONTINUE)
+release_slashleft_twohanded_continue.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+release_slashleft_twohanded_continue.add_master_flag(AnimationMasterFlag.PLAY)
+release_slashleft_twohanded_continue.add_master_flag(AnimationMasterFlag.CLIENT_OWNER_PREDICTION)
+# seq 0
+seq0 = AnimationSequence(0.5, "slashleft_twohanded", 38, 52)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_CONTINUE)
+release_slashleft_twohanded_continue.add_sequence(seq0)
+
+
+# blocked_slashleft_twohanded Animation
+blocked_slashleft_twohanded = Animation("blocked_slashleft_twohanded", 100)
+blocked_slashleft_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+blocked_slashleft_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_BLOCKED)
+blocked_slashleft_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+blocked_slashleft_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+# seq 0
+seq0 = AnimationSequence(__attack_blocked_duration__, "anim_human", __combat__+6425, __combat__+6420)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_PARRY)
+blocked_slashleft_twohanded.add_sequence(seq0)
+
+
+# parried_slashleft_twohanded Animation
+parried_slashleft_twohanded = Animation("parried_slashleft_twohanded", 100)
+parried_slashleft_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+parried_slashleft_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_PARRIED)
+parried_slashleft_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+parried_slashleft_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+# seq 0
+seq0 = AnimationSequence(__attack_parried_duration__, "anim_human", __combat__+6425, __combat__+6420)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_PARRY)
+parried_slashleft_twohanded.add_sequence(seq0)
 
 
 
 
 # THRUST TWOHANDED ANIMATIONS
 
-'''
-["ready_thrust_twohanded", acf_thrust|acf_rot_vertical_bow|acf_anim_length(100), amf_priority_attack|amf_use_weapon_speed|amf_use_inertia|amf_keep|amf_client_owner_prediction,
-  [ready_durn, "anim_human", combat+6000, combat+6010, blend_in_ready],
-],
-["release_thrust_twohanded", acf_thrust|acf_rot_vertical_bow|acf_anim_length(100), amf_priority_attack|amf_use_weapon_speed|amf_play|amf_continue_to_next,
-  [0.61, "anim_human", combat+6010, combat+6031, blend_in_release],
-],
-["release_thrust_twohanded_continue", 0, amf_priority_continue|amf_use_weapon_speed|amf_play|amf_client_owner_prediction,
-  [0.1, "anim_human", combat+6031, combat+6040, blend_in_continue],
-],
-["blocked_thrust_twohanded", 0, amf_priority_blocked|amf_use_weapon_speed|amf_play,
-  [attack_blocked_duration_thrust, "anim_human", combat+6015, combat+6016, blend_in_parry],
-],
-["parried_thrust_twohanded", 0, amf_priority_parried|amf_use_weapon_speed|amf_play,
-  [attack_parried_duration_thrust, "anim_human", combat+6015, combat+6016, blend_in_parry],
-],
-''' and None
+# ready_thrust_twohanded Animation
+ready_thrust_twohanded = Animation("ready_thrust_twohanded", 100)
+ready_thrust_twohanded.add_flag(AnimationFlag.THRUST)
+ready_thrust_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+ready_thrust_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_ATTACK)
+ready_thrust_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+ready_thrust_twohanded.add_master_flag(AnimationMasterFlag.USE_INERTIA)
+ready_thrust_twohanded.add_master_flag(AnimationMasterFlag.KEEP)
+ready_thrust_twohanded.add_master_flag(AnimationMasterFlag.CLIENT_OWNER_PREDICTION)
+# seq 0
+seq0 = AnimationSequence(__ready_durn__, "anim_human", __combat__+6000, __combat__+6010)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_READY)
+ready_thrust_twohanded.add_sequence(seq0)
+
+
+# release_thrust_twohanded Animation
+release_thrust_twohanded = Animation("release_thrust_twohanded", 100)
+release_thrust_twohanded.add_flag(AnimationFlag.THRUST)
+release_thrust_twohanded.add_flag(AnimationFlag.ROT_VERTICAL_BOW)
+release_thrust_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_ATTACK)
+release_thrust_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+release_thrust_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+release_thrust_twohanded.add_master_flag(AnimationMasterFlag.CONTINUE_TO_NEXT)
+# seq 0
+seq0 = AnimationSequence(0.61, "anim_human", __combat__+6010, __combat__+6031)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_RELEASE)
+release_thrust_twohanded.add_sequence(seq0)
+
+
+# release_thrust_twohanded_continue Animation
+release_thrust_twohanded_continue = Animation("release_thrust_twohanded_continue", 100)
+release_thrust_twohanded_continue.add_master_flag(AnimationMasterFlag.PRIORITY_CONTINUE)
+release_thrust_twohanded_continue.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+release_thrust_twohanded_continue.add_master_flag(AnimationMasterFlag.PLAY)
+release_thrust_twohanded_continue.add_master_flag(AnimationMasterFlag.CLIENT_OWNER_PREDICTION)
+# seq 0
+seq0 = AnimationSequence(0.1, "anim_human", __combat__+6031, __combat__+6040)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_CONTINUE)
+release_thrust_twohanded_continue.add_sequence(seq0)
+
+
+# blocked_thrust_twohanded Animation
+blocked_thrust_twohanded = Animation("blocked_thrust_twohanded", 100)
+blocked_thrust_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_BLOCKED)
+blocked_thrust_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+blocked_thrust_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+# seq 0
+seq0 = AnimationSequence(__attack_blocked_duration__, "anim_human", __combat__+6015, __combat__+6016)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_PARRY)
+blocked_thrust_twohanded.add_sequence(seq0)
+
+
+# parried_thrust_twohanded Animation
+parried_thrust_twohanded = Animation("parried_thrust_twohanded", 100)
+parried_thrust_twohanded.add_master_flag(AnimationMasterFlag.PRIORITY_PARRIED)
+parried_thrust_twohanded.add_master_flag(AnimationMasterFlag.USE_WEAPON_SPEED)
+parried_thrust_twohanded.add_master_flag(AnimationMasterFlag.PLAY)
+# seq 0
+seq0 = AnimationSequence(__attack_parried_duration__, "anim_human", __combat__+6015, __combat__+6016)
+seq0.add_flag(AnimationSequenceFlag.BLEND_IN_PARRY)
+parried_thrust_twohanded.add_sequence(seq0)
 
 
 
