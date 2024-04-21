@@ -2,7 +2,6 @@
 from header_common import *
 from header_operations import *
 from module_constants import *
-from module_constants import *
 from header_parties import *
 from header_skills import *
 from header_mission_templates import *
@@ -17,7 +16,6 @@ from ID_animations import *
 scripts = [
 
 ("game_start", [
-(call_script, "script_superMaths", 4, 26, 7),
 ]),
 
 ("game_get_use_string", [
@@ -159,7 +157,7 @@ scripts = [
     (assign,reg0,"$g_multiplayer_respawn_period"),
     (str_store_string,s0,"str_respawn_period_is_reg0_seconds"),
 (else_try),
-    (str_store_string,s0,"@@{!}DEBUG : SYSTEM ERROR!"),
+    (str_store_string,s0,"@{!}DEBUG : SYSTEM ERROR!"),
 (try_end),
 ]),
 

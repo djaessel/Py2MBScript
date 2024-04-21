@@ -8,10 +8,12 @@ from MBParty import MBParty
 import ID_animations as animID
 import module_constants as mconst
 import header_common as mcom
+import game_menus as mnu
+import strings as gstr
 
 
 def game_start():
-    superMaths(4, 26, 7)
+    pass
 
 
 # TODO: add comment
@@ -51,21 +53,21 @@ def game_get_use_string(instance_id):
 
     if effected_object == "spr_portcullis": #opening/closing portcullis
         if item_situation == 0:
-            s0 = "str_open_gate"
+            s0 = gstr.open_gate
         else:
-            s0 = "str_close_gate"
+            s0 = gstr.close_gate
         #end
     elif effected_object in doors: #opening/closing door
         if item_situation == 0:
-            s0 = "str_open_door"
+            s0 = gstr.open_door
         else:
-            s0 = "str_close_door"
+            s0 = gstr.close_door
         #end
     else: #raising/dropping ladder
         if item_situation == 0:
-            s0 = "str_raise_ladder"
+            s0 = gstr.raise_ladder
         else:
-            s0 = "str_drop_ladder"
+            s0 = gstr.drop_ladder
         #end
 
 
@@ -135,7 +137,7 @@ def game_get_console_command(input, val1, val2):
         reg0 = _g_multiplayer_respawn_period
         s0 = "str_respawn_period_is_reg0_seconds"
     else: # add more here
-        s0 = "@{!}DEBUG : SYSTEM ERROR!"
+        s0 = "{!}DEBUG : SYSTEM ERROR!"
 
 
 # This script is called from the game engine whenever player party encounters another party or a battle on the world map
@@ -149,9 +151,9 @@ def game_event_party_encounter(_g_encountered_party, _g_encountered_party_2):
     _g_encountered_party = MBParty(_g_encountered_party)
     template_idx = _g_encountered_party.get_template_id()
     if template_idx == 0:
-        jump_to_menu("mnu_town")
+        jump_to_menu(mnu.town_menu)
     else:
-        jump_to_menu("mnu_simple_encounter")
+        jump_to_menu(mnu.simple_encounter)
 
 
 # This script is called whenever the game simulates the battle between two parties on the map.

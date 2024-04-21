@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 
-import re
+import os
 import random
 import scripts
 
@@ -8,6 +8,7 @@ import scripts
 import ID_animations as animID
 import module_constants as mconst
 import header_common as mcom
+import strings as gstr
 
 class ScriptConverter:
     registers = []
@@ -47,6 +48,7 @@ class ScriptConverter:
             self.pos_registers.append("pos" + str(i))
 
         self.cur_scripts = self.retrieveScriptNames()
+        self.codeTypes = self.readAllTypes()
 
 
     def retrieveScriptNames(self):
@@ -72,7 +74,7 @@ class ScriptConverter:
         funcCall = tmp[1].strip()
         liny = self.getFuncCodeLine(funcCall)
         if liny.endswith("# ERROR 1"):
-            if "." in liny:
+            if "." in liny and not liny.split('.')[0].strip() in self.codeTypes:
                 liny = self.handleDotSignInEqualLine(liny, funcCall, varName)
             elif funcCall.startswith("MBParty("):
                 self.cur_parties[varName] = funcCall.split(')')[0].split('(')[1]
@@ -520,6 +522,44 @@ class ScriptConverter:
         return rigx
 
 
+    def replaceTypex2(self, code):
+        codeNew = code.split('(')[0] + "("
+        xol = code.split('(')[1].split(')')[0].split(',')
+        for i in range(len(xol)):
+            xol[i] = xol[i].strip()
+            if "." in xol[i]:
+                tmp = xol[i].split('.')
+                if tmp[0] in self.codeTypes:
+                    xxy = getattr(self.codeTypes[tmp[0]], tmp[1])
+                    if xxy:
+                        xol[i] = tmp[0] + "_" + xxy.id
+                        codeNew += '"' + xol[i] + "\","
+                    else:
+                        print("ERROR 0x533D1")
+        codeNew = codeNew.rstrip(',') + ")"
+        return codeNew
+
+
+    def replaceTypex3(self, code):
+        codeNew = code.split('=')[0] + " = "
+        xol = code.split('=')[1].strip()
+        if "." in xol:
+            tmp = xol.split('.')
+            if tmp[0] in self.codeTypes:
+                xxy = getattr(self.codeTypes[tmp[0]], tmp[1])
+                if xxy:
+                    if tmp[0] == "gstr":
+                        tmp[0] = "str"
+                    xol = tmp[0] + "_" + xxy.id
+                    codeNew += '"' + xol + "\""
+                else:
+                    print("ERROR 0x533D2")
+            else:
+                codeNew = code
+        else:
+            codeNew = code
+        return codeNew
+
 
     def transformCode(self, code):
         if len(code.strip()) == 0:
@@ -527,6 +567,13 @@ class ScriptConverter:
 
         if "#" in code:
             code = code.split('#')[0].rstrip()
+
+        if "." in code:
+            if "(" in code and ")" in code:
+                if code.index("(") < code.index(".") and code.index(")") > code.index("."):
+                    code = self.replaceTypex2(code)
+            else:
+                code = self.replaceTypex3(code)
 
         if code.strip().startswith('#'):
             # return [code.strip()]
@@ -554,14 +601,6 @@ class ScriptConverter:
             return self.handleValDiv(code)
         elif "%=" in code:
             return self.handleValMod(code)
-        #elif "+" in code and "=" in code and code.index("=") < code.index("+"):
-        #    return self.handleStoreAdd(code)
-        #elif "-" in code and "=" in code and code.index("=") < code.index("-") and not "= -" in code:
-        #    return self.handleStoreSub(code)
-        #elif "*" in code and "=" in code and code.index("=") < code.index("*"):
-        #    return self.handleStoreMul(code)
-        #elif "/" in code and "=" in code and code.index("=") < code.index("/"):
-        #    return self.handleStoreDiv(code)
         elif "=" in code:
             return self.handleEqualsSign(code)
         elif "." in code:
@@ -730,6 +769,36 @@ class ScriptConverter:
                 b[0] = b[0].replace("(", "(neg|").replace(":not ", ":")
 
         return b
+
+
+    def readAllTypes(self):
+        typesx = dict()
+        pathx = "./modules"
+        filesAndDirs = os.listdir(pathx)
+        for fx in filesAndDirs:
+            if os.path.isfile(pathx + "/" + fx):
+                typex = fx.split('.')[0]
+                typex2 = self.replaceTypex(typex)
+                typesx[typex2] = __import__(typex)
+        return typesx
+
+
+    def replaceTypex(self, t):
+        s = "ERROR"
+        t = t.strip()
+        if t == "scripts":
+            s = "script"
+        elif t == "troops":
+            s = "trp"
+        elif t == "map_icons":
+            s = "icon"
+        elif t == "items":
+            s = "itm"
+        elif t == "game_menus":
+            s = "mnu"
+        elif t == "strings":
+            s = "gstr"
+        return s
 
 
     def replaceVarWithPlaceholder(self, line, placeholder, varname):
@@ -1069,7 +1138,6 @@ class ScriptConverter:
             f.write("# -*- coding: cp1254 -*-\n")
             f.write("from header_common import *\n")
             f.write("from header_operations import *\n")
-            f.write("from module_constants import *\n")
             f.write("from module_constants import *\n")
             f.write("from header_parties import *\n")
             f.write("from header_skills import *\n")
