@@ -6,8 +6,10 @@ import time
 import signal
 
 sys.path.append('../modules/')
+#sys.path.append('../data_objects/')
 
 import items
+#from item import ItemFlag, ItemMesh
 
 
 process = None
@@ -131,8 +133,6 @@ def run_app(window_id):
 
     xitems = []
     for x in retrieveItems():
-        #xitems.append({'id': x.id, 'mesh1': x.meshes[0].id})
-        #print(x.id, "|", x.__dict__)
         d = dumpDict(x)
         xitems.append(d)
     qmlWindow.engine().rootContext().setContextProperty('xitems', xitems)
