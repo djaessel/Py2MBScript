@@ -8,6 +8,7 @@ from scene_prop import SceneProp, ScenePropFlag
 from simple_trigger import SimpleTrigger
 import header_triggers as tri
 import header_common as mcom
+import sounds as snd
 
 
 
@@ -138,7 +139,7 @@ door_destructible.add_trigger(triggy)
 # trigger 2
 triggy = SimpleTrigger(tri.ti_on_scene_prop_destroy)
 def code(instance_no, attacker_agent_no):
-    play_sound("snd_dummy_destroyed")
+    play_sound(snd.dummy_destroyed)
     rotate_side = 86
 
     if multiplayer_is_server() or not game_in_multiplayer_mode():

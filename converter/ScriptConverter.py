@@ -10,6 +10,35 @@ import module_constants as mconst
 import header_common as mcom
 import strings as gstr
 import scene_props as spr
+import sounds as snd
+
+
+typeDictX = dict()
+typeDictX["scripts"] = "script"
+typeDictX["troops"] = "trp"
+typeDictX["map_icons"] = "icon"
+typeDictX["items"] = "itm"
+typeDictX["game_menus"] = "mnu"
+typeDictX["strings"] = "gstr"
+typeDictX["scene_props"] = "spr"
+typeDictX["sounds"] = "snd"
+typeDictX["animations"] = "anim"
+typeDictX["factions"] = "fac"
+typeDictX["meshes"] = "mesh"
+typeDictX["info_pages"] = "ip"
+typeDictX["dialogs"] = "dlg"
+typeDictX["mission_templates"] = "mt"
+typeDictX["parties"] = "p"
+typeDictX["party_templates"] = "pt"
+typeDictX["music"] = "track"
+typeDictX["particle_systems"] = "psys"
+typeDictX["postfxs"] = "pfx"
+typeDictX["presentations"] = "prnst"
+typeDictX["quests"] = "qst"
+typeDictX["scenes"] = "scn"
+typeDictX["skills"] = "skl"
+typeDictX["tableau_materials"] = "tab"
+typeDictX["skins"] = "skin"
 
 
 class ScriptConverter:
@@ -809,20 +838,8 @@ class ScriptConverter:
     def replaceTypex(self, t):
         s = "ERROR"
         t = t.strip()
-        if t == "scripts":
-            s = "script"
-        elif t == "troops":
-            s = "trp"
-        elif t == "map_icons":
-            s = "icon"
-        elif t == "items":
-            s = "itm"
-        elif t == "game_menus":
-            s = "mnu"
-        elif t == "strings":
-            s = "gstr"
-        elif t == "scene_props":
-            s = "spr"
+        if t in typeDictX:
+            s = typeDictX[t]
         return s
 
 
