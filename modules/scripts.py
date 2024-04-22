@@ -10,6 +10,7 @@ import module_constants as mconst
 import header_common as mcom
 import game_menus as mnu
 import strings as gstr
+import scene_props as spr
 
 
 def game_start():
@@ -21,37 +22,37 @@ def game_get_use_string(instance_id):
     scene_prop_id = prop_instance_get_scene_prop_kind(instance_id)
 
     winches = [
-        "spr_winch_b",
-        "spr_winch",
+        spr.winch_b,
+        spr.winch,
     ]
     doors = [
-        "spr_door_destructible",
-        "spr_castle_f_door_b",
-        "spr_castle_e_sally_door_a",
-        "spr_castle_f_sally_door_a",
-        "spr_earth_sally_gate_left",
-        "spr_earth_sally_gate_right",
-        "spr_viking_keep_destroy_sally_door_left",
-        "spr_viking_keep_destroy_sally_door_right",
-        "spr_castle_f_door_a",
+        spr.door_destructible,
+        spr.castle_f_door_b,
+        spr.castle_e_sally_door_a,
+        spr.castle_f_sally_door_a,
+        spr.earth_sally_gate_left,
+        spr.earth_sally_gate_right,
+        spr.viking_keep_destroy_sally_door_left,
+        spr.viking_keep_destroy_sally_door_right,
+        spr.castle_f_door_a,
     ]
     ladders = [
-        "spr_siege_ladder_move_6m",
-        "spr_siege_ladder_move_8m",
-        "spr_siege_ladder_move_10m",
-        "spr_siege_ladder_move_12m",
-        "spr_siege_ladder_move_14m",
+        spr.siege_ladder_move_6m,
+        spr.siege_ladder_move_8m,
+        spr.siege_ladder_move_10m,
+        spr.siege_ladder_move_12m,
+        spr.siege_ladder_move_14m,
     ]
 
     if scene_prop_id in winches:
-        effected_object = "spr_portcullis"
+        effected_object = spr.portcullis
     elif scene_prop_id in doors or scene_prop_id in ladders:
         effected_object = scene_prop_id
 
     slotx = mconst.scene_prop_open_or_close_slot
     item_situation = scene_prop_get_slot(instance_id, slotx)
 
-    if effected_object == "spr_portcullis": #opening/closing portcullis
+    if effected_object == spr.portcullis: #opening/closing portcullis
         if item_situation == 0:
             s0 = gstr.open_gate
         else:
@@ -95,35 +96,35 @@ def game_get_console_command(input, val1, val2):
         reg0 = val1
         if val1 == 1:
             reg1 = _g_multiplayer_num_bots_team_1
-            s0 = "str_team_reg0_bot_count_is_reg1"
+            s0 = gstr.team_reg0_bot_count_is_reg1
         elif val1 == 2:
             reg1 = _g_multiplayer_num_bots_team_2
-            s0 = "str_team_reg0_bot_count_is_reg1"
+            s0 = gstr.team_reg0_bot_count_is_reg1
         else:
-            s0 = "str_input_is_not_correct_for_the_command_type_help_for_more_information"
+            s0 = gstr.input_is_not_correct_for_the_command_type_help_for_more_information
         #end
     elif input == 2:
         reg0 = val1
         reg1 = val2
         if val1 == 1 and val2 >= 0:
             _g_multiplayer_num_bots_team_1 = val2
-            s0 = "str_team_reg0_bot_count_is_reg1"
+            s0 = gstr.team_reg0_bot_count_is_reg1
         elif val1 == 2 and val2 >= 0:
             _g_multiplayer_num_bots_team_2 = val2
-            s0 = "str_team_reg0_bot_count_is_reg1"
+            s0 = gstr.team_reg0_bot_count_is_reg1
         else:
-            s0 = "str_input_is_not_correct_for_the_command_type_help_for_more_information"
+            s0 = gstr.input_is_not_correct_for_the_command_type_help_for_more_information
         #end
     elif input == 3:
         reg0 = _g_multiplayer_round_max_seconds
-        s0 = "str_maximum_seconds_for_round_is_reg0"
+        s0 = gstr.maximum_seconds_for_round_is_reg0
     elif input == 4:
         reg0 = val1
         mins = mcom.multiplayer_round_max_seconds_min
         maxs = mcom.multiplayer_round_max_seconds_max
         if is_between(val1, mins, maxs):
             _g_multiplayer_round_max_seconds = val1
-            s0 = "str_maximum_seconds_for_round_is_reg0"
+            s0 = gstr.maximum_seconds_for_round_is_reg0
             num_players = get_max_players()
             for cur_player in range(1, num_players):
                 if player_is_active(cur_player):
@@ -131,11 +132,11 @@ def game_get_console_command(input, val1, val2):
                     multiplayer_send_int_to_player(cur_player, retx, val1)
             #end
         else:
-            s0 = "str_input_is_not_correct_for_the_command_type_help_for_more_information"
+            s0 = gstr.input_is_not_correct_for_the_command_type_help_for_more_information
         #end
     elif input == 5:
         reg0 = _g_multiplayer_respawn_period
-        s0 = "str_respawn_period_is_reg0_seconds"
+        s0 = gstr.respawn_period_is_reg0_seconds
     else: # add more here
         s0 = "{!}DEBUG : SYSTEM ERROR!"
 

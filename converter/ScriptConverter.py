@@ -9,6 +9,8 @@ import ID_animations as animID
 import module_constants as mconst
 import header_common as mcom
 import strings as gstr
+import scene_props as spr
+
 
 class ScriptConverter:
     registers = []
@@ -541,8 +543,15 @@ class ScriptConverter:
 
 
     def replaceTypex3(self, code):
-        codeNew = code.split('=')[0] + " = "
-        xol = code.split('=')[1].strip()
+        comma = False
+        if "=" in code:
+            codeNew = code.split('=')[0] + " = "
+            xol = code.split('=')[1].strip()
+        else:
+            codeNew = ""
+            xol = code.split(',')[0].strip()
+            if "," in code:
+                comma = True
         if "." in xol:
             tmp = xol.split('.')
             if tmp[0] in self.codeTypes:
@@ -558,6 +567,8 @@ class ScriptConverter:
                 codeNew = code
         else:
             codeNew = code
+        if comma:
+            codeNew += ","
         return codeNew
 
 
@@ -691,18 +702,24 @@ class ScriptConverter:
         if "> " in cond:
             l = "(gt,<var1>,<var2>)"
             tmp = cond.split('>')
+            tmp[0] = self.replaceTypex3(tmp[0])
+            tmp[1] = self.replaceTypex3(tmp[1])
             l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip())
             l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip())
             b.append(l)
         elif "< " in cond:
             l = "(lt,<var1>,<var2>)"
             tmp = cond.split('<')
+            tmp[0] = self.replaceTypex3(tmp[0])
+            tmp[1] = self.replaceTypex3(tmp[1])
             l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip())
             l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip())
             b.append(l)
         elif "==" in cond:
             l = "(eq,<var1>,<var2>)"
             tmp = cond.split('==')
+            tmp[0] = self.replaceTypex3(tmp[0])
+            tmp[1] = self.replaceTypex3(tmp[1])
             if "(" in tmp[0] and ")" in tmp[0] and "True" == tmp[1].strip():
                 l = self.transformCode(tmp[0])
                 codeFunc = True
@@ -719,6 +736,8 @@ class ScriptConverter:
         elif "!=" in cond or "<>" in cond:
             l = "(neq,<var1>,<var2>)"
             tmp = cond.split('!=')
+            tmp[0] = self.replaceTypex3(tmp[0])
+            tmp[1] = self.replaceTypex3(tmp[1])
             if "(" in tmp[0] and ")" in tmp[0] and "False" == tmp[1].strip():
                 l = self.transformCode(tmp[0])
                 codeFunc = True
@@ -735,12 +754,16 @@ class ScriptConverter:
         elif "<=" in cond:
             l = "(le,<var1>,<var2>)"
             tmp = cond.split('<=')
+            tmp[0] = self.replaceTypex3(tmp[0])
+            tmp[1] = self.replaceTypex3(tmp[1])
             l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip())
             l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip())
             b.append(l)
         elif ">=" in cond:
             l = "(ge,<var1>,<var2>)"
             tmp = cond.split('>=')
+            tmp[0] = self.replaceTypex3(tmp[0])
+            tmp[1] = self.replaceTypex3(tmp[1])
             l = self.replaceVarWithPlaceholder(l, "<var1>", tmp[0].strip())
             l = self.replaceVarWithPlaceholder(l, "<var2>", tmp[1].strip())
             b.append(l)
@@ -798,6 +821,8 @@ class ScriptConverter:
             s = "mnu"
         elif t == "strings":
             s = "gstr"
+        elif t == "scene_props":
+            s = "spr"
         return s
 
 
