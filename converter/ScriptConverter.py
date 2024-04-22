@@ -4,13 +4,30 @@ import os
 import random
 import scripts
 
-# TODO: add all relevant imports with same naming!
 import ID_animations as animID
 import module_constants as mconst
 import header_common as mcom
 import strings as gstr
 import scene_props as spr
 import sounds as snd
+import troops as trp
+import items as itm
+import map_icons as icon
+import game_menus as mnu
+import animations as anim
+import factions as fac
+import meshes as mesh
+#import info_pages as ip
+import dialogs as dlg
+import mission_templates as mt
+import parties as p
+import party_templates as pt
+import particle_systems as psys
+import presentations as prnst
+import postfxs as pfx
+import quests as qst
+import scenes as scn
+import skills as skl
 
 
 typeDictX = dict()
