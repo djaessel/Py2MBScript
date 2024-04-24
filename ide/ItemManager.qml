@@ -659,6 +659,27 @@ ColumnLayout {
                     newText += "<p>" + curItem.id + ".add_mesh(ItemMesh(\"" + curItem.meshes[kmesh].id + "\""
                     if (curItem.meshes[kmesh].modifier != "0") {
                         newText += "," + curItem.meshes[kmesh].modifier
+                        if (curItem.meshes[kmesh].kind > 0) {
+                            newText += "|" + curItem.meshes[kmesh].kind
+                        }
+                    }
+                    else if (curItem.meshes[kmesh].kind > 0) {
+                        let xkind = ", ItemMesh.ixmesh_"
+                        switch (curItem.meshes[kmesh].kind){
+                        case 1:
+                            xkind += "inventory"
+                            break
+                        case 2:
+                            xkind += "flying_ammo"
+                            break
+                        case 3:
+                            xkind += "carry"
+                            break
+                        default:
+                            xkind = ""
+                            break
+                        }
+                        newText += xkind
                     }
                     newText += "))</p>"
                 }

@@ -77,7 +77,7 @@ military_hammer.set_swing_damage(31, 2)
 
 tools = Item("tools", "Tools", 410)
 tools.add_mesh(ItemMesh("iron_hammer"))
-tools.add_mesh(ItemMesh("iron_hammer_inv", 0x1000000000000000))
+tools.add_mesh(ItemMesh("iron_hammer_new", ItemMesh.ixmesh_inventory))
 tools.set_type(ItemType.GOODS)
 tools.add_flag(ItemFlag.IS_MERCHANDISE)
 tools.set_weight(50)

@@ -291,6 +291,11 @@ class IModBit(Enum):
 
 
 class ItemMesh:
+    #EXtra Mesh IDs
+    ixmesh_inventory   = 0x1000000000000000
+    ixmesh_flying_ammo = 0x2000000000000000
+    ixmesh_carry       = 0x3000000000000000
+
     def __init__(self, id, modifier="0"):
         self.id = id
         self.modifier = int(modifier) & 0xffff
