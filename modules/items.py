@@ -26,6 +26,7 @@ no_item.add_capability(ItemCapability.ONEHANDED_PARRY_LEFT)
 no_item.add_capability(ItemCapability.FORCE_64_BITS)
 no_item.set_weight(1.5)
 
+# - - -
 
 club = Item("club", "Club", 11)
 club.add_mesh(ItemMesh("club"))
@@ -50,6 +51,7 @@ club.set_speed_rating(98)
 club.set_weapon_length(70)
 club.set_swing_damage(20, 2)
 
+
 military_hammer = Item("military_hammer", "Military Hammer", 317)
 military_hammer.add_mesh(ItemMesh("military_hammer"))
 military_hammer.set_type(ItemType.ONE_HANDED_WPN)
@@ -72,13 +74,20 @@ military_hammer.set_speed_rating(95)
 military_hammer.set_weapon_length(70)
 military_hammer.set_swing_damage(31, 2)
 
-iron_hammer = Item("tools", "Tools", 410)
-iron_hammer.add_mesh(ItemMesh("iron_hammer"))
-iron_hammer.set_type(ItemType.GOODS)
-iron_hammer.add_flag(ItemFlag.IS_MERCHANDISE)
-iron_hammer.set_weight(50)
-iron_hammer.set_abundance(90)
 
+tools = Item("tools", "Tools", 410)
+tools.add_mesh(ItemMesh("iron_hammer"))
+tools.add_mesh(ItemMesh("iron_hammer_inv", 0x1000000000000000))
+tools.set_type(ItemType.GOODS)
+tools.add_flag(ItemFlag.IS_MERCHANDISE)
+tools.set_weight(50)
+tools.set_abundance(90)
+
+
+
+
+
+# - - -
 
 items_end = Item("items_end", "Items End")
 items_end.add_mesh(ItemMesh("invalid_item")) # bug with openBrf Lib

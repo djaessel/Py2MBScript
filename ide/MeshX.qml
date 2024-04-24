@@ -27,9 +27,10 @@ RowLayout {
     ComboBox {
         Layout.minimumWidth: 200
         model: [
-            "TEST123",
-            "TEST456",
-            "TEST789",
+            "Default",
+            "Inventory",
+            "Flying Ammo",
+            "Carry",
         ]
         currentIndex: meshRoot.meshKind
     }

@@ -293,9 +293,8 @@ class IModBit(Enum):
 class ItemMesh:
     def __init__(self, id, modifier="0"):
         self.id = id
-        self.modifier = modifier
-
-
+        self.modifier = int(modifier) & 0xffff
+        self.kind = (int(modifier) >> (15 * 4)) & 0x3
 
 
 

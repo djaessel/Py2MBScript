@@ -378,7 +378,7 @@ ColumnLayout {
         }
 
         for (i = 0; i < curItem.meshes.length; i++) {
-            createNewMesh(i, curItem.meshes[i].id, curItem.meshes[i].modifier, 0) // FIXME: add mesh kind to mesh
+            createNewMesh(i, curItem.meshes[i].id, curItem.meshes[i].modifier, curItem.meshes[i].kind) // FIXME: add mesh kind to mesh
         }
     }
 
