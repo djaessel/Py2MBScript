@@ -665,7 +665,8 @@ ColumnLayout {
                     }
                     else if (curItem.meshes[kmesh].kind > 0) {
                         let xkind = ", ItemMesh.ixmesh_"
-                        switch (curItem.meshes[kmesh].kind){
+                        let kindx = parseInt(curItem.meshes[kmesh].kind)
+                        switch (kindx){
                         case 1:
                             xkind += "inventory"
                             break

@@ -89,6 +89,6 @@ tools.set_abundance(90)
 
 # - - -
 
-items_end = Item("items_end", "Items End")
-items_end.add_mesh(ItemMesh("invalid_item")) # bug with openBrf Lib
+items_end = Item("items_end", "Items End", 0)
+items_end.add_mesh(ItemMesh("invalid_item"))
 
