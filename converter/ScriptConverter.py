@@ -584,6 +584,8 @@ class ScriptConverter:
                         codeNew += '"' + xol[i] + "\","
                     else:
                         print("ERROR 0x533D1")
+            else:
+                codeNew += xol[i] + ","
         codeNew = codeNew.rstrip(',') + ")"
         return codeNew
 

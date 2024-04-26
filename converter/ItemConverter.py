@@ -60,7 +60,7 @@ class ItemConverter(ScriptConverter):
                 f.write("[\"" + item.id + "\",\"" + item.name + "\",[")
 
                 for i, mesh in enumerate(item.meshes):
-                    f.write("(\"" + mesh.id + "\"," + mesh.modifier + ")")
+                    f.write("(\"" + mesh.id + "\"," + hex(mesh.modifier | ((mesh.kind << 15*4) & 0x3000000000000000)) + ")")
                     if i < len(item.meshes) - 1:
                         f.write(",")
                 f.write("],\n")

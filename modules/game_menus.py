@@ -18,7 +18,7 @@ game_start_0 = GameMenu("start_game_0", 0,
 class GameStartContinue(MenuOption):
     def consequenceBlock(self):
         set_show_messages(1)
-        jump_to_menu("mnu_start_game_1")
+        jump_to_menu(mnu.game_start_1)
 
 game_start_0.menuOptions.append(GameStartContinue("continue", "Continue..."))
 
@@ -46,13 +46,13 @@ welcome_menu.menuOptions.append(welcome_menu_continue)
 game_start_1 = GameMenu("start_game_1", 0, "Select your skin.")
 game_start_1_male = MenuOption("start_male", "Skin1 | Male")
 def setSkinMale():
-    troop_set_type("trp_player", 0)
+    troop_set_type(trp.player, 0)
     change_screen_return()
 game_start_1_male.consequenceBlock = setSkinMale
 game_start_1.menuOptions.append(game_start_1_male)
 game_start_1_female = MenuOption("start_female", "Skin2 | Female")
 def setSkinFemale():
-    troop_set_type("trp_player", 1)
+    troop_set_type(trp.player, 1)
     change_screen_return()
 game_start_1_female.consequenceBlock = setSkinFemale
 game_start_1.menuOptions.append(game_start_1_female)
@@ -100,12 +100,12 @@ town_menu.menuOptions.append(town_leave)
 
 town_list_test = MenuOption("test_mission", "TEST MISSION")
 def conseq():
-    set_jump_mission("mt_village_training")
-    modify_visitors_at_site("scn_random_scene")
+    set_jump_mission(mt.village_training)
+    modify_visitors_at_site(scn.random_scene)
     reset_visitors(),
-    set_visitor(0, "trp_player", 1)
-    set_visitors(1, "trp_looter", 2)
-    jump_to_scene("scn_random_scene",0)
+    set_visitor(0, trp.player, 1)
+    set_visitors(1, trp.looter, 2)
+    jump_to_scene(scn.random_scene,0)
     change_screen_mission()
 town_list_test.consequenceBlock = conseq
 town_menu.menuOptions.append(town_list_test)
