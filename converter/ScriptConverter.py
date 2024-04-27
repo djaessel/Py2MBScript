@@ -1186,13 +1186,17 @@ class ScriptConverter:
             for i in range(curIndent):
                 f.write("    ")
 
-            f.write(line)
+            f.write(line.split('#')[0].rstrip())
 
             if "else_try" in line or "try_begin" in line or "try_for" in line:
                 curIndent += 1
 
             if not line.endswith("["):
                 f.write(",")
+                if "#" in line:
+                    tmp = line.split('#')[1].lstrip()
+                    f.write(" # " + tmp)
+
             if line == "])":
                 f.write("\n")
             f.write("\n")
@@ -1243,7 +1247,7 @@ class ScriptConverter:
                 count += 1
                 lastIndex = i
         if count == 2:
-            codeData[lastIndex] = codeData[lastIndex].replace(varx, data)
+            codeData[lastIndex] = codeData[lastIndex].replace(varx, data) + " # " + varx.strip('"').lstrip(':')
             return True
         return False
 

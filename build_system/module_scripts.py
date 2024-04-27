@@ -42,7 +42,7 @@ scripts = [
     (eq,":scene_prop_id","spr_siege_ladder_move_14m"),
     (assign,":effected_object",":scene_prop_id"),
 (try_end),
-(scene_prop_get_slot,":item_situation",":instance_id",1),
+(scene_prop_get_slot,":item_situation",":instance_id",1), # slotx
 (try_begin),
     (eq,":effected_object","spr_portcullis"),
     (try_begin),
@@ -135,14 +135,14 @@ scripts = [
     (eq,":input",4),
     (assign,reg0,":val1"),
     (try_begin),
-        (is_between,":val1",60,901),
+        (is_between,":val1",60,901), # mins 
         (assign,"$g_multiplayer_round_max_seconds",":val1"),
         (str_store_string,s0,"str_maximum_seconds_for_round_is_reg0"),
         (get_max_players, ":num_players"),
         (try_for_range, ":cur_player", 1, ":num_players"),
             (try_begin),
                 (player_is_active, ":cur_player"),
-                (multiplayer_send_int_to_player, ":cur_player", 59, ":val1"),
+                (multiplayer_send_int_to_player, ":cur_player", 59, ":val1"), # retx
             (try_end),
         (try_end),
     (else_try),
@@ -321,12 +321,12 @@ scripts = [
 (cur_tableau_set_camera_parameters, 1, 4, 8, 10, 10000),
 (init_position,pos5),
 (assign,":animation",1),
-(position_set_z,pos5,150),
+(position_set_z,pos5,150), # cam_height
 (position_rotate_x,pos5,-90),
 (position_rotate_z,pos5,180,0),
-(position_rotate_y,pos5,-15),
-(position_rotate_x,pos5,-18),
-(position_move_z,pos5,360,0),
+(position_rotate_y,pos5,-15), # camera_yaw
+(position_rotate_x,pos5,-18), # camera_pitch
+(position_move_z,pos5,360,0), # camera_distance
 (position_move_x,pos5,5,0),
 (try_begin),
     (troop_is_hero,":troop_no"),
