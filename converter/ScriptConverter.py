@@ -1176,6 +1176,8 @@ class ScriptConverter:
 
 
     def writeScriptCode(self, f, codeData):
+        codeData = self.optimize(codeData)
+
         curIndent = 0
         for line in codeData:
             if "else_try" in line or "try_end" in line:
@@ -1220,7 +1222,6 @@ class ScriptConverter:
 
     # make this base later for all and create reusable code
     def createCode(self):
-        #lines = self.readScriptTestCode()
         lines = self.readScriptCode()
         codeLines = self.transformScriptBlock(lines)
         self.writeScriptOutputFile(codeLines)
@@ -1234,10 +1235,29 @@ class ScriptConverter:
         return lines
 
 
-#    def readScriptTestCode(self):
-#        lines = []
-#        with open("./test_cases/test_scripts.py") as f:
-#            for line in f:
-#                lines.append(line)
-#        return lines
+    def searchOccurancesReplace(self, codeData : list, varx, data):
+        count = 0
+        lastIndex = -1
+        for i, code in enumerate(codeData):
+            if varx in code:
+                count += 1
+                lastIndex = i
+        if count == 2:
+            codeData[lastIndex] = codeData[lastIndex].replace(varx, data)
+            return True
+        return False
+
+
+    def optimize(self, codeData : list):
+        delx = []
+        for i, code in enumerate(codeData):
+            if "assign" in code:
+                tmp = code.rstrip(')').split(',')
+                if self.is_float(tmp[2]) and not "$" in tmp[1]:
+                    if self.searchOccurancesReplace(codeData, tmp[1], tmp[2]):
+                        delx.append(i)
+        delx.reverse()
+        for i in delx:
+            del codeData[i]
+        return codeData
 
