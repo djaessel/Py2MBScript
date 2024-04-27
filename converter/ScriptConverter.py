@@ -54,7 +54,7 @@ typeDictX["presentations"] = "prnst"
 typeDictX["quests"] = "qst"
 typeDictX["scenes"] = "scn"
 typeDictX["skills"] = "skl"
-typeDictX["tableau_materials"] = "tab"
+typeDictX["tableau_materials"] = "tableau"
 typeDictX["skins"] = "skin"
 
 
@@ -580,6 +580,8 @@ class ScriptConverter:
                 if tmp[0] in self.codeTypes:
                     xxy = getattr(self.codeTypes[tmp[0]], tmp[1])
                     if xxy:
+                        if tmp[0] == "gstr":
+                            tmp[0] = "str"
                         xol[i] = tmp[0] + "_" + xxy.id
                         codeNew += '"' + xol[i] + "\","
                     else:

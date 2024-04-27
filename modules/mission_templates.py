@@ -14,13 +14,13 @@ from trigger import Trigger
 
 common_arena_fight_tab_press = Trigger(tri.ti_tab_pressed, 0, 0)
 def code():
-    question_box("str_give_up_fight")
+    question_box(gstr.give_up_fight)
 common_arena_fight_tab_press.codeBlock = code
 
 
 common_inventory_not_available = Trigger(tri.ti_inventory_key_pressed, 0, 0)
 def code():
-    print("str_cant_use_inventory_now")
+    print(gstr.cant_use_inventory_now)
 common_inventory_not_available.codeBlock = code
 
 

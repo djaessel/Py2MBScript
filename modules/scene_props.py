@@ -182,9 +182,9 @@ door_destructible.add_trigger(triggy)
 # trigger 3
 triggy = SimpleTrigger(tri.ti_on_scene_prop_hit)
 def code():
-    play_sound("snd_dummy_hit")
-    particle_system_burst("psys_dummy_smoke", pos1, 3),
-    particle_system_burst("psys_dummy_straw", pos1, 10),
+    play_sound(snd.dummy_hit)
+    particle_system_burst(psys.dummy_smoke, pos1, 3),
+    particle_system_burst(psys.dummy_straw, pos1, 10),
 triggy.codeBlock = code
 door_destructible.add_trigger(triggy)
 
