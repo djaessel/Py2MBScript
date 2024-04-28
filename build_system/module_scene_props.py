@@ -146,6 +146,30 @@ scene_props = [
 ("siege_ladder_move_12m", 0, "0", "0", []),
 ("siege_ladder_move_14m", 0, "0", "0", []),
 ("castle_f_door_b", sokf_moveable|sokf_show_hit_point_bar|sokf_destructible, "castle_e_sally_door_a", "bo_castle_e_sally_door_a", [
+(ti_on_scene_prop_use, [
+(store_script_param, ":agent_id", 1),
+(store_script_param, ":instance_id", 2),
+(agent_get_position,pos1,":agent_id"),
+(prop_instance_get_starting_position, pos2, ":instance_id"),
+(scene_prop_get_slot,":opened_or_closed",":instance_id",1), # slotx
+(try_begin),
+    (ge,":agent_id",0),
+    (agent_get_team, ":agent_team", ":agent_id"),
+    (try_begin),
+        (this_or_next|eq,":agent_team",0),
+        (eq,":opened_or_closed",1),
+        (call_script, "script_use_item", ":instance_id", ":agent_id"),
+        (get_max_players, ":num_players"),
+        (try_for_range, ":player_no", 1, ":num_players"),
+            (try_begin),
+                (player_is_active, ":player_no"),
+                (multiplayer_send_2_int_to_player, ":player_no", 76, ":instance_id", ":agent_id"), # mevent
+            (try_end),
+        (try_end),
+    (try_end),
+(try_end),
+]),
+
 (ti_on_scene_prop_init, [
 (store_script_param, ":instance_no", 1),
 (scene_prop_set_hit_points, ":instance_no", 1000),

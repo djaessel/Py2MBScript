@@ -25,6 +25,35 @@ def code(agent_id, instance_id):
             multiplayer_send_2_int_to_player(player_no, mevent, instance_id, agent_id)
 check_item_use_trigger.codeBlock = code
 
+check_castle_door_use_trigger = SimpleTrigger(tri.ti_on_scene_prop_use)
+def code(agent_id, instance_id):
+    agent_get_position(pos1, agent_id)
+    prop_instance_get_starting_position(pos2, instance_id)
+
+    slotx = mconst.scene_prop_open_or_close_slot
+    opened_or_closed = scene_prop_get_slot(instance_id, slotx)
+
+    if agent_id >= 0:
+        agent_team = agent_get_team(agent_id)
+
+        #in doors like castle room doors can be opened from both sides, but only defenders can open these doors. Also it can be closed from both sides.
+        if agent_team == 0 or opened_or_closed == 1:
+            #for only server itself-----------------------------------------------------------------------------------------------
+            use_item(instance_id, agent_id)
+            #for only server itself-----------------------------------------------------------------------------------------------
+            num_players = get_max_players()
+            mevent = mcom.multiplayer_event_use_item
+            for player_no in range(1, num_players): #0 is server so starting from 1
+                player_no = MBPlayer(player_no)
+                if player_no.is_active():
+                    multiplayer_send_2_int_to_player(player_no, mevent, instance_id, agent_id)
+                #end
+            #end
+        #end
+    #end
+check_castle_door_use_trigger.codeBlock = code
+
+
 
 # - - - - - - - - - - - - reusable triggers END - - - - - - - - - - - - - - - - - - -
 
@@ -214,7 +243,7 @@ castle_f_door_b.add_flag(ScenePropFlag.SHOW_HIT_POINT_BAR)
 castle_f_door_b.add_flag(ScenePropFlag.DESTRUCTIBLE)
 castle_f_door_b.set_use_time(0)
 # trigger 0
-#castle_f_door_b.add_trigger(check_castle_door_use_trigger)
+castle_f_door_b.add_trigger(check_castle_door_use_trigger)
 # trigger 1
 triggy = SimpleTrigger(tri.ti_on_init_scene_prop)
 def code(instance_no):
