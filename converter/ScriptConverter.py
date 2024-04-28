@@ -1239,7 +1239,7 @@ class ScriptConverter:
         return lines
 
 
-    def searchOccurancesReplace(self, codeData : list, startx : int, varx, data):
+    def searchOccurancesVarReplace(self, codeData : list, startx : int, varx, data):
         # to start in current function scope
         # only used for script module - not needed for others
         for i in range(startx, 0, -1):
@@ -1283,6 +1283,149 @@ class ScriptConverter:
         return idx
 
 
+    def hasPrevIfElseOrNotTrivialBlock(self, codeData : list, startx : int):
+        beginx = 0
+        # to start in current function scope
+        # only used for script module - not needed for others
+        for i in range(startx, 0, -1):
+            code = codeData[i]
+            if "(\"" in code and "[" in code:
+                beginx = i + 1
+                # print("START:", code)
+                break
+
+        open_try = 0
+        elseD = dict()
+        for i in range(beginx, startx):
+            code = codeData[i]
+            if "try_begin" in code or "try_for_" in code:
+                open_try += 1
+            elif "try_end" in code:
+                if str(open_try) in elseD:
+                    elseD.pop(str(open_try))
+                open_try -= 1
+            elif "else_try" in code:
+                elseD[str(open_try)] = True # optimize this further later on
+
+        for i in range(startx + 1, len(codeData)):
+            code = codeData[i]
+            if "try_" in code:
+                break
+            elif "else_try" in code:
+                elseD[str(open_try)] = True # optimize this further later on
+
+        hasElse = len(elseD) > 0 or open_try == 0
+        if not hasElse:
+            startx2 = -1
+            skipNextBegin = False
+            skippedTrys = 0
+
+            for i in range(startx - 1, 0, -1):
+                code = codeData[i]
+                if "try_" in code and not "try_end" in code:
+                    if not skipNextBegin:
+                        startx2 = i
+                        break
+                    else:
+                        skipNextBegin = False
+                elif "try_end" in code:
+                    skipNextBegin = True
+                    skippedTrys += 1
+
+            if startx2 >= 0:
+                try_count = 0
+                for i in range(startx2, len(codeData)):
+                    code = codeData[i]
+                    if "(" in code and ")" in code:
+                        code = code.split('(')[1].split(')')[0]
+                        code = code.split(',')[0].strip()
+                        if "try_end" == code:
+                            if try_count == 0:
+                                break
+                            else:
+                                try_count -= 1
+                        elif "else_try" == code and try_count == 1:
+                            hasElse = True
+                            break
+                        elif "try_begin" in code or "try_for_" in code:
+                            try_count += 1
+
+        return hasElse
+
+
+    def searchFirstCodeOfType(self, codeData : list, codex : str, startx : int = 0):
+        remIdx = -1
+        for i in range(startx, len(codeData)):
+            code = codeData[i]
+            if "(" in code and ")" in code:
+                code = code.split('(')[1].split(')')[0]
+                code = code.split(',')[0].strip()
+                if codex == code:
+                    remIdx = i
+                    break
+        return remIdx
+
+
+    def searchCurClosingTag(self, codeData : list, startx : int = 0):
+        remIdx = -1
+        try_count = 0
+        for i in range(startx, len(codeData)):
+            code = codeData[i]
+            if "(" in code and ")" in code:
+                code = code.split('(')[1].split(')')[0]
+                code = code.split(',')[0].strip()
+                if "try_end" == code:
+                    if try_count == 0:
+                        remIdx = i
+                        break
+                    else:
+                        try_count -= 1
+                elif "try_begin" in code or "try_for_" in code:
+                    try_count += 1
+        return remIdx
+
+
+    def hasRelevance(self, codeData : list, startx : int = 0):
+        hasRelevance = False
+
+        startx2 = -1
+        skipNextBegin = False
+        skippedTrys = 0
+
+        for i in range(startx - 1, 0, -1):
+            code = codeData[i]
+            if "try_" in code and not "try_end" in code:
+                if not skipNextBegin:
+                    startx2 = i
+                    break
+                else:
+                    skipNextBegin = False
+            elif "try_end" in code:
+                skipNextBegin = True
+                skippedTrys += 1
+
+        if startx2 >= 0:
+            try_count = 0
+            for i in range(startx2, len(codeData)):
+                code = codeData[i]
+                if "(" in code and ")" in code:
+                    code = code.split('(')[1].split(')')[0]
+                    code = code.split(',')[0].strip()
+                    if "try_end" == code:
+                        if try_count == 0:
+                            break
+                        else:
+                            try_count -= 1
+                            ixx = i + 1
+                            if len(codeData) > ixx:
+                                if not "try" in codeData[ixx]:
+                                    hasRelevance = True
+                    elif "try_begin" in code or "try_for_" in code:
+                        try_count += 1
+
+        return hasRelevance
+
+
     def optimize(self, codeData : list):
         delx = []
         lastCode = ""
@@ -1290,14 +1433,24 @@ class ScriptConverter:
             if "assign" in code:
                 tmp = code.rstrip(')').split(',')
                 if self.is_float(tmp[2]) and not "$" in tmp[1]:
-                    if self.searchOccurancesReplace(codeData, i, tmp[1], tmp[2]):
+                    if self.searchOccurancesVarReplace(codeData, i, tmp[1], tmp[2]):
                         delx.append(i)
-            elif "try_for_" in lastCode and "try_begin" in code:
-                delx.append(i)
-                ix = self.findIndexOfCondBlockEnd(codeData, i)
-                delx.append(ix)
+            elif "try_begin" in code:
+                if "try_for_" in lastCode:
+                    delx.append(i)
+                    ix = self.findIndexOfCondBlockEnd(codeData, i)
+                    delx.append(ix)
+                else:
+                    hasElse = self.hasPrevIfElseOrNotTrivialBlock(codeData, i)
+                    hasRelevance = self.hasRelevance(codeData, i)
+                    if not hasElse and not hasRelevance:
+                        remIdx = self.searchCurClosingTag(codeData, i)
+                        if remIdx >= 0:
+                            delx.append(i)
+                            delx.append(remIdx)
             lastCode = code
 
+        delx.sort()
         delx.reverse()
         for i in delx:
             del codeData[i]
