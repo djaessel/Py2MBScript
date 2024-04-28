@@ -1252,14 +1252,35 @@ class ScriptConverter:
         return False
 
 
+    def findIndexOfCondBlockEnd(self, codeData : list, idx : int):
+        try_begin_count = 0
+        try_end_count = 0
+        for i in range(idx, len(codeData)):
+            if "try_begin" in codeData[i]:
+                try_begin_count += 1
+            elif "try_end" in codeData[i]:
+                try_end_count += 1
+            if try_end_count == try_begin_count:
+                idx = i
+                break
+        return idx
+
+
     def optimize(self, codeData : list):
         delx = []
+        lastCode = ""
         for i, code in enumerate(codeData):
             if "assign" in code:
                 tmp = code.rstrip(')').split(',')
                 if self.is_float(tmp[2]) and not "$" in tmp[1]:
                     if self.searchOccurancesReplace(codeData, tmp[1], tmp[2]):
                         delx.append(i)
+            elif "try_for_" in lastCode and "try_begin" in code:
+                delx.append(i)
+                ix = self.findIndexOfCondBlockEnd(codeData, i)
+                delx.append(ix)
+            lastCode = code
+
         delx.reverse()
         for i in delx:
             del codeData[i]

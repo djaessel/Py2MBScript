@@ -140,10 +140,8 @@ scripts = [
         (str_store_string,s0,"str_maximum_seconds_for_round_is_reg0"),
         (get_max_players, ":num_players"),
         (try_for_range, ":cur_player", 1, ":num_players"),
-            (try_begin),
-                (player_is_active, ":cur_player"),
-                (multiplayer_send_int_to_player, ":cur_player", 59, ":val1"), # retx
-            (try_end),
+            (player_is_active, ":cur_player"),
+            (multiplayer_send_int_to_player, ":cur_player", 59, ":val1"), # retx
         (try_end),
     (else_try),
         (str_store_string,s0,"str_input_is_not_correct_for_the_command_type_help_for_more_information"),

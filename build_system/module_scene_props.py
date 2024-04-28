@@ -55,10 +55,8 @@ scene_props = [
 (call_script, "script_use_item", ":instance_id", ":agent_id"),
 (get_max_players, ":num_players"),
 (try_for_range, ":player_no", 1, ":num_players"),
-    (try_begin),
-        (player_is_active, ":player_no"),
-        (multiplayer_send_2_int_to_player, ":player_no", 76, ":instance_id", ":agent_id"), # mevent
-    (try_end),
+    (player_is_active, ":player_no"),
+    (multiplayer_send_2_int_to_player, ":player_no", 76, ":instance_id", ":agent_id"), # mevent
 (try_end),
 ]),
 
@@ -70,10 +68,8 @@ scene_props = [
 (call_script, "script_use_item", ":instance_id", ":agent_id"),
 (get_max_players, ":num_players"),
 (try_for_range, ":player_no", 1, ":num_players"),
-    (try_begin),
-        (player_is_active, ":player_no"),
-        (multiplayer_send_2_int_to_player, ":player_no", 76, ":instance_id", ":agent_id"), # mevent
-    (try_end),
+    (player_is_active, ":player_no"),
+    (multiplayer_send_2_int_to_player, ":player_no", 76, ":instance_id", ":agent_id"), # mevent
 (try_end),
 ]),
 
@@ -161,10 +157,8 @@ scene_props = [
         (call_script, "script_use_item", ":instance_id", ":agent_id"),
         (get_max_players, ":num_players"),
         (try_for_range, ":player_no", 1, ":num_players"),
-            (try_begin),
-                (player_is_active, ":player_no"),
-                (multiplayer_send_2_int_to_player, ":player_no", 76, ":instance_id", ":agent_id"), # mevent
-            (try_end),
+            (player_is_active, ":player_no"),
+            (multiplayer_send_2_int_to_player, ":player_no", 76, ":instance_id", ":agent_id"), # mevent
         (try_end),
     (try_end),
 (try_end),
