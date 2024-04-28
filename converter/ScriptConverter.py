@@ -1239,16 +1239,33 @@ class ScriptConverter:
         return lines
 
 
-    def searchOccurancesReplace(self, codeData : list, varx, data):
+    def searchOccurancesReplace(self, codeData : list, startx : int, varx, data):
+        # to start in current function scope
+        # only used for script module - not needed for others
+        for i in range(startx, 0, -1):
+            code = codeData[i]
+            if "(\"" in code and "[" in code:
+                startx = i + 1
+                break
+
         count = 0
         lastIndex = -1
-        for i, code in enumerate(codeData):
+        for i in range(startx, len(codeData)):
+            code = codeData[i]
             if varx in code:
                 count += 1
                 lastIndex = i
+            if "(\"" in code and "[" in code: # to stop at next function and only stay in current function scope
+                break
+
         if count == 2:
-            codeData[lastIndex] = codeData[lastIndex].replace(varx, data) + " # " + varx.strip('"').lstrip(':')
+            old__data = codeData[lastIndex]
+            if "#" in codeData[lastIndex]: # for additional comments
+                codeData[lastIndex] = codeData[lastIndex].replace(varx, data) + ", " + varx.strip('"').lstrip(':')
+            else:
+                codeData[lastIndex] = codeData[lastIndex].replace(varx, data) + " # " + varx.strip('"').lstrip(':')
             return True
+
         return False
 
 
@@ -1273,7 +1290,7 @@ class ScriptConverter:
             if "assign" in code:
                 tmp = code.rstrip(')').split(',')
                 if self.is_float(tmp[2]) and not "$" in tmp[1]:
-                    if self.searchOccurancesReplace(codeData, tmp[1], tmp[2]):
+                    if self.searchOccurancesReplace(codeData, i, tmp[1], tmp[2]):
                         delx.append(i)
             elif "try_for_" in lastCode and "try_begin" in code:
                 delx.append(i)

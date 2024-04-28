@@ -147,7 +147,7 @@ scene_props = [
 (store_script_param, ":instance_id", 2),
 (agent_get_position,pos1,":agent_id"),
 (prop_instance_get_starting_position, pos2, ":instance_id"),
-(scene_prop_get_slot,":opened_or_closed",":instance_id",1), # slotx
+(scene_prop_get_slot,":opened_or_closed",":instance_id",1), # slot_openclose
 (try_begin),
     (ge,":agent_id",0),
     (agent_get_team, ":agent_team", ":agent_id"),

@@ -944,7 +944,7 @@ prop_instance_stop_animating           = 1861	# (prop_instance_stop_animating, <
 prop_instance_is_animating             = 1862   # (prop_instance_is_animating, <destination>, <scene_prop_id>),
 prop_instance_get_animation_target_position = 1863    # (prop_instance_get_animation_target_position, <pos>, <scene_prop_id>)
 prop_instance_enable_physics           = 1864   # (prop_instance_enable_physics, <scene_prop_id>, <value>), #0 for disable, 1 for enable
-prop_instance_rotate_to_position       = 1865	# (prop_instance_rotate_to_position, <scene_prop_id>, position, <duration-in-1/100-seconds>, <total_rotate_angle>),
+prop_instance_rotate_to_position       = 1865	# (prop_instance_rotate_to_position, <scene_prop_id>, <position>, <duration-in-1/100-seconds>, <total_rotate_angle>),
 prop_instance_initialize_rotation_angles = 1866   # (prop_instance_initialize_rotation_angles, <scene_prop_id>),
 prop_instance_refill_hit_points        = 1870 # (prop_instance_refill_hit_points, <scene_prop_id>), 
 

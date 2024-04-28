@@ -30,8 +30,8 @@ def code(agent_id, instance_id):
     agent_get_position(pos1, agent_id)
     prop_instance_get_starting_position(pos2, instance_id)
 
-    slotx = mconst.scene_prop_open_or_close_slot
-    opened_or_closed = scene_prop_get_slot(instance_id, slotx)
+    slot_openclose = mconst.scene_prop_open_or_close_slot
+    opened_or_closed = scene_prop_get_slot(instance_id, slot_openclose)
 
     if agent_id >= 0:
         agent_team = agent_get_team(agent_id)
