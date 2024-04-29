@@ -213,6 +213,7 @@
         "ide/main_ide.py",
         "ide/main.qml",
         "ide/load_openbrf_lib.py",
-        "ide/ItemManager.qml"
+        "ide/ItemManager.qml",
+        "old2new/CodeTranslator.py"
     ]
 }
