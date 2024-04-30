@@ -29,9 +29,9 @@ try_for_prop_instances = 16 # (try_for_prop_instances, <destination>, [<scene_pr
 try_for_players  = 17	# (try_for_players, <destination>, [skip_server]),
 
 
-store_script_param_1 = 21       # (store_script_param_1,<destination>),  --(Within a script) stores the first script parameter.
-store_script_param_2 = 22       # (store_script_param_2,<destination>),  --(Within a script) stores the second script parameter.
-store_script_param   = 23       # (store_script_param,<destination>,<script_param_no>), --(Within a script) stores <script_param_no>th script parameter.
+store_script_param_1 = 21       # (store_script_param_1,<destination>),  #(Within a script) stores the first script parameter.
+store_script_param_2 = 22       # (store_script_param_2,<destination>),  #(Within a script) stores the second script parameter.
+store_script_param   = 23       # (store_script_param,<destination>,<script_param_no>), #(Within a script) stores <script_param_no>th script parameter.
 
 #--------------------------------------------------------------------------
 # CONDITION OPERATIONS

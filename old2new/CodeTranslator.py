@@ -926,7 +926,7 @@ def formatGoodText(data : list, showIndex : bool = False):
         st = s
         if indentx > 0 and (s.startswith("elif") or s == "else:" or s == "#end"):
             indentx -= 1
-        st = "\t" * indentx + st
+        st = "    " * indentx + st
         sx += st
         if s.startswith("if") or s.startswith("elif") or s == "else:" or s.startswith("for"):
             indentx += 1
