@@ -203,9 +203,18 @@ MAP_ICON_MAX = 130000000000000
 ANIM_MIN = 1801439850948198400
 ANIM_MAX = 1810000000000000000 # public const ulong ANIM_MAX = ulong.MaxValue - int.MaxValue
 
+
 globalVariables = []
-
-
+quickStrings = []
+sceneProps = []
+gameStrings = []
+troops = []
+scripts = []
+presentations = []
+factions = []
+parties = []
+scenes = []
+items = []
 
 
 def lookupData(data):
@@ -218,6 +227,64 @@ def lookupData(data):
             d = "reg" + str(x - REG0)
         elif x >= GLOBAL_MIN and x < GLOBAL_MAX:
             d = "\"$" + globalVariables[x - GLOBAL_MIN] + "\""
+        elif x >= QUICKSTRING_MIN and x < QUICKSTRING_MAX:
+            d = "\"" + quickStrings[x - QUICKSTRING_MIN][1] + "\""
+        elif x >= SPR_MIN and x < SPR_MAX:
+            d = "spr." + sceneProps[x - SPR_MIN][0][0][4:]
+        elif x >= TRP_PLAYER and x < TROOP_MAX:
+            d = "trp." + troops[x - TRP_PLAYER][0][0][4:]
+        elif x >= SCRIPT_MIN and x < SCRIPT_MAX:
+            d = "script." + scripts[x - SCRIPT_MIN][0][0] # convert this later
+        elif x >= STRING_MIN and x < STRING_MAX:
+            d = "gstr." + gameStrings[x - STRING_MIN][0][4:]
+        elif x >= PRSNT_MIN and x < PRSNT_MAX:
+            d = "prsnt." + presentations[x - PRSNT_MIN][0][0][6:]
+        elif x >= FAC_MIN and x < FAC_MAX:
+            d = "fac." + factions[x - FAC_MIN][0][0][4:]
+        elif x >= P_MAIN_PARTY and x < P_MAX:
+            d = "p." + parties[x - P_MAIN_PARTY][0][3][2:]
+        elif x >= ITM_MIN and x < ITM_MAX:
+            d = "itm." + items[x - ITM_MIN][0][0][4:]
+        elif x >= SCENE_MIN and x < SCENE_MAX:
+            d = "scn." + scenes[x - SCENE_MIN][0][0][4:]
+
+            '''
+            MESH_MIN = 1441151880758558720
+            MESH_MAX = 1450000000000000000
+
+            PT_MIN = 576460752303423488
+            PT_MAX = 576500000000000000
+
+            MT_MIN = 792633534417207296
+            MT_MAX = 792700000000000000
+
+            SKL_MIN = 1369094286720630784
+            SKL_MAX = 1369094286720700000
+
+            SND_MIN = 1152921504606846976
+            SND_MAX = 1152921504607000000
+
+            PSYS_MIN = 1008806316530991104
+            PSYS_MAX = 1009000000000000000
+
+            MENU_MIN = 864691128455135232
+            MENU_MAX = 865000000000000000
+
+            QUEST_MIN = 504403158265495552
+            QUEST_MAX = 504500000000000000
+
+            TABLEAU_MAT_MIN = 1729382256910270464
+            TABLEAU_MAT_MAX = 1730000000000000000
+
+            TRACK_MIN = 1657324662872342528
+            TRACK_MAX = 1660000000000000000
+
+            MAP_ICON_MIN = 129703669268270
+            MAP_ICON_MAX = 130000000000000
+
+            ANIM_MIN = 1801439850948198400
+            ANIM_MAX = 1810000000000000000
+            ''' and None
         else:
             pass
     return d
@@ -237,6 +304,123 @@ def readGlobalVariables():
     with open(module_path + "variables.txt") as f:
         for line in f:
             globalVariables.append(line.rstrip('\n'))
+
+
+def readQuickStrings():
+    with open(module_path + "quick_strings.txt") as f:
+        for line in f:
+            if line.startswith("qstr_"):
+                tmp = line.split(' ')
+                quickStrings.append((tmp[0], "@" + tmp[1].replace("_", " ").rstrip('\n')))
+
+
+def readSceneProps():
+    with open(module_path + "scene_props.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("spr_"):
+                tmp = line.strip().split(' ')
+                sceneProps.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                sceneProps[len(sceneProps)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readTroops():
+    with open(module_path + "troops.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("trp_"):
+                tmp = line.strip().split(' ')
+                troops.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                troops[len(troops)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readScripts():
+    with open(module_path + "scripts.txt") as f:
+        lineCount = 0
+        for line in f:
+            if lineCount >= 2 and not line.startswith(" "):
+                tmp = line.strip().split(' ')
+                scripts.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                scripts[len(troops)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readScenes():
+    with open(module_path + "scenes.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("scn_"):
+                tmp = line.strip().split(' ')
+                scenes.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                scenes[len(scenes)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readItems():
+    with open(module_path + "item_kinds1.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith(" itm_"):
+                tmp = line.strip().split(' ')
+                tmp[0] = tmp[0].lstrip()
+                items.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                items[len(items)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readParties():
+    with open(module_path + "parties.txt") as f:
+        lineCount = 0
+        for line in f:
+            if " p_" in line:
+                tmp = line.strip().split(' ')
+                parties.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                parties[len(parties)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readFactions():
+    with open(module_path + "factions.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("fac_") or " fac_" in line:
+                tmp = line.strip().split(' ')
+                if not line.startswith("fac_"):
+                    factions[len(factions)-1].append(tmp[0])
+                    factions.append([tmp[1:]])
+                else:
+                    factions.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                factions[len(factions)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readPresentations():
+    with open(module_path + "presentations.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("prsnt_"):
+                tmp = line.strip().split(' ')
+                presentations.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                presentations[len(presentations)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readGameStrings():
+    with open(module_path + "strings.txt", encoding="latin1") as f:
+        for line in f:
+            if line.startswith("str_"):
+                tmp = line.strip().split(' ')
+                gameStrings.append((tmp[0], tmp[1].replace("_", " ")))
 
 
 
@@ -399,7 +583,10 @@ def convertToPy1(data : list):
             elif "try_for_agents" == tmp[0]:
                 formatex.append("for;" + tmp[1] + ";__all_agents__")
             else:
-                xyz = tmp[0] + "("
+                funcName = tmp[0]
+                if funcName == "display_message":
+                    funcName = "print"
+                xyz = funcName + "("
                 for i in range(1, len(tmp)):
                     tmp[i] = varS(tmp[i])
                 if len(tmp) > 1:
@@ -430,7 +617,7 @@ def convertToPy1(data : list):
 
 
 def varS(txt : str):
-    if txt.startswith("\"") and txt.endswith("\""):
+    if txt.startswith("\"") and txt.endswith("\"") and not "@" in txt:
         txt = txt.strip('"')
         if txt.startswith(":"):
             txt = txt.lstrip(':')
@@ -543,6 +730,16 @@ def formatGoodText(data : list, showIndex : bool = False):
 # main program
 readGlobalVariables()
 readOperationsFile()
+readQuickStrings()
+readSceneProps()
+readScripts()
+readTroops()
+readGameStrings()
+readFactions()
+readScenes()
+readItems()
+readPresentations()
+readParties()
 
 scriptName = "game_enable_cheat_menu"
 if len(sys.argv) > 1:

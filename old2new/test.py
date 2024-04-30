@@ -4,7 +4,7 @@ var1 = store_script_param(1)
 var2 = store_script_param(2)
 if game_in_multiplayer_mode():
 	var3 = prop_instance_get_scene_prop_kind(var1)
-	if var3 == 1080863910568919844:
+	if var3 == spr.winch_b:
 		var4 = multiplayer_get_my_player()
 		if var4 > 0 or not multiplayer_is_dedicated_server() and var4 >= 0:
 			var5 = player_get_agent_id(var4)
@@ -16,9 +16,9 @@ if game_in_multiplayer_mode():
 						var8 = agent_get_player_id(var2)
 						s7 = str_store_player_username(var8)
 						if var7 == 0:
-							display_message(1585267068834414691)
+							print("@{s7} opened the gate")
 						else:
-							display_message(1585267068834414692)
+							print("@{s7} closed the gate")
 						#end
 					#end
 				#end
@@ -27,9 +27,9 @@ if game_in_multiplayer_mode():
 	#end
 #end
 var3 = prop_instance_get_scene_prop_kind(var1)
-if var3 == 1080863910568919844 or var3 == 1080863910568919843:
-	var9 = 1080863910568919754
-elif var3 == 1080863910568919198 or var3 == 1080863910568919994 or var3 == 1080863910568919654 or var3 == 1080863910568919244 or var3 == 1080863910568919986 or var3 == 1080863910568919987 or var3 == 1080863910568919993 or var3 == 1080863910568919992 or var3 == 1080863910568919242 or var3 == 1080863910568919749 or var3 == 1080863910568919750 or var3 == 1080863910568919751 or var3 == 1080863910568919752 or var3 == 1080863910568919753:
+if var3 == spr.winch_b or var3 == spr.winch:
+	var9 = spr.portcullis
+elif var3 == spr.door_destructible or var3 == spr.castle_f_door_b or var3 == spr.castle_e_sally_door_a or var3 == spr.castle_f_sally_door_a or var3 == spr.earth_sally_gate_left or var3 == spr.earth_sally_gate_right or var3 == spr.viking_keep_destroy_sally_door_left or var3 == spr.viking_keep_destroy_sally_door_right or var3 == spr.castle_f_door_a or var3 == spr.siege_ladder_move_6m or var3 == spr.siege_ladder_move_8m or var3 == spr.siege_ladder_move_10m or var3 == spr.siege_ladder_move_12m or var3 == spr.siege_ladder_move_14m:
 	var9 = var3
 #end
 var10 = -1
@@ -46,7 +46,7 @@ for var12 in range(0, var11):
 	#end
 #end
 if var1 >= 0 and var10 >= 0:
-	if var9 == 1080863910568919754:
+	if var9 == spr.portcullis:
 		var7 = scene_prop_get_slot(var1,1)
 		if var7 == 0:
 			scene_prop_enable_after_time(var1,400)
@@ -56,7 +56,7 @@ if var1 >= 0 and var10 >= 0:
 				prop_instance_animate_to_position(var15,0,400)
 			#end
 			scene_prop_set_slot(var1,1,1)
-			if var3 == 1080863910568919844 and multiplayer_is_server() or not game_in_multiplayer_mode():
+			if var3 == spr.winch_b and multiplayer_is_server() or not game_in_multiplayer_mode():
 				s1 = prop_instance_get_position(var1)
 				prop_instance_rotate_to_position(var1,1,400,72000)
 			#end
@@ -68,25 +68,25 @@ if var1 >= 0 and var10 >= 0:
 				prop_instance_animate_to_position(var15,0,400)
 			#end
 			scene_prop_set_slot(var1,1,0)
-			if var3 == 1080863910568919844 and multiplayer_is_server() or not game_in_multiplayer_mode():
+			if var3 == spr.winch_b and multiplayer_is_server() or not game_in_multiplayer_mode():
 				s1 = prop_instance_get_position(var1)
 				prop_instance_rotate_to_position(var1,1,400,-72000)
 			#end
 		#end
-	elif var9 == 1080863910568919749 or var9 == 1080863910568919750 or var9 == 1080863910568919751 or var9 == 1080863910568919752 or var9 == 1080863910568919753:
-		if var9 == 1080863910568919749:
+	elif var9 == spr.siege_ladder_move_6m or var9 == spr.siege_ladder_move_8m or var9 == spr.siege_ladder_move_10m or var9 == spr.siege_ladder_move_12m or var9 == spr.siege_ladder_move_14m:
+		if var9 == spr.siege_ladder_move_6m:
 			var16 = 120
 			var17 = 240
-		elif var9 == 1080863910568919750:
+		elif var9 == spr.siege_ladder_move_8m:
 			var16 = 140
 			var17 = 280
-		elif var9 == 1080863910568919751:
+		elif var9 == spr.siege_ladder_move_10m:
 			var16 = 160
 			var17 = 320
-		elif var9 == 1080863910568919752:
+		elif var9 == spr.siege_ladder_move_12m:
 			var16 = 190
 			var17 = 360
-		elif var9 == 1080863910568919753:
+		elif var9 == spr.siege_ladder_move_14m:
 			var16 = 230
 			var17 = 400
 		#end
@@ -119,13 +119,13 @@ if var1 >= 0 and var10 >= 0:
 			#end
 			scene_prop_set_slot(var15,1,0)
 		#end
-	elif var9 == 1080863910568919198 or var9 == 1080863910568919994 or var3 == 1080863910568919654 or var3 == 1080863910568919244 or var3 == 1080863910568919986 or var3 == 1080863910568919987 or var3 == 1080863910568919993 or var3 == 1080863910568919992 or var3 == 1080863910568919242:
+	elif var9 == spr.door_destructible or var9 == spr.castle_f_door_b or var3 == spr.castle_e_sally_door_a or var3 == spr.castle_f_sally_door_a or var3 == spr.earth_sally_gate_left or var3 == spr.earth_sally_gate_right or var3 == spr.viking_keep_destroy_sally_door_left or var3 == spr.viking_keep_destroy_sally_door_right or var3 == spr.castle_f_door_a:
 		var15 = var1
 		var7 = scene_prop_get_slot(var15,1)
 		if var7 == 0:
 			s0 = prop_instance_get_starting_position(var15)
 			scene_prop_enable_after_time(var15,100)
-			if var3 != 1080863910568919993 and var3 != 1080863910568919986:
+			if var3 != spr.viking_keep_destroy_sally_door_left and var3 != spr.earth_sally_gate_left:
 				position_rotate_z(0,-85)
 			else:
 				position_rotate_z(0,85)
