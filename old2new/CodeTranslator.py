@@ -253,6 +253,7 @@ def decompileScript(name : str, show : bool = False):
         for line in f:
             if line.startswith(name):
                 found = True
+                print("Converting:", line.strip().split(' ')[0])
             elif found:
                 tmp = line.strip().split(' ')
                 if show:
@@ -295,6 +296,33 @@ def convertToPy(data : list):
     return data
 
 
+def findMyEndIndex(data : list, idx : int):
+    x = -1
+    try_open_count = 0
+    for i in range(idx, len(data)):
+        code = data[i]
+        if code == "try_begin" or "try_for" in code:
+            try_open_count += 1
+        elif code == "try_end":
+            try_open_count -= 1
+        if try_open_count <= 0:
+            x = i
+            break
+    return x
+
+
+def searchLastTryHadCondition(data : list, idx : int):
+    hasCondition = False
+    for i in range(idx - 1, 0, -1):
+        code = data[i]
+        firstCode = code.split(',')[0]
+        if code == "try_begin" or code == "else_try" or code == "try_end" or "try_for" in code:
+            break
+        elif firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode:
+            hasCondition = True
+    return hasCondition
+
+
 def convertToPy1(data : list):
     formatex = []
     curLine = ""
@@ -302,7 +330,11 @@ def convertToPy1(data : list):
     lastWasCondit = False
     isInliner = False
     insertEnds = []
+    #ignorix = []
     for i in range(len(data)):
+        #if i in ignorix: #skip when not used "try_end"
+        #    continue
+
         code = data[i]
         firstCode = code.split(',')[0]
 
@@ -311,6 +343,12 @@ def convertToPy1(data : list):
                 formatex.append(curLine)
             condit = True
             curLine = "if;"
+            #codeNext = data[i+1].split(',')[0]
+            #if codeNext in conditionals or "this_or_next|" in codeNext or "neg|" in codeNext:
+            #    pass
+            #else:
+            #    idx = findMyEndIndex(data, i)
+            #    #ignorix.append(idx)
         elif code == "else_try":
             if condit:
                 formatex.append(curLine)
@@ -324,10 +362,13 @@ def convertToPy1(data : list):
             curLine += code + ";"
         elif firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode:
             condit = True
-            #lastWasCondit = True
-            print("SELLE:", i, code)
+            lastWasCondit = True
+            hasCond = searchLastTryHadCondition(data, i)
+            curano = False
+            if not hasCond and len(curLine.strip()) > 0:
+                curano = True
             curLine = "if;" + code + ";"
-            if not isInliner:
+            if not isInliner and not curano:
                 insertEnds.append(len(formatex))
                 isInliner = True
         elif "," in code:
@@ -368,8 +409,6 @@ def convertToPy1(data : list):
             formatex.append(code)
             condit = False
 
-        print("CURLINE:", curLine)
-
         if not condit and (lastWasCondit or curLine == "elif;"):
             if curLine == "elif;":
                 curLine = "else"
@@ -378,14 +417,11 @@ def convertToPy1(data : list):
             lastWasCondit = False
             isInliner = False
 
-    print(insertEnds)
-
     insertEnds.reverse()
     for i in insertEnds:
         for ix in range(i, len(formatex)):
-            if formatex[ix] == "#end" and ix < 99:
+            if formatex[ix] == "#end": #and ix < 99:
                 formatex.insert(ix, "#end")
-                print("IX:", ix, "#end")
                 break
 
     return formatex
@@ -484,17 +520,20 @@ def convertToPy2(data : list):
     return datax
 
 
-def formatGoodText(data : list):
+def formatGoodText(data : list, showIndex : bool = False):
     sx = ""
     indentx = 0
-    for s in data:
+    for i, s in enumerate(data):
         st = s
         if indentx > 0 and (s.startswith("elif") or s == "else:" or s == "#end"):
             indentx -= 1
         st = "\t" * indentx + st
-        sx += st + "\n"
+        sx += st
         if s.startswith("if") or s.startswith("elif") or s == "else:" or s.startswith("for"):
             indentx += 1
+        if showIndex:
+            sx += " #" + str(i)
+        sx += "\n"
     return sx
 
 
@@ -507,13 +546,11 @@ scriptName = "game_enable_cheat_menu"
 if len(sys.argv) > 1:
     scriptName = sys.argv[1]
 
-print("Converting:", scriptName)
+print("Searching for script:", scriptName)
 
 datac = decompileScript(scriptName)
-txt = formatGoodText(datac)
-print(txt)
 datap = convertToPy(datac)
-txt = formatGoodText(datap)
+txt = formatGoodText(datap) #, True)
 print(txt)
 
 
