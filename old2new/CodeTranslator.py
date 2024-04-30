@@ -215,6 +215,18 @@ factions = []
 parties = []
 scenes = []
 items = []
+meshes = []
+partyTemplates = []
+missionTemplates = []
+skills = []
+sounds = []
+particleSystems = []
+menus = []
+quests = []
+tableaus = []
+tracks = []
+icons = []
+animations = []
 
 
 def lookupData(data):
@@ -247,35 +259,26 @@ def lookupData(data):
             d = "itm." + items[x - ITM_MIN][0][0][4:]
         elif x >= SCENE_MIN and x < SCENE_MAX:
             d = "scn." + scenes[x - SCENE_MIN][0][0][4:]
+        elif x >= MESH_MIN and x < MESH_MAX:
+            d = "mesh." + meshes[x - MESH_MIN][0][5:]
+        elif x >= PT_MIN and x < PT_MAX:
+            d = "pt." + partyTemplates[x - PT_MIN][0][3:]
+        elif x >= MT_MIN and x < MT_MAX:
+            d = "mt." + missionTemplates[x - MT_MIN][0][0][4:]
+        elif x >= SKL_MIN and x < SKL_MAX:
+            d = "skl." + skills[x - SKL_MIN][0][4:]
+        elif x >= SND_MIN and x < SND_MAX:
+            d = "snd." + sounds[x - SND_MIN][0][4:]
+        elif x >= PSYS_MIN and x < PSYS_MAX:
+            d = "psys." + particleSystems[x - PSYS_MIN][0][0][5:]
+        elif x >= MENU_MIN and x < MENU_MAX:
+            d = "mnu." + menus[x - MENU_MIN][0][0][4:]
+        elif x >= QUEST_MIN and x < QUEST_MAX:
+            d = "qst." + quests[x - QUEST_MIN][0][4:]
+        elif x >= TABLEAU_MAT_MIN and x < TABLEAU_MAT_MAX:
+            d = "tab." + tableaus[x - TABLEAU_MAT_MIN][0][0][4:]
 
             '''
-            MESH_MIN = 1441151880758558720
-            MESH_MAX = 1450000000000000000
-
-            PT_MIN = 576460752303423488
-            PT_MAX = 576500000000000000
-
-            MT_MIN = 792633534417207296
-            MT_MAX = 792700000000000000
-
-            SKL_MIN = 1369094286720630784
-            SKL_MAX = 1369094286720700000
-
-            SND_MIN = 1152921504606846976
-            SND_MAX = 1152921504607000000
-
-            PSYS_MIN = 1008806316530991104
-            PSYS_MAX = 1009000000000000000
-
-            MENU_MIN = 864691128455135232
-            MENU_MAX = 865000000000000000
-
-            QUEST_MIN = 504403158265495552
-            QUEST_MAX = 504500000000000000
-
-            TABLEAU_MAT_MIN = 1729382256910270464
-            TABLEAU_MAT_MAX = 1730000000000000000
-
             TRACK_MIN = 1657324662872342528
             TRACK_MAX = 1660000000000000000
 
@@ -421,6 +424,95 @@ def readGameStrings():
             if line.startswith("str_"):
                 tmp = line.strip().split(' ')
                 gameStrings.append((tmp[0], tmp[1].replace("_", " ")))
+
+
+def readMeshes():
+    with open(module_path + "meshes.txt") as f:
+        for line in f:
+            if line.startswith("mesh_"):
+                tmp = line.strip().split(' ')
+                meshes.append(tmp)
+
+
+def readPartyTemplates():
+    with open(module_path + "party_templates.txt") as f:
+        for line in f:
+            if line.startswith("pt_"):
+                tmp = line.strip().split(' ')
+                partyTemplates.append(tmp)
+
+
+def readMissionTemplates():
+    with open(module_path + "mission_templates.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("mst_"):
+                tmp = line.strip().split(' ')
+                missionTemplates.append([tmp])
+            elif lineCount > 2:
+                missionTemplates[len(missionTemplates)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readSkills():
+    with open(module_path + "skills.txt") as f:
+        for line in f:
+            if line.startswith("skl_"):
+                tmp = line.strip().split(' ')
+                skills.append(tmp)
+
+
+def readSounds():
+    with open(module_path + "sounds.txt") as f:
+        for line in f:
+            if line.startswith("snd_"):
+                tmp = line.strip().split(' ')
+                sounds.append(tmp)
+
+
+def readParticleSystems():
+    with open(module_path + "particle_systems.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("psys_"):
+                tmp = line.strip().split(' ')
+                particleSystems.append([tmp])
+            elif lineCount > 2:
+                particleSystems[len(particleSystems)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readMenus():
+    with open(module_path + "menus.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("menu_"):
+                tmp = line.strip().split(' ')
+                menus.append([tmp])
+            elif lineCount > 2:
+                menus[len(menus)-1].append(line.strip().split(' '))
+            lineCount += 1
+
+
+def readQuests():
+    with open(module_path + "quests.txt") as f:
+        for line in f:
+            if line.startswith("qst_"):
+                tmp = line.strip().split(' ')
+                quests.append(tmp)
+
+
+def readTableaus():
+    with open(module_path + "tableau_materials.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("tab_"):
+                tmp = line.strip().split(' ')
+                tableaus.append([tmp])
+            elif lineCount > 2:
+                tableaus[len(tableaus)-1].append(line.strip().split(' '))
+            lineCount += 1
+
 
 
 
@@ -740,6 +832,16 @@ readScenes()
 readItems()
 readPresentations()
 readParties()
+readMeshes()
+readPartyTemplates()
+readMissionTemplates()
+readSkills()
+readSounds()
+readParticleSystems()
+readMenus()
+readQuests()
+readTableaus()
+
 
 scriptName = "game_enable_cheat_menu"
 if len(sys.argv) > 1:
