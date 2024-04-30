@@ -204,6 +204,9 @@ ANIM_MIN = 1801439850948198400
 ANIM_MAX = 1810000000000000000 # public const ulong ANIM_MAX = ulong.MaxValue - int.MaxValue
 
 
+localVarNames = dict()
+localVarDict = dict()
+
 globalVariables = []
 quickStrings = []
 sceneProps = []
@@ -229,12 +232,22 @@ icons = []
 animations = []
 
 
-def lookupData(data):
+def lookupData(funcName : str, data : str, index : int):
     d = data
     if is_int(data):
         x = int(data)
         if x >= LOCAL_MIN and x <= LOCAL_MAX:
-            d = "\":var" + str(x - LOCAL_MIN + 1) + "\""
+            varIdx = str(x - LOCAL_MIN + 1)
+            if funcName in localVarNames:
+                y = localVarNames[funcName][index]
+                if y != "0":
+                    y = y.replace("[X]", varIdx)
+                    d = "\":" + y + "\""
+                    localVarDict[varIdx] = y
+            elif varIdx in localVarDict:
+                d = "\":" + localVarDict[varIdx] + "\""
+            if d == data:
+                d = "\":var" + varIdx + "\""
         elif x >= REG0 and x <= REG127:
             d = "reg" + str(x - REG0)
         elif x >= GLOBAL_MIN and x < GLOBAL_MAX:
@@ -542,6 +555,18 @@ def readAnimations():
             lineCount += 1
 
 
+def readLocalVariableNames():
+    with open("exchange_objects.py") as f:
+        for line in f:
+            lineS = line.split('#')[0]
+            if " > " in lineS:
+                tmp = lineS.split('>')
+                tmp2 = tmp[1].strip().split(',')
+                #varName = tmp2[0].strip()
+                funcName = tmp[0].strip()
+                localVarNames[funcName] = tmp2
+
+
 def is_int(data):
     try:
         _ = int(data)
@@ -585,8 +610,10 @@ def decompileScript(name : str, show : bool = False):
                             newData = operations[tmp[i]] + ","
 
                         activeCount = int(tmp[i+1]) + 1
+                        lll = 0
                         for ix in range(i + 2, i + 1 + activeCount):
-                            newData += lookupData(tmp[ix]) + ","
+                            newData += lookupData(newData.rstrip(','), tmp[ix], lll) + ","
+                            lll += 1
                         newData = newData.rstrip(',')
                         data.append(newData)
                     else:
@@ -595,9 +622,11 @@ def decompileScript(name : str, show : bool = False):
     return data
 
 
-def varI(v):
-    if is_int(v):
+def varI(v, isPos : bool = False):
+    if is_int(v) and not isPos:
         v = "s" + v
+    elif is_int(v):
+        v = "pos" + v
     return v
 
 
@@ -693,7 +722,10 @@ def convertToPy1(data : list):
                     tmp[i] = varS(tmp[i])
                 if len(tmp) > 2:
                     xyz += ",".join(tmp[2:])
-                xyz = varI(tmp[1]) + " = " + xyz
+                isPos = False
+                if "position" in tmp[0] or "_pos_" in tmp[0]:
+                    isPos = True
+                xyz = varI(tmp[1], isPos) + " = " + xyz
                 xyz += ")"
             elif "try_for_range" in tmp[0]:
                 step = 1
@@ -876,6 +908,7 @@ readMenus()
 readQuests()
 readTableaus()
 
+readLocalVariableNames()
 
 scriptName = "game_enable_cheat_menu"
 if len(sys.argv) > 1:
