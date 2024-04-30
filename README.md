@@ -662,6 +662,135 @@ def superMaths(bul, bal, bil):
 ]),
 ```
 
+### Optimized Code
+Now there is an optional optimizer included.  
+It makes the generated MBScript version of script code look more naturally to the language.  
+#### Example:
+(Python)
+```python
+if game_in_multiplayer_mode():
+    scene_prop_id = prop_instance_get_scene_prop_kind(instance_id)
+    if scene_prop_id == spr.winch_b:
+        my_player_no = multiplayer_get_my_player()
+        if my_player_no > 0 or not multiplayer_is_dedicated_server() and my_player_no >= 0:
+            my_agent_id = player_get_agent_id(my_player_no)
+            if my_agent_id >= 0 and agent_is_active(my_agent_id):
+                my_team_no = agent_get_team(my_agent_id)
+                if my_team_no == 0:
+                    opened_or_closed = scene_prop_get_slot(instance_id, slot_openclose)
+                    if user_id >= 0 and agent_is_active(user_id):
+                        user_player = agent_get_player_id(user_id)
+                        str_store_player_username(s7, user_player)
+                        if opened_or_closed == 0:
+                            print("{s7} opened the gate")
+                        else:
+                            print("{s7} closed the gate")
+                        #end
+                    #end
+                #end
+            #end
+        #end
+    #end
+#end
+```
+
+(MBScript)
+```python
+(try_begin),
+    (game_in_multiplayer_mode),
+    (prop_instance_get_scene_prop_kind, ":scene_prop_id", ":instance_id"),
+    (try_begin),
+        (eq,":scene_prop_id","spr_winch_b"),
+        (multiplayer_get_my_player, ":my_player_no"),
+        (this_or_next|gt,":my_player_no",0),
+        (neg|multiplayer_is_dedicated_server),
+        (ge,":my_player_no",0),
+        (player_get_agent_id, ":my_agent_id", ":my_player_no"),
+        (ge,":my_agent_id",0),
+        (agent_is_active,":my_agent_id"),
+        (agent_get_team, ":my_team_no", ":my_agent_id"),
+        (eq,":my_team_no",0),
+        (scene_prop_get_slot,":opened_or_closed",":instance_id",":slot_openclose"),
+        (ge,":user_id",0),
+        (agent_is_active,":user_id"),
+        (agent_get_player_id,":user_player",":user_id"),
+        (str_store_player_username,s7,":user_player"),
+        (try_begin),
+            (eq,":opened_or_closed",0),
+            (display_message, "@{s7} opened the gate"),
+        (else_try),
+            (display_message, "@{s7} closed the gate"),
+        (try_end),
+    (try_end),
+(try_end),
+```
+
+### Code Translation (WIP)
+Since the whole process of translating old code into new code, I decided to develop something extra.
+You can soon use this as well to basically also decompile a given Mod into Py2MBScript version of it.  
+
+The goal would be, not to create a decompiler, but to help make the code look better readable.  
+Also to create an alternative for the old given module system.
+
+#### Example:
+(Python - translated by hand)
+```python
+if game_in_multiplayer_mode():
+    scene_prop_id = prop_instance_get_scene_prop_kind(instance_id)
+    if scene_prop_id == spr.winch_b:
+        my_player_no = multiplayer_get_my_player()
+        if my_player_no > 0 or not multiplayer_is_dedicated_server() and my_player_no >= 0:
+            my_agent_id = player_get_agent_id(my_player_no)
+            if my_agent_id >= 0 and agent_is_active(my_agent_id):
+                my_team_no = agent_get_team(my_agent_id)
+                if my_team_no == 0:
+                    opened_or_closed = scene_prop_get_slot(instance_id, slot_openclose)
+                    if user_id >= 0 and agent_is_active(user_id):
+                        user_player = agent_get_player_id(user_id)
+                        str_store_player_username(s7, user_player)
+                        if opened_or_closed == 0:
+                            print("{s7} opened the gate")
+                        else:
+                            print("{s7} closed the gate")
+                        #end
+                    #end
+                #end
+            #end
+        #end
+    #end
+#end
+```
+
+(Python - decompiled and auto-translated)
+```python
+if game_in_multiplayer_mode():
+        var3 = prop_instance_get_scene_prop_kind(var1)
+        if var3 == 1080863910568919844:
+                var4 = multiplayer_get_my_player()
+                if var4 > 0 or not multiplayer_is_dedicated_server() and var4 >= 0:
+                        var5 = player_get_agent_id(var4)
+                        if var5 >= 0 and agent_is_active(var5):
+                                var6 = agent_get_team(var5)
+                                if var6 == 0:
+                                        var7 = scene_prop_get_slot(var1,1)
+                                        if var2 >= 0 and agent_is_active(var2):
+                                                var8 = agent_get_player_id(var2)
+                                                s7 = str_store_player_username(var8)
+                                                if var7 == 0:
+                                                        display_message(1585267068834414691)
+                                                else:
+                                                        display_message(1585267068834414692)
+                                                #end
+                                        #end
+                                #end
+                        #end
+                #end
+        #end
+#end
+```
+
+The main difference are the variable names and currently the recognition of other elements (e.g. strings, scene_props).  
+
 ### Translations
 
 In the folder **translation** you can find all the translation files.  
