@@ -764,32 +764,32 @@ if game_in_multiplayer_mode():
 (Python - decompiled and auto-translated)
 ```python
 if game_in_multiplayer_mode():
-        var3 = prop_instance_get_scene_prop_kind(var1)
-        if var3 == 1080863910568919844:
-                var4 = multiplayer_get_my_player()
-                if var4 > 0 or not multiplayer_is_dedicated_server() and var4 >= 0:
-                        var5 = player_get_agent_id(var4)
-                        if var5 >= 0 and agent_is_active(var5):
-                                var6 = agent_get_team(var5)
-                                if var6 == 0:
-                                        var7 = scene_prop_get_slot(var1,1)
-                                        if var2 >= 0 and agent_is_active(var2):
-                                                var8 = agent_get_player_id(var2)
-                                                s7 = str_store_player_username(var8)
-                                                if var7 == 0:
-                                                        display_message(1585267068834414691)
-                                                else:
-                                                        display_message(1585267068834414692)
-                                                #end
-                                        #end
-                                #end
+    var3 = prop_instance_get_scene_prop_kind(var1)
+    if var3 == spr.winch_b:
+        var4 = multiplayer_get_my_player()
+        if var4 > 0 or not multiplayer_is_dedicated_server() and var4 >= 0:
+            var5 = player_get_agent_id(var4)
+            if var5 >= 0 and agent_is_active(var5):
+                var6 = agent_get_team(var5)
+                if var6 == 0:
+                    var7 = scene_prop_get_slot(var1,1)
+                    if var2 >= 0 and agent_is_active(var2):
+                        var8 = agent_get_player_id(var2)
+                        s7 = str_store_player_username(var8)
+                        if var7 == 0:
+                            print("@{s7} opened the gate")
+                        else:
+                            print("@{s7} closed the gate")
                         #end
+                    #end
                 #end
+            #end
         #end
+    #end
 #end
 ```
 
-The main difference are the variable names and currently the recognition of other elements (e.g. strings, scene_props).  
+The main difference are the variable names.  
 
 ### Translations
 
