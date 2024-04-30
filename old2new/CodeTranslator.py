@@ -99,11 +99,11 @@ conditionals = [
     "scene_prop_has_agent_on_it",
     "agent_is_alarmed",
     "agent_is_in_line_of_sight",
-    "scene_prop_get_instance",
-    "scene_item_get_instance",
+#    "scene_prop_get_instance",
+#    "scene_item_get_instance",
     "scene_allows_mounted_units",
     "prop_instance_is_valid",
-    "cast_ray",
+#    "cast_ray",
     "prop_instance_intersects_with_prop_instance",
     "agent_has_item_equipped",
     "map_get_land_position_around_position",
@@ -111,7 +111,7 @@ conditionals = [
     "mission_tpl_are_all_agents_spawned",
     "is_zoom_disabled",
     "is_currently_night",
-    "store_random_party_of_template",
+#    "store_random_party_of_template",
     "str_is_empty",
     "item_has_property",
     "item_has_capability",
@@ -251,7 +251,7 @@ def decompileScript(name : str, show : bool = False):
     with open("scripts.txt") as f:
         found = False
         for line in f:
-            if line.startswith(name + " "):
+            if line.startswith(name):
                 found = True
             elif found:
                 tmp = line.strip().split(' ')
@@ -290,6 +290,7 @@ def varI(v):
 
 def convertToPy(data : list):
     data = convertToPy1(data)
+    #print(formatGoodText(data))
     data = convertToPy2(data)
     return data
 
@@ -299,21 +300,36 @@ def convertToPy1(data : list):
     curLine = ""
     condit = False
     lastWasCondit = False
+    isInliner = False
+    insertEnds = []
     for i in range(len(data)):
         code = data[i]
+        firstCode = code.split(',')[0]
 
         if code == "try_begin":
+            if condit:
+                formatex.append(curLine)
             condit = True
             curLine = "if;"
         elif code == "else_try":
+            if condit:
+                formatex.append(curLine)
             condit = True
             curLine = "elif;"
         elif code == "try_end":
             formatex.append("#end")
             condit = False
-        elif condit and code.split(',')[0] in conditionals or "this_or_next|" in code.split(',')[0] or "neg|" in code.split(',')[0]:
+        elif condit and (firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode):
             lastWasCondit = True
             curLine += code + ";"
+        elif firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode:
+            condit = True
+            #lastWasCondit = True
+            print("SELLE:", i, code)
+            curLine = "if;" + code + ";"
+            if not isInliner:
+                insertEnds.append(len(formatex))
+                isInliner = True
         elif "," in code:
             tmp = code.split(',')
             if "assign" == tmp[0]:
@@ -327,11 +343,22 @@ def convertToPy1(data : list):
                 xyz = varI(tmp[1]) + " = " + xyz
                 xyz += ")"
             elif "try_for_range" in tmp[0]:
-                formatex.append("for;" + ";".join(tmp[1:]))
+                step = 1
+                if "backwards" in tmp[0]:
+                    step = -1
+                formatex.append("for;" + ";".join(tmp[1:]) + ";" + str(step))
             elif "try_for_parties" == tmp[0]:
                 formatex.append("for;" + tmp[1] + ";__all_parties__")
+            elif "try_for_players" == tmp[0]:
+                formatex.append("for;" + tmp[1] + ";__all_players__")
+            elif "try_for_prop_instances" == tmp[0]:
+                formatex.append("for;" + tmp[1] + ";__all_prop_instances__")
+            elif "try_for_agents" == tmp[0]:
+                formatex.append("for;" + tmp[1] + ";__all_agents__")
             else:
                 xyz = tmp[0] + "("
+                for i in range(1, len(tmp)):
+                    tmp[i] = varS(tmp[i])
                 if len(tmp) > 1:
                     xyz += ",".join(tmp[1:])
                 xyz += ")"
@@ -347,6 +374,17 @@ def convertToPy1(data : list):
             formatex.insert(len(formatex) - 1, curLine)
             curLine = ""
             lastWasCondit = False
+            isInliner = False
+
+    print(insertEnds)
+
+    insertEnds.reverse()
+    for i in insertEnds:
+        for ix in range(i, len(formatex)):
+            if formatex[ix] == "#end" and ix < 99:
+                formatex.insert(ix, "#end")
+                print("IX:", ix, "#end")
+                break
 
     return formatex
 
@@ -361,12 +399,38 @@ def varS(txt : str):
     return txt
 
 
-def convertCondi(tmx):
+def funcS(txt : str):
+    if len(txt.strip()) > 0 and not "," in txt and not " " in txt:
+        txt += "()"
+    elif len(txt.strip()) > 0 and "," in txt:
+        tmp = txt.split(',')
+        for i in range(1, len(tmp)):
+            tmp[i] = varS(tmp[i])
+        txt = tmp[0] + "(" + ",".join(tmp[1:]) + ")"
+    return txt
+
+
+def convertCondi(tmx : str, negate : bool = False):
     tmp = tmx.split(',')
     if tmp[0] == "eq":
-        xyz = varS(tmp[1]) + " == " + varS(tmp[2])
+        operator = " == "
+        if negate:
+            operator = " != "
+        xyz = varS(tmp[1]) + operator + varS(tmp[2])
+    elif tmp[0] == "gt":
+        operator = " > "
+        if negate:
+            operator = " <= "
+        xyz = varS(tmp[1]) + operator + varS(tmp[2])
+    elif tmp[0] == "ge":
+        operator = " >= "
+        if negate:
+            operator = " < "
+        xyz = varS(tmp[1]) + operator + varS(tmp[2])
     else:
-        xyz = tmx
+        xyz = funcS(tmx)
+        if negate:
+            xyz = "not " + funcS(tmx)
     return xyz
 
 
@@ -387,6 +451,9 @@ def convertToPy2(data : list):
                     tmp3 = tmp[iii].split('|')[1]
                     xyz += convertCondi(tmp3)
                     isOr = True
+                elif tmp2[0].startswith("neg|"):
+                    tmp3 = tmp[iii].split('|')[1]
+                    xyz += convertCondi(tmp3, True)
                 else:
                     xyz += convertCondi(tmp[iii])
 
@@ -396,14 +463,41 @@ def convertToPy2(data : list):
                         isOr = False
                     else:
                         xyz += " and "
+            if xyz == "elif ":
+                xyz = "else"
             xyz += ":"
+            datax.append(xyz)
+        elif c.startswith("for;"):
+            tmp = c.split(';')
+            xyz = "for " + varS(tmp[1]) + " in "
+            if is_int(tmp[-1]):
+                xyz += "range(" + varS(tmp[2]) + ", " + varS(tmp[3])
+                itmp = int(tmp[-1])
+                if itmp < 0:
+                    xyz + ", " + tmp[-1]
+                xyz += "):"
             datax.append(xyz)
         else:
             datax.append(c)
     return datax
 
 
+def formatGoodText(data : list):
+    sx = ""
+    indentx = 0
+    for s in data:
+        st = s
+        if indentx > 0 and (s.startswith("elif") or s == "else:" or s == "#end"):
+            indentx -= 1
+        st = "\t" * indentx + st
+        sx += st + "\n"
+        if s.startswith("if") or s.startswith("elif") or s == "else:" or s.startswith("for"):
+            indentx += 1
+    return sx
 
+
+
+# main program
 readGlobalVariables()
 readOperationsFile()
 
@@ -413,21 +507,12 @@ if len(sys.argv) > 1:
 
 print("Converting:", scriptName)
 
-data = decompileScript(scriptName)
-#print(data)
-datax = convertToPy(data)
-
-sx = ""
-indentx = 0
-for s in datax:
-    st = s
-    if indentx > 0 and (s.startswith("elif") or s == "else:" or s == "#end"):
-        indentx -= 1
-    st = "\t" * indentx + st
-    sx += st + "\n"
-    if s.startswith("if") or s.startswith("elif") or s == "else:":
-        indentx += 1
-print(sx)
+datac = decompileScript(scriptName)
+txt = formatGoodText(datac)
+print(txt)
+datap = convertToPy(datac)
+txt = formatGoodText(datap)
+print(txt)
 
 
 
