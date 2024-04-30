@@ -368,6 +368,8 @@ def convertToPy1(data : list):
             formatex.append(code)
             condit = False
 
+        print("CURLINE:", curLine)
+
         if not condit and (lastWasCondit or curLine == "elif;"):
             if curLine == "elif;":
                 curLine = "else"
