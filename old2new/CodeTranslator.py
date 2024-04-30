@@ -2,6 +2,8 @@ import os
 import sys
 
 
+module_path = "/home/djaessel/warband/Modules/Native/"
+
 operations = dict()
 
 conditionals = [
@@ -232,7 +234,7 @@ def readOperationsFile():
 
 
 def readGlobalVariables():
-    with open("variables.txt") as f:
+    with open(module_path + "variables.txt") as f:
         for line in f:
             globalVariables.append(line.rstrip('\n'))
 
@@ -248,7 +250,7 @@ def is_int(data):
 
 def decompileScript(name : str, show : bool = False):
     data = []
-    with open("scripts.txt") as f:
+    with open(module_path + "scripts.txt") as f:
         found = False
         for line in f:
             if line.startswith(name):
