@@ -590,7 +590,7 @@ def decompileScript(name : str, show : bool = False):
         for line in f:
             if line.startswith(name):
                 found = True
-                print("Converting:", line.strip().split(' ')[0])
+                print("# Converting:", line.strip().split(' ')[0])
             elif found:
                 tmp = line.strip().split(' ')
                 if show:
@@ -632,8 +632,8 @@ def varI(v, isPos : bool = False):
 
 def convertToPy(data : list):
     data = convertToPy1(data)
-    #print(formatGoodText(data))
     data = convertToPy2(data)
+    data = convertToPy3(data)
     return data
 
 
@@ -867,6 +867,58 @@ def convertToPy2(data : list):
     return datax
 
 
+extraLists = dict()
+def convertToPy3(data : list):
+    datax = []
+    for i in range(len(data)):
+        code = data[i]
+        if code.startswith("if") and " or " in code and not " and " in code:
+            tmp = code[3:].rstrip(':').split(' or ')
+            same = True
+            lastC = tmp[0].split(' == ')[0]
+            atmo = []
+            for c in tmp:
+                tmp2 = c.split(' == ')
+                if tmp2[0] != lastC:
+                    same = False
+                elif len(tmp2) > 1:
+                    atmo.append(tmp2[1])
+            if same:
+                lastC2 = lastC + "_list1"
+                extraLists[lastC2] = atmo
+                datax.insert(0, "]")
+                for c in atmo:
+                    datax.insert(0, c + ",")
+                datax.insert(0, lastC2 + " = [")
+                datax.append("if " + lastC + " in " + lastC2 + ":")
+            else:
+                datax.append(code)
+        elif code.startswith("elif") and " or " in code and not " and " in code:
+            tmp = code[5:].rstrip(':').split(' or ')
+            same = True
+            lastC = tmp[0].split(' == ')[0]
+            atmo = []
+            for c in tmp:
+                tmp2 = c.split(' == ')
+                if tmp2[0] != lastC:
+                    same = False
+                elif len(tmp2) > 1:
+                    atmo.append(tmp2[1])
+            if same:
+                lastC2 = lastC + "_list2"
+                extraLists[lastC2] = atmo
+                datax.insert(0, "]")
+                for c in atmo:
+                    datax.insert(0, c + ",")
+                datax.insert(0, lastC2 + " = [")
+                datax.append("elif " + lastC + " in " + lastC2 + ":")
+            else:
+                datax.append(code)
+        else:
+            datax.append(code)
+    return datax
+
+
 def formatGoodText(data : list, showIndex : bool = False):
     sx = ""
     indentx = 0
@@ -914,7 +966,7 @@ scriptName = "game_enable_cheat_menu"
 if len(sys.argv) > 1:
     scriptName = sys.argv[1]
 
-print("Searching for script:", scriptName)
+print("# Searching for script:", scriptName)
 
 datac = decompileScript(scriptName)
 datap = convertToPy(datac)
