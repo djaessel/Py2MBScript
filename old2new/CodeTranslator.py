@@ -277,19 +277,14 @@ def lookupData(data):
             d = "qst." + quests[x - QUEST_MIN][0][4:]
         elif x >= TABLEAU_MAT_MIN and x < TABLEAU_MAT_MAX:
             d = "tab." + tableaus[x - TABLEAU_MAT_MIN][0][0][4:]
-
-            '''
-            TRACK_MIN = 1657324662872342528
-            TRACK_MAX = 1660000000000000000
-
-            MAP_ICON_MIN = 129703669268270
-            MAP_ICON_MAX = 130000000000000
-
-            ANIM_MIN = 1801439850948198400
-            ANIM_MAX = 1810000000000000000
-            ''' and None
-        else:
-            pass
+        elif x >= TRACK_MIN and x < TRACK_MAX:
+            d = "track." + tracks[x - TRACK_MIN][0].split('.')[0]
+        elif x >= MAP_ICON_MIN and x < MAP_ICON_MAX:
+            d = "icon." + icons[x - MAP_ICON_MIN][0][0]
+        elif x >= ANIM_MIN and x < ANIM_MAX:
+            d = "anim." + animations[x - ANIM_MIN][0][0]
+        #else: # for example slots and such things
+        #    pass
     return d
 
 
@@ -514,11 +509,50 @@ def readTableaus():
             lineCount += 1
 
 
+def readTracks():
+    with open(module_path + "music.txt") as f:
+        for line in f:
+            if not is_int(line):
+                tmp = line.strip().split(' ')
+                tracks.append(tmp)
+
+
+def readMapIcons():
+    with open(module_path + "map_icons.txt") as f:
+        lineCount = 0
+        for line in f:
+            tmp = line.strip().split(' ')
+            if not is_int(tmp[0]) and len(line.strip()) > 0:
+                icons.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                icons[len(icons)-1].append(tmp)
+            lineCount += 1
+
+
+def readAnimations():
+    with open(module_path + "actions.txt") as f:
+        lineCount = 0
+        for line in f:
+            if lineCount > 0:
+                tmp = line.strip().split(' ')
+                if not is_float(line):
+                    animations.append([tmp])
+                else:
+                    animations[len(animations)-1].append(tmp)
+            lineCount += 1
 
 
 def is_int(data):
     try:
         _ = int(data)
+    except:
+        return False
+    return True
+
+
+def is_float(data):
+    try:
+        _ = float(data)
     except:
         return False
     return True

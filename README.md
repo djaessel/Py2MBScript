@@ -789,7 +789,7 @@ if game_in_multiplayer_mode():
 #end
 ```
 
-The main difference are the variable names.  
+The main difference is the variable names.  
 
 ### Translations
 
