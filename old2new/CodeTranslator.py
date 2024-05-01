@@ -101,11 +101,11 @@ conditionals = [
     "scene_prop_has_agent_on_it",
     "agent_is_alarmed",
     "agent_is_in_line_of_sight",
-#    "scene_prop_get_instance",
-#    "scene_item_get_instance",
+#    "scene_prop_get_instance", # check
+#    "scene_item_get_instance", # check
     "scene_allows_mounted_units",
     "prop_instance_is_valid",
-#    "cast_ray",
+#    "cast_ray", # check
     "prop_instance_intersects_with_prop_instance",
     "agent_has_item_equipped",
     "map_get_land_position_around_position",
@@ -113,13 +113,26 @@ conditionals = [
     "mission_tpl_are_all_agents_spawned",
     "is_zoom_disabled",
     "is_currently_night",
-#    "store_random_party_of_template",
+#    "store_random_party_of_template", # check
     "str_is_empty",
     "item_has_property",
     "item_has_capability",
     "item_has_modifier",
     "item_has_faction",
 ]
+
+math_ops = [
+    "val_mod",
+    "val_sub",
+    "val_add",
+    "val_mul",
+    "val_div",
+    "store_add",
+    "store_sub",
+    "store_div",
+    "store_mul",
+]
+
 
 
 LOCAL_MIN = 0x1100000000000000
@@ -673,6 +686,30 @@ def searchLastTryHadCondition(data : list, idx : int):
     return hasCondition
 
 
+def convertMathOp(funcName : str, params : list):
+    if funcName == "val_mod":
+        retx = params[0] + " %= " + params[1]
+    elif funcName == "val_sub":
+        retx = params[0] + " -= " + params[1]
+    elif funcName == "val_add":
+        retx = params[0] + " += " + params[1]
+    elif funcName == "val_mul":
+        retx = params[0] + " *= " + params[1]
+    elif funcName == "val_div":
+        retx = params[0] + " /= " + params[1]
+    elif funcName == "store_sub":
+        retx = params[0] + " = " + params[1] + " - " + params[2]
+    elif funcName == "store_add":
+        retx = params[0] + " = " + params[1] + " + " + params[2]
+    elif funcName == "store_mul":
+        retx = params[0] + " = " + params[1] + " * " + params[2]
+    elif funcName == "store_div":
+        retx = params[0] + " = " + params[1] + " / " + params[2]
+    else:
+        retx = "ERROR_MATH_OP;" + funcName + ";" + ",".join(params)
+    return retx
+
+
 def convertToPy1(data : list):
     formatex = []
     curLine = ""
@@ -719,7 +756,7 @@ def convertToPy1(data : list):
             tmp = code.split(',')
             if "assign" == tmp[0]:
                 xyz = varS(tmp[1]) + " = " + varS(tmp[2])
-            elif "store" in tmp[0] or "get_" in tmp[0]:
+            elif ("store" in tmp[0] or "get_" in tmp[0]) and not tmp[0] in math_ops:
                 xyz = tmp[0] + "("
                 for i in range(1, len(tmp)):
                     tmp[i] = varS(tmp[i])
@@ -747,12 +784,15 @@ def convertToPy1(data : list):
                 funcName = tmp[0]
                 if funcName == "display_message":
                     funcName = "print"
-                xyz = funcName + "("
                 for i in range(1, len(tmp)):
                     tmp[i] = varS(tmp[i])
-                if len(tmp) > 1:
-                    xyz += ",".join(tmp[1:])
-                xyz += ")"
+                if funcName in math_ops:
+                    xyz = convertMathOp(funcName, tmp[1:])
+                else:
+                    xyz = funcName + "("
+                    if len(tmp) > 1:
+                        xyz += ",".join(tmp[1:])
+                    xyz += ")"
             formatex.append(xyz)
             condit = False
         else:
