@@ -245,15 +245,17 @@ icons = []
 animations = []
 
 
-def lookupData(funcName : str, data : str, parax : list, index : int):
+def lookupData(funcName : str, data : str, parax : list, all : list, index : int):
     d = data
     if is_int(data):
         x = int(data)
         if x >= LOCAL_MIN and x <= LOCAL_MAX:
             varIdx = str(x - LOCAL_MIN + 1).zfill(3)
-            if "try_for_range" in funcName and len(parax) >= 2:
-                t1 = lookupData(funcName, parax[0], [], index + 1).split('.')
-                t2 = lookupData(funcName, parax[1], [], index + 2).split('.')
+            if varIdx in localVarDict: # TODO: Next step is to also rewrite when already in here
+                d = "\":" + localVarDict[varIdx] + "\""
+            elif "try_for_range" in funcName and len(parax) >= 2:
+                t1 = lookupData(funcName, parax[0], [], [], index + 1).split('.')
+                t2 = lookupData(funcName, parax[1], [], [], index + 2).split('.')
                 if len(t1) > 1 and len(t2) > 1 and t1[0] == t2[0]:
                     y = t1[0] + "_" + varIdx
                     d = "\":" + y + "\""
@@ -264,8 +266,8 @@ def lookupData(funcName : str, data : str, parax : list, index : int):
                     y = y.replace("[X]", "_" + varIdx)
                     d = "\":" + y + "\""
                     localVarDict[varIdx] = y
-            elif varIdx in localVarDict:
-                d = "\":" + localVarDict[varIdx] + "\""
+                    for i in range(len(all)):
+                        all[i] = all[i].replace("\":var" + varIdx + "\"", d)
             if d == data:
                 d = "\":var" + varIdx + "\""
         elif x >= REG0 and x <= REG127:
@@ -634,7 +636,7 @@ def decompileScript(name : str, show : bool = False):
                         stx = i + 2
                         enx = i + 1 + activeCount
                         for ix in range(stx, enx):
-                            newData += lookupData(newData.rstrip(','), tmp[ix], tmp[ix+1:enx], lll) + ","
+                            newData += lookupData(newData.split(',')[0], tmp[ix], tmp[ix+1:enx], data, lll) + ","
                             lll += 1
                         newData = newData.rstrip(',')
                         data.append(newData)

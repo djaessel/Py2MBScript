@@ -16,11 +16,11 @@ try_for_prop_instances > cur_prop_instance,[scene_prop_id[X]]
 
 try_for_players > cur_player,0
 
-store_script_param_1 > param[X]
+#store_script_param_1 > param[X]
 
-store_script_param_2 > param[X]
+#store_script_param_2 > param[X]
 
-store_script_param > param[X],0 # 0 is script_param_no
+#store_script_param > param[X],0 # 0 is script_param_no
 
 entering_town > town_id[X]
 
@@ -66,7 +66,7 @@ player_get_agent_id > agent_id[X],0 # 0 is player_id
 
 player_get_gold > gold[X],0 # 0 is player_id
 
-#player_set_gold                      = 408 # (player_set_gold, <player_id>, <value>, <max_value>), #set max_value to 0 if no limit is wanted
+#player_set_gold > 0,gold[X],0                    # = 408 # (player_set_gold, <player_id>, <value>, <max_value>), #set max_value to 0 if no limit is wanted
 
 #player_spawn_new_agent               = 409 # (player_spawn_new_agent, <player_id>, <entry_point>),
 
@@ -580,6 +580,7 @@ troop_get_class > troop_class[X],0 # 0 = troop_id
 
 #troop_add_proficiency_points           = 1525   # (troop_add_proficiency_points,<troop_id>,<value>),					
 #troop_add_gold                         = 1528	# (troop_add_gold,<troop_id>,<value>),
+troop_add_gold > troop_id[X],gold[X]
 #troop_remove_gold                      = 1529	# (troop_remove_gold,<troop_id>,<value>),
 #troop_add_item                         = 1530	# (troop_add_item,<troop_id>,<item_id>,[modifier]),
 #troop_remove_item                      = 1531	# (troop_remove_item,<troop_id>,<item_id>),
@@ -684,7 +685,7 @@ party_get_num_companion_stacks > party_num_companions_stacks[X],0 # 0 = party_id
 
 party_get_num_prisoner_stacks > party_num_prisoners_stacks[X],0 # 0 = party_id
 
-party_stack_get_troop_id > troop_id[X],0,0 # 0 = party_id, 0 = stack_no
+party_stack_get_troop_id > troop_id[X],party_id[X],stack_no[X] # 0 = party_id, 0 = stack_no
 
 party_stack_get_size > party_stack_size[X],0,0 # 0 = party_id, 0 = stack_no
 
