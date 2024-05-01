@@ -578,7 +578,7 @@ def readAnimations():
 
 
 def readLocalVariableNames():
-    with open("exchange_objects.py") as f:
+    with open("local_var_names.conf") as f:
         for line in f:
             lineS = line.split('#')[0]
             if " > " in lineS:
