@@ -237,11 +237,11 @@ def lookupData(funcName : str, data : str, index : int):
     if is_int(data):
         x = int(data)
         if x >= LOCAL_MIN and x <= LOCAL_MAX:
-            varIdx = str(x - LOCAL_MIN + 1)
+            varIdx = str(x - LOCAL_MIN + 1).zfill(3)
             if funcName in localVarNames:
                 y = localVarNames[funcName][index]
                 if y != "0":
-                    y = y.replace("[X]", varIdx)
+                    y = y.replace("[X]", "_" + varIdx)
                     d = "\":" + y + "\""
                     localVarDict[varIdx] = y
             elif varIdx in localVarDict:
@@ -914,6 +914,11 @@ def convertToPy3(data : list):
                 datax.append("elif " + lastC + " in " + lastC2 + ":")
             else:
                 datax.append(code)
+        elif "call_script" in code and "script." in code:
+            tmp = code.replace("call_script(script.", "").replace(",","(",1)
+            if not "(" in tmp:
+                tmp = tmp.replace(")","()")
+            datax.append(tmp)
         else:
             datax.append(code)
     return datax
