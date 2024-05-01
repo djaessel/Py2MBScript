@@ -282,6 +282,31 @@ def superMaths(bul, bal, bil):
 
 # INPUT: arg1 = agent_id, arg2 = instance_id
 def use_item(instance_id, user_id):
+    winches = [
+        spr.winch_b,
+        spr.winch,
+    ]
+
+    doors = [
+        spr.door_destructible,
+        spr.castle_f_door_b,
+        spr.castle_e_sally_door_a,
+        spr.castle_f_sally_door_a,
+        spr.earth_sally_gate_left,
+        spr.earth_sally_gate_right,
+        spr.viking_keep_destroy_sally_door_left,
+        spr.viking_keep_destroy_sally_door_right,
+        spr.castle_f_door_a,
+    ]
+
+    ladders = [
+        spr.siege_ladder_move_6m,
+        spr.siege_ladder_move_8m,
+        spr.siege_ladder_move_10m,
+        spr.siege_ladder_move_12m,
+        spr.siege_ladder_move_14m,
+    ]
+
     slot_openclose = mconst.scene_prop_open_or_close_slot
 
     if game_in_multiplayer_mode():
@@ -310,29 +335,6 @@ def use_item(instance_id, user_id):
     #end
 
     scene_prop_id = prop_instance_get_scene_prop_kind(instance_id)
-
-    winches = [
-        spr.winch_b,
-        spr.winch,
-    ]
-    doors = [
-        spr.door_destructible,
-        spr.castle_f_door_b,
-        spr.castle_e_sally_door_a,
-        spr.castle_f_sally_door_a,
-        spr.earth_sally_gate_left,
-        spr.earth_sally_gate_right,
-        spr.viking_keep_destroy_sally_door_left,
-        spr.viking_keep_destroy_sally_door_right,
-        spr.castle_f_door_a,
-    ]
-    ladders = [
-        spr.siege_ladder_move_6m,
-        spr.siege_ladder_move_8m,
-        spr.siege_ladder_move_10m,
-        spr.siege_ladder_move_12m,
-        spr.siege_ladder_move_14m,
-    ]
 
     if scene_prop_id in winches:
         effected_object = spr.portcullis
