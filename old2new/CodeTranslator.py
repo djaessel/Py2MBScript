@@ -241,7 +241,6 @@ def lookupData(funcName : str, data : str, parax : list, index : int):
             if "try_for_range" in funcName and len(parax) >= 2:
                 t1 = lookupData(funcName, parax[0], [], index + 1).split('.')
                 t2 = lookupData(funcName, parax[1], [], index + 2).split('.')
-                print(funcName, parax, t1, t2)
                 if len(t1) > 1 and len(t2) > 1 and t1[0] == t2[0]:
                     y = t1[0] + "_" + varIdx
                     d = "\":" + y + "\""
@@ -694,12 +693,6 @@ def convertToPy1(data : list):
                 formatex.append(curLine)
             condit = True
             curLine = "if;"
-            #codeNext = data[i+1].split(',')[0]
-            #if codeNext in conditionals or "this_or_next|" in codeNext or "neg|" in codeNext:
-            #    pass
-            #else:
-            #    idx = findMyEndIndex(data, i)
-            #    #ignorix.append(idx)
         elif code == "else_try":
             if condit:
                 formatex.append(curLine)
@@ -741,15 +734,15 @@ def convertToPy1(data : list):
                 step = 1
                 if "backwards" in tmp[0]:
                     step = -1
-                formatex.append("for;" + ";".join(tmp[1:]) + ";" + str(step))
+                xyz = "for;" + ";".join(tmp[1:]) + ";" + str(step)
             elif "try_for_parties" == tmp[0]:
-                formatex.append("for;" + tmp[1] + ";__all_parties__")
+                xyz = "for;" + tmp[1] + ";__all_parties__"
             elif "try_for_players" == tmp[0]:
-                formatex.append("for;" + tmp[1] + ";__all_players__")
+                xyz = "for;" + tmp[1] + ";__all_players__"
             elif "try_for_prop_instances" == tmp[0]:
-                formatex.append("for;" + tmp[1] + ";__all_prop_instances__")
+                xyz = "for;" + tmp[1] + ";__all_prop_instances__"
             elif "try_for_agents" == tmp[0]:
-                formatex.append("for;" + tmp[1] + ";__all_agents__")
+                xyz = "for;" + tmp[1] + ";__all_agents__"
             else:
                 funcName = tmp[0]
                 if funcName == "display_message":
