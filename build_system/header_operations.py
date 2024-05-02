@@ -1429,6 +1429,8 @@ face_keys_set_skin_color              = 2765 # (face_keys_set_skin_color, <strin
 face_keys_get_morph_key               = 2766 # (face_keys_get_morph_key, <destination>, <string_no>, <key_no>), #Stores face key's morph key value (0-7) into <destination>
 face_keys_set_morph_key               = 2767 # (face_keys_set_morph_key, <string_no>, <key_no>, <value>), #Sets face key's morph key value (0-7)
 
+UNKNOWN_OP_3210 = 3210
+
 
 #-------------------------------------------
 

@@ -1009,6 +1009,9 @@ readParticleSystems()
 readMenus()
 readQuests()
 readTableaus()
+readTracks()
+readMapIcons()
+readAnimations()
 
 readLocalVariableNames()
 
