@@ -895,6 +895,8 @@ def convertToPy2(data : list):
                         xyz += " and "
             if xyz == "elif ":
                 xyz = "else"
+            elif if xyz == "if "
+                xyz += "True"
             xyz += ":"
             datax.append(xyz)
         elif c.startswith("for;"):
