@@ -694,13 +694,19 @@ def convertMathOp(funcName : str, params : list):
     elif funcName == "val_sub":
         retx = params[0] + " -= " + params[1]
     elif funcName == "val_add":
-        retx = params[0] + " += " + params[1]
+        if len(params) > 1:
+            retx = params[0] + " += " + params[1]
+        else:
+            retx = "val_add(" + params[0] + ")"
     elif funcName == "val_mul":
         retx = params[0] + " *= " + params[1]
     elif funcName == "val_div":
         retx = params[0] + " /= " + params[1]
     elif funcName == "store_sub":
-        retx = params[0] + " = " + params[1] + " - " + params[2]
+        if len(params) > 2:
+            retx = params[0] + " = " + params[1] + " - " + params[2]
+        else:
+            retx = "store_sub(" + params[0] + ", " + params[1] + ")"
     elif funcName == "store_add":
         retx = params[0] + " = " + params[1] + " + " + params[2]
     elif funcName == "store_mul":
@@ -895,7 +901,7 @@ def convertToPy2(data : list):
                         xyz += " and "
             if xyz == "elif ":
                 xyz = "else"
-            elif if xyz == "if "
+            elif xyz == "if ":
                 xyz += "True"
             xyz += ":"
             datax.append(xyz)
@@ -971,9 +977,11 @@ def convertToPy3(data : list):
     return datax
 
 
-def formatGoodText(data : list, showIndex : bool = False):
+def formatGoodText(data : list, showIndex : bool = False, extraIndent : bool = False):
     sx = ""
     indentx = 0
+    if extraIndent:
+        indentx = 1
     for i, s in enumerate(data):
         st = s
         if indentx > 0 and (s.startswith("elif") or s == "else:" or s == "#end"):
@@ -990,6 +998,7 @@ def formatGoodText(data : list, showIndex : bool = False):
 
 
 # main program
+# read txt files
 readGlobalVariables()
 readOperationsFile()
 readQuickStrings()
@@ -1015,19 +1024,29 @@ readTracks()
 readMapIcons()
 readAnimations()
 
+# init local variables
 readLocalVariableNames()
 
-scriptName = "game_enable_cheat_menu"
+
+scriptName = ""
 if len(sys.argv) > 1:
     scriptName = sys.argv[1]
 
-print("# Searching for script:", scriptName)
-
-datac = decompileScript(scriptName)
-datap = convertToPy(datac)
-txt = formatGoodText(datap) #, True)
-print(txt)
-
-
+if len(scriptName) == 0:
+    for script in scripts:
+        scriptName = script[0][0]
+        datac = decompileScript(scriptName)
+        datap = convertToPy(datac)
+        txt = formatGoodText(datap, False, True)
+        with open("testxyz.py", "a") as f:
+            f.write("def " + scriptName + ":\n")
+            f.write(txt)
+            f.write("\n\n")
+else:
+    datac = decompileScript(scriptName)
+    print(datac)
+    datap = convertToPy(datac)
+    txt = formatGoodText(datap, False, True)
+    print(txt)
 
 
