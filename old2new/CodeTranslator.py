@@ -261,13 +261,16 @@ def lookupData(funcName : str, data : str, parax : list, all : list, index : int
                     d = "\":" + y + "\""
                     localVarDict[varIdx] = y
             elif funcName in localVarNames:
-                y = localVarNames[funcName][index]
-                if y != "0":
-                    y = y.replace("[X]", "_" + varIdx)
-                    d = "\":" + y + "\""
-                    localVarDict[varIdx] = y
-                    for i in range(len(all)):
-                        all[i] = all[i].replace("\":var" + varIdx + "\"", d)
+                if index < len(localVarNames[funcName]):
+                    y = localVarNames[funcName][index]
+                    if y != "0":
+                        y = y.replace("[X]", "_" + varIdx)
+                        d = "\":" + y + "\""
+                        localVarDict[varIdx] = y
+                        for i in range(len(all)):
+                            all[i] = all[i].replace("\":var" + varIdx + "\"", d)
+                else:
+                    print("WARNING: LOOKUP >", funcName, data, index, localVarNames[funcName])
             if d == data:
                 d = "\":var" + varIdx + "\""
         elif x >= REG0 and x <= REG127:
@@ -699,31 +702,53 @@ def searchLastTryHadCondition(data : list, idx : int):
 
 def convertMathOp(funcName : str, params : list):
     if funcName == "val_mod":
-        retx = params[0] + " %= " + params[1]
+        if len(params) > 1:
+            retx = params[0] + " %= " + params[1]
+        else:
+            retx = "val_mod(" + params[0] + ")"
     elif funcName == "val_sub":
-        retx = params[0] + " -= " + params[1]
+        if len(params) > 1:
+            retx = params[0] + " -= " + params[1]
+        else:
+            retx = "val_sub(" + params[0] + ")"
     elif funcName == "val_add":
         if len(params) > 1:
             retx = params[0] + " += " + params[1]
         else:
             retx = "val_add(" + params[0] + ")"
     elif funcName == "val_mul":
-        retx = params[0] + " *= " + params[1]
+        if len(params) > 1:
+            retx = params[0] + " *= " + params[1]
+        else:
+            retx = "val_mul(" + params[0] + ")"
     elif funcName == "val_div":
-        retx = params[0] + " /= " + params[1]
+        if len(params) > 1:
+            retx = params[0] + " /= " + params[1]
+        else:
+            retx = "val_div(" + params[0] + ")"
     elif funcName == "store_sub":
         if len(params) > 2:
             retx = params[0] + " = " + params[1] + " - " + params[2]
         else:
             retx = "store_sub(" + params[0] + ", " + params[1] + ")"
     elif funcName == "store_add":
-        retx = params[0] + " = " + params[1] + " + " + params[2]
+        if len(params) > 2:
+            retx = params[0] + " = " + params[1] + " + " + params[2]
+        else:
+            retx = "store_add(" + params[0] + ", " + params[1] + ")"
     elif funcName == "store_mul":
-        retx = params[0] + " = " + params[1] + " * " + params[2]
+        if len(params) > 2:
+            retx = params[0] + " = " + params[1] + " * " + params[2]
+        else:
+            retx = "store_mul(" + params[0] + ", " + params[1] + ")"
     elif funcName == "store_div":
-        retx = params[0] + " = " + params[1] + " / " + params[2]
+        if len(params) > 2:
+            retx = params[0] + " = " + params[1] + " / " + params[2]
+        else:
+            retx = "store_div(" + params[0] + ", " + params[1] + ")"
     else:
         retx = "ERROR_MATH_OP;" + funcName + ";" + ",".join(params)
+        print("# " + retx)
     return retx
 
 
@@ -734,11 +759,7 @@ def convertToPy1(data : list):
     lastWasCondit = False
     isInliner = False
     insertEnds = []
-    #ignorix = []
     for i in range(len(data)):
-        #if i in ignorix: #skip when not used "try_end"
-        #    continue
-
         code = data[i]
         firstCode = code.split(',')[0]
 
@@ -772,7 +793,10 @@ def convertToPy1(data : list):
         elif "," in code:
             tmp = code.split(',')
             if "assign" == tmp[0]:
-                xyz = varS(tmp[1]) + " = " + varS(tmp[2])
+                if len(tmp) > 2:
+                    xyz = varS(tmp[1]) + " = " + varS(tmp[2])
+                else:
+                    xyz = "assign(" + varS(tmp[1]) + ")"
             elif ("store" in tmp[0] or "get_" in tmp[0]) and not tmp[0] in math_ops:
                 xyz = tmp[0] + "("
                 for i in range(1, len(tmp)):
@@ -861,7 +885,15 @@ def convertCondi(tmx : str, negate : bool = False):
         operator = " == "
         if negate:
             operator = " != "
-        xyz = varS(tmp[1]) + operator + varS(tmp[2])
+        if len(tmp) > 2:
+            xyz = varS(tmp[1]) + operator + varS(tmp[2])
+        else:
+            if negate:
+                print("Warning: NEQ >", tmp)
+                xyz = "neq(" + varS(tmp[1]) + ")"
+            else:
+                print("Warning: EQ >", tmp)
+                xyz = "eq(" + varS(tmp[1]) + ")"
     elif tmp[0] == "gt":
         operator = " > "
         if negate:
@@ -923,6 +955,10 @@ def convertToPy2(data : list):
                 if itmp < 0:
                     xyz + ", " + tmp[-1]
                 xyz += "):"
+            elif len(tmp) == 3:
+                xyz += varS(tmp[2]) + ":"
+            else:
+                print("# ERROR: FOR >", tmp, xyz)
             datax.append(xyz)
         else:
             datax.append(c)
@@ -1071,7 +1107,7 @@ if len(scriptName) == 0:
         datac = decompileScript(scriptName)
         datap, scriptParams = convertToPy(datac)
         txt = formatGoodText(datap, False, True)
-        with open("testxyz.py", "a") as f:
+        with open("test_scripts.py", "a") as f:
             f.write("def " + scriptName + "(" + ", ".join(scriptParams) + "):\n")
             f.write(txt)
             f.write("\n\n")
