@@ -99,14 +99,16 @@ def getProficiencies(troop : list):
 
 
 def getFaceCodes(troop : list):
-    faceCodes = ["",""]
-    # TODO: convert data from troop[FACES]
+    faceCodes = [0, 0]
+    for i in range(4):
+        faceCodes[0] |= int(troop[FACES][i]) << (i * 64)
+    for i in range(4):
+        faceCodes[1] |= int(troop[FACES][i+4]) << (i * 64)
     return faceCodes
 
 
 def getSkills(troop : list):
-    skillsx = []
-    # TODO: convert data from troop[SKILLS]
+    skillsx = troop[SKILLS]
     return skillsx
 
 
@@ -122,7 +124,7 @@ def writeTroop(idx : str, troop : list):
         f.write("faction=fac." + factions[int(faction)][0][0][4:] + ", ")
 
         faceCodes = getFaceCodes(troop)
-        f.write("face_code_1=\"" + faceCodes[0] + "\", face_code_2=\"" + faceCodes[1] + "\")")
+        f.write("face_code_1=\"" + hex(faceCodes[0]) + "\", face_code_2=\"" + hex(faceCodes[1]) + "\")")
         f.write("\n")
 
         profs = getProficiencies(troop)
@@ -142,6 +144,11 @@ def writeTroop(idx : str, troop : list):
             f.write(")\n")
 
         # TODO: Skills
+        skill_array = 0
+        skillsx = getSkills(troop)
+        for i, sklVal in enumerate(skillsx):
+            skill_array |= int(sklVal) << (i * 32)
+        f.write("# " + hex(skill_array) + "\n")
 
         f.write("\n")
         
