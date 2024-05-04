@@ -284,7 +284,7 @@ def lookupData(funcName : str, data : str, parax : list, all : list, index : int
         elif x >= TRP_PLAYER and x < TROOP_MAX:
             d = "trp." + troops[x - TRP_PLAYER][0][0][4:]
         elif x >= SCRIPT_MIN and x < SCRIPT_MAX:
-            d = "script." + scripts[x - SCRIPT_MIN][0][0] # convert this later
+            d = "script." + scripts[x - SCRIPT_MIN][0][0]
         elif x >= STRING_MIN and x < STRING_MAX:
             d = "gstr." + gameStrings[x - STRING_MIN][0][4:]
         elif x >= PRSNT_MIN and x < PRSNT_MAX:
@@ -321,8 +321,18 @@ def lookupData(funcName : str, data : str, parax : list, all : list, index : int
             d = "icon." + icons[x - MAP_ICON_MIN][0][0]
         elif x >= ANIM_MIN and x < ANIM_MAX:
             d = "anim." + animations[x - ANIM_MIN][0][0]
-        #else: # for example slots and such things
-        #    pass
+        else:
+            if x >= 0 and x < 0xffff:
+                if funcName == "call_script" and index == 0:
+                    d = "script." + scripts[x][0][0]
+                elif ("troop_get" in funcName or "troop_set" in funcName) and index == 1: # why 1? -> TODO: check that and also create list with possible OP Codes
+                    d = "trp." + troops[x][0][0][4:]
+                elif ("item_get" in funcName or "item_set" in funcName) and index == 1: # why 1? -> TODO: check that and also create list with possible OP Codes
+                    d = "itm." + items[x][0][0][4:]
+                #else: # for example slots and such things
+                #    pass
+            #else: # for example slots and such things
+            #    pass
     return d
 
 
