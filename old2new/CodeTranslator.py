@@ -607,6 +607,7 @@ def is_float(data):
 
 def decompileScript(name : str, show : bool = False):
     data = []
+    localVarDict.clear()
     with open(module_path + "scripts.txt") as f:
         found = False
         for line in f:
@@ -624,12 +625,20 @@ def decompileScript(name : str, show : bool = False):
 
                         if (itmp & 0x40000000) == 0x40000000: # this_or_next
                             vv = str(itmp & 0xFFFF)
-                            newData = "this_or_next|" + operations[vv] + ","
+                            if vv in operations:
+                                newData = "this_or_next|" + operations[vv] + ","
+                            else:
+                                newData = "this_or_next|UNKNOWN_OP_" + vv + ","
                         elif (itmp & 0x80000000) == 0x80000000: # neg
                             vv = str(itmp & 0xFFFF)
-                            newData = "neg|" + operations[vv] + ","
-                        else:
+                            if vv in operations:
+                                newData = "neg|" + operations[vv] + ","
+                            else:
+                                newData = "neg|UNKNOWN_OP_" + vv + ","
+                        elif tmp[i] in operations:
                             newData = operations[tmp[i]] + ","
+                        else:
+                            newData = "UNKNOWN_OP_" + tmp[i] + ","
 
                         activeCount = int(tmp[i+1]) + 1
                         lll = 0
@@ -657,8 +666,8 @@ def varI(v, isPos : bool = False):
 def convertToPy(data : list):
     data = convertToPy1(data)
     data = convertToPy2(data)
-    data = convertToPy3(data)
-    return data
+    data, scriptParams = convertToPy3(data)
+    return data, scriptParams
 
 
 def findMyEndIndex(data : list, idx : int):
@@ -923,6 +932,7 @@ def convertToPy2(data : list):
 extraLists = dict()
 def convertToPy3(data : list):
     datax = []
+    scriptParams = []
     for i in range(len(data)):
         code = data[i]
         if code.startswith("if") and " or " in code and not " and " in code:
@@ -972,9 +982,32 @@ def convertToPy3(data : list):
             if not "(" in tmp:
                 tmp = tmp.replace(")","()")
             datax.append(tmp)
+        elif "store_script_param" in code:
+            tmp = code.split('=')
+            xname = tmp[0].strip()
+            if "store_script_param_1" in code:
+                if len(scriptParams) > 0:
+                    scriptParams[0] = xname
+                else:
+                    scriptParams.append(xname)
+            elif "store_script_param_2" in code:
+                if len(scriptParams) > 1:
+                    scriptParams[1] = xname
+                else:
+                    scriptParams.append(xname)
+            else:
+                parax = tmp[1].strip().split('(')[1].split(')')[0]
+                if is_int(parax):
+                    x = int(parax)
+                    if x < len(scriptParams):
+                        scriptParams[x] = xname
+                    else:
+                        scriptParams.append(xname)
+                else:
+                    print("# PARSING ERROR:", parax, "TO INT - SCRIPT_PARAM")
         else:
             datax.append(code)
-    return datax
+    return datax, scriptParams
 
 
 def formatGoodText(data : list, showIndex : bool = False, extraIndent : bool = False):
@@ -1036,17 +1069,18 @@ if len(scriptName) == 0:
     for script in scripts:
         scriptName = script[0][0]
         datac = decompileScript(scriptName)
-        datap = convertToPy(datac)
+        datap, scriptParams = convertToPy(datac)
         txt = formatGoodText(datap, False, True)
         with open("testxyz.py", "a") as f:
-            f.write("def " + scriptName + ":\n")
+            f.write("def " + scriptName + "(" + ", ".join(scriptParams) + "):\n")
             f.write(txt)
             f.write("\n\n")
 else:
     datac = decompileScript(scriptName)
     print(datac)
-    datap = convertToPy(datac)
+    datap, scriptParams = convertToPy(datac)
     txt = formatGoodText(datap, False, True)
+    print("# " + scriptParams)
     print(txt)
 
 
