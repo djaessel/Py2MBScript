@@ -1,4 +1,14 @@
 
+import sys
+sys.path.append("../build_system/")
+sys.path.append("../data_objects/")
+sys.path.append("../modules/")
+
+import header_troops as trpHeader
+import header_skills as sklHeader
+import skills as sklModule
+import troop as trpData
+
 
 module_path = "/home/djaessel/warband/Modules/Native/"
 
@@ -107,15 +117,102 @@ def getFaceCodes(troop : list):
     return faceCodes
 
 
-def getSkills(troop : list):
+def getSkillsPrepare(troop : list):
+    skill_array = 0
     skillsx = troop[SKILLS]
-    return skillsx
+    for i, sklVal in enumerate(skillsx):
+        skill_array |= int(sklVal) << (i * 32)
+    return skill_array
+
+
+def containsSkillAlreadyCheck(skill_name : str, skill_val : int, skillsx : list):
+    delx = []
+    for i, s in enumerate(skillsx):
+        if s[0] == skill_name:
+            if int(s[1]) < skill_val:
+                delx.append(i)
+            else:
+                return False
+
+    delx.reverse()
+    for i in delx:
+        del skillsx[i]
+    return True
+
+
+def getSkills(troop : list):
+    skillsx = []
+    skill_array = getSkillsPrepare(troop)
+
+    skill_consts = dict()
+    for i in vars(sklHeader):
+        if i.startswith("knows_"):
+            skill_consts[i] = getattr(sklHeader,i)
+
+    for s in skill_consts:
+        v = skill_consts[s]
+        if (skill_array & v) == v:
+            tmp = s.split('_')
+            skill_val = tmp[-1]
+            tmp.pop()
+            skill_name = "_".join(tmp)
+            canAdd = containsSkillAlreadyCheck(skill_name, int(skill_val), skillsx)
+            if canAdd:
+                skillsx.append((skill_name, skill_val))
+
+    final_skillx = []
+    for skillx in vars(sklModule):
+        ssss = getattr(sklModule, skillx)
+        if "skill.Skill object" in str(ssss):
+            for x in skillsx:
+                if x[0] == "knows_" + ssss.id:
+                    final_skillx.append(("skl." + skillx, x[1]))
+
+    return final_skillx
+
+
+def getFlags(troop : list):
+    flagsx = []
+    final_flags = []
+    flags = int(troop[MAIN_VALS][FLAGS])
+    if int(flags) > 0:
+        troop_consts = dict()
+        for i in vars(trpHeader):
+            if i.startswith("tf_"):
+                troop_consts[i] = getattr(trpHeader,i)
+        for t in troop_consts:
+            v = troop_consts[t]
+            if (flags & v) == v:
+                flagsx.append(t)
+
+        mapx = None
+        for tfx in vars(trpData):
+            if "TroopFlag" in tfx:
+                atx = getattr(trpData,tfx)
+                for lll in vars(atx):
+                    if lll == "_value2member_map_":
+                        mapx = getattr(atx, lll)
+                        break
+                break
+
+        if mapx != None:
+            for tf in flagsx:
+                if tf in mapx:
+                    final_flags.append(str(mapx[tf]))
+                else:
+                    print("WARNING: Ignored tf >", tf)
+        else:
+            print("ERROR: MAPX EMPTY!")
+
+    return final_flags
 
 
 def writeTroop(idx : str, troop : list):
     with open("test_troop.py", "a") as f:
         mainVals = troop[MAIN_VALS]
-        f.write(idx + " = Troop(\"" + idx + "\", \"" + mainVals[NAME] + "\", ") #"\", \"" + mainVals[PLURAL_NAME] + "\")")
+
+        f.write("# " + mainVals[NAME] + "\n")
+        f.write(idx + " = Troop(\"" + idx + "\", name=\"" + mainVals[NAME].replace("_"," ") + "\", ") #"\", plural_name=\"" + mainVals[PLURAL_NAME] + "\")")
 
         stats = getStats(troop)
         f.write("strength=" + stats[STRENGTH] + ", agility=" + stats[AGILITY] + ", intelligence=" + stats[INTELLIGENCE] + ", charisma=" + stats[CHARISMA] + ", level=" + stats[LEVEL] + ", ")
@@ -127,15 +224,18 @@ def writeTroop(idx : str, troop : list):
         f.write("face_code_1=\"" + hex(faceCodes[0]) + "\", face_code_2=\"" + hex(faceCodes[1]) + "\")")
         f.write("\n")
 
+        f.write("# proficiencies\n")
         profs = getProficiencies(troop)
         f.write(idx + ".wpex(" + ",".join(profs[0:6]) + ")\n")
         if int(profs[6]) > 0:
             f.write(idx + ".set_firearm(" + profs[6] + ")\n")
 
-        flags = mainVals[FLAGS]
-        if int(flags) > 0:
-            f.write(idx + ".add_flags(" + hex(int(flags)) + ")\n")
+        f.write("# flags\n")
+        flags = getFlags(troop)
+        for fl in flags:
+            f.write(idx + ".add_flag(" + fl + ")\n")
 
+        f.write("# items\n")
         itemsx = getItems(troop)
         for itm in itemsx:
             f.write(idx + ".add_item(itm." + items[itm[0]][0][0][4:])
@@ -143,14 +243,12 @@ def writeTroop(idx : str, troop : list):
                 f.write(", " + str(itm[1]))
             f.write(")\n")
 
-        # TODO: Skills
-        skill_array = 0
+        f.write("# skills\n")
         skillsx = getSkills(troop)
-        for i, sklVal in enumerate(skillsx):
-            skill_array |= int(sklVal) << (i * 32)
-        f.write("# " + hex(skill_array) + "\n")
+        for s in skillsx:
+            f.write(idx + ".add_skill(" + s[0] + ", " + s[1] + ")\n")
 
-        f.write("\n")
+        f.write("\n\n")
         
 
 
@@ -162,10 +260,14 @@ readItems()
 troops = readTroopsFile()
 print("Troops:", len(troops))
 
-archer = troops["trp_tutorial_archer"]
-
-writeTroop("trp_tutorial_archer", archer)
-
+troopx = ""
+if len(sys.argv) > 1:
+    troopx = sys.argv[1]
+    archer = troops[troopx]
+    writeTroop(troopx, archer)
+else: # all
+    for t in troops:
+        writeTroop(t, troops[t])
 
 
 

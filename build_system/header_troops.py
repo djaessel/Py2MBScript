@@ -10,7 +10,20 @@ from header_common import *
 #Troop flags
 tf_male           = 0
 tf_female         = 1
-tf_undead         = 2
+tf_skin_3         = 2
+tf_skin_4         = 3
+tf_skin_5         = 4
+tf_skin_6         = 5
+tf_skin_7         = 6
+tf_skin_8         = 7
+tf_skin_9         = 8
+tf_skin_10        = 9
+tf_skin_11        = 10
+tf_skin_12        = 11
+tf_skin_13        = 12
+tf_skin_14        = 13
+tf_skin_15        = 14
+tf_skin_16        = 15
 troop_type_mask   = 0x0000000f
 tf_hero              = 0x00000010
 tf_inactive          = 0x00000020

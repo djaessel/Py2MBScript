@@ -14,20 +14,20 @@ import items as itm
 class TroopFlag(Enum):
     SKIN1 = "tf_male"          # = 0
     SKIN2 = "tf_female"        # = 1
-    SKIN3 = "2"
-    SKIN4 = "3"
-    SKIN5 = "4"
-    SKIN6 = "5"
-    SKIN7 = "6"
-    SKIN8 = "7"
-    SKIN9 = "8"
-    SKIN10 = "9"
-    SKIN11 = "10"
-    SKIN12 = "11"
-    SKIN13 = "12"
-    SKIN14 = "13"
-    SKIN15 = "14"
-    SKIN16 = "15"
+    SKIN3 = "tf_skin_3"
+    SKIN4 = "tf_skin_4"
+    SKIN5 = "tf_skin_5"
+    SKIN6 = "tf_skin_6"
+    SKIN7 = "tf_skin_7"
+    SKIN8 = "tf_skin_8"
+    SKIN9 = "tf_skin_9"
+    SKIN10 = "tf_skin_10"
+    SKIN11 = "tf_skin_11"
+    SKIN12 = "tf_skin_12"
+    SKIN13 = "tf_skin_13"
+    SKIN14 = "tf_skin_14"
+    SKIN15 = "tf_skin_15"
+    SKIN16 = "tf_skin_16"
     IS_MALE = SKIN1
     IS_FEMALE = SKIN2
     # "tf_undead"        # = 2
