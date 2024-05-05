@@ -216,6 +216,7 @@
         "ide/ItemManager.qml",
         "old2new/CodeTranslator.py",
         "old2new/local_var_names.conf",
-        "old2new/TroopTranslator.py"
+        "old2new/TroopTranslator.py",
+        "old2new/ItemTranslator.py"
     ]
 }

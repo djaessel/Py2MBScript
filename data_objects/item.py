@@ -349,6 +349,10 @@ class Item:
         self.custom_kill_info = None
 
 
+    def set_price(self, price : int):
+        self.price = price
+
+
     def set_weight(self, weight : float):
         self.weight = weight
 
