@@ -14,14 +14,14 @@ module_path = "/home/djaessel/warband/Modules/Native/"
 
 MAIN_VALS = 0
 NAME = 0
-PLURAL_NAME = 1
-DIALOG_IMAGE = 2
+PLURAL_NAME = 1 # TODO: add this if needed
+DIALOG_IMAGE = 2 # TODO: add this
 FLAGS = 3
-SCENE_CODE = 4
-RESERVED = 5
+SCENE_CODE = 4 # TODO: add this
+RESERVED = 5 # TODO: add this if needed
 FACTION_ID = 6
-UPGRADE_TROOP_1 = 7
-UPGRADE_TROOP_2 = 8
+UPGRADE_TROOP_1 = 7 # TODO: add this
+UPGRADE_TROOP_2 = 8 # TODO: add this
 
 ITEMS = 1
 
