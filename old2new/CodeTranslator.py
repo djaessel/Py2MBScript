@@ -1002,6 +1002,10 @@ def convertToPy3(data : list):
                 datax.append("if " + lastC + " in " + lastC2 + ":")
             else:
                 datax.append(code)
+        elif code.startswith("if") and "#end" in data[i+1]:
+            # TODO: also add other cases here
+            datax.append(code)
+            datax.append("pass")
         elif code.startswith("elif") and " or " in code and not " and " in code:
             tmp = code[5:].rstrip(':').split(' or ')
             same = True
@@ -1119,7 +1123,10 @@ if len(scriptName) == 0:
         txt = formatGoodText(datap, False, True)
         with open("test_scripts.py", "a") as f:
             f.write("def " + scriptName + "(" + ", ".join(scriptParams) + "):\n")
-            f.write(txt)
+            if len(txt.strip()) > 0:
+                f.write(txt)
+            else:
+                f.write("    pass\n")
             f.write("\n\n")
 else:
     datac = decompileScript(scriptName)
