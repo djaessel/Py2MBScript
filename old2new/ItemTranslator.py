@@ -115,9 +115,34 @@ def processCapabilities(x : int):
 def processModifiers(x : int):
     modifiers = []
     final_modifiers = []
-    if x > 0:
-        # TODO: process x here
-        final_modifiers.append(x)
+    if int(x) > 0:
+        item_consts = dict()
+        for i in vars(itmHeader):
+            if i.startswith("imodbit_"):
+                item_consts[i] = getattr(itmHeader,i)
+        for t in item_consts:
+            v = item_consts[t]
+            if (x & v) == v:
+                modifiers.append(t)
+
+        mapx = None
+        for tfx in vars(itmData):
+            if "IModBit" in tfx:
+                atx = getattr(itmData,tfx)
+                for lll in vars(atx):
+                    if lll == "_value2member_map_":
+                        mapx = getattr(atx, lll)
+                        break
+                break
+
+        if mapx != None:
+            for imodbit in modifiers:
+                if imodbit in mapx:
+                    final_modifiers.append(str(mapx[imodbit]))
+                else:
+                    print("WARNING: Ignored imodbit >", imodbit)
+        else:
+            print("ERROR: MAPX EMPTY!")
     return final_modifiers
 
 
@@ -135,19 +160,35 @@ def writeItem(item : list):
         if meshCount > 0:
             currentIndex += 1 # 4
             for i in range(meshCount):
-                f.write(idx + ".add_mesh(ItemMesh(\"" + item[0][currentIndex] + "\"")
                 typex = int(item[0][currentIndex + 1])
-                if typex > 0:
-                    f.write(", ")
-                    if typex == itmHeader.ixmesh_inventory:
-                        f.write("ItemMesh.ixmesh_inventory")
-                    elif typex == itmHeader.ixmesh_flying_ammo:
-                        f.write("ItemMesh.ixmesh_flying_ammo")
-                    elif typex == itmHeader.ixmesh_carry:
-                        f.write("ItemMesh.ixmesh_carry")
-                    else:
-                        f.write(str(typex)) # handle mesh modifiers
-                f.write("))\n")
+                if typex == 0 or typex == itmHeader.ixmesh_inventory or typex == itmHeader.ixmesh_flying_ammo or typex == itmHeader.ixmesh_carry:
+                    f.write(idx + ".add_mesh(ItemMesh(\"" + item[0][currentIndex] + "\"")
+                    if typex > 0:
+                        f.write(", ")
+                        if typex == itmHeader.ixmesh_inventory:
+                            f.write("ItemMesh.ixmesh_inventory")
+                        elif typex == itmHeader.ixmesh_flying_ammo:
+                            f.write("ItemMesh.ixmesh_flying_ammo")
+                        elif typex == itmHeader.ixmesh_carry:
+                            f.write("ItemMesh.ixmesh_carry")
+                        else: # unused
+                            f.write(str(typex)) # handle mesh modifiers
+                    f.write("))\n")
+                elif typex > 0:
+                    f.write("meshx = ItemMesh(\"" + item[0][currentIndex] + "\"")
+                    if (typex & itmHeader.ixmesh_carry) > 0:
+                        f.write(", ")
+                        if (typex & itmHeader.ixmesh_carry) == itmHeader.ixmesh_carry:
+                            f.write("ItemMesh.ixmesh_carry")
+                        elif (typex & itmHeader.ixmesh_inventory) == itmHeader.ixmesh_inventory:
+                            f.write("ItemMesh.ixmesh_inventory")
+                        elif (typex & itmHeader.ixmesh_flying_ammo) == itmHeader.ixmesh_flying_ammo:
+                            f.write("ItemMesh.ixmesh_flying_ammo")
+                    f.write(")\n")
+                    mods = processModifiers(typex)
+                    for mod in mods:
+                        f.write("meshx.add_modifier(" + mod + ")\n")
+                    f.write(idx + ".add_mesh(meshx)\n")
                 currentIndex += 2
 
         flagsGZ = int(item[0][currentIndex])
@@ -169,8 +210,8 @@ def writeItem(item : list):
 
         modifiersGZ = int(item[0][currentIndex])
         modifiers = processModifiers(modifiersGZ)
-        #for mod in modifiers:
-        #    print("Modifier:", mod)
+        for mod in modifiers:
+            f.write(idx + ".add_modifier(" + mod + ")\n")
         currentIndex += 1
 
         weight = float(item[0][currentIndex])

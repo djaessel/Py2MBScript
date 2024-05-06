@@ -239,7 +239,7 @@ class IModBit(Enum):
     RAGGED = "imodbit_ragged" # =4194304
     ROUGH = "imodbit_rough" # =8388608
     STURDY = "imodbit_sturdy" # =16777216
-    THINK = "imodbit_thick" # =33554432
+    THICK = "imodbit_thick" # =33554432
     HARDENED = "imodbit_hardened" # =67108864
     REINFORCED = "imodbit_reinforced" # =134217728
     SUPERB = "imodbit_superb" # =268435456
@@ -296,10 +296,34 @@ class ItemMesh:
     ixmesh_flying_ammo = 0x2000000000000000
     ixmesh_carry       = 0x3000000000000000
 
-    def __init__(self, id, modifier="0"):
+    def __init__(self, id, modifier="0"): # change name later
         self.id = id
-        self.modifier = int(modifier) & 0xffff
+        self.modifier = int(modifier) & 0x0fffffffffffffff # deprecated
         self.kind = (int(modifier) >> (15 * 4)) & 0x3
+
+        def has_modifier(self, modifier : str):
+            contains = False
+            for x in self.modifiers:
+                if x == modifier:
+                    contains = True
+                    break
+            return contains
+
+
+        def add_modifier(self, modifier : IModBit):
+            if not self.has_modifier(modifier.value):
+                self.modifiers.append(modifier.value)
+
+
+        def remove_modifier(self, modifier : IModBit):
+            if self.has_modifier(modifier.value):
+                remi = -1
+                for i, modx in enumerate(self.modifiers):
+                    if modx == modifier.value:
+                        remi = i
+                        break
+                if remi >= 0:
+                    del self.modifiers[remi]
 
 
 
