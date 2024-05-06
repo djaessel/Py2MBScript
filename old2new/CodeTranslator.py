@@ -1111,29 +1111,30 @@ readAnimations()
 readLocalVariableNames()
 
 
-scriptName = ""
-if len(sys.argv) > 1:
-    scriptName = sys.argv[1]
+if __name__ == "__main__":
+    scriptName = ""
+    if len(sys.argv) > 1:
+        scriptName = sys.argv[1]
 
-if len(scriptName) == 0:
-    for script in scripts:
-        scriptName = script[0][0]
+    if len(scriptName) == 0:
+        for script in scripts:
+            scriptName = script[0][0]
+            datac = decompileScript(scriptName)
+            datap, scriptParams = convertToPy(datac)
+            txt = formatGoodText(datap, False, True)
+            with open("test_scripts.py", "a") as f:
+                f.write("def " + scriptName + "(" + ", ".join(scriptParams) + "):\n")
+                if len(txt.strip()) > 0:
+                    f.write(txt)
+                else:
+                    f.write("    pass\n")
+                f.write("\n\n")
+    else:
         datac = decompileScript(scriptName)
+        print(datac)
         datap, scriptParams = convertToPy(datac)
         txt = formatGoodText(datap, False, True)
-        with open("test_scripts.py", "a") as f:
-            f.write("def " + scriptName + "(" + ", ".join(scriptParams) + "):\n")
-            if len(txt.strip()) > 0:
-                f.write(txt)
-            else:
-                f.write("    pass\n")
-            f.write("\n\n")
-else:
-    datac = decompileScript(scriptName)
-    print(datac)
-    datap, scriptParams = convertToPy(datac)
-    txt = formatGoodText(datap, False, True)
-    print("# " + scriptParams)
-    print(txt)
+        print("# " + scriptParams)
+        print(txt)
 
 

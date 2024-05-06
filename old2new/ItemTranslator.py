@@ -257,11 +257,11 @@ def writeItem(item : list):
         
 
         
-
-# main
-all_items = readItems()
-for itm in all_items:
-    writeItem(all_items[itm])
+# main program
+if __name__ == "__main__":
+    all_items = readItems()
+    for itm in all_items:
+        writeItem(all_items[itm])
 
 
 

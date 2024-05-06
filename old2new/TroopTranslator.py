@@ -252,22 +252,24 @@ def writeTroop(idx : str, troop : list):
         
 
 
-# init
-readFactions()
-readItems()
+# main program
+if __name__ == "__main__":
+    # init
+    readFactions()
+    readItems()
 
-# main
-troops = readTroopsFile()
-print("Troops:", len(troops))
+    # main
+    troops = readTroopsFile()
+    print("Troops:", len(troops))
 
-troopx = ""
-if len(sys.argv) > 1:
-    troopx = sys.argv[1]
-    archer = troops[troopx]
-    writeTroop(troopx, archer)
-else: # all
-    for t in troops:
-        writeTroop(t, troops[t])
+    troopx = ""
+    if len(sys.argv) > 1:
+        troopx = sys.argv[1]
+        archer = troops[troopx]
+        writeTroop(troopx, archer)
+    else: # all
+        for t in troops:
+            writeTroop(t, troops[t])
 
 
 
