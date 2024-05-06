@@ -73,6 +73,7 @@ def readItems():
 
 def readTroopsFile():
     troops = dict()
+    troops2 = []
     with open(module_path + "troops.txt") as f:
         lineCount = 0
         curTroopId = ""
@@ -81,11 +82,12 @@ def readTroopsFile():
                 tmp = line.strip().split(' ')
                 if tmp[0].startswith("trp_"):
                     troops[tmp[0]] = [tmp[1:]]
+                    troops2.append(tmp[0][4:])
                     curTroopId = tmp[0]
                 else:
                     troops[curTroopId].append(tmp)
             lineCount += 1
-    return troops
+    return troops, troops2
 
 
 def getItems(troop : list):
@@ -207,7 +209,7 @@ def getFlags(troop : list):
     return final_flags
 
 
-def writeTroop(idx : str, troop : list):
+def writeTroop(idx : str, troop : list, troops : list):
     with open("test_troop.py", "a") as f:
         mainVals = troop[MAIN_VALS]
 
@@ -248,6 +250,14 @@ def writeTroop(idx : str, troop : list):
         for s in skillsx:
             f.write(idx + ".add_skill(" + s[0] + ", " + s[1] + ")\n")
 
+        upgradeTroop1 = mainVals[UPGRADE_TROOP_1]
+        if upgradeTroop1 > 0:
+            f.write(idx + ".set_upgrade_troop_1(" + troops[upgradeTroop1] + ")\n")
+
+        upgradeTroop2 = mainVals[UPGRADE_TROOP_2]
+        if upgradeTroop2 > 0:
+            f.write(idx + ".set_upgrade_troop_2(" + troops[upgradeTroop2] + ")\n")
+
         f.write("\n\n")
         
 
@@ -258,18 +268,16 @@ if __name__ == "__main__":
     readFactions()
     readItems()
 
-    # main
-    troops = readTroopsFile()
-    print("Troops:", len(troops))
+    troops, troops2 = readTroopsFile()
 
     troopx = ""
     if len(sys.argv) > 1:
         troopx = sys.argv[1]
         archer = troops[troopx]
-        writeTroop(troopx, archer)
+        writeTroop(troopx, archer, troops2)
     else: # all
         for t in troops:
-            writeTroop(t, troops[t])
+            writeTroop(t[4:], troops[t], troops2)
 
 
 

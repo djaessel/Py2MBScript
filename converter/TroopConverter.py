@@ -132,4 +132,12 @@ class TroopConverter(ScriptConverter):
 
                 f.write("],\n\n")
 
-            f.write("] # TROOPS END\n")
+            f.write("] # TROOPS END\n\n\n")
+
+            f.write("# Upgrade paths:\n\n")
+            for troop in codeData:
+                if troop.upgradeTroop1 != None and troop.upgradeTroop2 != None:
+                    f.write("upgrade2(troops, \"" + troop.id + "\", \"" + troop.upgradeTroop1.id + "\", \"" + troop.upgradeTroop2 + "\")\n\n")
+                if troop.upgradeTroop1 != None:
+                    f.write("upgrade(troops, \"" + troop.id + "\", \"" + troop.upgradeTroop1.id + "\")\n\n")
+            f.write("\n")

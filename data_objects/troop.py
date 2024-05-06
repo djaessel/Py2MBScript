@@ -118,11 +118,14 @@ class Troop:
         self.throwing = 0
         self.firearm = 0
 
-        self.add_skill(skl.riding, 1)
-        self.add_skill(skl.trade, 2)
-        self.add_skill(skl.inventory_management, 2)
-        self.add_skill(skl.prisoner_mgmt, 1)
-        self.add_skill(skl.leadership, 1)
+        #self.add_skill(skl.riding, 1)
+        #self.add_skill(skl.trade, 2)
+        #self.add_skill(skl.inventory_management, 2)
+        #self.add_skill(skl.prisoner_mgmt, 1)
+        #self.add_skill(skl.leadership, 1)
+
+        self.upgradeTroop1 = None
+        self.upgradeTroop2 = None
 
 
     def get_attributes(self):
@@ -193,6 +196,14 @@ class Troop:
 
     def set_face2(self, face_code : str):
         self.face2 = face_code
+
+
+    def set_upgrade_troop_1(self, troop : Troop):
+        self.upgradeTroop1 = troop
+
+
+    def set_upgrade_troop_2(self, troop : Troop):
+        self.upgradeTroop2 = troop
 
 
     def add_flag(self, flag : TroopFlag):
