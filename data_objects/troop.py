@@ -198,11 +198,11 @@ class Troop:
         self.face2 = face_code
 
 
-    def set_upgrade_troop_1(self, troop : Troop):
+    def set_upgrade_troop_1(self, troop):
         self.upgradeTroop1 = troop
 
 
-    def set_upgrade_troop_2(self, troop : Troop):
+    def set_upgrade_troop_2(self, troop):
         self.upgradeTroop2 = troop
 
 

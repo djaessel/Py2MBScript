@@ -20,8 +20,8 @@ FLAGS = 3
 SCENE_CODE = 4 # TODO: add this
 RESERVED = 5 # TODO: add this if needed
 FACTION_ID = 6
-UPGRADE_TROOP_1 = 7 # TODO: add this
-UPGRADE_TROOP_2 = 8 # TODO: add this
+UPGRADE_TROOP_1 = 7
+UPGRADE_TROOP_2 = 8
 
 ITEMS = 1
 
@@ -210,7 +210,7 @@ def getFlags(troop : list):
 
 
 def writeTroop(idx : str, troop : list, troops : list):
-    with open("test_troop.py", "a") as f:
+    with open("test_troops.py", "a") as f:
         mainVals = troop[MAIN_VALS]
 
         f.write("# " + mainVals[NAME] + "\n")
@@ -250,11 +250,11 @@ def writeTroop(idx : str, troop : list, troops : list):
         for s in skillsx:
             f.write(idx + ".add_skill(" + s[0] + ", " + s[1] + ")\n")
 
-        upgradeTroop1 = mainVals[UPGRADE_TROOP_1]
+        upgradeTroop1 = int(mainVals[UPGRADE_TROOP_1])
         if upgradeTroop1 > 0:
             f.write(idx + ".set_upgrade_troop_1(" + troops[upgradeTroop1] + ")\n")
 
-        upgradeTroop2 = mainVals[UPGRADE_TROOP_2]
+        upgradeTroop2 = int(mainVals[UPGRADE_TROOP_2])
         if upgradeTroop2 > 0:
             f.write(idx + ".set_upgrade_troop_2(" + troops[upgradeTroop2] + ")\n")
 
