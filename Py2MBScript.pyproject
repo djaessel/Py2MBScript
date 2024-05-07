@@ -219,6 +219,7 @@
         "old2new/TroopTranslator.py",
         "old2new/ItemTranslator.py",
         "old2new/TriggerTranslator.py",
-        "old2new/AnimationTranslator.py"
+        "old2new/AnimationTranslator.py",
+        "old2new/FactionTranslator.py"
     ]
 }

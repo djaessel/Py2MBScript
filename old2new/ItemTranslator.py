@@ -10,6 +10,22 @@ import item as itmData
 
 module_path = "/home/djaessel/warband/Modules/Native/"
 
+factions = []
+def readFactions():
+    with open(module_path + "factions.txt") as f:
+        lineCount = 0
+        for line in f:
+            if line.startswith("fac_") or " fac_" in line:
+                tmp = line.strip().replace("  ", " ").split(' ')
+                if not line.startswith("fac_"):
+                    factions[len(factions)-1].append(tmp[0])
+                    factions.append([tmp[1:]])
+                else:
+                    factions.append([tmp])
+            elif lineCount > 2 and len(line.strip()) > 0:
+                factions[len(factions)-1].append(line.strip().replace("  ", " ").split(' '))
+            lineCount += 1
+
 
 def readItems():
     itemsx = dict()
@@ -271,12 +287,16 @@ def writeItem(item : list):
 
         thrust_damage = int(item[0][currentIndex])
         if thrust_damage != 0:
-            f.write(idx + ".set_thrust_damage(" + str(thrust_damage) + ")\n")
+            damage_type = (thrust_damage >> 8) & 0xff
+            damage = thrust_damage & 0xff
+            f.write(idx + ".set_thrust_damage(" + str(damage) + ", " + str(damage_type) + ")\n")
         currentIndex += 1
 
         swing_damage = int(item[0][currentIndex])
         if swing_damage != 0:
-            f.write(idx + ".set_swing_damage(" + str(swing_damage) + ")\n")
+            damage_type = (swing_damage >> 8) & 0xff
+            damage = swing_damage & 0xff
+            f.write(idx + ".set_swing_damage(" + str(damage) + ", " + str(damage_type) + ")\n")
         currentIndex += 1
 
         
@@ -284,7 +304,7 @@ def writeItem(item : list):
         currentIndex = 2
         if factionCount > 0:
             for i in item[currentIndex]:
-                f.write(idx + ".allow_in_faction(" + i + ")\n") # TODO: add actual faction
+                f.write(idx + ".allow_in_faction(fac." + factions[int(i)][0][0][4:] + ")\n") # TODO: add actual faction
             currentIndex += 1
 
         # Triggers
@@ -300,6 +320,7 @@ def writeItem(item : list):
         
 # main program
 if __name__ == "__main__":
+    readFactions()
     all_items = readItems()
     for itm in all_items:
         writeItem(all_items[itm])
