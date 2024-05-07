@@ -583,7 +583,7 @@ def readAnimations():
         for line in f:
             if lineCount > 0:
                 tmp = line.strip().split(' ')
-                if not is_float(line):
+                if not is_float(tmp[0]):
                     animations.append([tmp])
                 else:
                     animations[len(animations)-1].append(tmp)
