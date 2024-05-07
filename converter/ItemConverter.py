@@ -115,7 +115,7 @@ class ItemConverter(ScriptConverter):
                         f.write(",\n[")
 
                         for i, faction in enumerate(item.factions):
-                            f.write("\"" + faction + "\"")
+                            f.write("fac_" + faction.id + "")
                             if i < len(item.factions) - 1:
                                 f.write(",")
 
