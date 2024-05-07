@@ -8,73 +8,73 @@ from faction import Faction
 
 
 # Factions
-fac_no_faction = Faction("fac_no_faction", "No_Faction", coherence=0.9)
+no_faction = Faction("no_faction", "No_Faction", coherence=0.9)
 
-fac_commoners = Faction("fac_commoners", "Commoners")
+commoners = Faction("commoners", "Commoners")
 
-fac_outlaws = Faction("fac_outlaws", "Outlaws", coherence=0.5, color=0x888888, max_player_rating=130)
+outlaws = Faction("outlaws", "Outlaws", coherence=0.5, color=0x888888, max_player_rating=130)
 
-fac_neutral = Faction("fac_neutral", "Neutral", color=0xffffff)
+neutral = Faction("neutral", "Neutral", color=0xffffff)
 
-fac_innocents = Faction("fac_innocents", "Innocents", coherence=0.5, always_hide_label=True)
+innocents = Faction("innocents", "Innocents", coherence=0.5, always_hide_label=True)
 
-fac_merchants = Faction("fac_merchants", "Merchants", coherence=0.5, always_hide_label=True)
+merchants = Faction("merchants", "Merchants", coherence=0.5, always_hide_label=True)
 
-fac_dark_knights = Faction("fac_dark_knights", "{!}Dark_Knights", coherence=0.5)
+dark_knights = Faction("dark_knights", "{!}Dark_Knights", coherence=0.5)
 
-fac_culture_1 = Faction("fac_culture_1", "{!}culture_1", coherence=0.9)
+culture_1 = Faction("culture_1", "{!}culture_1", coherence=0.9)
 
-fac_culture_2 = Faction("fac_culture_2", "{!}culture_2", coherence=0.9)
+culture_2 = Faction("culture_2", "{!}culture_2", coherence=0.9)
 
-fac_culture_3 = Faction("fac_culture_3", "{!}culture_3", coherence=0.9)
+culture_3 = Faction("culture_3", "{!}culture_3", coherence=0.9)
 
-fac_culture_4 = Faction("fac_culture_4", "{!}culture_4", coherence=0.9)
+culture_4 = Faction("culture_4", "{!}culture_4", coherence=0.9)
 
-fac_culture_5 = Faction("fac_culture_5", "{!}culture_5", coherence=0.9)
+culture_5 = Faction("culture_5", "{!}culture_5", coherence=0.9)
 
-fac_culture_6 = Faction("fac_culture_6", "{!}culture_6", coherence=0.9)
+culture_6 = Faction("culture_6", "{!}culture_6", coherence=0.9)
 
-fac_player_faction = Faction("fac_player_faction", "Player_Faction", coherence=0.9)
+player_faction = Faction("player_faction", "Player_Faction", coherence=0.9)
 
-fac_player_supporters_faction = Faction("fac_player_supporters_faction", "Player's_Supporters", coherence=0.9, color=0xff4433)
+player_supporters_faction = Faction("player_supporters_faction", "Player's_Supporters", coherence=0.9, color=0xff4433)
 
-fac_kingdom_1 = Faction("fac_kingdom_1", "Kingdom_of_Swadia", coherence=0.9, color=0xee7744)
+kingdom_1 = Faction("kingdom_1", "Kingdom_of_Swadia", coherence=0.9, color=0xee7744)
 
-fac_kingdom_2 = Faction("fac_kingdom_2", "Kingdom_of_Vaegirs", coherence=0.9, color=0xccbb99)
+kingdom_2 = Faction("kingdom_2", "Kingdom_of_Vaegirs", coherence=0.9, color=0xccbb99)
 
-fac_kingdom_3 = Faction("fac_kingdom_3", "Khergit_Khanate", coherence=0.9, color=0xcc99ff)
+kingdom_3 = Faction("kingdom_3", "Khergit_Khanate", coherence=0.9, color=0xcc99ff)
 
-fac_kingdom_4 = Faction("fac_kingdom_4", "Kingdom_of_Nords", coherence=0.9, color=0x33dddd)
+kingdom_4 = Faction("kingdom_4", "Kingdom_of_Nords", coherence=0.9, color=0x33dddd)
 
-fac_kingdom_5 = Faction("fac_kingdom_5", "Kingdom_of_Rhodoks", coherence=0.9, color=0x33dd33)
+kingdom_5 = Faction("kingdom_5", "Kingdom_of_Rhodoks", coherence=0.9, color=0x33dd33)
 
-fac_kingdom_6 = Faction("fac_kingdom_6", "Sarranid_Sultanate", coherence=0.9, color=0xdddd33)
+kingdom_6 = Faction("kingdom_6", "Sarranid_Sultanate", coherence=0.9, color=0xdddd33)
 
-fac_kingdoms_end = Faction("fac_kingdoms_end", "{!}kingdoms_end", coherence=0.0)
+kingdoms_end = Faction("kingdoms_end", "{!}kingdoms_end", coherence=0.0)
 
-fac_robber_knights = Faction("fac_robber_knights", "{!}robber_knights")
+robber_knights = Faction("robber_knights", "{!}robber_knights")
 
-fac_khergits = Faction("fac_khergits", "{!}Khergits", coherence=0.5)
+khergits = Faction("khergits", "{!}Khergits", coherence=0.5)
 
-fac_black_khergits = Faction("fac_black_khergits", "{!}Black_Khergits", coherence=0.5)
+black_khergits = Faction("black_khergits", "{!}Black_Khergits", coherence=0.5)
 
-fac_manhunters = Faction("fac_manhunters", "Manhunters", coherence=0.5)
+manhunters = Faction("manhunters", "Manhunters", coherence=0.5)
 
-fac_deserters = Faction("fac_deserters", "Deserters", coherence=0.5, color=0x888888)
+deserters = Faction("deserters", "Deserters", coherence=0.5, color=0x888888)
 
-fac_mountain_bandits = Faction("fac_mountain_bandits", "Mountain_Bandits", coherence=0.5, color=0x888888)
+mountain_bandits = Faction("mountain_bandits", "Mountain_Bandits", coherence=0.5, color=0x888888)
 
-fac_forest_bandits = Faction("fac_forest_bandits", "Forest_Bandits", coherence=0.5, color=0x888888)
+forest_bandits = Faction("forest_bandits", "Forest_Bandits", coherence=0.5, color=0x888888)
 
-fac_undeads = Faction("fac_undeads", "{!}Undeads", coherence=0.5, max_player_rating=130)
+undeads = Faction("undeads", "{!}Undeads", coherence=0.5, max_player_rating=130)
 
-fac_slavers = Faction("fac_slavers", "{!}Slavers")
+slavers = Faction("slavers", "{!}Slavers")
 
-fac_peasant_rebels = Faction("fac_peasant_rebels", "{!}Peasant_Rebels", coherence=1.0)
+peasant_rebels = Faction("peasant_rebels", "{!}Peasant_Rebels", coherence=1.0)
 
-fac_noble_refugees = Faction("fac_noble_refugees", "{!}Noble_Refugees", coherence=0.5)
+noble_refugees = Faction("noble_refugees", "{!}Noble_Refugees", coherence=0.5)
 
-fac_ccoop_all_stars = Faction("fac_ccoop_all_stars", "All_Stars", coherence=0.5)
+ccoop_all_stars = Faction("ccoop_all_stars", "All_Stars", coherence=0.5)
 
 
 
