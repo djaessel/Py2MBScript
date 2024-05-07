@@ -165,7 +165,7 @@ def processModifiers(x : int):
 
 def writeItem(item : list):
     with open("test_items.py", "a") as f:
-        idx = item[0][0]
+        idx = item[0][0][4:]
         name = item[0][1]
         plural_name = item[0][2]
 
