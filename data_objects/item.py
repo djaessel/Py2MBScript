@@ -300,30 +300,32 @@ class ItemMesh:
         self.id = id
         self.modifier = int(modifier) & 0x0fffffffffffffff # deprecated
         self.kind = (int(modifier) >> (15 * 4)) & 0x3
+        self.modifiers = []
 
-        def has_modifier(self, modifier : str):
-            contains = False
-            for x in self.modifiers:
-                if x == modifier:
-                    contains = True
+
+    def has_modifier(self, modifier : str):
+        contains = False
+        for x in self.modifiers:
+            if x == modifier:
+                contains = True
+                break
+        return contains
+
+
+    def add_modifier(self, modifier : IModBit):
+        if not self.has_modifier(modifier.value):
+            self.modifiers.append(modifier.value)
+
+
+    def remove_modifier(self, modifier : IModBit):
+        if self.has_modifier(modifier.value):
+            remi = -1
+            for i, modx in enumerate(self.modifiers):
+                if modx == modifier.value:
+                    remi = i
                     break
-            return contains
-
-
-        def add_modifier(self, modifier : IModBit):
-            if not self.has_modifier(modifier.value):
-                self.modifiers.append(modifier.value)
-
-
-        def remove_modifier(self, modifier : IModBit):
-            if self.has_modifier(modifier.value):
-                remi = -1
-                for i, modx in enumerate(self.modifiers):
-                    if modx == modifier.value:
-                        remi = i
-                        break
-                if remi >= 0:
-                    del self.modifiers[remi]
+            if remi >= 0:
+                del self.modifiers[remi]
 
 
 
@@ -395,6 +397,30 @@ class Item:
 
     def set_speed_rating(self, speed_rating : int):
         self.speed_rating = speed_rating
+
+
+    def set_hit_points(self, hit_points : int):
+        self.hit_points = hit_points
+
+
+    def set_max_ammo(self, max_ammo : int):
+        self.max_ammo = max_ammo
+
+
+    def set_missile_speed(self, missile_speed : int):
+        self.missile_speed = missile_speed
+
+
+    def set_body_armor(self, body_armor : int):
+        self.body_armor = body_armor
+
+
+    def set_head_armor(self, head_armor : int):
+        self.head_armor = head_armor
+
+
+    def set_leg_armor(self, leg_armor : int):
+        self.leg_armor = leg_armor
 
 
     def set_swing_damage(self, swing_damage : int, damage_type : int|DamageType):

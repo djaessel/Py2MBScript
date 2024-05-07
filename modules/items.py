@@ -5,6 +5,7 @@ sys.path.append("../data_objects/")
 
 from item import Item, ItemMesh, ItemType, ItemFlag, ItemCapability, IModBit, DamageType
 from simple_trigger import SimpleTrigger
+import factions as fac
 
 
 
