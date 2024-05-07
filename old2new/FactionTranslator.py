@@ -33,7 +33,7 @@ def writeFaction(faction : list, index : int):
         relations = faction[1]
         ranksCount = faction[2]
 
-        idx = mainVals[0]
+        idx = mainVals[0][4:]
 
         f.write(idx + " = Faction(\"" + idx + "\", \"" + mainVals[1] + "\"")
 
