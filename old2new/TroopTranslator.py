@@ -250,6 +250,13 @@ def writeTroop(idx : str, troop : list, troops : list):
         for s in skillsx:
             f.write(idx + ".add_skill(" + s[0] + ", " + s[1] + ")\n")
 
+        f.write("\n\n")
+        
+
+def writeUpgradePaths(idx : str, troop : list, troops : list):
+    with open("test_troops.py", "a") as f:
+        mainVals = troop[MAIN_VALS]
+
         upgradeTroop1 = int(mainVals[UPGRADE_TROOP_1])
         if upgradeTroop1 > 0:
             f.write(idx + ".set_upgrade_troop_1(" + troops[upgradeTroop1] + ")\n")
@@ -258,8 +265,9 @@ def writeTroop(idx : str, troop : list, troops : list):
         if upgradeTroop2 > 0:
             f.write(idx + ".set_upgrade_troop_2(" + troops[upgradeTroop2] + ")\n")
 
-        f.write("\n\n")
-        
+        if upgradeTroop1 > 0 or upgradeTroop2 > 0:
+            f.write("\n")
+
 
 
 # main program
@@ -278,6 +286,9 @@ if __name__ == "__main__":
     else: # all
         for t in troops:
             writeTroop(t[4:], troops[t], troops2)
+
+        for t in troops:
+            writeUpgradePaths(t[4:], troops[t], troops2)
 
 
 
