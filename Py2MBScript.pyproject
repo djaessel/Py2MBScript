@@ -220,6 +220,7 @@
         "old2new/ItemTranslator.py",
         "old2new/TriggerTranslator.py",
         "old2new/AnimationTranslator.py",
-        "old2new/FactionTranslator.py"
+        "old2new/FactionTranslator.py",
+        "old2new/SkillTranslator.py"
     ]
 }
