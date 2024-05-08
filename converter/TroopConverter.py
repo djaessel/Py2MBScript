@@ -88,6 +88,11 @@ class TroopConverter(ScriptConverter):
             f.write("tf_guarantee_all = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield|tf_guarantee_ranged\n")
             f.write("tf_guarantee_all_wo_ranged = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield\n\n")
 
+            f.write("str_0 = 0\n")
+            f.write("agi_0 = 0\n")
+            f.write("cha_0 = 0\n")
+            f.write("int_0 = 0\n")
+
             f.write("reserved = 0\n")
             f.write("no_scene = 0\n\n")
 
@@ -110,7 +115,7 @@ class TroopConverter(ScriptConverter):
                 if len(troop.inventory) > 0:
                     for i, item in enumerate(troop.inventory):
                         f.write("(itm_" + item[0]+ ", " + str(item[1]) + ")")
-                        if i == len(troop.inventory) - 1:
+                        if i < len(troop.inventory) - 1:
                             f.write(",")
                 f.write("],\n")
 
