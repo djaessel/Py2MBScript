@@ -16,9 +16,9 @@ leadership = Skill("leadership", "Leadership", 10)
 leadership.set_description("Every point increases maximum number of troops you can command by 5, increases your party morale and reduces troop wages by 5%%. (Leader skill)")
 leadership.add_flag(SkillFlag.BASE_AT_CHA)
 
-prisoner_mgmt = Skill("prisoner_management", "Prisoner Management", 10)
-prisoner_mgmt.set_description("Every level of this skill increases maximum number of prisoners by %d. (Leader skill)")
-prisoner_mgmt.add_flag(SkillFlag.BASE_AT_CHA)
+prisoner_management = Skill("prisoner_management", "Prisoner Management", 10)
+prisoner_management.set_description("Every level of this skill increases maximum number of prisoners by %d. (Leader skill)")
+prisoner_management.add_flag(SkillFlag.BASE_AT_CHA)
 
 reserved_1 = Skill("reserved_1", "Reserved Skill 1", 10)
 reserved_1.set_description("This is a reserved skill.")
@@ -170,7 +170,7 @@ power_throw = Skill("power_throw", "Power Throw", 10)
 power_throw.set_description("Each point to this skill increases throwing damage by 10%%. (Personal skill)")
 power_throw.add_flag(SkillFlag.BASE_AT_STR)
 
-power_strike = Skill("power_strike", "Power Draw", 10)
+power_strike = Skill("power_strike", "Power Strike", 10)
 power_strike.set_description("Each point to this skill increases melee damage by 8%%. (Personal skill)")
 power_strike.add_flag(SkillFlag.BASE_AT_STR)
 
@@ -180,27 +180,29 @@ ironflesh.add_flag(SkillFlag.BASE_AT_STR)
 
 reserved_14 = Skill("reserved_14", "Reserved Skill 14", 10)
 reserved_14.set_description("This is a reserved skill.")
-reserved_14.add_flag(SkillFlag.BASE_AT_STR)
 reserved_14.add_flag(SkillFlag.IS_INACTIVE)
+reserved_14.add_flag(SkillFlag.BASE_AT_STR)
 
 reserved_15 = Skill("reserved_15", "Reserved Skill 15", 10)
 reserved_15.set_description("This is a reserved skill.")
-reserved_15.add_flag(SkillFlag.BASE_AT_STR)
 reserved_15.add_flag(SkillFlag.IS_INACTIVE)
+reserved_15.add_flag(SkillFlag.BASE_AT_STR)
 
 reserved_16 = Skill("reserved_16", "Reserved Skill 16", 10)
 reserved_16.set_description("This is a reserved skill.")
-reserved_16.add_flag(SkillFlag.BASE_AT_STR)
 reserved_16.add_flag(SkillFlag.IS_INACTIVE)
+reserved_16.add_flag(SkillFlag.BASE_AT_STR)
 
 reserved_17 = Skill("reserved_17", "Reserved Skill 17", 10)
 reserved_17.set_description("This is a reserved skill.")
-reserved_17.add_flag(SkillFlag.BASE_AT_STR)
 reserved_17.add_flag(SkillFlag.IS_INACTIVE)
+reserved_17.add_flag(SkillFlag.BASE_AT_STR)
 
 reserved_18 = Skill("reserved_18", "Reserved Skill 18", 10)
 reserved_18.set_description("This is a reserved skill.")
-reserved_18.add_flag(SkillFlag.BASE_AT_STR)
 reserved_18.add_flag(SkillFlag.IS_INACTIVE)
+reserved_18.add_flag(SkillFlag.BASE_AT_STR)
+
+
 
 
