@@ -62,7 +62,6 @@ str_0 = 0
 agi_0 = 0
 cha_0 = 0
 int_0 = 0
-str_31 = 31
 reserved = 0
 no_scene = 0
 
