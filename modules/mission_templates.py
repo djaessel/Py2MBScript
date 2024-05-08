@@ -3,7 +3,7 @@
 import sys
 sys.path.append("../data_objects/")
 
-from items import *
+import items as itm
 from mission_template import MissionTemplate, SpawnRecord, AIFlag, AlterFlag, SpawnFlag, MissionTemplateFlag
 
 import header_triggers as tri
