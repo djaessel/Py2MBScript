@@ -221,6 +221,7 @@
         "old2new/TriggerTranslator.py",
         "old2new/AnimationTranslator.py",
         "old2new/FactionTranslator.py",
-        "old2new/SkillTranslator.py"
+        "old2new/SkillTranslator.py",
+        "old2new/test_troops.py"
     ]
 }
