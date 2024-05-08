@@ -58,6 +58,10 @@ def_attrib_multiplayer = int_30 | cha_30
 tf_guarantee_all = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield|tf_guarantee_ranged
 tf_guarantee_all_wo_ranged = tf_guarantee_boots|tf_guarantee_armor|tf_guarantee_gloves|tf_guarantee_helmet|tf_guarantee_horse|tf_guarantee_shield
 
+str_0 = 0
+agi_0 = 0
+cha_0 = 0
+int_0 = 0
 reserved = 0
 no_scene = 0
 
@@ -70,7 +74,7 @@ tf_hero|tf_unmoveable_in_party_window,
 no_scene,reserved,fac_player_faction,
 [],
 str_4|agi_4|int_4|cha_4|level(1),wp(15),
-knows_common,
+0,
 0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000],
 
 ["multiplayer_profile_troop_female","multiplayer_profile_troop_female","multiplayer_profile_troop_female",
@@ -78,7 +82,7 @@ tf_hero|tf_female|tf_guarantee_all,
 no_scene,reserved,fac_commoners,
 [],
 str_7|agi_5|int_4|cha_4|level(1),wp(15),
-knows_common,
+0,
 0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000],
 
 ["temp_troop","Temp Troop","Temp Troop",
@@ -86,7 +90,7 @@ tf_hero,
 no_scene,reserved,fac_commoners,
 [],
 str_7|agi_5|int_4|cha_4|level(1),wp(0),
-knows_common|knows_inventory_management_10,
+knows_inventory_management_10,
 0x000000018000000136db6db6db6db6db00000000001db6db0000000000000000],
 
 ["npc1","Peter","Peter",
@@ -94,7 +98,7 @@ tf_male|tf_hero|tf_unkillable|tf_guarantee_all,
 no_scene,reserved,fac_player_faction,
 [],
 str_10|agi_5|int_4|cha_4|level(7),wp(30)|wp_firearm(50),
-knows_common|knows_trade_10,
+knows_trade_10,
 man_face_middle_1],
 
 ["npc2","Sarah","Sarah",
@@ -102,7 +106,7 @@ tf_female|tf_hero|tf_guarantee_all,
 no_scene,reserved,fac_player_faction,
 [],
 str_7|agi_5|int_4|cha_4|level(3),wpe(30,52,55,100)|wp_firearm(30),
-knows_common|knows_inventory_management_8,
+knows_inventory_management_8,
 man_face_middle_1],
 
 ["looter","Looter","Looter",
@@ -110,7 +114,12 @@ man_face_middle_1],
 no_scene,reserved,fac_commoners,
 [],
 str_7|agi_5|int_4|cha_4|level(1),wp(0),
-knows_common,
+0,
 man_face_middle_1,0x0000000400000001124000000020000000000000001c00800000000000000000],
 
 ] # TROOPS END
+
+
+# Upgrade paths:
+
+

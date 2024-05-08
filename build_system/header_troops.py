@@ -101,6 +101,8 @@ def entry(n):
   return (((n) << tsf_entry_bits) & tsf_entry_mask)
 #-------------------------------------
 
+# TODO: add more of these!!!
+
 str_3            = bignum | 0x00000003
 str_4            = bignum | 0x00000004
 str_5            = bignum | 0x00000005
@@ -129,6 +131,7 @@ str_27           = bignum | 0x0000001b
 str_28           = bignum | 0x0000001c
 str_29           = bignum | 0x0000001d
 str_30           = bignum | 0x0000001e
+str_31           = bignum | 0x0000001f
 
 agi_3            = bignum | 0x00000300
 agi_4            = bignum | 0x00000400
