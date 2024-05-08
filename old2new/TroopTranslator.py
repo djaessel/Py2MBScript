@@ -38,6 +38,8 @@ SKILLS = 4
 
 FACES = 5
 
+bignum = 0x40000000000000000000000000000000000000000000000000000000000000000
+
 
 
 factions = []
@@ -111,11 +113,18 @@ def getProficiencies(troop : list):
 
 
 def getFaceCodes(troop : list):
-    faceCodes = [0, 0]
+    faceCodes = [
+        bignum,
+        bignum
+    ]
     for i in range(4):
-        faceCodes[0] |= int(troop[FACES][i]) << (i * 64)
+        faceCodes[0] |= int(troop[FACES][i]) << ((3-i) * 64)
     for i in range(4):
-        faceCodes[1] |= int(troop[FACES][i+4]) << (i * 64)
+        faceCodes[1] |= int(troop[FACES][i+4]) << ((3-i) * 64)
+
+    faceCodes[0] = faceCodes[0] & 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    faceCodes[1] = faceCodes[1] & 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+
     return faceCodes
 
 
@@ -177,6 +186,7 @@ def getFlags(troop : list):
     flagsx = []
     final_flags = []
     flags = int(troop[MAIN_VALS][FLAGS])
+    found_skin = False
     if int(flags) > 0:
         troop_consts = dict()
         for i in vars(trpHeader):
@@ -184,8 +194,19 @@ def getFlags(troop : list):
                 troop_consts[i] = getattr(trpHeader,i)
         for t in troop_consts:
             v = troop_consts[t]
-            if (flags & v) == v:
+            if (v & trpHeader.troop_type_mask) > 0:
+                if (flags & trpHeader.troop_type_mask) == v:
+                    flagsx.append(t)
+                    found_skin = True
+            elif v > 0 and (flags & v) == v:
                 flagsx.append(t)
+
+        if not found_skin:
+            for t in troop_consts:
+                v = troop_consts[t]
+                if v == 0:
+                    flagsx.append(t)
+                    break
 
         mapx = None
         for tfx in vars(trpData):
