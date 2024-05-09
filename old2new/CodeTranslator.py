@@ -1055,6 +1055,29 @@ def convertToPy3(data : list):
                         scriptParams.append(xname)
                 else:
                     print("# PARSING ERROR:", parax, "TO INT - SCRIPT_PARAM")
+        elif "store_trigger_param" in code:
+            tmp = code.split('=')
+            xname = tmp[0].strip()
+            if "store_trigger_param_1" in code:
+                if len(scriptParams) > 0:
+                    scriptParams[0] = xname
+                else:
+                    scriptParams.append(xname)
+            elif "store_trigger_param_2" in code:
+                if len(scriptParams) > 1:
+                    scriptParams[1] = xname
+                else:
+                    scriptParams.append(xname)
+            else:
+                parax = tmp[1].strip().split('(')[1].split(')')[0]
+                if is_int(parax):
+                    x = int(parax)
+                    if x < len(scriptParams):
+                        scriptParams[x] = xname
+                    else:
+                        scriptParams.append(xname)
+                else:
+                    print("# PARSING ERROR:", parax, "TO INT - TRIGGER_PARAM")
         else:
             datax.append(code)
     return datax, scriptParams

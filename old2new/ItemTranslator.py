@@ -6,6 +6,7 @@ sys.path.append("../data_objects/")
 
 import header_items as itmHeader
 import item as itmData
+import CodeTranslator as codeT
 
 
 module_path = "/home/djaessel/warband/Modules/Native/"
@@ -162,6 +163,47 @@ def processModifiers(x : int):
     return final_modifiers
 
 
+def convertItemTrigger(triggerCode : str):
+    tmpX = triggerCode.split("  ")
+    intervalCode = tmpX[0]
+    tmp = tmpX[1].split(' ')
+    data = []
+    if len(tmp[0]) > 0:
+        activeCount = -1
+        for i in range(1, len(tmp)):
+            if activeCount <= 0:
+                itmp = int(tmp[i])
+
+                if (itmp & 0x40000000) == 0x40000000: # this_or_next
+                    vv = str(itmp & 0xFFFF)
+                    if vv in codeT.operations:
+                        newData = "this_or_next|" + codeT.operations[vv] + ","
+                    else:
+                        newData = "this_or_next|UNKNOWN_OP_" + vv + ","
+                elif (itmp & 0x80000000) == 0x80000000: # neg
+                    vv = str(itmp & 0xFFFF)
+                    if vv in codeT.operations:
+                        newData = "neg|" + codeT.operations[vv] + ","
+                    else:
+                        newData = "neg|UNKNOWN_OP_" + vv + ","
+                elif tmp[i] in codeT.operations:
+                    newData = codeT.operations[tmp[i]] + ","
+                else:
+                    newData = "UNKNOWN_OP_" + tmp[i] + ","
+
+                activeCount = int(tmp[i+1]) + 1
+                lll = 0
+                stx = i + 2
+                enx = i + 1 + activeCount
+                for ix in range(stx, enx):
+                    newData += codeT.lookupData(newData.split(',')[0], tmp[ix], tmp[ix+1:enx], data, lll) + ","
+                    lll += 1
+                newData = newData.rstrip(',')
+                data.append(newData)
+            else:
+                activeCount -= 1
+    return intervalCode, data
+
 
 def writeItem(item : list):
     with open("test_items.py", "a") as f:
@@ -312,7 +354,14 @@ def writeItem(item : list):
         if triggerCount > 0:
             currentIndex += 1
             for tr in range(currentIndex, len(item)):
-                f.write("# " + " ".join(item[tr]) + "\n")
+                intervalCode, datac = convertItemTrigger(" ".join(item[tr]))
+                f.write("trigger" + str(tr - currentIndex) + " = SimpleTrigger(" + intervalCode + ")\n")
+                datap, scriptParams = codeT.convertToPy(datac)
+                f.write("def code(" + ", ".join(scriptParams) + "):\n")
+                txt = codeT.formatGoodText(datap, False, True)
+                f.write(txt)
+                f.write("trigger" + str(tr - currentIndex) + ".codeBlock = code\n")
+                f.write(idx + ".add_trigger(trigger" + str(tr - currentIndex) + ")\n")
 
         f.write("\n\n")
         
