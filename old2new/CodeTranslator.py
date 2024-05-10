@@ -1154,10 +1154,10 @@ if __name__ == "__main__":
                 f.write("\n\n")
     else:
         datac = decompileScript(scriptName)
-        print(datac)
+        # print(datac)
         datap, scriptParams = convertToPy(datac)
         txt = formatGoodText(datap, False, True)
-        print("# " + scriptParams)
+        print("# " + ", ".join(scriptParams))
         print(txt)
 
 
