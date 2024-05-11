@@ -4,6 +4,7 @@ sys.path.append("../modules/")
 sys.path.append("../build_system/")
 sys.path.append("../data_objects/")
 
+import header_triggers as triHeader
 import header_items as itmHeader
 import item as itmData
 import CodeTranslator as codeT
@@ -165,7 +166,7 @@ def processModifiers(x : int):
 
 def convertItemTrigger(triggerCode : str):
     tmpX = triggerCode.split("  ")
-    intervalCode = tmpX[0]
+    intervalCode = float(tmpX[0])
     tmp = tmpX[1].split(' ')
     data = []
     if len(tmp[0]) > 0:
@@ -202,7 +203,18 @@ def convertItemTrigger(triggerCode : str):
                 data.append(newData)
             else:
                 activeCount -= 1
-    return intervalCode, data
+
+    consts = dict()
+    for i in vars(triHeader):
+        if i.startswith("ti_"):
+            consts[i] = getattr(triHeader,i)
+    for t in consts:
+        v = consts[t]
+        if intervalCode == v:
+            intervalCode = "tri." + t
+            break
+
+    return str(intervalCode), data
 
 
 def writeItem(item : list):
@@ -355,6 +367,7 @@ def writeItem(item : list):
             currentIndex += 1
             for tr in range(currentIndex, len(item)):
                 intervalCode, datac = convertItemTrigger(" ".join(item[tr]))
+                f.write("# trigger" + str(tr - currentIndex) + "\n")
                 f.write("trigger" + str(tr - currentIndex) + " = SimpleTrigger(" + intervalCode + ")\n")
                 datap, scriptParams = codeT.convertToPy(datac)
                 f.write("def code(" + ", ".join(scriptParams) + "):\n")
