@@ -76,6 +76,8 @@ class ScriptConverter:
     list_active = False
     list_active_name = ""
 
+    is_trigger_code = False
+
     # presentation overlays (maybe separate)
     prsnt_text_overlays = dict()
 
@@ -908,9 +910,16 @@ class ScriptConverter:
                     if scriptParams[0].strip() == "self":
                         i += 1
                     if pss.startswith("_") and len(pss) > 1:
-                        b.append("(store_script_param, \"$" + pss[1:] + "\", " + str(i + 1) + ")")
+                        if ScriptConverter.is_trigger_code:
+                            b.append("(store_trigger_param, \"$" + pss[1:] + "\", " + str(i + 1) + ")")
+                        else:
+                            b.append("(store_script_param, \"$" + pss[1:] + "\", " + str(i + 1) + ")")
                     else:
-                        b.append("(store_script_param, \":" + pss + "\", " + str(i + 1) + ")")
+                        if ScriptConverter.is_trigger_code:
+                            b.append("(store_trigger_param, \":" + pss + "\", " + str(i + 1) + ")")
+                        else:
+                            b.append("(store_script_param, \":" + pss + "\", " + str(i + 1) + ")")
+                    # TODO: check for regX as param
         return b
 
     # TODO: actually count these and correctly check
@@ -1226,6 +1235,7 @@ class ScriptConverter:
 
     # make this base later for all and create reusable code
     def createCode(self):
+        ScriptConverter.is_trigger_code = False
         lines = self.readScriptCode()
         codeLines = self.transformScriptBlock(lines)
         self.writeScriptOutputFile(codeLines)

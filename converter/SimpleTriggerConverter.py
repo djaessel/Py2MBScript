@@ -10,6 +10,7 @@ import simple_triggers
 class SimpleTriggerConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = True
         simpleTriggers = self.retrieveTriggers()
         self.writeScriptOutputFile(simpleTriggers)
 

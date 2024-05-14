@@ -10,6 +10,7 @@ import scene_props
 class ScenePropConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = True
         sceneProps = self.retrieveSceneProps()
         self.writeScriptOutputFile(sceneProps)
 
