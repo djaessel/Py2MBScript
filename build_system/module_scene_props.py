@@ -50,8 +50,8 @@ scene_props = [
 ("winch", sokf_moveable, "winch", "bo_winch", []),
 ("winch_b", spr_use_time(5)|sokf_moveable, "winch_b", "bo_winch", [
 (ti_on_scene_prop_use, [
-(store_script_param, ":agent_id", 1),
-(store_script_param, ":instance_id", 2),
+(store_trigger_param, ":agent_id", 1),
+(store_trigger_param, ":instance_id", 2),
 (call_script, "script_use_item", ":instance_id", ":agent_id"),
 (get_max_players, ":num_players"),
 (try_for_range, ":player_no", 1, ":num_players"),
@@ -63,8 +63,8 @@ scene_props = [
 ]),
 ("door_destructible", spr_use_time(2)|sokf_moveable|sokf_show_hit_point_bar|sokf_destructible, "tutorial_door_a", "bo_tutorial_door_a", [
 (ti_on_scene_prop_use, [
-(store_script_param, ":agent_id", 1),
-(store_script_param, ":instance_id", 2),
+(store_trigger_param, ":agent_id", 1),
+(store_trigger_param, ":instance_id", 2),
 (call_script, "script_use_item", ":instance_id", ":agent_id"),
 (get_max_players, ":num_players"),
 (try_for_range, ":player_no", 1, ":num_players"),
@@ -74,13 +74,13 @@ scene_props = [
 ]),
 
 (ti_on_scene_prop_init, [
-(store_script_param, ":instance_no", 1),
+(store_trigger_param, ":instance_no", 1),
 (scene_prop_set_hit_points, ":instance_no", 2000),
 ]),
 
 (ti_on_scene_prop_destroy, [
-(store_script_param, ":instance_no", 1),
-(store_script_param, ":attacker_agent_no", 2),
+(store_trigger_param, ":instance_no", 1),
+(store_trigger_param, ":attacker_agent_no", 2),
 (play_sound,"snd_dummy_destroyed"),
 (assign,":rotate_side",86),
 (try_begin),
@@ -143,8 +143,8 @@ scene_props = [
 ("siege_ladder_move_14m", 0, "0", "0", []),
 ("castle_f_door_b", sokf_moveable|sokf_show_hit_point_bar|sokf_destructible, "castle_e_sally_door_a", "bo_castle_e_sally_door_a", [
 (ti_on_scene_prop_use, [
-(store_script_param, ":agent_id", 1),
-(store_script_param, ":instance_id", 2),
+(store_trigger_param, ":agent_id", 1),
+(store_trigger_param, ":instance_id", 2),
 (agent_get_position,pos1,":agent_id"),
 (prop_instance_get_starting_position, pos2, ":instance_id"),
 (scene_prop_get_slot,":opened_or_closed",":instance_id",1), # slot_openclose
@@ -165,7 +165,7 @@ scene_props = [
 ]),
 
 (ti_on_scene_prop_init, [
-(store_script_param, ":instance_no", 1),
+(store_trigger_param, ":instance_no", 1),
 (scene_prop_set_hit_points, ":instance_no", 1000),
 ]),
 

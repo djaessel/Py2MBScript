@@ -8,6 +8,7 @@ import game_menus
 class GameMenuConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = False
         gameMenus = self.retrieveGameMenus()
         self.writeScriptOutputFile(gameMenus)
 

@@ -8,6 +8,7 @@ import dialogs
 class DialogConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = False
         dialogsx = self.retrieveDialogs()
         self.writeScriptOutputFile(dialogsx)
 

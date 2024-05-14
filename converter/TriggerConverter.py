@@ -10,6 +10,7 @@ import header_triggers
 class TriggerConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = True
         triggersx = self.retrieveTriggers()
         self.writeScriptOutputFile(triggersx)
 

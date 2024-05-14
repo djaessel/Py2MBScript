@@ -10,6 +10,7 @@ import map_icons
 class MapIconConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = True
         mapIcons = self.retrieveMapIcons()
         self.writeScriptOutputFile(mapIcons)
 

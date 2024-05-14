@@ -10,6 +10,7 @@ import tableau_materials
 class TableauMaterialConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = False
         tabMats = self.retrieveTableauMaterials()
         self.writeScriptOutputFile(tabMats)
 

@@ -11,6 +11,7 @@ import items
 class ItemConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = True
         itemsx = self.retrieveItems()
         self.writeScriptOutputFile(itemsx)
 

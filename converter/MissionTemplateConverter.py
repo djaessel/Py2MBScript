@@ -11,6 +11,7 @@ import mission_templates
 class MissionTemplateConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = True
         missionTemps = self.retrieveMissionTemplates()
         self.writeScriptOutputFile(missionTemps)
 

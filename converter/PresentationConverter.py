@@ -10,6 +10,7 @@ import presentations
 class PresentationConverter(ScriptConverter):
 
     def createCode(self):
+        ScriptConverter.is_trigger_code = True
         presentationsx = self.retrievePresentations()
         self.writeScriptOutputFile(presentationsx)
 
