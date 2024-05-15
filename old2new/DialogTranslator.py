@@ -101,8 +101,10 @@ def get_talking_troop(x : int):
     if (dlgHeader.multi_line & x) == dlgHeader.multi_line:
         tt += "multi_line|"
 
-    if matchingParty or matchingTroop:
-        tt += str(dlgHeader.anyone & x)
+    if matchingParty:
+        tt += codeT.partyTemplates[dlgHeader.anyone & x][0]
+    elif matchingTroop:
+        tt += codeT.troops[dlgHeader.anyone & x][0][0]
 
     tt = tt.rstrip('|')
 
