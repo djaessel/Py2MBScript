@@ -169,6 +169,7 @@ def convertItemTrigger(triggerCode : str):
     intervalCode = float(tmpX[0])
     tmp = tmpX[1].split(' ')
     data = []
+    codeT.localVarDict.clear()
     if len(tmp[0]) > 0:
         activeCount = -1
         for i in range(1, len(tmp)):
