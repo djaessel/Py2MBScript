@@ -850,9 +850,11 @@ def convertToPy1(data : list):
             formatex.append(code)
             condit = False
 
-        if not condit and (lastWasCondit or curLine == "elif;"):
+        if not condit and (lastWasCondit or curLine == "elif;" or curLine == "if;"):
             if curLine == "elif;":
                 curLine = "else"
+            elif curLine == "if;":
+                curLine = "if;eq,1,1"
             formatex.insert(len(formatex) - 1, curLine)
             curLine = ""
             lastWasCondit = False
@@ -896,7 +898,12 @@ def convertCondi(tmx : str, negate : bool = False):
         if negate:
             operator = " != "
         if len(tmp) > 2:
-            xyz = varS(tmp[1]) + operator + varS(tmp[2])
+            if not negate and tmp[1] == tmp[2]:
+                xyz = "True"
+            elif negate and tmp[1] == tmp[2]:
+                xyz = "False"
+            else:
+                xyz = varS(tmp[1]) + operator + varS(tmp[2])
         else:
             if negate:
                 print("Warning: NEQ >", tmp)
