@@ -224,6 +224,7 @@
         "old2new/SkillTranslator.py",
         "old2new/ScenePropTranslator.py",
         "old2new/DialogTranslator.py",
-        "old2new/GameMenuTranslator.py"
+        "old2new/GameMenuTranslator.py",
+        "old2new/MapIconTranslator.py"
     ]
 }

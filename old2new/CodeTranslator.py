@@ -569,11 +569,12 @@ def readMapIcons():
     with open(module_path + "map_icons.txt") as f:
         lineCount = 0
         for line in f:
-            tmp = line.strip().split(' ')
-            if not is_int(tmp[0]) and len(line.strip()) > 0:
-                icons.append([tmp])
-            elif lineCount > 2 and len(line.strip()) > 0:
-                icons[len(icons)-1].append(tmp)
+            if lineCount > 1:
+                tmp = line.strip().split(' ')
+                if not is_float(tmp[0]) and len(line.strip()) > 0:
+                    icons.append([tmp])
+                elif len(line.strip()) > 0:
+                    icons[len(icons)-1].append(tmp)
             lineCount += 1
 
 
