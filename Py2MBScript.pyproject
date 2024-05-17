@@ -230,6 +230,7 @@
         "old2new/MeshTranslator.py",
         "old2new/StringTranslator.py",
         "old2new/SimpleTriggerTranslator.py",
-        "old2new/TableauMaterialTranslator.py"
+        "old2new/TableauMaterialTranslator.py",
+        "old2new/MusicTranslator.py"
     ]
 }
