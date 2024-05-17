@@ -38,7 +38,7 @@ class TrackFlag(Enum):
 
 
 class MusicTrack:
-    def __init__(self, id, file):
+    def __init__(self, id : str, file : str):
         self.id = id
         self.file = file
         self.flags = []

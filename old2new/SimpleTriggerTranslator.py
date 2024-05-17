@@ -1,3 +1,5 @@
+# This Python file uses the following encoding: utf-8
+
 import sys
 
 from CodeTranslator import *
@@ -43,9 +45,8 @@ def codeconv(data : list, tmp : list):
 
 def decompileTriggers():
     data_all = []
-    data_all_2 = []
     vals_all = []
-    with open(module_path + "triggers.txt") as f:
+    with open(module_path + "simple_triggers.txt") as f:
         found = False
         lineCount = 0
         for line in f:
@@ -53,50 +54,36 @@ def decompileTriggers():
                 tmp = line.strip().split("  ")
 
                 vals = tmp[0].split(' ')
-                tmp2 = tmp[2].split(' ')
                 tmp = tmp[1].split(' ')
 
                 data = []
-                data2 = []
                 localVarDict.clear()
                 codeconv(data, tmp)
-                codeconv(data2, tmp2)
 
                 data_all.append(data)
-                data_all_2.append(data2)
                 vals_all.append(vals)
             lineCount += 1
 
-    return data_all, data_all_2, vals_all
+    return data_all, vals_all
 
 
 
 
 # main program
 if __name__ == "__main__":
-    datacB, datac2B, valsB = decompileTriggers()
-    with open("test_triggers.py", "w") as f:
+    datacB, valsB = decompileTriggers()
+    with open("test_simple_triggers.py", "w") as f:
         for i, datac in enumerate(datacB):
-            f.write("trigger" + str(i) + " = Trigger(" + valsB[i][0] + ", " + valsB[i][1] + ", " + valsB[i][2] + ")\n")
+            f.write("simple_trigger" + str(i) + " = SimpleTrigger(" + str(float(valsB[i][0])) + ")\n")
 
             datap, scriptParams = convertToPy(datac)
-            txt = formatGoodText(datap, False, True)
-            f.write("def condition(" + ", ".join(scriptParams) + "):\n")
-            if len(txt.strip()) > 0:
-                f.write(txt)
-            else:
-                f.write("    pass\n")
-            f.write("trigger" + str(i) + ".conditionBlock = condition\n")
-            f.write("\n")
-
-            datap, scriptParams = convertToPy(datac2B[i])
             txt = formatGoodText(datap, False, True)
             f.write("def code(" + ", ".join(scriptParams) + "):\n")
             if len(txt.strip()) > 0:
                 f.write(txt)
             else:
                 f.write("    pass\n")
-            f.write("trigger" + str(i) + ".codeBlock = code\n")
+            f.write("simple_trigger" + str(i) + ".codeBlock = code\n")
             f.write("\n\n")
 
 
