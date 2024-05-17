@@ -229,6 +229,7 @@
         "old2new/SoundTranslator.py",
         "old2new/MeshTranslator.py",
         "old2new/StringTranslator.py",
-        "old2new/SimpleTriggerTranslator.py"
+        "old2new/SimpleTriggerTranslator.py",
+        "old2new/TableauMaterialTranslator.py"
     ]
 }
