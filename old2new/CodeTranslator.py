@@ -325,9 +325,9 @@ def lookupData(funcName : str, data : str, parax : list, all : list, index : int
             if x >= 0 and x < 0xffff:
                 if funcName == "call_script" and index == 0:
                     d = "script." + scripts[x][0][0]
-                elif ("troop_get" in funcName or "troop_set" in funcName) and index == 1: # why 1? -> TODO: check that and also create list with possible OP Codes
+                elif ("troop_get" in funcName and index == 1) or ("troop_set" in funcName and index == 0): # why 1? -> TODO: check that and also create list with possible OP Codes
                     d = "trp." + troops[x][0][0][4:]
-                elif ("item_get" in funcName or "item_set" in funcName) and index == 1: # why 1? -> TODO: check that and also create list with possible OP Codes
+                elif ("item_get" in funcName and index == 1) or ("item_set" in funcName and index == 0): # why 1? -> TODO: check that and also create list with possible OP Codes
                     d = "itm." + items[x][0][0][4:]
                 #else: # for example slots and such things
                 #    pass
