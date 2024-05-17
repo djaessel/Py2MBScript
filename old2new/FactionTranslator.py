@@ -58,12 +58,36 @@ def writeFaction(faction : list, index : int):
         f.write("\n")
 
 
+def writeRelations(faction : list, index : int, factions : list):
+    with open("test_factions.py", "a") as f:
+        mainVals = faction[0]
+        relations = faction[1]
+
+        idx = mainVals[0][4:]
+
+        foundSome = False
+        for i, rel in enumerate(relations):
+            if i != index:
+                relF = float(rel)
+                if relF != 0.000000:
+                    f.write(idx + ".add_relation(" + factions[i][0][0][4:] + ", " + str(relF) + ")\n")
+                    foundSome = True
+
+        if foundSome:
+            f.write("\n")
+
+
+
 if __name__ == "__main__":
     factions = readFactions()
     for i, fac in enumerate(factions):
         writeFaction(fac, i)
 
-    # TODO: relations
+    with open("test_factions.py", "a") as f:
+        f.write("\n\n# Relations\n\n")
+
+    for i, fac in enumerate(factions):
+        writeRelations(fac, i, factions)
 
 
 
