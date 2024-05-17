@@ -76,7 +76,7 @@ def writeSound(f, sound : list, soundFiles : list):
 
     flagsx, volume, priority = processFlags(int(sound[1]))
     for fl in flagsx:
-        f.write(idx + ".add_flags(" + fl + ")\n")
+        f.write(idx + ".add_flag(" + fl + ")\n")
 
     if volume > 0:
         f.write(idx + ".set_volume(" + str(volume) + ")\n")
