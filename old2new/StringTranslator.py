@@ -15,7 +15,7 @@ def readGameStrings():
 
 
 def writeString(f, stringx : list):
-    idx = stringx[0]
+    idx = stringx[0][4:]
     f.write(idx + " = MBString(\"" + idx + "\", \"" + stringx[1] + "\")\n\n")
 
 

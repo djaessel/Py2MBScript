@@ -2,6 +2,7 @@
 
 from ScriptConverter import ScriptConverter
 from scene import Scene
+from troop import Troop
 
 import scenes
 
@@ -18,7 +19,8 @@ class SceneConverter(ScriptConverter):
         for i in vars(scenes):
             if not (i.startswith("__") and i.endswith("__")) and not i[0:1].isupper():
                 attr = getattr(scenes,i)
-                scenesx.append(attr)
+                if not "<function" in str(attr) and not "<module" in str(attr):
+                    scenesx.append(attr)
         return scenesx
 
     def writeScriptOutputFile(self, codeData : list[Scene]):
@@ -50,14 +52,20 @@ class SceneConverter(ScriptConverter):
 
                 f.write("[")
                 for i, scenex in enumerate(scene.accessible_scenes):
-                    f.write("\"" + scenex + "\"")
+                    ctx = scenex
+                    if isinstance(scenex, Scene):
+                        ctx = ct.id
+                    f.write("\"" + ctx.strip('"') + "\"")
                     if i < len(scene.accessible_scenes) - 1:
                         f.write(",")
                 f.write("], ")
 
                 f.write("[")
                 for i, ct in enumerate(scene.chest_troops):
-                    f.write("\"" + ct + "\"")
+                    ctx = ct
+                    if isinstance(ct, Troop):
+                        ctx = ct.id
+                    f.write("\"" + ctx.strip('"') + "\"")
                     if i < len(scene.chest_troops) - 1:
                         f.write(",")
                 f.write("]")
