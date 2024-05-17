@@ -310,7 +310,7 @@ def lookupData(funcName : str, data : str, parax : list, all : list, index : int
         elif x >= PSYS_MIN and x < PSYS_MAX:
             d = "psys." + particleSystems[x - PSYS_MIN][0][0][5:]
         elif x >= MENU_MIN and x < MENU_MAX:
-            d = "mnu." + menus[x - MENU_MIN][0][0][4:]
+            d = "mnu." + menus[x - MENU_MIN][0][0][5:]
         elif x >= QUEST_MIN and x < QUEST_MAX:
             d = "qst." + quests[x - QUEST_MIN][0][4:]
         elif x >= TABLEAU_MAT_MIN and x < TABLEAU_MAT_MAX:
@@ -569,11 +569,12 @@ def readMapIcons():
     with open(module_path + "map_icons.txt") as f:
         lineCount = 0
         for line in f:
-            tmp = line.strip().split(' ')
-            if not is_int(tmp[0]) and len(line.strip()) > 0:
-                icons.append([tmp])
-            elif lineCount > 2 and len(line.strip()) > 0:
-                icons[len(icons)-1].append(tmp)
+            if lineCount > 1:
+                tmp = line.strip().split(' ')
+                if not is_float(tmp[0]) and len(line.strip()) > 0:
+                    icons.append([tmp])
+                elif len(line.strip()) > 0:
+                    icons[len(icons)-1].append(tmp)
             lineCount += 1
 
 
@@ -847,7 +848,7 @@ def convertToPy1(data : list):
             formatex.append(xyz)
             condit = False
         else:
-            formatex.append(code)
+            formatex.append(code + "()")
             condit = False
 
         if not condit and (lastWasCondit or curLine == "elif;" or curLine == "if;"):
