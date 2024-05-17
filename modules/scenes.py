@@ -2739,6 +2739,6 @@ enterprise_oil_press.set_min_pos(40.0, 40.0)
 
 
 # Accessible Scenes (Deprecated)
-zendar_center.add_accessible_scene(the_happy_boar)
-zendar_center.add_accessible_scene(zendar_merchant)
-the_happy_boar.add_accessible_scene(zendar_center)
+#zendar_center.add_accessible_scene(the_happy_boar)
+#zendar_center.add_accessible_scene(zendar_merchant)
+#the_happy_boar.add_accessible_scene(zendar_center)
