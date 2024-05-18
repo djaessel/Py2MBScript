@@ -233,6 +233,7 @@
         "old2new/TableauMaterialTranslator.py",
         "old2new/MusicTranslator.py",
         "old2new/SceneTranslator.py",
-        "old2new/PartyTranslator.py"
+        "old2new/PartyTranslator.py",
+        "old2new/PartyTemplateTranslator.py"
     ]
 }
