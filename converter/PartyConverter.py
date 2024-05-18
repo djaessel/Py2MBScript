@@ -4,6 +4,7 @@ from ScriptConverter import ScriptConverter
 
 from MBParty import MBParty
 from mapicon import MapIcon
+from troop import Troop
 
 import parties
 
@@ -73,7 +74,10 @@ class PartyConverter(ScriptConverter):
                     for companion in party.companions:
                         f.write("(" + companion[0] + "," + str(companion[1]) + ",0),")
                     for member in party.members:
-                        f.write("(" + member[0] + "," + str(member[1]) + ",0),")
+                        troop_id = member[0]
+                        if isinstance(member[0], Troop):
+                            troop_id = "trp_" + member[0].id
+                        f.write("(" + troop_id + "," + str(member[1]) + ",0),")
                     for prisoner in party.prisoners:
                         f.write("(" + prisoner[0] + "," + str(prisoner[1]) + ",pmf_is_prisoner),")
                     f.write("]")
