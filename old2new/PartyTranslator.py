@@ -104,7 +104,7 @@ def writeParty(f, party : list):
         f.write(idx + ".set_icon(icon." + codeT.icons[icon][0][0] + ")\n")
 
     if carry_gold > 0:
-        print("WARNING! CARRY_GOLD:", carry_gold, "ignored!)
+        print("WARNING! CARRY_GOLD:", carry_gold, "ignored!")
 
     if carry_goods > 0:
         print("WARNING! CARRY_GOODS:", carry_goods, "ignored!")
