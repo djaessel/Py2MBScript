@@ -237,6 +237,7 @@
         "old2new/PartyTemplateTranslator.py",
         "old2new/PostFXTranslator.py",
         "old2new/QuestTranslator.py",
-        "old2new/InfoPageTranslator.py"
+        "old2new/InfoPageTranslator.py",
+        "old2new/ParticleSystemTranslator.py"
     ]
 }
