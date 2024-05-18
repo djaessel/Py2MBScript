@@ -6,6 +6,7 @@
 from party_template import PartyTemplate
 
 import troops as trp
+import factions as fac
 
 
 none = PartyTemplate("none", "None")

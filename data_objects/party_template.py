@@ -8,6 +8,34 @@ from game_menu import GameMenu
 import factions as fac
 
 
+
+class PartyFlag(Enum):
+    #ICON_MASK = "pf_icon_mask"                # = 0x000000ff
+    IS_DISABLED = "pf_disabled"                 # = 0x00000100
+    IS_SHIP = "pf_is_ship"                  # = 0x00000200
+    IS_STATIC = "pf_is_static"                # = 0x00000400
+
+    LABEL_SMALL = "pf_label_small"              # = 0x00000000
+    LABEL_MEDIUM = "pf_label_medium"             # = 0x00001000
+    LABEL_LARGE = "pf_label_large"              # = 0x00002000
+
+    IS_ALWAYS_VISIBLE = "pf_always_visible"           # = 0x00004000
+    HAS_DEFAULT_BEHAVIOR = "pf_default_behavior"         # = 0x00010000
+    AUTO_REMOVE_IN_TOWN = "pf_auto_remove_in_town"      # = 0x00020000
+    IS_QUEST_PARTY = "pf_quest_party"              # = 0x00040000
+    HAS_NO_LABEL = "pf_no_label"                 # = 0x00080000
+    LIMIT_MEMBERS = "pf_limit_members"            # = 0x00100000
+    HIDE_DEFENDERS = "pf_hide_defenders"           # = 0x00200000
+    SHOW_FACTION = "pf_show_faction"             # = 0x00400000
+    #IS_HIDDEN = "pf_is_hidden"               # = 0x01000000 #used in the engine, do not overwrite this flag
+    DONT_ATTACK_CIVILIANS = "pf_dont_attack_civilians"    # = 0x02000000
+    IS_CIVILIAN = "pf_civilian"                 # = 0x04000000
+
+    IS_TOWN = "pf_town"
+    IS_CASTLE = "pf_castle"
+    IS_VILLAGE = "pf_village"
+
+
 class PartyPersonality(Enum):
     SOLDIER = "soldier_personality"  # = "aggressiveness_8 | courage_9"
     MERCHANT = "merchant_personality" # = "aggressiveness_0 | courage_7"
@@ -45,3 +73,26 @@ class PartyTemplate:
             print("ERROR: Stack limit reached! > pt_" + self.id)
 
 
+    def add_flag(self, flag : PartyFlag):
+        if not self.contains_flag(flag):
+            self.flags.append(flag.value)
+
+
+    def contains_flag(self, flag : PartyFlag):
+        contains = False
+        for x in self.flags:
+            if x == flag.value:
+                contains = True
+                break
+        return contains
+
+
+    def remove_flag(self, flag : PartyFlag):
+        if self.contains_flag(flag):
+            remi = -1
+            for i, f in enumerate(self.flags):
+                if f == flag.value:
+                    remi = i
+                    break
+            if remi >= 0:
+                del self.flags[remi]

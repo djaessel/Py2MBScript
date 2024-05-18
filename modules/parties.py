@@ -3,6 +3,7 @@
 from MBParty import MBParty, PartyFlag
 import map_icons as icon
 import factions as fac
+import troops as trp
 
 
 main_party = MBParty("main_party", "Main Party", faction=fac.player_faction, initial_cords=(17,20))
