@@ -1076,6 +1076,11 @@ def convertToPy3(data : list):
                     scriptParams[1] = xname
                 else:
                     scriptParams.append(xname)
+            elif "store_trigger_param_3" in code:
+                if len(scriptParams) > 2:
+                    scriptParams[2] = xname
+                else:
+                    scriptParams.append(xname)
             else:
                 parax = tmp[1].strip().split('(')[1].split(')')[0]
                 if is_int(parax):

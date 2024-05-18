@@ -234,6 +234,12 @@
         "old2new/MusicTranslator.py",
         "old2new/SceneTranslator.py",
         "old2new/PartyTranslator.py",
-        "old2new/PartyTemplateTranslator.py"
+        "old2new/PartyTemplateTranslator.py",
+        "old2new/PostFXTranslator.py",
+        "old2new/QuestTranslator.py",
+        "old2new/InfoPageTranslator.py",
+        "old2new/ParticleSystemTranslator.py",
+        "old2new/MissionTemplateTranslator.py",
+        "old2new/PresentationTranslator.py"
     ]
 }
