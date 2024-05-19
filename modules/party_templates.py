@@ -3,7 +3,7 @@
 #import sys
 #sys.path.append("../data_objects/")
 
-from party_template import PartyTemplate
+from party_template import PartyTemplate, PartyFlag
 
 import troops as trp
 import factions as fac
