@@ -13,4 +13,4 @@ from module_constants import *
 
 dialogs = [
 
-[anyone, "start", [
+] # DIALOGS END
