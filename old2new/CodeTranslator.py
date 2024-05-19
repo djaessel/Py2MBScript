@@ -1010,7 +1010,7 @@ def convertToPy3(data : list):
                 datax.append("if " + lastC + " in " + lastC2 + ":")
             else:
                 datax.append(code)
-        elif code.startswith("if") and "#end" in data[i+1]:
+        elif code.startswith("if") and ("#end" in data[i+1] or "else" in data[i+1] or "elif" in data[i+1]):
             # TODO: also add other cases here
             datax.append(code)
             datax.append("pass")
