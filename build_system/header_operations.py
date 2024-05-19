@@ -793,7 +793,7 @@ agent_refill_ammo                      = 1728	# (agent_refill_ammo,<agent_id>),
 #agent_refill_wielded_shield_hit_points = 1692   # (agent_refill_wielded_shield_hit_points, <agent_id>),
 agent_has_item_equipped                = 1729	# (agent_has_item_equipped,<agent_id>,<item_id>),
 
-agent_set_scripted_destination         = 1730	# (agent_set_scripted_destination,<agent_id>,<position_no>,<auto_set_z_to_ground_level>,<no_rethink>), #auto_set_z_to_ground_level can be 0 (false) or 1 (true), no_rethink = 1 to save resources
+agent_set_scripted_destination         = 1730	# (agent_set_scripted_destination,<agent_id>,<position_no>,[<auto_set_z_to_ground_level>],[<no_rethink>]), #auto_set_z_to_ground_level can be 0 (false) or 1 (true), no_rethink = 1 to save resources
 agent_get_scripted_destination         = 1731   # (agent_get_scripted_destination,<position_no>,<agent_id>),
 agent_force_rethink                    = 1732 # (agent_force_rethink, <agent_id>),
 agent_set_no_death_knock_down_only     = 1733 # (agent_set_no_death_knock_down_only, <agent_id>, <value>), #0 for disable, 1 for enable
@@ -1066,7 +1066,7 @@ mission_cam_set_target_agent           = 2017   # (mission_cam_set_target_agent,
 mission_cam_clear_target_agent         = 2018   # (mission_cam_clear_target_agent),
 mission_cam_set_animation              = 2019   # (mission_cam_set_animation, <anim_id>),
 
-talk_info_show                         = 2020   # (talk_info_show, <hide_or_show>), :0=hide 1=show
+talk_info_show                         = 2020   # (talk_info_show, <hide_or_show>),
 talk_info_set_relation_bar             = 2021   # (talk_info_set_relation_bar, <value>), :set relation bar to a value between -100 to 100, enter an invalid value to hide the bar.
 talk_info_set_line                     = 2022   # (talk_info_set_line, <line_no>, <string_no>)
 
