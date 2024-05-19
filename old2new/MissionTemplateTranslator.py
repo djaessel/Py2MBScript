@@ -150,7 +150,7 @@ def processAiFlags(x : int):
     return final_flags
 
 
-def writeSpawnRecord(f, id, spawnRecord : list):
+def writeSpawnRecord(f, idx, id, spawnRecord : list):
     f.write("# spawn record " + str(id) + "\n")
     f.write("sr" + str(id) + " = SpawnRecord(entry_no=" + spawnRecord[0] + ", number_of_troops=" + spawnRecord[4] + ")\n")
 
@@ -171,6 +171,8 @@ def writeSpawnRecord(f, id, spawnRecord : list):
         for i in range(7, len(spawnRecord)):
             itemIndex = int(spawnRecord[i])
             f.write("sr" + str(id) + ".addItem(itm." + codeT.items[itemIndex][0][0][4:] + ")\n")
+
+    f.write(idx + ".addSpawnRecord(sr" + str(id) + ")\n")
 
 
 def codeconv(data : list, tmp : list):
@@ -248,7 +250,7 @@ def writeMissionTemplate(f, mt : list):
     if spawnRecordCount > 0:
         currentIndex = spawnRecordCount + 3
         for i in range(3, currentIndex):
-            writeSpawnRecord(f, i-3, mt[i])
+            writeSpawnRecord(f, idx, i-3, mt[i])
         triggerCount = int(mt[currentIndex][0])
     else:
         triggerCount = int(mt[3][0])
