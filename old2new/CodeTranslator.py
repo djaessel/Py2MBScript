@@ -706,7 +706,7 @@ def searchLastTryHadCondition(data : list, idx : int):
         firstCode = code.split(',')[0]
         if code == "try_begin" or code == "else_try" or code == "try_end" or "try_for" in code:
             break
-        elif firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode:
+        elif firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode or "cf_" in firstCode:
             hasCondition = True
     return hasCondition
 
@@ -787,10 +787,10 @@ def convertToPy1(data : list):
         elif code == "try_end":
             formatex.append("#end")
             condit = False
-        elif condit and (firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode):
+        elif condit and (firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode or "cf_" in firstCode):
             lastWasCondit = True
             curLine += code + ";"
-        elif firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode:
+        elif firstCode in conditionals or "this_or_next|" in firstCode or "neg|" in firstCode or "cf_" in firstCode:
             condit = True
             lastWasCondit = True
             hasCond = searchLastTryHadCondition(data, i)
