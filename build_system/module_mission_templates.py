@@ -11,8 +11,8 @@ mission_templates = [
 
 ("village_training", mtf_arena_fight, -1,
 "village_training",
-[(2, mtef_team_0|mtef_visitor_source, af_override_everything, 0, 1, []),
-(4, mtef_team_1|mtef_visitor_source, af_override_everything, 0, 1, []),
+[(2, mtef_team_0|mtef_visitor_source, af_override_everything, 0, 1, [itm_practice_boots,itm_practice_staff,]),
+(4, mtef_team_1|mtef_visitor_source, af_override_everything, 0, 1, [itm_practice_boots,itm_practice_staff,]),
 ],
 [
 (ti_before_mission_start, 0, 0, [
