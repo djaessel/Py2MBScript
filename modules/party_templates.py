@@ -7,6 +7,7 @@ from party_template import PartyTemplate, PartyFlag
 
 import troops as trp
 import factions as fac
+import map_icons as icon
 
 
 none = PartyTemplate("none", "None")

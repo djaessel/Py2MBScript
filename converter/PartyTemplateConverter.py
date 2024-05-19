@@ -42,7 +42,7 @@ class PartyTemplateConverter(ScriptConverter):
             for partyTemp in codeData:
                 f.write("(\"" + partyTemp.id + "\", \"" + partyTemp.name + "\", ")
 
-                if partyTemp.icon != None and isinstance(party.icon, MapIcon):
+                if partyTemp.icon != None and isinstance(partyTemp.icon, MapIcon):
                     f.write("icon_" + partyTemp.icon.id + "|")
 
                 if len(partyTemp.flags) > 0:
