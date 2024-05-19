@@ -174,8 +174,22 @@ class ScriptConverter:
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
                 liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
         else:
-            liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
-            liny = self.replaceFuncParams(liny, funcCall)
+            if varName in self.str_registers:
+                liny = "(str_store_string,<var1>,<var2>)"
+                liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
+                if '"' in funcCall and not funcCall.strip('"').startswith("str_"):
+                    liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall.replace('"', '"@').rstrip('@'))
+                else:
+                    liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
+            elif varName in self.pos_registers:
+                liny = self.replaceVarWithPlaceholder(liny, "<position_no>", varName)
+                liny = self.replaceVarWithPlaceholder(liny, "<position>", varName)
+                liny = self.replaceVarWithPlaceholder(liny, "<pos_no>", varName)
+                liny = self.replaceFuncParams(liny, funcCall)
+            else:
+                liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
+                liny = self.replaceVarWithPlaceholder(liny, "<destination_fixed_point>", varName)
+                liny = self.replaceFuncParams(liny, funcCall)
         if not isinstance(liny, list):
             liny = [liny]
         for i in range(len(liny)):
@@ -679,6 +693,8 @@ class ScriptConverter:
                 liny += "),"
                 if len(fVars) > 0:
                     liny = self.replaceScriptParams(liny, fVars)
+            elif fName == "tutorial_message" and "(-1)" in code:
+                liny = "(tutorial_message, -1),"
             else:
                 liny = self.getFuncCodeLine(code)
                 liny = self.replaceFuncParams(liny, code.split(')')[0])
@@ -694,8 +710,10 @@ class ScriptConverter:
             if ":" in param:
                 idx = i
             params[i] = params[i].strip()
-        if idx >= 0:
+        if idx > 0:
             del params[idx]
+        if startIdx > 0 and len(params) > 0 and (":" in params[0] or params[0] in self.str_registers or params[0] in self.pos_registers or params[0] in self.registers):
+            del params[0]
         return params
 
 
