@@ -2,6 +2,7 @@
 
 from ScriptConverter import ScriptConverter
 from party_template import PartyTemplate
+from mapicon import MapIcon
 
 
 import party_templates
