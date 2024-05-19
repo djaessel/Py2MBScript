@@ -124,7 +124,8 @@ class ScriptConverter:
         funcCall = tmp[1].strip()
         liny = self.getFuncCodeLine(funcCall)
         if liny.endswith("# ERROR 1"):
-            if "." in liny and not liny.split('.')[0].strip() in self.codeTypes:
+            xelly = liny.split('.')[0].split(' ')
+            if "." in liny and not liny.split('.')[0].strip() in self.codeTypes and not xelly[-1] in typeDictX.values():
                 liny = self.handleDotSignInEqualLine(liny, funcCall, varName)
             elif funcCall.startswith("MBParty("):
                 self.cur_parties[varName] = funcCall.split(')')[0].split('(')[1]
