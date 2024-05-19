@@ -4,6 +4,7 @@ from enum import Enum
 from troop import Troop
 from faction import Faction
 from game_menu import GameMenu
+from mapicon import MapIcon
 
 import factions as fac
 
@@ -47,6 +48,7 @@ class PartyTemplate:
     def __init__(self, id : str, name : str, faction : Faction = fac.no_faction, menu : GameMenu = None, personality = "0"):
         self.id = id
         self.flags = []
+        self.icon = None
         self.name = name
         self.faction = faction
         self.menu = menu
@@ -54,6 +56,10 @@ class PartyTemplate:
         self.stacks = []
         self.carriesGold = 0
         self.carriesGoods = 0
+
+
+    def set_icon(self, icon : MapIcon):
+        self.icon = icon
 
 
     def setCarriesGoods(self, carriesGoods : int):
