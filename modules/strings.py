@@ -3806,7 +3806,7 @@ s49_s12_s11 = MBString("s49_s12_s11", "{s49} {s12} ({s11}),")
 
 lord_info_string = MBString("lord_info_string", "{reg6?:{reg4?{s54} is the ruler of {s56}.^:{s54} is a vassal of {s55} of {s56}.^}}Renown: {reg5}. Controversy: {reg15}.^{reg9?{reg3?She:He} is the {reg3?lady:lord} of {s58}.:{reg3?She:He} has no fiefs.}{s59}^{s49}")
 
-updating_faction_notes_for_s14_temp_=_reg4 = MBString("updating_faction_notes_for_s14_temp_=_reg4", "{!}Updating faction notes for {s14}, temp = {reg4}")
+updating_faction_notes_for_s14_temp_equals_reg4 = MBString("updating_faction_notes_for_s14_temp_=_reg4", "{!}Updating faction notes for {s14}, temp = {reg4}")
 
 foreign_relations__ = MBString("foreign_relations__", "Foreign relations: ^")
 
@@ -3864,7 +3864,7 @@ reg4_wounded_reg5_routed = MBString("reg4_wounded_reg5_routed", "{reg4} wounded,
 
 routed = MBString("routed", "routed")
 
-caravan_in_s10_considers_s11_total_price_dif_=_reg3 = MBString("caravan_in_s10_considers_s11_total_price_dif_=_reg3", "{!}Caravan in {s10} considers {s11}, total price dif = {reg3}")
+caravan_in_s10_considers_s11_total_price_dif_equal_reg3 = MBString("caravan_in_s10_considers_s11_total_price_dif_=_reg3", "{!}Caravan in {s10} considers {s11}, total price dif = {reg3}")
 
 test__caravan_in_s3_selects_for_s4_trade_score_reg3 = MBString("test__caravan_in_s3_selects_for_s4_trade_score_reg3", "{!}TEST - Caravan in {s3} selects for {s4}, trade score: {reg3}")
 
@@ -3984,7 +3984,7 @@ brotherinlaw = MBString("brotherinlaw", "brother-in-law")
 
 print_party_members_entered = MBString("print_party_members_entered", "print party members entered")
 
-num_companion_stacks_=_reg10 = MBString("num_companion_stacks_=_reg10", "num companion stacks = {reg10}")
+num_companion_stacks_equal_reg10 = MBString("num_companion_stacks_=_reg10", "num companion stacks = {reg10}")
 
 someone = MBString("someone", "someone")
 
@@ -4100,7 +4100,7 @@ s4_of_the_s5_is_reserved_for_player = MBString("s4_of_the_s5_is_reserved_for_pla
 
 s4_of_the_s5_has_no_fiefs = MBString("s4_of_the_s5_has_no_fiefs", "{!}{s4} of the {s5} has no fiefs")
 
-s4_unassigned_centers_plus_landless_lords_=_reg4 = MBString("s4_unassigned_centers_plus_landless_lords_=_reg4", "{!}{s4}: unassigned centers plus landless lords = {reg4}")
+s4_unassigned_centers_plus_landless_lords_equal_reg4 = MBString("s4_unassigned_centers_plus_landless_lords_=_reg4", "{!}{s4}: unassigned centers plus landless lords = {reg4}")
 
 s4_holds_s5_in_reserve = MBString("s4_holds_s5_in_reserve", "{!}{s4} holds {s5} in reserve")
 
@@ -4518,7 +4518,7 @@ base_changing_sides_penalty_reg9 = MBString("base_changing_sides_penalty_reg9", 
 
 changing_sides_penalty_weighted_by_personality_reg10 = MBString("changing_sides_penalty_weighted_by_personality_reg10", "{!}Changing sides penalty weighted by personality: {reg10}")
 
-combined_bonuses_and_penalties_=_reg0 = MBString("combined_bonuses_and_penalties_=_reg0", "{!}Combined bonuses and penalties = {reg0}")
+combined_bonuses_and_penalties__reg0 = MBString("combined_bonuses_and_penalties_=_reg0", "{!}Combined bonuses and penalties = {reg0}")
 
 intrigue_test_troop_party_is_active = MBString("intrigue_test_troop_party_is_active", "{!}Intrigue test: Troop party is active")
 
@@ -4568,7 +4568,7 @@ result_s4_elopes_with_s5 = MBString("result_s4_elopes_with_s5", "{!}Result: {s4}
 
 result_s4_reluctantly_agrees_to_engagement_with_s5 = MBString("result_s4_reluctantly_agrees_to_engagement_with_s5", "{!}Result: {s4} reluctantly agrees to engagement with {s5}")
 
-result_stalemate_patience_roll_=_reg3 = MBString("result_stalemate_patience_roll_=_reg3", "{!}Result: stalemate, patience roll = {reg3}")
+result_stalemate_patience_roll_equal_reg3 = MBString("result_stalemate_patience_roll_=_reg3", "{!}Result: stalemate, patience roll = {reg3}")
 
 s3_marries_s4_at_s5 = MBString("s3_marries_s4_at_s5", "{!}{s3} marries {s4} at {s5}")
 
@@ -4794,7 +4794,7 @@ in_the_short_term_s15_has_a_truce_with_s16_as_a_matter_of_general_policy_ = MBSt
 
 in_the_short_term_s15_was_recently_provoked_by_s16_and_is_under_pressure_to_declare_war_as_a_matter_of_general_policy_ = MBString("in_the_short_term_s15_was_recently_provoked_by_s16_and_is_under_pressure_to_declare_war_as_a_matter_of_general_policy_", "In the short term, {s15} was recently provoked by {s16}, and is under pressure to declare war. As a matter of general policy, ")
 
-envoymodified_diplomacy_score_honor_plus_relation_plus_envoy_persuasion_=_reg4 = MBString("envoymodified_diplomacy_score_honor_plus_relation_plus_envoy_persuasion_=_reg4", "{!}Envoy-modified diplomacy score (honor plus relation plus envoy persuasion) = {reg4}")
+envoymodified_diplomacy_score_honor_plus_relation_plus_envoy_persuasion_equal_reg4 = MBString("envoymodified_diplomacy_score_honor_plus_relation_plus_envoy_persuasion_=_reg4", "{!}Envoy-modified diplomacy score (honor plus relation plus envoy persuasion) = {reg4}")
 
 s12s15_cannot_negotiate_with_s16_as_to_do_so_would_undermine_reg4herhis_own_claim_to_the_throne_this_civil_war_must_almost_certainly_end_with_the_defeat_of_one_side_or_another = MBString("s12s15_cannot_negotiate_with_s16_as_to_do_so_would_undermine_reg4herhis_own_claim_to_the_throne_this_civil_war_must_almost_certainly_end_with_the_defeat_of_one_side_or_another", "{s12}{s15} cannot negotiate with {s16}, as to do so would undermine {reg4?her:his} own claim to the throne. This civil war must almost certainly end with the defeat of one side or another.")
 
@@ -5082,7 +5082,7 @@ s8_you_are_also_invited_to_attend_the_ongoing_feast_in_the_castle = MBString("s8
 
 __hardship_index_reg0_avg_towns_reg1_avg_villages_reg2__ = MBString("__hardship_index_reg0_avg_towns_reg1_avg_villages_reg2__", "{!}^^Hardship index: {reg0}, avg towns: {reg1}, avg villages: {reg2}^^")
 
-__s3_price_=_reg4_calradian_average_reg6_capital_reg11_s4_base_reg1modified_by_raw_material_reg2modified_by_prosperity_reg3_calradian_average_production_base_reg5_total_reg12_consumed_reg7used_as_raw_material_reg8modified_total_reg9_calradian_consumption_base_reg10_total_reg13s1_ = MBString("__s3_price_=_reg4_calradian_average_reg6_capital_reg11_s4_base_reg1modified_by_raw_material_reg2modified_by_prosperity_reg3_calradian_average_production_base_reg5_total_reg12_consumed_reg7used_as_raw_material_reg8modified_total_reg9_calradian_consumption_base_reg10_total_reg13s1_", "{!}^^{s3}^Price = {reg4} (Calradian average {reg6})^Capital: {reg11} {s4}^Base {reg1}/modified by raw material {reg2}/modified by prosperity {reg3}^(Calradian average production, base {reg5}, total {reg12}).^Consumed {reg7}/used as raw material {reg8}/modified total {reg9}^(Calradian consumption, base: {reg10}, total: {reg13}){s1}^")
+__s3_price_equal_reg4_calradian_average_reg6_capital_reg11_s4_base_reg1modified_by_raw_material_reg2modified_by_prosperity_reg3_calradian_average_production_base_reg5_total_reg12_consumed_reg7used_as_raw_material_reg8modified_total_reg9_calradian_consumption_base_reg10_total_reg13s1_ = MBString("__s3_price_=_reg4_calradian_average_reg6_capital_reg11_s4_base_reg1modified_by_raw_material_reg2modified_by_prosperity_reg3_calradian_average_production_base_reg5_total_reg12_consumed_reg7used_as_raw_material_reg8modified_total_reg9_calradian_consumption_base_reg10_total_reg13s1_", "{!}^^{s3}^Price = {reg4} (Calradian average {reg6})^Capital: {reg11} {s4}^Base {reg1}/modified by raw material {reg2}/modified by prosperity {reg3}^(Calradian average production, base {reg5}, total {reg12}).^Consumed {reg7}/used as raw material {reg8}/modified total {reg9}^(Calradian consumption, base: {reg10}, total: {reg13}){s1}^")
 
 s11_unfortunately_s12_was_wounded_and_had_to_be_left_behind = MBString("s11_unfortunately_s12_was_wounded_and_had_to_be_left_behind", "{s11} Unfortunately, {s12} was wounded and had to be left behind.")
 
@@ -5140,7 +5140,7 @@ _as_my_s11_s16_has_already_granted_permission_for_you_to_see_me_i_shall_expect_y
 
 visit_s3_who_was_last_at_s4s18 = MBString("visit_s3_who_was_last_at_s4s18", "Visit {s3}, who was last at {s4}{s18}")
 
-giver_troop_=_s2 = MBString("giver_troop_=_s2", "{!}Giver troop = {s2}")
+giver_troop_equal_s2 = MBString("giver_troop_=_s2", "{!}Giver troop = {s2}")
 
 the_guards_at_the_gate_have_been_ordered_to_allow_you_through_you_might_be_imagining_things_but_you_think_one_of_them_may_have_given_you_a_wink = MBString("the_guards_at_the_gate_have_been_ordered_to_allow_you_through_you_might_be_imagining_things_but_you_think_one_of_them_may_have_given_you_a_wink", "The guards at the gate have been ordered to allow you through. You might be imagining things, but you think one of them may have given you a wink")
 
@@ -5194,9 +5194,9 @@ wanted_bandits_spotted_by_s4 = MBString("wanted_bandits_spotted_by_s4", "Wanted 
 
 s4_ready_to_voice_objection_to_s3s_mission_if_in_party = MBString("s4_ready_to_voice_objection_to_s3s_mission_if_in_party", "{s4} ready to voice objection to {s3}'s mission, if in party")
 
-test_effective_relation_=_reg3 = MBString("test_effective_relation_=_reg3", "{!}DEBUG : Effective relation = {reg3}")
+test_effective_relation_equals_reg3 = MBString("test_effective_relation_=_reg3", "{!}DEBUG : Effective relation = {reg3}")
 
-g_talk_troop_=_reg0__g_encountered_party_=_reg1__slot_value_=_reg2 = MBString("g_talk_troop_=_reg0__g_encountered_party_=_reg1__slot_value_=_reg2", "{!}g talk troop = {reg0} , g encountered party = {reg1} , slot value = {reg2}")
+g_talk_troop_equal_reg0__g_encountered_party_equal_reg1__slot_value_equal_reg2 = MBString("g_talk_troop_=_reg0__g_encountered_party_=_reg1__slot_value_=_reg2", "{!}g talk troop = {reg0} , g encountered party = {reg1} , slot value = {reg2}")
 
 strange_that_one_didnt_seem_like_your_ordenary_troublemaker_he_didnt_drink_all_that_much__he_just_stood_there_quietly_and_watched_the_door_you_may_wish_to_consider_whether_you_have_any_enemies_who_know_you_are_in_town_a_pity_that_blood_had_to_be_spilled_in_my_establishment = MBString("strange_that_one_didnt_seem_like_your_ordenary_troublemaker_he_didnt_drink_all_that_much__he_just_stood_there_quietly_and_watched_the_door_you_may_wish_to_consider_whether_you_have_any_enemies_who_know_you_are_in_town_a_pity_that_blood_had_to_be_spilled_in_my_establishment", "Strange. That one didn't seem like your ordinary troublemaker. He didn't drink all that much -- he just stood there, quietly, and watched the door. You may wish to consider whether you have any enemies who know you are in town... A pity that blood had to be spilled in my establishment...")
 
@@ -5278,7 +5278,7 @@ cup_of_wine = MBString("cup_of_wine", "cup of wine")
 
 you_intend_to_challenge_s13_to_force_him_to_retract_an_insult = MBString("you_intend_to_challenge_s13_to_force_him_to_retract_an_insult", "You intend to challenge {s13} to force him to retract an insult.")
 
-intrigue_impatience=_reg3_must_be_less_than_100 = MBString("intrigue_impatience=_reg3_must_be_less_than_100", "{!}Intrigue impatience= {reg3}, must be less than 100")
+intrigue_impatience_equals_reg3_must_be_less_than_100 = MBString("intrigue_impatience=_reg3_must_be_less_than_100", "{!}Intrigue impatience= {reg3}, must be less than 100")
 
 youll_have_to_speak_to_me_at_some_other_time_then = MBString("youll_have_to_speak_to_me_at_some_other_time_then", "You'll have to speak to me at some other time, then.")
 
@@ -5434,13 +5434,13 @@ indeed_please_continue = MBString("indeed_please_continue", "Indeed. Please cont
 
 me = MBString("me", "me")
 
-preliminary_result_for_political_=_reg4 = MBString("preliminary_result_for_political_=_reg4", "{!}DEBUG : Preliminary result for political = {reg4}")
+preliminary_result_for_political_equals_reg4 = MBString("preliminary_result_for_political_=_reg4", "{!}DEBUG : Preliminary result for political = {reg4}")
 
 i_worry_about_those_with_whom_you_have_chosen_to_surround_yourself = MBString("i_worry_about_those_with_whom_you_have_chosen_to_surround_yourself", "I worry about those with whom you have chosen to surround yourself.")
 
 there_are_some_outstanding_matters_between_me_and_some_of_your_vassals_ = MBString("there_are_some_outstanding_matters_between_me_and_some_of_your_vassals_", "There are some outstanding matters between me and some of your vassals. ")
 
-result_for_political_=_reg41 = MBString("result_for_political_=_reg41", "{!}DEBUG : Result for political = {reg41}")
+result_for_political_equals_reg41 = MBString("result_for_political_=_reg41", "{!}DEBUG : Result for political = {reg41}")
 
 my_liege_has_his_faults_but_i_dont_care_for_your_toadies = MBString("my_liege_has_his_faults_but_i_dont_care_for_your_toadies", "My liege has his faults but I don't care for your toadies.")
 
@@ -5478,9 +5478,9 @@ finally_there_is_a_cost_to_ones_reputation_to_change_sides_in_this_case_the_cost
 
 finally_there_is_a_cost_to_ones_reputation_to_change_sides_in_this_case_however_many_men_would_understand = MBString("finally_there_is_a_cost_to_ones_reputation_to_change_sides_in_this_case_however_many_men_would_understand", "Finally, one should always think carefully about retracting one's allegiance, even if there is good reason, as it is not good to get a name as one who changes lieges easily. In this case, however, many men would understand.")
 
-chance_of_success_=_reg1 = MBString("chance_of_success_=_reg1", "{!}DEBUG : Chance of success = {reg1}%")
+chance_of_success_equals_reg1 = MBString("chance_of_success_=_reg1", "{!}DEBUG : Chance of success = {reg1}%")
 
-random_=_reg3 = MBString("random_=_reg3", "{!}DEBUG : Random = {reg3}")
+random_equals_reg3 = MBString("random_=_reg3", "{!}DEBUG : Random = {reg3}")
 
 i_will_not_have_it_be_said_about_me_that_i_am_a_traitor_that_is_my_final_decision_i_have_nothing_more_to_say_on_this_matter = MBString("i_will_not_have_it_be_said_about_me_that_i_am_a_traitor_that_is_my_final_decision_i_have_nothing_more_to_say_on_this_matter", "I will not have it be said about me that I am a traitor. That is my final decision. I have nothing more to say on this matter.")
 
@@ -5760,7 +5760,7 @@ they_say_that_s9_was_recently_visited_by_s11_who_knows_where_that_might_lead = M
 
 there_is_not_much_to_tell_but_it_is_still_early_in_the_season = MBString("there_is_not_much_to_tell_but_it_is_still_early_in_the_season", "There is not much to tell, but it is still early in the season")
 
-error_lady_selected_=_s9 = MBString("error_lady_selected_=_s9", "{!}ERROR: lady selected = {s9}")
+error_lady_selected_equals_s9 = MBString("error_lady_selected_=_s9", "{!}ERROR: lady selected = {s9}")
 
 s12there_is_a_feast_of_the_s3_in_progress_at_s4_but_it_has_been_going_on_for_a_couple_of_days_and_is_about_to_end_ = MBString("s12there_is_a_feast_of_the_s3_in_progress_at_s4_but_it_has_been_going_on_for_a_couple_of_days_and_is_about_to_end_", "{s12}There is a feast of the {s3} in progress at {s4}, but it has been going on for a couple of days and is about to end. ")
 
