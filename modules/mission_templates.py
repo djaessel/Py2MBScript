@@ -35,12 +35,16 @@ sr = SpawnRecord(2, 1, []) # itm_practice_staff, itm_practice_boots
 sr.add_spawn_flag(SpawnFlag.TEAM_0)
 sr.add_spawn_flag(SpawnFlag.VISITOR_SOURCE)
 sr.add_alter_flag(AlterFlag.OVERRIDE_EVERYTHING)
+#sr.addItem(itm.practice_boots)
+#sr.addItem(itm.practice_staff)
 village_training.addSpawnRecord(sr)
 # spawn record 1
 sr2 = SpawnRecord(4, 1, []) # itm_practice_staff, itm_practice_boots
 sr2.add_spawn_flag(SpawnFlag.TEAM_1)
 sr2.add_spawn_flag(SpawnFlag.VISITOR_SOURCE)
 sr2.add_alter_flag(AlterFlag.OVERRIDE_EVERYTHING)
+#sr2.addItem(itm.practice_boots)
+#sr2.addItem(itm.practice_staff)
 village_training.addSpawnRecord(sr2)
 #---
 # trigger 1
