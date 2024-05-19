@@ -903,7 +903,7 @@ scene_prop_set_visibility              = 1813   # (scene_prop_set_visibility, <s
 scene_prop_set_hit_points              = 1814   # (scene_prop_set_hit_points, <scene_prop_id>, <value>),
 scene_prop_get_hit_points              = 1815   # (scene_prop_get_hit_points, <destination>, <scene_prop_id>),
 scene_prop_get_max_hit_points          = 1816   # (scene_prop_get_max_hit_points, <destination>, <scene_prop_id>),
-scene_prop_get_team                    = 1817   # (scene_prop_get_team, <value>, <scene_prop_id>),
+scene_prop_get_team                    = 1817   # (scene_prop_get_team, <destination>, <scene_prop_id>),
 scene_prop_set_team                    = 1818   # (scene_prop_set_team, <scene_prop_id>, <value>),
 scene_prop_set_prune_time              = 1819   # (scene_prop_set_prune_time, <scene_prop_id>, <value>), # prune time can only be set to objects that are already on the prune queue. static objects are not affected by this operation.
 scene_prop_set_cur_hit_points          = 1820   # (scene_prop_set_cur_hit_points, <scene_prop_id>, <value>),
@@ -1000,7 +1000,7 @@ set_position_delta                     = 1955	# (set_position_delta,<value>,<val
 add_point_light                        = 1960	# (add_point_light,[flicker_magnitude],[flicker_interval]), #flicker_magnitude between 0 and 100, flicker_interval is in 1/100 seconds
 add_point_light_to_entity              = 1961	# (add_point_light_to_entity,[flicker_magnitude],[flicker_interval]), #flicker_magnitude between 0 and 100, flicker_interval is in 1/100 seconds
 particle_system_add_new                = 1965	# (particle_system_add_new,<par_sys_id>,[position_no]),
-particle_system_emit                   = 1968	# (particle_system_emit,<par_sys_id>,<value_num_particles>,<value_period>),
+particle_system_emit                   = 1968	# (particle_system_emit,<par_sys_id>,<value_num_particles>,[<value_period>]),
 particle_system_burst                  = 1969	# (particle_system_burst,<par_sys_id>,<position_no>,[percentage_burst_strength]),
 
 set_spawn_position                     = 1970   # (set_spawn_position, <position_no>), 
