@@ -278,6 +278,7 @@ def writeMissionTemplate(f, mt : list):
             else:
                 f.write("    pass\n")
             f.write("trigger" + str(i - currentIndex - 1) + ".codeBlock = code\n")
+            f.write(idx + ".add_trigger(trigger" + str(i - currentIndex - 1) + ")\n")
 
     f.write("\n\n")
 
