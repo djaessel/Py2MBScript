@@ -10,6 +10,7 @@ import header_triggers as tri
 from trigger import Trigger
 
 
+
 town_default = MissionTemplate("town_default", description="Default town visit")
 # ---
 # spawn record 0
@@ -227,7 +228,8 @@ def condition():
     if _g_belligerent_drunk_leaving > 0:
         pos0 = entry_point_get_position(0)
         pos1 = agent_get_position(_g_belligerent_drunk_leaving)
-        distance_001 = get_distance_between_positions(0,1)
+        if distance_001 <= 150:
+            distance_001 = get_distance_between_positions(0,1)
 trigger3.conditionBlock = condition
 
 def code():
@@ -250,7 +252,8 @@ town_default.add_trigger(trigger4)
 # trigger 5
 trigger5 = Trigger(2.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if not conversation_screen_is_active() and _talk_context == 14 and not troop_slot_eq(trp.hired_assassin,12,_g_encountered_party) and troop_slot_eq(trp.belligerent_drunk,12,_g_encountered_party) and _drunks_dont_pick_fights == 0:
+        pass
 trigger5.conditionBlock = condition
 
 def code():
@@ -288,7 +291,8 @@ town_default.add_trigger(trigger5)
 # trigger 6
 trigger6 = Trigger(2.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if not conversation_screen_is_active() and _talk_context == 14 and troop_slot_eq(trp.hired_assassin,12,_g_encountered_party):
+        pass
 trigger6.conditionBlock = condition
 
 def code():
@@ -325,7 +329,8 @@ town_default.add_trigger(trigger6)
 # trigger 7
 trigger7 = Trigger(3.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if not conversation_screen_is_active() and _talk_context == 14 and _g_main_attacker_agent > 0 and agent_is_alive(_g_main_attacker_agent) or agent_is_wounded(_g_main_attacker_agent):
+        pass
 trigger7.conditionBlock = condition
 
 def code():
@@ -343,7 +348,8 @@ town_default.add_trigger(trigger7)
 # trigger 8
 trigger8 = Trigger(3.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if not conversation_screen_is_active() and _talk_context == 14 and _g_main_attacker_agent > 0 and main_hero_fallen():
+        pass
 trigger8.conditionBlock = condition
 
 def code():
@@ -357,7 +363,8 @@ def condition():
     if not conversation_screen_is_active() and _talk_context == 14 and _g_main_attacker_agent > 0:
         agent_no_001 = get_player_agent_no()
         if agent_is_alive(agent_no_001):
-            agent_wieled_item_002 = agent_get_wielded_item(agent_no_001,0)
+            if is_between(agent_wieled_item_002,itm.darts,itm.torch) and agent_wieled_item_002 != itm.javelin_melee and agent_wieled_item_002 != itm.throwing_spear_melee and agent_wieled_item_002 != itm.jarid_melee and agent_wieled_item_002 != itm.light_throwing_axes_melee and agent_wieled_item_002 != itm.throwing_axes_melee and agent_wieled_item_002 != itm.heavy_throwing_axes_melee:
+                agent_wieled_item_002 = agent_get_wielded_item(agent_no_001,0)
 trigger9.conditionBlock = condition
 
 def code():
@@ -368,7 +375,8 @@ town_default.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _g_main_attacker_agent > 0:
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -995,7 +1003,12 @@ town_center.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    _talk_context_list1 = [
+    19,
+    18,
+    ]
+    if _talk_context in _talk_context_list1:
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -1006,7 +1019,8 @@ town_center.add_trigger(trigger10)
 # trigger 11
 trigger11 = Trigger(1.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if _talk_context == 19:
+        pass
 trigger11.conditionBlock = condition
 
 def code():
@@ -1032,7 +1046,8 @@ town_center.add_trigger(trigger11)
 # trigger 12
 trigger12 = Trigger(3.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if main_hero_fallen(0):
+        pass
 trigger12.conditionBlock = condition
 
 def code():
@@ -1058,7 +1073,8 @@ town_center.add_trigger(trigger12)
 trigger13 = Trigger(3.000000, 0.000000, 0.000000)
 def condition():
     if _talk_context == 19 and not main_hero_fallen(0):
-        m_timer_a_001 = store_mission_timer_a()
+        if m_timer_a_001 >= 10 and all_enemies_defeated():
+            m_timer_a_001 = store_mission_timer_a()
 trigger13.conditionBlock = condition
 
 def code():
@@ -1431,6 +1447,9 @@ def condition():
             pass
         else:
             var001 = 1
+            if main_hero_fallen() or var001 == 1:
+                pass
+            #end
         #end
     #end
 trigger7.conditionBlock = condition
@@ -1790,7 +1809,8 @@ bandits_at_night.add_trigger(trigger5)
 # trigger 6
 trigger6 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    m_timer_a_001 = store_mission_timer_a()
+    if m_timer_a_001 >= 5 and main_hero_fallen() or num_active_teams_le(1):
+        m_timer_a_001 = store_mission_timer_a()
 trigger6.conditionBlock = condition
 
 def code():
@@ -1896,7 +1916,8 @@ village_training.add_trigger(trigger3)
 # trigger 4
 trigger4 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen() or num_active_teams_le(1):
+        pass
 trigger4.conditionBlock = condition
 
 def code():
@@ -2222,7 +2243,8 @@ visit_town_castle.add_trigger(trigger3)
 # trigger 4
 trigger4 = Trigger(-30.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _talk_context == 18:
+        pass
 trigger4.conditionBlock = condition
 
 def code():
@@ -2346,6 +2368,9 @@ def condition():
         pass
     else:
         var001 = 1
+        if main_hero_fallen() or var001 == 1:
+            pass
+        #end
     #end
 trigger5.conditionBlock = condition
 
@@ -2462,7 +2487,8 @@ back_alley_revolt.add_trigger(trigger6)
 # trigger 7
 trigger7 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen() or num_active_teams_le(1):
+        pass
 trigger7.conditionBlock = condition
 
 def code():
@@ -2668,7 +2694,8 @@ def condition():
     if _defender_reinforcement_stage < _g_defender_reinforcement_limit:
         m_timer_a_006 = store_mission_timer_a()
         if m_timer_a_006 >= 10:
-            normalized_team_count_007 = store_normalized_team_count(0)
+            if normalized_team_count_007 < 6:
+                normalized_team_count_007 = store_normalized_team_count(0)
 trigger9.conditionBlock = condition
 
 def code():
@@ -2683,7 +2710,8 @@ def condition():
     if _attacker_reinforcement_stage < 2:
         m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 10:
-            normalized_team_count_002 = store_normalized_team_count(1)
+            if normalized_team_count_002 < 6:
+                normalized_team_count_002 = store_normalized_team_count(1)
 trigger10.conditionBlock = condition
 
 def code():
@@ -2722,7 +2750,8 @@ lead_charge.add_trigger(trigger12)
 # trigger 13
 trigger13 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger13.conditionBlock = condition
 
 def code():
@@ -2748,7 +2777,8 @@ lead_charge.add_trigger(trigger14)
 # trigger 15
 trigger15 = Trigger(0.000000, 0.000000, 100000000.000000)
 def condition():
-    m_timer_a_001 = store_mission_timer_a()
+    if m_timer_a_001 >= 2:
+        m_timer_a_001 = store_mission_timer_a()
 trigger15.conditionBlock = condition
 
 def code():
@@ -2955,7 +2985,8 @@ village_attack_bandits.add_trigger(trigger7)
 # trigger 8
 trigger8 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger8.conditionBlock = condition
 
 def code():
@@ -3114,7 +3145,8 @@ def condition():
     if _defender_reinforcement_stage < 2:
         m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 10:
-            normalized_team_count_002 = store_normalized_team_count(0)
+            if normalized_team_count_002 < 6:
+                normalized_team_count_002 = store_normalized_team_count(0)
 trigger6.conditionBlock = condition
 
 def code():
@@ -3128,7 +3160,8 @@ def condition():
     if _attacker_reinforcement_stage < 2:
         m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 10:
-            normalized_team_count_002 = store_normalized_team_count(1)
+            if normalized_team_count_002 < 6:
+                normalized_team_count_002 = store_normalized_team_count(1)
 trigger7.conditionBlock = condition
 
 def code():
@@ -3172,7 +3205,8 @@ village_raid.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -3407,7 +3441,8 @@ besiege_inner_battle_castle.add_trigger(trigger8)
 # trigger 9
 trigger9 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger9.conditionBlock = condition
 
 def code():
@@ -3642,7 +3677,8 @@ besiege_inner_battle_town_center.add_trigger(trigger8)
 # trigger 9
 trigger9 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger9.conditionBlock = condition
 
 def code():
@@ -3873,7 +3909,8 @@ castle_attack_walls_defenders_sally.add_trigger(trigger10)
 # trigger 11
 trigger11 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger11.conditionBlock = condition
 
 def code():
@@ -4236,7 +4273,8 @@ castle_attack_walls_belfry.add_trigger(trigger11)
 # trigger 12
 trigger12 = Trigger(2.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _defender_reinforcement_stage > 0:
+        pass
 trigger12.conditionBlock = condition
 
 def code():
@@ -4249,7 +4287,8 @@ def condition():
     if _attacker_reinforcement_stage < 5:
         m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 10:
-            normalized_team_count_002 = store_normalized_team_count(1)
+            if normalized_team_count_002 < 6:
+                normalized_team_count_002 = store_normalized_team_count(1)
 trigger13.conditionBlock = condition
 
 def code():
@@ -4341,7 +4380,8 @@ castle_attack_walls_belfry.add_trigger(trigger18)
 # trigger 19
 trigger19 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger19.conditionBlock = condition
 
 def code():
@@ -4406,7 +4446,8 @@ castle_attack_walls_belfry.add_trigger(trigger23)
 # trigger 24
 trigger24 = Trigger(0.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if call_script(script.cf_siege_move_belfry):
+        pass
 trigger24.conditionBlock = condition
 
 def code():
@@ -4416,7 +4457,8 @@ castle_attack_walls_belfry.add_trigger(trigger24)
 # trigger 25
 trigger25 = Trigger(0.000000, 2.000000, 100000000.000000)
 def condition():
-    pass
+    if call_script(script.cf_siege_rotate_belfry_platform):
+        pass
 trigger25.conditionBlock = condition
 
 def code():
@@ -4426,7 +4468,8 @@ castle_attack_walls_belfry.add_trigger(trigger25)
 # trigger 26
 trigger26 = Trigger(0.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if call_script(script.cf_siege_assign_men_to_belfry):
+        pass
 trigger26.conditionBlock = condition
 
 def code():
@@ -4708,7 +4751,8 @@ castle_attack_walls_ladder.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(2.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _defender_reinforcement_stage > 0:
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -4721,7 +4765,8 @@ def condition():
     if _attacker_reinforcement_stage < 5:
         m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 10:
-            normalized_team_count_002 = store_normalized_team_count(1)
+            if normalized_team_count_002 < 6:
+                normalized_team_count_002 = store_normalized_team_count(1)
 trigger11.conditionBlock = condition
 
 def code():
@@ -4813,7 +4858,8 @@ castle_attack_walls_ladder.add_trigger(trigger16)
 # trigger 17
 trigger17 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger17.conditionBlock = condition
 
 def code():
@@ -5259,7 +5305,12 @@ castle_visit.add_trigger(trigger1)
 # trigger 2
 trigger2 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    _talk_context_list1 = [
+    19,
+    18,
+    ]
+    if _talk_context in _talk_context_list1:
+        pass
 trigger2.conditionBlock = condition
 
 def code():
@@ -5270,7 +5321,8 @@ castle_visit.add_trigger(trigger2)
 # trigger 3
 trigger3 = Trigger(1.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if _talk_context == 19:
+        pass
 trigger3.conditionBlock = condition
 
 def code():
@@ -5333,7 +5385,8 @@ castle_visit.add_trigger(trigger5)
 # trigger 6
 trigger6 = Trigger(3.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if main_hero_fallen(0):
+        pass
 trigger6.conditionBlock = condition
 
 def code():
@@ -5361,7 +5414,8 @@ castle_visit.add_trigger(trigger6)
 trigger7 = Trigger(3.000000, 0.000000, 0.000000)
 def condition():
     if _talk_context == 19 and not main_hero_fallen(0):
-        m_timer_a_001 = store_mission_timer_a()
+        if m_timer_a_001 >= 10 and all_enemies_defeated():
+            m_timer_a_001 = store_mission_timer_a()
 trigger7.conditionBlock = condition
 
 def code():
@@ -5490,7 +5544,8 @@ training_ground_trainer_talk.add_trigger(trigger2)
 # trigger 3
 trigger3 = Trigger(0.000000, 1.000000, 2.000000)
 def condition():
-    pass
+    if _trainer_help_message < 2:
+        pass
 trigger3.conditionBlock = condition
 
 def code():
@@ -5638,7 +5693,8 @@ training_ground_trainer_training.add_trigger(trigger2)
 # trigger 3
 trigger3 = Trigger(1.000000, 3.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen(0):
+        pass
 trigger3.conditionBlock = condition
 
 def code():
@@ -6005,7 +6061,8 @@ training_ground_training.add_trigger(trigger4)
 # trigger 5
 trigger5 = Trigger(1.000000, 3.000000, 100000000.000000)
 def condition():
-    pass
+    if _g_mt_mode == 1 and main_hero_fallen() or num_active_teams_le(1):
+        pass
 trigger5.conditionBlock = condition
 
 def code():
@@ -6035,7 +6092,8 @@ def condition():
     if _g_mt_mode == 2:
         agent_no_001 = get_player_agent_no()
         agent_ammo_002 = agent_get_ammo(agent_no_001)
-        m_timer_a_003 = store_mission_timer_a()
+        if main_hero_fallen() or agent_ammo_002 == 0 or m_timer_a_003 > 116:
+            m_timer_a_003 = store_mission_timer_a()
 trigger6.conditionBlock = condition
 
 def code():
@@ -6050,7 +6108,8 @@ def condition():
     if _g_mt_mode == 3:
         agent_no_001 = get_player_agent_no()
         agent_horse_002 = agent_get_horse(agent_no_001)
-        m_timer_a_003 = store_mission_timer_a()
+        if agent_horse_002 >= 0 or main_hero_fallen() or _scene_num_total_gourds_destroyed >= _g_training_ground_training_num_gourds_to_destroy or m_timer_a_003 > 120:
+            m_timer_a_003 = store_mission_timer_a()
 trigger7.conditionBlock = condition
 
 def code():
@@ -6683,7 +6742,8 @@ sneak_caught_fight.add_trigger(trigger4)
 # trigger 5
 trigger5 = Trigger(0.000000, 3.000000, 0.000000)
 def condition():
-    pass
+    if main_hero_fallen(0):
+        pass
 trigger5.conditionBlock = condition
 
 def code():
@@ -6720,7 +6780,8 @@ sneak_caught_fight.add_trigger(trigger6)
 trigger7 = Trigger(5.000000, 1.000000, 100000000.000000)
 def condition():
     if num_active_teams_le(1) and not main_hero_fallen():
-        m_timer_a_001 = store_mission_timer_a()
+        if m_timer_a_001 >= 5:
+            m_timer_a_001 = store_mission_timer_a()
 trigger7.conditionBlock = condition
 
 def code():
@@ -8059,7 +8120,8 @@ arena_melee_fight.add_trigger(trigger5)
 # trigger 6
 trigger6 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if _g_mt_mode == 3 and main_hero_fallen() or num_active_teams_le(1):
+        pass
 trigger6.conditionBlock = condition
 
 def code():
@@ -8108,6 +8170,9 @@ def condition():
             var002 = 0
             if _g_arena_training_num_agents_spawned >= _g_arena_training_max_opponents and num_active_teams_le(1):
                 var002 = 1
+                if var002 == 1 or main_hero_fallen():
+                    pass
+                #end
             #end
         #end
     #end
@@ -8146,7 +8211,8 @@ def condition():
         #end
     #end
     if var001 < 7 and not main_hero_fallen():
-        m_timer_a_004 = store_mission_timer_a()
+        if m_timer_a_004 >= _g_arena_training_next_spawn_time or _g_arena_training_num_agents_spawned >= 6 or num_active_teams_le(1) and _g_arena_training_num_agents_spawned < _g_arena_training_max_opponents:
+            m_timer_a_004 = store_mission_timer_a()
 trigger10.conditionBlock = condition
 
 def code():
@@ -8181,7 +8247,8 @@ arena_melee_fight.add_trigger(trigger10)
 # trigger 11
 trigger11 = Trigger(0.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _g_mt_mode == 1:
+        pass
 trigger11.conditionBlock = condition
 
 def code():
@@ -8295,7 +8362,8 @@ arena_challenge_fight.add_trigger(trigger3)
 # trigger 4
 trigger4 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen() or num_active_teams_le(1):
+        pass
 trigger4.conditionBlock = condition
 
 def code():
@@ -8411,7 +8479,8 @@ duel_with_lord.add_trigger(trigger3)
 # trigger 4
 trigger4 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen() or num_active_teams_le(1):
+        pass
 trigger4.conditionBlock = condition
 
 def code():
@@ -11034,8 +11103,8 @@ def condition():
         #end
     elif _g_tutorial_training_ground_melee_state == 2:
         if True:
-            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_1, _g_tutorial_training_ground_melee_cur_fighter_2)
-            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_2, _g_tutorial_training_ground_melee_cur_fighter_1)
+            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_1,_g_tutorial_training_ground_melee_cur_fighter_2)
+            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_2,_g_tutorial_training_ground_melee_cur_fighter_1)
             pos1 = agent_get_position(_g_tutorial_training_ground_melee_cur_fighter_1)
             pos2 = entry_point_get_position(30)
             sq_distance_011 = get_sq_distance_between_positions(1,2)
@@ -11052,8 +11121,8 @@ def condition():
         #end
     elif _g_tutorial_training_ground_melee_state == 3:
         if True:
-            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_1, _g_tutorial_training_ground_melee_cur_fighter_2)
-            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_2, _g_tutorial_training_ground_melee_cur_fighter_1)
+            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_1,_g_tutorial_training_ground_melee_cur_fighter_2)
+            agent_set_look_target_agent(_g_tutorial_training_ground_melee_cur_fighter_2,_g_tutorial_training_ground_melee_cur_fighter_1)
             m_timer_a_009 = store_mission_timer_a()
             if m_timer_a_009 > _g_tutorial_training_ground_melee_next_action_time:
                 agent_clear_scripted_mode(_g_tutorial_training_ground_melee_cur_fighter_1)
@@ -12594,7 +12663,8 @@ def condition():
     set_show_messages(0)
     team_give_order(0,9,11)
     set_show_messages(1)
-    m_timer_a_001 = store_mission_timer_a()
+    if m_timer_a_001 > 3:
+        m_timer_a_001 = store_mission_timer_a()
 trigger5.conditionBlock = condition
 
 def code():
@@ -12604,7 +12674,8 @@ tutorial_5.add_trigger(trigger5)
 # trigger 6
 trigger6 = Trigger(0.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if call_script(script.cf_turn_windmill_fans,0):
+        pass
 trigger6.conditionBlock = condition
 
 def code():
@@ -13612,7 +13683,8 @@ quick_battle_siege.add_trigger(trigger14)
 # trigger 15
 trigger15 = Trigger(0.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if call_script(script.cf_siege_move_belfry):
+        pass
 trigger15.conditionBlock = condition
 
 def code():
@@ -13622,7 +13694,8 @@ quick_battle_siege.add_trigger(trigger15)
 # trigger 16
 trigger16 = Trigger(0.000000, 2.000000, 100000000.000000)
 def condition():
-    pass
+    if call_script(script.cf_siege_rotate_belfry_platform):
+        pass
 trigger16.conditionBlock = condition
 
 def code():
@@ -13632,7 +13705,8 @@ quick_battle_siege.add_trigger(trigger16)
 # trigger 17
 trigger17 = Trigger(0.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if call_script(script.cf_siege_assign_men_to_belfry):
+        pass
 trigger17.conditionBlock = condition
 
 def code():
@@ -14060,7 +14134,8 @@ trigger0 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger0.conditionBlock = condition
 
 def code():
@@ -14794,7 +14869,8 @@ trigger1 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger1.conditionBlock = condition
 
 def code():
@@ -15700,7 +15776,8 @@ trigger1 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger1.conditionBlock = condition
 
 def code():
@@ -17211,7 +17288,8 @@ trigger1 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger1.conditionBlock = condition
 
 def code():
@@ -18548,7 +18626,8 @@ trigger2 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger2.conditionBlock = condition
 
 def code():
@@ -18893,7 +18972,8 @@ trigger11 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_round_ended == 0 and _g_flag_is_not_ready == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = m_timer_a_001 - _g_round_start_time
+        if var002 >= _g_multiplayer_round_max_seconds:
+            var002 = m_timer_a_001 - _g_round_start_time
 trigger11.conditionBlock = condition
 
 def code():
@@ -18939,7 +19019,8 @@ multiplayer_sg.add_trigger(trigger12)
 # trigger 13
 trigger13 = Trigger(10.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server():
+        pass
 trigger13.conditionBlock = condition
 
 def code():
@@ -18988,7 +19069,8 @@ trigger14 = Trigger(1.000000, 0.000000, 3.000000)
 def condition():
     if multiplayer_is_server() and _g_round_ended == 1:
         m_timer_a_001 = store_mission_timer_a()
-        m_timer_a_001 -= _g_round_finish_time
+        if m_timer_a_001 >= _g_multiplayer_respawn_period:
+            m_timer_a_001 -= _g_round_finish_time
 trigger14.conditionBlock = condition
 
 def code():
@@ -20021,7 +20103,8 @@ trigger1 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger1.conditionBlock = condition
 
 def code():
@@ -20263,7 +20346,7 @@ def condition():
                 if distance_008 <= var011:
                     prop_instance_is_animating(var012,scp_instance_006)
                     if var012 == 1:
-                        prop_instance_get_animation_target_position(pos5, scp_instance_006)
+                        prop_instance_get_animation_target_position(pos5,scp_instance_006)
                         pos_z_013 = position_get_z(5)
                         pos_z_014 = position_get_z(3)
                         if pos_z_013 >= pos_z_014:
@@ -20276,13 +20359,16 @@ def condition():
         if distance_009 <= var010:
             prop_instance_is_animating(var012,scp_instance_007)
             if var012 == 1:
-                prop_instance_get_animation_target_position(pos5, scp_instance_007)
+                prop_instance_get_animation_target_position(pos5,scp_instance_007)
                 pos_z_013 = position_get_z(5)
                 pos_z_015 = position_get_z(4)
                 if pos_z_013 >= pos_z_015:
                     var003 = 1
                 #end
             #end
+        #end
+        if var003 == 0:
+            pass
         #end
     #end
 trigger8.conditionBlock = condition
@@ -20327,7 +20413,8 @@ multiplayer_bt.add_trigger(trigger8)
 # trigger 9
 trigger9 = Trigger(10.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server():
+        pass
 trigger9.conditionBlock = condition
 
 def code():
@@ -20377,7 +20464,8 @@ def condition():
     if multiplayer_is_server() and _g_round_ended == 0 and _g_battle_death_mode_started == 0:
         m_timer_a_001 = store_mission_timer_a()
         m_timer_a_001 -= _g_round_start_time
-        _g_multiplayer_round_max_seconds_div_2 = _g_multiplayer_round_max_seconds / 2
+        if m_timer_a_001 >= _g_multiplayer_round_max_seconds_div_2:
+            _g_multiplayer_round_max_seconds_div_2 = _g_multiplayer_round_max_seconds / 2
 trigger10.conditionBlock = condition
 
 def code():
@@ -20395,7 +20483,8 @@ def condition():
         if m_timer_a_001 >= var002:
             m_timer_a_003 = store_mission_timer_a()
             var004 = m_timer_a_003 - _g_round_start_time
-            var005 = _g_multiplayer_round_max_seconds - 15
+            if var004 < var005:
+                var005 = _g_multiplayer_round_max_seconds - 15
 trigger11.conditionBlock = condition
 
 def code():
@@ -20435,7 +20524,8 @@ def condition():
         m_timer_a_001 = store_mission_timer_a()
         m_timer_a_001 -= _g_death_mode_part_1_start_time
         var002 = _g_battle_waiting_seconds + _g_reduced_waiting_seconds
-        var002 -= 20
+        if m_timer_a_001 >= var002:
+            var002 -= 20
 trigger12.conditionBlock = condition
 
 def code():
@@ -20473,7 +20563,8 @@ def condition():
         if var002 >= var003:
             m_timer_a_001 = store_mission_timer_a()
             var002 = m_timer_a_001 - _g_round_start_time
-            var004 = _g_multiplayer_round_max_seconds - 24
+            if var002 <= var004:
+                var004 = _g_multiplayer_round_max_seconds - 24
 trigger13.conditionBlock = condition
 
 def code():
@@ -20483,7 +20574,8 @@ multiplayer_bt.add_trigger(trigger13)
 # trigger 14
 trigger14 = Trigger(0.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server() and _g_round_ended == 0 and _g_battle_death_mode_started == 2:
+        pass
 trigger14.conditionBlock = condition
 
 def code():
@@ -20621,7 +20713,7 @@ def code():
         if var007 == -2 and var018 == 1:
             prop_instance_stop_animating(scp_instance_003)
         elif var007 in var007_list2:
-            prop_instance_get_animation_target_position(pos9, scp_instance_003)
+            prop_instance_get_animation_target_position(pos9,scp_instance_003)
             pos_z_019 = position_get_z(9)
             if var018 == 0 or pos_z_019 > pos_z_017:
                 distance_020 = get_distance_between_positions(3,7)
@@ -20629,7 +20721,7 @@ def code():
                     distance_020 *= 16
                     prop_instance_animate_to_position(scp_instance_003,7,distance_020)
                 elif var007 == 1:
-                    prop_instance_get_animation_target_position(pos9, scp_instance_003)
+                    prop_instance_get_animation_target_position(pos9,scp_instance_003)
                     pos_z_019 = position_get_z(9)
                     if var018 == 0 or pos_z_019 < pos_z_017:
                         copy_position(5,1)
@@ -20648,7 +20740,7 @@ def code():
         if var008 == -2 and var018 == 1:
             prop_instance_stop_animating(scp_instance_004)
         elif var008 in var008_list2:
-            prop_instance_get_animation_target_position(pos9, scp_instance_004)
+            prop_instance_get_animation_target_position(pos9,scp_instance_004)
             pos_z_022 = position_get_z(9)
             if var018 == 0 or pos_z_022 > pos_z_021:
                 distance_023 = get_distance_between_positions(4,8)
@@ -20678,7 +20770,8 @@ trigger15 = Trigger(1.000000, 0.000000, 3.000000)
 def condition():
     if multiplayer_is_server() and _g_round_ended == 1:
         m_timer_a_001 = store_mission_timer_a()
-        m_timer_a_001 -= _g_round_finish_time
+        if m_timer_a_001 >= _g_multiplayer_respawn_period:
+            m_timer_a_001 -= _g_round_finish_time
 trigger15.conditionBlock = condition
 
 def code():
@@ -20874,7 +20967,6 @@ def condition():
     pass
 trigger17.conditionBlock = condition
 
-# Johandros altered this code
 def code():
     if multiplayer_is_server():
         max_players = get_max_players()
@@ -20905,12 +20997,12 @@ def code():
                             #end
                         #end
                     #end
-                #end
-                var011 = var006 * var007
-                m_timer_a_012 = store_mission_timer_a()
-                m_timer_a_012 -= _g_round_start_time
-                if m_timer_a_012 >= 30 or var008 > 2 or var011 == 0 and _g_round_ended == 0:
-                    var005 = 1
+                    var011 = var006 * var007
+                    m_timer_a_012 = store_mission_timer_a()
+                    m_timer_a_012 -= _g_round_start_time
+                    if m_timer_a_012 >= 30 or var008 > 2 or var011 == 0 and _g_round_ended == 0:
+                        var005 = 1
+                    #end
                 #end
                 if var005 == 1:
                     if team_no_003 == 0:
@@ -20946,11 +21038,10 @@ def code():
                     player_slot_019 += 1
                     player_set_slot(player_id_002,0,player_slot_019)
                 #end
-            #end
+            #end # Johandros changed this code
         #end
     #end
 trigger17.codeBlock = code
-# Johandros altered this code
 multiplayer_bt.add_trigger(trigger17)
 # trigger 18
 trigger18 = Trigger(0.000000, 0.000000, 0.000000)
@@ -21647,7 +21738,8 @@ trigger1 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger1.conditionBlock = condition
 
 def code():
@@ -21894,7 +21986,8 @@ multiplayer_fd.add_trigger(trigger7)
 # trigger 8
 trigger8 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server() and _g_round_ended == 0 and _g_number_of_targets_destroyed == 2:
+        pass
 trigger8.conditionBlock = condition
 
 def code():
@@ -21915,7 +22008,8 @@ trigger9 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_round_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = m_timer_a_001 - _g_round_start_time
+        if var002 >= _g_multiplayer_round_max_seconds:
+            var002 = m_timer_a_001 - _g_round_start_time
 trigger9.conditionBlock = condition
 
 def code():
@@ -21955,7 +22049,8 @@ multiplayer_fd.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(10.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server():
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -22002,7 +22097,8 @@ multiplayer_fd.add_trigger(trigger10)
 # trigger 11
 trigger11 = Trigger(0.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server() and _g_round_ended == 0 and _g_battle_death_mode_started == 2:
+        pass
 trigger11.conditionBlock = condition
 
 def code():
@@ -22189,7 +22285,8 @@ trigger12 = Trigger(1.000000, 0.000000, 3.000000)
 def condition():
     if multiplayer_is_server() and _g_round_ended == 1:
         m_timer_a_001 = store_mission_timer_a()
-        m_timer_a_001 -= _g_round_finish_time
+        if m_timer_a_001 >= _g_multiplayer_respawn_period:
+            m_timer_a_001 -= _g_round_finish_time
 trigger12.conditionBlock = condition
 
 def code():
@@ -22394,7 +22491,6 @@ def condition():
     pass
 trigger14.conditionBlock = condition
 
-# Johandros altered this code
 def code():
     if multiplayer_is_server():
         max_players = get_max_players()
@@ -22425,12 +22521,12 @@ def code():
                             #end
                         #end
                     #end
-                #end
-                var011 = var006 * var007
-                m_timer_a_012 = store_mission_timer_a()
-                m_timer_a_012 -= _g_round_start_time
-                if m_timer_a_012 >= 30 or var008 > 2 or var011 == 0 and _g_round_ended == 0:
-                    var005 = 1
+                    var011 = var006 * var007
+                    m_timer_a_012 = store_mission_timer_a()
+                    m_timer_a_012 -= _g_round_start_time
+                    if m_timer_a_012 >= 30 or var008 > 2 or var011 == 0 and _g_round_ended == 0:
+                        var005 = 1
+                    #end
                 #end
                 if var005 == 1:
                     if team_no_003 == 0:
@@ -22466,11 +22562,10 @@ def code():
                     player_slot_019 += 1
                     player_set_slot(player_id_002,0,player_slot_019)
                 #end
-            #end
+            #end # Johandros changed this code
         #end
     #end
 trigger14.codeBlock = code
-# Johandros altered this code
 multiplayer_fd.add_trigger(trigger14)
 # trigger 15
 trigger15 = Trigger(0.000000, 0.000000, 0.000000)
@@ -23304,7 +23399,8 @@ trigger1 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger1.conditionBlock = condition
 
 def code():
@@ -23518,7 +23614,8 @@ def condition():
 trigger7.conditionBlock = condition
 
 def code(var001):
-    pass
+    if cf_multiplayer_event_team_change(var001):
+        pass
 trigger7.codeBlock = code
 multiplayer_ccoop.add_trigger(trigger7)
 # trigger 8
@@ -23756,7 +23853,8 @@ multiplayer_ccoop.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _g_multiplayer_ccoop_enable_count_down > 0:
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -23807,7 +23905,8 @@ multiplayer_ccoop.add_trigger(trigger10)
 # trigger 11
 trigger11 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server():
+        pass
 trigger11.conditionBlock = condition
 
 def code():
@@ -23930,7 +24029,8 @@ multiplayer_ccoop.add_trigger(trigger11)
 # trigger 12
 trigger12 = Trigger(1.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _g_multiplayer_ccoop_game_started == 0 and multiplayer_is_server():
+        pass
 trigger12.conditionBlock = condition
 
 def code():
@@ -24083,7 +24183,8 @@ multiplayer_ccoop.add_trigger(trigger17)
 # trigger 18
 trigger18 = Trigger(-28.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server():
+        pass
 trigger18.conditionBlock = condition
 
 def code(agent_id_001, var002, var003):
@@ -24235,7 +24336,8 @@ multiplayer_ccoop.add_trigger(trigger18)
 # trigger 19
 trigger19 = Trigger(2.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if multiplayer_is_server():
+        pass
 trigger19.conditionBlock = condition
 
 def code():
@@ -24401,7 +24503,8 @@ bandit_lair.add_trigger(trigger2)
 # trigger 3
 trigger3 = Trigger(0.000000, 0.000000, 0.000000)
 def condition():
-    party_template_id_001 = party_get_template_id(_g_encountered_party)
+    if party_template_id_001 == pt.looter_lair and check_quest_active(qst.save_relative_of_merchant) and _relative_of_merchant_is_found == 0:
+        party_template_id_001 = party_get_template_id(_g_encountered_party)
 trigger3.conditionBlock = condition
 
 def code():
@@ -24509,7 +24612,8 @@ bandit_lair.add_trigger(trigger6)
 # trigger 7
 trigger7 = Trigger(30.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _defender_reinforcement_stage <= 1:
+        pass
 trigger7.conditionBlock = condition
 
 def code():
@@ -24617,7 +24721,8 @@ bandit_lair.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(2.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if not main_hero_fallen() and num_active_teams_le(1):
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -24685,6 +24790,9 @@ def condition():
         m_timer_a_003 = store_mission_timer_a()
         if m_timer_a_003 >= 5 and main_hero_fallen() or num_active_teams_le(1):
             var001 = 1
+            if var001 == 1:
+                pass
+            #end
         #end
     #end
 trigger13.conditionBlock = condition
@@ -24777,7 +24885,8 @@ alley_fight.add_trigger(trigger2)
 # trigger 3
 trigger3 = Trigger(0.000000, 0.000000, 0.000000)
 def condition():
-    pass
+    if _talked_with_merchant == 0:
+        pass
 trigger3.conditionBlock = condition
 
 def code():
@@ -24837,7 +24946,8 @@ alley_fight.add_trigger(trigger6)
 # trigger 7
 trigger7 = Trigger(0.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if not main_hero_fallen() and num_active_teams_le(1):
+        pass
 trigger7.conditionBlock = condition
 
 def code():
@@ -24861,7 +24971,8 @@ alley_fight.add_trigger(trigger7)
 # trigger 8
 trigger8 = Trigger(1.000000, 0.000000, 100000000.000000)
 def condition():
-    pass
+    if _talked_with_merchant == 1:
+        pass
 trigger8.conditionBlock = condition
 
 def code():
@@ -24886,7 +24997,8 @@ alley_fight.add_trigger(trigger8)
 # trigger 9
 trigger9 = Trigger(1.000000, 3.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen():
+        pass
 trigger9.conditionBlock = condition
 
 def code():
@@ -25023,6 +25135,9 @@ def condition():
     if conversation_screen_is_active():
         tutorial_message(-1)
         var001 = 0
+        if var001 == 1:
+            pass
+        #end
     #end
 trigger2.conditionBlock = condition
 
@@ -25567,7 +25682,8 @@ town_fight.add_trigger(trigger9)
 # trigger 10
 trigger10 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
-    pass
+    if main_hero_fallen() or num_active_teams_le(1) and _merchant_sign_count >= 8:
+        pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -26005,7 +26121,8 @@ trigger0 = Trigger(1.000000, 5.000000, 0.000000)
 def condition():
     if multiplayer_is_server() and _g_multiplayer_poll_running == 1 and _g_multiplayer_poll_ended == 0:
         m_timer_a_001 = store_mission_timer_a()
-        var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
+        if var002 == _g_multiplayer_poll_num_sent or m_timer_a_001 > _g_multiplayer_poll_end_time and cf_multiplayer_evaluate_poll():
+            var002 = _g_multiplayer_poll_no_count + _g_multiplayer_poll_yes_count
 trigger0.conditionBlock = condition
 
 def code():

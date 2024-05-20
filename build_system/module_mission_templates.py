@@ -75,7 +75,10 @@ mission_templates = [
 (gt,"$g_belligerent_drunk_leaving",0),
 (entry_point_get_position, pos0, 0),
 (agent_get_position,pos1,"$g_belligerent_drunk_leaving"),
-(get_distance_between_positions,":distance_001",0,1),
+(try_begin),
+    (le,":distance_001",150),
+    (get_distance_between_positions,":distance_001",0,1),
+(try_end),
 ], [
 (agent_fade_out, "$g_belligerent_drunk_leaving"),
 (assign,"$g_belligerent_drunk_leaving",0),
@@ -88,6 +91,11 @@ mission_templates = [
 ]),
 
 (2.0, 0.0, 0.0, [
+(neg|conversation_screen_is_active),
+(eq,"$talk_context",14),
+(neg|troop_slot_eq,"trp_hired_assassin",12,"$g_encountered_party"),
+(troop_slot_eq,"trp_belligerent_drunk",12,"$g_encountered_party"),
+(eq,"$drunks_dont_pick_fights",0),
 ], [
 (try_begin),
     (eq,"$g_start_belligerent_drunk_fight",0),
@@ -128,6 +136,9 @@ mission_templates = [
 ]),
 
 (2.0, 0.0, 0.0, [
+(neg|conversation_screen_is_active),
+(eq,"$talk_context",14),
+(troop_slot_eq,"trp_hired_assassin",12,"$g_encountered_party"),
 ], [
 (try_begin),
     (eq,"$g_start_hired_assassin_fight",0),
@@ -167,6 +178,11 @@ mission_templates = [
 ]),
 
 (3.0, 0.0, ti_once, [
+(neg|conversation_screen_is_active),
+(eq,"$talk_context",14),
+(gt,"$g_main_attacker_agent",0),
+(this_or_next|agent_is_alive,"$g_main_attacker_agent"),
+(agent_is_wounded,"$g_main_attacker_agent"),
 ], [
 (mission_enable_talk),
 (try_for_agents, ":cur_agent"),
@@ -181,6 +197,10 @@ mission_templates = [
 ]),
 
 (3.0, 0.0, ti_once, [
+(neg|conversation_screen_is_active),
+(eq,"$talk_context",14),
+(gt,"$g_main_attacker_agent",0),
+(main_hero_fallen),
 ], [
 (jump_to_menu,"mnu_lost_tavern_duel"),
 (finish_mission, 0),
@@ -193,7 +213,16 @@ mission_templates = [
 (get_player_agent_no,":agent_no_001"),
 (try_begin),
     (agent_is_alive,":agent_no_001"),
-    (agent_get_wielded_item,":agent_wieled_item_002",":agent_no_001",0),
+    (try_begin),
+        (is_between,":agent_wieled_item_002","itm_darts","itm_torch"),
+        (neq,":agent_wieled_item_002","itm_javelin_melee"),
+        (neq,":agent_wieled_item_002","itm_throwing_spear_melee"),
+        (neq,":agent_wieled_item_002","itm_jarid_melee"),
+        (neq,":agent_wieled_item_002","itm_light_throwing_axes_melee"),
+        (neq,":agent_wieled_item_002","itm_throwing_axes_melee"),
+        (neq,":agent_wieled_item_002","itm_heavy_throwing_axes_melee"),
+        (agent_get_wielded_item,":agent_wieled_item_002",":agent_no_001",0),
+    (try_end),
 (try_end),
 ], [
 (party_get_slot,":agent_no_001","$g_encountered_party",20),
@@ -201,6 +230,7 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, 0.0, [
+(gt,"$g_main_attacker_agent",0),
 ], [
 (agent_get_wielded_item,":agent_wieled_item_001","$g_main_attacker_agent",0),
 (val_max,"$g_attacker_drawn_weapon",":agent_wieled_item_001"),
@@ -403,12 +433,15 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, 0.0, [
+(this_or_next|eq,"$talk_context",19),
+(eq,"$talk_context",18),
 ], [
 (call_script, "script_neutral_behavior_in_fight"),
 (mission_disable_talk),
 ]),
 
 (1.0, 0.0, ti_once, [
+(eq,"$talk_context",19),
 ], [
 (get_player_agent_no,":agent_no_001"),
 (assign,reg6,":agent_no_001"),
@@ -431,6 +464,7 @@ mission_templates = [
 ]),
 
 (3.0, 0.0, 0.0, [
+(main_hero_fallen),
 ], [
 (try_begin),
     (this_or_next|eq,"$talk_context",19),
@@ -451,7 +485,11 @@ mission_templates = [
 (3.0, 0.0, 0.0, [
 (eq,"$talk_context",19),
 (neg|main_hero_fallen),
-(store_mission_timer_a,":m_timer_a_001"),
+(try_begin),
+    (ge,":m_timer_a_001",10),
+    (all_enemies_defeated),
+    (store_mission_timer_a,":m_timer_a_001"),
+(try_end),
 ], [
 (call_script, "script_deduct_casualties_from_garrison"),
 (try_for_agents, ":m_timer_a_001"),
@@ -600,6 +638,10 @@ mission_templates = [
     (call_script,"script_cf_troop_agent_is_alive"),
 (else_try),
     (assign,":var001",1),
+    (try_begin),
+        (this_or_next|main_hero_fallen),
+        (eq,":var001",1),
+    (try_end),
 (try_end),
 ], [
 (try_begin),
@@ -707,6 +749,9 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(ge,":m_timer_a_001",5),
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
 (store_mission_timer_a,":m_timer_a_001"),
 ], [
 (try_begin),
@@ -750,6 +795,8 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (try_begin),
     (neg|main_hero_fallen),
@@ -817,6 +864,7 @@ mission_templates = [
 ]),
 
 (ti_on_leave_area, 0.0, 0.0, [
+(eq,"$talk_context",18),
 ], [
 (display_message, "str_leaving_area_during_prison_break"),
 (set_jump_mission,"mt_sneak_caught_fight"),
@@ -904,6 +952,10 @@ mission_templates = [
     (call_script,"script_cf_troop_agent_is_alive"),
 (else_try),
     (assign,":var001",1),
+    (try_begin),
+        (this_or_next|main_hero_fallen),
+        (eq,":var001",1),
+    (try_end),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -963,6 +1015,8 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -1114,7 +1168,10 @@ mission_templates = [
     (store_mission_timer_a,":m_timer_a_006"),
     (try_begin),
         (ge,":m_timer_a_006",10),
-        (store_normalized_team_count,":normalized_team_count_007", 0),
+        (try_begin),
+            (lt,":normalized_team_count_007",6),
+            (store_normalized_team_count,":normalized_team_count_007", 0),
+        (try_end),
     (try_end),
 ], [
 (add_reinforcements_to_entry,0,7),
@@ -1127,7 +1184,10 @@ mission_templates = [
 (store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",10),
-    (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_begin),
+        (lt,":normalized_team_count_002",6),
+        (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_end),
 (try_end),
 ], [
 (add_reinforcements_to_entry,3,7),
@@ -1158,6 +1218,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (str_store_string,s5,"str_retreat"),
@@ -1174,6 +1235,7 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, ti_once, [
+(ge,":m_timer_a_001",2),
 (store_mission_timer_a,":m_timer_a_001"),
 ], [
 (call_script, "script_select_battle_tactic"),
@@ -1311,6 +1373,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (str_store_string,s5,"str_retreat"),
@@ -1407,7 +1470,10 @@ mission_templates = [
 (store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",10),
-    (store_normalized_team_count,":normalized_team_count_002", 0),
+    (try_begin),
+        (lt,":normalized_team_count_002",6),
+        (store_normalized_team_count,":normalized_team_count_002", 0),
+    (try_end),
 (try_end),
 ], [
 (add_reinforcements_to_entry,0,6),
@@ -1419,7 +1485,10 @@ mission_templates = [
 (store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",10),
-    (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_begin),
+        (lt,":normalized_team_count_002",6),
+        (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_end),
 (try_end),
 ], [
 (add_reinforcements_to_entry,3,6),
@@ -1455,6 +1524,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (str_store_string,s5,"str_retreat"),
@@ -1580,6 +1650,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (str_store_string,s5,"str_retreat"),
@@ -1705,6 +1776,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (str_store_string,s5,"str_retreat"),
@@ -1853,6 +1925,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (str_store_string,s5,"str_retreat"),
@@ -2065,6 +2138,7 @@ mission_templates = [
 ]),
 
 (2.0, 0.0, 0.0, [
+(gt,"$defender_reinforcement_stage",0),
 ], [
 (call_script, "script_siege_move_archers_to_archer_positions"),
 ]),
@@ -2074,7 +2148,10 @@ mission_templates = [
 (store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",10),
-    (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_begin),
+        (lt,":normalized_team_count_002",6),
+        (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_end),
 (try_end),
 ], [
 (add_reinforcements_to_entry,1,8),
@@ -2144,6 +2221,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (get_player_agent_no,":agent_no_001"),
@@ -2191,15 +2269,18 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, ti_once, [
+(call_script,"script_cf_siege_move_belfry"),
 ], [
 ]),
 
 (0.0, 2.0, ti_once, [
+(call_script,"script_cf_siege_rotate_belfry_platform"),
 ], [
 (assign,"$belfry_positioned",3),
 ]),
 
 (0.0, 0.0, ti_once, [
+(call_script,"script_cf_siege_assign_men_to_belfry"),
 ], [
 ]),
 
@@ -2355,6 +2436,7 @@ mission_templates = [
 ]),
 
 (2.0, 0.0, 0.0, [
+(gt,"$defender_reinforcement_stage",0),
 ], [
 (call_script, "script_siege_move_archers_to_archer_positions"),
 ]),
@@ -2364,7 +2446,10 @@ mission_templates = [
 (store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",10),
-    (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_begin),
+        (lt,":normalized_team_count_002",6),
+        (store_normalized_team_count,":normalized_team_count_002", 1),
+    (try_end),
 (try_end),
 ], [
 (add_reinforcements_to_entry,1,8),
@@ -2434,6 +2519,7 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(main_hero_fallen),
 ], [
 (assign,"$pin_player_fallen",1),
 (get_player_agent_no,":agent_no_001"),
@@ -2592,12 +2678,15 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, 0.0, [
+(this_or_next|eq,"$talk_context",19),
+(eq,"$talk_context",18),
 ], [
 (call_script, "script_neutral_behavior_in_fight"),
 (mission_disable_talk),
 ]),
 
 (1.0, 0.0, ti_once, [
+(eq,"$talk_context",19),
 ], [
 (get_player_agent_no,":agent_no_001"),
 (assign,reg6,":agent_no_001"),
@@ -2641,6 +2730,7 @@ mission_templates = [
 ]),
 
 (3.0, 0.0, 0.0, [
+(main_hero_fallen),
 ], [
 (try_begin),
     (this_or_next|eq,"$talk_context",19),
@@ -2663,7 +2753,11 @@ mission_templates = [
 (3.0, 0.0, 0.0, [
 (eq,"$talk_context",19),
 (neg|main_hero_fallen),
-(store_mission_timer_a,":m_timer_a_001"),
+(try_begin),
+    (ge,":m_timer_a_001",10),
+    (all_enemies_defeated),
+    (store_mission_timer_a,":m_timer_a_001"),
+(try_end),
 ], [
 (call_script, "script_deduct_casualties_from_garrison"),
 (try_for_agents, ":m_timer_a_001"),
@@ -2711,6 +2805,7 @@ mission_templates = [
 ]),
 
 (0.0, 1.0, 2.0, [
+(lt,"$trainer_help_message",2),
 ], [
 (try_begin),
     (eq,"$trainer_help_message",0),
@@ -2752,6 +2847,7 @@ mission_templates = [
 ]),
 
 (1.0, 3.0, ti_once, [
+(main_hero_fallen),
 ], [
 (set_jump_mission,"mt_training_ground_trainer_talk"),
 (modify_visitors_at_site,"$g_training_ground_melee_training_scene"),
@@ -2913,6 +3009,9 @@ mission_templates = [
 ]),
 
 (1.0, 3.0, ti_once, [
+(eq,"$g_mt_mode",1),
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (try_begin),
     (neg|main_hero_fallen),
@@ -2942,7 +3041,12 @@ mission_templates = [
 (eq,"$g_mt_mode",2),
 (get_player_agent_no,":agent_no_001"),
 (agent_get_ammo,":agent_ammo_002",":agent_no_001"),
-(store_mission_timer_a,":m_timer_a_003"),
+(try_begin),
+    (this_or_next|main_hero_fallen),
+    (this_or_next|eq,":agent_ammo_002",0),
+    (gt,":m_timer_a_003",116),
+    (store_mission_timer_a,":m_timer_a_003"),
+(try_end),
 ], [
 (store_mul, ":_g_training_ground_training_success_ratio", "$scene_num_total_gourds_destroyed", 10),
 (jump_to_menu,"mnu_training_ground_training_result"),
@@ -2953,7 +3057,13 @@ mission_templates = [
 (eq,"$g_mt_mode",3),
 (get_player_agent_no,":agent_no_001"),
 (agent_get_horse,":agent_horse_002",":agent_no_001"),
-(store_mission_timer_a,":m_timer_a_003"),
+(try_begin),
+    (this_or_next|ge,":agent_horse_002",0),
+    (this_or_next|main_hero_fallen),
+    (this_or_next|ge,"$scene_num_total_gourds_destroyed","$g_training_ground_training_num_gourds_to_destroy"),
+    (gt,":m_timer_a_003",120),
+    (store_mission_timer_a,":m_timer_a_003"),
+(try_end),
 ], [
 (store_mul, ":_g_training_ground_training_success_ratio", "$scene_num_total_gourds_destroyed", 100),
 (val_div, "$g_training_ground_training_success_ratio", "$g_training_ground_training_num_gourds_to_destroy"),
@@ -3137,6 +3247,7 @@ mission_templates = [
 ]),
 
 (0.0, 3.0, 0.0, [
+(main_hero_fallen),
 ], [
 (jump_to_menu,"mnu_captivity_start_castle_defeat"),
 (finish_mission, 0),
@@ -3169,7 +3280,10 @@ mission_templates = [
 (5.0, 1.0, ti_once, [
 (num_active_teams_le,1),
 (neg|main_hero_fallen),
-(store_mission_timer_a,":m_timer_a_001"),
+(try_begin),
+    (ge,":m_timer_a_001",5),
+    (store_mission_timer_a,":m_timer_a_001"),
+(try_end),
 ], [
 (assign,"$auto_menu",-1),
 (jump_to_menu,"mnu_sneak_into_town_caught_dispersed_guards"),
@@ -3366,6 +3480,9 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(eq,"$g_mt_mode",3),
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (try_begin),
     (neg|main_hero_fallen),
@@ -3408,6 +3525,10 @@ mission_templates = [
         (ge,"$g_arena_training_num_agents_spawned","$g_arena_training_max_opponents"),
         (num_active_teams_le,1),
         (assign,":var002",1),
+        (try_begin),
+            (this_or_next|eq,":var002",1),
+            (main_hero_fallen),
+        (try_end),
     (try_end),
 (try_end),
 ], [
@@ -3447,7 +3568,13 @@ mission_templates = [
 (try_begin),
 (lt,":var001",7),
 (neg|main_hero_fallen),
-(store_mission_timer_a,":m_timer_a_004"),
+(try_begin),
+    (this_or_next|ge,":m_timer_a_004","$g_arena_training_next_spawn_time"),
+    (this_or_next|ge,"$g_arena_training_num_agents_spawned",6),
+    (num_active_teams_le,1),
+    (lt,"$g_arena_training_num_agents_spawned","$g_arena_training_max_opponents"),
+    (store_mission_timer_a,":m_timer_a_004"),
+(try_end),
 ], [
 (assign,":troop_id_001","$g_arena_training_num_agents_spawned"),
 (store_div, ":var___x1", "$g_arena_training_num_agents_spawned", 6),
@@ -3482,6 +3609,7 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, 0.0, [
+(eq,"$g_mt_mode",1),
 ], [
 (assign,":var001",6),
 (val_max,":var001",1),
@@ -3568,6 +3696,8 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -3640,6 +3770,8 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -7016,10 +7148,14 @@ mission_templates = [
 (0.0, 0.0, ti_once, [
 (team_give_order, 0, 9, 11),
 (set_show_messages,1),
+(try_begin),
+    (gt,":m_timer_a_001",3),
+    (store_mission_timer_a,":m_timer_a_001"),
 ], [
 ]),
 
 (0.0, 0.0, 0.0, [
+(call_script,"script_cf_turn_windmill_fans"),
 ], [
 ]),
 
@@ -7485,15 +7621,18 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, ti_once, [
+(call_script,"script_cf_siege_move_belfry"),
 ], [
 ]),
 
 (0.0, 2.0, ti_once, [
+(call_script,"script_cf_siege_rotate_belfry_platform"),
 ], [
 (assign,"$belfry_positioned",3),
 ]),
 
 (0.0, 0.0, ti_once, [
+(call_script,"script_cf_siege_assign_men_to_belfry"),
 ], [
 ]),
 
@@ -7591,7 +7730,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -7972,7 +8116,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -8549,7 +8698,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -9829,7 +9983,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -10971,7 +11130,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -11333,7 +11497,10 @@ mission_templates = [
 (eq,"$g_round_ended",0),
 (neg|eq,"$g_flag_is_not_ready",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_sub, ":var002", ":m_timer_a_001", "$g_round_start_time"),
+(try_begin),
+    (ge,":var002","$g_multiplayer_round_max_seconds"),
+    (store_sub, ":var002", ":m_timer_a_001", "$g_round_start_time"),
+(try_end),
 ], [
 (assign,":m_timer_a_001",0),
 (store_add, ":slot_no_002", 156, ":m_timer_a_001"),
@@ -11375,6 +11542,7 @@ mission_templates = [
 ]),
 
 (10.0, 0.0, 0.0, [
+(multiplayer_is_server),
 ], [
 (assign,":var001",0),
 (assign,":var002",0),
@@ -11432,7 +11600,10 @@ mission_templates = [
 (multiplayer_is_server),
 (eq,"$g_round_ended",1),
 (store_mission_timer_a,":m_timer_a_001"),
-(val_sub, ":m_timer_a_001", "$g_round_finish_time"),
+(try_begin),
+    (ge,":m_timer_a_001","$g_multiplayer_respawn_period"),
+    (val_sub, ":m_timer_a_001", "$g_round_finish_time"),
+(try_end),
 ], [
 (assign,":m_timer_a_001",0),
 (assign,":var002",0),
@@ -12206,7 +12377,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -12475,6 +12651,9 @@ mission_templates = [
         (try_end),
     (try_end),
 (try_end),
+(try_begin),
+    (eq,":var003",0),
+(try_end),
 ], [
 (store_mission_timer_a,"$g_round_finish_time"),
 (assign,"$g_round_ended",1),
@@ -12519,6 +12698,7 @@ mission_templates = [
 ]),
 
 (10.0, 0.0, 0.0, [
+(multiplayer_is_server),
 ], [
 (assign,":var001",0),
 (assign,":var002",0),
@@ -12578,8 +12758,11 @@ mission_templates = [
 (eq,"$g_battle_death_mode_started",0),
 (store_mission_timer_a,":m_timer_a_001"),
 (val_sub, ":m_timer_a_001", "$g_round_start_time"),
-(store_div, ":var___x1", "$g_multiplayer_round_max_seconds", 2),
-(assign,"$g_multiplayer_round_max_seconds_div_2",":var___x1"),
+(try_begin),
+    (ge,":m_timer_a_001","$g_multiplayer_round_max_seconds_div_2"),
+    (store_div, ":var___x1", "$g_multiplayer_round_max_seconds", 2),
+    (assign,"$g_multiplayer_round_max_seconds_div_2",":var___x1"),
+(try_end),
 ], [
 (call_script, "script_calculate_new_death_waiting_time_at_death_mod"),
 (assign,"$g_battle_death_mode_started",1),
@@ -12596,7 +12779,10 @@ mission_templates = [
     (ge,":m_timer_a_001",":var002"),
     (store_mission_timer_a,":m_timer_a_003"),
     (store_sub, ":var004", ":m_timer_a_003", "$g_round_start_time"),
-    (store_sub, ":var005", "$g_multiplayer_round_max_seconds", 15),
+    (try_begin),
+        (lt,":var004",":var005"),
+        (store_sub, ":var005", "$g_multiplayer_round_max_seconds", 15),
+    (try_end),
 (try_end),
 ], [
 (assign,"$g_battle_death_mode_started",2),
@@ -12636,7 +12822,10 @@ mission_templates = [
 (store_mission_timer_a,":m_timer_a_001"),
 (val_sub, ":m_timer_a_001", "$g_death_mode_part_1_start_time"),
 (store_add, ":var002", "$g_battle_waiting_seconds", "$g_reduced_waiting_seconds"),
-(val_sub, ":var002", 20),
+(try_begin),
+    (ge,":m_timer_a_001",":var002"),
+    (val_sub, ":var002", 20),
+(try_end),
 ], [
 (assign,":m_timer_a_001",0),
 (try_for_agents, ":cur_agent"),
@@ -12680,13 +12869,19 @@ mission_templates = [
     (ge,":var002",":var003"),
     (store_mission_timer_a,":m_timer_a_001"),
     (store_sub, ":var002", ":m_timer_a_001", "$g_round_start_time"),
-    (store_sub, ":var004", "$g_multiplayer_round_max_seconds", 24),
+    (try_begin),
+        (le,":var002",":var004"),
+        (store_sub, ":var004", "$g_multiplayer_round_max_seconds", 24),
+    (try_end),
 (try_end),
 ], [
 (val_add, "$g_reduced_waiting_seconds", 1),
 ]),
 
 (0.0, 0.0, 0.0, [
+(multiplayer_is_server),
+(eq,"$g_round_ended",0),
+(eq,"$g_battle_death_mode_started",2),
 ], [
 (set_fixed_point_multiplier, 100),
 (scene_prop_get_instance, ":scp_instance_001", "spr_headquarters_pole_code_only", 0),
@@ -12914,7 +13109,10 @@ mission_templates = [
 (multiplayer_is_server),
 (eq,"$g_round_ended",1),
 (store_mission_timer_a,":m_timer_a_001"),
-(val_sub, ":m_timer_a_001", "$g_round_finish_time"),
+(try_begin),
+    (ge,":m_timer_a_001","$g_multiplayer_respawn_period"),
+    (val_sub, ":m_timer_a_001", "$g_round_finish_time"),
+(try_end),
 ], [
 (assign,":m_timer_a_001",0),
 (assign,":var002",0),
@@ -13174,16 +13372,16 @@ mission_templates = [
                         (try_end),
                     (try_end),
                 (try_end),
-            (try_end),
-            (store_mul, ":var011", ":var006", ":var007"),
-            (store_mission_timer_a,":m_timer_a_012"),
-            (val_sub, ":m_timer_a_012", "$g_round_start_time"),
-            (try_begin),
-                (this_or_next|ge,":m_timer_a_012",30),
-                (this_or_next|gt,":var008",2),
-                (eq,":var011",0),
-                (eq,"$g_round_ended",0),
-                (assign,":var005",1),
+                (store_mul, ":var011", ":var006", ":var007"),
+                (store_mission_timer_a,":m_timer_a_012"),
+                (val_sub, ":m_timer_a_012", "$g_round_start_time"),
+                (try_begin),
+                    (this_or_next|ge,":m_timer_a_012",30),
+                    (this_or_next|gt,":var008",2),
+                    (eq,":var011",0),
+                    (eq,"$g_round_ended",0),
+                    (assign,":var005",1),
+                (try_end),
             (try_end),
             (try_begin),
                 (eq,":var005",1),
@@ -13613,7 +13811,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -13868,6 +14071,9 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, 0.0, [
+(multiplayer_is_server),
+(eq,"$g_round_ended",0),
+(eq,"$g_number_of_targets_destroyed",2),
 ], [
 (store_mission_timer_a,"$g_round_finish_time"),
 (assign,"$g_round_ended",1),
@@ -13887,7 +14093,10 @@ mission_templates = [
 (multiplayer_is_server),
 (eq,"$g_round_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_sub, ":var002", ":m_timer_a_001", "$g_round_start_time"),
+(try_begin),
+    (ge,":var002","$g_multiplayer_round_max_seconds"),
+    (store_sub, ":var002", ":m_timer_a_001", "$g_round_start_time"),
+(try_end),
 ], [
 (store_mission_timer_a,"$g_round_finish_time"),
 (assign,"$g_round_ended",1),
@@ -13928,6 +14137,7 @@ mission_templates = [
 ]),
 
 (10.0, 0.0, 0.0, [
+(multiplayer_is_server),
 ], [
 (assign,":var001",0),
 (assign,":var002",0),
@@ -13982,6 +14192,9 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, 0.0, [
+(multiplayer_is_server),
+(eq,"$g_round_ended",0),
+(eq,"$g_battle_death_mode_started",2),
 ], [
 (set_fixed_point_multiplier, 100),
 (scene_prop_get_instance, ":scp_instance_001", "spr_headquarters_pole_code_only", 0),
@@ -14208,7 +14421,10 @@ mission_templates = [
 (multiplayer_is_server),
 (eq,"$g_round_ended",1),
 (store_mission_timer_a,":m_timer_a_001"),
-(val_sub, ":m_timer_a_001", "$g_round_finish_time"),
+(try_begin),
+    (ge,":m_timer_a_001","$g_multiplayer_respawn_period"),
+    (val_sub, ":m_timer_a_001", "$g_round_finish_time"),
+(try_end),
 ], [
 (assign,":m_timer_a_001",0),
 (assign,":var002",0),
@@ -14479,16 +14695,16 @@ mission_templates = [
                         (try_end),
                     (try_end),
                 (try_end),
-            (try_end),
-            (store_mul, ":var011", ":var006", ":var007"),
-            (store_mission_timer_a,":m_timer_a_012"),
-            (val_sub, ":m_timer_a_012", "$g_round_start_time"),
-            (try_begin),
-                (this_or_next|ge,":m_timer_a_012",30),
-                (this_or_next|gt,":var008",2),
-                (eq,":var011",0),
-                (eq,"$g_round_ended",0),
-                (assign,":var005",1),
+                (store_mul, ":var011", ":var006", ":var007"),
+                (store_mission_timer_a,":m_timer_a_012"),
+                (val_sub, ":m_timer_a_012", "$g_round_start_time"),
+                (try_begin),
+                    (this_or_next|ge,":m_timer_a_012",30),
+                    (this_or_next|gt,":var008",2),
+                    (eq,":var011",0),
+                    (eq,"$g_round_ended",0),
+                    (assign,":var005",1),
+                (try_end),
             (try_end),
             (try_begin),
                 (eq,":var005",1),
@@ -14938,7 +15154,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
@@ -15149,6 +15370,9 @@ mission_templates = [
 
 (ti_on_player_exit, 0.0, 0.0, [
 ], [
+(try_begin),
+    (call_script, "script_cf_multiplayer_event_team_change", ":var001"),
+(try_end),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -15435,6 +15659,7 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, 0.0, [
+(gt,"$g_multiplayer_ccoop_enable_count_down",0),
 ], [
 (try_begin),
     (gt,"$g_multiplayer_ccoop_change_map",0),
@@ -15495,6 +15720,7 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, 0.0, [
+(multiplayer_is_server),
 ], [
 (get_max_players, ":max_players"),
 (try_begin),
@@ -15652,6 +15878,8 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, 0.0, [
+(eq,"$g_multiplayer_ccoop_game_started",0),
+(multiplayer_is_server),
 ], [
 (assign,":var001",0),
 (get_max_players, ":max_players"),
@@ -15801,6 +16029,7 @@ mission_templates = [
 ]),
 
 (ti_on_agent_hit, 0.0, 0.0, [
+(multiplayer_is_server),
 ], [
 (try_begin),
     (multiplayer_is_server),
@@ -15990,6 +16219,7 @@ mission_templates = [
 ]),
 
 (2.0, 0.0, 0.0, [
+(multiplayer_is_server),
 ], [
 (try_begin),
     (multiplayer_is_server),
@@ -16080,6 +16310,9 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, 0.0, [
+(eq,":party_template_id_001","pt_looter_lair"),
+(check_quest_active,"qst_save_relative_of_merchant"),
+(eq,"$relative_of_merchant_is_found",0),
 (party_get_template_id,":party_template_id_001","$g_encountered_party"),
 ], [
 (get_player_agent_no,":party_template_id_001"),
@@ -16193,6 +16426,7 @@ mission_templates = [
 ]),
 
 (30.0, 0.0, 0.0, [
+(le,"$defender_reinforcement_stage",1),
 ], [
 (store_character_level,":character_lvl_001","trp_player"),
 (store_add, ":var002", 5, ":character_lvl_001"),
@@ -16327,6 +16561,8 @@ mission_templates = [
 ]),
 
 (2.0, 0.0, ti_once, [
+(neg|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (party_get_template_id,":party_template_id_001","$g_encountered_party"),
 (try_begin),
@@ -16403,6 +16639,9 @@ mission_templates = [
         (this_or_next|main_hero_fallen),
         (num_active_teams_le,1),
         (assign,":var001",1),
+        (try_begin),
+            (eq,":var001",1),
+        (try_end),
     (try_end),
 ], [
 (try_begin),
@@ -16453,6 +16692,7 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, 0.0, [
+(eq,"$talked_with_merchant",0),
 ], [
 (get_player_agent_no,":agent_no_001"),
 (agent_get_position,pos0,":agent_no_001"),
@@ -16502,6 +16742,8 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, ti_once, [
+(neg|main_hero_fallen),
+(num_active_teams_le,1),
 ], [
 (store_faction_of_party, ":party_faction_001", "$g_starting_town"),
 (try_begin),
@@ -16527,6 +16769,7 @@ mission_templates = [
 ]),
 
 (1.0, 0.0, ti_once, [
+(eq,"$talked_with_merchant",1),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -16549,6 +16792,7 @@ mission_templates = [
 ]),
 
 (1.0, 3.0, ti_once, [
+(main_hero_fallen),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -16633,6 +16877,9 @@ mission_templates = [
     (conversation_screen_is_active),
     (tutorial_message, -1),
     (assign,":var001",0),
+    (try_begin),
+        (eq,":var001",1),
+    (try_end),
 ], [
 (tutorial_message_set_size, 17, 17),
 (tutorial_message_set_position, 500, 650),
@@ -16890,6 +17137,9 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
+(this_or_next|main_hero_fallen),
+(num_active_teams_le,1),
+(ge,"$merchant_sign_count",8),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -16995,7 +17245,12 @@ mission_templates = [
 (eq,"$g_multiplayer_poll_running",1),
 (eq,"$g_multiplayer_poll_ended",0),
 (store_mission_timer_a,":m_timer_a_001"),
-(store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_begin),
+    (this_or_next|eq,":var002","$g_multiplayer_poll_num_sent"),
+    (gt,":m_timer_a_001","$g_multiplayer_poll_end_time"),
+    (call_script, "script_cf_multiplayer_evaluate_poll"),
+    (store_add, ":var002", "$g_multiplayer_poll_no_count", "$g_multiplayer_poll_yes_count"),
+(try_end),
 ], [
 (assign,"$g_multiplayer_poll_running",0),
 (try_begin),
