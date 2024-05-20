@@ -278,7 +278,7 @@ def lookupData(funcName : str, data : str, parax : list, all : list, index : int
         elif x >= GLOBAL_MIN and x < GLOBAL_MAX:
             d = "\"$" + globalVariables[x - GLOBAL_MIN] + "\""
         elif x >= QUICKSTRING_MIN and x < QUICKSTRING_MAX:
-            d = "\"" + quickStrings[x - QUICKSTRING_MIN][1] + "\""
+            d = "\"" + quickStrings[x - QUICKSTRING_MIN][1].replace(",",";;;").replace("(","[[[").replace(")","]]]") + "\""
         elif x >= SPR_MIN and x < SPR_MAX:
             d = "spr." + sceneProps[x - SPR_MIN][0][0][4:]
         elif x >= TRP_PLAYER and x < TROOP_MAX:
@@ -851,7 +851,7 @@ def convertToPy1(data : list):
             formatex.append(code + "()")
             condit = False
 
-        if not condit and (lastWasCondit or curLine == "elif;" or curLine == "if;"):
+        if (not condit or i + 1 == len(data)) and (lastWasCondit or curLine == "elif;" or curLine == "if;"):
             if curLine == "elif;":
                 curLine = "else"
             elif curLine == "if;":
@@ -1010,7 +1010,7 @@ def convertToPy3(data : list):
                 datax.append("if " + lastC + " in " + lastC2 + ":")
             else:
                 datax.append(code)
-        elif code.startswith("if") and ("#end" in data[i+1] or "else" in data[i+1] or "elif" in data[i+1]):
+        elif code.startswith("if") and (len(data) <= i + 1 or (len(data)>i+1 and ("#end" in data[i+1] or "else" in data[i+1] or "elif" in data[i+1]))):
             # TODO: also add other cases here
             datax.append(code)
             datax.append("pass")

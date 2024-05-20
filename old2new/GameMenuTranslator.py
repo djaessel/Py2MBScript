@@ -55,7 +55,9 @@ def writeMenuOption(f, idx : str, mno : list):
     if len(txt.strip()) > 0:
         f.write("def code(" + ", ".join(scriptParams) + "):\n")
         f.write(txt)
-        f.write(idx2 + ".codeBlock = code\n")
+        f.write(idx2 + ".consequenceBlock = code\n")
+
+    f.write(idx + ".menuOptions.append(" + idx2 + ")\n")
 
     f.write("\n")
 
