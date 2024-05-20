@@ -176,12 +176,18 @@ class ScriptConverter:
                 liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
         else:
             if varName in self.str_registers:
-                liny = "(str_store_string,<var1>,<var2>)"
+                #if "str_store_string" in funcCall:
+                #    liny = "(str_store_string,<var1>,<var2>)"
+                #    liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
+                #    if '"' in funcCall and not funcCall.strip('"').startswith("str_"):
+                #        liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall.replace('"', '"@').rstrip('@'))
+                #    else:
+                #        liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
+                #else:
+                xy = funcCall.split('(')
+                liny = "(" + xy[0] + ",<var1>,<var2>)"
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
-                if '"' in funcCall and not funcCall.strip('"').startswith("str_"):
-                    liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall.replace('"', '"@').rstrip('@'))
-                else:
-                    liny = self.replaceVarWithPlaceholder(liny, "<var2>", funcCall)
+                liny = self.replaceVarWithPlaceholder(liny, "<var2>", xy[1].split(')')[0])
             elif varName in self.pos_registers:
                 liny = self.replaceVarWithPlaceholder(liny, "<position_no>", varName)
                 liny = self.replaceVarWithPlaceholder(liny, "<position>", varName)
@@ -195,6 +201,9 @@ class ScriptConverter:
             liny = [liny]
         for i in range(len(liny)):
             liny[i] = liny[i].replace(":::","$")
+            liny[i] = liny[i].replace("[[[","(")
+            liny[i] = liny[i].replace("]]]",")")
+            liny[i] = liny[i].replace(";;;",",")
         return liny
 
 
@@ -225,6 +234,9 @@ class ScriptConverter:
             liny = varName + " = " + str(eval(funcCall)) # check imports if something goes wrong
             liny = self.handleEqualsSign(liny)[0]
         liny = liny.replace(":::","$")
+        liny = liny.replace("[[[","(")
+        liny = liny.replace("]]]",")")
+        liny = liny.replace(";;;",",")
         return liny
 
 
@@ -272,6 +284,9 @@ class ScriptConverter:
         else:
             print("UNHANDLED CODE:", code)
         liny = liny.replace(":::","$")
+        liny = liny.replace("[[[","(")
+        liny = liny.replace("]]]",")")
+        liny = liny.replace(";;;",",")
         return [liny]
 
 
@@ -703,6 +718,9 @@ class ScriptConverter:
                 liny = self.getFuncCodeLine(code)
                 liny = self.replaceFuncParams(liny, code.split(')')[0])
             liny = liny.replace(":::", "$")
+            liny = liny.replace("[[[","(")
+            liny = liny.replace("]]]",")")
+            liny = liny.replace(";;;",",")
             return [liny]
 
         return [""] # ERROR 2 # ignored code
@@ -732,6 +750,9 @@ class ScriptConverter:
                 px = "0"
             liny = self.replaceVarWithPlaceholder(liny, p, px)
         liny = liny.replace(":::", "$")
+        liny = liny.replace("[[[","(")
+        liny = liny.replace("]]]",")")
+        liny = liny.replace(";;;",",")
         return liny
 
 
@@ -751,6 +772,9 @@ class ScriptConverter:
                 # print("Ignored optional parameter:", params[i], "|", funcCall, "|", liny)
                 liny = liny.replace(", " + params[i], "").replace("," + params[i], "")
         liny = liny.replace(":::", "$")
+        liny = liny.replace("[[[","(")
+        liny = liny.replace("]]]",")")
+        liny = liny.replace(";;;",",")
         return liny
 
 
@@ -1208,7 +1232,7 @@ class ScriptConverter:
 
 
     def writeScriptCode(self, f, codeData):
-        codeData = self.optimize(codeData)
+        #codeData = self.optimize(codeData)
 
         curIndent = 0
         for line in codeData:
