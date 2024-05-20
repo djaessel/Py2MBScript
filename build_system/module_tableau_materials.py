@@ -378,14 +378,14 @@ tableaus = [
 (cur_tableau_set_background_color, 8947848),
 (cur_tableau_set_ambient_light, 10, 11, 15),
 (cur_tableau_render_as_alpha_mask),
-add_troop_to_cur_tableau(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau", ":var001"),
 ]),
 
 ("troop_note_color", 0, "mat_troop_portrait_color", 1024, 1024, 0, 0, 400, 400, [
 (store_script_param, ":var001", 1),
 (cur_tableau_set_background_color, 4291214228),
 (cur_tableau_set_ambient_light, 10, 11, 15),
-add_troop_to_cur_tableau(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau", ":var001"),
 ]),
 
 ("troop_character_alpha_mask", 0, "mat_troop_portrait_mask", 1024, 1024, 0, 0, 400, 400, [
@@ -408,14 +408,14 @@ add_troop_to_cur_tableau(var001), # ERROR 1
 (cur_tableau_set_background_color, 8947848),
 (cur_tableau_set_ambient_light, 10, 11, 15),
 (cur_tableau_render_as_alpha_mask),
-add_troop_to_cur_tableau_for_inventory(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_inventory", ":var001"),
 ]),
 
 ("troop_inventory_color", 0, "mat_troop_portrait_color", 1024, 1024, 0, 0, 400, 400, [
 (store_script_param, ":var001", 1),
 (cur_tableau_set_background_color, 4285159482),
 (cur_tableau_set_ambient_light, 10, 11, 15),
-add_troop_to_cur_tableau_for_inventory(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_inventory", ":var001"),
 ]),
 
 ("troop_profile_alpha_mask", 0, "mat_troop_portrait_mask", 1024, 1024, 0, 0, 400, 400, [
@@ -423,14 +423,14 @@ add_troop_to_cur_tableau_for_inventory(var001), # ERROR 1
 (cur_tableau_set_background_color, 8947848),
 (cur_tableau_set_ambient_light, 10, 11, 15),
 (cur_tableau_render_as_alpha_mask),
-add_troop_to_cur_tableau_for_profile(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_profile", ":var001"),
 ]),
 
 ("troop_profile_color", 0, "mat_troop_portrait_color", 1024, 1024, 0, 0, 400, 400, [
 (store_script_param, ":var001", 1),
 (cur_tableau_set_background_color, 4294567848),
 (cur_tableau_set_ambient_light, 10, 11, 15),
-add_troop_to_cur_tableau_for_profile(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_profile", ":var001"),
 ]),
 
 ("troop_party_alpha_mask", 0, "mat_troop_portrait_mask", 1024, 1024, 0, 0, 400, 400, [
@@ -438,14 +438,14 @@ add_troop_to_cur_tableau_for_profile(var001), # ERROR 1
 (cur_tableau_set_background_color, 8947848),
 (cur_tableau_set_ambient_light, 10, 11, 15),
 (cur_tableau_render_as_alpha_mask),
-add_troop_to_cur_tableau_for_party(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_party", ":var001"),
 ]),
 
 ("troop_party_color", 0, "mat_troop_portrait_color", 1024, 1024, 0, 0, 400, 400, [
 (store_script_param, ":var001", 1),
 (cur_tableau_set_background_color, 4290681970),
 (cur_tableau_set_ambient_light, 10, 11, 15),
-add_troop_to_cur_tableau_for_party(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_party", ":var001"),
 ]),
 
 ("troop_note_mesh", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 350, 350, [
@@ -556,7 +556,7 @@ add_troop_to_cur_tableau_for_party(var001), # ERROR 1
 
 ("2_factions_mesh", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 200, 200, [
 (store_script_param, ":faction_id_001", 1),
-(store_mod,":faction_id_002",":faction_id_001",":faction_id_001"),
+(store_mod,":faction_id_002",":faction_id_001",128),
 (val_div, ":faction_id_001", 128),
 (assign,":faction_id_001 +","fac_player_supporters_faction"),
 (assign,":faction_id_002 +","fac_player_supporters_faction"),
@@ -613,14 +613,14 @@ add_troop_to_cur_tableau_for_party(var001), # ERROR 1
 ("custom_banner_square_no_mesh", 0, "missiles", 512, 512, 0, 0, 300, 300, [
 (store_script_param, ":var001", 1),
 (set_fixed_point_multiplier, 100),
-draw_banner_to_region(var":var001"":var001"1,":var001",":var001",1":var001"":var001"":var001"":var001",1":var001"":var001"":var001"":var001",98":var001"":var001",98":var001"":var001",1":var001"":var001"":var001"":var001",1":var001"":var001"":var001"":var001",":var001"), # ERROR 1
+(call_script, "script_draw_banner_to_region", ":var001", 0, 0, 10000, 10000, 9800, 9800, 10000, 10000, 0),
 (cur_tableau_set_camera_parameters, 0, 100, 100, 0, 100000),
 ]),
 
 ("custom_banner_default", 0, "missiles", 512, 256, 0, 0, 0, 0, [
 (store_script_param, ":var001", 1),
 (set_fixed_point_multiplier, 100),
-draw_banner_to_region(var001,":var001",-9,-2,7450,19400,7200,18000,9000,10000,
+(call_script, "script_draw_banner_to_region", ":var001", -9, -2, 7450, 19400, 7200, 18000, 9000, 10000, 0),
 (init_position,1),
 (position_set_z,1,10),
 (cur_tableau_add_mesh, "mesh_tableau_mesh_custom_banner", 1, 0, 0),
@@ -630,7 +630,7 @@ draw_banner_to_region(var001,":var001",-9,-2,7450,19400,7200,18000,9000,10000,
 ("custom_banner_tall", 0, "missiles", 512, 256, 0, 0, 0, 0, [
 (store_script_param, ":var001", 1),
 (set_fixed_point_multiplier, 100),
-draw_banner_to_region(var001,":var001",-9,12,8250,18000,8000,21000,21000,10000,
+(call_script, "script_draw_banner_to_region", ":var001", -9, 12, 8250, 18000, 8000, 21000, 10000, 10000, 0),
 (init_position,1),
 (position_set_z,1,10),
 (cur_tableau_add_mesh, "mesh_tableau_mesh_custom_banner", 1, 0, 0),
@@ -640,7 +640,7 @@ draw_banner_to_region(var001,":var001",-9,12,8250,18000,8000,21000,21000,10000,
 ("custom_banner_square", 0, "missiles", 256, 256, 0, 0, 0, 0, [
 (store_script_param, ":var001", 1),
 (set_fixed_point_multiplier, 100),
-draw_banner_to_region(var001,":var001",-11,10,10,7700,7700,7500,-11000,10000,
+(call_script, "script_draw_banner_to_region", ":var001", -11, 10, 7700, 7700, 7500, 7500, 8300, 10000, 0),
 (init_position,1),
 (position_set_z,1,10),
 (cur_tableau_add_mesh, "mesh_tableau_mesh_custom_banner_square", 1, 0, 0),
@@ -650,7 +650,7 @@ draw_banner_to_region(var001,":var001",-11,10,10,7700,7700,7500,-11000,10000,
 ("custom_banner_short", 0, "missiles", 256, 512, 0, 0, 0, 0, [
 (store_script_param, ":var001", 1),
 (set_fixed_point_multiplier, 100),
-draw_banner_to_region(var-10-101,":var-10-101",-10,8-105-10,5-10-10-10,42-10-10,48-10-10,66-10-10,1-10-10-10-10,-110000,
+(call_script, "script_draw_banner_to_region", ":var001", -10, 0, 8050, 5000, 4200, 4800, 6600, 10000, 0),
 (init_position,1),
 (position_set_z,1,10),
 (cur_tableau_add_mesh, "mesh_tableau_mesh_custom_banner_short", 1, 0, 0),
@@ -662,7 +662,7 @@ draw_banner_to_region(var-10-101,":var-10-101",-10,8-105-10,5-10-10-10,42-10-10,
 (troop_get_slot,":troop_slot_002","trp_player",91),
 (troop_set_slot,"trp_player",91,":var001"),
 (set_fixed_point_multiplier, 100),
-draw_banner_to_region("trp_player","trp_player","trp_player",1"trp_player""trp_player""trp_player""trp_player",1"trp_player""trp_player""trp_player""trp_player",98"trp_player""trp_player",98"trp_player""trp_player",1"trp_player""trp_player""trp_player""trp_player",1"trp_player""trp_player""trp_player""trp_player","trp_player"), # ERROR 1
+(call_script, "script_draw_banner_to_region", "trp_player", 0, 0, 10000, 10000, 9800, 9800, 10000, 10000, 0),
 (cur_tableau_set_camera_parameters, 0, 100, 100, 0, 100000),
 (troop_set_slot,"trp_player",91,":troop_slot_002"),
 ]),
@@ -672,7 +672,7 @@ draw_banner_to_region("trp_player","trp_player","trp_player",1"trp_player""trp_p
 (troop_get_slot,":troop_slot_002","trp_player",98),
 (troop_set_slot,"trp_player",98,":var001"),
 (set_fixed_point_multiplier, 100),
-draw_banner_to_region("trp_player","trp_player","trp_player",1"trp_player""trp_player""trp_player""trp_player",1"trp_player""trp_player""trp_player""trp_player",98"trp_player""trp_player",98"trp_player""trp_player",1"trp_player""trp_player""trp_player""trp_player",1"trp_player""trp_player""trp_player""trp_player","trp_player"), # ERROR 1
+(call_script, "script_draw_banner_to_region", "trp_player", 0, 0, 10000, 10000, 9800, 9800, 10000, 10000, 0),
 (cur_tableau_set_camera_parameters, 0, 100, 100, 0, 100000),
 (troop_set_slot,"trp_player",98,":troop_slot_002"),
 ]),
@@ -682,14 +682,14 @@ draw_banner_to_region("trp_player","trp_player","trp_player",1"trp_player""trp_p
 (cur_tableau_set_background_color, 8947848),
 (cur_tableau_set_ambient_light, 10, 11, 15),
 (cur_tableau_render_as_alpha_mask),
-add_troop_to_cur_tableau_for_retirement(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_retirement", ":var001"),
 ]),
 
 ("retired_troop_color", 0, "mat_troop_portrait_color", 2048, 2048, 0, 0, 600, 600, [
 (store_script_param, ":var001", 1),
 (cur_tableau_set_background_color, 4293383065),
 (cur_tableau_set_ambient_light, 10, 11, 15),
-add_troop_to_cur_tableau_for_retirement(var001), # ERROR 1
+(call_script, "script_add_troop_to_cur_tableau_for_retirement", ":var001"),
 ]),
 
 ("retirement_troop", 0, "tableau_with_transparency", 2048, 2048, 0, 0, 600, 600, [
@@ -714,9 +714,9 @@ add_troop_to_cur_tableau_for_retirement(var001), # ERROR 1
 (cur_tableau_render_as_alpha_mask),
 (try_begin),
     (eq,":var001",-1),
-    add_player_to_cur_tableau_for_coop(var001), # ERROR 1
+    (call_script, "script_add_player_to_cur_tableau_for_coop", ":var001"),
 (else_try),
-    add_troop_to_cur_tableau_for_coop(var001), # ERROR 1
+    (call_script, "script_add_troop_to_cur_tableau_for_coop", ":var001"),
 (try_end),
 ]),
 
@@ -726,10 +726,10 @@ add_troop_to_cur_tableau_for_retirement(var001), # ERROR 1
 (cur_tableau_set_ambient_light, 10, 11, 15),
 (try_begin),
     (eq,":var001",-1),
-    add_player_to_cur_tableau_for_coop(var001), # ERROR 1
+    (call_script, "script_add_player_to_cur_tableau_for_coop", ":var001"),
     (cur_tableau_set_background_color, 1140850688),
 (else_try),
-    add_troop_to_cur_tableau_for_coop(var001), # ERROR 1
+    (call_script, "script_add_troop_to_cur_tableau_for_coop", ":var001"),
     (cur_tableau_set_background_color, 1140850688),
 (try_end),
 ]),
