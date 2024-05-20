@@ -47,7 +47,7 @@ entering_town   = 36 # (entering_town,<town_id>),
 map_free        = 37  # (map_free),
 encountered_party_is_attacker   = 39  # (encountered_party_is_attacker),
                                          # Checks that the party encountered on the world map was following player (i.e. either player was trying to run away or at the very least this is a head-on clash).
-conversation_screen_is_active   = 42  # (conversation_screen_active), #used in mission template triggers only
+conversation_screen_is_active   = 42  # (conversation_screen_is_active), #used in mission template triggers only
                                          # Checks that the player is currently in dialogue with some agent. Can only be used in triggers of module_mission_templates.py file.
 
 in_meta_mission                 = 44  # deprecated, do not use.
@@ -60,7 +60,7 @@ get_operation_set_version       = 55  # (get_operation_set_version, <destination
 
 set_physics_delta_time			= 58  # (set_physics_delta_time, <fixed_value>), #Default is 0.025 (40 fps).
 
-set_result_string               = 60  # sets the result string for game scripts that need one (set_result_string, <string_id>),
+set_result_string               = 60  # (set_result_string, <string_id>),
 
 is_camera_in_first_person       = 61  # (is_camera_in_first_person),
 set_camera_in_first_person      = 62  # (set_camera_in_first_person, <value>), # 1 = first, 0 = third person
@@ -168,8 +168,8 @@ player_get_item_id                   = 422 # (player_get_item_id, <destination>,
 player_get_banner_id                 = 423 # (player_get_banner_id, <destination>, <player_id>),
 game_get_reduce_campaign_ai          = 424 # (game_get_reduce_campaign_ai, <destination>), #depreciated, use options_get_campaign_ai instead
 multiplayer_find_spawn_point         = 425 # (multiplayer_find_spawn_point, <destination>, <team_no>, <examine_all_spawn_points>, <is_horseman>), 
-set_spawn_effector_scene_prop_kind   = 426 # (set_spawn_effector_scene_prop_kind <team_no> <scene_prop_kind_no>)
-set_spawn_effector_scene_prop_id     = 427 # (set_spawn_effector_scene_prop_id <scene_prop_id>)
+set_spawn_effector_scene_prop_kind   = 426 # (set_spawn_effector_scene_prop_kind, <team_no>, <scene_prop_kind_no>)
+set_spawn_effector_scene_prop_id     = 427 # (set_spawn_effector_scene_prop_id, <scene_prop_id>, [<dont_know>])
 
 player_set_is_admin                  = 429 # (player_set_is_admin, <player_id>, <value>), #value is 0 or 1
 player_is_admin                      = 430 # (player_is_admin, <player_id>),
@@ -419,7 +419,7 @@ show_item_details                         = 970 # (show_item_details, <item_id>,
 close_item_details                        = 971 # (close_item_details),
 show_item_details_with_modifier           = 972 # (show_item_details_with_modifier, <item_id>, <item_modifier>, <position_no>, <price_multiplier>), #price_multiplier is percent, usually returned by script_game_get_item_[buy/sell]_price_factor
 
-context_menu_add_item                     = 980 # (right_mouse_menu_add_item, <string_id>, <value>), #must be called only inside script_game_right_mouse_menu_get_buttons
+context_menu_add_item                     = 980 # (context_menu_add_item, <string_id>, <value>), #must be called only inside script_game_right_mouse_menu_get_buttons
 auto_save                                 = 985 # (auto_save),
 allow_ironman                             = 988 # (allow_ironman, <value>), # 1 = allow, 0 = disallow
 get_average_game_difficulty               = 990 # (get_average_game_difficulty, <destination>),
@@ -618,8 +618,7 @@ troop_inventory_slot_get_item_amount   = 1537   # (troop_inventory_slot_get_item
 troop_inventory_slot_get_item_max_amount = 1538  # (troop_inventory_slot_get_item_max_amount,<destination>,<troop_id>,<inventory_slot_no>),
 
 troop_add_items                        = 1535	# (troop_add_items,<troop_id>,<item_id>,<number>),
-troop_remove_items                     = 1536	# puts cost of items to reg0
-                                                # (troop_remove_items,<troop_id>,<item_id>,<number>),
+troop_remove_items                     = 1536	# (troop_remove_items,<troop_id>,<item_id>,<number>), # puts cost of items to reg0
 troop_loot_troop                       = 1539	# (troop_loot_troop,<target_troop>,<source_troop_id>,<probability>), 
 
 troop_get_inventory_capacity           = 1540	# (troop_get_inventory_capacity,<destination>,<troop_id>),
@@ -640,7 +639,7 @@ item_get_type                          = 1570   # (item_get_type, <destination>,
 party_get_num_companions               = 1601	# (party_get_num_companions,<destination>,<party_id>),
 party_get_num_prisoners                = 1602	# (party_get_num_prisoners,<destination>,<party_id>),
 party_set_flags                        = 1603   # (party_set_flags, <party_id>, <flag>, <clear_or_set>), #sets flags like pf_default_behavior. see header_parties.py for flags.
-party_set_marshall                     = 1604   # (party_set_marshal, <party_id>, <value>)
+party_set_marshall                     = 1604   # (party_set_marshall, <party_id>, <value>)
 party_set_extra_text                   = 1605   # (party_set_extra_text,<party_id>, <string>)
 party_set_aggressiveness               = 1606   # (party_set_aggressiveness, <party_id>, <number>),
 party_set_courage                      = 1607   # (party_set_courage, <party_id>, <number>),
@@ -698,8 +697,8 @@ party_stack_get_troop_id               = 1652   # (party_stack_get_troop_id,    
 party_stack_get_size                   = 1653   # (party_stack_get_size,          <destination>,<party_id>,<stack_no>),
 party_stack_get_num_wounded            = 1654   # (party_stack_get_num_wounded,   <destination>,<party_id>,<stack_no>),
 party_stack_get_troop_dna              = 1655   # (party_stack_get_troop_dna,     <destination>,<party_id>,<stack_no>),
-party_prisoner_stack_get_troop_id      = 1656   # (party_get_prisoner_stack_troop,<destination>,<party_id>,<stack_no>),
-party_prisoner_stack_get_size          = 1657   # (party_get_prisoner_stack_size, <destination>,<party_id>,<stack_no>),
+party_prisoner_stack_get_troop_id      = 1656   # (party_prisoner_stack_get_troop_id,<destination>,<party_id>,<stack_no>),
+party_prisoner_stack_get_size          = 1657   # (party_prisoner_stack_get_size, <destination>,<party_id>,<stack_no>),
 party_prisoner_stack_get_troop_dna     = 1658   # (party_prisoner_stack_get_troop_dna, <destination>,<party_id>,<stack_no>),
 
 party_attach_to_party                  = 1660   # (party_attach_to_party, <party_id>, <party_id to attach to>),
@@ -744,7 +743,7 @@ agent_is_in_special_mode               = 1693   # (agent_is_in_special_mode,<age
 party_get_attached_to                  = 1694   # (party_get_attached_to, <destination>, <party_id>),
 party_get_num_attached_parties         = 1695   # (party_get_num_attached_parties, <destination>, <party_id>),
 party_get_attached_party_with_rank     = 1696   # (party_get_attached_party_with_rank, <destination>, <party_id>, <attached_party_no>),
-inflict_casualties_to_party_group      = 1697   # (inflict_casualties_to_party, <parent_party_id>, <attack_rounds>, <party_id_to_add_causalties_to>), 
+inflict_casualties_to_party_group      = 1697   # (inflict_casualties_to_party_group, <parent_party_id>, <attack_rounds>, <party_id_to_add_causalties_to>),
 distribute_party_among_party_group     = 1698   # (distribute_party_among_party_group, <party_to_be_distributed>, <group_root_party>),
 agent_is_routed                        = 1699   # (agent_is_routed,<agent_id>),
 
@@ -778,11 +777,9 @@ agent_get_entry_no                     = 1717	# (agent_get_entry_no,<destination
 agent_get_troop_id                     = 1718	# (agent_get_troop_id,<destination>, <agent_id>),
 agent_get_item_id                      = 1719	# (agent_get_item_id,<destination>, <agent_id>), #(works only for horses, returns -1 otherwise)
 
-store_agent_hit_points                 = 1720	# set absolute to 1 to retrieve actual hps, otherwise will return relative hp in range [0..100]
-						# (store_agent_hit_points,<destination>,<agent_id>,[absolute]),
-agent_set_hit_points                   = 1721	# set absolute to 1 if value is absolute, otherwise value will be treated as relative number in range [0..100]
-						# (agent_set_hit_points,<agent_id>,<value>,[absolute]),
-agent_deliver_damage_to_agent          = 1722	# (agent_deliver_damage_to_agent, <agent_id_deliverer>, <agent_id>, [<value>], [item_id]), #if value <= 0, then damage will be calculated using the weapon item. # item_id is the item that the damage is delivered. can be ignored.
+store_agent_hit_points                 = 1720	# (store_agent_hit_points,<destination>,<agent_id>,[absolute]), # set absolute to 1 to retrieve actual hps - otherwise will return relative hp in range [0..100]
+agent_set_hit_points                   = 1721	# (agent_set_hit_points,<agent_id>,<value>,[absolute]), # set absolute to 1 if value is absolute - otherwise value will be treated as relative number in range [0..100]
+agent_deliver_damage_to_agent          = 1722	# (agent_deliver_damage_to_agent, <agent_id_deliverer>, <agent_id>, [<value>], [item_id]), #if value <= 0 -> then damage will be calculated using the weapon item. # item_id is the item that the damage is delivered. can be ignored.
 agent_get_kill_count                   = 1723   # (agent_get_kill_count,<destination>,<agent_id>,[get_wounded]), #Set second value to non-zero to get wounded count
 agent_get_player_id                    = 1724   # (agent_get_player_id,<destination>,<agent_id>),
 agent_set_invulnerable_shield          = 1725 # (agent_set_invulnerable_shield, <agent_id>),
@@ -805,8 +802,8 @@ agent_get_simple_behavior              = 1738   # (agent_get_simple_behavior, <d
 agent_get_combat_state                 = 1739   # (agent_get_combat_state, <destination>, <agent_id>),
 
 agent_set_animation                    = 1740   # (agent_set_animation, <agent_id>, <anim_id>, [channel_no]), #channel_no default is 0. Top body only animations should have channel_no value as 1.
-agent_set_stand_animation              = 1741   # (agent_set_stand_action, <agent_id>, <anim_id>),
-agent_set_walk_forward_animation       = 1742   # (agent_set_walk_forward_action, <agent_id>, <anim_id>),
+agent_set_stand_animation              = 1741   # (agent_set_stand_animation, <agent_id>, <anim_id>),
+agent_set_walk_forward_animation       = 1742   # (agent_set_walk_forward_animation, <agent_id>, <anim_id>),
 agent_set_animation_progress           = 1743   # (agent_set_animation_progress, <agent_id>, <value_fixed_point>), #value should be between 0-1 (as fixed point)
 agent_set_look_target_position         = 1744   # (agent_set_look_target_position, <agent_id>, <position_no>),
 agent_set_attack_action                = 1745   # (agent_set_attack_action, <agent_id>, <value1>, [<value2>]), #value: -2 = clear any attack action, 0 = thrust, 1 = slashright, 2 = slashleft, 3 = overswing - second value 0 = ready and release, 1 = ready and hold
@@ -816,7 +813,7 @@ agent_set_scripted_destination_no_attack = 1748	# (agent_set_scripted_destinatio
 agent_fade_out                         = 1749   # (agent_fade_out, <agent_id>),
 agent_play_sound                       = 1750   # (agent_play_sound, <agent_id>, <sound_id>),
 agent_start_running_away               = 1751   # (agent_start_running_away, <agent_id>, [position_no]), # if position no is entered, agent will run away to that location. pos0 is not allowed (will be ignored).
-agent_stop_running_away                = 1752   # (agent_stop_run_away, <agent_id>),
+agent_stop_running_away                = 1752   # (agent_stop_running_away, <agent_id>),
 agent_ai_set_aggressiveness            = 1753   # (agent_ai_set_aggressiveness, <agent_id>, <value>), #100 is the default aggressiveness. higher the value, less likely to run back
 agent_set_kick_allowed                 = 1754   # (agent_set_kick_allowed, <agent_id>, <value>), #0 for disable, 1 for allow
 
@@ -828,7 +825,7 @@ agent_set_attached_scene_prop_x        = 1758   # (agent_set_attached_scene_prop
 #agent_set_attached_scene_prop_y        = 1809   # (agent_set_attached_scene_prop_y, <agent_id>, <value>)
 agent_set_attached_scene_prop_z        = 1759   # (agent_set_attached_scene_prop_z, <agent_id>, <value>)
 
-agent_get_time_elapsed_since_removed   = 1760   # (agent_get_time_elapsed_since_dead, <destination>, <agent_id>),
+agent_get_time_elapsed_since_removed   = 1760   # (agent_get_time_elapsed_since_removed, <destination>, <agent_id>),
 agent_get_number_of_enemies_following  = 1761   # (agent_get_number_of_enemies_following, <destination>, <agent_id>),
 
 agent_set_no_dynamics                  = 1762   # (agent_set_no_dynamics, <agent_id>, <value>), #0 = turn dynamics off, 1 = turn dynamics on (required for cut-scenes)
@@ -1018,7 +1015,7 @@ cur_item_add_mesh                      = 1964   # (cur_item_add_mesh, <mesh_name
 cur_item_set_material                  = 1978   # (cur_item_set_material, <string_no>, <sub_mesh_no>, [<lod_begin>], [<lod_end>]), #only call inside ti_on_init_item in module_items # lod values are optional. lod_end is not included.
 
 cur_tableau_add_tableau_mesh           = 1980   # (cur_tableau_add_tableau_mesh, <tableau_material_id>, <value>, <position_register_no>), #value is passed to tableau_material
-cur_item_set_tableau_material          = 1981   # (cur_item_set_tableu_material, <tableau_material_id>, <instance_code>), #only call inside ti_on_init_item in module_items; instance_code is simply passed as a parameter to the tableau
+cur_item_set_tableau_material          = 1981   # (cur_item_set_tableau_material, <tableau_material_id>, <instance_code>), #only call inside ti_on_init_item in module_items; instance_code is simply passed as a parameter to the tableau
 cur_scene_prop_set_tableau_material    = 1982   # (cur_scene_prop_set_tableau_material, <tableau_material_id>, <instance_code>), #only call inside ti_on_init_scene_prop in module_scene_props; instance_code is simply passed as a parameter to the tableau
 cur_map_icon_set_tableau_material      = 1983   # (cur_map_icon_set_tableau_material, <tableau_material_id>, <instance_code>), #only call inside ti_on_init_map_icon in module_scene_props; instance_code is simply passed as a parameter to the tableau
 cur_tableau_render_as_alpha_mask       = 1984   # (cur_tableau_render_as_alpha_mask)
@@ -1089,7 +1086,7 @@ change_screen_map_conversation         = 2049   # (change_screen_map_conversatio
                                                 # Starts the mission, same as (change_screen_mission). However once the mission starts, player will get into dialog with the specified troop, and once the dialog ends, the mission will automatically end.
 change_screen_exchange_with_party      = 2050   # (change_screen_exchange_with_party, <party_id>),
 change_screen_equip_other              = 2051	# (change_screen_equip_other, <troop_id>),
-change_screen_map                      = 2052
+change_screen_map                      = 2052   # (change_screen_map),
 change_screen_notes                    = 2053   # (change_screen_notes, <note_type>, <object_id>), #Note type can be 1 = troops, 2 = factions, 3 = parties, 4 = quests, 5 = info_pages
 change_screen_quit                     = 2055   # (change_screen_quit),
 change_screen_give_members             = 2056   # (change_screen_give_members, [party_id]), #if party id is not given, current party will be used
@@ -1120,8 +1117,7 @@ agent_ai_get_move_target               = 2081 # (agent_ai_get_move_target, <dest
 agent_ai_get_behavior_target           = 2082 # (agent_ai_get_behavior_target, <destination>, <agent_id>),
 agent_ai_set_can_crouch                = 2083 # (agent_ai_set_can_crouch, <agent_id>, <value>), # 0 for false, 1 for true.
 
-agent_set_max_hit_points               = 2090	# set absolute to 1 if value is absolute, otherwise value will be treated as relative number in range [0..100]
-						# (agent_set_max_hit_points,<agent_id>,<value>,[absolute]),
+agent_set_max_hit_points               = 2090	# (agent_set_max_hit_points,<agent_id>,<value>,[absolute]), # set absolute to 1 if value is absolute, otherwise value will be treated as relative number in range [0..100]
 agent_set_damage_modifier              = 2091   # (agent_set_damage_modifier, <agent_id>, <value>), # value is in percentage, 100 is default
 agent_set_accuracy_modifier            = 2092   # (agent_set_accuracy_modifier, <agent_id>, <value>), # value is in percentage, 100 is default, value can be between [0..1000]
 agent_set_speed_modifier               = 2093   # (agent_set_speed_modifier, <agent_id>, <value>), # value is in percentage, 100 is default, value can be between [0..1000]
@@ -1197,7 +1193,7 @@ assign                 = 2133	# had to put this here so that it can be called fr
 				# (assign,<destination>,<value>),
 shuffle_range          = 2134	# (shuffle_range,<reg_no>,<reg_no>),
 
-store_random           = 2135	# deprecated, use store_random_in_range instead.
+store_random           = 2135	# (store_random, <seed>), # deprecated, use store_random_in_range instead.
 store_random_in_range  = 2136	# (store_random_in_range,<destination>,<range_low>,<range_high>), # gets random number in range [range_low,range_high] excluding range_high
 
 
