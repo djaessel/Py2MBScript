@@ -599,7 +599,10 @@ class ScriptConverter:
                     if xxy:
                         if tmp[0] == "gstr":
                             tmp[0] = "str"
-                        xol[i] = tmp[0] + "_" + xxy.id
+                        if tmp[0] == "script":
+                            xol[i] = tmp[0] + "_" + xxy.__name__
+                        else:
+                            xol[i] = tmp[0] + "_" + xxy.id
                         codeNew += '"' + xol[i] + "\","
                     else:
                         print("ERROR 0x533D1")
@@ -699,6 +702,7 @@ class ScriptConverter:
             else:
                 liny = self.getFuncCodeLine(code)
                 liny = self.replaceFuncParams(liny, code.split(')')[0])
+            liny = liny.replace(":::", "$")
             return [liny]
 
         return [""] # ERROR 2 # ignored code
@@ -1461,7 +1465,7 @@ class ScriptConverter:
         for i, code in enumerate(codeData):
             if "assign" in code:
                 tmp = code.rstrip(')').split(',')
-                if self.is_float(tmp[2]) and not "$" in tmp[1]:
+                if len(tmp) > 2 and self.is_float(tmp[2]) and not "$" in tmp[1]:
                     if self.searchOccurancesVarReplace(codeData, i, tmp[1], tmp[2]):
                         delx.append(i)
             elif "try_begin" in code:
@@ -1479,6 +1483,7 @@ class ScriptConverter:
                             delx.append(remIdx)
             lastCode = code
 
+        delx = list(set(delx)) # fix because of duplicates
         delx.sort()
         delx.reverse()
         for i in delx:
