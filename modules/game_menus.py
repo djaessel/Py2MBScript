@@ -18,13 +18,14 @@ start_game_0 = GameMenu("start_game_0", 18374686479671624192,
 start_game_0_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.start_game_1)
-start_game_0_continue.codeBlock = code
+start_game_0_continue.consequenceBlock = code
+start_game_0.menuOptions.append(start_game_0_continue)
 
 start_game_0_go_back = MenuOption("go_back", "Go back")
 def code():
     change_screen_quit()
-start_game_0_go_back.codeBlock = code
-
+start_game_0_go_back.consequenceBlock = code
+start_game_0.menuOptions.append(start_game_0_go_back)
 
 
 start_phase_2 = GameMenu("start_phase_2", 512,
@@ -37,7 +38,8 @@ def code():
     _g_starting_town = _current_town
     _g_journey_string = gstr.journey_to_praven
     jump_to_menu(mnu.start_phase_2_5)
-start_phase_2_town_1.codeBlock = code
+start_phase_2_town_1.consequenceBlock = code
+start_phase_2.menuOptions.append(start_phase_2_town_1)
 
 start_phase_2_town_2 = MenuOption("town_2", "join a caravan to Reyvadin, in the Kingdom of the Vaegirs.")
 def code():
@@ -45,7 +47,8 @@ def code():
     _g_starting_town = _current_town
     _g_journey_string = gstr.journey_to_reyvadin
     jump_to_menu(mnu.start_phase_2_5)
-start_phase_2_town_2.codeBlock = code
+start_phase_2_town_2.consequenceBlock = code
+start_phase_2.menuOptions.append(start_phase_2_town_2)
 
 start_phase_2_town_3 = MenuOption("town_3", "join a caravan to Tulga, in the Khergit Khanate.")
 def code():
@@ -53,7 +56,8 @@ def code():
     _g_starting_town = _current_town
     _g_journey_string = gstr.journey_to_tulga
     jump_to_menu(mnu.start_phase_2_5)
-start_phase_2_town_3.codeBlock = code
+start_phase_2_town_3.consequenceBlock = code
+start_phase_2.menuOptions.append(start_phase_2_town_3)
 
 start_phase_2_town_4 = MenuOption("town_4", "take a ship to Sargoth, in the Kingdom of the Nords.")
 def code():
@@ -61,7 +65,8 @@ def code():
     _g_starting_town = _current_town
     _g_journey_string = gstr.journey_to_sargoth
     jump_to_menu(mnu.start_phase_2_5)
-start_phase_2_town_4.codeBlock = code
+start_phase_2_town_4.consequenceBlock = code
+start_phase_2.menuOptions.append(start_phase_2_town_4)
 
 start_phase_2_town_5 = MenuOption("town_5", "take a ship to Jelkala, in the Kingdom of the Rhodoks.")
 def code():
@@ -69,7 +74,8 @@ def code():
     _g_starting_town = _current_town
     _g_journey_string = gstr.journey_to_jelkala
     jump_to_menu(mnu.start_phase_2_5)
-start_phase_2_town_5.codeBlock = code
+start_phase_2_town_5.consequenceBlock = code
+start_phase_2.menuOptions.append(start_phase_2_town_5)
 
 start_phase_2_town_6 = MenuOption("town_6", "join a caravan to Shariz, in the Sarranid Sultanate.")
 def code():
@@ -77,7 +83,8 @@ def code():
     _g_starting_town = _current_town
     _g_journey_string = gstr.journey_to_shariz
     jump_to_menu(mnu.start_phase_2_5)
-start_phase_2_town_6.codeBlock = code
+start_phase_2_town_6.consequenceBlock = code
+start_phase_2.menuOptions.append(start_phase_2_town_6)
 
 start_phase_2_tutorial_cheat = MenuOption("tutorial_cheat", "{!}CHEAT!")
 def code():
@@ -138,7 +145,8 @@ def code():
     #end
     get_player_party_morale_values()
     party_set_morale(p.main_party,reg0)
-start_phase_2_tutorial_cheat.codeBlock = code
+start_phase_2_tutorial_cheat.consequenceBlock = code
+start_phase_2.menuOptions.append(start_phase_2_tutorial_cheat)
 
 
 
@@ -153,7 +161,7 @@ start_game_3.conditionBlock = condition
 start_game_3_go_back = MenuOption("go_back", "Go back")
 def code():
     change_screen_quit()
-start_game_3_go_back.codeBlock = code
+start_game_3_go_back.consequenceBlock = code
 
 
 
@@ -213,12 +221,12 @@ def code():
     set_jump_mission(mt.tutorial_training_ground)
     jump_to_scene(scn.tutorial_training_ground)
     change_screen_mission()
-tutorial_continue.codeBlock = code
+tutorial_continue.consequenceBlock = code
 
 tutorial_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     change_screen_quit()
-tutorial_go_back_dot.codeBlock = code
+tutorial_go_back_dot.consequenceBlock = code
 
 
 
@@ -238,43 +246,43 @@ reports.conditionBlock = condition
 reports_cheat_faction_orders = MenuOption("cheat_faction_orders", "{!}Cheat: Faction orders.")
 def code():
     jump_to_menu(mnu.faction_orders)
-reports_cheat_faction_orders.codeBlock = code
+reports_cheat_faction_orders.consequenceBlock = code
 
 reports_view_character_report = MenuOption("view_character_report", "View character report.")
 def code():
     jump_to_menu(mnu.character_report)
-reports_view_character_report.codeBlock = code
+reports_view_character_report.consequenceBlock = code
 
 reports_view_party_size_report = MenuOption("view_party_size_report", "View party size report.")
 def code():
     jump_to_menu(mnu.party_size_report)
-reports_view_party_size_report.codeBlock = code
+reports_view_party_size_report.consequenceBlock = code
 
 reports_view_npc_mission_report = MenuOption("view_npc_mission_report", "View companion mission report.")
 def code():
     jump_to_menu(mnu.companion_report)
-reports_view_npc_mission_report.codeBlock = code
+reports_view_npc_mission_report.consequenceBlock = code
 
 reports_view_weekly_budget_report = MenuOption("view_weekly_budget_report", "View weekly budget report.")
 def code():
     _g_apply_budget_report_to_gold = 0
     start_presentation(prsnt.budget_report)
-reports_view_weekly_budget_report.codeBlock = code
+reports_view_weekly_budget_report.consequenceBlock = code
 
 reports_view_morale_report = MenuOption("view_morale_report", "View party morale report.")
 def code():
     jump_to_menu(mnu.morale_report)
-reports_view_morale_report.codeBlock = code
+reports_view_morale_report.consequenceBlock = code
 
 reports_lord_relations = MenuOption("lord_relations", "View list of known lords by relation.")
 def code():
     jump_to_menu(mnu.lord_relations)
-reports_lord_relations.codeBlock = code
+reports_lord_relations.consequenceBlock = code
 
 reports_courtship_relations = MenuOption("courtship_relations", "View courtship relations.")
 def code():
     jump_to_menu(mnu.courtship_relations)
-reports_courtship_relations.codeBlock = code
+reports_courtship_relations.consequenceBlock = code
 
 reports_status_check = MenuOption("status_check", "{!}NPC status check.")
 def code():
@@ -289,17 +297,17 @@ def code():
             print("@{!}{s4}: M{reg3}, 2M{reg4}, PC{reg5}, 2PC{reg6}, PM{reg7}")
         #end
     #end
-reports_status_check.codeBlock = code
+reports_status_check.consequenceBlock = code
 
 reports_view_faction_relations_report = MenuOption("view_faction_relations_report", "View faction relations report.")
 def code():
     jump_to_menu(mnu.faction_relations_report)
-reports_view_faction_relations_report.codeBlock = code
+reports_view_faction_relations_report.consequenceBlock = code
 
 reports_resume_travelling = MenuOption("resume_travelling", "Resume travelling.")
 def code():
     change_screen_return()
-reports_resume_travelling.codeBlock = code
+reports_resume_travelling.consequenceBlock = code
 
 
 
@@ -312,40 +320,40 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.quick_battle_scene_1)
     change_screen_mission()
-custom_battle_scene_quick_battle_scene_1.codeBlock = code
+custom_battle_scene_quick_battle_scene_1.consequenceBlock = code
 
 custom_battle_scene_quick_battle_scene_2 = MenuOption("quick_battle_scene_2", "{!}quick battle scene 2")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.quick_battle_scene_2)
     change_screen_mission()
-custom_battle_scene_quick_battle_scene_2.codeBlock = code
+custom_battle_scene_quick_battle_scene_2.consequenceBlock = code
 
 custom_battle_scene_quick_battle_scene_3 = MenuOption("quick_battle_scene_3", "{!}quick battle scene 3")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.quick_battle_scene_3)
     change_screen_mission()
-custom_battle_scene_quick_battle_scene_3.codeBlock = code
+custom_battle_scene_quick_battle_scene_3.consequenceBlock = code
 
 custom_battle_scene_quick_battle_scene_4 = MenuOption("quick_battle_scene_4", "{!}quick battle scene 4")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.quick_battle_scene_4)
     change_screen_mission()
-custom_battle_scene_quick_battle_scene_4.codeBlock = code
+custom_battle_scene_quick_battle_scene_4.consequenceBlock = code
 
 custom_battle_scene_quick_battle_scene_5 = MenuOption("quick_battle_scene_5", "{!}quick battle scene 5")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.quick_battle_scene_5)
     change_screen_mission()
-custom_battle_scene_quick_battle_scene_5.codeBlock = code
+custom_battle_scene_quick_battle_scene_5.consequenceBlock = code
 
 custom_battle_scene_go_back = MenuOption("go_back", "{!}Go back")
 def code():
     change_screen_quit()
-custom_battle_scene_go_back.codeBlock = code
+custom_battle_scene_go_back.consequenceBlock = code
 
 
 
@@ -372,7 +380,7 @@ custom_battle_end.conditionBlock = condition
 custom_battle_end_continue = MenuOption("continue", "Continue.")
 def code():
     change_screen_quit()
-custom_battle_end_continue.codeBlock = code
+custom_battle_end_continue.consequenceBlock = code
 
 
 
@@ -385,19 +393,22 @@ def code():
     troop_set_type(trp.player,0)
     _character_gender = 0
     jump_to_menu(mnu.start_character_1)
-start_game_1_start_male.codeBlock = code
+start_game_1_start_male.consequenceBlock = code
+start_game_1.menuOptions.append(start_game_1_start_male)
 
 start_game_1_start_female = MenuOption("start_female", "Female")
 def code():
     troop_set_type(trp.player,1)
     _character_gender = 1
     jump_to_menu(mnu.start_character_1)
-start_game_1_start_female.codeBlock = code
+start_game_1_start_female.consequenceBlock = code
+start_game_1.menuOptions.append(start_game_1_start_female)
 
 start_game_1_go_back = MenuOption("go_back", "Go back")
 def code():
     jump_to_menu(mnu.start_game_0)
-start_game_1_go_back.codeBlock = code
+start_game_1_go_back.consequenceBlock = code
+start_game_1.menuOptions.append(start_game_1_go_back)
 
 
 
@@ -417,56 +428,63 @@ start_character_1_start_noble = MenuOption("start_noble", "An impoverished noble
 def code():
     _background_type = 1
     reg3 = _character_gender
-    s10 = str_store_string("@You came into the world a {reg3?daughter:son} of declining nobility, owning only the house in which they lived. However, despite your family's hardships, they afforded you a good education and trained you from childhood for the rigors of aristocracy and life at court.")
+    s10 = str_store_string("@You came into the world a {reg3?daughter:son} of declining nobility;;; owning only the house in which they lived. However;;; despite your family's hardships;;; they afforded you a good education and trained you from childhood for the rigors of aristocracy and life at court.")
     jump_to_menu(mnu.start_character_2)
-start_character_1_start_noble.codeBlock = code
+start_character_1_start_noble.consequenceBlock = code
+start_character_1.menuOptions.append(start_character_1_start_noble)
 
 start_character_1_start_merchant = MenuOption("start_merchant", "A travelling merchant.")
 def code():
     _background_type = 2
     reg3 = _character_gender
-    s10 = str_store_string("@You were born the {reg3?daughter:son} of travelling merchants, always moving from place to place in search of a profit. Although your parents were wealthier than most and educated you as well as they could, you found little opportunity to make friends on the road, living mostly for the moments when you could sell something to somebody.")
+    s10 = str_store_string("@You were born the {reg3?daughter:son} of travelling merchants;;; always moving from place to place in search of a profit. Although your parents were wealthier than most and educated you as well as they could;;; you found little opportunity to make friends on the road;;; living mostly for the moments when you could sell something to somebody.")
     jump_to_menu(mnu.start_character_2)
-start_character_1_start_merchant.codeBlock = code
+start_character_1_start_merchant.consequenceBlock = code
+start_character_1.menuOptions.append(start_character_1_start_merchant)
 
 start_character_1_start_guard = MenuOption("start_guard", "A veteran warrior.")
 def code():
     _background_type = 3
     reg3 = _character_gender
-    s10 = str_store_string("@As a child, your family scrabbled out a meagre living from your father's wages as a guardsman to the local lord. It was not an easy existence, and you were too poor to get much of an education. You learned mainly how to defend yourself on the streets, with or without a weapon in hand.")
+    s10 = str_store_string("@As a child;;; your family scrabbled out a meagre living from your father's wages as a guardsman to the local lord. It was not an easy existence;;; and you were too poor to get much of an education. You learned mainly how to defend yourself on the streets;;; with or without a weapon in hand.")
     jump_to_menu(mnu.start_character_2)
-start_character_1_start_guard.codeBlock = code
+start_character_1_start_guard.consequenceBlock = code
+start_character_1.menuOptions.append(start_character_1_start_guard)
 
 start_character_1_start_forester = MenuOption("start_forester", "A hunter.")
 def code():
     _background_type = 4
     reg3 = _character_gender
     s11 = str_store_string("@{reg3?daughter:son}")
-    s10 = str_store_string("@You were the {reg3?daughter:son} of a family who lived off the woods, doing whatever they needed to make ends meet. Hunting, woodcutting, making arrows, even a spot of poaching whenever things got tight. Winter was never a good time for your family as the cold took animals and people alike, but you always lived to see another dawn, though your brothers and sisters might not be so fortunate.")
+    s10 = str_store_string("@You were the {reg3?daughter:son} of a family who lived off the woods;;; doing whatever they needed to make ends meet. Hunting;;; woodcutting;;; making arrows;;; even a spot of poaching whenever things got tight. Winter was never a good time for your family as the cold took animals and people alike;;; but you always lived to see another dawn;;; though your brothers and sisters might not be so fortunate.")
     jump_to_menu(mnu.start_character_2)
-start_character_1_start_forester.codeBlock = code
+start_character_1_start_forester.consequenceBlock = code
+start_character_1.menuOptions.append(start_character_1_start_forester)
 
 start_character_1_start_nomad = MenuOption("start_nomad", "A steppe nomad.")
 def code():
     _background_type = 5
     reg3 = _character_gender
     s11 = str_store_string("@{reg3?daughter:son}")
-    s10 = str_store_string("@You were a child of the steppe, born to a tribe of wandering nomads who lived in great camps throughout the arid grasslands. Like the other tribesmen, your family revered horses above almost everything else, and they taught you how to ride almost before you learned how to walk. ")
+    s10 = str_store_string("@You were a child of the steppe;;; born to a tribe of wandering nomads who lived in great camps throughout the arid grasslands. Like the other tribesmen;;; your family revered horses above almost everything else;;; and they taught you how to ride almost before you learned how to walk. ")
     jump_to_menu(mnu.start_character_2)
-start_character_1_start_nomad.codeBlock = code
+start_character_1_start_nomad.consequenceBlock = code
+start_character_1.menuOptions.append(start_character_1_start_nomad)
 
 start_character_1_start_thief = MenuOption("start_thief", "A thief.")
 def code():
     _background_type = 6
     reg3 = _character_gender
-    s10 = str_store_string("@As the {reg3?daughter:son} of a thief, you had very little 'formal' education. Instead you were out on the street, begging until you learned how to cut purses, cutting purses until you learned how to pick locks, all the way through your childhood. Still, these long years made you streetwise and sharp to the secrets of cities and shadowy backways.")
+    s10 = str_store_string("@As the {reg3?daughter:son} of a thief;;; you had very little 'formal' education. Instead you were out on the street;;; begging until you learned how to cut purses, cutting purses until you learned how to pick locks;;; all the way through your childhood. Still;;; these long years made you streetwise and sharp to the secrets of cities and shadowy backways.")
     jump_to_menu(mnu.start_character_2)
-start_character_1_start_thief.codeBlock = code
+start_character_1_start_thief.consequenceBlock = code
+start_character_1.menuOptions.append(start_character_1_start_thief)
 
 start_character_1_go_back = MenuOption("go_back", "Go back")
 def code():
     jump_to_menu(mnu.start_game_1)
-start_character_1_go_back.codeBlock = code
+start_character_1_go_back.consequenceBlock = code
+start_character_1.menuOptions.append(start_character_1_go_back)
 
 
 
@@ -478,46 +496,52 @@ start_character_2_page = MenuOption("page", "A page at a nobleman's court.")
 def code():
     _background_answer_2 = 0
     reg3 = _character_gender
-    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood, you were sent to live in the court of one of the nobles of the land. There, your first lessons were in humility, as you waited upon the lords and ladies of the household. But from their chess games, their gossip, even the poetry of great deeds and courtly love, you quickly began to learn about the adult world of conflict and competition. You also learned from the rough games of the other children, who battered at each other with sticks in imitation of their elders' swords.")
+    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood;;; you were sent to live in the court of one of the nobles of the land. There;;; your first lessons were in humility;;; as you waited upon the lords and ladies of the household. But from their chess games;;; their gossip;;; even the poetry of great deeds and courtly love;;; you quickly began to learn about the adult world of conflict and competition. You also learned from the rough games of the other children;;; who battered at each other with sticks in imitation of their elders' swords.")
     jump_to_menu(mnu.start_character_3)
-start_character_2_page.codeBlock = code
+start_character_2_page.consequenceBlock = code
+start_character_2.menuOptions.append(start_character_2_page)
 
 start_character_2_apprentice = MenuOption("apprentice", "A craftsman's apprentice.")
 def code():
     _background_answer_2 = 1
     reg3 = _character_gender
-    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood, you apprenticed with a local craftsman to learn a trade. After years of hard work and study under your new master, he promoted you to journeyman and employed you as a fully paid craftsman for as long as you wished to stay.")
+    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood;;; you apprenticed with a local craftsman to learn a trade. After years of hard work and study under your new master;;; he promoted you to journeyman and employed you as a fully paid craftsman for as long as you wished to stay.")
     jump_to_menu(mnu.start_character_3)
-start_character_2_apprentice.codeBlock = code
+start_character_2_apprentice.consequenceBlock = code
+start_character_2.menuOptions.append(start_character_2_apprentice)
 
 start_character_2_stockboy = MenuOption("stockboy", "A shop assistant.")
 def code():
     _background_answer_2 = 4
     reg3 = _character_gender
-    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood, you apprenticed to a wealthy merchant, picking up the trade over years of working shops and driving caravans. You soon became adept at the art of buying low, selling high, and leaving the customer thinking they'd got the better deal.")
+    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood;;; you apprenticed to a wealthy merchant;;; picking up the trade over years of working shops and driving caravans. You soon became adept at the art of buying low;;; selling high;;; and leaving the customer thinking they'd got the better deal.")
     jump_to_menu(mnu.start_character_3)
-start_character_2_stockboy.codeBlock = code
+start_character_2_stockboy.consequenceBlock = code
+start_character_2.menuOptions.append(start_character_2_stockboy)
 
 start_character_2_urchin = MenuOption("urchin", "A street urchin.")
 def code():
     _background_answer_2 = 2
     reg3 = _character_gender
-    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood, you took to the streets, doing whatever you must to survive. Begging, thieving and working for gangs to earn your bread, you lived from day to day in this violent world, always one step ahead of the law and those who wished you ill.")
+    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood;;; you took to the streets;;; doing whatever you must to survive. Begging;;; thieving and working for gangs to earn your bread;;; you lived from day to day in this violent world;;; always one step ahead of the law and those who wished you ill.")
     jump_to_menu(mnu.start_character_3)
-start_character_2_urchin.codeBlock = code
+start_character_2_urchin.consequenceBlock = code
+start_character_2.menuOptions.append(start_character_2_urchin)
 
 start_character_2_nomad = MenuOption("nomad", "A steppe child.")
 def code():
     _background_answer_2 = 3
     reg3 = _character_gender
-    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood, you rode the great steppes on a horse of your own, learning the ways of the grass and the desert. Although you sometimes went hungry, you became a skillful hunter and pathfinder in this trackless country. Your body too started to harden with muscle as you grew into the life of a nomad {reg3?woman:man}.")
+    s11 = str_store_string("@As a {reg3?girl:boy} growing out of childhood;;; you rode the great steppes on a horse of your own;;; learning the ways of the grass and the desert. Although you sometimes went hungry;;; you became a skillful hunter and pathfinder in this trackless country. Your body too started to harden with muscle as you grew into the life of a nomad {reg3?woman:man}.")
     jump_to_menu(mnu.start_character_3)
-start_character_2_nomad.codeBlock = code
+start_character_2_nomad.consequenceBlock = code
+start_character_2.menuOptions.append(start_character_2_nomad)
 
 start_character_2_go_back = MenuOption("go_back", "Go back.")
 def code():
     jump_to_menu(mnu.start_character_1)
-start_character_2_go_back.codeBlock = code
+start_character_2_go_back.consequenceBlock = code
+start_character_2.menuOptions.append(start_character_2_go_back)
 
 
 
@@ -532,66 +556,74 @@ start_character_3_squire = MenuOption("squire", "A squire.")
 def code():
     _background_answer_3 = 8
     s14 = str_store_string("@{reg3?daughter:man}")
-    s12 = str_store_string("@Though the distinction felt sudden to you, somewhere along the way you had become a {reg3?woman:man}, and the whole world seemed to change around you. When you were named squire to a noble at court, you practiced long hours with weapons, learning how to deal out hard knocks and how to take them, too. You were instructed in your obligations to your lord, and of your duties to those who might one day be your vassals. But in addition to learning the chivalric ideal, you also learned about the less uplifting side -- old warriors' stories of ruthless power politics, of betrayals and usurpations, of men who used guile as well as valor to achieve their aims.")
+    s12 = str_store_string("@Though the distinction felt sudden to you;;; somewhere along the way you had become a {reg3?woman:man};;; and the whole world seemed to change around you. When you were named squire to a noble at court;;; you practiced long hours with weapons;;; learning how to deal out hard knocks and how to take them;;; too. You were instructed in your obligations to your lord;;; and of your duties to those who might one day be your vassals. But in addition to learning the chivalric ideal;;; you also learned about the less uplifting side -- old warriors' stories of ruthless power politics;;; of betrayals and usurpations;;; of men who used guile as well as valor to achieve their aims.")
     jump_to_menu(mnu.start_character_4)
-start_character_3_squire.codeBlock = code
+start_character_3_squire.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_squire)
 
 start_character_3_lady = MenuOption("lady", "A lady-in-waiting.")
 def code():
     _background_answer_3 = 9
     s14 = str_store_string("@{reg3?daughter:man}")
     s13 = str_store_string("@{reg3?woman:man}")
-    s12 = str_store_string("@Though the distinction felt sudden to you, somewhere along the way you had become a {s13}, and the whole world seemed to change around you. You joined the tightly-knit circle of women at court, ladies who all did proper ladylike things, the wives and mistresses of noble men as well as maidens who had yet to find a husband. However, even here you found politics at work as the ladies schemed for prominence and fought each other bitterly to catch the eye of whatever unmarried man was in fashion at court. You soon learned ways of turning these situations and goings-on to your advantage. With it came the realisation that you yourself could wield great influence in the world, if only you applied yourself with a little bit of subtlety.")
+    s12 = str_store_string("@Though the distinction felt sudden to you;;; somewhere along the way you had become a {s13};;; and the whole world seemed to change around you. You joined the tightly-knit circle of women at court;;; ladies who all did proper ladylike things;;; the wives and mistresses of noble men as well as maidens who had yet to find a husband. However;;; even here you found politics at work as the ladies schemed for prominence and fought each other bitterly to catch the eye of whatever unmarried man was in fashion at court. You soon learned ways of turning these situations and goings-on to your advantage. With it came the realisation that you yourself could wield great influence in the world;;; if only you applied yourself with a little bit of subtlety.")
     jump_to_menu(mnu.start_character_4)
-start_character_3_lady.codeBlock = code
+start_character_3_lady.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_lady)
 
 start_character_3_troubadour = MenuOption("troubadour", "A troubadour.")
 def code():
     _background_answer_3 = 7
     s14 = str_store_string("@{reg3?daughter:man}")
     s13 = str_store_string("@{reg3?woman:man}")
-    s12 = str_store_string("@Though the distinction felt sudden to you, somewhere along the way you had become a {s13}, and the whole world seemed to change around you. You set out on your own with nothing except the instrument slung over your back and your own voice. It was a poor existence, with many a hungry night when people failed to appreciate your play, but you managed to survive on your music alone. As the years went by you became adept at playing the drunken crowds in your taverns, and even better at talking anyone out of anything you wanted.")
+    s12 = str_store_string("@Though the distinction felt sudden to you;;; somewhere along the way you had become a {s13};;; and the whole world seemed to change around you. You set out on your own with nothing except the instrument slung over your back and your own voice. It was a poor existence;;; with many a hungry night when people failed to appreciate your play;;; but you managed to survive on your music alone. As the years went by you became adept at playing the drunken crowds in your taverns;;; and even better at talking anyone out of anything you wanted.")
     jump_to_menu(mnu.start_character_4)
-start_character_3_troubadour.codeBlock = code
+start_character_3_troubadour.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_troubadour)
 
 start_character_3_student = MenuOption("student", "A university student.")
 def code():
     _background_answer_3 = 10
-    s12 = str_store_string("@Though the distinction felt sudden to you, somewhere along the way you had become a {reg3?woman:man}, and the whole world seemed to change around you. You found yourself as a student in the university of one of the great cities, where you studied theology, philosophy, and medicine. But not all your lessons were learned in the lecture halls. You may or may not have joined in with your fellows as they roamed the alleys in search of wine, women, and a good fight. However, you certainly were able to observe how a broken jaw is set, or how an angry townsman can be persuaded to set down his club and accept cash compensation for the destruction of his shop.")
+    s12 = str_store_string("@Though the distinction felt sudden to you;;; somewhere along the way you had become a {reg3?woman:man};;; and the whole world seemed to change around you. You found yourself as a student in the university of one of the great cities;;; where you studied theology;;; philosophy;;; and medicine. But not all your lessons were learned in the lecture halls. You may or may not have joined in with your fellows as they roamed the alleys in search of wine;;; women;;; and a good fight. However;;; you certainly were able to observe how a broken jaw is set;;; or how an angry townsman can be persuaded to set down his club and accept cash compensation for the destruction of his shop.")
     jump_to_menu(mnu.start_character_4)
-start_character_3_student.codeBlock = code
+start_character_3_student.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_student)
 
 start_character_3_peddler = MenuOption("peddler", "A goods peddler.")
 def code():
     _background_answer_3 = 5
     s14 = str_store_string("@{reg3?daughter:man}")
     s13 = str_store_string("@{reg3?woman:man}")
-    s12 = str_store_string("@Though the distinction felt sudden to you, somewhere along the way you had become a {s13}, and the whole world seemed to change around you. Heeding the call of the open road, you travelled from village to village buying and selling what you could. It was not a rich existence, but you became a master at haggling even the most miserly elders into giving you a good price. Soon, you knew, you would be well-placed to start your own trading empire...")
+    s12 = str_store_string("@Though the distinction felt sudden to you;;; somewhere along the way you had become a {s13};;; and the whole world seemed to change around you. Heeding the call of the open road;;; you travelled from village to village buying and selling what you could. It was not a rich existence;;; but you became a master at haggling even the most miserly elders into giving you a good price. Soon;;; you knew;;; you would be well-placed to start your own trading empire...")
     jump_to_menu(mnu.start_character_4)
-start_character_3_peddler.codeBlock = code
+start_character_3_peddler.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_peddler)
 
 start_character_3_craftsman = MenuOption("craftsman", "A smith.")
 def code():
     _background_answer_3 = 4
     s14 = str_store_string("@{reg3?daughter:man}")
     s13 = str_store_string("@{reg3?woman:man}")
-    s12 = str_store_string("@Though the distinction felt sudden to you, somewhere along the way you had become a {s13}, and the whole world seemed to change around you. You pursued a career as a smith, crafting items of function and beauty out of simple metal. As time wore on you became a master of your trade, and fine work started to fetch fine prices. With food in your belly and logs on your fire, you could take pride in your work and your growing reputation.")
+    s12 = str_store_string("@Though the distinction felt sudden to you;;; somewhere along the way you had become a {s13};;; and the whole world seemed to change around you. You pursued a career as a smith;;; crafting items of function and beauty out of simple metal. As time wore on you became a master of your trade;;; and fine work started to fetch fine prices. With food in your belly and logs on your fire;;; you could take pride in your work and your growing reputation.")
     jump_to_menu(mnu.start_character_4)
-start_character_3_craftsman.codeBlock = code
+start_character_3_craftsman.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_craftsman)
 
 start_character_3_poacher = MenuOption("poacher", "A game poacher.")
 def code():
     _background_answer_3 = 3
     s14 = str_store_string("@{reg3?daughter:man}")
     s13 = str_store_string("@{reg3?woman:man}")
-    s12 = str_store_string("@Though the distinction felt sudden to you, somewhere along the way you had become a {s13}, and the whole world seemed to change around you. Dissatisfied with common men's desperate scrabble for coin, you took to your local lord's own forests and decided to help yourself to its bounty, laws be damned. You hunted stags, boars and geese and sold the precious meat under the table. You cut down trees right under the watchmen's noses and turned them into firewood that warmed many freezing homes during winter. All for a few silvers, of course.")
+    s12 = str_store_string("@Though the distinction felt sudden to you;;; somewhere along the way you had become a {s13};;; and the whole world seemed to change around you. Dissatisfied with common men's desperate scrabble for coin;;; you took to your local lord's own forests and decided to help yourself to its bounty;;; laws be damned. You hunted stags;;; boars and geese and sold the precious meat under the table. You cut down trees right under the watchmen's noses and turned them into firewood that warmed many freezing homes during winter. All for a few silvers;;; of course.")
     jump_to_menu(mnu.start_character_4)
-start_character_3_poacher.codeBlock = code
+start_character_3_poacher.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_poacher)
 
 start_character_3_go_back = MenuOption("go_back", "Go back.")
 def code():
     jump_to_menu(mnu.start_character_2)
-start_character_3_go_back.codeBlock = code
+start_character_3_go_back.consequenceBlock = code
+start_character_3.menuOptions.append(start_character_3_go_back)
 
 
 
@@ -602,42 +634,48 @@ start_character_4 = GameMenu("start_character_4", 512,
 start_character_4_revenge = MenuOption("revenge", "Personal revenge.")
 def code():
     _background_answer_4 = 1
-    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. Still, it was not a difficult choice to leave, with the rage burning brightly in your heart. You want vengeance. You want justice. What was done to you cannot be undone, and these debts can only be paid in blood...")
+    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. Still;;; it was not a difficult choice to leave;;; with the rage burning brightly in your heart. You want vengeance. You want justice. What was done to you cannot be undone;;; and these debts can only be paid in blood...")
     jump_to_menu(mnu.choose_skill)
-start_character_4_revenge.codeBlock = code
+start_character_4_revenge.consequenceBlock = code
+start_character_4.menuOptions.append(start_character_4_revenge)
 
 start_character_4_death = MenuOption("death", "The loss of a loved one.")
 def code():
     _background_answer_4 = 2
-    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. All you can say is that you couldn't bear to stay, not with the memories of those you loved so close and so painful. Perhaps your new life will let you forget, or honour the name that you can no longer bear to speak...")
+    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. All you can say is that you couldn't bear to stay;;; not with the memories of those you loved so close and so painful. Perhaps your new life will let you forget;;; or honour the name that you can no longer bear to speak...")
     jump_to_menu(mnu.choose_skill)
-start_character_4_death.codeBlock = code
+start_character_4_death.consequenceBlock = code
+start_character_4.menuOptions.append(start_character_4_death)
 
 start_character_4_wanderlust = MenuOption("wanderlust", "Wanderlust.")
 def code():
     _background_answer_4 = 3
-    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. You're not even sure when your home became a prison, when the familiar became mundane, but your dreams of wandering have taken over your life. Whether you yearn for some faraway place or merely for the open road and the freedom to travel, you could no longer bear to stay in the same place. You simply went and never looked back...")
+    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. You're not even sure when your home became a prison;;; when the familiar became mundane;;; but your dreams of wandering have taken over your life. Whether you yearn for some faraway place or merely for the open road and the freedom to travel;;; you could no longer bear to stay in the same place. You simply went and never looked back...")
     jump_to_menu(mnu.choose_skill)
-start_character_4_wanderlust.codeBlock = code
+start_character_4_wanderlust.consequenceBlock = code
+start_character_4.menuOptions.append(start_character_4_wanderlust)
 
 start_character_4_disown = MenuOption("disown", "Being forced out of your home.")
 def code():
     _background_answer_4 = 5
-    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. However, you know you cannot go back. There's nothing to go back to. Whatever home you may have had is gone now, and you must face the fact that you're out in the wide wide world. Alone to sink or swim...")
+    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. However;;; you know you cannot go back. There's nothing to go back to. Whatever home you may have had is gone now;;; and you must face the fact that you're out in the wide wide world. Alone to sink or swim...")
     jump_to_menu(mnu.choose_skill)
-start_character_4_disown.codeBlock = code
+start_character_4_disown.consequenceBlock = code
+start_character_4.menuOptions.append(start_character_4_disown)
 
 start_character_4_greed = MenuOption("greed", "Lust for money and power.")
 def code():
     _background_answer_4 = 6
-    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. To everyone else, it's clear that you're now motivated solely by personal gain. You want to be rich, powerful, respected, feared. You want to be the one whom others hurry to obey. You want people to know your name, and tremble whenever it is spoken. You want everything, and you won't let anyone stop you from having it...")
+    s13 = str_store_string("@Only you know exactly what caused you to give up your old life and become an adventurer. To everyone else;;; it's clear that you're now motivated solely by personal gain. You want to be rich;;; powerful;;; respected;;; feared. You want to be the one whom others hurry to obey. You want people to know your name;;; and tremble whenever it is spoken. You want everything;;; and you won't let anyone stop you from having it...")
     jump_to_menu(mnu.choose_skill)
-start_character_4_greed.codeBlock = code
+start_character_4_greed.consequenceBlock = code
+start_character_4.menuOptions.append(start_character_4_greed)
 
 start_character_4_go_back = MenuOption("go_back", "Go back.")
 def code():
     jump_to_menu(mnu.start_character_3)
-start_character_4_go_back.codeBlock = code
+start_character_4_go_back.consequenceBlock = code
+start_character_4.menuOptions.append(start_character_4_go_back)
 
 
 
@@ -973,12 +1011,14 @@ def code():
         change_screen_return(0)
     #end
     set_show_messages(1)
-choose_skill_begin_adventuring.codeBlock = code
+choose_skill_begin_adventuring.consequenceBlock = code
+choose_skill.menuOptions.append(choose_skill_begin_adventuring)
 
 choose_skill_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.start_character_4)
-choose_skill_go_back_dot.codeBlock = code
+choose_skill_go_back_dot.consequenceBlock = code
+choose_skill.menuOptions.append(choose_skill_go_back_dot)
 
 
 
@@ -1001,14 +1041,14 @@ past_life_explanation_view_next = MenuOption("view_next", "{s5}")
 def code():
     _current_string_reg += 1
     jump_to_menu(mnu.past_life_explanation)
-past_life_explanation_view_next.codeBlock = code
+past_life_explanation_view_next.consequenceBlock = code
 
 past_life_explanation_continue = MenuOption("continue", "Continue...")
 
 past_life_explanation_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.choose_skill)
-past_life_explanation_go_back_dot.codeBlock = code
+past_life_explanation_go_back_dot.consequenceBlock = code
 
 
 
@@ -1080,7 +1120,7 @@ morale_report.conditionBlock = condition
 morale_report_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.reports)
-morale_report_continue.codeBlock = code
+morale_report_continue.consequenceBlock = code
 
 
 
@@ -1125,7 +1165,7 @@ courtship_relations.conditionBlock = condition
 courtship_relations_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.reports)
-courtship_relations_continue.codeBlock = code
+courtship_relations_continue.consequenceBlock = code
 
 
 
@@ -1162,7 +1202,7 @@ lord_relations.conditionBlock = condition
 lord_relations_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.reports)
-lord_relations_continue.codeBlock = code
+lord_relations_continue.consequenceBlock = code
 
 
 
@@ -1295,7 +1335,7 @@ companion_report.conditionBlock = condition
 companion_report_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.reports)
-companion_report_continue.codeBlock = code
+companion_report_continue.consequenceBlock = code
 
 
 
@@ -1440,7 +1480,7 @@ def code():
     get_next_active_kingdom(_g_cheat_selected_faction)
     _g_cheat_selected_faction = reg0
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_next_faction.codeBlock = code
+faction_orders_faction_orders_next_faction.consequenceBlock = code
 
 faction_orders_faction_orders_political_collapse = MenuOption("faction_orders_political_collapse", "{!}CHEAT - Cause all lords in faction to fall out with their liege.")
 def code():
@@ -1453,14 +1493,14 @@ def code():
             #end
         #end
     #end
-faction_orders_faction_orders_political_collapse.codeBlock = code
+faction_orders_faction_orders_political_collapse.consequenceBlock = code
 
 faction_orders_faction_orders_defend = MenuOption("faction_orders_defend", "{!}Force defend.")
 def code():
     faction_set_slot(_g_cheat_selected_faction,4,0)
     faction_set_slot(_g_cheat_selected_faction,5,-1)
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_defend.codeBlock = code
+faction_orders_faction_orders_defend.consequenceBlock = code
 
 faction_orders_faction_orders_feast = MenuOption("faction_orders_feast", "{!}Force feast.")
 def code():
@@ -1490,7 +1530,7 @@ def code():
         faction_set_slot(_g_cheat_selected_faction,94,cur_hours_008)
     #end
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_feast.codeBlock = code
+faction_orders_faction_orders_feast.consequenceBlock = code
 
 faction_orders_faction_orders_gather = MenuOption("faction_orders_gather", "{!}Force gather army.")
 def code():
@@ -1500,7 +1540,7 @@ def code():
     faction_set_slot(_g_cheat_selected_faction,9,1)
     faction_set_slot(_g_cheat_selected_faction,5,-1)
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_gather.codeBlock = code
+faction_orders_faction_orders_gather.consequenceBlock = code
 
 faction_orders_faction_orders_increase_time = MenuOption("faction_orders_increase_time", "{!}Increase last offensive time by 24 hours.")
 def code():
@@ -1508,43 +1548,43 @@ def code():
     faction_slot_001 -= 24
     faction_set_slot(_g_cheat_selected_faction,95,faction_slot_001)
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_increase_time.codeBlock = code
+faction_orders_faction_orders_increase_time.consequenceBlock = code
 
 faction_orders_faction_orders_rethink = MenuOption("faction_orders_rethink", "{!}Force rethink.")
 def code():
     init_ai_calculation()
     decide_faction_ai(_g_cheat_selected_faction)
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_rethink.codeBlock = code
+faction_orders_faction_orders_rethink.consequenceBlock = code
 
 faction_orders_faction_orders_rethink_all = MenuOption("faction_orders_rethink_all", "{!}Force rethink for all factions.")
 def code():
     recalculate_ais()
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_rethink_all.codeBlock = code
+faction_orders_faction_orders_rethink_all.consequenceBlock = code
 
 faction_orders_enable_alt_ai = MenuOption("enable_alt_ai", "{!}CHEAT! - enable alternative ai")
 def code():
     _g_use_alternative_ai = 1
     jump_to_menu(mnu.faction_orders)
-faction_orders_enable_alt_ai.codeBlock = code
+faction_orders_enable_alt_ai.consequenceBlock = code
 
 faction_orders_disable_alt_ai = MenuOption("disable_alt_ai", "{!}CHEAT! - disable alternative ai")
 def code():
     _g_use_alternative_ai = 0
     jump_to_menu(mnu.faction_orders)
-faction_orders_disable_alt_ai.codeBlock = code
+faction_orders_disable_alt_ai.consequenceBlock = code
 
 faction_orders_faction_orders_init_econ = MenuOption("faction_orders_init_econ", "{!}Initialize economic stats.")
 def code():
     initialize_economic_information()
     jump_to_menu(mnu.faction_orders)
-faction_orders_faction_orders_init_econ.codeBlock = code
+faction_orders_faction_orders_init_econ.consequenceBlock = code
 
 faction_orders_go_back_dot = MenuOption("go_back_dot", "{!}Go back.")
 def code():
     jump_to_menu(mnu.reports)
-faction_orders_go_back_dot.codeBlock = code
+faction_orders_go_back_dot.consequenceBlock = code
 
 
 
@@ -1641,7 +1681,7 @@ character_report_continue = MenuOption("continue", "{!}CHEAT! - increase Right t
 def code():
     _player_right_to_rule += 10
     jump_to_menu(mnu.character_report)
-character_report_continue.codeBlock = code
+character_report_continue.consequenceBlock = code
 
 character_report_continue = MenuOption("continue", "{!}CHEAT! - increase your relation with {s14}")
 def condition():
@@ -1651,13 +1691,13 @@ character_report_continue.conditionBlock = condition
 def code():
     change_player_relation_with_troop(_g_talk_troop,10)
     jump_to_menu(mnu.character_report)
-character_report_continue.codeBlock = code
+character_report_continue.consequenceBlock = code
 
 character_report_continue = MenuOption("continue", "{!}CHEAT! - increase honor")
 def code():
     _player_honor += 10
     jump_to_menu(mnu.character_report)
-character_report_continue.codeBlock = code
+character_report_continue.consequenceBlock = code
 
 character_report_continue = MenuOption("continue", "{!}CHEAT! - increase renown")
 def code():
@@ -1665,18 +1705,18 @@ def code():
     troop_slot_001 += 50
     troop_set_slot(trp.player,7,troop_slot_001)
     jump_to_menu(mnu.character_report)
-character_report_continue.codeBlock = code
+character_report_continue.consequenceBlock = code
 
 character_report_continue = MenuOption("continue", "{!}CHEAT! - increase persuasion")
 def code():
     troop_raise_skill(trp.player,skl.persuasion,1)
     jump_to_menu(mnu.character_report)
-character_report_continue.codeBlock = code
+character_report_continue.consequenceBlock = code
 
 character_report_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.reports)
-character_report_continue.codeBlock = code
+character_report_continue.consequenceBlock = code
 
 
 
@@ -1716,7 +1756,7 @@ party_size_report.conditionBlock = condition
 party_size_report_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.reports)
-party_size_report_continue.codeBlock = code
+party_size_report_continue.consequenceBlock = code
 
 
 
@@ -1776,7 +1816,7 @@ faction_relations_report.conditionBlock = condition
 faction_relations_report_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.reports)
-faction_relations_report_continue.codeBlock = code
+faction_relations_report_continue.consequenceBlock = code
 
 
 
@@ -1793,12 +1833,12 @@ def code():
     set_jump_mission(mt.ai_training)
     setup_random_scene()
     change_screen_mission()
-camp_camp_action_1.codeBlock = code
+camp_camp_action_1.consequenceBlock = code
 
 camp_camp_action = MenuOption("camp_action", "Take an action.")
 def code():
     jump_to_menu(mnu.camp_action)
-camp_camp_action.codeBlock = code
+camp_camp_action.consequenceBlock = code
 
 camp_camp_wait_here = MenuOption("camp_wait_here", "Wait here for some time.")
 def code():
@@ -1813,17 +1853,17 @@ def code():
     #end
     rest_for_hours_interactive(8760,5,1)
     change_screen_return()
-camp_camp_wait_here.codeBlock = code
+camp_camp_wait_here.consequenceBlock = code
 
 camp_camp_cheat = MenuOption("camp_cheat", "CHEAT MENU!")
 def code():
     jump_to_menu(mnu.camp_cheat)
-camp_camp_cheat.codeBlock = code
+camp_camp_cheat.consequenceBlock = code
 
 camp_resume_travelling = MenuOption("resume_travelling", "Resume travelling.")
 def code():
     change_screen_return()
-camp_resume_travelling.codeBlock = code
+camp_resume_travelling.consequenceBlock = code
 
 
 
@@ -1834,19 +1874,19 @@ camp_cheat = GameMenu("camp_cheat", 0,
 camp_cheat_camp_cheat_find_item = MenuOption("camp_cheat_find_item", "Find an item...")
 def code():
     jump_to_menu(mnu.cheat_find_item)
-camp_cheat_camp_cheat_find_item.codeBlock = code
+camp_cheat_camp_cheat_find_item.consequenceBlock = code
 
 camp_cheat_camp_cheat_find_item = MenuOption("camp_cheat_find_item", "Change weather..")
 def code():
     jump_to_menu(mnu.cheat_change_weather)
-camp_cheat_camp_cheat_find_item.codeBlock = code
+camp_cheat_camp_cheat_find_item.consequenceBlock = code
 
 camp_cheat_camp_cheat_1 = MenuOption("camp_cheat_1", "{!}Increase player renown.")
 def code():
     s1 = str_store_string("@Player renown is increased by 100. ")
     change_troop_renown(trp.player,100)
     jump_to_menu(mnu.camp_cheat)
-camp_cheat_camp_cheat_1.codeBlock = code
+camp_cheat_camp_cheat_1.consequenceBlock = code
 
 camp_cheat_camp_cheat_2 = MenuOption("camp_cheat_2", "{!}Increase player honor.")
 def code():
@@ -1855,7 +1895,7 @@ def code():
     print("@Player honor is increased by 1 and it is now {reg7}.")
     _player_honor += 1
     jump_to_menu(mnu.camp_cheat)
-camp_cheat_camp_cheat_2.codeBlock = code
+camp_cheat_camp_cheat_2.consequenceBlock = code
 
 camp_cheat_camp_cheat_3 = MenuOption("camp_cheat_3", "{!}Update political notes.")
 def code():
@@ -1867,7 +1907,7 @@ def code():
     for fac_002 in range(fac.player_supporters_faction, fac.kingdoms_end):
         update_faction_political_notes(fac_002)
     #end
-camp_cheat_camp_cheat_3.codeBlock = code
+camp_cheat_camp_cheat_3.consequenceBlock = code
 
 camp_cheat_camp_cheat_4 = MenuOption("camp_cheat_4", "{!}Update troop notes.")
 def code():
@@ -1881,12 +1921,12 @@ def code():
         update_troop_political_notes(trp_002)
         update_troop_location_notes(trp_002,0)
     #end
-camp_cheat_camp_cheat_4.codeBlock = code
+camp_cheat_camp_cheat_4.consequenceBlock = code
 
 camp_cheat_camp_cheat_5 = MenuOption("camp_cheat_5", "{!}Scramble minstrels.")
 def code():
     update_tavern_minstrels()
-camp_cheat_camp_cheat_5.codeBlock = code
+camp_cheat_camp_cheat_5.consequenceBlock = code
 
 camp_cheat_camp_cheat_6 = MenuOption("camp_cheat_6", "{!}Infinite camp")
 def code():
@@ -1895,30 +1935,30 @@ def code():
     _g_player_icon_state = 1
     rest_for_hours_interactive(87600,20)
     change_screen_return()
-camp_cheat_camp_cheat_6.codeBlock = code
+camp_cheat_camp_cheat_6.consequenceBlock = code
 
 camp_cheat_cheat_faction_orders = MenuOption("cheat_faction_orders", "{!}Cheat: Set Debug messages to All.")
 def code():
     _cheat_mode = 1
     jump_to_menu(mnu.camp_cheat)
-camp_cheat_cheat_faction_orders.codeBlock = code
+camp_cheat_cheat_faction_orders.consequenceBlock = code
 
 camp_cheat_cheat_faction_orders = MenuOption("cheat_faction_orders", "{!}Cheat: Set Debug messages to Econ Only.")
 def code():
     _cheat_mode = 3
     jump_to_menu(mnu.camp_cheat)
-camp_cheat_cheat_faction_orders.codeBlock = code
+camp_cheat_cheat_faction_orders.consequenceBlock = code
 
 camp_cheat_cheat_faction_orders = MenuOption("cheat_faction_orders", "{!}Cheat: Set Debug messages to Political Only.")
 def code():
     _cheat_mode = 4
     jump_to_menu(mnu.camp_cheat)
-camp_cheat_cheat_faction_orders.codeBlock = code
+camp_cheat_cheat_faction_orders.consequenceBlock = code
 
 camp_cheat_back_to_camp_menu = MenuOption("back_to_camp_menu", "{!}Back to camp menu.")
 def code():
     jump_to_menu(mnu.camp)
-camp_cheat_back_to_camp_menu.codeBlock = code
+camp_cheat_back_to_camp_menu.consequenceBlock = code
 
 
 
@@ -1939,7 +1979,7 @@ def code():
         _cheat_find_item_range_begin = 0
     #end
     jump_to_menu(mnu.cheat_find_item)
-cheat_find_item_cheat_find_item_next_range.codeBlock = code
+cheat_find_item_cheat_find_item_next_range.consequenceBlock = code
 
 cheat_find_item_cheat_find_item_choose_this = MenuOption("cheat_find_item_choose_this", "{!}Choose from this range.")
 def code():
@@ -1952,12 +1992,12 @@ def code():
         troop_add_items(trp.find_item_cheat,item_id_004,1)
     #end
     change_screen_trade(trp.find_item_cheat)
-cheat_find_item_cheat_find_item_choose_this.codeBlock = code
+cheat_find_item_cheat_find_item_choose_this.consequenceBlock = code
 
 cheat_find_item_camp_action_4 = MenuOption("camp_action_4", "{!}Back to camp menu.")
 def code():
     jump_to_menu(mnu.camp)
-cheat_find_item_camp_action_4.codeBlock = code
+cheat_find_item_camp_action_4.consequenceBlock = code
 
 
 
@@ -1975,7 +2015,7 @@ def code():
     var001 += 5
     val_min(var001,100)
     set_global_cloud_amount(var001)
-cheat_change_weather_cheat_increase_cloud.codeBlock = code
+cheat_change_weather_cheat_increase_cloud.consequenceBlock = code
 
 cheat_change_weather_cheat_decrease_cloud = MenuOption("cheat_decrease_cloud", "{!}Decrease Cloud Amount.")
 def code():
@@ -1983,7 +2023,7 @@ def code():
     var001 -= 5
     val_max(var001,0)
     set_global_cloud_amount(var001)
-cheat_change_weather_cheat_decrease_cloud.codeBlock = code
+cheat_change_weather_cheat_decrease_cloud.consequenceBlock = code
 
 cheat_change_weather_cheat_increase_fog = MenuOption("cheat_increase_fog", "{!}Increase Fog Amount.")
 def code():
@@ -1991,7 +2031,7 @@ def code():
     var001 += 5
     val_min(var001,100)
     set_global_haze_amount(var001)
-cheat_change_weather_cheat_increase_fog.codeBlock = code
+cheat_change_weather_cheat_increase_fog.consequenceBlock = code
 
 cheat_change_weather_cheat_decrease_fog = MenuOption("cheat_decrease_fog", "{!}Decrease Fog Amount.")
 def code():
@@ -1999,12 +2039,12 @@ def code():
     var001 -= 5
     val_max(var001,0)
     set_global_haze_amount(var001)
-cheat_change_weather_cheat_decrease_fog.codeBlock = code
+cheat_change_weather_cheat_decrease_fog.consequenceBlock = code
 
 cheat_change_weather_camp_action_4 = MenuOption("camp_action_4", "{!}Back to camp menu.")
 def code():
     jump_to_menu(mnu.camp)
-cheat_change_weather_camp_action_4.codeBlock = code
+cheat_change_weather_camp_action_4.consequenceBlock = code
 
 
 
@@ -2028,32 +2068,32 @@ def condition():
 camp_action_camp_recruit_prisoners.conditionBlock = condition
 def code():
     jump_to_menu(mnu.camp_recruit_prisoners)
-camp_action_camp_recruit_prisoners.codeBlock = code
+camp_action_camp_recruit_prisoners.consequenceBlock = code
 
 camp_action_action_read_book = MenuOption("action_read_book", "Select a book to read.")
 def code():
     jump_to_menu(mnu.camp_action_read_book)
-camp_action_action_read_book.codeBlock = code
+camp_action_action_read_book.consequenceBlock = code
 
 camp_action_action_rename_kingdom = MenuOption("action_rename_kingdom", "Rename your kingdom.")
 def code():
     start_presentation(prsnt.name_kingdom)
-camp_action_action_rename_kingdom.codeBlock = code
+camp_action_action_rename_kingdom.consequenceBlock = code
 
 camp_action_action_modify_banner = MenuOption("action_modify_banner", "{!}Cheat: Modify your banner.")
 def code():
     start_presentation(prsnt.banner_selection)
-camp_action_action_modify_banner.codeBlock = code
+camp_action_action_modify_banner.consequenceBlock = code
 
 camp_action_action_retire = MenuOption("action_retire", "Retire from adventuring.")
 def code():
     jump_to_menu(mnu.retirement_verify)
-camp_action_action_retire.codeBlock = code
+camp_action_action_retire.consequenceBlock = code
 
 camp_action_camp_action_4 = MenuOption("camp_action_4", "Back to camp menu.")
 def code():
     jump_to_menu(mnu.camp)
-camp_action_camp_action_4.codeBlock = code
+camp_action_camp_action_4.consequenceBlock = code
 
 
 
@@ -2127,19 +2167,19 @@ def code():
     var001 = -3 * _g_prisoner_recruit_size
     change_player_party_morale(var001)
     jump_to_menu(mnu.camp)
-camp_recruit_prisoners_camp_recruit_prisoners_accept.codeBlock = code
+camp_recruit_prisoners_camp_recruit_prisoners_accept.consequenceBlock = code
 
 camp_recruit_prisoners_camp_recruit_prisoners_reject = MenuOption("camp_recruit_prisoners_reject", "Reject them.")
 def code():
     jump_to_menu(mnu.camp)
     _g_prisoner_recruit_troop_id = 0
     _g_prisoner_recruit_size = 0
-camp_recruit_prisoners_camp_recruit_prisoners_reject.codeBlock = code
+camp_recruit_prisoners_camp_recruit_prisoners_reject.consequenceBlock = code
 
 camp_recruit_prisoners_continue = MenuOption("continue", "Go back.")
 def code():
     jump_to_menu(mnu.camp)
-camp_recruit_prisoners_continue.codeBlock = code
+camp_recruit_prisoners_continue.consequenceBlock = code
 
 
 
@@ -2150,7 +2190,7 @@ camp_no_prisoners = GameMenu("camp_no_prisoners", 0,
 camp_no_prisoners_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.camp)
-camp_no_prisoners_continue.codeBlock = code
+camp_no_prisoners_continue.consequenceBlock = code
 
 
 
@@ -2166,7 +2206,7 @@ camp_action_read_book_action_read_book_1.conditionBlock = condition
 def code():
     _temp = itm.book_tactics
     jump_to_menu(mnu.camp_action_read_book_start)
-camp_action_read_book_action_read_book_1.codeBlock = code
+camp_action_read_book_action_read_book_1.consequenceBlock = code
 
 camp_action_read_book_action_read_book_2 = MenuOption("action_read_book_2", "{s1}.")
 def condition():
@@ -2176,7 +2216,7 @@ camp_action_read_book_action_read_book_2.conditionBlock = condition
 def code():
     _temp = itm.book_persuasion
     jump_to_menu(mnu.camp_action_read_book_start)
-camp_action_read_book_action_read_book_2.codeBlock = code
+camp_action_read_book_action_read_book_2.consequenceBlock = code
 
 camp_action_read_book_action_read_book_3 = MenuOption("action_read_book_3", "{s1}.")
 def condition():
@@ -2186,7 +2226,7 @@ camp_action_read_book_action_read_book_3.conditionBlock = condition
 def code():
     _temp = itm.book_leadership
     jump_to_menu(mnu.camp_action_read_book_start)
-camp_action_read_book_action_read_book_3.codeBlock = code
+camp_action_read_book_action_read_book_3.consequenceBlock = code
 
 camp_action_read_book_action_read_book_4 = MenuOption("action_read_book_4", "{s1}.")
 def condition():
@@ -2196,7 +2236,7 @@ camp_action_read_book_action_read_book_4.conditionBlock = condition
 def code():
     _temp = itm.book_intelligence
     jump_to_menu(mnu.camp_action_read_book_start)
-camp_action_read_book_action_read_book_4.codeBlock = code
+camp_action_read_book_action_read_book_4.consequenceBlock = code
 
 camp_action_read_book_action_read_book_5 = MenuOption("action_read_book_5", "{s1}.")
 def condition():
@@ -2206,7 +2246,7 @@ camp_action_read_book_action_read_book_5.conditionBlock = condition
 def code():
     _temp = itm.book_trade
     jump_to_menu(mnu.camp_action_read_book_start)
-camp_action_read_book_action_read_book_5.codeBlock = code
+camp_action_read_book_action_read_book_5.consequenceBlock = code
 
 camp_action_read_book_action_read_book_6 = MenuOption("action_read_book_6", "{s1}.")
 def condition():
@@ -2216,7 +2256,7 @@ camp_action_read_book_action_read_book_6.conditionBlock = condition
 def code():
     _temp = itm.book_weapon_mastery
     jump_to_menu(mnu.camp_action_read_book_start)
-camp_action_read_book_action_read_book_6.codeBlock = code
+camp_action_read_book_action_read_book_6.consequenceBlock = code
 
 camp_action_read_book_action_read_book_7 = MenuOption("action_read_book_7", "{s1}.")
 def condition():
@@ -2226,12 +2266,12 @@ camp_action_read_book_action_read_book_7.conditionBlock = condition
 def code():
     _temp = itm.book_engineering
     jump_to_menu(mnu.camp_action_read_book_start)
-camp_action_read_book_action_read_book_7.codeBlock = code
+camp_action_read_book_action_read_book_7.consequenceBlock = code
 
 camp_action_read_book_camp_action_4 = MenuOption("camp_action_4", "Back to camp menu.")
 def code():
     jump_to_menu(mnu.camp)
-camp_action_read_book_camp_action_4.codeBlock = code
+camp_action_read_book_camp_action_4.consequenceBlock = code
 
 
 
@@ -2256,7 +2296,7 @@ camp_action_read_book_start.conditionBlock = condition
 camp_action_read_book_start_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.camp)
-camp_action_read_book_start_continue.codeBlock = code
+camp_action_read_book_start_continue.consequenceBlock = code
 
 
 
@@ -2271,12 +2311,12 @@ retirement_verify.conditionBlock = condition
 retirement_verify_retire_yes = MenuOption("retire_yes", "Yes.")
 def code():
     start_presentation(prsnt.retirement)
-retirement_verify_retire_yes.codeBlock = code
+retirement_verify_retire_yes.consequenceBlock = code
 
 retirement_verify_retire_no = MenuOption("retire_no", "No.")
 def code():
     jump_to_menu(mnu.camp)
-retirement_verify_retire_no.codeBlock = code
+retirement_verify_retire_no.consequenceBlock = code
 
 
 
@@ -2287,7 +2327,7 @@ end_game = GameMenu("end_game", 0,
 end_game_end_game_bye = MenuOption("end_game_bye", "Farewell.")
 def code():
     change_screen_quit()
-end_game_end_game_bye.codeBlock = code
+end_game_end_game_bye.consequenceBlock = code
 
 
 
@@ -2305,14 +2345,14 @@ def code():
     party_set_ai_behavior(_g_encountered_party,11)
     party_set_ai_object(_g_encountered_party,p.main_party)
     change_screen_return()
-cattle_herd_cattle_drive_away.codeBlock = code
+cattle_herd_cattle_drive_away.consequenceBlock = code
 
 cattle_herd_cattle_stop = MenuOption("cattle_stop", "Bring the herd to a stop.")
 def code():
     party_set_slot(_g_encountered_party,7,0)
     party_set_ai_behavior(_g_encountered_party,0)
     change_screen_return()
-cattle_herd_cattle_stop.codeBlock = code
+cattle_herd_cattle_stop.consequenceBlock = code
 
 cattle_herd_cattle_kill = MenuOption("cattle_kill", "Slaughter some of the animals.")
 def condition():
@@ -2323,12 +2363,12 @@ def condition():
 cattle_herd_cattle_kill.conditionBlock = condition
 def code():
     jump_to_menu(mnu.cattle_herd_kill)
-cattle_herd_cattle_kill.codeBlock = code
+cattle_herd_cattle_kill.consequenceBlock = code
 
 cattle_herd_leave = MenuOption("leave", "Leave.")
 def code():
     change_screen_return()
-cattle_herd_leave.codeBlock = code
+cattle_herd_leave.consequenceBlock = code
 
 
 
@@ -2345,7 +2385,7 @@ def code():
     jump_to_menu(mnu.cattle_herd_kill_end)
     change_screen_loot(trp.temp_troop)
     play_sound(snd.cow_slaughter)
-cattle_herd_kill_cattle_kill_1.codeBlock = code
+cattle_herd_kill_cattle_kill_1.consequenceBlock = code
 
 cattle_herd_kill_cattle_kill_2 = MenuOption("cattle_kill_2", "Two.")
 def code():
@@ -2353,7 +2393,7 @@ def code():
     jump_to_menu(mnu.cattle_herd_kill_end)
     change_screen_loot(trp.temp_troop)
     play_sound(snd.cow_slaughter)
-cattle_herd_kill_cattle_kill_2.codeBlock = code
+cattle_herd_kill_cattle_kill_2.consequenceBlock = code
 
 cattle_herd_kill_cattle_kill_3 = MenuOption("cattle_kill_3", "Three.")
 def code():
@@ -2361,7 +2401,7 @@ def code():
     jump_to_menu(mnu.cattle_herd_kill_end)
     change_screen_loot(trp.temp_troop)
     play_sound(snd.cow_slaughter)
-cattle_herd_kill_cattle_kill_3.codeBlock = code
+cattle_herd_kill_cattle_kill_3.consequenceBlock = code
 
 cattle_herd_kill_cattle_kill_4 = MenuOption("cattle_kill_4", "Four.")
 def code():
@@ -2369,7 +2409,7 @@ def code():
     jump_to_menu(mnu.cattle_herd_kill_end)
     change_screen_loot(trp.temp_troop)
     play_sound(snd.cow_slaughter)
-cattle_herd_kill_cattle_kill_4.codeBlock = code
+cattle_herd_kill_cattle_kill_4.consequenceBlock = code
 
 cattle_herd_kill_cattle_kill_5 = MenuOption("cattle_kill_5", "Five.")
 def code():
@@ -2377,12 +2417,12 @@ def code():
     jump_to_menu(mnu.cattle_herd_kill_end)
     change_screen_loot(trp.temp_troop)
     play_sound(snd.cow_slaughter)
-cattle_herd_kill_cattle_kill_5.codeBlock = code
+cattle_herd_kill_cattle_kill_5.consequenceBlock = code
 
 cattle_herd_kill_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.cattle_herd)
-cattle_herd_kill_go_back_dot.codeBlock = code
+cattle_herd_kill_go_back_dot.consequenceBlock = code
 
 
 
@@ -2436,7 +2476,7 @@ def code():
     jump_to_scene(party_slot_001)
     jump_to_menu(mnu.arena_duel_conclusion)
     change_screen_mission()
-arena_duel_fight_continue.codeBlock = code
+arena_duel_fight_continue.consequenceBlock = code
 
 
 
@@ -2481,7 +2521,7 @@ def code():
     jump_to_scene(scene_id_001)
     _talk_context = 17
     change_screen_map_conversation(_g_duel_troop)
-arena_duel_conclusion_continue.codeBlock = code
+arena_duel_conclusion_continue.consequenceBlock = code
 
 
 
@@ -2652,7 +2692,7 @@ def code():
     _g_next_menu = mnu.simple_encounter
     jump_to_menu(mnu.battle_debrief)
     change_screen_mission()
-simple_encounter_encounter_attack.codeBlock = code
+simple_encounter_encounter_attack.consequenceBlock = code
 
 simple_encounter_encounter_order_attack = MenuOption("encounter_order_attack", "Order your troops to attack without you.")
 def condition():
@@ -2661,7 +2701,7 @@ def condition():
 simple_encounter_encounter_order_attack.conditionBlock = condition
 def code():
     jump_to_menu(mnu.order_attack_begin)
-simple_encounter_encounter_order_attack.codeBlock = code
+simple_encounter_encounter_order_attack.consequenceBlock = code
 
 simple_encounter_encounter_leave = MenuOption("encounter_leave", "Leave.")
 def code():
@@ -2680,7 +2720,7 @@ def code():
     #end
     leave_encounter()
     change_screen_return()
-simple_encounter_encounter_leave.codeBlock = code
+simple_encounter_encounter_leave.consequenceBlock = code
 
 simple_encounter_encounter_retreat = MenuOption("encounter_retreat", "Pull back, leaving some soldiers behind to cover your retreat.")
 def condition():
@@ -2698,12 +2738,12 @@ def condition():
 simple_encounter_encounter_retreat.conditionBlock = condition
 def code():
     jump_to_menu(mnu.encounter_retreat_confirm)
-simple_encounter_encounter_retreat.codeBlock = code
+simple_encounter_encounter_retreat.consequenceBlock = code
 
 simple_encounter_encounter_surrender = MenuOption("encounter_surrender", "Surrender.")
 def code():
     _g_player_surrenders = 1
-simple_encounter_encounter_surrender.codeBlock = code
+simple_encounter_encounter_surrender.consequenceBlock = code
 
 
 
@@ -2743,12 +2783,12 @@ def code():
     #end
     change_player_party_morale(-20)
     jump_to_menu(mnu.encounter_retreat)
-encounter_retreat_confirm_leave_behind.codeBlock = code
+encounter_retreat_confirm_leave_behind.consequenceBlock = code
 
 encounter_retreat_confirm_dont_leave_behind = MenuOption("dont_leave_behind", "No. We leave no one behind.")
 def code():
     jump_to_menu(mnu.simple_encounter)
-encounter_retreat_confirm_dont_leave_behind.codeBlock = code
+encounter_retreat_confirm_dont_leave_behind.consequenceBlock = code
 
 
 
@@ -2770,7 +2810,7 @@ def code():
     party_ignore_player(_g_encountered_party,1)
     leave_encounter()
     change_screen_return()
-encounter_retreat_continue.codeBlock = code
+encounter_retreat_continue.consequenceBlock = code
 
 
 
@@ -2786,12 +2826,12 @@ def code():
     #end
     _g_engaged_enemy = 1
     jump_to_menu(mnu.order_attack_2)
-order_attack_begin_order_attack_begin.codeBlock = code
+order_attack_begin_order_attack_begin.consequenceBlock = code
 
 order_attack_begin_call_back = MenuOption("call_back", "Call them back.")
 def code():
     jump_to_menu(mnu.simple_encounter)
-order_attack_begin_call_back.codeBlock = code
+order_attack_begin_call_back.consequenceBlock = code
 
 
 
@@ -2915,17 +2955,17 @@ order_attack_2.conditionBlock = condition
 order_attack_2_order_attack_continue = MenuOption("order_attack_continue", "Order your soldiers to continue the attack.")
 def code():
     jump_to_menu(mnu.order_attack_2)
-order_attack_2_order_attack_continue.codeBlock = code
+order_attack_2_order_attack_continue.consequenceBlock = code
 
 order_attack_2_order_retreat = MenuOption("order_retreat", "Call your soldiers back.")
 def code():
     jump_to_menu(mnu.simple_encounter)
-order_attack_2_order_retreat.codeBlock = code
+order_attack_2_order_retreat.consequenceBlock = code
 
 order_attack_2_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.simple_encounter)
-order_attack_2_continue.codeBlock = code
+order_attack_2_continue.consequenceBlock = code
 
 
 
@@ -3026,7 +3066,7 @@ battle_debrief.conditionBlock = condition
 battle_debrief_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(_g_next_menu)
-battle_debrief_continue.codeBlock = code
+battle_debrief_continue.consequenceBlock = code
 
 
 
@@ -3316,7 +3356,7 @@ enemy_slipped_away = GameMenu("enemy_slipped_away", 0,
 enemy_slipped_away_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.total_victory)
-enemy_slipped_away_continue.codeBlock = code
+enemy_slipped_away_continue.consequenceBlock = code
 
 
 
@@ -3434,7 +3474,7 @@ def code():
     else:
         jump_to_menu(_g_next_menu)
     #end
-permanent_damage_s0.codeBlock = code
+permanent_damage_s0.consequenceBlock = code
 
 
 
@@ -3458,7 +3498,7 @@ def code():
     _g_enemy_party = _g_encountered_party
     _g_ally_party = _g_encountered_party_2
     jump_to_menu(mnu.join_battle)
-pre_join_pre_join_help_attackers.codeBlock = code
+pre_join_pre_join_help_attackers.consequenceBlock = code
 
 pre_join_pre_join_help_defenders = MenuOption("pre_join_help_defenders", "Rush to the aid of the {s1}.")
 def condition():
@@ -3472,13 +3512,13 @@ def code():
     _g_enemy_party = _g_encountered_party_2
     _g_ally_party = _g_encountered_party
     jump_to_menu(mnu.join_battle)
-pre_join_pre_join_help_defenders.codeBlock = code
+pre_join_pre_join_help_defenders.consequenceBlock = code
 
 pre_join_pre_join_leave = MenuOption("pre_join_leave", "Don't get involved.")
 def code():
     leave_encounter()
     change_screen_return()
-pre_join_pre_join_leave.codeBlock = code
+pre_join_pre_join_leave.consequenceBlock = code
 
 
 
@@ -3536,7 +3576,7 @@ def code():
     _g_next_menu = mnu.join_battle
     jump_to_menu(mnu.battle_debrief)
     change_screen_mission()
-join_battle_join_attack.codeBlock = code
+join_battle_join_attack.consequenceBlock = code
 
 join_battle_join_order_attack = MenuOption("join_order_attack", "Order your troops to attack with your allies while you stay back.")
 def condition():
@@ -3546,7 +3586,7 @@ def code():
     _g_joined_battle_to_help = 1
     party_set_next_battle_simulation_time(_g_encountered_party,-1)
     jump_to_menu(mnu.join_order_attack)
-join_battle_join_order_attack.codeBlock = code
+join_battle_join_order_attack.consequenceBlock = code
 
 join_battle_join_leave = MenuOption("join_leave", "Leave.")
 def code():
@@ -3559,7 +3599,7 @@ def code():
     #end
     leave_encounter()
     change_screen_return()
-join_battle_join_leave.codeBlock = code
+join_battle_join_leave.consequenceBlock = code
 
 
 
@@ -3633,7 +3673,7 @@ join_order_attack.conditionBlock = condition
 join_order_attack_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.join_battle)
-join_order_attack_continue.codeBlock = code
+join_order_attack_continue.consequenceBlock = code
 
 
 
@@ -3651,34 +3691,34 @@ def code():
     set_jump_mission(mt.town_default)
     jump_to_scene(scn.zendar_center)
     change_screen_mission()
-zendar_zendar_enter.codeBlock = code
+zendar_zendar_enter.consequenceBlock = code
 
 zendar_zendar_tavern = MenuOption("zendar_tavern", " ") # Door to the tavern.
 def code():
     set_jump_mission(mt.town_default)
     jump_to_scene(scn.the_happy_boar)
     change_screen_mission()
-zendar_zendar_tavern.codeBlock = code
+zendar_zendar_tavern.consequenceBlock = code
 
 zendar_zendar_merchant = MenuOption("zendar_merchant", " ") # Door to the merchant.
 def code():
     set_jump_mission(mt.town_default)
     jump_to_scene(scn.zendar_merchant)
     change_screen_mission()
-zendar_zendar_merchant.codeBlock = code
+zendar_zendar_merchant.consequenceBlock = code
 
 zendar_zendar_arena = MenuOption("zendar_arena", " ") # Door to the arena.
 def code():
     set_jump_mission(mt.town_default)
     jump_to_scene(scn.zendar_arena)
     change_screen_mission()
-zendar_zendar_arena.codeBlock = code
+zendar_zendar_arena.consequenceBlock = code
 
 zendar_town_1_leave = MenuOption("town_1_leave", " ")
 def code():
     leave_encounter()
     change_screen_return()
-zendar_town_1_leave.codeBlock = code
+zendar_town_1_leave.consequenceBlock = code
 
 
 
@@ -3695,13 +3735,13 @@ def code():
     set_jump_mission(mt.town_center)
     jump_to_scene(scn.salt_mine)
     change_screen_mission()
-salt_mine_enter.codeBlock = code
+salt_mine_enter.consequenceBlock = code
 
 salt_mine_leave = MenuOption("leave", "Leave.")
 def code():
     leave_encounter()
     change_screen_return()
-salt_mine_leave.codeBlock = code
+salt_mine_leave.consequenceBlock = code
 
 
 
@@ -3714,13 +3754,13 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.four_ways_inn)
     change_screen_mission()
-four_ways_inn_enter.codeBlock = code
+four_ways_inn_enter.consequenceBlock = code
 
 four_ways_inn_leave = MenuOption("leave", "Leave.")
 def code():
     leave_encounter()
     change_screen_return()
-four_ways_inn_leave.codeBlock = code
+four_ways_inn_leave.consequenceBlock = code
 
 
 
@@ -3733,69 +3773,69 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.multi_scene_1)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 2.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.multi_scene_2)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 3.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.multi_scene_3)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 4.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.multi_scene_4)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 5.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.multi_scene_5)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 6.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.multi_scene_6)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 7.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.test2)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 8.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.test3)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_enter = MenuOption("enter", "Enter 9.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.multi_scene_13)
     change_screen_mission()
-test_scene_enter.codeBlock = code
+test_scene_enter.consequenceBlock = code
 
 test_scene_leave = MenuOption("leave", "Leave.")
 def code():
     leave_encounter()
     change_screen_return()
-test_scene_leave.codeBlock = code
+test_scene_leave.consequenceBlock = code
 
 
 
@@ -3808,41 +3848,41 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.field_1)
     change_screen_mission()
-battlefields_enter_f1.codeBlock = code
+battlefields_enter_f1.consequenceBlock = code
 
 battlefields_enter_f2 = MenuOption("enter_f2", "{!}Field 2")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.field_2)
     change_screen_mission()
-battlefields_enter_f2.codeBlock = code
+battlefields_enter_f2.consequenceBlock = code
 
 battlefields_enter_f3 = MenuOption("enter_f3", "{!}Field 3")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.field_3)
     change_screen_mission()
-battlefields_enter_f3.codeBlock = code
+battlefields_enter_f3.consequenceBlock = code
 
 battlefields_enter_f4 = MenuOption("enter_f4", "{!}Field 4")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.field_4)
     change_screen_mission()
-battlefields_enter_f4.codeBlock = code
+battlefields_enter_f4.consequenceBlock = code
 
 battlefields_enter_f5 = MenuOption("enter_f5", "{!}Field 5")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(scn.field_5)
     change_screen_mission()
-battlefields_enter_f5.codeBlock = code
+battlefields_enter_f5.consequenceBlock = code
 
 battlefields_leave = MenuOption("leave", "Leave.")
 def code():
     leave_encounter()
     change_screen_return()
-battlefields_leave.codeBlock = code
+battlefields_leave.consequenceBlock = code
 
 
 
@@ -3855,13 +3895,13 @@ def code():
     set_jump_mission(mt.town_center)
     jump_to_scene(scn.dhorak_keep)
     change_screen_mission()
-dhorak_keep_enter.codeBlock = code
+dhorak_keep_enter.consequenceBlock = code
 
 dhorak_keep_leave = MenuOption("leave", "Leave.")
 def code():
     leave_encounter()
     change_screen_return()
-dhorak_keep_leave.codeBlock = code
+dhorak_keep_leave.consequenceBlock = code
 
 
 
@@ -3889,7 +3929,7 @@ def condition():
 join_siege_outside_approach_besiegers.conditionBlock = condition
 def code():
     jump_to_menu(mnu.besiegers_camp_with_allies)
-join_siege_outside_approach_besiegers.codeBlock = code
+join_siege_outside_approach_besiegers.consequenceBlock = code
 
 join_siege_outside_pass_through_siege = MenuOption("pass_through_siege", "Pass through the siege lines and enter {s1}.")
 def condition():
@@ -3898,13 +3938,13 @@ def condition():
 join_siege_outside_pass_through_siege.conditionBlock = condition
 def code():
     jump_to_menu(mnu.cut_siege_without_fight)
-join_siege_outside_pass_through_siege.codeBlock = code
+join_siege_outside_pass_through_siege.consequenceBlock = code
 
 join_siege_outside_leave = MenuOption("leave", "Leave.")
 def code():
     leave_encounter()
     change_screen_return()
-join_siege_outside_leave.codeBlock = code
+join_siege_outside_leave.consequenceBlock = code
 
 
 
@@ -3923,7 +3963,7 @@ def code():
     else:
         jump_to_menu(mnu.castle_outside)
     #end
-cut_siege_without_fight_continue.codeBlock = code
+cut_siege_without_fight_continue.consequenceBlock = code
 
 
 
@@ -3979,7 +4019,7 @@ def code():
     jump_to_scene(scene_id_001)
     _talk_context = 4
     change_screen_map_conversation(troop_id_002)
-besiegers_camp_with_allies_talk_to_siege_commander.codeBlock = code
+besiegers_camp_with_allies_talk_to_siege_commander.consequenceBlock = code
 
 besiegers_camp_with_allies_join_siege_with_allies = MenuOption("join_siege_with_allies", "Join the next assault.")
 def code():
@@ -4016,7 +4056,7 @@ def code():
     _g_next_menu = mnu.castle_besiege_inner_battle
     jump_to_menu(mnu.battle_debrief)
     change_screen_mission()
-besiegers_camp_with_allies_join_siege_with_allies.codeBlock = code
+besiegers_camp_with_allies_join_siege_with_allies.consequenceBlock = code
 
 besiegers_camp_with_allies_join_siege_stay_back = MenuOption("join_siege_stay_back", "Order your soldiers to join the next assault without you.")
 def condition():
@@ -4036,13 +4076,13 @@ def code():
         _g_player_follow_army_warnings = 0
     #end
     jump_to_menu(mnu.castle_attack_walls_with_allies_simulate)
-besiegers_camp_with_allies_join_siege_stay_back.codeBlock = code
+besiegers_camp_with_allies_join_siege_stay_back.consequenceBlock = code
 
 besiegers_camp_with_allies_leave = MenuOption("leave", "Leave.")
 def code():
     leave_encounter()
     change_screen_return()
-besiegers_camp_with_allies_leave.codeBlock = code
+besiegers_camp_with_allies_leave.consequenceBlock = code
 
 
 
@@ -4178,7 +4218,7 @@ castle_outside.conditionBlock = condition
 castle_outside_approach_gates = MenuOption("approach_gates", "Approach the gates and hail the guard.")
 def code():
     jump_to_menu(mnu.castle_guard)
-castle_outside_approach_gates.codeBlock = code
+castle_outside_approach_gates.consequenceBlock = code
 
 castle_outside_town_sneak = MenuOption("town_sneak", "Disguise yourself and try to sneak into the {s7}")
 def condition():
@@ -4206,7 +4246,7 @@ def code():
     else:
         jump_to_menu(mnu.sneak_into_town_caught)
     #end
-castle_outside_town_sneak.codeBlock = code
+castle_outside_town_sneak.consequenceBlock = code
 
 castle_outside_castle_start_siege = MenuOption("castle_start_siege", "Besiege the {reg6?town:castle}.")
 def condition():
@@ -4231,7 +4271,7 @@ def code():
     set_player_relation_with_faction(_g_encountered_x_party_faction,faction_relation_001)
     update_all_notes()
     jump_to_menu(mnu.castle_besiege)
-castle_outside_castle_start_siege.codeBlock = code
+castle_outside_castle_start_siege.consequenceBlock = code
 
 castle_outside_cheat_castle_start_siege = MenuOption("cheat_castle_start_siege", "{!}CHEAT: Besiege the {reg6?town:castle}...")
 def condition():
@@ -4252,12 +4292,12 @@ castle_outside_cheat_castle_start_siege.conditionBlock = condition
 def code():
     _g_player_besiege_town = _g_encountered_party
     jump_to_menu(mnu.castle_besiege)
-castle_outside_cheat_castle_start_siege.codeBlock = code
+castle_outside_cheat_castle_start_siege.consequenceBlock = code
 
 castle_outside_castle_leave = MenuOption("castle_leave", "Leave.")
 def code():
     change_screen_return(0)
-castle_outside_castle_leave.codeBlock = code
+castle_outside_castle_leave.consequenceBlock = code
 
 castle_outside_castle_cheat_interior = MenuOption("castle_cheat_interior", "{!}CHEAT! Interior.")
 def code():
@@ -4265,7 +4305,7 @@ def code():
     party_slot_001 = party_get_slot(_current_town,11)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-castle_outside_castle_cheat_interior.codeBlock = code
+castle_outside_castle_cheat_interior.consequenceBlock = code
 
 castle_outside_castle_cheat_exterior = MenuOption("castle_cheat_exterior", "{!}CHEAT! Exterior.")
 def code():
@@ -4273,7 +4313,7 @@ def code():
     party_slot_001 = party_get_slot(_current_town,10)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-castle_outside_castle_cheat_exterior.codeBlock = code
+castle_outside_castle_cheat_exterior.consequenceBlock = code
 
 castle_outside_castle_cheat_town_walls = MenuOption("castle_cheat_town_walls", "{!}CHEAT! Town Walls.")
 def code():
@@ -4281,7 +4321,7 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-castle_outside_castle_cheat_town_walls.codeBlock = code
+castle_outside_castle_cheat_town_walls.consequenceBlock = code
 
 
 
@@ -4306,17 +4346,17 @@ def code():
             jump_to_menu(mnu.castle_entry_denied)
         #end
     #end
-castle_guard_request_shelter.codeBlock = code
+castle_guard_request_shelter.consequenceBlock = code
 
 castle_guard_request_meeting_commander = MenuOption("request_meeting_commander", "Request a meeting with someone.")
 def code():
     jump_to_menu(mnu.castle_meeting)
-castle_guard_request_meeting_commander.codeBlock = code
+castle_guard_request_meeting_commander.consequenceBlock = code
 
 castle_guard_guard_leave = MenuOption("guard_leave", "Leave.")
 def code():
     change_screen_return(0)
-castle_guard_guard_leave.codeBlock = code
+castle_guard_guard_leave.consequenceBlock = code
 
 
 
@@ -4330,7 +4370,7 @@ castle_entry_granted.conditionBlock = condition
 castle_entry_granted_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.town)
-castle_entry_granted_continue.codeBlock = code
+castle_entry_granted_continue.consequenceBlock = code
 
 
 
@@ -4344,7 +4384,7 @@ castle_entry_denied.conditionBlock = condition
 castle_entry_denied_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.castle_guard)
-castle_entry_denied_continue.codeBlock = code
+castle_entry_denied_continue.consequenceBlock = code
 
 
 
@@ -4374,7 +4414,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,0)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4385,7 +4425,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,1)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4396,7 +4436,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,2)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4407,7 +4447,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,3)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4418,7 +4458,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,4)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4429,7 +4469,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,5)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4440,7 +4480,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,6)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4451,7 +4491,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,7)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4462,7 +4502,7 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,8)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_guard_meet_s5 = MenuOption("guard_meet_s5", "{s5}.")
 def condition():
@@ -4473,12 +4513,12 @@ castle_meeting_guard_meet_s5.conditionBlock = condition
 def code():
     _castle_meeting_selected_troop = troop_get_slot(trp.temp_array_a,9)
     jump_to_menu(mnu.castle_meeting_selected)
-castle_meeting_guard_meet_s5.codeBlock = code
+castle_meeting_guard_meet_s5.consequenceBlock = code
 
 castle_meeting_forget_it = MenuOption("forget_it", "Forget it.")
 def code():
     jump_to_menu(mnu.castle_guard)
-castle_meeting_forget_it.codeBlock = code
+castle_meeting_forget_it.consequenceBlock = code
 
 
 
@@ -4500,7 +4540,7 @@ def code():
     jump_to_scene(scn.conversation_scene)
     _talk_context = 3
     change_screen_map_conversation(_castle_meeting_selected_troop)
-castle_meeting_selected_continue.codeBlock = code
+castle_meeting_selected_continue.consequenceBlock = code
 
 
 
@@ -4624,7 +4664,7 @@ def code():
     else:
         setup_party_meeting(_g_encountered_party)
     #end
-castle_besiege_siege_request_meeting.codeBlock = code
+castle_besiege_siege_request_meeting.consequenceBlock = code
 
 castle_besiege_wait_24_hours = MenuOption("wait_24_hours", "Wait until tomorrow.")
 def code():
@@ -4639,7 +4679,7 @@ def code():
     rest_for_hours_interactive(var002,5,1)
     _cant_talk_to_enemy = 0
     change_screen_return()
-castle_besiege_wait_24_hours.codeBlock = code
+castle_besiege_wait_24_hours.consequenceBlock = code
 
 castle_besiege_castle_lead_attack = MenuOption("castle_lead_attack", "Lead your soldiers in an assault.")
 def condition():
@@ -4681,7 +4721,7 @@ def code():
         jump_to_menu(mnu.battle_debrief)
         change_screen_mission()
     #end
-castle_besiege_castle_lead_attack.codeBlock = code
+castle_besiege_castle_lead_attack.consequenceBlock = code
 
 castle_besiege_attack_stay_back = MenuOption("attack_stay_back", "Order your soldiers to attack while you stay back...")
 def condition():
@@ -4691,37 +4731,37 @@ castle_besiege_attack_stay_back.conditionBlock = condition
 def code():
     _cant_talk_to_enemy = 0
     jump_to_menu(mnu.castle_attack_walls_simulate)
-castle_besiege_attack_stay_back.codeBlock = code
+castle_besiege_attack_stay_back.consequenceBlock = code
 
 castle_besiege_build_ladders = MenuOption("build_ladders", "Prepare ladders to attack the walls.")
 def code():
     jump_to_menu(mnu.construct_ladders)
-castle_besiege_build_ladders.codeBlock = code
+castle_besiege_build_ladders.consequenceBlock = code
 
 castle_besiege_build_siege_tower = MenuOption("build_siege_tower", "Build a siege tower.")
 def code():
     jump_to_menu(mnu.construct_siege_tower)
-castle_besiege_build_siege_tower.codeBlock = code
+castle_besiege_build_siege_tower.consequenceBlock = code
 
 castle_besiege_cheat_castle_lead_attack = MenuOption("cheat_castle_lead_attack", "{!}CHEAT: Instant build equipments.")
 def code():
     _g_siege_method = 1
     _g_siege_method_finish_hours = 0
     jump_to_menu(mnu.castle_besiege)
-castle_besiege_cheat_castle_lead_attack.codeBlock = code
+castle_besiege_cheat_castle_lead_attack.consequenceBlock = code
 
 castle_besiege_cheat_conquer_castle = MenuOption("cheat_conquer_castle", "{!}CHEAT: Instant conquer castle.")
 def code():
     _g_next_menu = mnu.castle_taken
     jump_to_menu(mnu.total_victory)
-castle_besiege_cheat_conquer_castle.codeBlock = code
+castle_besiege_cheat_conquer_castle.consequenceBlock = code
 
 castle_besiege_lift_siege = MenuOption("lift_siege", "Abandon the siege.")
 def code():
     lift_siege(_g_player_besiege_town,0)
     _g_player_besiege_town = -1
     change_screen_return()
-castle_besiege_lift_siege.codeBlock = code
+castle_besiege_lift_siege.consequenceBlock = code
 
 
 
@@ -4736,7 +4776,7 @@ siege_attack_meets_sally_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.battle_debrief)
     change_screen_mission()
-siege_attack_meets_sally_continue.codeBlock = code
+siege_attack_meets_sally_continue.consequenceBlock = code
 
 
 
@@ -4802,7 +4842,7 @@ def code():
     _g_next_menu = mnu.castle_besiege_inner_battle
     jump_to_menu(mnu.battle_debrief)
     change_screen_mission()
-castle_besiege_inner_battle_continue.codeBlock = code
+castle_besiege_inner_battle_continue.consequenceBlock = code
 
 
 
@@ -4837,12 +4877,12 @@ def code():
     _auto_besiege_town = _current_town
     rest_for_hours_interactive(96,5,1)
     change_screen_return()
-construct_ladders_build_ladders_cont.codeBlock = code
+construct_ladders_build_ladders_cont.consequenceBlock = code
 
 construct_ladders_go_back = MenuOption("go_back", "Go back.")
 def code():
     jump_to_menu(mnu.castle_besiege)
-construct_ladders_go_back.codeBlock = code
+construct_ladders_go_back.consequenceBlock = code
 
 
 
@@ -4875,12 +4915,12 @@ def code():
     _auto_besiege_town = _current_town
     rest_for_hours_interactive(240,5,1)
     change_screen_return()
-construct_siege_tower_build_siege_tower_cont.codeBlock = code
+construct_siege_tower_build_siege_tower_cont.consequenceBlock = code
 
 construct_siege_tower_go_back = MenuOption("go_back", "Go back.")
 def code():
     jump_to_menu(mnu.castle_besiege)
-construct_siege_tower_go_back.codeBlock = code
+construct_siege_tower_go_back.consequenceBlock = code
 
 
 
@@ -4925,7 +4965,7 @@ castle_attack_walls_simulate.conditionBlock = condition
 castle_attack_walls_simulate_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.castle_besiege)
-castle_attack_walls_simulate_continue.codeBlock = code
+castle_attack_walls_simulate_continue.consequenceBlock = code
 
 
 
@@ -4987,7 +5027,7 @@ castle_attack_walls_with_allies_simulate.conditionBlock = condition
 castle_attack_walls_with_allies_simulate_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.besiegers_camp_with_allies)
-castle_attack_walls_with_allies_simulate_continue.codeBlock = code
+castle_attack_walls_with_allies_simulate_continue.consequenceBlock = code
 
 
 
@@ -5064,7 +5104,7 @@ castle_taken_continue = MenuOption("continue", "Continue...")
 def code():
     _auto_enter_town = _g_encountered_party
     change_screen_return()
-castle_taken_continue.codeBlock = code
+castle_taken_continue.consequenceBlock = code
 
 
 
@@ -5092,7 +5132,7 @@ def code():
     _g_castle_requested_for_troop = trp.player
     _auto_enter_town = _g_encountered_party
     change_screen_return()
-castle_taken_2_castle_taken_claim.codeBlock = code
+castle_taken_2_castle_taken_claim.consequenceBlock = code
 
 castle_taken_2_castle_taken_claim_2 = MenuOption("castle_taken_claim_2", "Request that {s3} be awarded to your {wife/husband}.")
 def condition():
@@ -5107,14 +5147,14 @@ def code():
     _g_castle_requested_for_troop = troop_slot_001
     _auto_enter_town = _g_encountered_party
     change_screen_return()
-castle_taken_2_castle_taken_claim_2.codeBlock = code
+castle_taken_2_castle_taken_claim_2.consequenceBlock = code
 
 castle_taken_2_castle_taken_no_claim = MenuOption("castle_taken_no_claim", "Ask no rewards.")
 def code():
     party_set_slot(_g_encountered_party,28,-1)
     _auto_enter_town = _g_encountered_party
     change_screen_return()
-castle_taken_2_castle_taken_no_claim.codeBlock = code
+castle_taken_2_castle_taken_no_claim.consequenceBlock = code
 
 
 
@@ -5143,7 +5183,7 @@ requested_castle_granted_to_player_continue = MenuOption("continue", "Continue."
 def code():
     give_center_to_lord(_g_center_to_give_to_player,trp.player,0)
     jump_to_menu(mnu.give_center_to_player_2)
-requested_castle_granted_to_player_continue.codeBlock = code
+requested_castle_granted_to_player_continue.consequenceBlock = code
 
 
 
@@ -5175,7 +5215,7 @@ requested_castle_granted_to_player_husband_continue = MenuOption("continue", "Co
 def code():
     troop_slot_001 = troop_get_slot(trp.player,30)
     give_center_to_lord(_g_center_to_give_to_player,troop_slot_001,0)
-requested_castle_granted_to_player_husband_continue.codeBlock = code
+requested_castle_granted_to_player_husband_continue.consequenceBlock = code
 
 
 
@@ -5198,13 +5238,13 @@ requested_castle_granted_to_another_accept_decision = MenuOption("accept_decisio
 def code():
     troop_add_gold(trp.player,reg6)
     change_screen_return()
-requested_castle_granted_to_another_accept_decision.codeBlock = code
+requested_castle_granted_to_another_accept_decision.consequenceBlock = code
 
 requested_castle_granted_to_another_leave_faction = MenuOption("leave_faction", "You have been wronged! Renounce your oath to your liege! ")
 def code():
     jump_to_menu(mnu.leave_faction)
     troop_add_gold(trp.player,reg6)
-requested_castle_granted_to_another_leave_faction.codeBlock = code
+requested_castle_granted_to_another_leave_faction.consequenceBlock = code
 
 
 
@@ -5227,7 +5267,7 @@ requested_castle_granted_to_another_female_accept_decision = MenuOption("accept_
 def code():
     troop_add_gold(trp.player,reg6)
     change_screen_return()
-requested_castle_granted_to_another_female_accept_decision.codeBlock = code
+requested_castle_granted_to_another_female_accept_decision.consequenceBlock = code
 
 
 
@@ -5239,7 +5279,7 @@ leave_faction_leave_faction_give_back = MenuOption("leave_faction_give_back", "R
 def code():
     player_leave_faction(1)
     change_screen_return()
-leave_faction_leave_faction_give_back.codeBlock = code
+leave_faction_leave_faction_give_back.consequenceBlock = code
 
 leave_faction_leave_faction_hold = MenuOption("leave_faction_hold", "Renounce your oath and rule your lands, including {s2}, in your own name.")
 def condition():
@@ -5250,12 +5290,12 @@ def code():
     player_leave_faction(0)
     activate_player_faction(trp.player)
     change_screen_return()
-leave_faction_leave_faction_hold.codeBlock = code
+leave_faction_leave_faction_hold.consequenceBlock = code
 
 leave_faction_leave_faction_cancel = MenuOption("leave_faction_cancel", "Remain loyal and accept the decision.")
 def code():
     change_screen_return()
-leave_faction_leave_faction_cancel.codeBlock = code
+leave_faction_leave_faction_cancel.consequenceBlock = code
 
 
 
@@ -5274,13 +5314,13 @@ give_center_to_player_give_center_to_player_accept = MenuOption("give_center_to_
 def code():
     give_center_to_lord(_g_center_to_give_to_player,trp.player,0)
     jump_to_menu(mnu.give_center_to_player_2)
-give_center_to_player_give_center_to_player_accept.codeBlock = code
+give_center_to_player_give_center_to_player_accept.consequenceBlock = code
 
 give_center_to_player_give_center_to_player_reject = MenuOption("give_center_to_player_reject", "Reject. You have no interest in holding {s2}.")
 def code():
     party_set_slot(_g_center_to_give_to_player,7,-3)
     change_screen_return()
-give_center_to_player_give_center_to_player_reject.codeBlock = code
+give_center_to_player_give_center_to_player_reject.consequenceBlock = code
 
 
 
@@ -5303,7 +5343,7 @@ give_center_to_player_2.conditionBlock = condition
 give_center_to_player_2_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-give_center_to_player_2_continue.codeBlock = code
+give_center_to_player_2_continue.consequenceBlock = code
 
 
 
@@ -5324,13 +5364,13 @@ def code():
     cur_day_001 = store_current_day()
     _mercenary_service_next_renew_day = cur_day_001 + 30
     change_screen_return()
-oath_fulfilled_renew_oath.codeBlock = code
+oath_fulfilled_renew_oath.consequenceBlock = code
 
 oath_fulfilled_dont_renew_oath = MenuOption("dont_renew_oath", "Become free of your bond.")
 def code():
     player_leave_faction(1)
     change_screen_return()
-oath_fulfilled_dont_renew_oath.codeBlock = code
+oath_fulfilled_dont_renew_oath.consequenceBlock = code
 
 
 
@@ -5439,7 +5479,7 @@ def code():
     _g_next_menu = mnu.siege_started_defender
     jump_to_menu(mnu.battle_debrief)
     change_screen_mission()
-siege_started_defender_siege_defender_join_battle.codeBlock = code
+siege_started_defender_siege_defender_join_battle.consequenceBlock = code
 
 siege_started_defender_siege_defender_troops_join_battle = MenuOption("siege_defender_troops_join_battle", "Order your men to join the battle without you.")
 def condition():
@@ -5452,7 +5492,7 @@ def code():
     _g_ally_party = _g_encountered_party
     _g_siege_join = 1
     jump_to_menu(mnu.siege_join_defense)
-siege_started_defender_siege_defender_troops_join_battle.codeBlock = code
+siege_started_defender_siege_defender_troops_join_battle.consequenceBlock = code
 
 
 
@@ -5512,7 +5552,7 @@ siege_join_defense.conditionBlock = condition
 siege_join_defense_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.siege_started_defender)
-siege_join_defense_continue.codeBlock = code
+siege_join_defense_continue.consequenceBlock = code
 
 
 
@@ -5534,7 +5574,7 @@ enter_your_own_castle.conditionBlock = condition
 enter_your_own_castle_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.town)
-enter_your_own_castle_continue.codeBlock = code
+enter_your_own_castle_continue.consequenceBlock = code
 
 
 
@@ -5688,7 +5728,7 @@ village_village_manage = MenuOption("village_manage", "Manage this village.")
 def code():
     _g_next_menu = mnu.village
     jump_to_menu(mnu.center_manage)
-village_village_manage.codeBlock = code
+village_village_manage.consequenceBlock = code
 
 village_recruit_volunteers = MenuOption("recruit_volunteers", "Recruit Volunteers.")
 def code():
@@ -5697,7 +5737,7 @@ def code():
     else:
         jump_to_menu(mnu.recruit_volunteers)
     #end
-village_recruit_volunteers.codeBlock = code
+village_recruit_volunteers.consequenceBlock = code
 
 village_village_center = MenuOption("village_center", "Go to the village center.") # Door to the village center.
 def code():
@@ -5717,7 +5757,7 @@ def code():
         jump_to_scene(party_slot_001)
         change_screen_mission()
     #end
-village_village_center.codeBlock = code
+village_village_center.consequenceBlock = code
 
 village_village_buy_food = MenuOption("village_buy_food", "Buy supplies from the peasants.")
 def code():
@@ -5727,7 +5767,7 @@ def code():
         party_slot_001 = party_get_slot(_current_town,25)
         change_screen_trade(party_slot_001)
     #end
-village_village_buy_food.codeBlock = code
+village_village_buy_food.consequenceBlock = code
 
 village_village_attack_bandits = MenuOption("village_attack_bandits", "Attack the bandits.")
 def code():
@@ -5746,7 +5786,7 @@ def code():
     jump_to_menu(mnu.battle_debrief)
     _g_mt_mode = 1
     change_screen_mission()
-village_village_attack_bandits.codeBlock = code
+village_village_attack_bandits.consequenceBlock = code
 
 village_village_wait = MenuOption("village_wait", "Wait here for some time.")
 def code():
@@ -5760,7 +5800,7 @@ def code():
     #end
     rest_for_hours_interactive(168,5,1)
     change_screen_return()
-village_village_wait.codeBlock = code
+village_village_wait.consequenceBlock = code
 
 village_collect_taxes_qst = MenuOption("collect_taxes_qst", "{reg5?Continue collecting taxes:Collect taxes} due to {s1}.")
 def condition():
@@ -5772,27 +5812,27 @@ def condition():
 village_collect_taxes_qst.conditionBlock = condition
 def code():
     jump_to_menu(mnu.collect_taxes)
-village_collect_taxes_qst.codeBlock = code
+village_collect_taxes_qst.consequenceBlock = code
 
 village_train_peasants_against_bandits_qst = MenuOption("train_peasants_against_bandits_qst", "Train the peasants.")
 def code():
     jump_to_menu(mnu.train_peasants_against_bandits)
-village_train_peasants_against_bandits_qst.codeBlock = code
+village_train_peasants_against_bandits_qst.consequenceBlock = code
 
 village_village_hostile_action = MenuOption("village_hostile_action", "Take a hostile action.")
 def code():
     jump_to_menu(mnu.village_hostile_action)
-village_village_hostile_action.codeBlock = code
+village_village_hostile_action.consequenceBlock = code
 
 village_village_reports = MenuOption("village_reports", "{!}CHEAT! Show reports.")
 def code():
     jump_to_menu(mnu.center_reports)
-village_village_reports.codeBlock = code
+village_village_reports.consequenceBlock = code
 
 village_village_leave = MenuOption("village_leave", "Leave...")
 def code():
     change_screen_return(0)
-village_village_leave.codeBlock = code
+village_village_leave.consequenceBlock = code
 
 
 
@@ -5815,7 +5855,7 @@ def condition():
 village_hostile_action_village_take_food.conditionBlock = condition
 def code():
     jump_to_menu(mnu.village_take_food_confirm)
-village_hostile_action_village_take_food.codeBlock = code
+village_hostile_action_village_take_food.consequenceBlock = code
 
 village_hostile_action_village_steal_cattle = MenuOption("village_steal_cattle", "Steal cattle.")
 def condition():
@@ -5824,7 +5864,7 @@ def condition():
 village_hostile_action_village_steal_cattle.conditionBlock = condition
 def code():
     jump_to_menu(mnu.village_steal_cattle_confirm)
-village_hostile_action_village_steal_cattle.codeBlock = code
+village_hostile_action_village_steal_cattle.consequenceBlock = code
 
 village_hostile_action_village_loot = MenuOption("village_loot", "Loot and burn this village.")
 def condition():
@@ -5834,12 +5874,12 @@ def condition():
 village_hostile_action_village_loot.conditionBlock = condition
 def code():
     jump_to_menu(mnu.village_start_attack)
-village_hostile_action_village_loot.codeBlock = code
+village_hostile_action_village_loot.consequenceBlock = code
 
 village_hostile_action_forget_it = MenuOption("forget_it", "Forget it.")
 def code():
     jump_to_menu(mnu.village)
-village_hostile_action_forget_it.codeBlock = code
+village_hostile_action_forget_it.consequenceBlock = code
 
 
 
@@ -5879,24 +5919,24 @@ recruit_volunteers.conditionBlock = condition
 recruit_volunteers_continue_not_enough_gold = MenuOption("continue_not_enough_gold", "I don't have enough money...")
 def code():
     jump_to_menu(mnu.village)
-recruit_volunteers_continue_not_enough_gold.codeBlock = code
+recruit_volunteers_continue_not_enough_gold.consequenceBlock = code
 
 recruit_volunteers_continue = MenuOption("continue", "Continue...")
 def code():
     party_set_slot(_current_town,93,-1)
     jump_to_menu(mnu.village)
-recruit_volunteers_continue.codeBlock = code
+recruit_volunteers_continue.consequenceBlock = code
 
 recruit_volunteers_recruit_them = MenuOption("recruit_them", "Recruit them ({reg6} denars).")
 def code():
     village_recruit_volunteers_recruit()
     jump_to_menu(mnu.village)
-recruit_volunteers_recruit_them.codeBlock = code
+recruit_volunteers_recruit_them.consequenceBlock = code
 
 recruit_volunteers_forget_it = MenuOption("forget_it", "Forget it.")
 def code():
     jump_to_menu(mnu.village)
-recruit_volunteers_forget_it.codeBlock = code
+recruit_volunteers_forget_it.consequenceBlock = code
 
 
 
@@ -5907,7 +5947,7 @@ village_hunt_down_fugitive_defeated = GameMenu("village_hunt_down_fugitive_defea
 village_hunt_down_fugitive_defeated_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.village)
-village_hunt_down_fugitive_defeated_continue.codeBlock = code
+village_hunt_down_fugitive_defeated_continue.consequenceBlock = code
 
 
 
@@ -5941,7 +5981,7 @@ def code():
         change_player_relation_with_center(_g_encountered_party,-3)
     #end
     jump_to_menu(mnu.village)
-village_infest_bandits_result_continue.codeBlock = code
+village_infest_bandits_result_continue.consequenceBlock = code
 
 
 
@@ -5979,14 +6019,14 @@ def code():
     party_slot_001 = party_get_slot(_current_town,25)
     troop_sort_inventory(party_slot_001)
     change_screen_loot(party_slot_001)
-village_infestation_removed_village_bandits_defeated_accept.codeBlock = code
+village_infestation_removed_village_bandits_defeated_accept.consequenceBlock = code
 
 village_infestation_removed_village_bandits_defeated_cont = MenuOption("village_bandits_defeated_cont", "Refuse, stating that they need these items more than you do.")
 def code():
     change_player_relation_with_center(_g_encountered_party,3)
     change_player_honor(1)
     jump_to_menu(mnu.village)
-village_infestation_removed_village_bandits_defeated_cont.codeBlock = code
+village_infestation_removed_village_bandits_defeated_cont.consequenceBlock = code
 
 
 
@@ -6046,42 +6086,42 @@ center_manage_center_build_manor = MenuOption("center_build_manor", "Build a man
 def code():
     _g_improvement_type = 130
     jump_to_menu(mnu.center_improve)
-center_manage_center_build_manor.codeBlock = code
+center_manage_center_build_manor.consequenceBlock = code
 
 center_manage_center_build_fish_pond = MenuOption("center_build_fish_pond", "Build a mill.")
 def code():
     _g_improvement_type = 131
     jump_to_menu(mnu.center_improve)
-center_manage_center_build_fish_pond.codeBlock = code
+center_manage_center_build_fish_pond.consequenceBlock = code
 
 center_manage_center_build_watch_tower = MenuOption("center_build_watch_tower", "Build a watch tower.")
 def code():
     _g_improvement_type = 132
     jump_to_menu(mnu.center_improve)
-center_manage_center_build_watch_tower.codeBlock = code
+center_manage_center_build_watch_tower.consequenceBlock = code
 
 center_manage_center_build_school = MenuOption("center_build_school", "Build a school.")
 def code():
     _g_improvement_type = 133
     jump_to_menu(mnu.center_improve)
-center_manage_center_build_school.codeBlock = code
+center_manage_center_build_school.consequenceBlock = code
 
 center_manage_center_build_messenger_post = MenuOption("center_build_messenger_post", "Build a messenger post.")
 def code():
     _g_improvement_type = 134
     jump_to_menu(mnu.center_improve)
-center_manage_center_build_messenger_post.codeBlock = code
+center_manage_center_build_messenger_post.consequenceBlock = code
 
 center_manage_center_build_prisoner_tower = MenuOption("center_build_prisoner_tower", "Build a prisoner tower.")
 def code():
     _g_improvement_type = 135
     jump_to_menu(mnu.center_improve)
-center_manage_center_build_prisoner_tower.codeBlock = code
+center_manage_center_build_prisoner_tower.consequenceBlock = code
 
 center_manage_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(_g_next_menu)
-center_manage_go_back_dot.codeBlock = code
+center_manage_go_back_dot.consequenceBlock = code
 
 
 
@@ -6124,7 +6164,7 @@ def code():
     var002 += cur_hours_001
     party_set_slot(_g_encountered_party,125,var002)
     jump_to_menu(mnu.center_manage)
-center_improve_improve_cont.codeBlock = code
+center_improve_improve_cont.consequenceBlock = code
 
 center_improve_forget_it = MenuOption("forget_it", "Forget it.")
 def condition():
@@ -6132,7 +6172,7 @@ def condition():
 center_improve_forget_it.conditionBlock = condition
 def code():
     jump_to_menu(mnu.center_manage)
-center_improve_forget_it.codeBlock = code
+center_improve_forget_it.consequenceBlock = code
 
 center_improve_improve_not_enough_gold = MenuOption("improve_not_enough_gold", "I don't have enough money for that.")
 def condition():
@@ -6140,7 +6180,7 @@ def condition():
 center_improve_improve_not_enough_gold.conditionBlock = condition
 def code():
     jump_to_menu(mnu.center_manage)
-center_improve_improve_not_enough_gold.codeBlock = code
+center_improve_improve_not_enough_gold.consequenceBlock = code
 
 
 
@@ -6168,7 +6208,7 @@ town_bandits_failed.conditionBlock = condition
 town_bandits_failed_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-town_bandits_failed_continue.codeBlock = code
+town_bandits_failed_continue.consequenceBlock = code
 
 
 
@@ -6190,7 +6230,7 @@ town_bandits_succeeded.conditionBlock = condition
 town_bandits_succeeded_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-town_bandits_succeeded_continue.codeBlock = code
+town_bandits_succeeded_continue.consequenceBlock = code
 
 
 
@@ -6216,12 +6256,12 @@ def code():
     rest_for_hours_interactive(3,5,1)
     _auto_menu = mnu.village_steal_cattle
     change_screen_return()
-village_steal_cattle_confirm_village_steal_cattle_confirm.codeBlock = code
+village_steal_cattle_confirm_village_steal_cattle_confirm.consequenceBlock = code
 
 village_steal_cattle_confirm_forget_it = MenuOption("forget_it", "Forget it.")
 def code():
     change_screen_return()
-village_steal_cattle_confirm_forget_it.codeBlock = code
+village_steal_cattle_confirm_forget_it.consequenceBlock = code
 
 
 
@@ -6260,7 +6300,7 @@ village_steal_cattle.conditionBlock = condition
 village_steal_cattle_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-village_steal_cattle_continue.codeBlock = code
+village_steal_cattle_continue.consequenceBlock = code
 
 
 
@@ -6275,12 +6315,12 @@ def code():
     _g_town_visit_after_rest = 1
     _auto_enter_in_center = mnu.village_take_food
     change_screen_return()
-village_take_food_confirm_village_take_food_confirm.codeBlock = code
+village_take_food_confirm_village_take_food_confirm.consequenceBlock = code
 
 village_take_food_confirm_forget_it = MenuOption("forget_it", "Forget it.")
 def code():
     jump_to_menu(mnu.village_hostile_action)
-village_take_food_confirm_forget_it.codeBlock = code
+village_take_food_confirm_forget_it.consequenceBlock = code
 
 
 
@@ -6327,12 +6367,12 @@ def code():
     jump_to_menu(mnu.village)
     troop_sort_inventory(party_slot_002)
     change_screen_loot(party_slot_002)
-village_take_food_take_supplies.codeBlock = code
+village_take_food_take_supplies.consequenceBlock = code
 
 village_take_food_let_them_keep_it = MenuOption("let_them_keep_it", "Let them keep it.")
 def code():
     jump_to_menu(mnu.village)
-village_take_food_let_them_keep_it.codeBlock = code
+village_take_food_let_them_keep_it.consequenceBlock = code
 
 
 
@@ -6385,12 +6425,12 @@ def code():
     objectionable_action(3,gstr.loot_village)
     jump_to_menu(mnu.battle_debrief)
     change_screen_mission()
-village_start_attack_village_raid_attack.codeBlock = code
+village_start_attack_village_raid_attack.consequenceBlock = code
 
 village_start_attack_village_raid_leave = MenuOption("village_raid_leave", "Leave this village alone.")
 def code():
     change_screen_return()
-village_start_attack_village_raid_leave.codeBlock = code
+village_start_attack_village_raid_leave.consequenceBlock = code
 
 
 
@@ -6412,12 +6452,12 @@ def code():
     #end
     rest_for_hours(3,5,1)
     change_screen_return()
-village_loot_no_resist_village_loot.codeBlock = code
+village_loot_no_resist_village_loot.consequenceBlock = code
 
 village_loot_no_resist_village_raid_leave = MenuOption("village_raid_leave", "Leave this village alone.")
 def code():
     change_screen_return()
-village_loot_no_resist_village_raid_leave.codeBlock = code
+village_loot_no_resist_village_raid_leave.consequenceBlock = code
 
 
 
@@ -6513,7 +6553,7 @@ def code():
     troop_add_merchandise(trp.temp_troop,11,30)
     troop_sort_inventory(trp.temp_troop)
     change_screen_loot(trp.temp_troop)
-village_loot_complete_continue.codeBlock = code
+village_loot_complete_continue.consequenceBlock = code
 
 
 
@@ -6527,7 +6567,7 @@ village_loot_defeat.conditionBlock = condition
 village_loot_defeat_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-village_loot_defeat_continue.codeBlock = code
+village_loot_defeat_continue.consequenceBlock = code
 
 
 
@@ -6539,7 +6579,7 @@ village_loot_continue_disembark_yes = MenuOption("disembark_yes", "Yes.")
 def code():
     rest_for_hours(3,5,1)
     change_screen_return()
-village_loot_continue_disembark_yes.codeBlock = code
+village_loot_continue_disembark_yes.consequenceBlock = code
 
 village_loot_continue_disembark_no = MenuOption("disembark_no", "No.")
 def code():
@@ -6547,7 +6587,7 @@ def code():
     party_set_slot(_current_town,34,-1)
     _g_player_raiding_village = 0
     change_screen_return()
-village_loot_continue_disembark_no.codeBlock = code
+village_loot_continue_disembark_no.consequenceBlock = code
 
 
 
@@ -6726,7 +6766,7 @@ def code():
         _town_entered = 1
         enter_court(_current_town)
     #end
-town_castle_castle.codeBlock = code
+town_castle_castle.consequenceBlock = code
 
 town_join_tournament = MenuOption("join_tournament", "Join the tournament.")
 def code():
@@ -6739,7 +6779,7 @@ def code():
     _g_tournament_next_num_teams = 0
     _g_tournament_next_team_size = 0
     jump_to_menu(mnu.town_tournament)
-town_join_tournament.codeBlock = code
+town_join_tournament.consequenceBlock = code
 
 town_town_castle = MenuOption("town_castle", "Go to the castle{s1}.") # Door to the castle.
 def condition():
@@ -6762,7 +6802,7 @@ def code():
         _town_entered = 1
         enter_court(_current_town)
     #end
-town_town_castle.codeBlock = code
+town_town_castle.consequenceBlock = code
 
 town_town_center = MenuOption("town_center", "Take a walk around the streets.") # Door to the town center.
 def code():
@@ -6896,7 +6936,7 @@ def code():
         jump_to_scene(party_slot_005)
         change_screen_mission()
     #end
-town_town_center.codeBlock = code
+town_town_center.consequenceBlock = code
 
 town_town_tavern = MenuOption("town_tavern", "Visit the tavern.") # Door to the tavern.
 def code():
@@ -7080,7 +7120,7 @@ def code():
         #end
         change_screen_mission()
     #end
-town_town_tavern.codeBlock = code
+town_town_tavern.consequenceBlock = code
 
 town_town_merchant = MenuOption("town_merchant", "Speak with the merchant.") # Door to the shop.
 def code():
@@ -7098,7 +7138,7 @@ def code():
         scene_set_slot(party_slot_001,0,1)
         change_screen_mission()
     #end
-town_town_merchant.codeBlock = code
+town_town_merchant.consequenceBlock = code
 
 town_town_arena = MenuOption("town_arena", "Enter the arena.") # Door to the arena.
 def code():
@@ -7118,7 +7158,7 @@ def code():
         scene_set_slot(party_slot_001,0,1)
         change_screen_mission()
     #end
-town_town_arena.codeBlock = code
+town_town_arena.consequenceBlock = code
 
 town_town_dungeon = MenuOption("town_dungeon", "Never: Enter the prison.") # Door to the dungeon.
 def code():
@@ -7141,7 +7181,7 @@ def code():
             print(gstr.door_locked,4294945450)
         #end
     #end
-town_town_dungeon.codeBlock = code
+town_town_dungeon.consequenceBlock = code
 
 town_castle_inspect = MenuOption("castle_inspect", "Take a walk around the courtyard.") # To the castle courtyard.
 def code():
@@ -7227,7 +7267,7 @@ def code():
         jump_to_scene(party_slot_001)
         change_screen_mission()
     #end
-town_castle_inspect.codeBlock = code
+town_castle_inspect.consequenceBlock = code
 
 town_town_enterprise = MenuOption("town_enterprise", "Visit your {s3}.") # Door to your enterprise.
 def condition():
@@ -7268,7 +7308,7 @@ def code():
     set_jump_mission(mt.town_default)
     jump_to_scene(scene_id_004)
     change_screen_mission()
-town_town_enterprise.codeBlock = code
+town_town_enterprise.consequenceBlock = code
 
 town_visit_lady = MenuOption("visit_lady", "Attempt to visit a lady") # Door to the garden.
 def condition():
@@ -7310,7 +7350,7 @@ def condition():
 town_visit_lady.conditionBlock = condition
 def code():
     jump_to_menu(mnu.lady_visit)
-town_visit_lady.codeBlock = code
+town_visit_lady.consequenceBlock = code
 
 town_trade_with_merchants = MenuOption("trade_with_merchants", "Go to the marketplace.")
 def code():
@@ -7319,7 +7359,7 @@ def code():
     else:
         jump_to_menu(mnu.town_trade)
     #end
-town_trade_with_merchants.codeBlock = code
+town_trade_with_merchants.consequenceBlock = code
 
 town_walled_center_manage = MenuOption("walled_center_manage", "Manage this {reg0?town:castle}.")
 def condition():
@@ -7333,12 +7373,12 @@ town_walled_center_manage.conditionBlock = condition
 def code():
     _g_next_menu = mnu.town
     jump_to_menu(mnu.center_manage)
-town_walled_center_manage.codeBlock = code
+town_walled_center_manage.consequenceBlock = code
 
 town_walled_center_move_court = MenuOption("walled_center_move_court", "Move your court here.")
 def code():
     jump_to_menu(mnu.establish_court)
-town_walled_center_move_court.codeBlock = code
+town_walled_center_move_court.consequenceBlock = code
 
 town_castle_station_troops = MenuOption("castle_station_troops", "Manage the garrison {s10}")
 def condition():
@@ -7376,7 +7416,7 @@ def condition():
 town_castle_station_troops.conditionBlock = condition
 def code():
     change_screen_exchange_members(1)
-town_castle_station_troops.codeBlock = code
+town_castle_station_troops.consequenceBlock = code
 
 town_castle_wait = MenuOption("castle_wait", "Wait here for some time{s1}.")
 def condition():
@@ -7414,7 +7454,7 @@ def code():
     #end
     rest_for_hours_interactive(168,5,0)
     change_screen_return()
-town_castle_wait.codeBlock = code
+town_castle_wait.consequenceBlock = code
 
 town_town_alley = MenuOption("town_alley", "{!}CHEAT: Go to the alley.")
 def code():
@@ -7422,7 +7462,7 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(reg11)
     change_screen_mission()
-town_town_alley.codeBlock = code
+town_town_alley.consequenceBlock = code
 
 town_collect_taxes_qst = MenuOption("collect_taxes_qst", "{reg5?Continue collecting taxes:Collect taxes} due to {s1}.")
 def condition():
@@ -7433,13 +7473,13 @@ def condition():
 town_collect_taxes_qst.conditionBlock = condition
 def code():
     jump_to_menu(mnu.collect_taxes)
-town_collect_taxes_qst.codeBlock = code
+town_collect_taxes_qst.consequenceBlock = code
 
 town_town_leave = MenuOption("town_leave", "Leave...") # Leave Area.
 def code():
     _g_permitted_to_center = 0
     change_screen_return(0)
-town_town_leave.codeBlock = code
+town_town_leave.consequenceBlock = code
 
 town_castle_cheat_interior = MenuOption("castle_cheat_interior", "{!}CHEAT! Interior.")
 def code():
@@ -7447,7 +7487,7 @@ def code():
     party_slot_001 = party_get_slot(_current_town,11)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-town_castle_cheat_interior.codeBlock = code
+town_castle_cheat_interior.consequenceBlock = code
 
 town_castle_cheat_town_exterior = MenuOption("castle_cheat_town_exterior", "{!}CHEAT! Exterior.")
 def code():
@@ -7459,7 +7499,7 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-town_castle_cheat_town_exterior.codeBlock = code
+town_castle_cheat_town_exterior.consequenceBlock = code
 
 town_castle_cheat_dungeon = MenuOption("castle_cheat_dungeon", "{!}CHEAT! Prison.")
 def code():
@@ -7467,7 +7507,7 @@ def code():
     party_slot_001 = party_get_slot(_current_town,12)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-town_castle_cheat_dungeon.codeBlock = code
+town_castle_cheat_dungeon.consequenceBlock = code
 
 town_castle_cheat_town_walls = MenuOption("castle_cheat_town_walls", "{!}CHEAT! Town Walls.")
 def code():
@@ -7475,7 +7515,7 @@ def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-town_castle_cheat_town_walls.codeBlock = code
+town_castle_cheat_town_walls.consequenceBlock = code
 
 town_cheat_town_start_siege = MenuOption("cheat_town_start_siege", "{!}CHEAT: Besiege the {reg6?town:castle}...")
 def condition():
@@ -7493,12 +7533,12 @@ town_cheat_town_start_siege.conditionBlock = condition
 def code():
     _g_player_besiege_town = _g_encountered_party
     jump_to_menu(mnu.castle_besiege)
-town_cheat_town_start_siege.codeBlock = code
+town_cheat_town_start_siege.consequenceBlock = code
 
 town_center_reports = MenuOption("center_reports", "{!}CHEAT! Show reports.")
 def code():
     jump_to_menu(mnu.center_reports)
-town_center_reports.codeBlock = code
+town_center_reports.consequenceBlock = code
 
 town_sail_from_port = MenuOption("sail_from_port", "{!}CHEAT: Sail from port.")
 def code():
@@ -7509,7 +7549,7 @@ def code():
         party_set_position(p.main_party,2)
         _g_main_ship_party = -1
         change_screen_return()
-town_sail_from_port.codeBlock = code
+town_sail_from_port.consequenceBlock = code
 
 
 
@@ -7520,7 +7560,7 @@ cannot_enter_court = GameMenu("cannot_enter_court", 0,
 cannot_enter_court_continue = MenuOption("continue", "Continue")
 def code():
     jump_to_menu(mnu.town)
-cannot_enter_court_continue.codeBlock = code
+cannot_enter_court_continue.consequenceBlock = code
 
 
 
@@ -7536,7 +7576,7 @@ lady_visit_visit_lady_1.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_1.codeBlock = code
+lady_visit_visit_lady_1.consequenceBlock = code
 
 lady_visit_visit_lady_2 = MenuOption("visit_lady_2", "Visit {s12}")
 def condition():
@@ -7546,7 +7586,7 @@ lady_visit_visit_lady_2.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town_2
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_2.codeBlock = code
+lady_visit_visit_lady_2.consequenceBlock = code
 
 lady_visit_visit_lady_3 = MenuOption("visit_lady_3", "Visit {s12}") # Door to the garden.
 def condition():
@@ -7556,7 +7596,7 @@ lady_visit_visit_lady_3.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town_3
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_3.codeBlock = code
+lady_visit_visit_lady_3.consequenceBlock = code
 
 lady_visit_visit_lady_4 = MenuOption("visit_lady_4", "Visit {s12}")
 def condition():
@@ -7566,7 +7606,7 @@ lady_visit_visit_lady_4.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town_4
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_4.codeBlock = code
+lady_visit_visit_lady_4.consequenceBlock = code
 
 lady_visit_visit_lady_5 = MenuOption("visit_lady_5", "Visit {s12}")
 def condition():
@@ -7576,7 +7616,7 @@ lady_visit_visit_lady_5.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town_5
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_5.codeBlock = code
+lady_visit_visit_lady_5.consequenceBlock = code
 
 lady_visit_visit_lady_6 = MenuOption("visit_lady_6", "Visit {s12}")
 def condition():
@@ -7586,7 +7626,7 @@ lady_visit_visit_lady_6.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town_6
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_6.codeBlock = code
+lady_visit_visit_lady_6.consequenceBlock = code
 
 lady_visit_visit_lady_7 = MenuOption("visit_lady_7", "Visit {s12}")
 def condition():
@@ -7596,7 +7636,7 @@ lady_visit_visit_lady_7.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town_7
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_7.codeBlock = code
+lady_visit_visit_lady_7.consequenceBlock = code
 
 lady_visit_visit_lady_8 = MenuOption("visit_lady_8", "Visit {s12}")
 def condition():
@@ -7606,12 +7646,12 @@ lady_visit_visit_lady_8.conditionBlock = condition
 def code():
     _love_interest_in_town = _love_interest_in_town_8
     jump_to_menu(mnu.garden)
-lady_visit_visit_lady_8.codeBlock = code
+lady_visit_visit_lady_8.consequenceBlock = code
 
 lady_visit_leave = MenuOption("leave", "Leave")
 def code():
     jump_to_menu(mnu.town)
-lady_visit_leave.codeBlock = code
+lady_visit_leave.consequenceBlock = code
 
 
 
@@ -7628,7 +7668,7 @@ town_tournament_lost.conditionBlock = condition
 town_tournament_lost_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.town_tournament_won_by_another)
-town_tournament_lost_continue.codeBlock = code
+town_tournament_lost_continue.consequenceBlock = code
 
 
 
@@ -7665,7 +7705,7 @@ town_tournament_won.conditionBlock = condition
 town_tournament_won_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.town)
-town_tournament_won_continue.codeBlock = code
+town_tournament_won_continue.consequenceBlock = code
 
 
 
@@ -7692,7 +7732,7 @@ town_tournament_won_by_another.conditionBlock = condition
 town_tournament_won_by_another_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.town)
-town_tournament_won_by_another_continue.codeBlock = code
+town_tournament_won_by_another_continue.consequenceBlock = code
 
 
 
@@ -7737,12 +7777,12 @@ town_tournament.conditionBlock = condition
 town_tournament_tournament_view_participants = MenuOption("tournament_view_participants", "View participants.")
 def code():
     jump_to_menu(mnu.tournament_participants)
-town_tournament_tournament_view_participants.codeBlock = code
+town_tournament_tournament_view_participants.consequenceBlock = code
 
 town_tournament_tournament_bet = MenuOption("tournament_bet", "Place a bet on yourself.")
 def code():
     jump_to_menu(mnu.tournament_bet)
-town_tournament_tournament_bet.codeBlock = code
+town_tournament_tournament_bet.consequenceBlock = code
 
 town_tournament_tournament_join_next_fight = MenuOption("tournament_join_next_fight", "Fight in the next round.")
 def code():
@@ -7846,12 +7886,12 @@ def code():
     #end
     jump_to_scene(party_slot_001)
     change_screen_mission()
-town_tournament_tournament_join_next_fight.codeBlock = code
+town_tournament_tournament_join_next_fight.consequenceBlock = code
 
 town_tournament_leave_tournament = MenuOption("leave_tournament", "Withdraw from the tournament.")
 def code():
     jump_to_menu(mnu.tournament_withdraw_verify)
-town_tournament_leave_tournament.codeBlock = code
+town_tournament_leave_tournament.consequenceBlock = code
 
 
 
@@ -7862,12 +7902,12 @@ tournament_withdraw_verify = GameMenu("tournament_withdraw_verify", 0,
 tournament_withdraw_verify_tournament_withdraw_yes = MenuOption("tournament_withdraw_yes", "Yes. This is a pointless affectation.")
 def code():
     jump_to_menu(mnu.town_tournament_won_by_another)
-tournament_withdraw_verify_tournament_withdraw_yes.codeBlock = code
+tournament_withdraw_verify_tournament_withdraw_yes.consequenceBlock = code
 
 tournament_withdraw_verify_tournament_withdraw_no = MenuOption("tournament_withdraw_no", "No, not as long as there is a chance of victory!")
 def code():
     jump_to_menu(mnu.town_tournament)
-tournament_withdraw_verify_tournament_withdraw_no.codeBlock = code
+tournament_withdraw_verify_tournament_withdraw_no.consequenceBlock = code
 
 
 
@@ -7906,7 +7946,7 @@ tournament_bet_bet_100_denars.conditionBlock = condition
 def code():
     _temp = 100
     jump_to_menu(mnu.tournament_bet_confirm)
-tournament_bet_bet_100_denars.codeBlock = code
+tournament_bet_bet_100_denars.consequenceBlock = code
 
 tournament_bet_bet_50_denars = MenuOption("bet_50_denars", "50 denars.")
 def condition():
@@ -7915,7 +7955,7 @@ tournament_bet_bet_50_denars.conditionBlock = condition
 def code():
     _temp = 50
     jump_to_menu(mnu.tournament_bet_confirm)
-tournament_bet_bet_50_denars.codeBlock = code
+tournament_bet_bet_50_denars.consequenceBlock = code
 
 tournament_bet_bet_20_denars = MenuOption("bet_20_denars", "20 denars.")
 def condition():
@@ -7924,7 +7964,7 @@ tournament_bet_bet_20_denars.conditionBlock = condition
 def code():
     _temp = 20
     jump_to_menu(mnu.tournament_bet_confirm)
-tournament_bet_bet_20_denars.codeBlock = code
+tournament_bet_bet_20_denars.consequenceBlock = code
 
 tournament_bet_bet_10_denars = MenuOption("bet_10_denars", "10 denars.")
 def condition():
@@ -7933,7 +7973,7 @@ tournament_bet_bet_10_denars.conditionBlock = condition
 def code():
     _temp = 10
     jump_to_menu(mnu.tournament_bet_confirm)
-tournament_bet_bet_10_denars.codeBlock = code
+tournament_bet_bet_10_denars.consequenceBlock = code
 
 tournament_bet_bet_5_denars = MenuOption("bet_5_denars", "5 denars.")
 def condition():
@@ -7942,12 +7982,12 @@ tournament_bet_bet_5_denars.conditionBlock = condition
 def code():
     _temp = 5
     jump_to_menu(mnu.tournament_bet_confirm)
-tournament_bet_bet_5_denars.codeBlock = code
+tournament_bet_bet_5_denars.consequenceBlock = code
 
 tournament_bet_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.town_tournament)
-tournament_bet_go_back_dot.codeBlock = code
+tournament_bet_go_back_dot.consequenceBlock = code
 
 
 
@@ -7967,12 +8007,12 @@ tournament_bet_confirm_tournament_bet_accept = MenuOption("tournament_bet_accept
 def code():
     tournament_place_bet(_temp)
     jump_to_menu(mnu.town_tournament)
-tournament_bet_confirm_tournament_bet_accept.codeBlock = code
+tournament_bet_confirm_tournament_bet_accept.consequenceBlock = code
 
 tournament_bet_confirm_tournament_bet_cancel = MenuOption("tournament_bet_cancel", "Forget it.")
 def code():
     jump_to_menu(mnu.tournament_bet)
-tournament_bet_confirm_tournament_bet_cancel.codeBlock = code
+tournament_bet_confirm_tournament_bet_cancel.consequenceBlock = code
 
 
 
@@ -7994,7 +8034,7 @@ tournament_participants.conditionBlock = condition
 tournament_participants_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.town_tournament)
-tournament_participants_go_back_dot.codeBlock = code
+tournament_participants_go_back_dot.consequenceBlock = code
 
 
 
@@ -8059,7 +8099,7 @@ def code():
     _auto_enter_town = _current_town
     _g_town_visit_after_rest = 1
     change_screen_return()
-collect_taxes_start_collecting.codeBlock = code
+collect_taxes_start_collecting.consequenceBlock = code
 
 collect_taxes_collect_later = MenuOption("collect_later", "Put it off until later.")
 def code():
@@ -8068,7 +8108,7 @@ def code():
     else:
         jump_to_menu(mnu.village)
     #end
-collect_taxes_collect_later.codeBlock = code
+collect_taxes_collect_later.consequenceBlock = code
 
 
 
@@ -8089,7 +8129,7 @@ collect_taxes_complete.conditionBlock = condition
 collect_taxes_complete_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-collect_taxes_complete_continue.codeBlock = code
+collect_taxes_complete_continue.consequenceBlock = code
 
 
 
@@ -8100,7 +8140,7 @@ collect_taxes_rebels_killed = GameMenu("collect_taxes_rebels_killed", 0,
 collect_taxes_rebels_killed_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_map()
-collect_taxes_rebels_killed_continue.codeBlock = code
+collect_taxes_rebels_killed_continue.consequenceBlock = code
 
 
 
@@ -8120,7 +8160,7 @@ collect_taxes_failed.conditionBlock = condition
 collect_taxes_failed_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_map()
-collect_taxes_failed_continue.codeBlock = code
+collect_taxes_failed_continue.consequenceBlock = code
 
 
 
@@ -8134,7 +8174,7 @@ collect_taxes_revolt_warning.conditionBlock = condition
 collect_taxes_revolt_warning_continue_collecting_taxes = MenuOption("continue_collecting_taxes", "Ignore them and continue.")
 def code():
     change_screen_return()
-collect_taxes_revolt_warning_continue_collecting_taxes.codeBlock = code
+collect_taxes_revolt_warning_continue_collecting_taxes.consequenceBlock = code
 
 collect_taxes_revolt_warning_halve_taxes = MenuOption("halve_taxes", "Agree to reduce your collection by half. ({s1} may be upset)")
 def condition():
@@ -8144,7 +8184,7 @@ collect_taxes_revolt_warning_halve_taxes.conditionBlock = condition
 def code():
     _qst_collect_taxes_halve_taxes = 1
     change_screen_return()
-collect_taxes_revolt_warning_halve_taxes.codeBlock = code
+collect_taxes_revolt_warning_halve_taxes.consequenceBlock = code
 
 
 
@@ -8177,7 +8217,7 @@ def code():
     set_visitors(1,trp.tax_rebel,number_of_troops_003)
     jump_to_scene(party_slot_002)
     change_screen_mission()
-collect_taxes_revolt_continue.codeBlock = code
+collect_taxes_revolt_continue.consequenceBlock = code
 
 
 
@@ -8208,12 +8248,12 @@ def code():
     _auto_enter_town = _current_town
     _g_town_visit_after_rest = 1
     change_screen_return()
-train_peasants_against_bandits_make_preparation.codeBlock = code
+train_peasants_against_bandits_make_preparation.consequenceBlock = code
 
 train_peasants_against_bandits_train_later = MenuOption("train_later", "Put it off until later.")
 def code():
     jump_to_menu(mnu.village)
-train_peasants_against_bandits_train_later.codeBlock = code
+train_peasants_against_bandits_train_later.consequenceBlock = code
 
 
 
@@ -8251,7 +8291,7 @@ def code():
     jump_to_menu(mnu.train_peasants_against_bandits_training_result)
     music_set_situation(0)
     change_screen_mission()
-train_peasants_against_bandits_ready_peasant_start_practice.codeBlock = code
+train_peasants_against_bandits_ready_peasant_start_practice.consequenceBlock = code
 
 
 
@@ -8281,7 +8321,7 @@ def code():
             change_screen_map()
         #end
     #end
-train_peasants_against_bandits_training_result_continue.codeBlock = code
+train_peasants_against_bandits_training_result_continue.consequenceBlock = code
 
 
 
@@ -8322,7 +8362,7 @@ def code():
     jump_to_menu(mnu.battle_debrief)
     _g_mt_mode = 2
     change_screen_mission()
-train_peasants_against_bandits_attack_peasants_against_bandits_attack_resist.codeBlock = code
+train_peasants_against_bandits_attack_peasants_against_bandits_attack_resist.consequenceBlock = code
 
 
 
@@ -8351,7 +8391,7 @@ def code():
         end_quest(qst.train_peasants_against_bandits)
     #end
     change_screen_map()
-train_peasants_against_bandits_attack_result_continue.codeBlock = code
+train_peasants_against_bandits_attack_result_continue.consequenceBlock = code
 
 
 
@@ -8378,14 +8418,14 @@ def code():
     party_slot_001 = party_get_slot(_current_town,25)
     troop_sort_inventory(party_slot_001)
     change_screen_loot(party_slot_001)
-train_peasants_against_bandits_success_village_bandits_defeated_accept.codeBlock = code
+train_peasants_against_bandits_success_village_bandits_defeated_accept.consequenceBlock = code
 
 train_peasants_against_bandits_success_village_bandits_defeated_cont = MenuOption("village_bandits_defeated_cont", "Refuse, stating that they need these items more than you do.")
 def code():
     change_player_relation_with_center(_g_encountered_party,3)
     change_player_honor(1)
     change_screen_map()
-train_peasants_against_bandits_success_village_bandits_defeated_cont.codeBlock = code
+train_peasants_against_bandits_success_village_bandits_defeated_cont.consequenceBlock = code
 
 
 
@@ -8414,12 +8454,12 @@ def code():
     party_set_icon(_g_main_ship_party,1297036692682702877)
     _g_main_ship_party = -1
     change_screen_return()
-disembark_disembark_yes.codeBlock = code
+disembark_disembark_yes.consequenceBlock = code
 
 disembark_disembark_no = MenuOption("disembark_no", "No.")
 def code():
     change_screen_return()
-disembark_disembark_no.codeBlock = code
+disembark_disembark_no.consequenceBlock = code
 
 
 
@@ -8437,12 +8477,12 @@ def code():
         _g_main_ship_party = _g_encountered_party
         disable_party(_g_encountered_party)
         change_screen_return()
-ship_reembark_reembark_yes.codeBlock = code
+ship_reembark_reembark_yes.consequenceBlock = code
 
 ship_reembark_reembark_no = MenuOption("reembark_no", "No.")
 def code():
     change_screen_return()
-ship_reembark_reembark_no.codeBlock = code
+ship_reembark_reembark_no.consequenceBlock = code
 
 
 
@@ -8466,7 +8506,7 @@ center_reports.conditionBlock = condition
 center_reports_to_price_and_productions = MenuOption("to_price_and_productions", "Show prices and productions.")
 def code():
     jump_to_menu(mnu.price_and_production)
-center_reports_to_price_and_productions.codeBlock = code
+center_reports_to_price_and_productions.consequenceBlock = code
 
 center_reports_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
@@ -8475,7 +8515,7 @@ def code():
     else:
         jump_to_menu(mnu.town)
     #end
-center_reports_go_back_dot.codeBlock = code
+center_reports_go_back_dot.consequenceBlock = code
 
 
 
@@ -8567,7 +8607,7 @@ def code():
     else:
         jump_to_menu(mnu.town)
     #end
-price_and_production_go_back_dot.codeBlock = code
+price_and_production_go_back_dot.consequenceBlock = code
 
 
 
@@ -8582,36 +8622,36 @@ def condition():
 town_trade_assess_prices.conditionBlock = condition
 def code():
     jump_to_menu(mnu.town_trade_assessment_begin)
-town_trade_assess_prices.codeBlock = code
+town_trade_assess_prices.consequenceBlock = code
 
 town_trade_trade_with_arms_merchant = MenuOption("trade_with_arms_merchant", "Trade with the arms merchant.")
 def code():
     party_slot_001 = party_get_slot(_current_town,21)
     change_screen_trade(party_slot_001)
-town_trade_trade_with_arms_merchant.codeBlock = code
+town_trade_trade_with_arms_merchant.consequenceBlock = code
 
 town_trade_trade_with_armor_merchant = MenuOption("trade_with_armor_merchant", "Trade with the armor merchant.")
 def code():
     party_slot_001 = party_get_slot(_current_town,22)
     change_screen_trade(party_slot_001)
-town_trade_trade_with_armor_merchant.codeBlock = code
+town_trade_trade_with_armor_merchant.consequenceBlock = code
 
 town_trade_trade_with_horse_merchant = MenuOption("trade_with_horse_merchant", "Trade with the horse merchant.")
 def code():
     party_slot_001 = party_get_slot(_current_town,24)
     change_screen_trade(party_slot_001)
-town_trade_trade_with_horse_merchant.codeBlock = code
+town_trade_trade_with_horse_merchant.consequenceBlock = code
 
 town_trade_trade_with_goods_merchant = MenuOption("trade_with_goods_merchant", "Trade with the goods merchant.")
 def code():
     party_slot_001 = party_get_slot(_current_town,23)
     change_screen_trade(party_slot_001)
-town_trade_trade_with_goods_merchant.codeBlock = code
+town_trade_trade_with_goods_merchant.consequenceBlock = code
 
 town_trade_back_to_town_menu = MenuOption("back_to_town_menu", "Head back.")
 def code():
     jump_to_menu(mnu.town)
-town_trade_back_to_town_menu.codeBlock = code
+town_trade_back_to_town_menu.consequenceBlock = code
 
 
 
@@ -8633,12 +8673,12 @@ def code():
     _g_last_rest_payment_until = -1
     rest_for_hours(var001,5,0)
     change_screen_return()
-town_trade_assessment_begin_continue.codeBlock = code
+town_trade_assessment_begin_continue.consequenceBlock = code
 
 town_trade_assessment_begin_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.town_trade)
-town_trade_assessment_begin_go_back_dot.codeBlock = code
+town_trade_assessment_begin_go_back_dot.consequenceBlock = code
 
 
 
@@ -8851,7 +8891,7 @@ town_trade_assessment.conditionBlock = condition
 town_trade_assessment_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.town_trade)
-town_trade_assessment_continue.codeBlock = code
+town_trade_assessment_continue.consequenceBlock = code
 
 
 
@@ -8863,7 +8903,7 @@ sneak_into_town_suceeded_continue = MenuOption("continue", "Continue...")
 def code():
     _sneaked_into_town = 1
     jump_to_menu(mnu.town)
-sneak_into_town_suceeded_continue.codeBlock = code
+sneak_into_town_suceeded_continue.consequenceBlock = code
 
 
 
@@ -8895,12 +8935,12 @@ def code():
     set_passage_menu(mnu.town)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-sneak_into_town_caught_sneak_caught_fight.codeBlock = code
+sneak_into_town_caught_sneak_caught_fight.consequenceBlock = code
 
 sneak_into_town_caught_sneak_caught_surrender = MenuOption("sneak_caught_surrender", "Surrender.")
 def code():
     jump_to_menu(mnu.captivity_start_castle_surrender)
-sneak_into_town_caught_sneak_caught_surrender.codeBlock = code
+sneak_into_town_caught_sneak_caught_surrender.consequenceBlock = code
 
 
 
@@ -8913,7 +8953,7 @@ def code():
     _sneaked_into_town = 1
     _town_entered = 1
     jump_to_menu(mnu.town)
-sneak_into_town_caught_dispersed_guards_continue.codeBlock = code
+sneak_into_town_caught_dispersed_guards_continue.consequenceBlock = code
 
 
 
@@ -8953,7 +8993,7 @@ def code():
     _last_sneak_attempt_town = store_encountered_party()
     _last_sneak_attempt_time = store_current_hours()
     change_screen_return()
-sneak_into_town_caught_ran_away_continue.codeBlock = code
+sneak_into_town_caught_ran_away_continue.consequenceBlock = code
 
 
 
@@ -8985,7 +9025,7 @@ def code():
         #end
     #end
     change_screen_return()
-enemy_offer_ransom_for_prisoner_ransom_accept.codeBlock = code
+enemy_offer_ransom_for_prisoner_ransom_accept.consequenceBlock = code
 
 enemy_offer_ransom_for_prisoner_ransom_reject = MenuOption("ransom_reject", "Reject the offer.")
 def code():
@@ -8993,7 +9033,7 @@ def code():
     change_player_honor(-1)
     _g_ransom_offer_rejected = 1
     change_screen_return()
-enemy_offer_ransom_for_prisoner_ransom_reject.codeBlock = code
+enemy_offer_ransom_for_prisoner_ransom_reject.consequenceBlock = code
 
 
 
@@ -9021,7 +9061,7 @@ def code():
     jump_to_scene(_g_training_ground_melee_training_scene)
     change_screen_mission()
     music_set_situation(0)
-training_ground_camp_trainer.codeBlock = code
+training_ground_camp_trainer.consequenceBlock = code
 
 training_ground_camp_train_melee = MenuOption("camp_train_melee", "Sparring practice.")
 def condition():
@@ -9032,20 +9072,20 @@ def code():
     _g_mt_mode = 1
     jump_to_menu(mnu.training_ground_selection_details_melee_1)
     music_set_situation(0)
-training_ground_camp_train_melee.codeBlock = code
+training_ground_camp_train_melee.consequenceBlock = code
 
 training_ground_camp_train_archery = MenuOption("camp_train_archery", "Ranged weapon practice.")
 def code():
     jump_to_menu(mnu.training_ground_selection_details_ranged_1)
     music_set_situation(0)
-training_ground_camp_train_archery.codeBlock = code
+training_ground_camp_train_archery.consequenceBlock = code
 
 training_ground_camp_train_mounted = MenuOption("camp_train_mounted", "Horseback practice.")
 def code():
     _g_mt_mode = 3
     jump_to_menu(mnu.training_ground_selection_details_mounted)
     music_set_situation(0)
-training_ground_camp_train_mounted.codeBlock = code
+training_ground_camp_train_mounted.consequenceBlock = code
 
 training_ground_go_to_track = MenuOption("go_to_track", "{!}Cheat: Go to track.")
 def code():
@@ -9054,19 +9094,19 @@ def code():
     var001 -= p.training_ground_1
     jump_to_scene(var001)
     change_screen_mission()
-training_ground_go_to_track.codeBlock = code
+training_ground_go_to_track.consequenceBlock = code
 
 training_ground_go_to_range = MenuOption("go_to_range", "{!}Cheat: Go to range.")
 def code():
     set_jump_mission(mt.ai_training)
     jump_to_scene(_g_training_ground_melee_training_scene)
     change_screen_mission()
-training_ground_go_to_range.codeBlock = code
+training_ground_go_to_range.consequenceBlock = code
 
 training_ground_leave = MenuOption("leave", "Leave.")
 def code():
     change_screen_return()
-training_ground_leave.codeBlock = code
+training_ground_leave.consequenceBlock = code
 
 
 
@@ -9083,30 +9123,30 @@ training_ground_selection_details_melee_1_camp_train_melee_num_men_1 = MenuOptio
 def code():
     _temp = 1
     jump_to_menu(mnu.training_ground_selection_details_melee_2)
-training_ground_selection_details_melee_1_camp_train_melee_num_men_1.codeBlock = code
+training_ground_selection_details_melee_1_camp_train_melee_num_men_1.consequenceBlock = code
 
 training_ground_selection_details_melee_1_camp_train_melee_num_men_2 = MenuOption("camp_train_melee_num_men_2", "Two.")
 def code():
     _temp = 2
     jump_to_menu(mnu.training_ground_selection_details_melee_2)
-training_ground_selection_details_melee_1_camp_train_melee_num_men_2.codeBlock = code
+training_ground_selection_details_melee_1_camp_train_melee_num_men_2.consequenceBlock = code
 
 training_ground_selection_details_melee_1_camp_train_melee_num_men_3 = MenuOption("camp_train_melee_num_men_3", "Three.")
 def code():
     _temp = 3
     jump_to_menu(mnu.training_ground_selection_details_melee_2)
-training_ground_selection_details_melee_1_camp_train_melee_num_men_3.codeBlock = code
+training_ground_selection_details_melee_1_camp_train_melee_num_men_3.consequenceBlock = code
 
 training_ground_selection_details_melee_1_camp_train_melee_num_men_4 = MenuOption("camp_train_melee_num_men_4", "Four.")
 def code():
     _temp = 4
     jump_to_menu(mnu.training_ground_selection_details_melee_2)
-training_ground_selection_details_melee_1_camp_train_melee_num_men_4.codeBlock = code
+training_ground_selection_details_melee_1_camp_train_melee_num_men_4.consequenceBlock = code
 
 training_ground_selection_details_melee_1_go_back_dot = MenuOption("go_back_dot", "Cancel.")
 def code():
     jump_to_menu(mnu.training_ground)
-training_ground_selection_details_melee_1_go_back_dot.codeBlock = code
+training_ground_selection_details_melee_1_go_back_dot.consequenceBlock = code
 
 
 
@@ -9121,112 +9161,112 @@ training_ground_selection_details_melee_2.conditionBlock = condition
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(1)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(2)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(3)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(4)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(5)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(6)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(7)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(8)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(9)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(10)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(11)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(12)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(13)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(14)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(15)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(16)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(17)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(18)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(19)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_s0 = MenuOption("s0", "{s0}")
 def code():
     training_ground_sub_routine_2_for_melee_details(20)
-training_ground_selection_details_melee_2_s0.codeBlock = code
+training_ground_selection_details_melee_2_s0.consequenceBlock = code
 
 training_ground_selection_details_melee_2_training_ground_selection_details_melee_random = MenuOption("training_ground_selection_details_melee_random", "Choose randomly.")
 def code():
     training_ground_sub_routine_2_for_melee_details(-1)
-training_ground_selection_details_melee_2_training_ground_selection_details_melee_random.codeBlock = code
+training_ground_selection_details_melee_2_training_ground_selection_details_melee_random.consequenceBlock = code
 
 training_ground_selection_details_melee_2_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.training_ground)
-training_ground_selection_details_melee_2_go_back_dot.codeBlock = code
+training_ground_selection_details_melee_2_go_back_dot.consequenceBlock = code
 
 
 
@@ -9237,27 +9277,27 @@ training_ground_selection_details_mounted = GameMenu("training_ground_selection_
 training_ground_selection_details_mounted_camp_train_mounted_details_1 = MenuOption("camp_train_mounted_details_1", "One handed weapon.")
 def code():
     start_training_at_training_ground(2,0)
-training_ground_selection_details_mounted_camp_train_mounted_details_1.codeBlock = code
+training_ground_selection_details_mounted_camp_train_mounted_details_1.consequenceBlock = code
 
 training_ground_selection_details_mounted_camp_train_mounted_details_2 = MenuOption("camp_train_mounted_details_2", "Polearm.")
 def code():
     start_training_at_training_ground(4,0)
-training_ground_selection_details_mounted_camp_train_mounted_details_2.codeBlock = code
+training_ground_selection_details_mounted_camp_train_mounted_details_2.consequenceBlock = code
 
 training_ground_selection_details_mounted_camp_train_mounted_details_3 = MenuOption("camp_train_mounted_details_3", "Bow.")
 def code():
     start_training_at_training_ground(8,0)
-training_ground_selection_details_mounted_camp_train_mounted_details_3.codeBlock = code
+training_ground_selection_details_mounted_camp_train_mounted_details_3.consequenceBlock = code
 
 training_ground_selection_details_mounted_camp_train_mounted_details_4 = MenuOption("camp_train_mounted_details_4", "Thrown weapon.")
 def code():
     start_training_at_training_ground(10,0)
-training_ground_selection_details_mounted_camp_train_mounted_details_4.codeBlock = code
+training_ground_selection_details_mounted_camp_train_mounted_details_4.consequenceBlock = code
 
 training_ground_selection_details_mounted_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.training_ground)
-training_ground_selection_details_mounted_go_back_dot.codeBlock = code
+training_ground_selection_details_mounted_go_back_dot.consequenceBlock = code
 
 
 
@@ -9270,26 +9310,26 @@ def code():
     _g_mt_mode = 2
     _temp = 8
     jump_to_menu(mnu.training_ground_selection_details_ranged_2)
-training_ground_selection_details_ranged_1_camp_train_ranged_weapon_bow.codeBlock = code
+training_ground_selection_details_ranged_1_camp_train_ranged_weapon_bow.consequenceBlock = code
 
 training_ground_selection_details_ranged_1_camp_train_ranged_weapon_crossbow = MenuOption("camp_train_ranged_weapon_crossbow", "Crossbow.")
 def code():
     _g_mt_mode = 2
     _temp = 9
     jump_to_menu(mnu.training_ground_selection_details_ranged_2)
-training_ground_selection_details_ranged_1_camp_train_ranged_weapon_crossbow.codeBlock = code
+training_ground_selection_details_ranged_1_camp_train_ranged_weapon_crossbow.consequenceBlock = code
 
 training_ground_selection_details_ranged_1_camp_train_ranged_weapon_thrown = MenuOption("camp_train_ranged_weapon_thrown", "Throwing Knives.")
 def code():
     _g_mt_mode = 2
     _temp = 10
     jump_to_menu(mnu.training_ground_selection_details_ranged_2)
-training_ground_selection_details_ranged_1_camp_train_ranged_weapon_thrown.codeBlock = code
+training_ground_selection_details_ranged_1_camp_train_ranged_weapon_thrown.consequenceBlock = code
 
 training_ground_selection_details_ranged_1_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.training_ground)
-training_ground_selection_details_ranged_1_go_back_dot.codeBlock = code
+training_ground_selection_details_ranged_1_go_back_dot.consequenceBlock = code
 
 
 
@@ -9300,42 +9340,42 @@ training_ground_selection_details_ranged_2 = GameMenu("training_ground_selection
 training_ground_selection_details_ranged_2_camp_train_ranged_details_1 = MenuOption("camp_train_ranged_details_1", "10 yards.")
 def code():
     start_training_at_training_ground(_temp,10)
-training_ground_selection_details_ranged_2_camp_train_ranged_details_1.codeBlock = code
+training_ground_selection_details_ranged_2_camp_train_ranged_details_1.consequenceBlock = code
 
 training_ground_selection_details_ranged_2_camp_train_ranged_details_2 = MenuOption("camp_train_ranged_details_2", "20 yards.")
 def code():
     start_training_at_training_ground(_temp,20)
-training_ground_selection_details_ranged_2_camp_train_ranged_details_2.codeBlock = code
+training_ground_selection_details_ranged_2_camp_train_ranged_details_2.consequenceBlock = code
 
 training_ground_selection_details_ranged_2_camp_train_ranged_details_3 = MenuOption("camp_train_ranged_details_3", "30 yards.")
 def code():
     start_training_at_training_ground(_temp,30)
-training_ground_selection_details_ranged_2_camp_train_ranged_details_3.codeBlock = code
+training_ground_selection_details_ranged_2_camp_train_ranged_details_3.consequenceBlock = code
 
 training_ground_selection_details_ranged_2_camp_train_ranged_details_4 = MenuOption("camp_train_ranged_details_4", "40 yards.")
 def code():
     start_training_at_training_ground(_temp,40)
-training_ground_selection_details_ranged_2_camp_train_ranged_details_4.codeBlock = code
+training_ground_selection_details_ranged_2_camp_train_ranged_details_4.consequenceBlock = code
 
 training_ground_selection_details_ranged_2_camp_train_ranged_details_5 = MenuOption("camp_train_ranged_details_5", "50 yards.")
 def code():
     start_training_at_training_ground(_temp,50)
-training_ground_selection_details_ranged_2_camp_train_ranged_details_5.codeBlock = code
+training_ground_selection_details_ranged_2_camp_train_ranged_details_5.consequenceBlock = code
 
 training_ground_selection_details_ranged_2_camp_train_ranged_details_6 = MenuOption("camp_train_ranged_details_6", "60 yards.")
 def code():
     start_training_at_training_ground(_temp,60)
-training_ground_selection_details_ranged_2_camp_train_ranged_details_6.codeBlock = code
+training_ground_selection_details_ranged_2_camp_train_ranged_details_6.consequenceBlock = code
 
 training_ground_selection_details_ranged_2_camp_train_ranged_details_7 = MenuOption("camp_train_ranged_details_7", "70 yards.")
 def code():
     start_training_at_training_ground(_temp,70)
-training_ground_selection_details_ranged_2_camp_train_ranged_details_7.codeBlock = code
+training_ground_selection_details_ranged_2_camp_train_ranged_details_7.consequenceBlock = code
 
 training_ground_selection_details_ranged_2_go_back_dot = MenuOption("go_back_dot", "Go back.")
 def code():
     jump_to_menu(mnu.training_ground)
-training_ground_selection_details_ranged_2_go_back_dot.codeBlock = code
+training_ground_selection_details_ranged_2_go_back_dot.consequenceBlock = code
 
 
 
@@ -9347,7 +9387,7 @@ training_ground_description_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_scene(_g_training_ground_training_scene)
     change_screen_mission()
-training_ground_description_continue.codeBlock = code
+training_ground_description_continue.consequenceBlock = code
 
 
 
@@ -9438,7 +9478,7 @@ training_ground_training_result.conditionBlock = condition
 training_ground_training_result_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.training_ground)
-training_ground_training_result_continue.codeBlock = code
+training_ground_training_result_continue.consequenceBlock = code
 
 
 
@@ -9457,7 +9497,7 @@ marshall_selection_candidate_ask.conditionBlock = condition
 marshall_selection_candidate_ask_marshall_candidate_accept = MenuOption("marshall_candidate_accept", "Let {s15} learn that you are willing to serve as marshall.")
 def code():
     start_presentation(prsnt.marshall_selection)
-marshall_selection_candidate_ask_marshall_candidate_accept.codeBlock = code
+marshall_selection_candidate_ask_marshall_candidate_accept.consequenceBlock = code
 
 marshall_selection_candidate_ask_marshall_candidate_reject = MenuOption("marshall_candidate_reject", "Tell everyone that you are too busy these days.")
 def code():
@@ -9471,7 +9511,7 @@ def code():
         _g_presentation_marshall_selection_max_renown_2_troop = _g_presentation_marshall_selection_max_renown_3_troop
     #end
     start_presentation(prsnt.marshall_selection)
-marshall_selection_candidate_ask_marshall_candidate_reject.codeBlock = code
+marshall_selection_candidate_ask_marshall_candidate_reject.consequenceBlock = code
 
 
 
@@ -9578,7 +9618,7 @@ def code():
     stay_captive_for_hours(random_x_001)
     _auto_menu = mnu.captivity_wilderness_check
     change_screen_return()
-captivity_wilderness_taken_prisoner_continue.codeBlock = code
+captivity_wilderness_taken_prisoner_continue.consequenceBlock = code
 
 
 
@@ -9615,7 +9655,7 @@ def code():
     set_camera_follow_party(p.main_party)
     rest_for_hours(0,0,0)
     change_screen_return()
-captivity_end_wilderness_escape_continue.codeBlock = code
+captivity_end_wilderness_escape_continue.consequenceBlock = code
 
 
 
@@ -9639,7 +9679,7 @@ def code():
     stay_captive_for_hours(random_x_001)
     _auto_menu = mnu.captivity_castle_check
     change_screen_return()
-captivity_castle_taken_prisoner_continue.codeBlock = code
+captivity_castle_taken_prisoner_continue.consequenceBlock = code
 
 
 
@@ -9663,7 +9703,7 @@ def code():
     stay_captive_for_hours(random_x_001)
     _auto_menu = mnu.captivity_castle_check
     change_screen_return()
-captivity_rescue_lord_taken_prisoner_continue.codeBlock = code
+captivity_rescue_lord_taken_prisoner_continue.consequenceBlock = code
 
 
 
@@ -9717,7 +9757,7 @@ def code():
     set_camera_follow_party(p.main_party)
     rest_for_hours(0,0,0)
     change_screen_return()
-captivity_end_exchanged_with_prisoner_continue.codeBlock = code
+captivity_end_exchanged_with_prisoner_continue.consequenceBlock = code
 
 
 
@@ -9744,7 +9784,7 @@ def code():
     set_camera_follow_party(p.main_party)
     rest_for_hours(0,0,0)
     change_screen_return()
-captivity_end_propose_ransom_captivity_end_ransom_accept.codeBlock = code
+captivity_end_propose_ransom_captivity_end_ransom_accept.consequenceBlock = code
 
 captivity_end_propose_ransom_captivity_end_ransom_deny = MenuOption("captivity_end_ransom_deny", "Refuse him, wait for something better.")
 def code():
@@ -9753,7 +9793,7 @@ def code():
     stay_captive_for_hours(reg8)
     _auto_menu = mnu.captivity_castle_check
     change_screen_return()
-captivity_end_propose_ransom_captivity_end_ransom_deny.codeBlock = code
+captivity_end_propose_ransom_captivity_end_ransom_deny.consequenceBlock = code
 
 
 
@@ -9776,7 +9816,7 @@ captivity_castle_remain_continue = MenuOption("continue", "Continue...")
 def code():
     _g_player_is_captive = 1
     change_screen_return()
-captivity_castle_remain_continue.codeBlock = code
+captivity_castle_remain_continue.consequenceBlock = code
 
 
 
@@ -9808,7 +9848,7 @@ def code():
     start_quest(qst.report_to_army,quest_slot_001)
     report_quest_troop_positions(qst.report_to_army,quest_slot_001,3)
     change_screen_return()
-kingdom_army_quest_report_to_army_continue.codeBlock = code
+kingdom_army_quest_report_to_army_continue.consequenceBlock = code
 
 
 
@@ -9824,7 +9864,7 @@ kingdom_army_quest_messenger.conditionBlock = condition
 kingdom_army_quest_messenger_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-kingdom_army_quest_messenger_continue.codeBlock = code
+kingdom_army_quest_messenger_continue.consequenceBlock = code
 
 
 
@@ -9850,7 +9890,7 @@ def code():
     s2 = str_store_string("@{s13} ordered you to join the assault against {s14}.")
     start_quest(qst.join_siege_with_army,faction_slot_002)
     change_screen_return()
-kingdom_army_quest_join_siege_order_continue.codeBlock = code
+kingdom_army_quest_join_siege_order_continue.consequenceBlock = code
 
 
 
@@ -9867,7 +9907,7 @@ kingdom_army_follow_failed.conditionBlock = condition
 kingdom_army_follow_failed_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-kingdom_army_follow_failed_continue.codeBlock = code
+kingdom_army_follow_failed_continue.consequenceBlock = code
 
 
 
@@ -9894,7 +9934,7 @@ def code():
     start_quest(qst.join_faction,_g_invite_faction_lord)
     report_quest_troop_positions(qst.join_faction,_g_invite_faction_lord,3)
     jump_to_menu(mnu.invite_player_to_faction_accepted)
-invite_player_to_faction_without_center_faction_accept.codeBlock = code
+invite_player_to_faction_without_center_faction_accept.consequenceBlock = code
 
 invite_player_to_faction_without_center_faction_reject = MenuOption("faction_reject", "Decline the invitation.")
 def code():
@@ -9904,7 +9944,7 @@ def code():
     _g_invite_faction_lord = 0
     _g_invite_offered_center = 0
     change_screen_return()
-invite_player_to_faction_without_center_faction_reject.codeBlock = code
+invite_player_to_faction_without_center_faction_reject.consequenceBlock = code
 
 
 
@@ -9931,7 +9971,7 @@ def code():
     start_quest(qst.join_faction,_g_invite_faction_lord)
     report_quest_troop_positions(qst.join_faction,_g_invite_faction_lord,3)
     jump_to_menu(mnu.invite_player_to_faction_accepted)
-invite_player_to_faction_faction_accept.codeBlock = code
+invite_player_to_faction_faction_accept.consequenceBlock = code
 
 invite_player_to_faction_faction_reject = MenuOption("faction_reject", "Decline the invitation.")
 def code():
@@ -9940,7 +9980,7 @@ def code():
     _g_invite_faction_lord = 0
     _g_invite_offered_center = 0
     change_screen_return()
-invite_player_to_faction_faction_reject.codeBlock = code
+invite_player_to_faction_faction_reject.consequenceBlock = code
 
 
 
@@ -9956,7 +9996,7 @@ invite_player_to_faction_accepted.conditionBlock = condition
 invite_player_to_faction_accepted_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-invite_player_to_faction_accepted_continue.codeBlock = code
+invite_player_to_faction_accepted_continue.consequenceBlock = code
 
 
 
@@ -9976,13 +10016,13 @@ question_peace_offer_peace_offer_accept = MenuOption("peace_offer_accept", "Acce
 def code():
     diplomacy_start_peace_between_kingdoms(fac.player_supporters_faction,_g_notification_var1,1)
     change_screen_return()
-question_peace_offer_peace_offer_accept.codeBlock = code
+question_peace_offer_peace_offer_accept.consequenceBlock = code
 
 question_peace_offer_peace_offer_reject = MenuOption("peace_offer_reject", "Reject")
 def code():
     change_player_relation_with_faction(_g_notification_var1,-5)
     change_screen_return()
-question_peace_offer_peace_offer_reject.codeBlock = code
+question_peace_offer_peace_offer_reject.consequenceBlock = code
 
 
 
@@ -10002,7 +10042,7 @@ notification_truce_expired.conditionBlock = condition
 notification_truce_expired_continue = MenuOption("continue", "Continue")
 def code():
     change_screen_return()
-notification_truce_expired_continue.codeBlock = code
+notification_truce_expired_continue.consequenceBlock = code
 
 
 
@@ -10016,7 +10056,7 @@ notification_feast_quest_expired.conditionBlock = condition
 notification_feast_quest_expired_continue = MenuOption("continue", "Continue")
 def code():
     change_screen_return()
-notification_feast_quest_expired_continue.codeBlock = code
+notification_feast_quest_expired_continue.consequenceBlock = code
 
 
 
@@ -10032,7 +10072,7 @@ notification_sortie_possible.conditionBlock = condition
 notification_sortie_possible_continue = MenuOption("continue", "Continue")
 def code():
     change_screen_return()
-notification_sortie_possible_continue.codeBlock = code
+notification_sortie_possible_continue.consequenceBlock = code
 
 
 
@@ -10056,7 +10096,7 @@ notification_casus_belli_expired_continue = MenuOption("continue", "Continue")
 def code():
     faction_follows_controversial_policy(_g_notification_var1,81)
     change_screen_return()
-notification_casus_belli_expired_continue.codeBlock = code
+notification_casus_belli_expired_continue.consequenceBlock = code
 
 
 
@@ -10076,7 +10116,7 @@ notification_lord_defects.conditionBlock = condition
 notification_lord_defects_continue = MenuOption("continue", "Continue")
 def code():
     change_screen_return()
-notification_lord_defects_continue.codeBlock = code
+notification_lord_defects_continue.consequenceBlock = code
 
 
 
@@ -10109,7 +10149,7 @@ notification_treason_indictment.conditionBlock = condition
 notification_treason_indictment_continue = MenuOption("continue", "Continue")
 def code():
     change_screen_return()
-notification_treason_indictment_continue.codeBlock = code
+notification_treason_indictment_continue.consequenceBlock = code
 
 
 
@@ -10162,7 +10202,7 @@ notification_border_incident.conditionBlock = condition
 notification_border_incident_continue = MenuOption("continue", "Continue")
 def code():
     change_screen_return()
-notification_border_incident_continue.codeBlock = code
+notification_border_incident_continue.consequenceBlock = code
 
 
 
@@ -10205,7 +10245,7 @@ def code():
     troop_slot_001 = troop_get_slot(trp.player,30)
     _g_player_minister = troop_slot_001
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_spouse.codeBlock = code
+notification_player_faction_active_appoint_spouse.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc1 = MenuOption("appoint_npc1", "Appoint {s10}")
 def condition():
@@ -10215,7 +10255,7 @@ notification_player_faction_active_appoint_npc1.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc1
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc1.codeBlock = code
+notification_player_faction_active_appoint_npc1.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc2 = MenuOption("appoint_npc2", "Appoint {s10}")
 def condition():
@@ -10225,7 +10265,7 @@ notification_player_faction_active_appoint_npc2.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc2
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc2.codeBlock = code
+notification_player_faction_active_appoint_npc2.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc3 = MenuOption("appoint_npc3", "Appoint {s10}")
 def condition():
@@ -10235,7 +10275,7 @@ notification_player_faction_active_appoint_npc3.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc3
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc3.codeBlock = code
+notification_player_faction_active_appoint_npc3.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc4 = MenuOption("appoint_npc4", "Appoint {s10}")
 def condition():
@@ -10245,7 +10285,7 @@ notification_player_faction_active_appoint_npc4.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc4
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc4.codeBlock = code
+notification_player_faction_active_appoint_npc4.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc5 = MenuOption("appoint_npc5", "Appoint {s10}")
 def condition():
@@ -10255,7 +10295,7 @@ notification_player_faction_active_appoint_npc5.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc5
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc5.codeBlock = code
+notification_player_faction_active_appoint_npc5.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc6 = MenuOption("appoint_npc6", "Appoint {s10}")
 def condition():
@@ -10265,7 +10305,7 @@ notification_player_faction_active_appoint_npc6.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc6
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc6.codeBlock = code
+notification_player_faction_active_appoint_npc6.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc7 = MenuOption("appoint_npc7", "Appoint {s10}")
 def condition():
@@ -10275,7 +10315,7 @@ notification_player_faction_active_appoint_npc7.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc7
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc7.codeBlock = code
+notification_player_faction_active_appoint_npc7.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc8 = MenuOption("appoint_npc8", "Appoint {s10}")
 def condition():
@@ -10285,7 +10325,7 @@ notification_player_faction_active_appoint_npc8.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc8
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc8.codeBlock = code
+notification_player_faction_active_appoint_npc8.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc9 = MenuOption("appoint_npc9", "Appoint {s10}")
 def condition():
@@ -10295,7 +10335,7 @@ notification_player_faction_active_appoint_npc9.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc9
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc9.codeBlock = code
+notification_player_faction_active_appoint_npc9.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc10 = MenuOption("appoint_npc10", "Appoint {s10}")
 def condition():
@@ -10305,7 +10345,7 @@ notification_player_faction_active_appoint_npc10.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc10
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc10.codeBlock = code
+notification_player_faction_active_appoint_npc10.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc11 = MenuOption("appoint_npc11", "Appoint {s10}")
 def condition():
@@ -10315,7 +10355,7 @@ notification_player_faction_active_appoint_npc11.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc11
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc11.codeBlock = code
+notification_player_faction_active_appoint_npc11.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc12 = MenuOption("appoint_npc12", "Appoint {s10}")
 def condition():
@@ -10325,7 +10365,7 @@ notification_player_faction_active_appoint_npc12.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc12
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc12.codeBlock = code
+notification_player_faction_active_appoint_npc12.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc13 = MenuOption("appoint_npc13", "Appoint {s10}")
 def condition():
@@ -10335,7 +10375,7 @@ notification_player_faction_active_appoint_npc13.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc13
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc13.codeBlock = code
+notification_player_faction_active_appoint_npc13.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc14 = MenuOption("appoint_npc14", "Appoint {s10}")
 def condition():
@@ -10345,7 +10385,7 @@ notification_player_faction_active_appoint_npc14.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc14
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc14.codeBlock = code
+notification_player_faction_active_appoint_npc14.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc15 = MenuOption("appoint_npc15", "Appoint {s10}")
 def condition():
@@ -10355,7 +10395,7 @@ notification_player_faction_active_appoint_npc15.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc15
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc15.codeBlock = code
+notification_player_faction_active_appoint_npc15.consequenceBlock = code
 
 notification_player_faction_active_appoint_npc16 = MenuOption("appoint_npc16", "Appoint {s10}")
 def condition():
@@ -10365,14 +10405,14 @@ notification_player_faction_active_appoint_npc16.conditionBlock = condition
 def code():
     _g_player_minister = trp.npc16
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_npc16.codeBlock = code
+notification_player_faction_active_appoint_npc16.consequenceBlock = code
 
 notification_player_faction_active_appoint_default = MenuOption("appoint_default", "Appoint a prominent citizen from the area...")
 def code():
     _g_player_minister = trp.temporary_minister
     troop_set_faction(trp.temporary_minister,fac.player_supporters_faction)
     jump_to_menu(mnu.minister_confirm)
-notification_player_faction_active_appoint_default.codeBlock = code
+notification_player_faction_active_appoint_default.consequenceBlock = code
 
 
 
@@ -10397,7 +10437,7 @@ minister_confirm.conditionBlock = condition
 minister_confirm_continue = MenuOption("continue", "Continue...")
 def code():
     start_presentation(prsnt.name_kingdom)
-minister_confirm_continue.codeBlock = code
+minister_confirm_continue.consequenceBlock = code
 
 
 
@@ -10460,7 +10500,7 @@ notification_court_lost.conditionBlock = condition
 notification_court_lost_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_court_lost_continue.codeBlock = code
+notification_court_lost_continue.consequenceBlock = code
 
 
 
@@ -10482,7 +10522,7 @@ def code():
     #end
     _g_player_minister = -1
     change_screen_return()
-notification_player_faction_deactive_continue.codeBlock = code
+notification_player_faction_deactive_continue.consequenceBlock = code
 
 
 
@@ -10498,7 +10538,7 @@ notification_player_wedding_day.conditionBlock = condition
 notification_player_wedding_day_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_player_wedding_day_continue.codeBlock = code
+notification_player_wedding_day_continue.consequenceBlock = code
 
 
 
@@ -10536,7 +10576,7 @@ notification_player_kingdom_holds_feast.conditionBlock = condition
 notification_player_kingdom_holds_feast_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_player_kingdom_holds_feast_continue.codeBlock = code
+notification_player_kingdom_holds_feast_continue.consequenceBlock = code
 
 
 
@@ -10558,7 +10598,7 @@ notification_center_under_siege.conditionBlock = condition
 notification_center_under_siege_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_center_under_siege_continue.codeBlock = code
+notification_center_under_siege_continue.consequenceBlock = code
 
 
 
@@ -10580,7 +10620,7 @@ notification_village_raided.conditionBlock = condition
 notification_village_raided_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_village_raided_continue.codeBlock = code
+notification_village_raided_continue.consequenceBlock = code
 
 
 
@@ -10602,7 +10642,7 @@ notification_village_raid_started.conditionBlock = condition
 notification_village_raid_started_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_village_raid_started_continue.codeBlock = code
+notification_village_raid_started_continue.consequenceBlock = code
 
 
 
@@ -10636,7 +10676,7 @@ notification_one_faction_left.conditionBlock = condition
 notification_one_faction_left_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_one_faction_left_continue.codeBlock = code
+notification_one_faction_left_continue.consequenceBlock = code
 
 
 
@@ -10659,7 +10699,7 @@ notification_oath_renounced_faction_defeated.conditionBlock = condition
 notification_oath_renounced_faction_defeated_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_oath_renounced_faction_defeated_continue.codeBlock = code
+notification_oath_renounced_faction_defeated_continue.consequenceBlock = code
 
 
 
@@ -10679,7 +10719,7 @@ notification_center_lost.conditionBlock = condition
 notification_center_lost_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_center_lost_continue.codeBlock = code
+notification_center_lost_continue.consequenceBlock = code
 
 
 
@@ -10700,7 +10740,7 @@ notification_troop_left_players_faction.conditionBlock = condition
 notification_troop_left_players_faction_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_troop_left_players_faction_continue.codeBlock = code
+notification_troop_left_players_faction_continue.consequenceBlock = code
 
 
 
@@ -10721,7 +10761,7 @@ notification_troop_joined_players_faction.conditionBlock = condition
 notification_troop_joined_players_faction_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_troop_joined_players_faction_continue.codeBlock = code
+notification_troop_joined_players_faction_continue.consequenceBlock = code
 
 
 
@@ -10747,7 +10787,7 @@ notification_war_declared.conditionBlock = condition
 notification_war_declared_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_war_declared_continue.codeBlock = code
+notification_war_declared_continue.consequenceBlock = code
 
 
 
@@ -10776,7 +10816,7 @@ notification_peace_declared.conditionBlock = condition
 notification_peace_declared_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_peace_declared_continue.codeBlock = code
+notification_peace_declared_continue.consequenceBlock = code
 
 
 
@@ -10866,7 +10906,7 @@ def code():
         update_all_notes()
     #end
     change_screen_return()
-notification_faction_defeated_continue.codeBlock = code
+notification_faction_defeated_continue.consequenceBlock = code
 
 
 
@@ -10892,7 +10932,7 @@ def code():
     _talk_context = 15
     start_map_conversation(_g_notification_var2,-1)
     change_screen_return()
-notification_rebels_switched_to_faction_continue.codeBlock = code
+notification_rebels_switched_to_faction_continue.consequenceBlock = code
 
 
 
@@ -10910,7 +10950,7 @@ def code():
     quest_set_slot(qst.consult_with_minister,23,30)
     quest_set_slot(qst.consult_with_minister,6,_g_player_minister)
     change_screen_return()
-notification_player_should_consult_continue.codeBlock = code
+notification_player_should_consult_continue.consequenceBlock = code
 
 
 
@@ -10924,7 +10964,7 @@ notification_player_feast_in_progress.conditionBlock = condition
 notification_player_feast_in_progress_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_player_feast_in_progress_continue.codeBlock = code
+notification_player_feast_in_progress_continue.consequenceBlock = code
 
 
 
@@ -10986,13 +11026,13 @@ def code():
     #end
     quest_set_slot(qst.visit_lady,23,30)
     change_screen_return()
-notification_lady_requests_visit_continue.codeBlock = code
+notification_lady_requests_visit_continue.consequenceBlock = code
 
 notification_lady_requests_visit_continue = MenuOption("continue", "Tell the woman to inform her mistress that you are indisposed")
 def code():
     troop_set_slot(_g_notification_var1,37,1)
     change_screen_return()
-notification_lady_requests_visit_continue.codeBlock = code
+notification_lady_requests_visit_continue.consequenceBlock = code
 
 
 
@@ -11052,24 +11092,24 @@ garden_enter.conditionBlock = condition
 def code():
     jump_to_menu(mnu.town)
     setup_meet_lady(_love_interest_in_town,_g_encountered_party)
-garden_enter.codeBlock = code
+garden_enter.consequenceBlock = code
 
 garden_nurse = MenuOption("nurse", "Go with the nurse")
 def code():
     jump_to_menu(mnu.town)
     setup_meet_lady(_love_interest_in_town,_g_encountered_party)
-garden_nurse.codeBlock = code
+garden_nurse.consequenceBlock = code
 
 garden_nurse = MenuOption("nurse", "Wait by the spring")
 def code():
     jump_to_menu(mnu.town)
     setup_meet_lady(_love_interest_in_town,_g_encountered_party)
-garden_nurse.codeBlock = code
+garden_nurse.consequenceBlock = code
 
 garden_leave = MenuOption("leave", "Leave")
 def code():
     jump_to_menu(mnu.town)
-garden_leave.codeBlock = code
+garden_leave.consequenceBlock = code
 
 
 
@@ -11088,7 +11128,7 @@ def code():
     jump_to_menu(mnu.town)
     jump_to_scene(party_slot_001)
     change_screen_mission()
-kill_local_merchant_begin_continue.codeBlock = code
+kill_local_merchant_begin_continue.consequenceBlock = code
 
 
 
@@ -11100,7 +11140,7 @@ debug_alert_from_s65_continue = MenuOption("continue", "Continue...")
 def code():
     _debug_message_in_queue = 0
     change_screen_return()
-debug_alert_from_s65_continue.codeBlock = code
+debug_alert_from_s65_continue.consequenceBlock = code
 
 
 
@@ -11219,12 +11259,12 @@ def code():
     set_jump_mission(mt.bandit_lair)
     jump_to_scene(scene_id_003)
     change_screen_mission()
-bandit_lair_continue_1.codeBlock = code
+bandit_lair_continue_1.consequenceBlock = code
 
 bandit_lair_leave_no_attack = MenuOption("leave_no_attack", "Leave...")
 def code():
     change_screen_return()
-bandit_lair_leave_no_attack.codeBlock = code
+bandit_lair_leave_no_attack.consequenceBlock = code
 
 bandit_lair_leave_victory = MenuOption("leave_victory", "Continue...")
 def code():
@@ -11269,7 +11309,7 @@ def code():
             remove_party(_g_encountered_party)
         #end
     #end
-bandit_lair_leave_victory.codeBlock = code
+bandit_lair_leave_victory.consequenceBlock = code
 
 bandit_lair_leave_defeat = MenuOption("leave_defeat", "Continue...")
 def code():
@@ -11295,7 +11335,7 @@ def code():
         party_set_slot(_g_encountered_party,8,0)
     #end
     change_screen_return()
-bandit_lair_leave_defeat.codeBlock = code
+bandit_lair_leave_defeat.consequenceBlock = code
 
 
 
@@ -11318,7 +11358,7 @@ notification_player_faction_political_issue_resolved.conditionBlock = condition
 notification_player_faction_political_issue_resolved_continue = MenuOption("continue", "Continue...")
 def code():
     change_screen_return()
-notification_player_faction_political_issue_resolved_continue.codeBlock = code
+notification_player_faction_political_issue_resolved_continue.consequenceBlock = code
 
 
 
@@ -11356,7 +11396,7 @@ def code():
         #end
     #end
     change_screen_return()
-notification_player_faction_political_issue_resolved_for_player_accept.codeBlock = code
+notification_player_faction_political_issue_resolved_for_player_accept.consequenceBlock = code
 
 notification_player_faction_political_issue_resolved_for_player_decline = MenuOption("decline", "Decline the honor")
 def code():
@@ -11373,7 +11413,7 @@ def code():
         #end
     #end
     change_screen_return()
-notification_player_faction_political_issue_resolved_for_player_decline.codeBlock = code
+notification_player_faction_political_issue_resolved_for_player_decline.consequenceBlock = code
 
 
 
@@ -11388,8 +11428,8 @@ start_phase_2_5.conditionBlock = condition
 start_phase_2_5_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.start_phase_3)
-start_phase_2_5_continue.codeBlock = code
-
+start_phase_2_5_continue.consequenceBlock = code
+start_phase_2_5.menuOptions.append(start_phase_2_5_continue)
 
 
 start_phase_3 = GameMenu("start_phase_3", 512,
@@ -11425,8 +11465,8 @@ def code():
     party_set_morale(p.main_party,100)
     set_encountered_party(_current_town)
     prepare_alley_to_fight()
-start_phase_3_continue.codeBlock = code
-
+start_phase_3_continue.consequenceBlock = code
+start_phase_3.menuOptions.append(start_phase_3_continue)
 
 
 start_phase_4 = GameMenu("start_phase_4", 512,
@@ -11479,12 +11519,14 @@ def code():
     set_jump_mission(mt.meeting_merchant)
     jump_to_scene(scene_id_002)
     change_screen_mission()
-start_phase_4_continue.codeBlock = code
+start_phase_4_continue.consequenceBlock = code
+start_phase_4.menuOptions.append(start_phase_4_continue)
 
 start_phase_4_continue = MenuOption("continue", "Continue...")
 def code():
     prepare_town_to_fight()
-start_phase_4_continue.codeBlock = code
+start_phase_4_continue.consequenceBlock = code
+start_phase_4.menuOptions.append(start_phase_4_continue)
 
 
 
@@ -11509,7 +11551,7 @@ lost_tavern_duel.conditionBlock = condition
 lost_tavern_duel_continue = MenuOption("continue", "Continue...")
 def code():
     jump_to_menu(mnu.town)
-lost_tavern_duel_continue.codeBlock = code
+lost_tavern_duel_continue.consequenceBlock = code
 
 
 
@@ -11526,12 +11568,12 @@ def code():
     troop_remove_item(trp.player,itm.tools)
     troop_remove_item(trp.player,itm.velvet)
     jump_to_menu(mnu.town)
-establish_court_establish.codeBlock = code
+establish_court_establish.consequenceBlock = code
 
 establish_court_continue = MenuOption("continue", "Hold off...")
 def code():
     jump_to_menu(mnu.town)
-establish_court_continue.codeBlock = code
+establish_court_continue.consequenceBlock = code
 
 
 
@@ -11558,6 +11600,6 @@ notification_relieved_as_marshal.conditionBlock = condition
 notification_relieved_as_marshal_continue = MenuOption("continue", "Continue")
 def code():
     change_screen_return()
-notification_relieved_as_marshal_continue.codeBlock = code
+notification_relieved_as_marshal_continue.consequenceBlock = code
 
 
