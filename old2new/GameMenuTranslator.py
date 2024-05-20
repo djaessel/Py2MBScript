@@ -102,7 +102,7 @@ def decompileCode(tmp : list):
 
 
 def writeMenu(f, menu : list):
-    idx = menu[0][0]
+    idx = menu[0][0][5:]
     flagsx = menu[0][1]
     description = menu[0][2].replace("_"," ")
     meshName = menu[0][3]
