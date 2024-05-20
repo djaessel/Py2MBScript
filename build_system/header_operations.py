@@ -150,7 +150,7 @@ player_get_troop_id                  = 404 # (player_get_troop_id, <destination>
 player_set_troop_id                  = 405 # (player_set_troop_id, <destination>, <player_id>),
 player_get_agent_id                  = 406 # (player_get_agent_id, <destination>, <player_id>),
 player_get_gold                      = 407 # (player_get_gold, <destination>, <player_id>),
-player_set_gold                      = 408 # (player_set_gold, <player_id>, <value>, <max_value>), #set max_value to 0 if no limit is wanted
+player_set_gold                      = 408 # (player_set_gold, <player_id>, <value>, [<max_value>]), #set max_value to 0 if no limit is wanted
 player_spawn_new_agent               = 409 # (player_spawn_new_agent, <player_id>, <entry_point>),
 player_add_spawn_item                = 410 # (player_add_spawn_item, <player_id>, <item_slot_no>, <item_id>),
 multiplayer_get_my_team              = 411 # (multiplayer_get_my_team, <destination>),
@@ -314,8 +314,8 @@ get_sq_distance_between_position_heights    = 715 # (get_sq_distance_between_pos
 position_transform_position_to_parent       = 716 # (position_transform_position_to_parent,<dest_position_no>,<position_no>,<position_no_to_be_transformed>),
 position_transform_position_to_local        = 717 # (position_transform_position_to_local, <dest_position_no>,<position_no>,<position_no_to_be_transformed>),
 
-position_copy_rotation          = 718 # (position_copy_rotation,<position_no_1>,<position_no_2>), copies rotation of position_no_2 to position_no_1
-position_copy_origin            = 719 # (position_copy_origin,<position_no_1>,<position_no_2>), copies origin of position_no_2 to position_no_1
+position_copy_rotation          = 718 # (position_copy_rotation,<position_no_1>,<position_no_2>), #copies rotation of position_no_2 to position_no_1
+position_copy_origin            = 719 # (position_copy_origin,<position_no_1>,<position_no_2>), #copies origin of position_no_2 to position_no_1
 position_move_x                 = 720 # (position_move_x,<position_no>,<movement>,[value]),
                                       # movement is in cms, [0 = local; 1=global]
 
@@ -464,7 +464,7 @@ add_xp_as_reward                = 1064 # (add_xp_as_reward,<value>),
 add_gold_to_party               = 1070 # (add_gold_to_party,<value>,<party_id>), # party_id should be different from 0
 
 
-set_party_creation_random_limits= 1080 # (set_party_creation_random_limits, <min_value>, <max_value>), (values should be between 0, 100)
+set_party_creation_random_limits= 1080 # (set_party_creation_random_limits, <min_value>, <max_value>), #(values should be between 0, 100)
 
 troop_set_note_available        = 1095 # (troop_set_note_available, <troop_id>, <value>), #1 = available, 0 = not available
 faction_set_note_available      = 1096 # (faction_set_note_available, <faction_id>, <value>), #1 = available, 0 = not available
@@ -482,9 +482,9 @@ display_log_message             = 1105 # (display_log_message,<string_id>,[hex_c
 display_message                 = 1106 # (display_message,<string_id>,[hex_colour_code]),
 set_show_messages               = 1107 # (set_show_messages,<value>), #0 disables window messages 1 re-enables them.
 
-add_troop_note_tableau_mesh     = 1108 # (add_troop_note_tableau_mesh,<troop_id>,<tableau_material_id>),
-add_faction_note_tableau_mesh   = 1109 # (add_faction_note_tableau_mesh,<faction_id>,<tableau_material_id>),
-add_party_note_tableau_mesh     = 1110 # (add_party_note_tableau_mesh,<party_id>,<tableau_material_id>),
+add_troop_note_tableau_mesh     = 1108 # (add_troop_note_tableau_mesh,<troop_id>,[<tableau_material_id>]),
+add_faction_note_tableau_mesh   = 1109 # (add_faction_note_tableau_mesh,<faction_id>,[<tableau_material_id>]),
+add_party_note_tableau_mesh     = 1110 # (add_party_note_tableau_mesh,<party_id>,[<tableau_material_id>]),
 add_quest_note_tableau_mesh     = 1111 # (add_quest_note_tableau_mesh,<quest_id>,<tableau_material_id>),
 add_info_page_note_tableau_mesh = 1090 # (add_info_page_note_tableau_mesh,<info_page_id>,<tableau_material_id>),
 add_troop_note_from_dialog      = 1114 # (add_troop_note_from_dialog,<troop_id>,<note_slot_no>, <value>), #There are maximum of 8 slots. value = 1 -> shows when the note is added
@@ -501,7 +501,7 @@ add_info_page_note_from_sreg    = 1092 # (add_info_page_note_from_sreg,<info_pag
 tutorial_box                    = 1120 # (tutorial_box,<string_id>,<string_id>), #deprecated use dialog_box instead.
 dialog_box                      = 1120 # (dialog_box,<text_string_id>,<title_string_id>),
 question_box                    = 1121 # (question_box,<string_id>, [<yes_string_id>], [<no_string_id>]),
-tutorial_message                = 1122 # (tutorial_message,<string_id>, <color>, <auto_close_time>), #set string_id = -1 for hiding the message
+tutorial_message                = 1122 # (tutorial_message,<string_id>, [<color>], [<auto_close_time>]), #set string_id = -1 for hiding the message
 tutorial_message_set_position   = 1123 # (tutorial_message_set_position, <position_x>, <position_y>), 
 tutorial_message_set_size       = 1124 # (tutorial_message_set_size, <size_x>, <size_y>), 
 tutorial_message_set_center_justify = 1125 # (tutorial_message_set_center_justify, <val>), #set not 0 for center justify, 0 for not center justify
@@ -537,7 +537,7 @@ modify_visitors_at_site         = 1261 # (modify_visitors_at_site,<scene_id>),
 reset_visitors                  = 1262 # (reset_visitors),
 set_visitor                     = 1263 # (set_visitor,<entry_no>,<troop_id>,[<dna>]),
 set_visitors                    = 1264 # (set_visitors,<entry_no>,<troop_id>,<number_of_troops>),
-add_visitors_to_current_scene   = 1265 # (add_visitors_to_current_scene,<entry_no>,<troop_id>,<number_of_troops>, <team_no>, <group_no>), #team no and group no are used in multiplayer mode only. default team in entry is used in single player mode
+add_visitors_to_current_scene   = 1265 # (add_visitors_to_current_scene,<entry_no>,<troop_id>,<number_of_troops>, [<team_no>], [<group_no>]), #team no and group no are used in multiplayer mode only. default team in entry is used in single player mode
 scene_set_day_time              = 1266 # (scene_set_day_time, <value>), #value in hours (0-23), must be called within ti_before_mission_start triggers
 
 set_relation                    = 1270 # (set_relation,<faction_id>,<faction_id>,<value>),
@@ -705,7 +705,7 @@ party_prisoner_stack_get_troop_dna     = 1658   # (party_prisoner_stack_get_troo
 party_attach_to_party                  = 1660   # (party_attach_to_party, <party_id>, <party_id to attach to>),
 party_detach                           = 1661   # (party_detach, <party_id>),
 party_collect_attachments_to_party     = 1662   # (party_collect_attachments_to_party, <party_id>, <destination party_id>),
-party_quick_attach_to_current_battle   = 1663   # (party_quick_attach_to_current_battle, <party_id>, <side (0:players side, 1:enemy side)>),
+party_quick_attach_to_current_battle   = 1663   # (party_quick_attach_to_current_battle, <party_id>, <side>), #<side (0:players side, 1:enemy side)>),
 
 party_get_cur_town                     = 1665   # (party_get_cur_town, <destination>, <party_id>),
 
@@ -770,24 +770,24 @@ agent_get_position                     = 1710	# (agent_get_position,<position_no
 agent_set_position                     = 1711	# (agent_set_position,<agent_id>,<position_no>),
 #agent_get_speed                        = 1689   # (agent_get_speed, <position_no>, <agent_id>), #will return speed in x and y
 #agent_is_active                        = 1712   # (agent_is_active,<agent_id>),
-agent_set_look_target_agent            = 1713 # (agent_set_look_target_agent, <agent_id>, <agent_id>), #second agent_id is the target
+agent_set_look_target_agent            = 1713 # (agent_set_look_target_agent, <agent_id>, <agent_id_2>), #second agent_id is the target
 agent_get_horse                        = 1714	# (agent_get_horse,<destination>,<agent_id>),
 agent_get_rider                        = 1715	# (agent_get_rider,<destination>,<agent_id>),
 agent_get_party_id                     = 1716	# (agent_get_party_id,<destination>,<agent_id>),
 agent_get_entry_no                     = 1717	# (agent_get_entry_no,<destination>,<agent_id>),
 agent_get_troop_id                     = 1718	# (agent_get_troop_id,<destination>, <agent_id>),
-agent_get_item_id                      = 1719	# (agent_get_item_id,<destination>, <agent_id>), (works only for horses, returns -1 otherwise)
+agent_get_item_id                      = 1719	# (agent_get_item_id,<destination>, <agent_id>), #(works only for horses, returns -1 otherwise)
 
 store_agent_hit_points                 = 1720	# set absolute to 1 to retrieve actual hps, otherwise will return relative hp in range [0..100]
 						# (store_agent_hit_points,<destination>,<agent_id>,[absolute]),
 agent_set_hit_points                   = 1721	# set absolute to 1 if value is absolute, otherwise value will be treated as relative number in range [0..100]
 						# (agent_set_hit_points,<agent_id>,<value>,[absolute]),
-agent_deliver_damage_to_agent          = 1722	# (agent_deliver_damage_to_agent, <agent_id_deliverer>, <agent_id>, <value>, [item_id]), #if value <= 0, then damage will be calculated using the weapon item. # item_id is the item that the damage is delivered. can be ignored.
+agent_deliver_damage_to_agent          = 1722	# (agent_deliver_damage_to_agent, <agent_id_deliverer>, <agent_id>, [<value>], [item_id]), #if value <= 0, then damage will be calculated using the weapon item. # item_id is the item that the damage is delivered. can be ignored.
 agent_get_kill_count                   = 1723   # (agent_get_kill_count,<destination>,<agent_id>,[get_wounded]), #Set second value to non-zero to get wounded count
 agent_get_player_id                    = 1724   # (agent_get_player_id,<destination>,<agent_id>),
 agent_set_invulnerable_shield          = 1725 # (agent_set_invulnerable_shield, <agent_id>),
 agent_get_wielded_item                 = 1726	# (agent_get_wielded_item,<destination>,<agent_id>,<hand_no>),
-agent_get_ammo                         = 1727	# (agent_get_ammo,<destination>,<agent_id>, <value>), #value = 1 gets ammo for wielded item, value = 0 gets ammo for all items
+agent_get_ammo                         = 1727	# (agent_get_ammo,<destination>,<agent_id>, [<value>]), #value = 1 gets ammo for wielded item, value = 0 gets ammo for all items
 #agent_get_ammo_for_slot                = 1825	# (agent_get_ammo_for_slot, <destination>, <agent_id>, <slot_no>), #slot no can be between 0-3
 agent_refill_ammo                      = 1728	# (agent_refill_ammo,<agent_id>),
 #agent_refill_wielded_shield_hit_points = 1692   # (agent_refill_wielded_shield_hit_points, <agent_id>),
@@ -809,10 +809,10 @@ agent_set_stand_animation              = 1741   # (agent_set_stand_action, <agen
 agent_set_walk_forward_animation       = 1742   # (agent_set_walk_forward_action, <agent_id>, <anim_id>),
 agent_set_animation_progress           = 1743   # (agent_set_animation_progress, <agent_id>, <value_fixed_point>), #value should be between 0-1 (as fixed point)
 agent_set_look_target_position         = 1744   # (agent_set_look_target_position, <agent_id>, <position_no>),
-agent_set_attack_action                = 1745   # (agent_set_attack_action, <agent_id>, <value>, <value>), #value: -2 = clear any attack action, 0 = thrust, 1 = slashright, 2 = slashleft, 3 = overswing - second value 0 = ready and release, 1 = ready and hold
+agent_set_attack_action                = 1745   # (agent_set_attack_action, <agent_id>, <value1>, [<value2>]), #value: -2 = clear any attack action, 0 = thrust, 1 = slashright, 2 = slashleft, 3 = overswing - second value 0 = ready and release, 1 = ready and hold
 agent_set_defend_action                = 1746   # (agent_set_defend_action, <agent_id>, <value>, <duration-in-1/1000-seconds>), #value_1: -2 = clear any defend action, 0 = defend_down, 1 = defend_right, 2 = defend_left, 3 = defend_up
 agent_set_wielded_item                 = 1747   # (agent_set_wielded_item, <agent_id>, <item_id>),
-agent_set_scripted_destination_no_attack = 1748	# (agent_set_scripted_destination_no_attack,<agent_id>,<position_no>,<auto_set_z_to_ground_level>), #auto_set_z_to_ground_level can be 0 (false) or 1 (true)
+agent_set_scripted_destination_no_attack = 1748	# (agent_set_scripted_destination_no_attack,<agent_id>,<position_no>,[<auto_set_z_to_ground_level>]), #auto_set_z_to_ground_level can be 0 (false) or 1 (true)
 agent_fade_out                         = 1749   # (agent_fade_out, <agent_id>),
 agent_play_sound                       = 1750   # (agent_play_sound, <agent_id>, <sound_id>),
 agent_start_running_away               = 1751   # (agent_start_running_away, <agent_id>, [position_no]), # if position no is entered, agent will run away to that location. pos0 is not allowed (will be ignored).
@@ -888,7 +888,7 @@ scene_prop_has_agent_on_it             = 1801   # (scene_prop_has_agent_on_it, <
 agent_clear_relations_with_agents      = 1802   # (agent_clear_relations_with_agents, <agent_id>),
 agent_add_relation_with_agent          = 1803   # (agent_add_relation_with_agent, <agent_id>, <agent_id>, <value>), #-1 = enemy, 0 = neutral (no friendly fire at all), 1 = ally
 
-agent_get_item_slot                    = 1804   # (agent_get_item_slot, <destination>, <agent_id>, <value>), value between 0-7, order is weapon1, weapon2, weapon3, weapon4, head_armor, body_armor, leg_armor, hand_armor
+agent_get_item_slot                    = 1804   # (agent_get_item_slot, <destination>, <agent_id>, <value>), #value between 0-7, order is weapon1, weapon2, weapon3, weapon4, head_armor, body_armor, leg_armor, hand_armor
 ai_mesh_face_group_show_hide           = 1805   # (ai_mesh_face_group_show_hide, <group_no>, <value>), # 1 for enable, 0 for disable
 
 agent_is_alarmed                       = 1806   # (agent_is_alarmed, <agent_id>),
@@ -979,7 +979,7 @@ cast_ray                               = 1900   # (cast_ray, <destination>, <hit
 
 set_mission_result                     = 1906	# (set_mission_result,<value>),
 finish_mission                         = 1907	# (finish_mission, <delay_in_seconds>),
-jump_to_scene                          = 1910	# (jump_to_scene,<scene_id>,<entry_no>),
+jump_to_scene                          = 1910	# (jump_to_scene,<scene_id>,[<entry_no>]),
 set_jump_mission                       = 1911	# (set_jump_mission,<mission_template_id>),
 set_jump_entry                         = 1912	# (set_jump_entry,<entry_no>),
 start_mission_conversation             = 1920	# (start_mission_conversation,<troop_id>),
@@ -1004,10 +1004,10 @@ particle_system_emit                   = 1968	# (particle_system_emit,<par_sys_i
 particle_system_burst                  = 1969	# (particle_system_burst,<par_sys_id>,<position_no>,[percentage_burst_strength]),
 
 set_spawn_position                     = 1970   # (set_spawn_position, <position_no>), 
-spawn_item                             = 1971   # (spawn_item, <item_kind_id>, <item_modifier>, [seconds_before_pruning]), #if seconds_before_pruning = 0 then item never gets pruned
+spawn_item                             = 1971   # (spawn_item, <item_kind_id>, [<item_modifier>], [seconds_before_pruning]), #if seconds_before_pruning = 0 then item never gets pruned
 spawn_agent                            = 1972	# (spawn_agent,<troop_id>), (stores agent_id in reg0)
-spawn_horse                            = 1973	# (spawn_horse,<item_kind_id>, <item_modifier>),  (stores agent_id in reg0)
-spawn_scene_prop                       = 1974   # (spawn_scene_prop, <scene_prop_id>),  (stores prop_instance_id in reg0) not yet.
+spawn_horse                            = 1973	# (spawn_horse,<item_kind_id>, [<item_modifier>]),  #(stores agent_id in reg0)
+spawn_scene_prop                       = 1974   # (spawn_scene_prop, <scene_prop_id>),  #(stores prop_instance_id in reg0) not yet.
 
 particle_system_burst_no_sync		   = 1975	# (particle_system_burst_without_sync,<par_sys_id>,<position_no>,[percentage_burst_strength]),
 
@@ -1045,7 +1045,7 @@ cur_tableau_add_override_item          = 1999   # (cur_tableau_add_override_item
 cur_tableau_add_mesh_with_scale_and_vertex_color = 2000   # (cur_tableau_add_mesh_with_scale_and_vertex_color, <mesh_id>, <position_no>, <position_no>, <value_fixed_point>, <value>),
                                                 # second position_no is x,y,z scale factors (with fixed point values). value fixed point is alpha. value is vertex color. use 0 for default values. scale and vertex_color has no default values.
  
-mission_cam_set_mode                   = 2001   # (mission_cam_set_mode, <mission_cam_mode>, <duration-in-1/1000-seconds>, <value>), # when leaving manual mode, duration defines the animation time from the initial position to the new position. set as 0 for instant camera position update
+mission_cam_set_mode                   = 2001   # (mission_cam_set_mode, <mission_cam_mode>, [<duration-in-1/1000-seconds>], [<value>]), # when leaving manual mode, duration defines the animation time from the initial position to the new position. set as 0 for instant camera position update
                                                                                                                                     # if value = 0, then camera velocity will be linear. else it will be non-linear
 mission_get_time_speed                 = 2002   # (mission_get_time_speed, <destination_fixed_point>),
 mission_set_time_speed                 = 2003   # (mission_set_time_speed, <value_fixed_point>), #this works only when cheat mode is enabled
@@ -1067,7 +1067,7 @@ mission_cam_clear_target_agent         = 2018   # (mission_cam_clear_target_agen
 mission_cam_set_animation              = 2019   # (mission_cam_set_animation, <anim_id>),
 
 talk_info_show                         = 2020   # (talk_info_show, <hide_or_show>),
-talk_info_set_relation_bar             = 2021   # (talk_info_set_relation_bar, <value>), :set relation bar to a value between -100 to 100, enter an invalid value to hide the bar.
+talk_info_set_relation_bar             = 2021   # (talk_info_set_relation_bar, <value>), #set relation bar to a value between -100 to 100, enter an invalid value to hide the bar.
 talk_info_set_line                     = 2022   # (talk_info_set_line, <line_no>, <string_no>)
 
 #mesh related
@@ -1135,7 +1135,7 @@ agent_set_ranged_damage_modifier       = 2099   # (agent_set_ranged_damage_modif
 val_lshift             = 2100 # (val_lshift, <destination>, <value>), # shifts the bits of destination to left by value amount.
 val_rshift             = 2101 # (val_rshift, <destination>, <value>), # shifts the bits of destination to right by value amount.
 
-val_add                = 2105	# (val_add,<destination>,<value>),
+val_add                = 2105	# (val_add,<destination>,[<value>]),
 #dest, operand ::       dest = dest + operand
 
 val_sub                = 2106	# (val_sub,<destination>,<value>),
@@ -1163,35 +1163,35 @@ val_or                 = 2114   # (val_or,<destination>,<value>), #dest, operand
 
 val_and                = 2115   # (val_and,<destination>,<value>), #dest, operand ::       dest = dest & operand
 
-store_or               = 2116   # (store_or,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 | op2
+store_or               = 2116   # (store_or,<destination>,<value1>,<value2>), #dest, op1, op2 :      dest = op1 | op2
 
-store_and              = 2117   # (store_and,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 & op2
+store_and              = 2117   # (store_and,<destination>,<value1>,<value2>), #dest, op1, op2 :      dest = op1 & op2
 
 
-store_mod              = 2119	# (store_mod,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 % op2
+store_mod              = 2119	# (store_mod,<destination>,<value1>,<value2>), #dest, op1, op2 :      dest = op1 % op2
 
-store_add              = 2120	# (store_add,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 + op2
+store_add              = 2120	# (store_add,<destination>,<value1>,<value2>), #dest, op1, op2 :      dest = op1 + op2
 
-store_sub              = 2121	# (store_sub,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 - op2
+store_sub              = 2121	# (store_sub,<destination>,<value1>,[<value2>]), #dest, op1, op2 :      dest = op1 - op2
 
-store_mul              = 2122	# (store_mul,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 * op2
+store_mul              = 2122	# (store_mul,<destination>,<value1>,<value2>), #dest, op1, op2 :      dest = op1 * op2
 
-store_div              = 2123	# (store_div,<destination>,<value>,<value>), #dest, op1, op2 :      dest = op1 / op2
+store_div              = 2123	# (store_div,<destination>,<value1>,<value2>), #dest, op1, op2 :      dest = op1 / op2
 
 
 set_fixed_point_multiplier      = 2124 # (set_fixed_point_multiplier, <value>),
                                         # sets the precision of the values that are named as value_fixed_point or destination_fixed_point.
                                         # Default is 1 (every fixed point value will be regarded as an integer)
 
-store_sqrt             = 2125  # (store_sqrt, <destination_fixed_point>, <value_fixed_point>), takes square root of the value
-store_pow              = 2126  # (store_pow, <destination_fixed_point>, <value_fixed_point>, <value_fixed_point), takes square root of the value
+store_sqrt             = 2125  # (store_sqrt, <destination_fixed_point>, <value_fixed_point>),
+store_pow              = 2126  # (store_pow, <destination_fixed_point>, <value_fixed_point>, <value_fixed_point),
                                 #dest, op1, op2 :      dest = op1 ^ op2
-store_sin              = 2127  # (store_sin, <destination_fixed_point>, <value_fixed_point>), takes sine of the value that is in degrees
-store_cos              = 2128  # (store_cos, <destination_fixed_point>, <value_fixed_point>), takes cosine of the value that is in degrees
-store_tan              = 2129  # (store_tan, <destination_fixed_point>, <value_fixed_point>), takes tangent of the value that is in degrees
+store_sin              = 2127  # (store_sin, <destination_fixed_point>, <value_fixed_point>),
+store_cos              = 2128  # (store_cos, <destination_fixed_point>, <value_fixed_point>),
+store_tan              = 2129  # (store_tan, <destination_fixed_point>, <value_fixed_point>),
 
-convert_to_fixed_point = 2130  # (convert_to_fixed_point, <destination_fixed_point>), multiplies the value with the fixed point multiplier
-convert_from_fixed_point= 2131 # (convert_from_fixed_point, <destination>), divides the value with the fixed point multiplier
+convert_to_fixed_point = 2130  # (convert_to_fixed_point, <destination_fixed_point>),
+convert_from_fixed_point= 2131 # (convert_from_fixed_point, <destination>),
 
 assign                 = 2133	# had to put this here so that it can be called from conditions.
 				# (assign,<destination>,<value>),
