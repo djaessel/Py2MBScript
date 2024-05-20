@@ -78,10 +78,10 @@ class AlterFlag(Enum):
 
 
 class SpawnRecord:
-    def __init__(self, entry_no : int, number_of_troops : int, equipment : list = []):
+    def __init__(self, entry_no : int, number_of_troops : int):
         self.entry_no = entry_no
         self.number_of_troops = number_of_troops
-        self.equipment = equipment
+        self.equipment = []
         self.alterFlags = []
         self.spawnFlags = []
         self.aiFlags = []
