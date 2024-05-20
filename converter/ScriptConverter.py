@@ -1200,7 +1200,7 @@ class ScriptConverter:
                 coy = self.transformCode(code)
                 self.fixIndentionProblem(coy, ifCl, inlineIndentCount, code, True)
 
-            for i in range(len(coy))
+            for i in range(len(coy)):
                 coy[i] = coy[i].replace(":::","$")
 
             allCodes.extend(coy)

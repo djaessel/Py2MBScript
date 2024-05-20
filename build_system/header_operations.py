@@ -603,8 +603,7 @@ troop_set_class                        = 1517 # (troop_set_class, <troop_id>, <v
 troop_raise_attribute                  = 1520	# (troop_raise_attribute,<troop_id>,<attribute_id>,<value>),
 troop_raise_skill                      = 1521	# (troop_raise_skill,<troop_id>,<skill_id>,<value>),
 troop_raise_proficiency                = 1522	# (troop_raise_proficiency,<troop_id>,<proficiency_no>,<value>),
-troop_raise_proficiency_linear         = 1523	# raises weapon proficiencies linearly without being limited by weapon master skill
-						# (troop_raise_proficiency,<troop_id>,<proficiency_no>,<value>),
+troop_raise_proficiency_linear         = 1523	# (troop_raise_proficiency,<troop_id>,<proficiency_no>,<value>), # raises weapon proficiencies linearly without being limited by weapon master skill
 
 troop_add_proficiency_points           = 1525   # (troop_add_proficiency_points,<troop_id>,<value>),					
 troop_add_gold                         = 1528	# (troop_add_gold,<troop_id>,<value>),
