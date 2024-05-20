@@ -2391,8 +2391,8 @@ def game_get_console_command(var001, var002, var003):
 
 
 def game_event_party_encounter(_g_encountered_party, _g_encountered_party_2):
-    _g_encountered_party_faction = store_faction_of_party(_g_encountered_party)
-    _g_encountered_party_relation = store_relation(_g_encountered_party_faction,fac.player_faction)
+    _g_encountered_x_party_faction = store_faction_of_party(_g_encountered_party)
+    _g_encountered_party_relation = store_relation(_g_encountered_x_party_faction,fac.player_faction)
     _g_encountered_party_type = party_get_slot(_g_encountered_party,0)
     _g_encountered_party_template = party_get_template_id(_g_encountered_party)
     party_count_fit_regulars(p.main_party)
@@ -2648,7 +2648,7 @@ def game_event_simulate_battle(party_id_001, party_id_002):
                         cur_hours_003 = store_current_hours()
                         faction_set_slot(party_faction_031,98,cur_hours_003)
                         if _g_encountered_party == party_id_017:
-                            add_log_entry(18,trp.player,_g_encountered_party,0,_g_encountered_party_faction)
+                            add_log_entry(18,trp.player,_g_encountered_party,0,_g_encountered_x_party_faction)
                         #end
                     #end
                     if True:
@@ -3636,7 +3636,7 @@ def game_get_troop_note(troop_id_001, var002):
             reg4 = var013
             reg6 = var012
             reg17 = troop_get_slot(troop_id_001,11)
-            s0 = str_store_string(gstr.lord_info_string,0)
+            s0 = str_store_string(gstr.lord_info_string)
             add_troop_note_tableau_mesh(troop_id_001,tab.troop_note_mesh)
             set_trigger_result(1)
         #end
@@ -3695,7 +3695,7 @@ def game_get_center_note(party_id_001, var002):
             #end
         #end
         get_prosperity_text_to_s50(party_id_001)
-        s0 = str_store_string("@{s2}Its prosperity is: {s50}",0)
+        s0 = str_store_string("@{s2}Its prosperity is: {s50}")
         set_trigger_result(1)
     #end
 
@@ -3838,13 +3838,13 @@ def game_get_faction_note(faction_id_001, var002):
                     s21 = str_store_string("@{!}DEBUG : {s21}.^CHEAT MODE ASSESSMENT: {s14}^")
                 #end
             #end
-            s0 = str_store_string(gstr.the_s5_is_ruled_by_s6_it_occupies_s8_its_vassals_are_s10__s21,0)
+            s0 = str_store_string(gstr.the_s5_is_ruled_by_s6_it_occupies_s8_its_vassals_are_s10__s21)
             set_trigger_result(1)
         #end
     elif is_between(faction_id_001,fac.player_supporters_faction,fac.kingdoms_end) and faction_slot_eq(faction_id_001,21,1):
         if var002 == 0:
             s5 = str_store_faction_name(faction_id_001)
-            s0 = str_store_string("@{s5} has been defeated!",0)
+            s0 = str_store_string("@{s5} has been defeated!")
             set_trigger_result(1)
         elif var002 == 1:
             str_clear(0)
@@ -11506,12 +11506,12 @@ def print_casualties_to_s0(party_id_001, var002):
             #end
             if var002 == 1:
                 if var003 == 0:
-                    s0 = str_store_string("@{!}{reg3?{reg3}:} {s1} ({s2})")
+                    s0 = str_store_string("@{!}{reg3?{reg3}:} {s1} [[[{s2}]]]")
                 else:
-                    s0 = str_store_string("@{!}{s0}, {reg3?{reg3}:} {s1} ({s2})")
+                    s0 = str_store_string("@{!}{s0}, {reg3?{reg3}:} {s1} [[[[{s2}]]]")
                 #end
             else:
-                s0 = str_store_string("@{!}{s0}^{reg3?{reg3}:} {s1} ({s2})")
+                s0 = str_store_string("@{!}{s0}^{reg3?{reg3}:} {s1} [[[{s2}]]]")
             #end
             var003 += 1
         #end
@@ -11544,7 +11544,7 @@ def print_casualties_to_s0(party_id_001, var002):
         else:
             s2 = str_store_string(gstr.routed)
         #end
-        s0 = str_store_string("@{s0}^TOTAL: {reg3} ({s2})")
+        s0 = str_store_string("@{s0}^TOTAL: {reg3} [[[{s2}]]]")
     else:
         if var002 == 1:
             s0 = str_store_string("@None")
@@ -15188,9 +15188,9 @@ def village_set_state(party_id_001, var002):
         party_set_extra_text(party_id_001,gstr.empty_string)
         party_set_slot(party_id_001,34,-1)
     elif var002 == 1:
-        party_set_extra_text(party_id_001,"@(Being Raided)")
+        party_set_extra_text(party_id_001,"@[[[Being Raided]]]")
     elif var002 == 2:
-        party_set_extra_text(party_id_001,"@(Looted)")
+        party_set_extra_text(party_id_001,"@[[[Looted]]]")
         party_set_slot(party_id_001,34,-1)
         change_center_prosperity(party_id_001,-60)
         _newglob_total_prosperity_from_villageloot += -60
@@ -15204,7 +15204,7 @@ def village_set_state(party_id_001, var002):
             #end
         #end
     elif var002 == 5:
-        party_set_extra_text(party_id_001,"@(Under Siege)")
+        party_set_extra_text(party_id_001,"@[[[Under Siege]]]")
         for cur_party in __all_parties__:
             if cur_party > p.spawn_points_end and party_slot_eq(cur_party,0,11) and party_slot_eq(cur_party,5,party_id_001):
                 party_slot_007 = party_get_slot(cur_party,126)
@@ -16125,32 +16125,32 @@ def update_report_to_army_quest_note(faction_id_001, var002, var003):
                 else:
                     s14 = str_store_string(gstr.it_is_time_to_go_on_the_offensive_and_we_must_first_assemble_the_army)
                 #end
-                s14 = str_store_string("@({s1}) {s11}: {s14}")
+                s14 = str_store_string("@[[[{s1}]]] {s11}: {s14}")
                 add_quest_note_from_sreg(qst.report_to_army,_number_of_report_to_army_quest_notes,14,0)
                 _number_of_report_to_army_quest_notes += 1
             elif var002 == 5:
                 if is_between(faction_slot_006,p.town_1,p.village_1):
                     s14 = str_store_string(gstr.we_should_ride_to_break_the_siege_of_s21)
-                    s14 = str_store_string("@({s1}) {s11}: {s14}")
+                    s14 = str_store_string("@[[[{s1}]]] {s11}: {s14}")
                     add_quest_note_from_sreg(qst.report_to_army,_number_of_report_to_army_quest_notes,14,0)
                     _number_of_report_to_army_quest_notes += 1
                 elif is_between(faction_slot_006,p.village_1,p.salt_mine):
                     s14 = str_store_string(gstr.we_should_ride_to_defeat_the_enemy_gathered_near_s21)
-                    s14 = str_store_string("@({s1}) {s11}: {s14}")
+                    s14 = str_store_string("@[[[{s1}]]] {s11}: {s14}")
                     add_quest_note_from_sreg(qst.report_to_army,_number_of_report_to_army_quest_notes,14,0)
                     _number_of_report_to_army_quest_notes += 1
                 #end
             elif var002 in var002_list2:
                 if is_between(faction_slot_006,p.town_1,p.village_1):
                     s14 = str_store_string(gstr.we_believe_the_fortress_will_be_worth_the_effort_to_take_it)
-                    s14 = str_store_string("@{s14} ({s21})")
-                    s14 = str_store_string("@({s1}) {s11}: {s14}")
+                    s14 = str_store_string("@{s14} [[[{s21}]]]")
+                    s14 = str_store_string("@[[[{s1}]]] {s11}: {s14}")
                     add_quest_note_from_sreg(qst.report_to_army,_number_of_report_to_army_quest_notes,14,0)
                     _number_of_report_to_army_quest_notes += 1
                 elif is_between(faction_slot_006,p.village_1,p.salt_mine):
                     s14 = str_store_string(gstr.we_shall_leave_a_fiery_trail_through_the_heart_of_the_enemys_lands_targeting_the_wealthy_settlements_if_we_can)
-                    s14 = str_store_string("@{s14} ({s21})")
-                    s14 = str_store_string("@({s1}) {s11}: {s14}")
+                    s14 = str_store_string("@{s14} [[[{s21}]]]")
+                    s14 = str_store_string("@[[[{s1}]]] {s11}: {s14}")
                     add_quest_note_from_sreg(qst.report_to_army,_number_of_report_to_army_quest_notes,14,0)
                     _number_of_report_to_army_quest_notes += 1
                 #end
@@ -17794,7 +17794,7 @@ def find_high_ground_around_pos1(var001, var002):
 
 
 def select_battle_tactic():
-    _ai_team_1_battle_tactic = 0
+    _ai_x_team_1_battle_tactic = 0
     agent_no_001 = get_player_agent_no()
     agent_team_no_002 = agent_get_team(agent_no_001)
     if num_active_teams_le(2):
@@ -17813,14 +17813,14 @@ def select_battle_tactic():
         _ai_team_2 = agent_team_no_002 + 2
     #end
     select_battle_tactic_aux(_ai_team_1,0)
-    _ai_team_1_battle_tactic = reg0
+    _ai_x_team_1_battle_tactic = reg0
     if _ai_team_2 >= 0:
         var003 = 0
-        if _ai_team_1_battle_tactic == 1:
+        if _ai_x_team_1_battle_tactic == 1:
             var003 = 1
         #end
         select_battle_tactic_aux(_ai_team_2,var003)
-        _ai_team_2_battle_tactic = reg0
+        _ai_x_team_2_battle_tactic = reg0
     #end
 
 
@@ -17858,9 +17858,9 @@ def select_battle_tactic_aux(var001, var002):
 
 
 def battle_tactic_init():
-    battle_tactic_init_aux(_ai_team_1,_ai_team_1_battle_tactic)
+    battle_tactic_init_aux(_ai_team_1,_ai_x_team_1_battle_tactic)
     if _ai_team_2 >= 0:
-        battle_tactic_init_aux(_ai_team_2,_ai_team_2_battle_tactic)
+        battle_tactic_init_aux(_ai_team_2,_ai_x_team_2_battle_tactic)
     #end
     for cur_agent in __all_agents__:
         agent_set_slot(cur_agent,15,0)
@@ -18254,11 +18254,11 @@ def decide_run_away_or_not(agent_id_001, var002):
 
 
 def battle_tactic_apply():
-    battle_tactic_apply_aux(_ai_team_1,_ai_team_1_battle_tactic)
-    _ai_team_1_battle_tactic = reg0
+    battle_tactic_apply_aux(_ai_team_1,_ai_x_team_1_battle_tactic)
+    _ai_x_team_1_battle_tactic = reg0
     if _ai_team_2 >= 0:
-        battle_tactic_apply_aux(_ai_team_2,_ai_team_2_battle_tactic)
-        _ai_team_2_battle_tactic = reg0
+        battle_tactic_apply_aux(_ai_team_2,_ai_x_team_2_battle_tactic)
+        _ai_x_team_2_battle_tactic = reg0
     #end
 
 
@@ -23739,8 +23739,8 @@ def randomly_make_prisoner_heroes_escape_from_party(var001, var002):
             reg0 = 1
         #end
         troop_faction_009 = store_faction_of_troop(party_prisoner_troop_id_007)
-        s3 = str_store_faction_name_link(troop_faction_009)
-        print("@{reg0?One of your prisoners, :}{s1} of {s3} has escaped from captivity!")
+        str_store_faction_name_link(s3, troop_faction_009)
+        print("@{reg0?One of your prisoners;;; :}{s1} of {s3} has escaped from captivity!")
     #end
 
 
@@ -26932,7 +26932,7 @@ def faction_inflict_war_damage_on_faction(faction_id_001, faction_id_002, var003
         s5 = str_store_faction_name(faction_id_002)
         reg3 = faction_slot_005
         reg4 = var003
-        print("@{!}{s4} inflicts {reg4} damage on {s5}, raising total inflicted to {reg3}")
+        print("@{!}{s4} inflicts {reg4} damage on {s5};;; raising total inflicted to {reg3}")
     #end
     faction_slot_006 = faction_get_slot(faction_id_002,8)
     if faction_slot_006 >= 0 and var003 > 0:
@@ -27389,7 +27389,7 @@ def appoint_faction_marshall(faction_id_001, troop_id_002):
             troop_change_relation_with_troop(faction_slot_003,trp_007,-10)
             troop_change_relation_with_troop(troop_id_002,trp_007,-5)
             _total_promotion_changes += -15
-            add_log_entry(32,trp_007,troop_id_002,faction_slot_003,_g_encountered_party_faction)
+            add_log_entry(32,trp_007,troop_id_002,faction_slot_003,_g_encountered_x_party_faction)
         #end
     #end
 
@@ -28275,7 +28275,7 @@ def npc_decision_checklist_party_ai(troop_id_001):
                     cur_hours_057 = store_current_hours()
                     game_get_date_text(0,cur_hours_057)
                     s14 = str_store_string(gstr.as_the_marshall_i_am_assembling_the_army_of_the_realm_and_travel_to_lands_near_s10_to_inform_more_vassals)
-                    s14 = str_store_string("@({s1}) {s11}: {s14}")
+                    s14 = str_store_string("@[[[{s1}]]] {s11}: {s14}")
                     add_quest_note_from_sreg(qst.report_to_army,_number_of_report_to_army_quest_notes,14,0)
                     _number_of_report_to_army_quest_notes += 1
                 #end
@@ -30664,8 +30664,8 @@ def deduct_casualties_from_garrison():
                 if troop_count_companions_003 == 0:
                     troop_id_002 = 0
                     for slot_no_004 in range(41, 45):
-                        troop_id_002 = faction_get_slot(_g_encountered_party_faction,slot_no_004)
-                        faction_slot_005 = faction_get_slot(_g_encountered_party_faction,slot_no_004)
+                        troop_id_002 = faction_get_slot(_g_encountered_x_party_faction,slot_no_004)
+                        faction_slot_005 = faction_get_slot(_g_encountered_x_party_faction,slot_no_004)
                         troop_count_companions_003 = store_troop_count_companions(faction_slot_005,_g_encountered_party)
                         if troop_count_companions_003 > 0:
                             troop_id_002 = faction_slot_005
@@ -32646,7 +32646,7 @@ def multiplayer_ccoop_spawn_wave(var001):
             var006 = var002 - var001
             reg0 = var006
             reg1 = var007
-            display_debug_message("@{!}num troops for wave is gt spawn required. reduced spawn amount is {reg0}, reduced spawn amount mod is {reg1}")
+            display_debug_message("@{!}num troops for wave is gt spawn required. reduced spawn amount is {reg0};;; reduced spawn amount mod is {reg1}")
         #end
         cur_scene_008 = store_current_scene()
         modify_visitors_at_site(cur_scene_008)

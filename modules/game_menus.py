@@ -1273,7 +1273,7 @@ def condition():
                     reg3 = troop_get_slot(trp_004,150)
                     reg4 = troop_get_slot(trp_004,8)
                     reg4 = troop_get_slot(trp_004,82)
-                    print("@{!}DEBUG: {s4} current mission: {reg2}, days on mission: {reg3}, prisoner: {reg4}, pphistory: {reg5}")
+                    print("@{!}DEBUG: {s4} current mission: {reg2};;; days on mission: {reg3};;; prisoner: {reg4};;; pphistory: {reg5}")
                 #end
             #end
             s3 = str_store_string(gstr.s4_s8_s5)
@@ -1340,14 +1340,14 @@ def condition():
                 s11 = str_store_string("@None")
             else:
                 reg3 = faction_slot_011
-                s11 = str_store_string("@{!}Error ({reg3})")
+                s11 = str_store_string("@{!}Error [[[{reg3}]]]")
             #end
             reg4 = store_current_hours()
             faction_slot_012 = faction_get_slot(fac_002,65)
             reg4 -= faction_slot_012
             s10 = str_store_string("@{!}{s10}^Faction political issue: {s11}")
             if faction_slot_ge(fac_002,64,1):
-                s10 = str_store_string("@{!}{s10} (on agenda {reg4} hours)")
+                s10 = str_store_string("@{!}{s10} [[[on agenda {reg4} hours]]]")
             #end
         #end
         reg2 = faction_slot_010
@@ -1379,7 +1379,7 @@ def condition():
         else:
             s12 = str_store_troop_name(faction_slot_009)
             reg21 = troop_get_slot(faction_slot_009,150)
-            s12 = str_store_string("@{!}{s12} (controversy: {reg21})")
+            s12 = str_store_string("@{!}{s12} [[[controversy: {reg21}]]]")
         #end
         for cur_party in __all_parties__:
             if party_slot_eq(cur_party,4,12):
@@ -1768,7 +1768,7 @@ def condition():
         #end
         s4 = str_store_faction_name(fac_001)
         reg1 = faction_relation_002
-        s2 = str_store_string("@{!}{s2}^{s4}: {reg1} ({s3})")
+        s2 = str_store_string("@{!}{s2}^{s4}: {reg1} [[[{s3}]]]")
     #end
     s1 = str_store_string("@Your relation with the factions are:^{s2}")
 faction_relations_report.conditionBlock = condition
@@ -2112,7 +2112,7 @@ def condition():
                     reg2 = 0
                 #end
             #end
-            s1 = str_store_troop_name_by_count(_g_prisoner_recruit_troop_id,_g_prisoner_recruit_size)
+            str_store_troop_name_by_count(s1,_g_prisoner_recruit_troop_id,_g_prisoner_recruit_size)
             s18 = str_store_string("@{reg1} {s1} {reg2?accept:accepts} the offer.")
         else:
             s18 = str_store_string("@No one accepts the offer.")
@@ -2245,10 +2245,10 @@ def condition():
         attribute_lvl_002 = store_attribute_level(trp.player,2)
         item_slot_003 = item_get_slot(item_id_001,4)
         if item_slot_003 <= attribute_lvl_002:
-            s1 = str_store_string("@You start reading {s2}. After a few pages, you feel you could learn a lot from this book. You decide to keep it close by and read whenever you have the time.")
+            s1 = str_store_string("@You start reading {s2}. After a few pages;;; you feel you could learn a lot from this book. You decide to keep it close by and read whenever you have the time.")
             _g_player_reading_book = item_id_001
         else:
-            s1 = str_store_string("@You flip through the pages of {s2}, but you find the text confusing and difficult to follow. Try as you might, it soon gives you a headache, and you're forced to give up the attempt.")
+            s1 = str_store_string("@You flip through the pages of {s2};;; but you find the text confusing and difficult to follow. Try as you might;;; it soon gives you a headache;;; and you're forced to give up the attempt.")
         #end
     #end
 camp_action_read_book_start.conditionBlock = condition
@@ -3239,7 +3239,7 @@ def condition():
                         print("@{!}Player participation comment. The enemy had at least 1k starting strength.")
                     #end
                 elif _cheat_mode == 1:
-                    print("@{!}No victory comment. The battle was small, and the player provided less than 40 percent of allied strength")
+                    print("@{!}No victory comment. The battle was small;;; and the player provided less than 40 percent of allied strength")
                 #end
             #end
             _g_total_victories += 1
@@ -3247,7 +3247,7 @@ def condition():
             change_screen_return()
         else:
             if _g_next_menu == mnu.castle_taken:
-                add_log_entry(10,trp.player,_g_encountered_party,-1,_g_encountered_party_faction)
+                add_log_entry(10,trp.player,_g_encountered_party,-1,_g_encountered_x_party_faction)
                 cur_hours_036 = store_current_hours()
                 faction_set_slot(_players_kingdom,98,cur_hours_036)
                 if is_between(_players_kingdom,fac.kingdom_1,fac.kingdoms_end):
@@ -3391,7 +3391,7 @@ def condition():
             elif random_x_003 == 1:
                 s0 = str_store_string("@You took a nasty wound which will cause you to limp slightly even after it heals. You lose 1 agility.")
             else:
-                s0 = str_store_string("@You have trouble thinking straight after the battle, perhaps from a particularly hard hit to your head, and frequent headaches now plague your existence. Your intelligence is reduced by 1.")
+                s0 = str_store_string("@You have trouble thinking straight after the battle;;; perhaps from a particularly hard hit to your head;;; and frequent headaches now plague your existence. Your intelligence is reduced by 1.")
             #end
         elif var001 < 200:
             var001 += 1
@@ -3423,7 +3423,7 @@ def condition():
         if troop_type_002 == 1:
             s0 = str_store_string("@What did I do to deserve this?")
         else:
-            s0 = str_store_string("@I suppose it'll make for a good story, at least...")
+            s0 = str_store_string("@I suppose it'll make for a good story;;; at least...")
         #end
     #end
 permanent_damage_s0.conditionBlock = condition
@@ -3914,11 +3914,11 @@ cut_siege_without_fight = GameMenu("cut_siege_without_fight", 0,
 
 cut_siege_without_fight_continue = MenuOption("continue", "Continue...")
 def code():
-    _g_encountered_party_faction_list1 = [
+    _g_encountered_x_party_faction_list1 = [
     _players_kingdom,
     fac.player_supporters_faction,
     ]
-    if _g_encountered_party_faction in _g_encountered_party_faction_list1:
+    if _g_encountered_x_party_faction in _g_encountered_x_party_faction_list1:
         jump_to_menu(mnu.town)
     else:
         jump_to_menu(mnu.castle_outside)
@@ -4126,7 +4126,7 @@ def condition():
     if reg7 == 0:
         _castle_undefended = 1
         s3 = str_store_string(gstr.castle_is_abondened)
-    elif _g_encountered_party_faction == fac.player_supporters_faction:
+    elif _g_encountered_x_party_faction == fac.player_supporters_faction:
         s3 = str_store_string(gstr.place_is_occupied_by_player)
     elif _g_encountered_party_relation < 0:
         s3 = str_store_string(gstr.place_is_occupied_by_enemy)
@@ -4163,9 +4163,9 @@ def condition():
     elif _g_town_visit_after_rest == 1:
         _g_town_visit_after_rest = 0
         jump_to_menu(mnu.town)
-    elif party_slot_eq(_g_encountered_party,0,2) and party_slot_eq(_g_encountered_party,7,trp.player) or faction_slot_eq(_g_encountered_party_faction,11,trp.player):
+    elif party_slot_eq(_g_encountered_party,0,2) and party_slot_eq(_g_encountered_party,7,trp.player) or faction_slot_eq(_g_encountered_x_party_faction,11,trp.player):
         jump_to_menu(mnu.enter_your_own_castle)
-    elif party_slot_eq(_g_encountered_party,0,2) and _g_encountered_party_relation >= 0 and _castle_undefended == 1 or _g_permitted_to_center == 1 or _g_encountered_party_faction == _players_kingdom:
+    elif party_slot_eq(_g_encountered_party,0,2) and _g_encountered_party_relation >= 0 and _castle_undefended == 1 or _g_permitted_to_center == 1 or _g_encountered_x_party_faction == _players_kingdom:
         jump_to_menu(mnu.town)
     elif party_slot_eq(_g_encountered_party,0,3) and _g_encountered_party_relation >= 0:
         jump_to_menu(mnu.town)
@@ -4189,7 +4189,7 @@ def condition():
     #end
 castle_outside_town_sneak.conditionBlock = condition
 def code():
-    faction_slot_001 = faction_get_slot(_g_encountered_party_faction,30)
+    faction_slot_001 = faction_get_slot(_g_encountered_x_party_faction,30)
     party_num_companions_002 = party_get_num_companions(p.main_party)
     party_num_prisioners_003 = party_get_num_prisoners(p.main_party)
     party_num_companions_002 += party_num_prisioners_003
@@ -4211,7 +4211,7 @@ castle_outside_town_sneak.codeBlock = code
 castle_outside_castle_start_siege = MenuOption("castle_start_siege", "Besiege the {reg6?town:castle}.")
 def condition():
     if party_slot_eq(_g_encountered_party,54,-1) or party_slot_eq(_g_encountered_party,54,p.main_party):
-        faction_relation_001 = store_relation(_g_encountered_party_faction,fac.player_supporters_faction)
+        faction_relation_001 = store_relation(_g_encountered_x_party_faction,fac.player_supporters_faction)
         if faction_relation_001 < 0 and _g_encountered_party_2 < 1:
             party_count_fit_for_battle(p.main_party)
             if reg0 > 5:
@@ -4226,9 +4226,9 @@ def condition():
 castle_outside_castle_start_siege.conditionBlock = condition
 def code():
     _g_player_besiege_town = _g_encountered_party
-    faction_relation_001 = store_relation(fac.player_supporters_faction,_g_encountered_party_faction)
+    faction_relation_001 = store_relation(fac.player_supporters_faction,_g_encountered_x_party_faction)
     val_min(faction_relation_001,-40)
-    set_player_relation_with_faction(_g_encountered_party_faction,faction_relation_001)
+    set_player_relation_with_faction(_g_encountered_x_party_faction,faction_relation_001)
     update_all_notes()
     jump_to_menu(mnu.castle_besiege)
 castle_outside_castle_start_siege.codeBlock = code
@@ -4236,7 +4236,7 @@ castle_outside_castle_start_siege.codeBlock = code
 castle_outside_cheat_castle_start_siege = MenuOption("cheat_castle_start_siege", "{!}CHEAT: Besiege the {reg6?town:castle}...")
 def condition():
     if _cheat_mode == 1 and party_slot_eq(_g_encountered_party,54,-1) or party_slot_eq(_g_encountered_party,54,p.main_party):
-        faction_relation_001 = store_relation(_g_encountered_party_faction,fac.player_supporters_faction)
+        faction_relation_001 = store_relation(_g_encountered_x_party_faction,fac.player_supporters_faction)
         if faction_relation_001 >= 0 and _g_encountered_party_2 < 1:
             party_count_fit_for_battle(p.main_party)
             if reg0 > 1:
@@ -4544,7 +4544,7 @@ def condition():
         if cur_hours_002 < _g_siege_method_finish_hours:
             reg9 = _g_siege_method_finish_hours - cur_hours_002
             if _g_siege_method == 1:
-                s3 = str_store_string("@You're preparing to attack the walls, the work should finish in {reg9} hours.")
+                s3 = str_store_string("@You're preparing to attack the walls;;; the work should finish in {reg9} hours.")
             elif _g_siege_method == 2:
                 s3 = str_store_string("@Your forces are building a siege tower. They estimate another {reg9} hours to complete the build.")
             #end
@@ -4752,8 +4752,8 @@ def condition():
     #end
     var002 = _g_battle_result
     encounter_calculate_fit()
-    s1 = str_store_string("@As a last defensive effort, you retreat to the main hall of the keep. You and your remaining soldiers will put up a desperate fight here. If you are defeated, there's no other place to fall back to.")
-    s1 = str_store_string("@You've been driven away from the walls. Now the attackers are pouring into the streets. IF you can defeat them, you can perhaps turn the tide and save the day.")
+    s1 = str_store_string("@As a last defensive effort;;; you retreat to the main hall of the keep. You and your remaining soldiers will put up a desperate fight here. If you are defeated;;; there's no other place to fall back to.")
+    s1 = str_store_string("@You've been driven away from the walls. Now the attackers are pouring into the streets. IF you can defeat them;;; you can perhaps turn the tide and save the day.")
     if var002 == 1 or _g_friend_fit_for_battle > 0 or _g_enemy_fit_for_battle <= 0:
         jump_to_menu(_g_siege_final_menu)
     else:
@@ -4763,9 +4763,9 @@ def condition():
                 _g_battle_result = 0
                 jump_to_menu(_g_siege_final_menu)
             elif _g_siege_battle_state == 1 and var002 == 1:
-                s1 = str_store_string("@You've breached the town walls, but the stubborn defenders continue to resist you in the streets! You'll have to deal with them before you can attack the keep at the heart of the town.")
+                s1 = str_store_string("@You've breached the town walls;;; but the stubborn defenders continue to resist you in the streets! You'll have to deal with them before you can attack the keep at the heart of the town.")
             elif _g_siege_battle_state == 2 and var002 == 1:
-                s1 = str_store_string("@The town centre is yours, but the remaining defenders have retreated to the castle. It must fall before you can complete your victory.")
+                s1 = str_store_string("@The town centre is yours;;; but the remaining defenders have retreated to the castle. It must fall before you can complete your victory.")
             else:
                 jump_to_menu(_g_siege_final_menu)
             #end
@@ -5006,11 +5006,11 @@ def condition():
             var003 = 40
         #end
     #end
-    if troop_faction_002 != _g_encountered_party_faction:
-        faction_inflict_war_damage_on_faction(troop_faction_002,_g_encountered_party_faction,var003)
+    if troop_faction_002 != _g_encountered_x_party_faction:
+        faction_inflict_war_damage_on_faction(troop_faction_002,_g_encountered_x_party_faction,var003)
     #end
     give_center_to_faction(_g_encountered_party,troop_faction_002)
-    add_log_entry(18,trp.player,_g_encountered_party,0,_g_encountered_party_faction)
+    add_log_entry(18,trp.player,_g_encountered_party,0,_g_encountered_x_party_faction)
     change_screen_return()
 castle_taken_by_friends.conditionBlock = condition
 
@@ -5040,7 +5040,7 @@ def condition():
     if is_between(_g_encountered_party,p.town_1,p.castle_1):
         var003 = 40
     #end
-    faction_inflict_war_damage_on_faction(_players_kingdom,_g_encountered_party_faction,var003)
+    faction_inflict_war_damage_on_faction(_players_kingdom,_g_encountered_x_party_faction,var003)
     if is_between(_players_kingdom,fac.player_supporters_faction,fac.kingdoms_end) and _players_kingdom != fac.player_supporters_faction:
         give_center_to_faction(_g_encountered_party,_players_kingdom)
         order_best_besieger_party_to_guard_center(_g_encountered_party,_players_kingdom)
@@ -5081,7 +5081,7 @@ def condition():
         if party_slot_eq(_g_encountered_party,3,0):
             reg8 = 1
         #end
-        s5 = str_store_string("@However, since you are not a sworn {man/follower} of {s9}, there is no chance he would recognize you as the {lord/lady} of this {reg8?town:castle}.")
+        s5 = str_store_string("@However;;; since you are not a sworn {man/follower} of {s9};;; there is no chance he would recognize you as the {lord/lady} of this {reg8?town:castle}.")
     #end
 castle_taken_2.conditionBlock = condition
 
@@ -5523,9 +5523,9 @@ def condition():
     if not is_between(_players_kingdom,fac.kingdom_1,fac.kingdoms_end):
         faction_slot_001 = faction_get_slot(fac.player_supporters_faction,11)
         if faction_slot_001 == trp.player:
-            s10 = str_store_string("@As you approach, you are spotted by the castle guards, who welcome you and open the gates for their {king/queen}.")
+            s10 = str_store_string("@As you approach;;; you are spotted by the castle guards;;; who welcome you and open the gates for their {king/queen}.")
         else:
-            s10 = str_store_string("@As you approach, you are spotted by the castle guards, who welcome you and open the gates for their {lord/lady}.")
+            s10 = str_store_string("@As you approach;;; you are spotted by the castle guards;;; who welcome you and open the gates for their {lord/lady}.")
         #end
     #end
     s2 = str_store_party_name(_current_town)
@@ -5615,7 +5615,7 @@ def condition():
         party_slot_005 = party_get_slot(_current_town,26)
         describe_center_relation_to_s3(party_slot_005)
         reg9 = party_slot_005
-        s7 = str_store_string("@{!} {s3} ({reg9}).")
+        s7 = str_store_string("@{!} {s3} [[[{reg9}]]].")
     #end
     str_clear(6)
     if party_slot_ge(_current_town,39,1):
@@ -5626,7 +5626,7 @@ def condition():
         _qst_eliminate_bandits_infesting_village_num_bandits /= 10
         _qst_eliminate_bandits_infesting_village_num_villagers = store_random_in_range(25,30)
         reg8 = _qst_eliminate_bandits_infesting_village_num_bandits
-        s35 = str_store_troop_name_by_count(party_slot_006,_qst_eliminate_bandits_infesting_village_num_bandits)
+        str_store_troop_name_by_count(s35,party_slot_006,_qst_eliminate_bandits_infesting_village_num_bandits)
         s6 = str_store_string("@ The village is infested by {reg8} {s35}.")
         _g_enemy_party = -1
         _g_ally_party = -1
@@ -5866,7 +5866,7 @@ def condition():
         s18 = str_store_string("@No one here seems to be willing to join your party.")
     else:
         reg6 = party_slot_002 * 10
-        s3 = str_store_troop_name_by_count(party_slot_001,party_slot_002)
+        str_store_troop_name_by_count(s3,party_slot_001,party_slot_002)
         if reg5 == 1:
             s18 = str_store_string("@One {s3} volunteers to follow you.")
         else:
@@ -5918,7 +5918,7 @@ def condition():
     if _g_battle_result == 1:
         jump_to_menu(mnu.village_infestation_removed)
     else:
-        s9 = str_store_string("@Try as you might, you could not defeat the bandits. Infuriated, they raze the village to the ground to punish the peasants, and then leave the burning wasteland behind to find greener pastures to plunder.")
+        s9 = str_store_string("@Try as you might;;; you could not defeat the bandits. Infuriated;;; they raze the village to the ground to punish the peasants;;; and then leave the burning wasteland behind to find greener pastures to plunder.")
         set_background_mesh(mesh.pic_looted_village)
     #end
 village_infest_bandits_result.conditionBlock = condition
@@ -6157,11 +6157,11 @@ def condition():
     party_set_slot(_current_town,155,0)
     party_num_companions_004 = party_get_num_companions(p.main_party)
     s4 = str_store_string("@The assasins beat you down and leave you for dead. .")
-    s4 = str_store_string("@You have fallen. The bandits quickly search your body for every coin they can find, then vanish into the night. They have left you alive, if only barely.")
+    s4 = str_store_string("@You have fallen. The bandits quickly search your body for every coin they can find;;; then vanish into the night. They have left you alive;;; if only barely.")
     if party_num_companions_004 > 2:
-        s5 = str_store_string("@Luckily some of your companions come to search for you when you do not return, and find you lying by the side of the road. They hurry you to safety and dress your wounds.")
+        s5 = str_store_string("@Luckily some of your companions come to search for you when you do not return;;; and find you lying by the side of the road. They hurry you to safety and dress your wounds.")
     else:
-        s5 = str_store_string("@Luckily some passing townspeople find you lying by the side of the road, and recognise you as something other than a simple beggar. They carry you to the nearest inn and dress your wounds.")
+        s5 = str_store_string("@Luckily some passing townspeople find you lying by the side of the road;;; and recognise you as something other than a simple beggar. They carry you to the nearest inn and dress your wounds.")
     #end
 town_bandits_failed.conditionBlock = condition
 
@@ -6243,7 +6243,7 @@ def condition():
         reg12 = random_x_002 - 1
         if party_slot_003 > 0:
             change_player_relation_with_troop(party_slot_003,-3)
-            add_log_entry(66,trp.player,_current_town,party_slot_003,_g_encountered_party_faction)
+            add_log_entry(66,trp.player,_current_town,party_slot_003,_g_encountered_x_party_faction)
         #end
         change_player_relation_with_center(_current_town,-5)
         s1 = str_store_string("@You drive away {reg17} {reg12?heads:head} of cattle from the village's herd.")
@@ -6674,7 +6674,7 @@ def condition():
         party_slot_014 = party_get_slot(_current_town,26)
         describe_center_relation_to_s3(party_slot_014)
         reg9 = party_slot_014
-        s12 = str_store_string("@{!} {s3} ({reg9}).")
+        s12 = str_store_string("@{!} {s3} [[[{reg9}]]].")
     #end
     str_clear(13)
     if _entry_to_town_forbidden > 0:
@@ -6720,7 +6720,7 @@ town_castle_castle.conditionBlock = condition
 def code():
     if _all_doors_locked == 1 or _sneaked_into_town == 1:
         print(gstr.door_locked,4294945450)
-    elif _players_kingdom == _g_encountered_party_faction or not troop_slot_ge(trp.player,7,50) and not troop_slot_ge(trp.player,7,125) and _g_player_eligible_feast_center_no != _current_town and faction_slot_eq(_g_encountered_party_faction,4,6) and faction_slot_eq(_g_encountered_party_faction,5,_g_encountered_party) and not check_quest_active(qst.wed_betrothed) and not check_quest_active(qst.wed_betrothed_female) and not troop_slot_ge(trp.player,30,trp.npc1):
+    elif _players_kingdom == _g_encountered_x_party_faction or not troop_slot_ge(trp.player,7,50) and not troop_slot_ge(trp.player,7,125) and _g_player_eligible_feast_center_no != _current_town and faction_slot_eq(_g_encountered_x_party_faction,4,6) and faction_slot_eq(_g_encountered_x_party_faction,5,_g_encountered_party) and not check_quest_active(qst.wed_betrothed) and not check_quest_active(qst.wed_betrothed_female) and not troop_slot_ge(trp.player,30,trp.npc1):
         jump_to_menu(mnu.cannot_enter_court)
     else:
         _town_entered = 1
@@ -6756,7 +6756,7 @@ town_town_castle.conditionBlock = condition
 def code():
     if _all_doors_locked == 1 or _sneaked_into_town == 1:
         print(gstr.door_locked,4294945450)
-    elif _players_kingdom == _g_encountered_party_faction or not troop_slot_ge(trp.player,7,50) and not troop_slot_ge(trp.player,7,125) and _g_player_eligible_feast_center_no != _current_town and faction_slot_eq(_g_encountered_party_faction,4,6) and faction_slot_eq(_g_encountered_party_faction,5,_g_encountered_party) and not check_quest_active(qst.wed_betrothed) and not check_quest_active(qst.wed_betrothed_female) and not troop_slot_ge(trp.player,30,trp.npc1):
+    elif _players_kingdom == _g_encountered_x_party_faction or not troop_slot_ge(trp.player,7,50) and not troop_slot_ge(trp.player,7,125) and _g_player_eligible_feast_center_no != _current_town and faction_slot_eq(_g_encountered_x_party_faction,4,6) and faction_slot_eq(_g_encountered_x_party_faction,5,_g_encountered_party) and not check_quest_active(qst.wed_betrothed) and not check_quest_active(qst.wed_betrothed_female) and not troop_slot_ge(trp.player,30,trp.npc1):
         jump_to_menu(mnu.cannot_enter_court)
     else:
         _town_entered = 1
@@ -6822,8 +6822,8 @@ def code():
             _g_mt_mode = 0
             party_faction_001 = store_faction_of_party(_current_town)
             if party_faction_001 != fac.player_supporters_faction:
-                faction_slot_010 = faction_get_slot(_g_encountered_party_faction,51)
-                faction_slot_011 = faction_get_slot(_g_encountered_party_faction,52)
+                faction_slot_010 = faction_get_slot(_g_encountered_x_party_faction,51)
+                faction_slot_011 = faction_get_slot(_g_encountered_x_party_faction,52)
                 faction_slot_002 = faction_get_slot(party_faction_001,42)
                 faction_slot_003 = faction_get_slot(party_faction_001,43)
             else:
@@ -7060,17 +7060,17 @@ def code():
         #end
         if _g_starting_town == _current_town and check_quest_finished(qst.collect_men) or check_quest_finished(qst.learn_where_merchant_brother_is) or check_quest_finished(qst.save_relative_of_merchant) or check_quest_finished(qst.save_town_from_bandits) or _g_do_one_more_meeting_with_merchant == 1:
             troop_id_021 = 0
-            if _g_encountered_party_faction == fac.kingdom_1:
+            if _g_encountered_x_party_faction == fac.kingdom_1:
                 troop_id_021 = trp.swadian_merchant
-            elif _g_encountered_party_faction == fac.kingdom_2:
+            elif _g_encountered_x_party_faction == fac.kingdom_2:
                 troop_id_021 = trp.vaegir_merchant
-            elif _g_encountered_party_faction == fac.kingdom_3:
+            elif _g_encountered_x_party_faction == fac.kingdom_3:
                 troop_id_021 = trp.khergit_merchant
-            elif _g_encountered_party_faction == fac.kingdom_4:
+            elif _g_encountered_x_party_faction == fac.kingdom_4:
                 troop_id_021 = trp.nord_merchant
-            elif _g_encountered_party_faction == fac.kingdom_5:
+            elif _g_encountered_x_party_faction == fac.kingdom_5:
                 troop_id_021 = trp.rhodok_merchant
-            elif _g_encountered_party_faction == fac.kingdom_6:
+            elif _g_encountered_x_party_faction == fac.kingdom_6:
                 troop_id_021 = trp.sarranid_merchant
             #end
             if troop_id_021 > 0:
@@ -7124,17 +7124,17 @@ town_town_dungeon = MenuOption("town_dungeon", "Never: Enter the prison.") # Doo
 def code():
     if _talk_context == 18 and _g_main_attacker_agent > 0 and not agent_is_alive(_g_main_attacker_agent):
         troop_id_001 = agent_get_troop_id(_g_main_attacker_agent)
-        if _g_encountered_party_faction == fac.player_supporters_faction:
+        if _g_encountered_x_party_faction == fac.player_supporters_faction:
             party_slot_002 = party_get_slot(_current_town,61)
         else:
-            party_slot_002 = _g_encountered_party_faction
+            party_slot_002 = _g_encountered_x_party_faction
         #end
         if faction_slot_eq(party_slot_002,51,troop_id_001):
             deduct_casualties_from_garrison()
             enter_dungeon(_current_town,mt.visit_town_castle)
         elif _all_doors_locked == 1:
             print(gstr.door_locked,4294945450)
-        elif party_slot_eq(_current_town,7,trp.player) or _g_encountered_party_faction == _players_kingdom:
+        elif party_slot_eq(_current_town,7,trp.player) or _g_encountered_x_party_faction == _players_kingdom:
             _town_entered = 1
             enter_dungeon(_current_town,mt.visit_town_castle)
         else:
@@ -7180,8 +7180,8 @@ def code():
         party_slot_001 = party_get_slot(_current_town,10)
         modify_visitors_at_site(party_slot_001)
         reset_visitors()
-        if _g_encountered_party_faction != fac.player_supporters_faction:
-            faction_slot_012 = faction_get_slot(_g_encountered_party_faction,51)
+        if _g_encountered_x_party_faction != fac.player_supporters_faction:
+            faction_slot_012 = faction_get_slot(_g_encountered_x_party_faction,51)
         else:
             party_slot_013 = party_get_slot(_current_town,61)
             faction_slot_012 = faction_get_slot(party_slot_013,51)
@@ -7620,7 +7620,7 @@ town_tournament_lost = GameMenu("town_tournament_lost", 0,
 )
 def condition():
     str_clear(8)
-    if _players_kingdom == _g_encountered_party_faction or not troop_slot_ge(trp.player,7,50) and not troop_slot_ge(trp.player,7,125) and _g_player_tournament_placement > 4 and faction_slot_eq(_g_encountered_party_faction,4,6) and faction_slot_eq(_g_encountered_party_faction,5,_g_encountered_party):
+    if _players_kingdom == _g_encountered_x_party_faction or not troop_slot_ge(trp.player,7,50) and not troop_slot_ge(trp.player,7,125) and _g_player_tournament_placement > 4 and faction_slot_eq(_g_encountered_x_party_faction,4,6) and faction_slot_eq(_g_encountered_x_party_faction,5,_g_encountered_party):
         s8 = str_store_string(gstr._however_you_have_sufficiently_distinguished_yourself_to_be_invited_to_attend_the_ongoing_feast_in_the_lords_castle)
     #end
 town_tournament_lost.conditionBlock = condition
@@ -7646,9 +7646,9 @@ def condition():
     gold_001 = _g_tournament_bet_placed + _g_tournament_bet_win_amount
     if _g_tournament_bet_win_amount > 0:
         reg8 = gold_001
-        s8 = str_store_string("@Moreover, you earn {reg8} denars from the clever bets you placed on yourself...")
+        s8 = str_store_string("@Moreover;;; you earn {reg8} denars from the clever bets you placed on yourself...")
     #end
-    if _players_kingdom == _g_encountered_party_faction or not troop_slot_ge(trp.player,7,70) and not troop_slot_ge(trp.player,7,145) and faction_slot_eq(_g_encountered_party_faction,4,6) and faction_slot_eq(_g_encountered_party_faction,5,_g_encountered_party):
+    if _players_kingdom == _g_encountered_x_party_faction or not troop_slot_ge(trp.player,7,70) and not troop_slot_ge(trp.player,7,145) and faction_slot_eq(_g_encountered_x_party_faction,4,6) and faction_slot_eq(_g_encountered_x_party_faction,5,_g_encountered_party):
         s8 = str_store_string(gstr.s8_you_are_also_invited_to_attend_the_ongoing_feast_in_the_castle)
     #end
     troop_add_gold(trp.player,gold_001)
@@ -7725,9 +7725,9 @@ def condition():
         reg4 = reg3 - 1
         str_clear(1)
         if _g_tournament_player_team_won == 1:
-            s1 = str_store_string("@Victory is yours! You have won this melee, but now you must prepare yourself for the next round. ")
+            s1 = str_store_string("@Victory is yours! You have won this melee;;; but now you must prepare yourself for the next round. ")
         elif _g_tournament_player_team_won == 0:
-            s1 = str_store_string("@You have been bested in this melee, but the master of ceremonies declares a recognition of your skill and bravery, allowing you to take part in the next round. ")
+            s1 = str_store_string("@You have been bested in this melee;;; but the master of ceremonies declares a recognition of your skill and bravery;;; allowing you to take part in the next round. ")
         #end
         reg1 = var001
         reg0 = _g_tournament_cur_tier + 1
@@ -8234,7 +8234,7 @@ def condition():
     _g_train_peasants_against_bandits_num_peasants = random_x_005
     reg0 = random_x_005
     reg1 = random_x_005 - 1
-    s0 = str_store_troop_name_by_count(trp.trainee_peasant,random_x_005)
+    str_store_troop_name_by_count(s0,trp.trainee_peasant,random_x_005)
 train_peasants_against_bandits_ready.conditionBlock = condition
 
 train_peasants_against_bandits_ready_peasant_start_practice = MenuOption("peasant_start_practice", "Start the practice fight.")
@@ -8260,11 +8260,11 @@ train_peasants_against_bandits_training_result = GameMenu("train_peasants_agains
 )
 def condition():
     reg5 = _g_train_peasants_against_bandits_num_peasants
-    s0 = str_store_troop_name_by_count(trp.trainee_peasant,_g_train_peasants_against_bandits_num_peasants)
+    str_store_troop_name_by_count(s0,trp.trainee_peasant,_g_train_peasants_against_bandits_num_peasants)
     if _g_train_peasants_against_bandits_training_succeeded == 0:
-        s0 = str_store_string("@You were beaten. The peasants are heartened by their success, but the lesson you wanted to teach them probably didn't get through...")
+        s0 = str_store_string("@You were beaten. The peasants are heartened by their success;;; but the lesson you wanted to teach them probably didn't get through...")
     else:
-        s0 = str_store_string("@After beating your last opponent, you explain to the peasants how to better defend themselves against such an attack. Hopefully they'll take the experience on board and will be prepared next time.")
+        s0 = str_store_string("@After beating your last opponent;;; you explain to the peasants how to better defend themselves against such an attack. Hopefully they'll take the experience on board and will be prepared next time.")
         quest_slot_001 = quest_get_slot(qst.train_peasants_against_bandits,11)
         quest_slot_001 += _g_train_peasants_against_bandits_num_peasants
         quest_set_slot(qst.train_peasants_against_bandits,11,quest_slot_001)
@@ -8331,12 +8331,12 @@ train_peasants_against_bandits_attack_result = GameMenu("train_peasants_against_
 )
 def condition():
     if _g_battle_result == 1:
-        s9 = str_store_string("@The bandits are broken! Those few who remain alive and conscious run off with their tails between their legs, terrified of the peasants and their new champion.")
+        s9 = str_store_string("@The bandits are broken! Those few who remain alive and conscious run off with their tails between their legs;;; terrified of the peasants and their new champion.")
         succeed_quest(qst.train_peasants_against_bandits)
         jump_to_menu(mnu.train_peasants_against_bandits_success)
     else:
         fail_quest(qst.train_peasants_against_bandits)
-        s9 = str_store_string("@Try as you might, you could not defeat the bandits. Infuriated, they raze the village to the ground to punish the peasants, and then leave the burning wasteland behind to find greener pastures to plunder.")
+        s9 = str_store_string("@Try as you might;;; you could not defeat the bandits. Infuriated;;; they raze the village to the ground to punish the peasants;;; and then leave the burning wasteland behind to find greener pastures to plunder.")
         set_background_mesh(mesh.pic_looted_village)
     #end
 train_peasants_against_bandits_attack_result.conditionBlock = condition
@@ -8812,7 +8812,7 @@ def condition():
         s1 = str_store_troop_name(var002)
     #end
     if var003 <= 0:
-        s2 = str_store_string("@However, {reg3?You are:{s1} is} unable to find any trade goods that would bring a profit.")
+        s2 = str_store_string("@However;;; {reg3?You are:{s1} is} unable to find any trade goods that would bring a profit.")
     else:
         if var016 >= 0:
             reg6 = var018
@@ -9391,7 +9391,7 @@ def condition():
                 if troop_id_015 == troop_slot_012:
                     var013 = 0
                     if cf_training_ground_sub_routine_for_training_result(troop_slot_012,stack_no_014,troop_slot_011,var007):
-                        s1 = str_store_troop_name_by_count(troop_slot_012,troop_slot_011)
+                        str_store_troop_name_by_count(s1,troop_slot_012,troop_slot_011)
                         reg1 = troop_slot_011
                         s2 = str_store_string("@{s2}^{reg1} {s1} earned {reg0} experience.")
                     #end
@@ -9969,7 +9969,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
 question_peace_offer.conditionBlock = condition
 
 question_peace_offer_peace_offer_accept = MenuOption("peace_offer_accept", "Accept")
@@ -9996,7 +9996,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
 notification_truce_expired.conditionBlock = condition
 
 notification_truce_expired_continue = MenuOption("continue", "Continue")
@@ -10049,7 +10049,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
 notification_casus_belli_expired.conditionBlock = condition
 
 notification_casus_belli_expired_continue = MenuOption("continue", "Continue")
@@ -10174,7 +10174,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.faction_note_mesh_banner,fac.player_supporters_faction,0)
+    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,fac.player_supporters_faction,0)
     unlock_achievement(52)
     play_track(track.coronation)
     for p_001 in range(p.town_1, p.village_1):
@@ -10472,7 +10472,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.faction_note_mesh_banner,fac.player_supporters_faction,0)
+    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,fac.player_supporters_faction,0)
 notification_player_faction_deactive.conditionBlock = condition
 
 notification_player_faction_deactive_continue = MenuOption("continue", "Continue...")
@@ -10552,7 +10552,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
 notification_center_under_siege.conditionBlock = condition
 
 notification_center_under_siege_continue = MenuOption("continue", "Continue...")
@@ -10574,7 +10574,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
 notification_village_raided.conditionBlock = condition
 
 notification_village_raided_continue = MenuOption("continue", "Continue...")
@@ -10596,7 +10596,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
 notification_village_raid_started.conditionBlock = condition
 
 notification_village_raid_started_continue = MenuOption("continue", "Continue...")
@@ -10615,10 +10615,10 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-        set_game_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
-    else:
-        set_game_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
+    #else:
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
     #end
     if faction_slot_eq(_g_notification_var1,11,trp.player):
         unlock_achievement(44)
@@ -10649,10 +10649,10 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-        set_game_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
-    else:
-        set_game_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
+    #else:
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
     #end
 notification_oath_renounced_faction_defeated.conditionBlock = condition
 
@@ -10673,7 +10673,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    set_game_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
 notification_center_lost.conditionBlock = condition
 
 notification_center_lost_continue = MenuOption("continue", "Continue...")
@@ -10694,7 +10694,7 @@ def condition():
     position_set_x(0,55)
     position_set_y(0,20)
     position_set_z(0,100)
-    set_game_tableau_mesh(tab.troop_note_mesh,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.troop_note_mesh,_g_notification_var1,0)
 notification_troop_left_players_faction.conditionBlock = condition
 
 notification_troop_left_players_faction_continue = MenuOption("continue", "Continue...")
@@ -10715,7 +10715,7 @@ def condition():
     position_set_x(0,55)
     position_set_y(0,20)
     position_set_z(0,100)
-    set_game_tableau_mesh(tab.troop_note_mesh,_g_notification_var1,0)
+    # set_game_menu_tableau_mesh(tab.troop_note_mesh,_g_notification_var1,0)
 notification_troop_joined_players_faction.conditionBlock = condition
 
 notification_troop_joined_players_faction_continue = MenuOption("continue", "Continue...")
@@ -10741,7 +10741,7 @@ def condition():
     var002 = _g_notification_var2 - fac.player_supporters_faction
     var001 *= 128
     var001 += var002
-    set_game_tableau_mesh(tab.two_factions_mesh,var001,0)
+    # set_game_menu_tableau_mesh(tab.two_factions_mesh,var001,0)
 notification_war_declared.conditionBlock = condition
 
 notification_war_declared_continue = MenuOption("continue", "Continue...")
@@ -10770,7 +10770,7 @@ def condition():
     var002 = _g_notification_var2 - fac.player_supporters_faction
     var001 *= 128
     var001 += var002
-    set_game_tableau_mesh(tab.two_factions_mesh,var001,0)
+    # set_game_menu_tableau_mesh(tab.two_factions_mesh,var001,0)
 notification_peace_declared.conditionBlock = condition
 
 notification_peace_declared_continue = MenuOption("continue", "Continue...")
@@ -10789,10 +10789,10 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-        set_game_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
-    else:
-        set_game_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
+    #else:
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
     #end
 notification_faction_defeated.conditionBlock = condition
 
@@ -10880,11 +10880,11 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-        set_game_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
-    else:
-        set_game_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
-    #end
+    #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
+    #else:
+    #    set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    ##end
 notification_rebels_switched_to_faction.conditionBlock = condition
 
 notification_rebels_switched_to_faction_continue = MenuOption("continue", "Continue...")
@@ -11331,7 +11331,7 @@ def condition():
     faction_slot_002 = faction_get_slot(_players_kingdom,64)
     if faction_slot_002 == 1:
         s11 = str_store_string(gstr.the_marshalship)
-        s12 = str_store_string("@^^Note that so long as you remain marshal, the lords of the realm will be expecting you to lead them on campaign. So, if you are awaiting a feast, either for a wedding or for other purposes, you may wish to resign the marshalship by speaking to your liege.")
+        s12 = str_store_string("@^^Note that so long as you remain marshal;;; the lords of the realm will be expecting you to lead them on campaign. So;;; if you are awaiting a feast;;; either for a wedding or for other purposes;;; you may wish to resign the marshalship by speaking to your liege.")
     else:
         str_clear(12)
         s11 = str_store_party_name(faction_slot_002)
