@@ -50,11 +50,11 @@ encountered_party_is_attacker   = 39  # (encountered_party_is_attacker),
 conversation_screen_is_active   = 42  # (conversation_screen_is_active), #used in mission template triggers only
                                          # Checks that the player is currently in dialogue with some agent. Can only be used in triggers of module_mission_templates.py file.
 
-in_meta_mission                 = 44  # deprecated, do not use.
+in_meta_mission                 = 44  # (in_meta_mission), # deprecated, do not use.
 
 set_player_troop                = 47  # (set_player_troop,<troop_id>),
 
-store_repeat_object             = 50  # stores the index of a repeated dialog option for repeat_for_factions, etc...
+store_repeat_object             = 50  # (store_repeat_object, <destination>), # stores the index of a repeated dialog option for repeat_for_factions, etc...
 
 get_operation_set_version       = 55  # (get_operation_set_version, <destination>),
 
@@ -499,7 +499,7 @@ add_quest_note_from_sreg        = 1113 # (add_quest_note_from_sreg,<quest_id>,<n
 add_info_page_note_from_sreg    = 1092 # (add_info_page_note_from_sreg,<info_page_id>,<note_slot_no>,<string_id>, <value>), #There are maximum of 8 slots value = 1 -> shows when the note is added
 
 tutorial_box                    = 1120 # (tutorial_box,<string_id>,<string_id>), #deprecated use dialog_box instead.
-dialog_box                      = 1120 # (dialog_box,<text_string_id>,<title_string_id>),
+dialog_box                      = 1120 # (dialog_box,<text_string_id>,[<title_string_id>]),
 question_box                    = 1121 # (question_box,<string_id>, [<yes_string_id>], [<no_string_id>]),
 tutorial_message                = 1122 # (tutorial_message,<string_id>, [<color>], [<auto_close_time>]), #set string_id = -1 for hiding the message
 tutorial_message_set_position   = 1123 # (tutorial_message_set_position, <position_x>, <position_y>), 
@@ -1188,12 +1188,12 @@ store_tan              = 2129  # (store_tan, <destination_fixed_point>, <value_f
 convert_to_fixed_point = 2130  # (convert_to_fixed_point, <destination_fixed_point>),
 convert_from_fixed_point= 2131 # (convert_from_fixed_point, <destination>),
 
-assign                 = 2133	# had to put this here so that it can be called from conditions.
-				# (assign,<destination>,<value>),
+assign                 = 2133	# (assign,<destination>,<value>), # had to put this here so that it can be called from conditions.
+
 shuffle_range          = 2134	# (shuffle_range,<reg_no>,<reg_no>),
 
 store_random           = 2135	# (store_random, <seed>), # deprecated, use store_random_in_range instead.
-store_random_in_range  = 2136	# (store_random_in_range,<destination>,<range_low>,<range_high>), # gets random number in range [range_low,range_high] excluding range_high
+store_random_in_range  = 2136	# (store_random_in_range,<destination>,<range_low>,[<range_high>]), # gets random number in range [range_low,range_high] excluding range_high
 
 
 store_asin             = 2140  # (store_asin, <destination_fixed_point>, <value_fixed_point>),
@@ -1209,7 +1209,7 @@ store_num_free_prisoner_stacks  = 2155 # (store_num_free_prisoner_stacks,<destin
 store_party_size                = 2156	# (store_party_size,<destination>,[party_id]),
 store_party_size_wo_prisoners   = 2157	# (store_party_size_wo_prisoners,<destination>,[party_id]),
 store_troop_kind_count          = 2158 # deprecated, use party_count_members_of_type instead
-store_num_regular_prisoners     = 2159	# (store_mum_regular_prisoners,<destination>,<party_id>),
+store_num_regular_prisoners     = 2159	# (store_num_regular_prisoners,<destination>,<party_id>),
 
 store_troop_count_companions    = 2160	# (store_troop_count_companions,<destination>,<troop_id>,[party_id]),
 store_troop_count_prisoners     = 2161	# (store_troop_count_prisoners,<destination>,<troop_id>,[party_id]),
