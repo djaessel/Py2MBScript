@@ -31,7 +31,7 @@ village_training = MissionTemplate("village_training", description="village_trai
 village_training.add_flag(MissionTemplateFlag.ARENA_FIGHT)
 #---
 # spawn record 0
-sr = SpawnRecord(2, 1, []) # itm_practice_staff, itm_practice_boots
+sr = SpawnRecord(2, 1) # itm_practice_staff, itm_practice_boots
 sr.add_spawn_flag(SpawnFlag.TEAM_0)
 sr.add_spawn_flag(SpawnFlag.VISITOR_SOURCE)
 sr.add_alter_flag(AlterFlag.OVERRIDE_EVERYTHING)
@@ -39,7 +39,7 @@ sr.add_alter_flag(AlterFlag.OVERRIDE_EVERYTHING)
 #sr.addItem(itm.practice_staff)
 village_training.addSpawnRecord(sr)
 # spawn record 1
-sr2 = SpawnRecord(4, 1, []) # itm_practice_staff, itm_practice_boots
+sr2 = SpawnRecord(4, 1) # itm_practice_staff, itm_practice_boots
 sr2.add_spawn_flag(SpawnFlag.TEAM_1)
 sr2.add_spawn_flag(SpawnFlag.VISITOR_SOURCE)
 sr2.add_alter_flag(AlterFlag.OVERRIDE_EVERYTHING)

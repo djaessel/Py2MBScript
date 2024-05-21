@@ -6,11 +6,12 @@ sys.path.append("../data_objects/")
 
 from presentation import Presentation, LoadEvent, MouseEnterLeaveEvent, RunEvent, MousePressEvent, StateChangedEvent
 from simple_trigger import SimpleTrigger
+import meshes as mesh
 
 
 
 # CUSTOM BATTLE MANAGER
-game_custom_battle_designer = Presentation("game_custom_battle_designer", "mesh_cb_ui_main")
+game_custom_battle_designer = Presentation("game_custom_battle_designer", mesh=mesh.ui_main)
 game_custom_battle_designer.set_manual_end_only()
 
 event = LoadEvent()

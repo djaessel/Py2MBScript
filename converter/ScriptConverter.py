@@ -657,7 +657,10 @@ class ScriptConverter:
                 if xxy:
                     if tmp[0] == "gstr":
                         tmp[0] = "str"
-                    xol = tmp[0] + "_" + xxy.id
+                    if tmp[0] == "script":
+                        xol = tmp[0] + "_" + xxy.__name__
+                    else:
+                        xol = tmp[0] + "_" + xxy.id
                     codeNew += '"' + xol + "\""
                 else:
                     print("ERROR 0x533D2")
