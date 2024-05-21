@@ -102,8 +102,15 @@ class MissionTemplateConverter(ScriptConverter):
                         codeLines = inspect.getsourcelines(trigger.codeBlock)[0]
                         for i in range(len(codeLines)):
                             codeLines[i] = codeLines[i][4:]
+                        x = self.transformScriptLine(codeLines[0])
+                        x.pop(0)
                         codeLines.pop(0)
                         codeLines = self.transformScriptBlock(codeLines)
+                        if len(x) > 0:
+                            y = []
+                            y.extend(x)
+                            y.extend(codeLines)
+                            codeLines = y
                         self.writeScriptCode(f, codeLines)
 
                 f.write("]),\n")
