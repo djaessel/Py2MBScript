@@ -756,8 +756,8 @@ def code(var001, var002):
             else:
                 _g_quick_battle_team_2_faction = 0
             #end
-            _g_quick_battle_team_1_faction += fac.kingdom_1
-            _g_quick_battle_team_2_faction += fac.kingdom_1
+            _g_quick_battle_team_1_faction = _g_quick_battle_team_1_faction + fac.kingdom_1
+            _g_quick_battle_team_2_faction = _g_quick_battle_team_2_faction + fac.kingdom_1
             _g_quick_battle_army_1_size = store_random_in_range(10,16)
             random_x_003 = store_random_in_range(0,6)
             _g_quick_battle_army_1_size += random_x_003
@@ -771,7 +771,7 @@ def code(var001, var002):
             if _g_quick_battle_team_1_faction == 0:
                 _g_quick_battle_team_1_faction = fac.outlaws
             else:
-                _g_quick_battle_team_1_faction += fac.kingdom_1
+                _g_quick_battle_team_1_faction = _g_quick_battle_team_1_faction + fac.kingdom_1
                 _g_quick_battle_team_1_faction -= 1
             #end
             var005 = 1000
@@ -780,7 +780,7 @@ def code(var001, var002):
                 if _g_quick_battle_team_2_faction == 0:
                     _g_quick_battle_team_2_faction = fac.outlaws
                 else:
-                    _g_quick_battle_team_2_faction += fac.kingdom_1
+                    _g_quick_battle_team_2_faction = _g_quick_battle_team_2_faction + fac.kingdom_1
                     _g_quick_battle_team_2_faction -= 1
                 #end
                 if _g_quick_battle_team_1_faction != _g_quick_battle_team_2_faction:

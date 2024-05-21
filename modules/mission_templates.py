@@ -25135,9 +25135,9 @@ def condition():
     if conversation_screen_is_active():
         tutorial_message(-1)
         var001 = 0
-        if var001 == 1:
-            pass
-        #end
+    #end
+    if var001 == 1:
+        pass
     #end
 trigger2.conditionBlock = condition
 
@@ -25172,7 +25172,7 @@ meeting_merchant.add_trigger(trigger4)
 # trigger 5
 trigger5 = Trigger(-21.000000, 0.000000, 0.000000)
 def condition():
-    if _dialog_with_merchant_ended > 0:
+    if _dialog_with_merchant_ended > 0 or True: # Johandros hack
         var001 = 0
         pos1 = party_get_position(_current_town)
         for var002 in range(0, 10):

@@ -16874,9 +16874,9 @@ mission_templates = [
     (conversation_screen_is_active),
     (tutorial_message, -1),
     (assign,":var001",0),
-    (try_begin),
-        (eq,":var001",1),
-    (try_end),
+(try_end),
+(try_begin),
+    (eq,":var001",1),
 ], [
 (tutorial_message_set_size, 17, 17),
 (tutorial_message_set_position, 500, 650),
@@ -16895,7 +16895,8 @@ mission_templates = [
 ]),
 
 (ti_tab_pressed, 0.0, 0.0, [
-(gt,"$dialog_with_merchant_ended",0),
+(this_or_next|gt,"$dialog_with_merchant_ended",0),
+(eq,1,1),
 (assign,":var001",0),
 (party_get_position,pos1,"$current_town"),
 (try_for_range, ":var002", 0, 10),
