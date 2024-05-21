@@ -328,6 +328,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_init_town_agent", ":var001"),
 (try_begin),
     (this_or_next|eq,"$talk_context",18),
@@ -511,6 +512,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (agent_get_troop_id,":troop_id_003", ":var001"),
 (agent_get_troop_id,":troop_id_004", ":var002"),
 (try_begin),
@@ -709,6 +712,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (try_begin),
     (neq,":troop_id_002","trp_player"),
@@ -782,6 +786,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, ":"),
@@ -843,6 +848,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_init_town_agent", ":var001"),
 ]),
 
@@ -980,6 +986,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -991,6 +998,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (jump_to_menu,"mnu_collect_taxes_failed"),
@@ -1037,6 +1045,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":agent_id_001", 1),
 (call_script, "script_agent_reassign_team", ":agent_id_001"),
 (assign,":var002",5000),
 (agent_get_troop_id,":troop_id_003", ":agent_id_001"),
@@ -1055,12 +1064,16 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
+(store_trigger_param, ":var003", 3),
 (try_begin),
     (ge,":var001",0),
     (neg|agent_is_ally,":var001"),
@@ -1091,6 +1104,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -1307,12 +1321,14 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -1430,12 +1446,14 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -1590,12 +1608,14 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -1716,12 +1736,14 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -1819,6 +1841,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_agent_reassign_team", ":var001"),
 ]),
 
@@ -1846,12 +1869,16 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
+(store_trigger_param, ":var003", 3),
 (try_begin),
     (ge,":var001",0),
     (neg|agent_is_ally,":var001"),
@@ -1872,6 +1899,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -1998,12 +2026,14 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -2071,6 +2101,9 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
+(store_trigger_param, ":var003", 3),
 (try_begin),
     (ge,":var001",0),
     (neg|agent_is_ally,":var001"),
@@ -2323,12 +2356,14 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$pin_player_fallen",0),
@@ -2562,6 +2597,9 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
+(store_trigger_param, ":var003", 3),
 (try_begin),
     (ge,":var001",0),
     (neg|agent_is_ally,":var001"),
@@ -2634,6 +2672,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_init_town_agent", ":var001"),
 (get_player_agent_no,":agent_no_002"),
 (try_begin),
@@ -2661,6 +2700,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (agent_get_troop_id,":troop_id_003", ":var001"),
 (agent_get_troop_id,":troop_id_004", ":var002"),
 (try_begin),
@@ -2834,6 +2875,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (set_jump_mission,"mt_training_ground_trainer_talk"),
@@ -2904,6 +2946,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$g_training_ground_training_success_ratio",0),
@@ -3230,6 +3273,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (jump_to_menu,"mnu_captivity_start_castle_defeat"),
@@ -3428,6 +3472,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (try_begin),
@@ -3858,6 +3903,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (show_object_details_overlay, 1),
@@ -3874,6 +3920,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":agent_id_001", 1),
 (agent_get_troop_id,":troop_id_002", ":agent_id_001"),
 (troop_get_type,":troop_type_003",":troop_id_002"),
 (set_fixed_point_multiplier, 100),
@@ -4211,6 +4258,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, 0),
@@ -4229,6 +4277,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":agent_id_001", 1),
 (agent_ai_set_always_attack_in_melee, ":agent_id_001",1),
 (agent_set_no_death_knock_down_only, ":agent_id_001", 1),
 (agent_set_invulnerable_shield, ":agent_id_001"),
@@ -4278,6 +4327,8 @@ mission_templates = [
 
 (ti_on_agent_knocked_down, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (agent_get_troop_id,":troop_id_003", ":var001"),
 (agent_get_troop_id,":troop_id_004", ":var002"),
 (try_begin),
@@ -5879,6 +5930,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, 0),
@@ -6046,6 +6098,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, 0),
@@ -6381,6 +6434,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, 0),
@@ -6682,6 +6736,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, 0),
@@ -6853,6 +6908,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, 0),
@@ -7111,6 +7167,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (finish_mission, 0),
@@ -7369,6 +7426,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$g_battle_result",-1),
@@ -7389,6 +7447,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -7496,6 +7555,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -7524,6 +7584,7 @@ mission_templates = [
 
 (ti_question_answered, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001",0),
     (assign,"$g_battle_result",-1),
@@ -7746,11 +7807,13 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 ]),
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":var001"),
 ]),
 
@@ -7823,6 +7886,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 ]),
 
@@ -8104,6 +8169,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -8132,11 +8198,13 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 ]),
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":var001"),
 ]),
 
@@ -8194,6 +8262,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 (try_begin),
     (ge,":var002",0),
@@ -8686,6 +8756,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -8714,11 +8785,13 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 ]),
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":var001"),
 ]),
 
@@ -8979,6 +9052,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 (try_begin),
     (multiplayer_is_server),
@@ -9971,6 +10046,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -9999,11 +10075,13 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 ]),
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":var001"),
 ]),
 
@@ -10061,6 +10139,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 (try_begin),
     (agent_is_human,":var001"),
@@ -11118,6 +11198,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -11146,6 +11227,7 @@ mission_templates = [
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":player_id_001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":player_id_001"),
 (try_begin),
     (multiplayer_is_server),
@@ -11262,6 +11344,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 (try_begin),
     (lt,"$my_team_at_start_of_round",0),
@@ -11313,6 +11396,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 (try_begin),
     (lt,"$my_team_at_start_of_round",0),
@@ -12365,6 +12450,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -12393,6 +12479,7 @@ mission_templates = [
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":var001"),
 ]),
 
@@ -12453,6 +12540,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":agent_id_001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":agent_id_001"),
 (try_begin),
     (lt,"$my_team_at_start_of_round",0),
@@ -12501,6 +12589,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 (try_begin),
     (lt,"$my_team_at_start_of_round",0),
@@ -13799,6 +13889,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -13827,6 +13918,7 @@ mission_templates = [
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":var001"),
 ]),
 
@@ -13901,6 +13993,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 (try_begin),
     (lt,"$my_team_at_start_of_round",0),
@@ -13934,6 +14027,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 (try_begin),
     (lt,"$my_team_at_start_of_round",0),
@@ -15142,6 +15237,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -15170,6 +15266,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 (agent_get_team, ":agent_team_no_002", ":var001"),
 (try_begin),
@@ -15241,6 +15338,7 @@ mission_templates = [
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":player_id_001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":player_id_001"),
 (player_set_slot,":player_id_001",24,-1),
 (player_set_slot,":player_id_001",42,0),
@@ -15367,6 +15465,7 @@ mission_templates = [
 
 (ti_on_player_exit, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (call_script, "script_cf_multiplayer_event_team_change", ":var001"),
 (try_end),
@@ -15374,6 +15473,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":var001", ":var002"),
 (agent_get_team, ":agent_team_no_003", ":var001"),
 (try_begin),
@@ -16028,6 +16129,9 @@ mission_templates = [
 (ti_on_agent_hit, 0.0, 0.0, [
 (multiplayer_is_server),
 ], [
+(store_trigger_param, ":agent_id_001", 1),
+(store_trigger_param, ":var002", 2),
+(store_trigger_param, ":var003", 3),
 (try_begin),
     (multiplayer_is_server),
     (agent_get_troop_id,":troop_id_004", ":agent_id_001"),
@@ -16273,6 +16377,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -16284,6 +16389,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (assign,"$relative_of_merchant_is_found",0),
 (try_begin),
     (agent_is_human,":var001"),
@@ -16471,6 +16577,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (ge,":var001",0),
     (agent_is_human,":var001"),
@@ -16660,6 +16768,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
@@ -16671,6 +16780,7 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (get_player_agent_no,":agent_no_002"),
 (try_begin),
     (neq,":var001",":agent_no_002"),
@@ -16828,6 +16938,7 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,1,1),
     (agent_get_troop_id,":troop_id_002", ":var001"),
@@ -16984,12 +17095,14 @@ mission_templates = [
 [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_get_troop_id,":troop_id_002", ":var001"),
 (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (agent_set_team, ":var001", 0),
 ]),
 
@@ -17010,6 +17123,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (eq,1,1),
     (agent_get_team, ":agent_team_no_003", ":var001"),
@@ -17262,11 +17377,13 @@ mission_templates = [
 
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_on_agent_spawn_common", ":var001"),
 ]),
 
 (ti_server_player_joined, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_multiplayer_server_player_joined_common", ":var001"),
 ]),
 
@@ -17301,6 +17418,8 @@ mission_templates = [
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
 ], [
+(store_trigger_param, ":agent_id_001", 1),
+(store_trigger_param, ":var002", 2),
 (call_script, "script_multiplayer_server_on_agent_killed_or_wounded_common", ":agent_id_001", ":var002"),
 (try_begin),
     (eq,1,1),

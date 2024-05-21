@@ -36,6 +36,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (set_fixed_point_multiplier, 1000),
 (presentation_set_duration, 1000000),
 (try_begin),
@@ -324,6 +325,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_profile_banner_selection_1"),
     (val_add, "$g_presentation_page_no", 1),
@@ -802,6 +804,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (eq,":var001","$g_presentation_obj_custom_battle_designer_1"),
     (try_begin),
@@ -1631,6 +1635,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_mouse_enter_leave, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (this_or_next|eq,":var001","$g_presentation_obj_custom_battle_designer_11"),
     (this_or_next|eq,":var001","$g_presentation_obj_custom_battle_designer_10"),
@@ -2598,6 +2604,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (eq,":var001","$g_presentation_obj_admin_panel_1"),
     (store_add, ":slot_no_003", ":var002", 0),
@@ -3052,6 +3060,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (multiplayer_get_my_player, ":my_player"),
 (try_begin),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
@@ -3256,6 +3265,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (multiplayer_get_my_player, ":my_player"),
 (player_get_team_no,  ":team_no_003", ":my_player"),
 (team_get_faction, ":team_faction_004", ":team_no_003"),
@@ -4069,6 +4079,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_mouse_enter_leave, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (eq,"$g_close_equipment_selection",0),
     (eq,"$g_presentation_state",10),
@@ -4258,6 +4270,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":random_x_002", 2),
 (multiplayer_get_my_player, ":my_player"),
 (player_get_troop_id, ":troop_id_004", ":my_player"),
 (player_get_team_no,  ":team_no_005", ":my_player"),
@@ -4652,6 +4666,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_mouse_press, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (eq,"$g_close_equipment_selection",0),
     (try_begin),
@@ -4741,6 +4757,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,"$g_close_equipment_selection",0),
     (try_begin),
@@ -6479,6 +6496,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 238),
     (key_clicked, 239),
@@ -7058,6 +7076,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 238),
     (key_clicked, 239),
@@ -7262,6 +7281,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_escape_menu_1"),
     (presentation_set_duration, 0),
@@ -7324,6 +7344,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 1),
     (key_clicked, 248),
@@ -7407,6 +7428,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_poll_menu_1"),
     (presentation_set_duration, 0),
@@ -7436,6 +7458,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 1),
     (key_clicked, 248),
@@ -7549,6 +7572,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (get_max_players, ":max_players"),
 (try_for_range, ":player_id_003", 1, ":max_players"),
     (try_begin),
@@ -7587,6 +7611,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 1),
     (key_clicked, 248),
@@ -7646,6 +7671,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_for_range, ":var002", "$g_show_maps_list_button_list_first_index", "$g_show_maps_list_button_list_end_index"),
     (try_begin),
         (eq,":var001",":var002"),
@@ -7678,6 +7704,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 1),
     (key_clicked, 248),
@@ -7742,6 +7769,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_for_range, ":var002", "$g_show_factions_list_button_list_first_index", "$g_show_factions_list_button_list_end_index"),
     (try_begin),
         (eq,":var001",":var002"),
@@ -7776,6 +7804,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 1),
     (key_clicked, 248),
@@ -7848,6 +7877,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_for_range, ":var002", "$g_show_number_of_bots_list_button_list_first_index", "$g_show_number_of_bots_list_button_list_end_index"),
     (try_begin),
         (eq,":var001",":var002"),
@@ -7884,6 +7914,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 1),
     (key_clicked, 248),
@@ -7964,6 +7995,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|key_clicked, 1),
     (this_or_next|key_clicked, 248),
@@ -8084,6 +8116,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_name_kingdom_1"),
     (str_store_string,s7,0),
@@ -8141,6 +8174,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_banner_selection_1"),
     (val_add, "$g_presentation_page_no", 1),
@@ -8481,6 +8515,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (troop_get_slot,":troop_slot_002","trp_player",97),
 (try_begin),
     (this_or_next|eq,":var001","$g_presentation_obj_custom_banner_22"),
@@ -8744,6 +8779,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (call_script, "script_get_troop_custom_banner_num_positionings", "trp_player"),
 (assign,":var002",reg0),
 (try_for_range, ":var003", 0, ":var002"),
@@ -8793,6 +8829,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (assign,":var002","mesh_tableau_mesh_custom_banner"),
 (assign,":var002 -","mesh_custom_banner_charge_01"),
 (try_for_range, ":var003", 0, ":var002"),
@@ -8839,6 +8876,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (assign,":var002","mesh_custom_banner_charge_01"),
 (assign,":var002 -","mesh_custom_banner_bg"),
 (try_for_range, ":var003", 0, ":var002"),
@@ -8884,6 +8922,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (assign,":var002","mesh_custom_banner_bg"),
 (assign,":var002 -","mesh_custom_banner_01"),
 (try_for_range, ":var003", 0, ":var002"),
@@ -8939,6 +8978,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (assign,":var002","mesh_custom_banner_01"),
 (assign,":var002 -","mesh_custom_map_banner_01"),
 (try_for_range, ":var003", 0, ":var002"),
@@ -8996,6 +9036,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (assign,":var002",64),
 (try_for_range, ":var003", 0, ":var002"),
     (store_mul, ":var004", ":var003", 2),
@@ -9181,6 +9222,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_marshall_selection_2"),
     (val_add, "$g_presentation_marshall_selection_1_vote", 1),
@@ -9803,6 +9845,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (get_player_agent_no,":agent_no_003"),
 (agent_get_team, ":agent_team_no_004", ":agent_no_003"),
 (assign,":var005",0),
@@ -10587,6 +10631,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_mouse_enter_leave, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (try_begin),
     (eq,":var001","$g_presentation_obj_battle_but0"),
     (try_begin),
@@ -10717,6 +10763,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (this_or_next|game_key_clicked, 30),
     (this_or_next|game_key_clicked, 31),
@@ -10801,6 +10848,8 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
+(store_trigger_param, ":var002", 2),
 (assign,":var003",0),
 (try_begin),
     (eq,":var001","$g_presentation_obj_sliders_1"),
@@ -11639,6 +11688,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_retirement_1"),
     (jump_to_menu,"mnu_end_game"),
@@ -12236,6 +12286,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_budget_report_1"),
     (presentation_set_duration, 0),
@@ -12262,6 +12313,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (gt,":var001",500),
     (try_begin),
@@ -12614,6 +12666,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_event_state_change, [
+(store_trigger_param, ":var001", 1),
 (try_begin),
     (eq,":var001","$g_presentation_obj_coop_assign_drop_player"),
     (multiplayer_send_2_int_to_server, 48, 17, 0),
@@ -12634,6 +12687,7 @@ presentations = [
 ]),
 
 (ti_on_presentation_run, [
+(store_trigger_param, ":var001", 1),
 (close_item_details),
 (try_begin),
     (this_or_next|key_clicked, 1),
