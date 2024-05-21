@@ -54,7 +54,7 @@ typeDictX["presentations"] = "prsnt"
 typeDictX["quests"] = "qst"
 typeDictX["scenes"] = "scn"
 typeDictX["skills"] = "skl"
-typeDictX["tableau_materials"] = "tab"
+typeDictX["tableau_materials"] = "tableau"
 typeDictX["skins"] = "skin"
 
 
@@ -452,6 +452,13 @@ class ScriptConverter:
         linyx = []
 
         code, linyx = self.handleBasicMathHelper1(linyx, code)
+
+        if "." in code:
+            tmp = code.split(' ')
+            for i in range(len(tmp)):
+                if "." in tmp[i]:
+                    tmp[i] = self.replaceTypex3(tmp[i])
+            code = " ".join(tmp)
 
         codex = code.split('=')[1].strip()
         ccy = codex.split('+')
@@ -1069,6 +1076,12 @@ class ScriptConverter:
         else:
             start = 0
             end = tmp[0].strip()
+
+        if "." in start:
+            start = self.replaceTypex3(start)
+
+        if "." in end:
+            end = self.replaceTypex3(end)
 
         b[0] = self.replaceVarWithPlaceholder(b[0], "<var2>", str(start))
         b[0] = self.replaceVarWithPlaceholder(b[0], "<var3>", str(end))
