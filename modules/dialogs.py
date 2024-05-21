@@ -100,11 +100,10 @@ def condition():
         partner_quest_004 = store_partner_quest()
         if partner_quest_004 >= 0:
             s4 = str_store_quest_name(partner_quest_004)
-            if 1 == 0:
-                pass
-            #end
         #end
     #end
+    if 1 == 0:
+        pass
 start_close_window.conditionBlock = condition
 
 
@@ -151,10 +150,9 @@ def condition():
         s64 = str_store_string("@{reg65?madame:sir}")
         s65 = str_store_string("@{reg65?madame:sir}")
         s66 = str_store_string("@{reg65?Madame:Sir}")
-        if 1 == 0:
-            pass
-        #end
     #end
+    if 1 == 0:
+        pass
 event_triggered_close_window.conditionBlock = condition
 
 

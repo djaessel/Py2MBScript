@@ -2048,7 +2048,7 @@ simple_triggers = [
         (try_end),
     (try_end),
     (assign,reg1,":var003"),
-    (str_store_troop_name_by_count,s1,"$g_prisoner_recruit_troop_id,var003"),
+    (str_store_troop_name_by_count,s1,"$g_prisoner_recruit_troop_id",":var003"),
     (display_log_message,"@{reg1} {s1} {reg2?have:has} escaped from your party during the night."),
 (try_end),
 (assign,"$g_prisoner_recruit_troop_id",0),

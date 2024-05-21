@@ -1764,7 +1764,7 @@ def code():
             #end
         #end
         reg1 = var003
-        s1 = str_store_troop_name_by_count(_g_prisoner_recruit_troop_id,var003)
+        str_store_troop_name_by_count(s1,_g_prisoner_recruit_troop_id,var003)
         display_log_message("@{reg1} {s1} {reg2?have:has} escaped from your party during the night.")
     #end
     _g_prisoner_recruit_troop_id = 0
