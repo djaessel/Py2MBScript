@@ -47,14 +47,14 @@ typeDictX["dialogs"] = "dlg"
 typeDictX["mission_templates"] = "mt"
 typeDictX["parties"] = "p"
 typeDictX["party_templates"] = "pt"
-typeDictX["music"] = "track"
+typeDictX["musics"] = "track"
 typeDictX["particle_systems"] = "psys"
 typeDictX["postfxs"] = "pfx"
-typeDictX["presentations"] = "prnst"
+typeDictX["presentations"] = "prsnt"
 typeDictX["quests"] = "qst"
 typeDictX["scenes"] = "scn"
 typeDictX["skills"] = "skl"
-typeDictX["tableau_materials"] = "tableau"
+typeDictX["tableau_materials"] = "tab"
 typeDictX["skins"] = "skin"
 
 
@@ -123,6 +123,7 @@ class ScriptConverter:
         varName = tmp[0].strip()
         funcCall = tmp[1].strip()
         liny = self.getFuncCodeLine(funcCall)
+        # print(varName, funcCall)
         if liny.endswith("# ERROR 1"):
             xelly = liny.split('.')[0].split(' ')
             if "." in liny and not liny.split('.')[0].strip() in self.codeTypes and not xelly[-1] in typeDictX.values():
@@ -161,7 +162,7 @@ class ScriptConverter:
                 tmp = tmp.split(',')
                 self.prsnt_text_overlays[varName] = tmp[0].strip()
                 liny = liny.replace("<reg>", tmp[0].strip()).replace('<str_text>', tmp[1].strip()).replace("<text_flags>", tmp[2].strip())
-            elif varName in self.str_registers:
+            elif varName in self.str_registers: # TODO: check this part again
                 liny = "(str_store_string,<var1>,<var2>)"
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
                 if '"' in funcCall and not funcCall.strip('"').startswith("str_"):
@@ -189,21 +190,26 @@ class ScriptConverter:
                 liny = self.replaceVarWithPlaceholder(liny, "<var1>", varName)
                 liny = self.replaceVarWithPlaceholder(liny, "<var2>", xy[1].split(')')[0])
             elif varName in self.pos_registers:
+                liny = self.replaceVarWithPlaceholder(liny, "<dest_position_no>", varName)
                 liny = self.replaceVarWithPlaceholder(liny, "<position_no>", varName)
                 liny = self.replaceVarWithPlaceholder(liny, "<position>", varName)
                 liny = self.replaceVarWithPlaceholder(liny, "<pos_no>", varName)
+                liny = self.replaceVarWithPlaceholder(liny, "<pos>", varName)
                 liny = self.replaceFuncParams(liny, funcCall)
             else:
                 liny = self.replaceVarWithPlaceholder(liny, "<destination>", varName)
                 liny = self.replaceVarWithPlaceholder(liny, "<destination_fixed_point>", varName)
                 liny = self.replaceFuncParams(liny, funcCall)
+
         if not isinstance(liny, list):
             liny = [liny]
+
         for i in range(len(liny)):
             liny[i] = liny[i].replace(":::","$")
             liny[i] = liny[i].replace("[[[","(")
             liny[i] = liny[i].replace("]]]",")")
             liny[i] = liny[i].replace(";;;",",")
+
         return liny
 
 
@@ -281,6 +287,11 @@ class ScriptConverter:
                 liny = self.getFuncCodeLine(p_func_name)
                 #liny = self.replaceVarWithPlaceholder(liny, "<party_id>", self.cur_parties[curP])
                 liny = self.replaceFuncParams(liny, p_func_name)
+        elif '"' in tmp[0] and '"' in tmp[1] and not "," in code:
+            p_func_name = tmp[0].split('(')[0]
+            text = ".".join(tmp)
+            text = text.split('(')[1].split(')')[0]
+            liny = "(" + p_func_name + "," + text + ")"
         else:
             print("UNHANDLED CODE:", code)
         liny = liny.replace(":::","$")
@@ -621,6 +632,8 @@ class ScriptConverter:
                         codeNew += '"' + xol[i] + "\","
                     else:
                         print("ERROR 0x533D1")
+                else:
+                    codeNew += xol[i] + ","
             else:
                 codeNew += xol[i] + ","
         codeNew = codeNew.rstrip(',') + ")"
@@ -699,7 +712,7 @@ class ScriptConverter:
             return self.handleValMod(code)
         elif "=" in code:
             return self.handleEqualsSign(code)
-        elif "." in code:
+        elif "." in code and not code.count('.') > 1 and not '"' in code:
             return self.handleDotSign(code)
         elif "(" in code and ")" in code:
             fName = code.split('(')[0].strip()

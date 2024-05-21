@@ -47,9 +47,12 @@ class MousePressEvent(PresentationEvent):
 
 
 class Presentation:
-    def __init__(self, id, mesh_id="0"):
+    def __init__(self, id, mesh="0"):
         self.id = id
-        self.mesh_id = mesh_id
+        if mesh != "0":
+            self.mesh_id = "mesh_" + mesh.id
+        else:
+            self.mesh_id = mesh
         self.is_read_only = False
         self.has_manual_end_only = False
         self.triggers = []

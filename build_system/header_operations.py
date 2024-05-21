@@ -354,7 +354,7 @@ position_set_scale_x            = 744 # (position_set_scale_x, <position_no>, <v
 position_set_scale_y            = 745 # (position_set_scale_y, <position_no>, <value_fixed_point>), #y scale in meters / fixed point multiplier is set
 position_set_scale_z            = 746 # (position_set_scale_z, <position_no>, <value_fixed_point>), #z scale in meters / fixed point multiplier is set
 
-position_get_screen_projection  = 750 # (position_get_screen_projection, <position_no_1>, <position_no_2>), returns screen projection of position_no_2 to position_no_1
+position_get_screen_projection  = 750 # (position_get_screen_projection, <position_no>, <position_no_2>), # returns screen projection of position_no_2 to position_no_1
 mouse_get_world_projection      = 751 # (mouse_get_world_projection, <position_no_1>, <position_no_2>), returns camera position (position_no_1) and mouse projection to back of world (position_no_2)
 
 position_set_z_to_ground_level  = 791 # (position_set_z_to_ground_level, <position_no>), #only works during a mission
@@ -369,7 +369,7 @@ create_text_overlay                       = 910 # (create_text_overlay, <destina
 create_mesh_overlay                       = 911 # (create_mesh_overlay, <destination>, <mesh_id>), #returns overlay id
 create_button_overlay                     = 912 # (create_button_overlay, <destination>, <string_id>), #returns overlay id
 create_image_button_overlay               = 913 # (create_image_button_overlay, <destination>, <mesh_id>, <mesh_id>), #returns overlay id. second mesh is the pressed button mesh
-create_slider_overlay                     = 914 # (create_slider_overlay, <destination>, <min_value>, <max_value>), #returns overlay id
+create_slider_overlay                     = 914 # (create_slider_overlay, <destination>, <min_value>, [<max_value>]), #returns overlay id
 create_progress_overlay                   = 915 # (create_progress_overlay, <destination>, <min_value>, <max_value>), #returns overlay id
 create_combo_button_overlay               = 916 # (create_combo_button_overlay, <destination>), #returns overlay id
 create_text_box_overlay                   = 917 # (create_text_box_overlay, <destination>), #returns overlay id
@@ -400,10 +400,10 @@ create_mesh_overlay_with_tableau_material = 939 # (create_mesh_overlay_with_tabl
 create_game_button_overlay                = 940 # (create_game_button_overlay, <destination>, <string_id>), #returns overlay id
 create_in_game_button_overlay             = 941 # (create_in_game_button_overlay, <destination>, <string_id>), #returns overlay id
 create_number_box_overlay                 = 942 # (create_number_box_overlay, <destination>, <min_value>, <max_value>), #returns overlay id
-create_listbox_overlay                    = 943 # (create_list_box_overlay, <destination>), #returns overlay id
+create_listbox_overlay                    = 943 # (create_listbox_overlay, <destination>), #returns overlay id
 create_mesh_overlay_with_item_id          = 944 # (create_mesh_overlay_with_item_id, <destination>, <item_id>), #returns overlay id.
 set_container_overlay                     = 945 # (set_container_overlay, <overlay_id>), #sets the container overlay that new overlays will attach to. give -1 to reset
-overlay_get_position                      = 946 # (overlay_get_position, <destination>, <overlay_id>),
+overlay_get_position                      = 946 # (overlay_get_position, <dest_position_no>, <overlay_id>),
 overlay_set_display                       = 947 # (overlay_set_display, <overlay_id>, <value>), #shows/hides overlay (1 = show, 0 = hide)
 create_combo_label_overlay                = 948 # (create_combo_label_overlay, <destination>), #returns overlay id
 overlay_obtain_focus                      = 949 # (overlay_obtain_focus, <overlay_id>), #works for textboxes only
@@ -870,7 +870,7 @@ team_set_order_position                = 1791   # (team_set_order_position, <tea
 team_get_leader                        = 1792   # (team_get_leader, <destination>, <team_no>),
 team_set_leader                        = 1793   # (team_set_leader, <team_no>, <new_leader_agent_id>),
 team_get_order_position                = 1794   # (team_get_order_position, <position_no>, <team_no>, <sub_class>),
-team_set_order_listener                = 1795   # (team_set_order_listener, <team_no>, <sub_class>, <value>), #merge with old listeners if value is non-zero #clear listeners if sub_class is less than zero
+team_set_order_listener                = 1795   # (team_set_order_listener, <team_no>, <sub_class>, [<value>]), #merge with old listeners if value is non-zero #clear listeners if sub_class is less than zero
 team_set_relation                      = 1796   # (team_set_relation, <team_no>, <team_no_2>, <value>), # -1 for enemy, 1 for friend, 0 for neutral
 
 close_order_menu                       = 1789   # (close_order_menu),
