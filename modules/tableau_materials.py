@@ -540,7 +540,7 @@ def code(var001):
     if is_between(var001,fac.kingdom_1,fac.kingdoms_end):
         var002 = mesh.pic_arms_swadian
         var002 += var001
-        var002 -= fac.kingdom_1
+        var002 = var002 - fac.kingdom_1
         init_position(1)
         position_set_y(1,-5)
         position_set_x(1,-45)
@@ -557,7 +557,7 @@ def code(var001):
     if is_between(var001,fac.kingdom_1,fac.kingdoms_end):
         var002 = mesh.pic_arms_swadian
         var002 += var001
-        var002 -= fac.kingdom_1
+        var002 = var002 - fac.kingdom_1
         init_position(1)
         position_set_y(1,-5)
         cur_tableau_add_mesh(var002,1,0,0)
@@ -576,7 +576,7 @@ def code(faction_id_001):
             var004 = spr.banner_f21
             var004 += 1
             if is_between(troop_slot_003,spr.banner_a,var004):
-                troop_slot_003 -= spr.banner_a
+                troop_slot_003 = troop_slot_003 - spr.banner_a
                 var005 = troop_slot_003 + mesh.banner_a01
                 init_position(1)
                 position_set_y(1,100)
@@ -592,8 +592,8 @@ two_factions_mesh = TableauMaterial("2_factions_mesh", "tableau_with_transparenc
 def code(faction_id_001):
     faction_id_002 = store_mod(faction_id_001,128)
     faction_id_001 /= 128
-    faction_id_001 += fac.player_supporters_faction
-    faction_id_002 += fac.player_supporters_faction
+    faction_id_001 = faction_id_001 + fac.player_supporters_faction
+    faction_id_002 = faction_id_002 + fac.player_supporters_faction
     set_fixed_point_multiplier(100)
     if True:
         faction_slot_003 = faction_get_slot(faction_id_001,11)
@@ -602,7 +602,7 @@ def code(faction_id_001):
             var005 = spr.banner_f21
             var005 += 1
             if is_between(troop_slot_004,spr.banner_a,var005):
-                troop_slot_004 -= spr.banner_a
+                troop_slot_004 = troop_slot_004 - spr.banner_a
                 var006 = troop_slot_004 + mesh.banner_a01
                 init_position(1)
                 position_set_x(1,-50)
@@ -618,7 +618,7 @@ def code(faction_id_001):
             var005 = spr.banner_f21
             var005 += 1
             if is_between(troop_slot_004,spr.banner_a,var005):
-                troop_slot_004 -= spr.banner_a
+                troop_slot_004 = troop_slot_004 - spr.banner_a
                 var006 = troop_slot_004 + mesh.banner_a01
                 init_position(1)
                 position_set_x(1,50)

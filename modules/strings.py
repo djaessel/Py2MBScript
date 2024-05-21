@@ -5760,7 +5760,7 @@ they_say_that_s9_was_recently_visited_by_s11_who_knows_where_that_might_lead = M
 
 there_is_not_much_to_tell_but_it_is_still_early_in_the_season = MBString("there_is_not_much_to_tell_but_it_is_still_early_in_the_season", "There is not much to tell, but it is still early in the season")
 
-error_lady_selected_equals_s9 = MBString("error_lady_selected_=_s9", "{!}ERROR: lady selected = {s9}")
+error_lady_selected_equals_s9 = MBString("error_lady_selected__s9", "{!}ERROR: lady selected = {s9}")
 
 s12there_is_a_feast_of_the_s3_in_progress_at_s4_but_it_has_been_going_on_for_a_couple_of_days_and_is_about_to_end_ = MBString("s12there_is_a_feast_of_the_s3_in_progress_at_s4_but_it_has_been_going_on_for_a_couple_of_days_and_is_about_to_end_", "{s12}There is a feast of the {s3} in progress at {s4}, but it has been going on for a couple of days and is about to end. ")
 
