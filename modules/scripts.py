@@ -70,13 +70,13 @@ def game_start():
         faction_set_slot(fac_004,94,random_x_005)
     #end
     var006 = p.castle_1
-    var006 -= p.town_1
+    var006 = var006 - p.town_1
     var007 = var006
     for slot_no_008 in range(0, var006):
         troop_set_slot(trp.random_town_sequence,slot_no_008,-1)
     #end
     slot_no_008 = 0
-    for var009 in range(0, var007):
+    for _ in range(0, var007):
         random_x_010 = store_random_in_range(0,var006)
         var011 = 1
         for var012 in range(0, var006):
@@ -349,8 +349,8 @@ def game_start():
     for fac_034 in range(fac.kingdom_1, fac.kingdoms_end):
         faction_slot_035 = faction_get_slot(fac_034,11)
         faction_slot_036 = faction_get_slot(fac_034,15)
-        faction_slot_036 -= mesh.banner_a01
-        faction_slot_036 += spr.banner_a
+        faction_slot_036 = faction_slot_036 - mesh.banner_a01
+        faction_slot_036 = faction_slot_036 + spr.banner_a
         troop_set_slot(faction_slot_035,13,faction_slot_036)
     #end
     var037 = 0
@@ -902,22 +902,22 @@ def game_quick_start():
         #end
     #end
     slot_no_004 = fac.kingdom_1
-    slot_no_004 -= fac.kingdom_1
+    slot_no_004 = slot_no_004 - fac.kingdom_1
     slot_no_004 += 30
     slot_no_005 = fac.kingdom_2
-    slot_no_005 -= fac.kingdom_1
+    slot_no_005 = slot_no_005 - fac.kingdom_1
     slot_no_005 += 30
     slot_no_006 = fac.kingdom_3
-    slot_no_006 -= fac.kingdom_1
+    slot_no_006 = slot_no_006 - fac.kingdom_1
     slot_no_006 += 30
     var007 = fac.kingdom_4
-    var007 -= fac.kingdom_1
+    var007 = var007 - fac.kingdom_1
     var007 += 30
     var008 = fac.kingdom_5
-    var008 -= fac.kingdom_1
+    var008 = var008 - fac.kingdom_1
     var008 += 30
     slot_no_009 = fac.kingdom_6
-    slot_no_009 -= fac.kingdom_1
+    slot_no_009 = slot_no_009 - fac.kingdom_1
     slot_no_009 += 30
     item_set_slot(itm.awlpike,slot_no_004,80)
     item_set_slot(itm.awlpike_long,slot_no_004,90)
@@ -1949,7 +1949,7 @@ def spawn_quick_battle_army(entry_no_001, faction_id_002, var003, var004, var005
         var027 = number_of_troops_019
         var028 = random_x_018
         var029 = 1000
-        for var030 in range(0, var029):
+        for _ in range(0, var029):
             if var028 > 0:
                 number_of_troops_031 = var026
                 val_min(number_of_troops_031,var028)
@@ -2687,7 +2687,7 @@ def game_event_simulate_battle(party_id_001, party_id_002):
                             var041 = 0
                             var042 = -1
                             var043 = 10
-                            for var044 in range(0, var043):
+                            for _ in range(0, var043):
                                 random_x_045 = store_random_in_range(1,party_num_companions_stacks_022)
                                 troop_id_046 = party_stack_get_troop_id(party_attached_party_with_rank_037,random_x_045)
                                 party_stack_size_040 = party_stack_get_size(party_attached_party_with_rank_037,random_x_045)
@@ -3764,11 +3764,11 @@ def game_get_faction_note(faction_id_001, var002):
                     if var012 == -2:
                         s21 = str_store_string(gstr.s21__the_s5_is_at_war_with_the_s14)
                         slot_no_015 = fac_011 + 140
-                        slot_no_015 -= fac.player_supporters_faction
+                        slot_no_015 = slot_no_015 - fac.player_supporters_faction
                         faction_slot_016 = faction_get_slot(faction_id_001,slot_no_015)
                         var017 = faction_slot_016 * 2
                         slot_no_018 = faction_id_001 + 140
-                        slot_no_018 -= fac.player_supporters_faction
+                        slot_no_018 = slot_no_018 - fac.player_supporters_faction
                         faction_slot_019 = faction_get_slot(fac_011,slot_no_018)
                         var020 = faction_slot_019 * 2
                         var021 = 0
@@ -3869,7 +3869,7 @@ def game_get_info_page_note():
 def game_get_scene_name(var001):
     if is_between(var001,scn.multi_scene_1,scn.multiplayer_maps_end):
         var002 = var001 - scn.multi_scene_1
-        var002 += gstr.multi_scene_1
+        var002 = var002 + gstr.multi_scene_1
         s0 = str_store_string(var002)
     #end
 
@@ -7265,12 +7265,12 @@ def game_receive_network_message(player_id_001, var002, slot_no_003, var089, var
                     server_add_message_to_log(gstr.poll_ban_player_s1_by_s0)
                 elif item_id_004 == 0:
                     var038 = player_id_014 - scn.multi_scene_1
-                    var038 += gstr.multi_scene_1
+                    var038 = var038 + gstr.multi_scene_1
                     s1 = str_store_string(var038)
                     server_add_message_to_log(gstr.poll_change_map_to_s1_by_s0)
                 elif item_id_004 == 3:
                     var038 = player_id_014 - scn.multi_scene_1
-                    var038 += gstr.multi_scene_1
+                    var038 = var038 + gstr.multi_scene_1
                     s1 = str_store_string(var038)
                     s2 = str_store_faction_name(var035)
                     s3 = str_store_faction_name(var036)
@@ -8396,14 +8396,14 @@ def multiplayer_fill_available_factions_combo_button(var001, var002):
         elif var002 == fac.ccoop_all_stars:
             overlay_set_val(var001,7)
         else:
-            var002 -= fac.kingdom_1
+            var002 = var002 - fac.kingdom_1
             overlay_set_val(var001,var002)
         #end
     else:
         if var002 > fac.kingdoms_end:
             overlay_set_val(var001,1)
         else:
-            var002 -= fac.kingdom_1
+            var002 = var002 - fac.kingdom_1
             overlay_set_val(var001,var002)
         #end
     #end
@@ -14429,9 +14429,9 @@ def troop_set_title_according_to_faction(troop_id_001, var002):
         troop_type_003 = troop_get_type(troop_id_001)
         var004 = var002 - fac.player_supporters_faction
         if troop_type_003 == 0:
-            var004 += gstr.faction_title_male_player
+            var004 = var004 + gstr.faction_title_male_player
         else:
-            var004 += gstr.faction_title_female_player
+            var004 = var004 + gstr.faction_title_female_player
         #end
         s1 = str_store_string(var004)
         troop_set_name(troop_id_001,1)
@@ -14503,7 +14503,7 @@ def give_center_to_lord(party_id_001, troop_id_002, var003):
     if party_slot_eq(party_id_001,0,3) or party_slot_eq(party_id_001,0,2) and troop_id_002 > -1:
         troop_slot_012 = troop_get_slot(troop_id_002,13)
         if troop_slot_012 > 0:
-            troop_slot_012 -= spr.banner_a
+            troop_slot_012 = troop_slot_012 - spr.banner_a
             troop_slot_012 += 1297036692682702894
             party_set_banner_icon(party_id_001,troop_slot_012)
         #end
@@ -14993,7 +14993,7 @@ def create_kingdom_hero_party(troop_id_001, var002):
     party_set_slot(_pout_party,30,-1)
     troop_slot_004 = troop_get_slot(troop_id_001,13)
     if troop_slot_004 > 0:
-        troop_slot_004 -= spr.banner_a
+        troop_slot_004 = troop_slot_004 - spr.banner_a
         troop_slot_004 += 1297036692682702894
         party_set_banner_icon(_pout_party,troop_slot_004)
     #end
@@ -16997,14 +16997,14 @@ def diplomacy_start_war_between_kingdoms(faction_id_001, faction_id_002, var003)
         faction_set_slot(faction_id_002,98,cur_hours_008)
         slot_no_009 = faction_id_002 + 120
         slot_no_010 = faction_id_002 + 130
-        slot_no_009 -= fac.player_supporters_faction
-        slot_no_010 -= fac.player_supporters_faction
+        slot_no_009 = slot_no_009 - fac.player_supporters_faction
+        slot_no_010 = slot_no_010 - fac.player_supporters_faction
         faction_set_slot(faction_id_001,slot_no_009,0)
         faction_set_slot(faction_id_001,slot_no_010,0)
         slot_no_009 = faction_id_001 + 120
         slot_no_010 = faction_id_001 + 130
-        slot_no_009 -= fac.player_supporters_faction
-        slot_no_010 -= fac.player_supporters_faction
+        slot_no_009 = slot_no_009 + fac.player_supporters_faction
+        slot_no_010 = slot_no_010 - fac.player_supporters_faction
         faction_set_slot(faction_id_002,slot_no_009,0)
         faction_set_slot(faction_id_002,slot_no_010,0)
         add_notification_menu(mnu.notification_war_declared,faction_id_001,faction_id_002)
@@ -17068,10 +17068,10 @@ def diplomacy_party_attacks_neutral(party_id_001, party_id_002):
         add_log_entry(3,troop_id_005,-1,-1,party_faction_004)
     #end
     slot_no_012 = party_faction_003 + 130
-    slot_no_012 -= fac.player_supporters_faction
+    slot_no_012 = slot_no_012 - fac.player_supporters_faction
     faction_set_slot(party_faction_004,slot_no_012,0)
     slot_no_013 = party_faction_003 + 130
-    slot_no_013 -= fac.player_supporters_faction
+    slot_no_013 = slot_no_013 - fac.player_supporters_faction
     if var008 != -2 and faction_slot_eq(party_faction_004,slot_no_013,0):
         faction_set_slot(party_faction_004,slot_no_013,30)
     #end
@@ -17239,16 +17239,16 @@ def diplomacy_start_peace_between_kingdoms(faction_id_001, faction_id_002, var00
     #end
     if True:
         slot_no_010 = faction_id_001 + 120
-        slot_no_010 -= fac.player_supporters_faction
+        slot_no_010 = slot_no_010 - fac.player_supporters_faction
         faction_set_slot(faction_id_002,slot_no_010,40)
         slot_no_010 = faction_id_002 + 120
-        slot_no_010 -= fac.player_supporters_faction
+        slot_no_010 = slot_no_010 - fac.player_supporters_faction
         faction_set_slot(faction_id_001,slot_no_010,40)
         slot_no_011 = faction_id_002 + 140
-        slot_no_011 -= fac.player_supporters_faction
+        slot_no_011 = slot_no_011 - fac.player_supporters_faction
         faction_set_slot(faction_id_001,slot_no_011,0)
         slot_no_012 = faction_id_001 + 140
-        slot_no_012 -= fac.player_supporters_faction
+        slot_no_012 = slot_no_012 - fac.player_supporters_faction
         faction_set_slot(faction_id_002,slot_no_012,0)
     #end
 
@@ -17350,10 +17350,10 @@ def randomly_start_war_peace_new(var001):
                         if var001 == 0:
                             random_x_012 = store_random_in_range(10,120)
                             slot_no_013 = fac_003 + 140
-                            slot_no_013 -= fac.player_supporters_faction
+                            slot_no_013 = slot_no_013 - fac.player_supporters_faction
                             faction_set_slot(fac_004,slot_no_013,random_x_012)
                             slot_no_013 = fac_004 + 140
-                            slot_no_013 -= fac.player_supporters_faction
+                            slot_no_013 = slot_no_013 - fac.player_supporters_faction
                             faction_set_slot(fac_003,slot_no_013,random_x_012)
                         #end
                     #end
@@ -21471,7 +21471,7 @@ def player_leave_faction(var001):
                 party_set_slot(p_004,7,trp.player)
                 troop_slot_005 = troop_get_slot(trp.player,13)
                 if troop_slot_005 > 0:
-                    troop_slot_005 -= spr.banner_a
+                    troop_slot_005 = troop_slot_005 - spr.banner_a
                     troop_slot_005 += 1297036692682702894
                     party_set_banner_icon(p_004,troop_slot_005)
                 #end
@@ -21485,7 +21485,8 @@ def player_leave_faction(var001):
         #end
         if is_between(faction_id_002,fac.player_supporters_faction,fac.kingdoms_end) and faction_id_002 != fac.player_supporters_faction:
             faction_relation_007 = store_relation(fac.player_supporters_faction,faction_id_002)
-            var008 = -40 - faction_relation_007
+            var008 = -40
+            var008 -= faction_relation_007
             change_player_relation_with_faction(faction_id_002,var008)
         #end
     #end
@@ -22236,7 +22237,7 @@ def agent_troop_get_banner_mesh(var001, troop_id_002):
             var021 = spr.banner_f21
             var021 += 1
             if is_between(troop_slot_020,spr.banner_a,var021):
-                troop_slot_020 -= spr.banner_a
+                troop_slot_020 = troop_slot_020 - spr.banner_a
                 faction_slot_004 = troop_slot_020 + mesh.arms_a01
             #end
         #end
@@ -22261,7 +22262,7 @@ def add_troop_to_cur_tableau(troop_id_001):
     var004 = spr.banner_f21
     var004 += 1
     if is_between(troop_slot_003,spr.banner_a,var004):
-        troop_slot_003 -= spr.banner_a
+        troop_slot_003 = troop_slot_003 - spr.banner_a
         var002 = troop_slot_003 + mesh.banner_a01
     #end
     cur_tableau_clear_override_items()
@@ -22396,7 +22397,7 @@ def add_troop_to_cur_tableau_for_profile(troop_id_001):
     var007 = profile_get_banner_id()
     if var007 >= 0:
         init_position(2)
-        var007 += mesh.banner_a01
+        var007 = var007 + mesh.banner_a01
         position_set_x(2,-175)
         position_set_y(2,-300)
         position_set_z(2,180)
@@ -22580,7 +22581,7 @@ def spawn_bandits():
         num_parties_of_template_001 = store_num_parties_of_template(pt.mountain_bandits)
         if num_parties_of_template_001 < 16:
             random_x_002 = store_random(1)
-            random_x_002 += p.mountain_bandit_spawn_point
+            random_x_002 = random_x_002 + p.mountain_bandit_spawn_point
             set_spawn_radius(25)
             spawn_around_party(random_x_002,pt.mountain_bandits)
         #end
@@ -22589,7 +22590,7 @@ def spawn_bandits():
         num_parties_of_template_001 = store_num_parties_of_template(pt.forest_bandits)
         if num_parties_of_template_001 < 16:
             random_x_002 = store_random(1)
-            random_x_002 += p.forest_bandit_spawn_point
+            random_x_002 = random_x_002 + p.forest_bandit_spawn_point
             set_spawn_radius(25)
             spawn_around_party(random_x_002,pt.forest_bandits)
         #end
@@ -22598,7 +22599,7 @@ def spawn_bandits():
         num_parties_of_template_001 = store_num_parties_of_template(pt.sea_raiders)
         if num_parties_of_template_001 < 16:
             random_x_002 = store_random(2)
-            random_x_002 += p.sea_raider_spawn_point_1
+            random_x_002 = random_x_002 + p.sea_raider_spawn_point_1
             set_spawn_radius(25)
             spawn_around_party(random_x_002,pt.sea_raiders)
         #end
@@ -22607,7 +22608,7 @@ def spawn_bandits():
         num_parties_of_template_001 = store_num_parties_of_template(pt.steppe_bandits)
         if num_parties_of_template_001 < 16:
             random_x_002 = store_random(1)
-            random_x_002 += p.steppe_bandit_spawn_point
+            random_x_002 = random_x_002 + p.steppe_bandit_spawn_point
             set_spawn_radius(25)
             spawn_around_party(random_x_002,pt.steppe_bandits)
         #end
@@ -22616,7 +22617,7 @@ def spawn_bandits():
         num_parties_of_template_001 = store_num_parties_of_template(pt.taiga_bandits)
         if num_parties_of_template_001 < 16:
             random_x_002 = store_random(1)
-            random_x_002 += p.taiga_bandit_spawn_point
+            random_x_002 = random_x_002 + p.taiga_bandit_spawn_point
             set_spawn_radius(25)
             spawn_around_party(random_x_002,pt.taiga_bandits)
         #end
@@ -22625,7 +22626,7 @@ def spawn_bandits():
         num_parties_of_template_001 = store_num_parties_of_template(pt.desert_bandits)
         if num_parties_of_template_001 < 16:
             random_x_002 = store_random(1)
-            random_x_002 += p.desert_bandit_spawn_point
+            random_x_002 = random_x_002 + p.desert_bandit_spawn_point
             set_spawn_radius(25)
             spawn_around_party(random_x_002,pt.desert_bandits)
         #end
@@ -22927,16 +22928,16 @@ def get_troop_item_amount(troop_id_001, var002):
 
 def get_name_from_dna_to_s50(var001):
     var002 = gstr.surname_1
-    var002 -= gstr.name_1
+    var002 = var002 - gstr.name_1
     var003 = gstr.surnames_end
-    var003 -= gstr.surname_1
+    var003 = var003 - gstr.surname_1
     var004 = var001
     var004 %= var002
     var005 = var001
     var005 /= var002
     var005 %= var003
-    var004 += gstr.name_1
-    var005 += gstr.surname_1
+    var004 = var004 + gstr.name_1
+    var005 = var005 + gstr.surname_1
     s50 = str_store_string(var004)
     s50 = str_store_string(var005)
 
@@ -23289,7 +23290,7 @@ def initialize_npcs():
             var005 = gstr.npc1_intro
             var005 += var004
             var005 += trp_001
-            var005 -= trp.npc1
+            var005 = var005 - trp.npc1
             troop_set_slot(trp_001,slot_no_003,var005)
         #end
     #end
@@ -24109,7 +24110,7 @@ def draw_banner_to_region(troop_id_001, var002, var003, var004, var005, var006, 
     mesh.custom_banner_bg,
     ]
     troop_slot_011 = troop_get_slot(troop_id_001,91)
-    troop_slot_011 += mesh.custom_banner_bg
+    troop_slot_011 = troop_slot_011 + mesh.custom_banner_bg
     troop_slot_012 = troop_get_slot(troop_id_001,85)
     troop_slot_013 = troop_get_slot(troop_id_001,86)
     troop_slot_014 = troop_get_slot(troop_id_001,97)
@@ -24446,7 +24447,7 @@ def get_random_custom_banner(troop_id_001):
             slot_no_010 = var008 + 87
             troop_set_slot(troop_id_001,slot_no_010,var009)
             random_x_011 = store_random_in_range(mesh.custom_banner_charge_01,mesh.tableau_mesh_custom_banner)
-            random_x_011 -= mesh.custom_banner_charge_01
+            random_x_011 = random_x_011 - mesh.custom_banner_charge_01
             slot_no_010 = var008 + 92
             troop_set_slot(troop_id_001,slot_no_010,random_x_011)
             var008 += 1
@@ -24455,10 +24456,10 @@ def get_random_custom_banner(troop_id_001):
         #end
     #end
     random_x_012 = store_random_in_range(mesh.custom_banner_bg,mesh.custom_banner_charge_01)
-    random_x_012 -= mesh.custom_banner_bg
+    random_x_012 = random_x_012 - mesh.custom_banner_bg
     troop_set_slot(troop_id_001,91,random_x_012)
     random_x_013 = store_random_in_range(mesh.custom_banner_01,mesh.custom_banner_bg)
-    random_x_013 -= mesh.custom_banner_01
+    random_x_013 = random_x_013 - mesh.custom_banner_01
     troop_set_slot(troop_id_001,96,random_x_013)
     random_x_014 = store_random_in_range(0,4)
     troop_set_slot(troop_id_001,98,random_x_014)
@@ -26923,7 +26924,7 @@ def battle_political_consequences(party_id_001, party_id_002):
 
 def faction_inflict_war_damage_on_faction(faction_id_001, faction_id_002, var003):
     slot_no_004 = faction_id_002 + 140
-    slot_no_004 -= fac.player_supporters_faction
+    slot_no_004 = slot_no_004 - fac.player_supporters_faction
     faction_slot_005 = faction_get_slot(faction_id_001,slot_no_004)
     faction_slot_005 += var003
     faction_set_slot(faction_id_001,slot_no_004,faction_slot_005)
@@ -28751,10 +28752,10 @@ def npc_decision_checklist_party_ai(troop_id_001):
             faction_relation_013 = store_relation(troop_faction_003,fac_109)
             if faction_relation_013 < 0 and faction_slot_eq(fac_109,21,0):
                 slot_no_110 = fac_109 + 140
-                slot_no_110 -= fac.player_supporters_faction
+                slot_no_110 = slot_no_110 - fac.player_supporters_faction
                 faction_slot_111 = faction_get_slot(troop_faction_003,slot_no_110)
                 slot_no_112 = troop_faction_003 + 140
-                slot_no_112 -= fac.player_supporters_faction
+                slot_no_112 = slot_no_112 - fac.player_supporters_faction
                 faction_slot_113 = faction_get_slot(fac_109,slot_no_112)
                 if faction_slot_111 > 80 and faction_slot_111 < faction_slot_113:
                     var108 = fac_109
@@ -29654,10 +29655,10 @@ def npc_decision_checklist_peace_or_war(faction_id_001, faction_id_002, troop_id
     if var017 == -2:
         s12 = str_store_string(gstr.s15_is_at_war_with_s16_)
         slot_no_018 = faction_id_002 + 140
-        slot_no_018 -= fac.player_supporters_faction
+        slot_no_018 = slot_no_018 - fac.player_supporters_faction
         faction_slot_016 = faction_get_slot(faction_id_001,slot_no_018)
         slot_no_019 = faction_id_001 + 140
-        slot_no_019 -= fac.player_supporters_faction
+        slot_no_019 = slot_no_019 - fac.player_supporters_faction
         faction_slot_015 = faction_get_slot(faction_id_002,slot_no_019)
     elif var017 == 1:
         s12 = str_store_string(gstr.in_the_short_term_s15_has_a_truce_with_s16_as_a_matter_of_general_policy_)
@@ -30127,8 +30128,8 @@ def courtship_poem_reactions(troop_id_001, var002):
 def diplomacy_faction_get_diplomatic_status_with_faction(faction_id_001, var002):
     slot_no_003 = var002 + 120
     slot_no_004 = var002 + 130
-    slot_no_003 -= fac.player_supporters_faction
-    slot_no_004 -= fac.player_supporters_faction
+    slot_no_003 = slot_no_003 - fac.player_supporters_faction
+    slot_no_004 = slot_no_004 - fac.player_supporters_faction
     var005 = 0
     faction_slot_006 = 0
     if True:
