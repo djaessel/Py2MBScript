@@ -16,9 +16,9 @@ def code(var001):
     position_set_z(1,100)
     position_set_x(1,-20)
     position_set_y(1,-20)
-    cur_tableau_add_tableau_mesh(tab.troop_character_color,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_character_color,var001,1,0,0)
     position_set_z(1,200)
-    cur_tableau_add_tableau_mesh(tab.troop_character_alpha_mask,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_character_alpha_mask,var001,1,0,0)
     position_set_z(1,300)
 game_character_sheet.codeBlock = code
 
@@ -33,9 +33,9 @@ def code(var001):
     position_set_z(1,100)
     position_set_x(1,-20)
     position_set_y(1,-20)
-    cur_tableau_add_tableau_mesh(tab.troop_inventory_color,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_inventory_color,var001,1,0,0)
     position_set_z(1,200)
-    cur_tableau_add_tableau_mesh(tab.troop_inventory_alpha_mask,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_inventory_alpha_mask,var001,1,0,0)
     position_set_z(1,300)
 game_inventory_window.codeBlock = code
 
@@ -58,9 +58,9 @@ def code(var001):
     position_set_z(1,100)
     position_set_x(1,-20)
     position_set_y(1,-20)
-    cur_tableau_add_tableau_mesh(tab.troop_profile_color,troop_id_003,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_profile_color,troop_id_003,1,0,0)
     position_set_z(1,200)
-    cur_tableau_add_tableau_mesh(tab.troop_profile_alpha_mask,troop_id_003,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_profile_alpha_mask,troop_id_003,1,0,0)
 game_profile_window.codeBlock = code
 
 
@@ -74,9 +74,9 @@ def code(var001):
     position_set_z(1,100)
     position_set_x(1,-20)
     position_set_y(1,-20)
-    cur_tableau_add_tableau_mesh(tab.troop_party_color,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_party_color,var001,1,0,0)
     position_set_z(1,200)
-    cur_tableau_add_tableau_mesh(tab.troop_party_alpha_mask,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_party_alpha_mask,var001,1,0,0)
     position_set_z(1,300)
 game_party_window.codeBlock = code
 
@@ -491,9 +491,9 @@ def code(var001):
     position_set_z(1,100)
     position_set_x(1,-20)
     position_set_y(1,-20)
-    cur_tableau_add_tableau_mesh(tab.troop_note_color,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_note_color,var001,1,0,0)
     position_set_z(1,200)
-    cur_tableau_add_tableau_mesh(tab.troop_note_alpha_mask,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.troop_note_alpha_mask,var001,1,0,0)
     position_set_z(1,300)
     cur_tableau_add_mesh(mesh.portrait_blend_out,1,0,0)
 troop_note_mesh.codeBlock = code
@@ -745,9 +745,9 @@ def code(var001):
     position_set_z(1,100)
     position_set_x(1,-20)
     position_set_y(1,-20)
-    cur_tableau_add_tableau_mesh(tab.retired_troop_color,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.retired_troop_color,var001,1,0,0)
     position_set_z(1,200)
-    cur_tableau_add_tableau_mesh(tab.retired_troop_alpha_mask,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.retired_troop_alpha_mask,var001,1,0,0)
 retirement_troop.codeBlock = code
 
 
@@ -788,9 +788,9 @@ def code(var001):
     position_set_z(1,100)
     position_set_x(1,-20)
     position_set_y(1,-20)
-    cur_tableau_add_tableau_mesh(tab.coop_companion_select_color,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.coop_companion_select_color,var001,1,0,0)
     position_set_z(1,200)
-    cur_tableau_add_tableau_mesh(tab.coop_companion_select_alpha_mask,var001,1,0,0)
+    cur_tableau_add_tableau_mesh(tableau.coop_companion_select_alpha_mask,var001,1,0,0)
 coop_companion_select_0.codeBlock = code
 
 

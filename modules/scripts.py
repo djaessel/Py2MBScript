@@ -408,16 +408,16 @@ def game_start():
         troop_set_slot(trp_040,7,var047)
     #end
     for trp_051 in range(trp.player, trp.merchants_end):
-        add_troop_note_tableau_mesh(trp_051,tab.troop_note_mesh)
+        add_troop_note_tableau_mesh(trp_051,tableau.troop_note_mesh)
     #end
     for p_016 in range(p.town_1, p.salt_mine):
-        add_party_note_tableau_mesh(p_016,tab.center_note_mesh)
+        add_party_note_tableau_mesh(p_016,tableau.center_note_mesh)
     #end
     for fac_004 in range(fac.player_supporters_faction, fac.kingdoms_end):
         if is_between(fac_004,fac.kingdom_1,fac.kingdoms_end):
-            add_faction_note_tableau_mesh(fac_004,tab.faction_note_mesh)
+            add_faction_note_tableau_mesh(fac_004,tableau.faction_note_mesh)
         else:
-            add_faction_note_tableau_mesh(fac_004,tab.faction_note_mesh_banner)
+            add_faction_note_tableau_mesh(fac_004,tableau.faction_note_mesh_banner)
         #end
     #end
     give_center_to_faction_aux(p.town_1,fac.kingdom_4)
@@ -3637,7 +3637,7 @@ def game_get_troop_note(troop_id_001, var002):
             reg6 = var012
             reg17 = troop_get_slot(troop_id_001,11)
             s0 = str_store_string(gstr.lord_info_string)
-            add_troop_note_tableau_mesh(troop_id_001,tab.troop_note_mesh)
+            add_troop_note_tableau_mesh(troop_id_001,tableau.troop_note_mesh)
             set_trigger_result(1)
         #end
     #end

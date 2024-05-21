@@ -2429,7 +2429,7 @@ trigger1.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger1.codeBlock = code
 back_alley_revolt.add_trigger(trigger1)
 # trigger 2
@@ -2562,7 +2562,7 @@ trigger1.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger1.codeBlock = code
 lead_charge.add_trigger(trigger1)
 # trigger 2
@@ -2897,7 +2897,7 @@ trigger1.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger1.codeBlock = code
 village_attack_bandits.add_trigger(trigger1)
 # trigger 2
@@ -3088,7 +3088,7 @@ trigger1.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger1.codeBlock = code
 village_raid.add_trigger(trigger1)
 # trigger 2
@@ -3356,7 +3356,7 @@ trigger2.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger2.codeBlock = code
 besiege_inner_battle_castle.add_trigger(trigger2)
 # trigger 3
@@ -3592,7 +3592,7 @@ trigger2.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger2.codeBlock = code
 besiege_inner_battle_town_center.add_trigger(trigger2)
 # trigger 3
@@ -3806,7 +3806,7 @@ trigger3.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger3.codeBlock = code
 castle_attack_walls_defenders_sally.add_trigger(trigger3)
 # trigger 4
@@ -4098,7 +4098,7 @@ trigger2.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger2.codeBlock = code
 castle_attack_walls_belfry.add_trigger(trigger2)
 # trigger 3
@@ -4611,7 +4611,7 @@ trigger2.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger2.codeBlock = code
 castle_attack_walls_ladder.add_trigger(trigger2)
 # trigger 3
@@ -13078,7 +13078,7 @@ trigger4.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger4.codeBlock = code
 quick_battle_battle.add_trigger(trigger4)
 # trigger 5
@@ -13503,7 +13503,7 @@ trigger1.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger1.codeBlock = code
 quick_battle_siege.add_trigger(trigger1)
 # trigger 2
@@ -14861,7 +14861,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 multiplayer_tdm.add_trigger(trigger0)
 # trigger 1
@@ -15768,7 +15768,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 multiplayer_hq.add_trigger(trigger0)
 # trigger 1
@@ -17280,7 +17280,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 multiplayer_cf.add_trigger(trigger0)
 # trigger 1
@@ -18618,7 +18618,7 @@ trigger1.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger1.codeBlock = code
 multiplayer_sg.add_trigger(trigger1)
 # trigger 2
@@ -20095,7 +20095,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 multiplayer_bt.add_trigger(trigger0)
 # trigger 1
@@ -21730,7 +21730,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 multiplayer_fd.add_trigger(trigger0)
 # trigger 1
@@ -23391,7 +23391,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 multiplayer_ccoop.add_trigger(trigger0)
 # trigger 1
@@ -24463,7 +24463,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 bandit_lair.add_trigger(trigger0)
 # trigger 1
@@ -24848,7 +24848,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 alley_fight.add_trigger(trigger0)
 # trigger 1
@@ -25504,7 +25504,7 @@ trigger0.conditionBlock = condition
 
 def code(var001):
     troop_id_002 = agent_get_troop_id(var001)
-    troop_agent_set_banner(tab.game_troop_label_banner,var001,troop_id_002)
+    troop_agent_set_banner(tableau.game_troop_label_banner,var001,troop_id_002)
 trigger0.codeBlock = code
 town_fight.add_trigger(trigger0)
 # trigger 1

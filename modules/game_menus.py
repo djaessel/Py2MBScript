@@ -10984,7 +10984,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,_g_notification_var1,0)
 question_peace_offer.conditionBlock = condition
 
 question_peace_offer_peace_offer_accept = MenuOption("peace_offer_accept", "Accept")
@@ -11013,7 +11013,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,_g_notification_var1,0)
 notification_truce_expired.conditionBlock = condition
 
 notification_truce_expired_continue = MenuOption("continue", "Continue")
@@ -11069,7 +11069,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,_g_notification_var1,0)
 notification_casus_belli_expired.conditionBlock = condition
 
 notification_casus_belli_expired_continue = MenuOption("continue", "Continue")
@@ -11198,7 +11198,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,fac.player_supporters_faction,0)
+    set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,fac.player_supporters_faction,0)
     unlock_achievement(52)
     play_track(track.coronation)
     for p_001 in range(p.town_1, p.village_1):
@@ -11516,7 +11516,7 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,fac.player_supporters_faction,0)
+    set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,fac.player_supporters_faction,0)
 notification_player_faction_deactive.conditionBlock = condition
 
 notification_player_faction_deactive_continue = MenuOption("continue", "Continue...")
@@ -11599,7 +11599,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.center_note_mesh,_g_notification_var1,0)
 notification_center_under_siege.conditionBlock = condition
 
 notification_center_under_siege_continue = MenuOption("continue", "Continue...")
@@ -11622,7 +11622,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.center_note_mesh,_g_notification_var1,0)
 notification_village_raided.conditionBlock = condition
 
 notification_village_raided_continue = MenuOption("continue", "Continue...")
@@ -11645,7 +11645,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.center_note_mesh,_g_notification_var1,0)
 notification_village_raid_started.conditionBlock = condition
 
 notification_village_raid_started_continue = MenuOption("continue", "Continue...")
@@ -11666,9 +11666,9 @@ def condition():
     position_set_y(0,30)
     position_set_z(0,170)
     #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
+    #    set_game_menu_tableau_mesh(tableau.faction_note_mesh_for_menu,_g_notification_var1,0)
     #else:
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
+    #    set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,_g_notification_var1,0)
     ##end
     if faction_slot_eq(_g_notification_var1,11,trp.player):
         unlock_achievement(44)
@@ -11700,11 +11700,11 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
-    #else:
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
-    ##end
+    if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
+        set_game_menu_tableau_mesh(tableau.faction_note_mesh_for_menu,_g_notification_var1,0)
+    else:
+        set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,_g_notification_var1,0)
+    #end
 notification_oath_renounced_faction_defeated.conditionBlock = condition
 
 notification_oath_renounced_faction_defeated_continue = MenuOption("continue", "Continue...")
@@ -11725,7 +11725,7 @@ def condition():
     position_set_x(0,62)
     position_set_y(0,30)
     position_set_z(0,170)
-    # set_game_menu_tableau_mesh(tab.center_note_mesh,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.center_note_mesh,_g_notification_var1,0)
 notification_center_lost.conditionBlock = condition
 
 notification_center_lost_continue = MenuOption("continue", "Continue...")
@@ -11747,7 +11747,7 @@ def condition():
     position_set_x(0,55)
     position_set_y(0,20)
     position_set_z(0,100)
-    # set_game_menu_tableau_mesh(tab.troop_note_mesh,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.troop_note_mesh,_g_notification_var1,0)
 notification_troop_left_players_faction.conditionBlock = condition
 
 notification_troop_left_players_faction_continue = MenuOption("continue", "Continue...")
@@ -11769,7 +11769,7 @@ def condition():
     position_set_x(0,55)
     position_set_y(0,20)
     position_set_z(0,100)
-    # set_game_menu_tableau_mesh(tab.troop_note_mesh,_g_notification_var1,0)
+    set_game_menu_tableau_mesh(tableau.troop_note_mesh,_g_notification_var1,0)
 notification_troop_joined_players_faction.conditionBlock = condition
 
 notification_troop_joined_players_faction_continue = MenuOption("continue", "Continue...")
@@ -11796,7 +11796,7 @@ def condition():
     var002 = _g_notification_var2 - fac.player_supporters_faction
     var001 *= 128
     var001 += var002
-    # set_game_menu_tableau_mesh(tab.two_factions_mesh,var001,0)
+    set_game_menu_tableau_mesh(tableau.two_factions_mesh,var001,0)
 notification_war_declared.conditionBlock = condition
 
 notification_war_declared_continue = MenuOption("continue", "Continue...")
@@ -11826,7 +11826,7 @@ def condition():
     var002 = _g_notification_var2 - fac.player_supporters_faction
     var001 *= 128
     var001 += var002
-    # set_game_menu_tableau_mesh(tab.two_factions_mesh,var001,0)
+    set_game_menu_tableau_mesh(tableau.two_factions_mesh,var001,0)
 notification_peace_declared.conditionBlock = condition
 
 notification_peace_declared_continue = MenuOption("continue", "Continue...")
@@ -11846,11 +11846,11 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
-    #else:
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
-    ##end
+    if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
+        set_game_menu_tableau_mesh(tableau.faction_note_mesh_for_menu,_g_notification_var1,0)
+    else:
+        set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,_g_notification_var1,0)
+    #end
 notification_faction_defeated.conditionBlock = condition
 
 notification_faction_defeated_continue = MenuOption("continue", "Continue...")
@@ -11938,11 +11938,11 @@ def condition():
     position_set_x(0,65)
     position_set_y(0,30)
     position_set_z(0,170)
-    #if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_for_menu,_g_notification_var1,0)
-    #else:
-    #    # set_game_menu_tableau_mesh(tab.faction_note_mesh_banner,_g_notification_var1,0)
-    ##end
+    if is_between(_g_notification_var1,fac.kingdom_1,fac.kingdoms_end):
+        set_game_menu_tableau_mesh(tableau.faction_note_mesh_for_menu,_g_notification_var1,0)
+    else:
+        set_game_menu_tableau_mesh(tableau.faction_note_mesh_banner,_g_notification_var1,0)
+    #end
 notification_rebels_switched_to_faction.conditionBlock = condition
 
 notification_rebels_switched_to_faction_continue = MenuOption("continue", "Continue...")

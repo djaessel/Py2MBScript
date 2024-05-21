@@ -448,7 +448,7 @@ mission_templates = [
 (call_script, "script_activate_town_guard"),
 (get_player_agent_no,":agent_no_001"),
 (agent_get_position,pos4,":agent_no_001"),
-(try_for_range, ":trp_002", ":trp.npc1", ":trp.heroes_end"),
+(try_for_range, ":trp_002", "trp_npc1", "trp_heroes_end"),
     (try_begin),
         (troop_slot_ge,":trp_002",149,2),
         (str_store_troop_name,s4,":trp_002"),
@@ -472,7 +472,7 @@ mission_templates = [
     (call_script, "script_deduct_casualties_from_garrison"),
     (jump_to_menu,"mnu_captivity_start_castle_defeat"),
     (assign,":var001","trp_heroes_end"),
-    (try_for_range, ":troop_id_002", ":trp.npc1", ":var001"),
+    (try_for_range, ":troop_id_002", "trp_npc1", ":var001"),
         (troop_set_slot,":troop_id_002",149,0),
     (try_end),
     (mission_enable_talk),
@@ -981,7 +981,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_tab_pressed, 0.0, 0.0, [
@@ -1056,7 +1056,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -1308,7 +1308,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1431,7 +1431,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1591,7 +1591,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1717,7 +1717,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1847,7 +1847,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -1999,7 +1999,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -2324,7 +2324,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -2691,7 +2691,7 @@ mission_templates = [
 (call_script, "script_activate_town_guard"),
 (get_player_agent_no,":agent_no_001"),
 (agent_get_position,pos4,":agent_no_001"),
-(try_for_range, ":trp_002", ":trp.npc1", ":trp.heroes_end"),
+(try_for_range, ":trp_002", "trp_npc1", "trp_heroes_end"),
     (try_begin),
         (troop_slot_ge,":trp_002",149,1),
         (str_store_troop_name,s4,":trp_002"),
@@ -2736,7 +2736,7 @@ mission_templates = [
     (call_script, "script_deduct_casualties_from_garrison"),
     (jump_to_menu,"mnu_captivity_start_castle_defeat"),
     (assign,":var001","trp_heroes_end"),
-    (try_for_range, ":troop_id_002", ":trp.npc1", ":var001"),
+    (try_for_range, ":troop_id_002", "trp_npc1", ":var001"),
         (troop_set_slot,":troop_id_002",149,0),
     (try_end),
     (mission_enable_talk),
@@ -7390,7 +7390,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (0.0, 0.0, ti_once, [
@@ -7497,7 +7497,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (0.0, 0.0, ti_once, [
@@ -7950,7 +7950,7 @@ mission_templates = [
     (try_end),
     (team_get_faction, ":team_faction_004", ":team_id_003"),
     (assign,":var005",0),
-    (try_for_range, ":trp_006", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_006", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_007",":trp_006"),
         (try_begin),
             (eq,":troop_faction_007",":team_faction_004"),
@@ -7959,7 +7959,7 @@ mission_templates = [
     (try_end),
     (store_random_in_range,":random_x_008",0,":var005"),
     (assign,":var009","trp_swadian_crossbowman_multiplayer"),
-    (try_for_range, ":trp_006", ":trp.swadian_crossbowman_multiplayer_ai", ":var009"),
+    (try_for_range, ":trp_006", "trp_swadian_crossbowman_multiplayer_ai", ":var009"),
         (store_troop_faction,":troop_faction_007",":trp_006"),
         (try_begin),
             (eq,":troop_faction_007",":team_faction_004"),
@@ -8105,7 +8105,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -8375,7 +8375,7 @@ mission_templates = [
     (assign,":group_no_011",reg1),
     (team_get_faction, ":team_faction_012", ":team_id_008"),
     (assign,":var013",0),
-    (try_for_range, ":trp_014", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_014", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_015",":trp_014"),
         (try_begin),
             (eq,":troop_faction_015",":team_faction_012"),
@@ -8687,7 +8687,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -8788,7 +8788,7 @@ mission_templates = [
     (scene_prop_get_num_instances, ":scp_num_instances_004", "spr_headquarters_flag_gray"),
     (assign,":var005","spr_headquarters_flag_gray"),
     (val_add, ":var005", 1),
-    (try_for_range, ":var006", ":spr.headquarters_flag_red", ":var005"),
+    (try_for_range, ":var006", "spr_headquarters_flag_red", ":var005"),
         (try_begin),
             (eq,":var006","spr_headquarters_flag_red"),
             (assign,":var007",":scp_num_instances_002"),
@@ -8806,7 +8806,7 @@ mission_templates = [
                 (prop_instance_get_position, pos0, ":scp_instance_009"),
                 (set_spawn_position, 0),
                 (spawn_scene_prop, "spr_headquarters_pole_code_only"),
-                (try_for_range, ":var010", ":spr.headquarters_flag_red", ":var005"),
+                (try_for_range, ":var010", "spr_headquarters_flag_red", ":var005"),
                     (set_spawn_position, 0),
                     (try_begin),
                         (eq,":var010","spr_headquarters_flag_red"),
@@ -9658,7 +9658,7 @@ mission_templates = [
     (assign,":group_no_011",reg1),
     (team_get_faction, ":team_faction_012", ":team_id_008"),
     (assign,":var013",0),
-    (try_for_range, ":trp_014", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_014", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_015",":trp_014"),
         (try_begin),
             (eq,":troop_faction_015",":team_faction_012"),
@@ -9972,7 +9972,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -10348,7 +10348,7 @@ mission_templates = [
     (assign,":group_no_011",reg1),
     (team_get_faction, ":team_faction_012", ":team_id_008"),
     (assign,":var013",0),
-    (try_for_range, ":trp_014", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_014", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_015",":trp_014"),
         (try_begin),
             (eq,":troop_faction_015",":team_faction_012"),
@@ -11119,7 +11119,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -12061,7 +12061,7 @@ mission_templates = [
     (assign,":group_no_011",reg1),
     (team_get_faction, ":team_faction_012", ":team_id_008"),
     (assign,":var013",0),
-    (try_for_range, ":trp_014", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_014", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_015",":trp_014"),
         (try_begin),
             (eq,":troop_faction_015",":team_faction_012"),
@@ -12366,7 +12366,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -13491,7 +13491,7 @@ mission_templates = [
     (assign,":group_no_011",reg1),
     (team_get_faction, ":team_faction_012", ":team_id_008"),
     (assign,":var013",0),
-    (try_for_range, ":trp_014", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_014", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_015",":trp_014"),
         (try_begin),
             (eq,":troop_faction_015",":team_faction_012"),
@@ -13800,7 +13800,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -14814,7 +14814,7 @@ mission_templates = [
     (assign,":group_no_011",reg1),
     (team_get_faction, ":team_faction_012", ":team_id_008"),
     (assign,":var013",0),
-    (try_for_range, ":trp_014", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_014", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_015",":trp_014"),
         (try_begin),
             (eq,":troop_faction_015",":team_faction_012"),
@@ -15143,7 +15143,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -15303,16 +15303,16 @@ mission_templates = [
     (ge,"$g_presentation_obj_coop_companion_1","trp_npc1_2"),
     (assign,"$g_presentation_obj_coop_companion_1","trp_npc1_1"),
 (try_end),
-(store_sub, ":var001", "$g_presentation_obj_coop_companion_0", ":trp.npc1_1"),
+(store_sub, ":var001", "$g_presentation_obj_coop_companion_0", "trp_npc1_1"),
 (assign,":var001 +","trp_npc1_1"),
 (assign,"$g_presentation_obj_coop_companion_class_0",":var001"),
-(store_sub, ":var001", "$g_presentation_obj_coop_companion_1", ":trp.npc1_1"),
+(store_sub, ":var001", "$g_presentation_obj_coop_companion_1", "trp_npc1_1"),
 (assign,":var001 +","trp_npc1_1"),
 (assign,"$g_presentation_obj_coop_companion_class_1",":var001"),
-(try_for_range, ":trp_002", ":trp.knight_1_1", ":trp.kingdom_1_pretender"),
+(try_for_range, ":trp_002", "trp_knight_1_1", "trp_kingdom_1_pretender"),
     (troop_set_slot,":trp_002",155,0),
 (try_end),
-(try_for_range, ":trp_002", ":trp.quick_battle_troop_1", ":trp.quick_battle_troops_end"),
+(try_for_range, ":trp_002", "trp_quick_battle_troop_1", "trp_quick_battle_troops_end"),
     (troop_set_slot,":trp_002",155,0),
 (try_end),
 (assign,"$g_mp_coop_lord_waves",0),
@@ -16274,7 +16274,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_inventory_key_pressed, 0.0, 0.0, [
@@ -16661,7 +16661,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_inventory_key_pressed, 0.0, 0.0, [
@@ -16984,7 +16984,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_spawn, 0.0, 0.0, [
@@ -17460,7 +17460,7 @@ mission_templates = [
     (try_end),
     (team_get_faction, ":team_faction_004", ":team_id_003"),
     (assign,":var005",0),
-    (try_for_range, ":trp_006", ":trp.swadian_crossbowman_multiplayer_ai", ":trp.swadian_crossbowman_multiplayer"),
+    (try_for_range, ":trp_006", "trp_swadian_crossbowman_multiplayer_ai", "trp_swadian_crossbowman_multiplayer"),
         (store_troop_faction,":troop_faction_007",":trp_006"),
         (try_begin),
             (eq,":troop_faction_007",":team_faction_004"),
@@ -17469,7 +17469,7 @@ mission_templates = [
     (try_end),
     (store_random_in_range,":random_x_008",0,":var005"),
     (assign,":var009","trp_swadian_crossbowman_multiplayer"),
-    (try_for_range, ":trp_006", ":trp.swadian_crossbowman_multiplayer_ai", ":var009"),
+    (try_for_range, ":trp_006", "trp_swadian_crossbowman_multiplayer_ai", ":var009"),
         (store_troop_faction,":troop_faction_007",":trp_006"),
         (try_begin),
             (eq,":troop_faction_007",":team_faction_004"),

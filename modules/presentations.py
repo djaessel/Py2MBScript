@@ -353,7 +353,7 @@ def code():
     trp_001 = _g_quick_battle_troop - trp.quick_battle_troop_1
     overlay_set_val(_g_presentation_obj_custom_battle_designer_18,trp_001)
     trp_001 = _g_quick_battle_troop * 2
-    create_mesh_overlay_with_tableau_material(reg0,-1,tab.game_party_window,trp_001)
+    create_mesh_overlay_with_tableau_material(reg0,-1,tableau.game_party_window,trp_001)
     position_set_x(1,25)
     position_set_y(1,370)
     overlay_set_position(reg0,1)
@@ -373,7 +373,7 @@ def code():
         trp_001 = trp.taiga_bandit
     #end
     trp_001 *= 2
-    create_mesh_overlay_with_tableau_material(reg0,-1,tab.game_party_window,trp_001)
+    create_mesh_overlay_with_tableau_material(reg0,-1,tableau.game_party_window,trp_001)
     position_set_x(1,670)
     position_set_y(1,370)
     overlay_set_position(reg0,1)
@@ -3583,14 +3583,14 @@ def code():
                 #end
             #end
         #end
-        create_mesh_overlay_with_tableau_material(reg0,-1,tab.coop_companion_select_0,_g_presentation_obj_coop_companion_0)
+        create_mesh_overlay_with_tableau_material(reg0,-1,tableau.coop_companion_select_0,_g_presentation_obj_coop_companion_0)
         position_set_x(1,230)
         position_set_y(1,349)
         overlay_set_position(reg0,1)
         position_set_x(1,750)
         position_set_y(1,1000)
         overlay_set_size(reg0,1)
-        create_mesh_overlay_with_tableau_material(reg0,-1,tab.coop_companion_select_0,_g_presentation_obj_coop_companion_1)
+        create_mesh_overlay_with_tableau_material(reg0,-1,tableau.coop_companion_select_0,_g_presentation_obj_coop_companion_1)
         position_set_x(1,510)
         position_set_y(1,349)
         overlay_set_position(reg0,1)
@@ -7305,8 +7305,8 @@ def code():
     position_set_x(1,40)
     position_set_y(1,500)
     overlay_set_position(reg1,1)
-    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_22,mesh.color_picker,tab.color_picker,troop_slot_003)
-    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_23,mesh.color_picker,tab.color_picker,troop_slot_004)
+    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_22,mesh.color_picker,tableau.color_picker,troop_slot_003)
+    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_23,mesh.color_picker,tableau.color_picker,troop_slot_004)
     position_set_x(1,200)
     position_set_y(1,565)
     overlay_set_position(_g_presentation_obj_custom_banner_22,1)
@@ -7324,15 +7324,15 @@ def code():
     create_button_overlay(_g_presentation_obj_custom_banner_20,gstr.accept,16)
     troop_slot_005 = troop_get_slot(trp.player,97)
     create_button_overlay(_g_presentation_obj_custom_banner_16,gstr.randomize,16)
-    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_17,troop_slot_001,tab.custom_banner_default,trp.player)
+    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_17,troop_slot_001,tableau.custom_banner_default,trp.player)
     if troop_slot_002 == mesh.custom_map_banner_01:
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_18,troop_slot_002,tab.custom_banner_square,trp.player)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_18,troop_slot_002,tableau.custom_banner_square,trp.player)
     elif troop_slot_002 == mesh.custom_map_banner_02:
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_18,troop_slot_002,tab.custom_banner_short,trp.player)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_18,troop_slot_002,tableau.custom_banner_short,trp.player)
     else:
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_18,troop_slot_002,tab.custom_banner_tall,trp.player)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_18,troop_slot_002,tableau.custom_banner_tall,trp.player)
     #end
-    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_1,-1,tab.custom_banner_square_no_mesh,trp.player)
+    create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_1,-1,tableau.custom_banner_square_no_mesh,trp.player)
     create_text_overlay(reg1,gstr.sample_banner,16)
     position_set_x(1,825)
     position_set_y(1,650)
@@ -7411,7 +7411,7 @@ def code():
         position_set_y(1,50)
         overlay_set_size(_g_presentation_obj_custom_banner_24,1)
         troop_slot_007 = troop_get_slot(trp.player,87)
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_28,mesh.color_picker,tab.color_picker,troop_slot_007)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_28,mesh.color_picker,tableau.color_picker,troop_slot_007)
         position_set_x(1,530)
         position_set_y(1,255)
         overlay_set_position(_g_presentation_obj_custom_banner_28,1)
@@ -7448,7 +7448,7 @@ def code():
         position_set_y(1,50)
         overlay_set_size(_g_presentation_obj_custom_banner_25,1)
         troop_slot_007 = troop_get_slot(trp.player,88)
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_29,mesh.color_picker,tab.color_picker,troop_slot_007)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_29,mesh.color_picker,tableau.color_picker,troop_slot_007)
         position_set_x(1,530)
         position_set_y(1,195)
         overlay_set_position(_g_presentation_obj_custom_banner_29,1)
@@ -7485,7 +7485,7 @@ def code():
         position_set_y(1,50)
         overlay_set_size(_g_presentation_obj_custom_banner_26,1)
         troop_slot_007 = troop_get_slot(trp.player,89)
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_30,mesh.color_picker,tab.color_picker,troop_slot_007)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_30,mesh.color_picker,tableau.color_picker,troop_slot_007)
         position_set_x(1,530)
         position_set_y(1,135)
         overlay_set_position(_g_presentation_obj_custom_banner_30,1)
@@ -7522,7 +7522,7 @@ def code():
         position_set_y(1,50)
         overlay_set_size(_g_presentation_obj_custom_banner_27,1)
         troop_slot_007 = troop_get_slot(trp.player,90)
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_31,mesh.color_picker,tab.color_picker,troop_slot_007)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_custom_banner_31,mesh.color_picker,tableau.color_picker,troop_slot_007)
         position_set_x(1,530)
         position_set_y(1,75)
         overlay_set_position(_g_presentation_obj_custom_banner_31,1)
@@ -7775,7 +7775,7 @@ def code():
     var001 = var004 / 2
     var001 = 500 - var001
     for slot_no_005 in range(0, var003):
-        create_image_button_overlay_with_tableau_material(reg1,-1,tab.positioning_selection,slot_no_005)
+        create_image_button_overlay_with_tableau_material(reg1,-1,tableau.positioning_selection,slot_no_005)
         position_set_x(1,var001)
         position_set_y(1,var002)
         var001 += 125
@@ -7864,7 +7864,7 @@ def code():
     var002 = 450
     for mesh_003 in range(mesh.custom_banner_bg, mesh.custom_banner_charge_01):
         slot_no_004 = mesh_003 - mesh.custom_banner_bg
-        create_image_button_overlay_with_tableau_material(reg1,-1,tab.background_selection,slot_no_004)
+        create_image_button_overlay_with_tableau_material(reg1,-1,tableau.background_selection,slot_no_004)
         position_set_x(1,var001)
         position_set_y(1,var002)
         var001 += 125
@@ -7910,7 +7910,7 @@ def code():
     for mesh_003 in range(mesh.custom_banner_01, mesh.custom_banner_bg):
         slot_no_004 = mesh_003 - mesh.custom_banner_01
         troop_set_slot(trp.player,96,slot_no_004)
-        create_image_button_overlay_with_tableau_material(reg1,mesh_003,tab.custom_banner_default,trp.player)
+        create_image_button_overlay_with_tableau_material(reg1,mesh_003,tableau.custom_banner_default,trp.player)
         position_set_x(1,var001)
         position_set_y(1,var002)
         var001 += 130
@@ -7958,11 +7958,11 @@ def code():
         slot_no_005 = mesh_004 - mesh.custom_map_banner_01
         troop_set_slot(trp.player,99,slot_no_005)
         if mesh_004 == mesh.custom_map_banner_01:
-            create_image_button_overlay_with_tableau_material(reg1,mesh_004,tab.custom_banner_square,trp.player)
+            create_image_button_overlay_with_tableau_material(reg1,mesh_004,tableau.custom_banner_square,trp.player)
         elif mesh_004 == mesh.custom_map_banner_02:
-            create_image_button_overlay_with_tableau_material(reg1,mesh_004,tab.custom_banner_short,trp.player)
+            create_image_button_overlay_with_tableau_material(reg1,mesh_004,tableau.custom_banner_short,trp.player)
         else:
-            create_image_button_overlay_with_tableau_material(reg1,mesh_004,tab.custom_banner_tall,trp.player)
+            create_image_button_overlay_with_tableau_material(reg1,mesh_004,tableau.custom_banner_tall,trp.player)
         #end
         position_set_x(1,var002)
         position_set_y(1,var003)
@@ -8008,7 +8008,7 @@ def code():
     for var003 in range(0, 42):
         get_custom_banner_color_from_index(var003)
         var004 = reg0
-        create_image_button_overlay_with_tableau_material(reg1,mesh.color_picker,tab.color_picker,var004)
+        create_image_button_overlay_with_tableau_material(reg1,mesh.color_picker,tableau.color_picker,var004)
         position_set_x(1,var001)
         position_set_y(1,var002)
         var001 += 50
@@ -8072,14 +8072,14 @@ def code():
     position_set_x(1,800)
     position_set_y(1,600)
     overlay_set_position(reg1,1)
-    create_mesh_overlay_with_tableau_material(reg1,-1,tab.troop_note_mesh,_g_presentation_marshall_selection_max_renown_1_troop)
+    create_mesh_overlay_with_tableau_material(reg1,-1,tableau.troop_note_mesh,_g_presentation_marshall_selection_max_renown_1_troop)
     position_set_x(1,500)
     position_set_y(1,500)
     overlay_set_size(reg1,1)
     position_set_x(1,100)
     position_set_y(1,300)
     overlay_set_position(reg1,1)
-    create_mesh_overlay_with_tableau_material(reg1,-1,tab.troop_note_mesh,_g_presentation_marshall_selection_max_renown_2_troop)
+    create_mesh_overlay_with_tableau_material(reg1,-1,tableau.troop_note_mesh,_g_presentation_marshall_selection_max_renown_2_troop)
     position_set_x(1,500)
     position_set_y(1,500)
     overlay_set_size(reg1,1)
@@ -8124,7 +8124,7 @@ def code():
                 var004 -= 1
                 if var004 < 0:
                     _g_presentation_next_presentation = prsnt.marshall_selection
-                    create_mesh_overlay_with_tableau_material(reg1,-1,tab.troop_note_mesh,troop_id_006)
+                    create_mesh_overlay_with_tableau_material(reg1,-1,tableau.troop_note_mesh,troop_id_006)
                     position_set_x(1,300)
                     position_set_y(1,300)
                     overlay_set_size(reg1,1)
@@ -10291,34 +10291,34 @@ def code():
         s7 = str_store_party_name(random_x_065)
     #end
     if var001 < 100:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,0)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,0)
         s0 = str_store_string(gstr.retirement_text_1)
     elif var001 < 200:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,1)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,1)
         s0 = str_store_string(gstr.retirement_text_2)
     elif var001 < 400:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,2)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,2)
         s0 = str_store_string(gstr.retirement_text_3)
     elif var001 < 700:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,3)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,3)
         s0 = str_store_string(gstr.retirement_text_4)
     elif var001 < 1200:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,4)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,4)
         s0 = str_store_string(gstr.retirement_text_5)
     elif var001 < 1850:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,5)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,5)
         s0 = str_store_string(gstr.retirement_text_6)
     elif var001 < 2500:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,6)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,6)
         s0 = str_store_string(gstr.retirement_text_7)
     elif var001 < 3500:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,7)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,7)
         s0 = str_store_string(gstr.retirement_text_8)
     elif var001 < 5000:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,8)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,8)
         s0 = str_store_string(gstr.retirement_text_9)
     else:
-        create_mesh_overlay_with_tableau_material(reg1,-1,tab.retirement_troop,9)
+        create_mesh_overlay_with_tableau_material(reg1,-1,tableau.retirement_troop,9)
         s0 = str_store_string(gstr.retirement_text_10)
     #end
     position_set_x(1,0)
@@ -11162,7 +11162,7 @@ def code():
     else:
         var007 = 393
     #end
-    create_image_button_overlay_with_tableau_material(_g_presentation_obj_coop_assign_drop_player,-1,tab.coop_companion_select_0,-1)
+    create_image_button_overlay_with_tableau_material(_g_presentation_obj_coop_assign_drop_player,-1,tableau.coop_companion_select_0,-1)
     overlay_set_tooltip(_g_presentation_obj_coop_assign_drop_player,0)
     overlay_set_color(_g_presentation_obj_coop_assign_drop_player,16777215)
     position_set_x(1,var007)
@@ -11176,7 +11176,7 @@ def code():
         _g_coop_assign_drop_companion_1 = var002
         troop_id_008 = agent_get_troop_id(var002)
         s0 = str_store_troop_name(troop_id_008)
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_coop_assign_drop_companion_1,-1,tab.coop_companion_select_0,troop_id_008)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_coop_assign_drop_companion_1,-1,tableau.coop_companion_select_0,troop_id_008)
         overlay_set_tooltip(_g_presentation_obj_coop_assign_drop_companion_1,0)
         position_set_x(1,var007)
         position_set_y(1,var004)
@@ -11190,7 +11190,7 @@ def code():
         _g_coop_assign_drop_companion_2 = var003
         troop_id_008 = agent_get_troop_id(var003)
         s0 = str_store_troop_name(troop_id_008)
-        create_image_button_overlay_with_tableau_material(_g_presentation_obj_coop_assign_drop_companion_2,-1,tab.coop_companion_select_0,troop_id_008)
+        create_image_button_overlay_with_tableau_material(_g_presentation_obj_coop_assign_drop_companion_2,-1,tableau.coop_companion_select_0,troop_id_008)
         overlay_set_tooltip(_g_presentation_obj_coop_assign_drop_companion_2,0)
         position_set_x(1,var007)
         position_set_y(1,var004)
