@@ -521,8 +521,7 @@ mission_templates = [
     (this_or_next|eq,":troop_id_003","trp_rhodok_prison_guard"),
     (eq,":troop_id_003","trp_sarranid_prison_guard"),
     (eq,":troop_id_004","trp_player"),
-    (assign, reg0, ":"),
-    (display_message, "@{reg0}"),
+    (display_message, "@@You got keys of dungeon."),
 (try_end),
 ]),
 
@@ -982,7 +981,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_tab_pressed, 0.0, 0.0, [
@@ -1057,7 +1056,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -1271,15 +1270,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -1309,7 +1308,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1393,15 +1392,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -1432,7 +1431,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1508,7 +1507,7 @@ mission_templates = [
         (eq,"$g_village_raid_evil",0),
         (call_script, "script_play_victorious_sound"),
     (else_try),
-        (play_track,1),
+        (play_track,"track_victorious_evil", 1),
     (try_end),
 ], [
 (call_script, "script_count_mission_casualties_from_agents"),
@@ -1544,15 +1543,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -1592,7 +1591,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1665,15 +1664,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -1718,7 +1717,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -1791,15 +1790,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -1848,7 +1847,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -1940,15 +1939,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -2000,7 +1999,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -2245,15 +2244,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -2325,7 +2324,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_question_answered, 0.0, 0.0, [
@@ -2543,15 +2542,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -2672,8 +2671,7 @@ mission_templates = [
     (this_or_next|eq,":troop_id_003","trp_rhodok_prison_guard"),
     (eq,":troop_id_003","trp_sarranid_prison_guard"),
     (eq,":troop_id_004","trp_player"),
-    (assign, reg0, ":"),
-    (display_message, "@{reg0}"),
+    (display_message, "@@You got keys of dungeon."),
 (try_end),
 ]),
 
@@ -3083,8 +3081,7 @@ mission_templates = [
         (position_is_behind_position,2,1),
         (val_add, "$scene_num_total_gourds_destroyed", "$g_last_destroyed_gourds"),
     (else_try),
-        (assign, reg0, ":"),
-        (display_message, "@{reg0}"),
+        (display_message, "@@You must stay behind the line on the ground! Point is not counted."),
     (try_end),
 (try_end),
 (else_try),
@@ -3317,15 +3314,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -3499,7 +3496,7 @@ mission_templates = [
 ], [
 (try_begin),
     (eq,"$g_mt_mode",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_arena_training"),
 (try_end),
 ]),
 
@@ -3871,7 +3868,7 @@ mission_templates = [
 (ti_after_mission_start, 0.0, 0.0, [
 ], [
 (assign,"$g_wedding_state",0),
-(play_track,2),
+(play_track,"track_wedding", 2),
 (show_object_details_overlay, 0),
 ]),
 
@@ -4227,7 +4224,7 @@ mission_templates = [
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_tutorial_show_mouse_movement"),
 ]),
 
 (ti_on_agent_spawn, 0.0, 0.0, [
@@ -5280,7 +5277,7 @@ mission_templates = [
     (try_begin),
         (eq,"$g_tutorial_update_mouse_presentation",1),
         (assign,"$g_tutorial_update_mouse_presentation",0),
-        (start_presentation, ":"),
+        (start_presentation, "prsnt_tutorial_show_mouse_movement"),
     (try_end),
 (try_end),
 (try_begin),
@@ -5372,7 +5369,7 @@ mission_templates = [
                     (try_end),
                 (try_end),
                 (assign,"$g_tutorial_mouse_click",1),
-                (start_presentation, ":"),
+                (start_presentation, "prsnt_tutorial_show_mouse_movement"),
             (try_end),
         (else_try),
             (eq,"$g_tutorial_training_ground_melee_trainer_action_state",1),
@@ -7393,7 +7390,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (0.0, 0.0, ti_once, [
@@ -7500,7 +7497,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (0.0, 0.0, ti_once, [
@@ -7821,7 +7818,7 @@ mission_templates = [
 (try_end),
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart_deathmatch"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -8017,22 +8014,22 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart_deathmatch"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart_deathmatch"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -8108,7 +8105,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -8192,7 +8189,7 @@ mission_templates = [
 (try_end),
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -8594,27 +8591,27 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_team_score_display"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -8690,7 +8687,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -8977,7 +8974,7 @@ mission_templates = [
 (try_end),
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -9877,27 +9874,27 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_team_score_display"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -9975,7 +9972,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -10059,7 +10056,7 @@ mission_templates = [
 ], [
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -10759,28 +10756,28 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_team_score_display"),
+(start_presentation, "prsnt_multiplayer_flag_projection_display"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -11122,7 +11119,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -11342,7 +11339,7 @@ mission_templates = [
 ], [
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart"),
 ]),
 
 (0.0, 0.0, 0.0, [
@@ -12272,28 +12269,28 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_round_time_counter"),
+(start_presentation, "prsnt_multiplayer_team_score_display"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -12369,7 +12366,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -12596,7 +12593,7 @@ mission_templates = [
 ], [
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart"),
 ]),
 
 (1.0, 0.0, 0.0, [
@@ -12812,7 +12809,7 @@ mission_templates = [
 (prop_instance_get_position, pos0, ":scp_instance_004"),
 (position_move_z,0,100),
 (prop_instance_set_position, ":scp_instance_006", 0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_flag_projection_display_bt"),
 ]),
 
 (3.0, 0.0, 0.0, [
@@ -13702,32 +13699,32 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_round_time_counter"),
+(start_presentation, "prsnt_multiplayer_team_score_display"),
 (try_begin),
     (eq,"$g_battle_death_mode_started",2),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_flag_projection_display_bt"),
 (try_end),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -13803,7 +13800,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -13898,7 +13895,7 @@ mission_templates = [
     (assign,"$g_multiplayer_num_bots_required_team_1","$g_multiplayer_num_bots_team_1"),
     (assign,"$g_multiplayer_num_bots_required_team_2","$g_multiplayer_num_bots_team_2"),
 (try_end),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_destructible_targets_display"),
 (assign,"$g_multiplayer_ready_for_spawning_agent",1),
 ]),
 
@@ -13926,7 +13923,7 @@ mission_templates = [
         (call_script, "script_initialize_all_scene_prop_slots"),
         (call_script, "script_multiplayer_initialize_belfry_wheel_rotations"),
         (call_script, "script_initialize_objects_clients"),
-        (start_presentation, ":"),
+        (start_presentation, "prsnt_multiplayer_destructible_targets_display"),
         (try_begin),
             (eq,"$g_team_balance_next_round",1),
             (assign,"$g_team_balance_next_round",0),
@@ -14067,7 +14064,7 @@ mission_templates = [
 ], [
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart"),
 ]),
 
 (1.0, 0.0, 0.0, [
@@ -14611,7 +14608,7 @@ mission_templates = [
 (assign,"$g_round_ended",0),
 (assign,"$g_multiplayer_num_bots_required_team_1","$g_multiplayer_num_bots_team_1"),
 (assign,"$g_multiplayer_num_bots_required_team_2","$g_multiplayer_num_bots_team_2"),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_destructible_targets_display"),
 (call_script, "script_initialize_objects"),
 (store_mission_timer_a,"$g_round_start_time"),
 (call_script, "script_initialize_all_scene_prop_slots"),
@@ -15025,28 +15022,28 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_round_time_counter"),
+(start_presentation, "prsnt_multiplayer_team_score_display"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -15146,7 +15143,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (1.0, 5.0, 0.0, [
@@ -15365,7 +15362,7 @@ mission_templates = [
 (assign,"$g_multiplayer_ccoop_enemy_respawn_secs",100000),
 (assign,"$g_multiplayer_ccoop_game_started",0),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart_deathmatch"),
 ]),
 
 (ti_on_player_exit, 0.0, 0.0, [
@@ -15708,8 +15705,8 @@ mission_templates = [
         (call_script, "script_multiplayer_ccoop_prepare_spawn_wave"),
         (store_mission_timer_a,"$g_multiplayer_ccoop_next_wave_start_time"),
         (val_add, "$g_multiplayer_ccoop_next_wave_start_time", "$g_multiplayer_ccoop_enemy_respawn_secs"),
-        (start_presentation, ":"),
-        (start_presentation, ":"),
+        (start_presentation, "prsnt_multiplayer_ccoop_next_wave_time_counter"),
+        (start_presentation, "prsnt_multiplayer_flag_projection_display_ccoop_wave"),
     (else_try),
         (lt,"$g_multiplayer_ccoop_enemy_respawn_secs",1),
         (multiplayer_is_server),
@@ -16002,29 +15999,29 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart_deathmatch"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_battle_window_opened, 0.0, 0.0, [
 ], [
-(start_presentation, ":"),
-(start_presentation, ":"),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_flag_projection_display_ccoop"),
+(start_presentation, "prsnt_multiplayer_flag_projection_display_ccoop_wave"),
+(start_presentation, "prsnt_multiplayer_ccoop_next_wave_time_counter"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart_deathmatch"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 
@@ -16277,7 +16274,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_inventory_key_pressed, 0.0, 0.0, [
@@ -16609,15 +16606,15 @@ mission_templates = [
 ], [
 (try_begin),
     (game_key_clicked, 22),
-    (neg|is_presentation_active, ":"),
-    (start_presentation, ":"),
+    (neg|is_presentation_active, "prsnt_battle"),
+    (start_presentation, "prsnt_battle"),
 (try_end),
 ]),
 
 (0.1, 0.0, 0.0, [
 ], [
 (try_begin),
-    (is_presentation_active, ":"),
+    (is_presentation_active, "prsnt_battle"),
     (call_script, "script_update_order_panel_statistics_and_map"),
 (try_end),
 ]),
@@ -16664,7 +16661,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_inventory_key_pressed, 0.0, 0.0, [
@@ -16987,7 +16984,7 @@ mission_templates = [
 (ti_on_agent_spawn, 0.0, 0.0, [
 ], [
 (agent_get_troop_id,":troop_id_002", ":var001"),
-(call_script, "script_troop_agent_set_banner", ":var001", ":troop_id_002"),
+(call_script, "script_troop_agent_set_banner", "tab_game_troop_label_banner", ":var001", ":troop_id_002"),
 ]),
 
 (ti_on_agent_spawn, 0.0, 0.0, [
@@ -17298,7 +17295,7 @@ mission_templates = [
 ], [
 (call_script, "script_multiplayer_event_mission_end"),
 (assign,"$g_multiplayer_stats_chart_opened_manually",0),
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_stats_chart_deathmatch"),
 ]),
 
 (ti_on_agent_killed_or_wounded, 0.0, 0.0, [
@@ -17527,22 +17524,22 @@ mission_templates = [
 (try_begin),
     (eq,"$g_multiplayer_mission_end_screen",0),
     (assign,"$g_multiplayer_stats_chart_opened_manually",1),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_stats_chart_deathmatch"),
 (try_end),
 ]),
 
 (0.0, 0.0, ti_once, [
 ], [
-(start_presentation, ":"),
+(start_presentation, "prsnt_multiplayer_welcome_message"),
 ]),
 
 (ti_escape_pressed, 0.0, 0.0, [
 ], [
 (try_begin),
-    (neg|is_presentation_active, ":"),
-    (neg|is_presentation_active, ":"),
+    (neg|is_presentation_active, "prsnt_multiplayer_escape_menu"),
+    (neg|is_presentation_active, "prsnt_multiplayer_stats_chart_deathmatch"),
     (eq,"$g_waiting_for_confirmation_to_terminate",0),
-    (start_presentation, ":"),
+    (start_presentation, "prsnt_multiplayer_escape_menu"),
 (try_end),
 ]),
 

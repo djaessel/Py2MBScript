@@ -3572,7 +3572,7 @@ def game_get_troop_note(troop_id_001, var002):
         if faction_slot_eq(troop_slot_010,21,0) and faction_slot_eq(troop_slot_010,60,1):
             if var002 == 0:
                 s56 = str_store_faction_name_link(troop_slot_010)
-                s0 = str_store_string("@{s54} is a claimant to the throne of {s56}.",0)
+                s0 = str_store_string("@{s54} is a claimant to the throne of {s56}.")
                 set_trigger_result(1)
             #end
         else:

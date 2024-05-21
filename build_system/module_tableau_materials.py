@@ -17,9 +17,9 @@ tableaus = [
 (position_set_z,1,100),
 (position_set_x,1,-20),
 (position_set_y,1,-20),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_character_color", ":var001", 1),
 (position_set_z,1,200),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_character_alpha_mask", ":var001", 1),
 (position_set_z,1,300),
 ]),
 
@@ -33,9 +33,9 @@ tableaus = [
 (position_set_z,1,100),
 (position_set_x,1,-20),
 (position_set_y,1,-20),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_inventory_color", ":var001", 1),
 (position_set_z,1,200),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_inventory_alpha_mask", ":var001", 1),
 (position_set_z,1,300),
 ]),
 
@@ -58,9 +58,9 @@ tableaus = [
 (position_set_z,1,100),
 (position_set_x,1,-20),
 (position_set_y,1,-20),
-(cur_tableau_add_tableau_mesh, ":troop_id_003", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_profile_color", ":troop_id_003", 1),
 (position_set_z,1,200),
-(cur_tableau_add_tableau_mesh, ":troop_id_003", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_profile_alpha_mask", ":troop_id_003", 1),
 ]),
 
 ("game_party_window", 0, "tableau_with_transparency", 1024, 1024, 0, 0, 300, 300, [
@@ -73,9 +73,9 @@ tableaus = [
 (position_set_z,1,100),
 (position_set_x,1,-20),
 (position_set_y,1,-20),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_party_color", ":var001", 1),
 (position_set_z,1,200),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_party_alpha_mask", ":var001", 1),
 (position_set_z,1,300),
 ]),
 
@@ -458,9 +458,9 @@ tableaus = [
 (position_set_z,1,100),
 (position_set_x,1,-20),
 (position_set_y,1,-20),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_note_color", ":var001", 1),
 (position_set_z,1,200),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_troop_note_alpha_mask", ":var001", 1),
 (position_set_z,1,300),
 (cur_tableau_add_mesh, "mesh_portrait_blend_out", 1, 0, 0),
 ]),
@@ -708,9 +708,9 @@ tableaus = [
 (position_set_z,1,100),
 (position_set_x,1,-20),
 (position_set_y,1,-20),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_retired_troop_color", ":var001", 1),
 (position_set_z,1,200),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_retired_troop_alpha_mask", ":var001", 1),
 ]),
 
 ("coop_companion_select_alpha_mask", 0, "mat_troop_portrait_mask", 1024, 1024, 0, 0, 600, 600, [
@@ -750,9 +750,9 @@ tableaus = [
 (position_set_z,1,100),
 (position_set_x,1,-20),
 (position_set_y,1,-20),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_coop_companion_select_color", ":var001", 1),
 (position_set_z,1,200),
-(cur_tableau_add_tableau_mesh, ":var001", 1, 0),
+(cur_tableau_add_tableau_mesh, "tab_coop_companion_select_alpha_mask", ":var001", 1),
 ]),
 
 
