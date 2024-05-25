@@ -102,8 +102,7 @@ def condition():
             s4 = str_store_quest_name(partner_quest_004)
         #end
     #end
-    if 1 == 0:
-        pass
+    eq(1, 0)
 start_close_window.conditionBlock = condition
 
 
@@ -129,8 +128,8 @@ def condition():
         s66 = str_store_string("@{reg65?Madame:Sir}")
     #end
     _g_current_hours = store_current_hours()
-    if 1 == 0:
-        troop_set_slot(_g_talk_troop,4,_g_current_hours)
+    eq(1,0)
+    troop_set_slot(_g_talk_troop,4,_g_current_hours)
 member_chat_close_window.conditionBlock = condition
 
 
@@ -151,8 +150,7 @@ def condition():
         s65 = str_store_string("@{reg65?madame:sir}")
         s66 = str_store_string("@{reg65?Madame:Sir}")
     #end
-    if 1 == 0:
-        pass
+    eq(1,0)
 event_triggered_close_window.conditionBlock = condition
 
 

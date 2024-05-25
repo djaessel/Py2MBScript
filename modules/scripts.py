@@ -37,10 +37,10 @@ def game_start():
     _g_player_luck = 200
     _g_player_luck = 200
     troop_set_slot(trp.player,2,2)
-    random_x_001 = store_random_in_range(p.training_ground_1,p.bridge_1)
-    party_relocate_near_party(p.main_party,random_x_001,3)
-    s5 = str_store_troop_name(trp.player)
-    party_set_name(p.main_party,5)
+    #random_x_001 = store_random_in_range(p.training_ground_1,p.bridge_1)
+    #party_relocate_near_party(p.main_party,random_x_001,3)
+    #s5 = str_store_troop_name(trp.player)
+    #party_set_name(p.main_party,5)
     update_party_creation_random_limits()
     _g_player_party_icon = -1
     for troop_id_002 in range(0, trp.heroes_end):
@@ -536,7 +536,7 @@ def game_start():
         if _cheat_mode == 1:
             print("@{!}DEBUG -- initial war/peace check begins")
         #end
-        randomly_start_war_peace_new(0)
+        #randomly_start_war_peace_new(0)
     #end
     for p_016 in range(p.town_1, p.salt_mine):
         if party_slot_eq(p_016,0,3) or party_slot_eq(p_016,0,4):
@@ -632,10 +632,10 @@ def game_start():
             #end
         #end
     #end
-    for var009 in range(0, 5000):
-        if call_script(script.cf_random_political_event):
-            pass
-        #end
+    for _ in range(0, 5000):
+        #if call_script(script.cf_random_political_event):
+        pass
+        ##end
     #end
     _total_random_quarrel_changes = 0
     _total_relation_adds = 0
@@ -2372,7 +2372,7 @@ def game_get_console_command(var001, var002, var003):
         #end
     elif var001 == 83:
         var006 = _g_multiplayer_ccoop_difficulty
-        var006 += gstr.ccoop_easy
+        var006 = var006 + gstr.ccoop_easy
         s0 = str_store_string(var006)
         s0 = str_store_string(gstr.ccoop_difficulty_s0)
     elif var001 == 84:
@@ -3306,7 +3306,7 @@ def game_event_undetect_party(party_id_001):
 
 def game_get_statistics_line(var001):
     if var001 == 0:
-        reg1 = get_player_agent_kill_count()
+        reg1 = get_player_agent_kill_count(0)
         s1 = str_store_string(gstr.number_of_troops_killed_reg1)
         set_result_string(1)
     elif var001 == 1:
@@ -3314,7 +3314,7 @@ def game_get_statistics_line(var001):
         s1 = str_store_string(gstr.number_of_troops_wounded_reg1)
         set_result_string(1)
     elif var001 == 2:
-        reg1 = get_player_agent_own_troop_kill_count()
+        reg1 = get_player_agent_own_troop_kill_count(0)
         s1 = str_store_string(gstr.number_of_own_troops_killed_reg1)
         set_result_string(1)
     elif var001 == 3:

@@ -2803,7 +2803,7 @@ def code():
 trigger0.codeBlock = code
 battle_field_smoke.add_trigger(trigger0)
 
-Village_fire_big = SceneProp("Village_fire_big", "0", "0")
+Village_fire_big = SceneProp("village_fire_big", "0", "0")
 # trigger0
 trigger0 = SimpleTrigger(tri.ti_on_scene_prop_init)
 def code():

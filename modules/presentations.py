@@ -382,7 +382,7 @@ def code():
     position_set_y(1,700)
     overlay_set_position(reg0,1)
     var002 = _g_quick_battle_troop - trp.quick_battle_troop_1
-    var002 += gstr.quick_battle_troop_1
+    var002 = var002 + gstr.quick_battle_troop_1
     create_text_overlay(reg0,var002,8192)
     position_set_x(1,850)
     position_set_y(1,850)
@@ -411,7 +411,7 @@ def code():
     if _g_quick_battle_game_type == 0:
         for scn_003 in range(scn.quick_battle_scene_1, scn.quick_battle_scene_4):
             var004 = scn_003 - scn.quick_battle_scene_1
-            var004 += gstr.quick_battle_scene_1
+            var004 = var004 + gstr.quick_battle_scene_1
             overlay_add_item(_g_presentation_obj_custom_battle_designer_1,var004)
         #end
         if is_between(_g_quick_battle_map,scn.quick_battle_scene_1,scn.quick_battle_scene_4):
@@ -424,7 +424,7 @@ def code():
     else:
         for scn_003 in range(scn.quick_battle_scene_4, scn.quick_battle_maps_end):
             var004 = scn_003 - scn.quick_battle_scene_1
-            var004 += gstr.quick_battle_scene_1
+            var004 = var004 + gstr.quick_battle_scene_1
             overlay_add_item(_g_presentation_obj_custom_battle_designer_1,var004)
         #end
         if is_between(_g_quick_battle_map,scn.quick_battle_scene_4,scn.quick_battle_maps_end):
@@ -436,7 +436,7 @@ def code():
         #end
     #end
     var006 = _g_quick_battle_map - scn.quick_battle_scene_1
-    var006 += mesh.cb_ui_maps_scene_01
+    var006 = var006 + mesh.cb_ui_maps_scene_01
     create_mesh_overlay(reg0,var006)
     position_set_x(1,700)
     position_set_y(1,700)
@@ -500,7 +500,7 @@ def code():
     #end
     if _g_quick_battle_team_1_faction == fac.outlaws:
         var010 = fac.kingdoms_end
-        var010 -= fac.kingdom_1
+        var010 = var010 - fac.kingdom_1
         overlay_set_val(_g_presentation_obj_custom_battle_designer_4,var010)
     else:
         var011 = _g_quick_battle_team_1_faction - fac.kingdom_1
@@ -527,7 +527,7 @@ def code():
     #end
     if _g_quick_battle_team_2_faction == fac.outlaws:
         var010 = fac.kingdoms_end
-        var010 -= fac.kingdom_1
+        var010 = var010 - fac.kingdom_1
         overlay_set_val(_g_presentation_obj_custom_battle_designer_5,var010)
     else:
         var012 = _g_quick_battle_team_2_faction - fac.kingdom_1
@@ -765,7 +765,7 @@ def code(var001, var002):
             _g_quick_battle_army_1_size += random_x_003
         else:
             var004 = fac.kingdoms_end
-            var004 -= fac.kingdom_1
+            var004 = var004 - fac.kingdom_1
             var004 += 1
             _g_quick_battle_team_1_faction = store_random_in_range(0,var004)
             if _g_quick_battle_team_1_faction == 0:
@@ -775,7 +775,7 @@ def code(var001, var002):
                 _g_quick_battle_team_1_faction -= 1
             #end
             var005 = 1000
-            for var006 in range(0, var005):
+            for _ in range(0, var005):
                 _g_quick_battle_team_2_faction = store_random_in_range(0,var004)
                 if _g_quick_battle_team_2_faction == 0:
                     _g_quick_battle_team_2_faction = fac.outlaws
@@ -902,7 +902,7 @@ def code(var001, var002):
     elif var001 == _g_presentation_obj_custom_battle_designer_4:
         if True:
             var013 = fac.kingdoms_end
-            var013 -= fac.kingdom_1
+            var013 = var013 - fac.kingdom_1
             if var002 == var013:
                 _g_quick_battle_team_1_faction = fac.outlaws
             else:
@@ -912,7 +912,7 @@ def code(var001, var002):
     elif var001 == _g_presentation_obj_custom_battle_designer_5:
         if True:
             var013 = fac.kingdoms_end
-            var013 -= fac.kingdom_1
+            var013 = var013 - fac.kingdom_1
             if var002 == var013:
                 _g_quick_battle_team_2_faction = fac.outlaws
             else:
@@ -1771,7 +1771,7 @@ def code():
         slot_no_011 = var010 + 0
         troop_slot_012 = troop_get_slot(trp.multiplayer_data,slot_no_011)
         var013 = troop_slot_012 - scn.multi_scene_1
-        var013 += gstr.multi_scene_1
+        var013 = var013 + gstr.multi_scene_1
         s0 = str_store_string(var013)
         overlay_add_item(_g_presentation_obj_admin_panel_1,0)
         if troop_slot_012 == _g_multiplayer_selected_map:
@@ -2524,8 +2524,8 @@ def code():
             s2 = str_store_string(gstr.s2_s3)
         #end
         cur_scene_004 = store_current_scene()
-        cur_scene_004 -= scn.multi_scene_1
-        cur_scene_004 += gstr.multi_scene_1
+        cur_scene_004 = cur_scene_004 - scn.multi_scene_1
+        cur_scene_004 = cur_scene_004 + gstr.multi_scene_1
         s0 = str_store_string(cur_scene_004)
         s3 = str_store_string(gstr.map_name_s0)
         s2 = str_store_string(gstr.s2_s3)
@@ -3430,7 +3430,7 @@ def code():
         position_set_y(1,507)
         overlay_set_position(reg0,1)
         var022 = _g_presentation_obj_coop_companion_0 - trp.npc1_1
-        var022 += gstr.npc1_1
+        var022 = var022 + gstr.npc1_1
         s0 = str_store_string(var022)
         create_text_overlay(reg0,0,4)
         position_set_x(1,750)
@@ -3441,7 +3441,7 @@ def code():
         position_set_y(1,306)
         overlay_set_position(reg0,1)
         var022 = _g_presentation_obj_coop_companion_1 - trp.npc1_1
-        var022 += gstr.npc1_1
+        var022 = var022 + gstr.npc1_1
         s0 = str_store_string(var022)
         create_text_overlay(reg0,0,4)
         position_set_x(1,750)
@@ -3877,7 +3877,7 @@ def code(var001, random_x_002):
                 if var001 == _g_presentation_obj_coop_companion_random_select_0:
                     random_x_002 = store_random_in_range(trp.npc1_1,trp.npc1_2)
                 else:
-                    random_x_002 += trp.npc1_1
+                    random_x_002 = random_x_002 + trp.npc1_1
                 #end
                 var013 = random_x_002 - _g_presentation_obj_coop_companion_0
                 if random_x_002 == _g_presentation_obj_coop_companion_1:
@@ -3897,7 +3897,7 @@ def code(var001, random_x_002):
                 _g_presentation_obj_coop_companion_0 = random_x_002
                 if is_between(_g_presentation_obj_coop_companion_class_0,trp.npc1_1,trp.coop_companion_equipment_sets_end):
                     random_x_002 = _g_presentation_obj_coop_companion_0 - trp.npc1_1
-                    random_x_002 += trp.npc1_1
+                    random_x_002 = random_x_002 + trp.npc1_1
                     _g_presentation_obj_coop_companion_class_0 = random_x_002
                 #end
                 mp_set_coop_companions(my_player)
@@ -3907,7 +3907,7 @@ def code(var001, random_x_002):
                 if var001 == _g_presentation_obj_coop_companion_random_select_1:
                     random_x_002 = store_random_in_range(trp.npc1_1,trp.npc1_2)
                 else:
-                    random_x_002 += trp.npc1_1
+                    random_x_002 = random_x_002 + trp.npc1_1
                 #end
                 var013 = random_x_002 - _g_presentation_obj_coop_companion_1
                 if random_x_002 == _g_presentation_obj_coop_companion_0:
@@ -3927,7 +3927,7 @@ def code(var001, random_x_002):
                 _g_presentation_obj_coop_companion_1 = random_x_002
                 if is_between(_g_presentation_obj_coop_companion_class_1,trp.npc1_1,trp.coop_companion_equipment_sets_end):
                     random_x_002 = _g_presentation_obj_coop_companion_1 - trp.npc1_1
-                    random_x_002 += trp.npc1_1
+                    random_x_002 = random_x_002 + trp.npc1_1
                     _g_presentation_obj_coop_companion_class_1 = random_x_002
                 #end
                 mp_set_coop_companions(my_player)
@@ -4833,17 +4833,17 @@ event = LoadEvent()
 def code():
     set_fixed_point_multiplier(1000)
     var001 = _g_multiplayer_team_1_faction - fac.kingdom_1
-    var001 += mesh.flag_project_sw
+    var001 = var001 + mesh.flag_project_sw
     create_mesh_overlay(_g_presentation_obj_flag_projection_display_1,var001)
-    var001 -= mesh.flag_project_sw
-    var001 += mesh.flag_project_sw_miss
+    var001 = var001 - mesh.flag_project_sw
+    var001 = var001 + mesh.flag_project_sw_miss
     create_mesh_overlay(_g_presentation_obj_flag_projection_display_2,var001)
     if _g_multiplayer_team_1_faction != _g_multiplayer_team_2_faction:
         var001 = _g_multiplayer_team_2_faction - fac.kingdom_1
-        var001 += mesh.flag_project_sw
+        var001 = var001 + mesh.flag_project_sw
         create_mesh_overlay(_g_presentation_obj_flag_projection_display_3,var001)
-        var001 -= mesh.flag_project_sw
-        var001 += mesh.flag_project_sw_miss
+        var001 = var001 - mesh.flag_project_sw
+        var001 = var001 + mesh.flag_project_sw_miss
         create_mesh_overlay(_g_presentation_obj_flag_projection_display_4,var001)
     else:
         var001 = mesh.flag_project_rb
@@ -4973,11 +4973,11 @@ event = LoadEvent()
 def code():
     set_fixed_point_multiplier(1000)
     var001 = _g_multiplayer_team_1_faction - fac.kingdom_1
-    var001 += mesh.flag_project_sw
+    var001 = var001 + mesh.flag_project_sw
     create_mesh_overlay(_g_presentation_obj_flag_projection_display_1,var001)
     if _g_multiplayer_team_1_faction != _g_multiplayer_team_2_faction:
         var001 = _g_multiplayer_team_2_faction - fac.kingdom_1
-        var001 += mesh.flag_project_sw
+        var001 = var001 + mesh.flag_project_sw
     else:
         var001 = mesh.flag_project_rb
     #end
@@ -5039,7 +5039,7 @@ def code():
     else:
         var001 = _g_multiplayer_team_2_faction - fac.kingdom_1
     #end
-    var001 += mesh.flag_project_sw
+    var001 = var001 + mesh.flag_project_sw
     create_mesh_overlay(_g_presentation_obj_flag_projection_display_1,var001)
     create_mesh_overlay(_g_presentation_obj_flag_projection_display_2,var001)
     position_set_x(1,250)
@@ -5436,7 +5436,7 @@ def code():
         overlay_set_size(reg0,1)
         var016 -= 35
         var027 = max_players + 1
-        for var028 in range(0, var027):
+        for _ in range(0, var027):
             var029 = -30030
             player_id_030 = -1
             for player_id_005 in range(0, max_players):
@@ -6032,7 +6032,7 @@ def code():
     overlay_set_size(reg0,1)
     var010 -= 35
     var035 = max_players + 1
-    for var036 in range(0, var035):
+    for _ in range(0, var035):
         var037 = -30030
         player_id_038 = -1
         for player_id_004 in range(0, max_players):
@@ -6765,7 +6765,7 @@ def code():
         slot_no_005 = var004 + 0
         troop_slot_006 = troop_get_slot(trp.multiplayer_data,slot_no_005)
         var007 = troop_slot_006 - scn.multi_scene_1
-        var007 += gstr.multi_scene_1
+        var007 = var007 + gstr.multi_scene_1
         s0 = str_store_string(var007)
         create_button_overlay(button_overlay_003,0,0)
         overlay_set_color(button_overlay_003,16777215)
@@ -6838,7 +6838,7 @@ def code():
     overlay_set_area_size(_g_presentation_obj_show_factions_list_menu_container,1)
     set_container_overlay(_g_presentation_obj_show_factions_list_menu_container)
     var001 = fac.kingdoms_end
-    var001 -= fac.kingdom_1
+    var001 = var001 - fac.kingdom_1
     if _g_multiplayer_factions_list_action_type == 2:
         var001 -= 1
     #end
@@ -6873,7 +6873,7 @@ def code(var001):
     for var002 in range(_g_show_factions_list_button_list_first_index, _g_show_factions_list_button_list_end_index):
         if var001 == var002:
             var003 = var001 - _g_show_factions_list_button_list_first_index
-            var003 += fac.kingdom_1
+            var003 = var003 + fac.kingdom_1
             presentation_set_duration(0)
             if _g_multiplayer_factions_list_action_type == 2:
                 if var003 >= _g_multiplayer_poll_for_map_and_faction_data_faction_1:
@@ -7023,7 +7023,7 @@ def code():
     overlay_set_size(reg0,1)
     if _g_multiplayer_poll_to_show == 0:
         var001 = _g_multiplayer_poll_value_to_show - scn.multi_scene_1
-        var001 += gstr.multi_scene_1
+        var001 = var001 + gstr.multi_scene_1
         s0 = str_store_string(var001)
         create_text_overlay(reg0,gstr.poll_change_map,16)
     elif _g_multiplayer_poll_to_show == 1:
@@ -7034,7 +7034,7 @@ def code():
         create_text_overlay(reg0,gstr.poll_ban_player,16)
     elif _g_multiplayer_poll_to_show == 3:
         var001 = _g_multiplayer_poll_value_to_show - scn.multi_scene_1
-        var001 += gstr.multi_scene_1
+        var001 = var001 + gstr.multi_scene_1
         s0 = str_store_string(var001)
         s1 = str_store_faction_name(_g_multiplayer_poll_value_2_to_show)
         s2 = str_store_faction_name(_g_multiplayer_poll_value_3_to_show)
@@ -7214,10 +7214,10 @@ def code():
     var002 = 575
     var003 = mesh.banner_f21
     var004 = fac.kingdoms_end
-    var004 -= fac.kingdom_1
+    var004 = var004 - fac.kingdom_1
     var003 -= var004
     var005 = 16 * _g_presentation_page_no
-    var005 += mesh.banner_a01
+    var005 = var005 + mesh.banner_a01
     var006 = var005 + 16
     val_min(var003,var006)
     _g_presentation_banner_start = _g_presentation_obj_banner_selection_1 + 1
@@ -7291,10 +7291,10 @@ def code():
     set_fixed_point_multiplier(1000)
     troop_slot_001 = troop_get_slot(trp.player,96)
     val_max(troop_slot_001,0)
-    troop_slot_001 += mesh.custom_banner_01
+    troop_slot_001 = troop_slot_001 + mesh.custom_banner_01
     troop_slot_002 = troop_get_slot(trp.player,99)
     val_max(troop_slot_002,0)
-    troop_slot_002 += mesh.custom_map_banner_01
+    troop_slot_002 = troop_slot_002 + mesh.custom_map_banner_01
     troop_slot_003 = troop_get_slot(trp.player,85)
     troop_slot_004 = troop_get_slot(trp.player,86)
     create_text_overlay(reg1,gstr.color_no_1,0)
@@ -7402,7 +7402,7 @@ def code():
         overlay_set_position(_g_presentation_obj_custom_banner_7,1)
         troop_slot_006 = troop_get_slot(trp.player,92)
         troop_slot_006 %= 256
-        troop_slot_006 += mesh.custom_banner_charge_01
+        troop_slot_006 = troop_slot_006 + mesh.custom_banner_charge_01
         create_image_button_overlay(_g_presentation_obj_custom_banner_24,troop_slot_006,troop_slot_006)
         position_set_x(1,260)
         position_set_y(1,255)
@@ -7439,7 +7439,7 @@ def code():
         overlay_set_position(_g_presentation_obj_custom_banner_9,1)
         troop_slot_006 = troop_get_slot(trp.player,93)
         troop_slot_006 %= 256
-        troop_slot_006 += mesh.custom_banner_charge_01
+        troop_slot_006 = troop_slot_006 + mesh.custom_banner_charge_01
         create_image_button_overlay(_g_presentation_obj_custom_banner_25,troop_slot_006,troop_slot_006)
         position_set_x(1,260)
         position_set_y(1,195)
@@ -7476,7 +7476,7 @@ def code():
         overlay_set_position(_g_presentation_obj_custom_banner_11,1)
         troop_slot_006 = troop_get_slot(trp.player,94)
         troop_slot_006 %= 256
-        troop_slot_006 += mesh.custom_banner_charge_01
+        troop_slot_006 = troop_slot_006 + mesh.custom_banner_charge_01
         create_image_button_overlay(_g_presentation_obj_custom_banner_26,troop_slot_006,troop_slot_006)
         position_set_x(1,260)
         position_set_y(1,135)
@@ -7513,7 +7513,7 @@ def code():
         overlay_set_position(_g_presentation_obj_custom_banner_13,1)
         troop_slot_006 = troop_get_slot(trp.player,95)
         troop_slot_006 %= 256
-        troop_slot_006 += mesh.custom_banner_charge_01
+        troop_slot_006 = troop_slot_006 + mesh.custom_banner_charge_01
         create_image_button_overlay(_g_presentation_obj_custom_banner_27,troop_slot_006,troop_slot_006)
         position_set_x(1,260)
         position_set_y(1,75)
@@ -7836,7 +7836,7 @@ banner_charge_selection.add_event(event)
 event = StateChangedEvent()
 def code(var001):
     var002 = mesh.tableau_mesh_custom_banner
-    var002 -= mesh.custom_banner_charge_01
+    var002 = var002 - mesh.custom_banner_charge_01
     for var003 in range(0, var002):
         if troop_slot_eq(trp.temp_array_a,var003,var001):
             troop_set_slot(trp.player,_g_presentation_output_slot,var003)
@@ -7881,7 +7881,7 @@ banner_background_selection.add_event(event)
 event = StateChangedEvent()
 def code(var001):
     var002 = mesh.custom_banner_charge_01
-    var002 -= mesh.custom_banner_bg
+    var002 = var002 - mesh.custom_banner_bg
     for var003 in range(0, var002):
         if troop_slot_eq(trp.temp_array_a,var003,var001):
             troop_set_slot(trp.player,91,var003)
@@ -7926,7 +7926,7 @@ banner_flag_type_selection.add_event(event)
 event = StateChangedEvent()
 def code(var001):
     var002 = mesh.custom_banner_bg
-    var002 -= mesh.custom_banner_01
+    var002 = var002 - mesh.custom_banner_01
     for var003 in range(0, var002):
         if troop_slot_eq(trp.temp_array_a,var003,var001):
             troop_set_slot(trp.player,96,var003)
@@ -7951,7 +7951,7 @@ def code():
     position_set_y(1,600)
     overlay_set_position(reg1,1)
     troop_slot_001 = troop_get_slot(trp.player,91)
-    troop_slot_001 += mesh.custom_banner_bg
+    troop_slot_001 = troop_slot_001 + mesh.custom_banner_bg
     var002 = 250
     var003 = 150
     for mesh_004 in range(mesh.custom_map_banner_01, mesh.custom_banner_01):
@@ -7979,7 +7979,7 @@ banner_flag_map_type_selection.add_event(event)
 event = StateChangedEvent()
 def code(var001):
     var002 = mesh.custom_banner_01
-    var002 -= mesh.custom_map_banner_01
+    var002 = var002 - mesh.custom_map_banner_01
     for var003 in range(0, var002):
         if troop_slot_eq(trp.temp_array_a,var003,var001):
             troop_set_slot(trp.player,99,var003)
@@ -9634,7 +9634,7 @@ def code(var001, var002):
         #end
         var013 = var004 - var002
         var013 += 30
-        for var014 in range(0, var005):
+        for _ in range(0, var005):
             random_x_015 = store_random_in_range(0,var013)
             if var001 != _g_presentation_obj_sliders_1:
                 random_x_015 -= _g_presentation_obj_sliders_1_val
@@ -11138,7 +11138,7 @@ def code():
     overlay_set_position(reg0,1)
     var004 -= 25
     var005 = var001 - itm.javelin_bow
-    var005 += gstr.javelin_bow
+    var005 = var005 + gstr.javelin_bow
     if is_between(var005,gstr.javelin_bow,gstr.npc1_1):
         s0 = str_store_string(var005)
     else:
