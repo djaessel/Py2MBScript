@@ -37,9 +37,9 @@ store_script_param   = 23       # (store_script_param,<destination>,<script_para
 # CONDITION OPERATIONS
 #--------------------------------------------------------------------------
 
-ge           = 30  # greater than or equal to -- (ge,<value>,<value>),
-eq           = 31  # equal to		      -- (eq,<value>,<value>),
-gt           = 32  # greater than	      -- (gt,<value>,<value>),
+ge           = 30  # (ge,<value>,<value2>), # greater than or equal to --
+eq           = 31  # (eq,<value>,<value2>), # equal to		      --
+gt           = 32  # (gt,<value>,<value2>), # greater than	      --
 
 is_between   = 33  # (is_between,<value>,<lower_bound>,<upper_bound>), #greater than or equal to lower bound and less than upper bound
 
