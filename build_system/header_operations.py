@@ -1192,7 +1192,7 @@ assign                 = 2133	# (assign,<destination>,<value>), # had to put thi
 
 shuffle_range          = 2134	# (shuffle_range,<reg_no>,<reg_no>),
 
-store_random           = 2135	# (store_random, <seed>), # deprecated, use store_random_in_range instead.
+store_random           = 2135	# (store_random, <destination>, <seed>), # deprecated, use store_random_in_range instead.
 store_random_in_range  = 2136	# (store_random_in_range,<destination>,<range_low>,[<range_high>]), # gets random number in range [range_low,range_high] excluding range_high
 
 

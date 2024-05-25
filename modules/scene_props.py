@@ -1126,25 +1126,27 @@ banner_pole.add_flag(ScenePropFlag.MOVEABLE)
 
 custom_banner_01 = SceneProp("custom_banner_01", "custom_banner_01", "0")
 # trigger0
-#trigger0 = SimpleTrigger(tri.ti_on_scene_prop_init)
-#def code():
-#    party_slot_001 = party_get_slot(_g_encountered_party,7)
-#    if party_slot_001 >= 0:
-#        cur_scene_prop_set_tableau_material(tab.custom_banner_default,party_slot_001)
-#    #end
-#trigger0.codeBlock = code
-#custom_banner_01.add_trigger(trigger0)
+trigger0 = SimpleTrigger(tri.ti_on_scene_prop_init)
+def code():
+    party_slot_001 = party_get_slot(_g_encountered_party,7)
+    if party_slot_001 >= 0:
+        bannerx = tableau.custom_banner_default
+        cur_scene_prop_set_tableau_material(bannerx,party_slot_001)
+    #end
+trigger0.codeBlock = code
+custom_banner_01.add_trigger(trigger0)
 
 custom_banner_02 = SceneProp("custom_banner_02", "custom_banner_02", "0")
 # trigger0
-#trigger0 = SimpleTrigger(tri.ti_on_scene_prop_init)
-#def code():
-#    party_slot_001 = party_get_slot(_g_encountered_party,7)
-#    if party_slot_001 >= 0:
-#        cur_scene_prop_set_tableau_material(tab.custom_banner_default,party_slot_001)
-#    #end
-#trigger0.codeBlock = code
-#custom_banner_02.add_trigger(trigger0)
+trigger0 = SimpleTrigger(tri.ti_on_scene_prop_init)
+def code():
+    party_slot_001 = party_get_slot(_g_encountered_party,7)
+    if party_slot_001 >= 0:
+        bannerx = tableau.custom_banner_default
+        cur_scene_prop_set_tableau_material(bannerx,party_slot_001)
+    #end
+trigger0.codeBlock = code
+custom_banner_02.add_trigger(trigger0)
 
 banner_a = SceneProp("banner_a", "banner_a01", "0")
 

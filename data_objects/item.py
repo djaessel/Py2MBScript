@@ -358,7 +358,7 @@ class Item:
         self.difficulty = 0
         self.hit_points = 0
         self.speed_rating = 0
-        self.missle_speed = 0
+        self.missile_speed = 0
         self.horse_scale = 0
         self.weapon_length = 0
         self.shield_width = 0

@@ -885,8 +885,28 @@ scene_props = [
 ("stone_house_e", 0, "stone_house_e", "bo_stone_house_e", []),
 ("stone_house_f", 0, "stone_house_f", "bo_stone_house_f", []),
 ("banner_pole", sokf_moveable, "banner_pole", "bo_banner_pole", []),
-("custom_banner_01", 0, "custom_banner_01", "0", []),
-("custom_banner_02", 0, "custom_banner_02", "0", []),
+("custom_banner_01", 0, "custom_banner_01", "0", [
+(ti_on_scene_prop_init, [
+(party_get_slot,":party_slot_001","$g_encountered_party",7),
+(try_begin),
+    (ge,":party_slot_001",0),
+    (assign,":bannerx","tableau_custom_banner_default"),
+    (cur_scene_prop_set_tableau_material, ":bannerx", ":party_slot_001"),
+(try_end),
+]),
+
+]),
+("custom_banner_02", 0, "custom_banner_02", "0", [
+(ti_on_scene_prop_init, [
+(party_get_slot,":party_slot_001","$g_encountered_party",7),
+(try_begin),
+    (ge,":party_slot_001",0),
+    (assign,":bannerx","tableau_custom_banner_default"),
+    (cur_scene_prop_set_tableau_material, ":bannerx", ":party_slot_001"),
+(try_end),
+]),
+
+]),
 ("banner_a", 0, "banner_a01", "0", []),
 ("banner_b", 0, "banner_a02", "0", []),
 ("banner_c", 0, "banner_a03", "0", []),
