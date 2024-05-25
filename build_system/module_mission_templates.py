@@ -75,9 +75,9 @@ mission_templates = [
 (gt,"$g_belligerent_drunk_leaving",0),
 (entry_point_get_position, pos0, 0),
 (agent_get_position,pos1,"$g_belligerent_drunk_leaving"),
+(get_distance_between_positions,":distance_001",0,1),
 (try_begin),
     (le,":distance_001",150),
-    (get_distance_between_positions,":distance_001",0,1),
 (try_end),
 ], [
 (agent_fade_out, "$g_belligerent_drunk_leaving"),
@@ -213,6 +213,7 @@ mission_templates = [
 (get_player_agent_no,":agent_no_001"),
 (try_begin),
     (agent_is_alive,":agent_no_001"),
+    (agent_get_wielded_item,":agent_wieled_item_002",":agent_no_001",0),
     (try_begin),
         (is_between,":agent_wieled_item_002","itm_darts","itm_torch"),
         (neq,":agent_wieled_item_002","itm_javelin_melee"),
@@ -221,7 +222,6 @@ mission_templates = [
         (neq,":agent_wieled_item_002","itm_light_throwing_axes_melee"),
         (neq,":agent_wieled_item_002","itm_throwing_axes_melee"),
         (neq,":agent_wieled_item_002","itm_heavy_throwing_axes_melee"),
-        (agent_get_wielded_item,":agent_wieled_item_002",":agent_no_001",0),
     (try_end),
 (try_end),
 ], [
@@ -486,10 +486,10 @@ mission_templates = [
 (3.0, 0.0, 0.0, [
 (eq,"$talk_context",19),
 (neg|main_hero_fallen),
+(store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",10),
     (all_enemies_defeated),
-    (store_mission_timer_a,":m_timer_a_001"),
 (try_end),
 ], [
 (call_script, "script_deduct_casualties_from_garrison"),
@@ -752,10 +752,10 @@ mission_templates = [
 ]),
 
 (1.0, 4.0, ti_once, [
-(ge,":m_timer_a_001",5),
-(this_or_next|main_hero_fallen),
-(num_active_teams_le,1),
-(store_mission_timer_a,":m_timer_a_001"),
+(try_begin),
+    (ge,":m_timer_a_001",5),
+    (this_or_next|main_hero_fallen),
+    (num_active_teams_le,1),
 ], [
 (try_begin),
     (main_hero_fallen),
@@ -1181,9 +1181,9 @@ mission_templates = [
     (store_mission_timer_a,":m_timer_a_006"),
     (try_begin),
         (ge,":m_timer_a_006",10),
+        (store_normalized_team_count,":normalized_team_count_007", 0),
         (try_begin),
             (lt,":normalized_team_count_007",6),
-            (store_normalized_team_count,":normalized_team_count_007", 0),
         (try_end),
     (try_end),
 ], [
@@ -1197,9 +1197,9 @@ mission_templates = [
 (store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",10),
+    (store_normalized_team_count,":normalized_team_count_002", 1),
     (try_begin),
         (lt,":normalized_team_count_002",6),
-        (store_normalized_team_count,":normalized_team_count_002", 1),
     (try_end),
 (try_end),
 ], [
@@ -1248,8 +1248,8 @@ mission_templates = [
 ]),
 
 (0.0, 0.0, ti_once, [
-(ge,":m_timer_a_001",2),
-(store_mission_timer_a,":m_timer_a_001"),
+(try_begin),
+    (ge,":m_timer_a_001",2),
 ], [
 (call_script, "script_select_battle_tactic"),
 (call_script, "script_battle_tactic_init"),
@@ -2799,12 +2799,12 @@ mission_templates = [
 (try_end),
 ], [
 (call_script, "script_deduct_casualties_from_garrison"),
-(try_for_agents, ":m_timer_a_001"),
-    (agent_get_troop_id,":troop_id_002", ":m_timer_a_001"),
+(try_for_agents, ":agentx"),
+    (agent_get_troop_id,":troop_id_002", ":agentx"),
     (try_begin),
         (troop_slot_ge,":troop_id_002",149,2),
         (try_begin),
-            (agent_is_alive,":m_timer_a_001"),
+            (agent_is_alive,":agentx"),
             (troop_set_slot,":troop_id_002",149,4),
         (else_try),
             (troop_set_slot,":troop_id_002",149,5),
@@ -3321,9 +3321,9 @@ mission_templates = [
 (5.0, 1.0, ti_once, [
 (num_active_teams_le,1),
 (neg|main_hero_fallen),
+(store_mission_timer_a,":m_timer_a_001"),
 (try_begin),
     (ge,":m_timer_a_001",5),
-    (store_mission_timer_a,":m_timer_a_001"),
 (try_end),
 ], [
 (assign,"$auto_menu",-1),
@@ -3625,7 +3625,7 @@ mission_templates = [
 (val_mod, ":cur_agent", 6),
 (val_add, ":troop_id_001", ":cur_agent"),
 (val_min,":troop_id_001",9),
-(assign,":troop_id_001 +","trp_arena_training_fighter_1"),
+(store_add, ":troop_id_001", ":troop_id_001", "trp_arena_training_fighter_1"),
 (assign,":agent_team_no_003",10000),
 (get_player_agent_no,":m_timer_a_004"),
 (agent_get_position,pos5,":m_timer_a_004"),

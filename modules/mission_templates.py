@@ -228,8 +228,9 @@ def condition():
     if _g_belligerent_drunk_leaving > 0:
         pos0 = entry_point_get_position(0)
         pos1 = agent_get_position(_g_belligerent_drunk_leaving)
+        distance_001 = get_distance_between_positions(0,1)
         if distance_001 <= 150:
-            distance_001 = get_distance_between_positions(0,1)
+            pass
 trigger3.conditionBlock = condition
 
 def code():
@@ -363,8 +364,9 @@ def condition():
     if not conversation_screen_is_active() and _talk_context == 14 and _g_main_attacker_agent > 0:
         agent_no_001 = get_player_agent_no()
         if agent_is_alive(agent_no_001):
+            agent_wieled_item_002 = agent_get_wielded_item(agent_no_001,0)
             if is_between(agent_wieled_item_002,itm.darts,itm.torch) and agent_wieled_item_002 != itm.javelin_melee and agent_wieled_item_002 != itm.throwing_spear_melee and agent_wieled_item_002 != itm.jarid_melee and agent_wieled_item_002 != itm.light_throwing_axes_melee and agent_wieled_item_002 != itm.throwing_axes_melee and agent_wieled_item_002 != itm.heavy_throwing_axes_melee:
-                agent_wieled_item_002 = agent_get_wielded_item(agent_no_001,0)
+                pass
 trigger9.conditionBlock = condition
 
 def code():
@@ -1073,8 +1075,9 @@ town_center.add_trigger(trigger12)
 trigger13 = Trigger(3.000000, 0.000000, 0.000000)
 def condition():
     if _talk_context == 19 and not main_hero_fallen(0):
+        m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 10 and all_enemies_defeated():
-            m_timer_a_001 = store_mission_timer_a()
+            pass
 trigger13.conditionBlock = condition
 
 def code():
@@ -1809,8 +1812,9 @@ bandits_at_night.add_trigger(trigger5)
 # trigger 6
 trigger6 = Trigger(1.000000, 4.000000, 100000000.000000)
 def condition():
+    m_timer_a_001 = store_mission_timer_a()
     if m_timer_a_001 >= 5 and main_hero_fallen() or num_active_teams_le(1):
-        m_timer_a_001 = store_mission_timer_a()
+        pass
 trigger6.conditionBlock = condition
 
 def code():
@@ -2694,8 +2698,9 @@ def condition():
     if _defender_reinforcement_stage < _g_defender_reinforcement_limit:
         m_timer_a_006 = store_mission_timer_a()
         if m_timer_a_006 >= 10:
+            normalized_team_count_007 = store_normalized_team_count(0)
             if normalized_team_count_007 < 6:
-                normalized_team_count_007 = store_normalized_team_count(0)
+                pass
 trigger9.conditionBlock = condition
 
 def code():
@@ -2710,8 +2715,9 @@ def condition():
     if _attacker_reinforcement_stage < 2:
         m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 10:
+            normalized_team_count_002 = store_normalized_team_count(1)
             if normalized_team_count_002 < 6:
-                normalized_team_count_002 = store_normalized_team_count(1)
+                pass
 trigger10.conditionBlock = condition
 
 def code():
@@ -2777,8 +2783,9 @@ lead_charge.add_trigger(trigger14)
 # trigger 15
 trigger15 = Trigger(0.000000, 0.000000, 100000000.000000)
 def condition():
+    m_timer_a_001 = store_mission_timer_a()
     if m_timer_a_001 >= 2:
-        m_timer_a_001 = store_mission_timer_a()
+        pass
 trigger15.conditionBlock = condition
 
 def code():
@@ -5420,10 +5427,10 @@ trigger7.conditionBlock = condition
 
 def code():
     deduct_casualties_from_garrison()
-    for m_timer_a_001 in __all_agents__:
-        troop_id_002 = agent_get_troop_id(m_timer_a_001)
+    for agentx in __all_agents__:
+        troop_id_002 = agent_get_troop_id(agentx)
         if troop_slot_ge(troop_id_002,149,2):
-            if agent_is_alive(m_timer_a_001):
+            if agent_is_alive(agentx):
                 troop_set_slot(troop_id_002,149,4)
             else:
                 troop_set_slot(troop_id_002,149,5)
@@ -6780,8 +6787,9 @@ sneak_caught_fight.add_trigger(trigger6)
 trigger7 = Trigger(5.000000, 1.000000, 100000000.000000)
 def condition():
     if num_active_teams_le(1) and not main_hero_fallen():
+        m_timer_a_001 = store_mission_timer_a()
         if m_timer_a_001 >= 5:
-            m_timer_a_001 = store_mission_timer_a()
+            pass
 trigger7.conditionBlock = condition
 
 def code():
@@ -8222,7 +8230,7 @@ def code():
     cur_agent %= 6
     troop_id_001 += cur_agent
     val_min(troop_id_001,9)
-    troop_id_001 += trp.arena_training_fighter_1
+    troop_id_001 = troop_id_001 + trp.arena_training_fighter_1
     agent_team_no_003 = 10000
     m_timer_a_004 = get_player_agent_no()
     pos5 = agent_get_position(m_timer_a_004)

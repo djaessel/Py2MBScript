@@ -24301,16 +24301,16 @@ def get_custom_banner_charge_type_position_scale_color(troop_id_001, var002):
     init_position(2)
     init_position(3)
     reg0 = troop_get_slot(troop_id_001,92)
-    reg0 += mesh.custom_banner_charge_01
+    reg0 = reg0 + mesh.custom_banner_charge_01
     reg2 = troop_get_slot(troop_id_001,87)
     reg3 = troop_get_slot(troop_id_001,93)
-    reg3 += mesh.custom_banner_charge_01
+    reg3 = reg3 + mesh.custom_banner_charge_01
     reg5 = troop_get_slot(troop_id_001,88)
     reg6 = troop_get_slot(troop_id_001,94)
-    reg6 += mesh.custom_banner_charge_01
+    reg6 = reg6 + mesh.custom_banner_charge_01
     reg8 = troop_get_slot(troop_id_001,89)
     reg9 = troop_get_slot(troop_id_001,95)
-    reg9 += mesh.custom_banner_charge_01
+    reg9 = reg9 + mesh.custom_banner_charge_01
     reg11 = troop_get_slot(troop_id_001,90)
     if troop_slot_003 == 1:
         if var002 == 0:
@@ -24598,9 +24598,9 @@ def get_rumor_to_s61(var001):
         if var008 == 0:
             if True:
                 var009 = p.castle_1
-                var009 -= p.town_1
+                var009 = var009 - p.town_1
                 party_id_010 = store_mod(var007,var009)
-                party_id_010 += p.town_1
+                party_id_010 = party_id_010 + p.town_1
                 if party_slot_ge(party_id_010,156,1) and party_id_010 != _current_town:
                     s62 = str_store_party_name(party_id_010)
                     s61 = str_store_string("@I heard that there will be a tournament in {s62} soon.")
@@ -24610,9 +24610,9 @@ def get_rumor_to_s61(var001):
         elif var008 == 1:
             if True:
                 var009 = trp.knight_1_1_wife
-                var009 -= trp.kingdom_1_lord
+                var009 = var009 - trp.kingdom_1_lord
                 troop_id_011 = store_mod(var007,var009)
-                troop_id_011 += trp.kingdom_1_lord
+                troop_id_011 = troop_id_011 + trp.kingdom_1_lord
                 if is_between(troop_id_011,trp.npc1,trp.knight_1_1_wife):
                     troop_slot_012 = troop_get_slot(troop_id_011,52)
                     if troop_slot_012 > 0:
@@ -24626,20 +24626,20 @@ def get_rumor_to_s61(var001):
         elif var008 == 2:
             if True:
                 var009 = itm.siege_supply
-                var009 -= itm.spice
+                var009 = var009 - itm.spice
                 var014 = var007 + var003
                 var014 = store_mod(var014,var009)
                 slot_no_015 = var014 + 250
-                var014 += itm.spice
+                var014 = var014 + itm.spice
                 var016 = 1000 * 3
                 var016 /= 4
                 var017 = -1
                 for var018 in range(0, 10):
                     var009 = p.castle_1
-                    var009 -= p.town_1
+                    var009 = var009 - p.town_1
                     var019 = var007 + var018
                     party_id_010 = store_mod(var019,var009)
-                    party_id_010 += p.town_1
+                    party_id_010 = party_id_010 + p.town_1
                     if party_id_010 != _g_encountered_party:
                         party_slot_020 = party_get_slot(party_id_010,slot_no_015)
                         if party_slot_020 < var016:
@@ -24658,20 +24658,20 @@ def get_rumor_to_s61(var001):
         elif var008 == 3:
             if True:
                 var009 = itm.siege_supply
-                var009 -= itm.spice
+                var009 = var009 - itm.spice
                 var014 = var007 + var003
                 var014 = store_mod(var014,var009)
                 slot_no_015 = var014 + 250
-                var014 += itm.spice
+                var014 = var014 + itm.spice
                 var021 = 1000 * 5
                 var021 /= 4
                 var022 = -1
                 for var018 in range(0, 10):
                     var009 = p.castle_1
-                    var009 -= p.town_1
+                    var009 = var009 - p.town_1
                     var019 = var007 + var018
                     party_id_010 = store_mod(var019,var009)
-                    party_id_010 += p.town_1
+                    party_id_010 = party_id_010 + p.town_1
                     if party_id_010 != _g_encountered_party:
                         party_slot_020 = party_get_slot(party_id_010,slot_no_015)
                         if party_slot_020 > var021:
@@ -27009,23 +27009,23 @@ def calculate_troop_political_factors_for_liege(troop_id_001, troop_id_002):
             else:
                 var012 = 1000
             #end
-        #end
-        distance_parties_013 = store_distance_to_party_from_party(var009,p_010)
-        distance_parties_013 += 10
-        var012 /= distance_parties_013
-        var012 /= distance_parties_013
-        party_faction_014 = store_faction_of_party(p_010)
-        if party_faction_014 == troop_faction_004:
-            var011 = 1
-            var008 += var012
-        elif party_faction_014 != troop_faction_004:
-            faction_relation_015 = store_relation(party_faction_014,troop_faction_004)
-            if var005 == 1 or faction_relation_015 < 0:
-                var012 /= 2
-            else:
-                var012 /= 4
+            distance_parties_013 = store_distance_to_party_from_party(var009,p_010)
+            distance_parties_013 += 10
+            var012 /= distance_parties_013
+            var012 /= distance_parties_013
+            party_faction_014 = store_faction_of_party(p_010)
+            if party_faction_014 == troop_faction_004:
+                var011 = 1
+                var008 += var012
+            elif party_faction_014 != troop_faction_004:
+                faction_relation_015 = store_relation(party_faction_014,troop_faction_004)
+                if var005 == 1 or faction_relation_015 < 0:
+                    var012 /= 2
+                else:
+                    var012 /= 4
+                #end
+                var008 -= var012
             #end
-            var008 -= var012
         #end
     #end
     if var011 == 0:
@@ -30254,27 +30254,27 @@ def internal_politics_rate_feast_to_s9(troop_id_001, var002, var003):
     item_slot_022 /= var011
     val_min(var023,100)
     var024 = var009 / 20
-    var024 += gstr.feast_description
+    var024 = var024 + gstr.feast_description
     s8 = str_store_string(var024)
     s9 = str_store_string(gstr.of_food_which_must_come_before_everything_else_the_amount_is_s8)
     var025 = var010 / 20
-    var025 += gstr.feast_description
+    var025 = var025 + gstr.feast_description
     s8 = str_store_string(var025)
     s9 = str_store_string(gstr.s9_and_the_variety_is_s8_)
     var026 = var014 / 20
-    var026 += gstr.feast_description
+    var026 = var026 + gstr.feast_description
     s8 = str_store_string(var026)
     s9 = str_store_string(gstr.s9_of_drink_which_guests_will_expect_in_great_abundance_the_amount_is_s8)
     var027 = var015 / 20
-    var027 += gstr.feast_description
+    var027 = var027 + gstr.feast_description
     s8 = str_store_string(var027)
     s9 = str_store_string(gstr.s9_and_the_variety_is_s8_)
     var028 = var021 / 20
-    var028 += gstr.feast_description
+    var028 = var028 + gstr.feast_description
     s8 = str_store_string(var028)
     s9 = str_store_string(gstr.s9_of_spice_which_is_essential_to_demonstrate_that_we_spare_no_expense_as_hosts_the_amount_is_s8_)
     var029 = var023 / 20
-    var029 += gstr.feast_description
+    var029 = var029 + gstr.feast_description
     s8 = str_store_string(var029)
     s9 = str_store_string(gstr.s9_of_oil_which_we_shall_require_to_light_the_lamps_the_amount_is_s8)
     var030 = var009 * 8
@@ -30288,13 +30288,13 @@ def internal_politics_rate_feast_to_s9(troop_id_001, var002, var003):
     var031 /= 8
     val_clamp(var031,1,101)
     var032 = var031 / 20
-    var032 += gstr.feast_description
+    var032 = var032 + gstr.feast_description
     s8 = str_store_string(var032)
     s9 = str_store_string(gstr.s9_overall_our_table_will_be_considered_s8)
     reg0 = var031
     if var003 == 1:
         var033 = var002
-        for var034 in range(0, 1999):
+        for _ in range(0, 1999):
             if var033 > 0:
                 for itm_004 in range(itm.spice, itm.siege_supply):
                     item_set_slot(itm_004,0,0)
@@ -30969,12 +30969,12 @@ def process_player_enterprise(item_id_001, party_id_002):
         slot_no_005 = item_slot_014 - itm.spice
         slot_no_005 += 250
         party_slot_006 = party_get_slot(party_id_002,slot_no_005)
+        var015 = item_slot_004 * party_slot_006
         if item_slot_012 < 0:
             var015 = var015 / 2
         else:
             var015 = var015 * item_slot_012
         #end
-        var015 = item_slot_004 * party_slot_006
         var015 /= 1000
     else:
         var015 = 0
@@ -32163,7 +32163,7 @@ def refresh_center_armories():
     set_merchandise_modifier_quality(150)
     for trp_001 in range(trp.town_1_armorer, trp.town_1_weaponsmith):
         party_id_002 = trp_001 - trp.town_1_armorer
-        party_id_002 += p.town_1
+        party_id_002 = party_id_002 + p.town_1
         troop_clear_inventory(trp_001)
         party_slot_003 = party_get_slot(party_id_002,61)
         troop_add_merchandise_with_faction(trp_001,party_slot_003,13,16)
@@ -32185,7 +32185,7 @@ def refresh_center_weaponsmiths():
     set_merchandise_modifier_quality(150)
     for trp_001 in range(trp.town_1_weaponsmith, trp.town_1_tavernkeeper):
         party_id_002 = trp_001 - trp.town_1_weaponsmith
-        party_id_002 += p.town_1
+        party_id_002 = party_id_002 + p.town_1
         troop_clear_inventory(trp_001)
         party_slot_003 = party_get_slot(party_id_002,61)
         troop_add_merchandise_with_faction(trp_001,party_slot_003,2,5)
@@ -32213,7 +32213,7 @@ def refresh_center_stables():
     for trp_001 in range(trp.town_1_horse_merchant, trp.town_1_mayor):
         troop_clear_inventory(trp_001)
         party_id_002 = trp_001 - trp.town_1_horse_merchant
-        party_id_002 += p.town_1
+        party_id_002 = party_id_002 + p.town_1
         party_slot_003 = party_get_slot(party_id_002,61)
         troop_add_merchandise_with_faction(trp_001,party_slot_003,1,5)
         troop_ensure_inventory_space(trp_001,65)
@@ -33767,7 +33767,7 @@ def add_player_to_cur_tableau_for_coop():
     s0 = str_store_player_face_keys(my_player)
     troop_set_face_keys(var002,0)
     var007 = store_mod(agent_id_003,4)
-    var007 += anim.pose_1
+    var007 = var007 + anim.pose_1
     set_fixed_point_multiplier(100)
     cur_tableau_set_camera_parameters(1,6,6,10,10000)
     var008 = 145
@@ -33861,7 +33861,7 @@ def add_troop_to_cur_tableau_for_coop(troop_id_001):
     else:
         var014 = store_mod(player_slot_011,4)
     #end
-    var014 += anim.pose_1
+    var014 = var014 + anim.pose_1
     set_fixed_point_multiplier(100)
     cur_tableau_set_camera_parameters(1,6,6,10,10000)
     var015 = 145
