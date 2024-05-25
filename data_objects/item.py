@@ -481,8 +481,8 @@ class Item:
         if self.speed_rating > 0:
             stats.append("spd_rtng(" + str(self.speed_rating) + ")")
 
-        if self.missle_speed > 0:
-            stats.append("missle_speed(" + str(self.missle_speed) + ")")
+        if self.missile_speed > 0:
+            stats.append("shoot_speed(" + str(self.missile_speed) + ")")
 
         if self.horse_scale > 0:
             stats.append("horse_scale(" + str(self.horse_scale) + ")")
