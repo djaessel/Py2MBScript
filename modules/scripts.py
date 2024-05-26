@@ -579,7 +579,7 @@ def game_start():
             var059 = 40
         #end
         for var009 in range(0, var059):
-            if call_script(script.cf_reinforce_party,p_016):
+            if cf_reinforce_party(p_016):
                 pass
             #end
         #end
@@ -633,7 +633,7 @@ def game_start():
         #end
     #end
     for _ in range(0, 5000):
-        #if call_script(script.cf_random_political_event):
+        #if cf_random_political_event():
         pass
         ##end
     #end
@@ -2730,7 +2730,7 @@ def game_event_simulate_battle(party_id_001, party_id_002):
                         _newglob_total_prosperity_from_townloot += -5
                     #end
                     order_best_besieger_party_to_guard_center(party_id_017,party_faction_031)
-                    if call_script(script.cf_reinforce_party,party_id_017) and call_script(script.cf_reinforce_party,party_id_017):
+                    if cf_reinforce_party(party_id_017) and cf_reinforce_party(party_id_017):
                         pass
                     #end
                 #end
@@ -7487,7 +7487,7 @@ def game_receive_network_message(player_id_001, var002, slot_no_003, var089, var
                 #end
             #end
         elif item_id_004 == 17:
-            if item_id_004 >= 0 and call_script(script.cf_coop_give_item_to_assigned_group_member,player_id_001,item_id_004):
+            if item_id_004 >= 0 and cf_coop_give_item_to_assigned_group_member(player_id_001,item_id_004):
                 pass
             else:
                 player_set_slot(player_id_001,49,-1)
@@ -14526,7 +14526,7 @@ def give_center_to_lord(party_id_001, troop_id_002, var003):
             var014 = 9
         #end
         for var015 in range(0, var014):
-            if call_script(script.cf_reinforce_party,party_id_001):
+            if cf_reinforce_party(party_id_001):
                 pass
             #end
         #end
@@ -14991,12 +14991,12 @@ def create_kingdom_hero_party(troop_id_001, var002):
     s5 = str_store_troop_name(troop_id_001)
     party_set_name(_pout_party,gstr.s5_s_party)
     party_set_slot(_pout_party,30,-1)
-    troop_slot_004 = troop_get_slot(troop_id_001,13)
-    if troop_slot_004 > 0:
-        troop_slot_004 = troop_slot_004 - spr.banner_a
-        troop_slot_004 += 1297036692682702894
-        party_set_banner_icon(_pout_party,troop_slot_004)
-    #end
+    #troop_slot_004 = troop_get_slot(troop_id_001,13)
+    #if troop_slot_004 > 0:
+    #    troop_slot_004 = troop_slot_004 - spr.banner_a
+    #    troop_slot_004 = troop_slot_004 + icon.banner_01
+    #    party_set_banner_icon(_pout_party,troop_slot_004)
+    ##end
     if troop_slot_eq(troop_id_001,28,0):
         troop_set_slot(troop_id_001,28,1)
         var005 = 20
@@ -15046,7 +15046,7 @@ def create_kingdom_party_if_below_limit(faction_id_001, var002):
         #end
     #end
     reg0 = -1
-    if var003 < var004 and call_script(script.cf_create_kingdom_party,faction_id_001,var002):
+    if var003 < var004 and cf_create_kingdom_party(faction_id_001,var002):
         pass
     #end
 
@@ -27757,7 +27757,7 @@ def faction_conclude_feast(var001, party_id_002):
 def lady_evaluate_troop_as_suitor(var001, troop_id_002):
     troop_get_romantic_chemistry_with_troop(var001,troop_id_002)
     var003 = reg0
-    if call_script(script.cf_test_lord_incompatibility_to_s17,var001,troop_id_002):
+    if cf_test_lord_incompatibility_to_s17(var001,troop_id_002):
         pass
     #end
     var004 = 0 - reg0

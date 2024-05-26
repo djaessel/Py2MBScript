@@ -1275,7 +1275,7 @@ store_time_of_day               = 2271	# (store_time_of_day,<destination>),
 store_current_day               = 2272	# (store_current_day,<destination>),
 is_currently_night              = 2273	# (is_currently_night),
 
-store_distance_to_party_from_party = 2281	# (store_distance_to_party_from_party,<destination>,<party_id>,<party_id>),
+store_distance_to_party_from_party = 2281	# (store_distance_to_party_from_party,<destination>,<party_id1>,<party_id2>),
 
 get_party_ai_behavior                 = 2290	# (get_party_ai_behavior,<destination>,<party_id>),
 get_party_ai_object                   = 2291	# (get_party_ai_object,<destination>,<party_id>),

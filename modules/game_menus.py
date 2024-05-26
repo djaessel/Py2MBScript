@@ -7104,7 +7104,7 @@ def code():
         party_set_slot(_current_town,205,party_slot_002)
     #end
     troop_clear_inventory(trp.temp_troop)
-    party_slot_004 = party_get_slot(120,_current_town)
+    party_slot_004 = party_get_slot(_current_town,120)
     var005 = 250 - itm.spice
     reset_item_probabilities(100)
     var006 = 0
